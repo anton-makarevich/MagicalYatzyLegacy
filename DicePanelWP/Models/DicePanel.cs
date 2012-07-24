@@ -1,23 +1,19 @@
 ﻿using System;
 using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-
 
 using System.Collections;
 using System.Collections.Generic;
 
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Windows.Controls;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using System.Windows.Media;
 using System.Windows.Resources;
-using System.Windows.Threading;
+
 namespace Sanet.Kniffel.WP.DicePanel
 {
     public enum dpStyle
@@ -285,6 +281,7 @@ namespace Sanet.Kniffel.WP.DicePanel
                 return false;
             }
         }
+        
         public void RollDice(List<int> aResults )
         {
             //if (isRolling) return;
@@ -330,7 +327,6 @@ namespace Sanet.Kniffel.WP.DicePanel
             BeginLoop();
 
         }
-
         private void BeginLoop()
         {
             foreach (Die d in aDice)
@@ -379,6 +375,7 @@ namespace Sanet.Kniffel.WP.DicePanel
 
 
         }
+
         private int _RollDelay;
         public int RollDelay
         {
@@ -796,14 +793,14 @@ namespace Sanet.Kniffel.WP.DicePanel
                 {
                     bPair++;
                 }
-                if (iOccur[i] > 3)
-                {
-                    bPair++;
-                }
-                if (iOccur[i] > 5)
-                {
-                    bPair++;
-                }
+                //if (iOccur[i] > 3)
+                //{
+                //    bPair++;
+                //}
+                //if (iOccur[i] > 5)
+                //{
+                //    bPair++;
+                //}
             }
 
 
@@ -863,6 +860,7 @@ namespace Sanet.Kniffel.WP.DicePanel
             : base()
         {
             PNG = new Image();
+            PNG.CacheMode = new BitmapCache();
             //Style = pn.Style
             FPanel = pn;
             //mSound.AutoPlay = False
@@ -1154,11 +1152,6 @@ namespace Sanet.Kniffel.WP.DicePanel
                     PNG.Opacity = 1;
                 }
             }
-
-
-
-
-
 
 
         }

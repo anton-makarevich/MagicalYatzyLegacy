@@ -20,20 +20,12 @@ namespace Sanet.DiceRoller.Views
     public partial class AboutPage : UserControl
     {
         public ResourceModel Rmodel;
-        MarketplaceDetailTask _marketPlaceDetailTask = new MarketplaceDetailTask();
+        //MarketplaceDetailTask _marketPlaceDetailTask = new MarketplaceDetailTask();
+        MarketplaceReviewTask _marketPlaceReviewTask = new MarketplaceReviewTask();
         public AboutPage()
         {
             InitializeComponent();
-            
-            
-                TrialText.Visibility = Visibility.Collapsed;
-                BuyButton.Visibility = Visibility.Collapsed;
-                FullText.Visibility = Visibility.Visible;
-                //ReviewButton.Visibility = Visibility.Visible;
-            
-
-           
-            
+             
         }
         public void PopulateTexts()
         {
@@ -41,8 +33,6 @@ namespace Sanet.DiceRoller.Views
             
             VersionText.Text = Rmodel.GetString("Version")+" " + nameHelper.Version.ToString();
             AboutText.Text = Rmodel.GetString("AboutLabel");
-            TrialText.Text = Rmodel.GetString("TrialLabel");
-            FullText.Text = Rmodel.GetString("FullLabel");
             OnlineVersionText.Text = Rmodel.GetString("OnlineLabel");
             OnlineLink.Content = Rmodel.GetString("AboutOnlineLabel");
             AuthorText.Text = Rmodel.GetString("DevelopedByLabel");
@@ -50,6 +40,7 @@ namespace Sanet.DiceRoller.Views
             //PrimoText.Text = Rmodel.GetString("PrimoLabel");
             //PrimoLink.Content = Rmodel.GetString("AboutPrimoLabel");
             CloseButton.Content = Rmodel.GetString("CloseLabel");
+            RateButton.Content = Rmodel.GetString("RateLabel");
 
         }
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -57,9 +48,9 @@ namespace Sanet.DiceRoller.Views
             ((Popup)this.Parent).IsOpen = false;
         }
 
-        private void BuyButton_Click(object sender, RoutedEventArgs e)
+        private void RateButton_Click(object sender, RoutedEventArgs e)
         {
-            _marketPlaceDetailTask.Show();
+            _marketPlaceReviewTask.Show();
         }
     }
 }

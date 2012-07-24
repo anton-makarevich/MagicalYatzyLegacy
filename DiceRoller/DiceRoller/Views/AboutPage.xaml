@@ -27,12 +27,7 @@
         
             <TextBlock x:Name="VersionText" TextWrapping="Wrap"/>
             </StackPanel>
-        <StackPanel Grid.Row="1" Margin="10" Visibility="Collapsed">
-            <TextBlock x:Name="TrialText" TextWrapping="Wrap" Text="Вы используете ознакомительную версию программы с ограниченным функционалом."/>
-            <Button x:Name="BuyButton" Content="Купить полную версию" Click="BuyButton_Click" />
-            <TextBlock x:Name="FullText" TextWrapping="Wrap" Text="Вы используете полную версию программы. Спасибо!"/>
-            <!--<Button x:Name="ReviewButton" Content="Оставить отзыв"/>-->
-        </StackPanel>
+        
         <StackPanel Grid.Row="2" Margin="10">
             <TextBlock x:Name="OnlineVersionText" TextWrapping="Wrap" Visibility="Visible" 
                        Text="Программа основана на контролле DicePanel из игры Kniffel Online. Идея контрола и 'красные' кости принадлежат  Matthew Tagliaferri."/>
@@ -51,6 +46,7 @@
             <TextBlock x:Name="PrimoText" Text ="В программе использован шрифт 'Primo':" Visibility="Collapsed"/>
             <my:PhoneHyperlinkButton x:Name="PrimoLink" Tag="http://nekin.info/e25.htm" Content="Подробнее о шрифте..." HorizontalAlignment="Left" Visibility="Collapsed"/>
         </StackPanel>
+        <Button x:Name="RateButton" Content="Оценить" Grid.Row="5" Click="RateButton_Click"/>
         <Button x:Name="CloseButton" Content="Закрыть" Grid.Row="6" Click="CloseButton_Click"/>
     </Grid>
 </UserControl>

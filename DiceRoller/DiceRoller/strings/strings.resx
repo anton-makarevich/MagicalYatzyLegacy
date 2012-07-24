@@ -183,4 +183,7 @@
   <data name="SmallStraight" xml:space="preserve">
     <value>Small Straight</value>
   </data>
+  <data name="RateLabel" xml:space="preserve">
+    <value>Rate this app</value>
+  </data>
 </root>

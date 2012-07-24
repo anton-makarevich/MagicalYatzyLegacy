@@ -183,4 +183,7 @@
   <data name="SmallStraight" xml:space="preserve">
     <value>Смол-стрит</value>
   </data>
+  <data name="RateLabel" xml:space="preserve">
+    <value>Оценить</value>
+  </data>
 </root>
