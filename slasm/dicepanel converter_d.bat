@@ -1,0 +1,1 @@
+D:\slasm\slasm.exe D:\slasm\dicepanelwpf.dll

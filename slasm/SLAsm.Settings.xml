@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SLAsm.Settings xmlns="urn:Silverlight-Assmblies/SLAsmSettings.xsd"
+                 ILDisassembler="%path%\Disassembler\ildasm.exe">
+  <ExternAssembly Name="System" Version="2.0.5.0" PublicKeyToken="7C EC 85 D7 BE A7 79 8E" />
+  <ExternAssembly Name="mscorlib" Version="2.0.5.0" PublicKeyToken="7C EC 85 D7 BE A7 79 8E" />
+  <ExternAssembly Name="System.Core" Version="2.0.5.0" PublicKeyToken="7C EC 85 D7 BE A7 79 8E" />
+  <ExternAssembly Name="System.Net" Version="2.0.5.0" PublicKeyToken="7C EC 85 D7 BE A7 79 8E" />
+  <ExternAssembly Name="System.Runtime.Serialization" Version="2.0.5.0" PublicKeyToken="7C EC 85 D7 BE A7 79 8E" />
+  <ExternAssembly Name="System.Windows" Version="2.0.5.0" PublicKeyToken="7C EC 85 D7 BE A7 79 8E" />
+  <ExternAssembly Name="System.Json" Version="2.0.5.0" PublicKeyToken="31 BF 38 56 AD 36 4E 35" />
+  <ExternAssembly Name="System.ServiceModel" Version="2.0.5.0" PublicKeyToken="31 BF 38 56 AD 36 4E 35" >
+    <UnsupportedAttribute>System.ServiceModel.FaultContractAttribute</UnsupportedAttribute>
+    <UnsupportedAttribute>System.ServiceModel.DeliveryRequirementsAttribute</UnsupportedAttribute>
+    <UnsupportedAttribute>System.ServiceModel.CallbackBehaviorAttribute</UnsupportedAttribute>
+    <UnsupportedAttribute>System.ServiceModel.MessageHeaderAttribute</UnsupportedAttribute>
+    <UnsupportedAttribute>System.ServiceModel.MessageHeaderArrayAttribute</UnsupportedAttribute>
+    <UnsupportedAttribute>System.ServiceModel.MessagePropertyAttribute</UnsupportedAttribute>
+    <UnsupportedAttribute>System.ServiceModel.OperationBehaviorAttribute</UnsupportedAttribute>
+    <UnsupportedAttribute>System.ServiceModel.ServiceBehaviorAttribute</UnsupportedAttribute>
+    <UnsupportedAttribute>System.ServiceModel.XmlSerializerFormatAttribute</UnsupportedAttribute>
+    <UnsupportedAttribute>System.ServiceModel.PeerHopCountAttribute</UnsupportedAttribute>
+    <UnsupportedAttribute>System.ServiceModel.TransactionFlowAttribute</UnsupportedAttribute>
+    <UnsupportedAttribute>System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute</UnsupportedAttribute>
+  </ExternAssembly>
+</SLAsm.Settings>
