@@ -8,12 +8,22 @@ using System.Collections.Generic;
 
 using System.Diagnostics;
 using System.ComponentModel;
+
+#if WinRT
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
+using Windows.Foundation;
+
+#else
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows.Resources;
-
+#endif
 namespace Sanet.Kniffel.WP.DicePanel
 {
     public enum dpStyle
@@ -159,7 +169,9 @@ namespace Sanet.Kniffel.WP.DicePanel
 
 
         private int FNumDice = 2;
+#if WINDOWS_PHONE
         [Description("Number of Dice in the Panel"), Category("Dice"), DefaultValue(2)]
+#endif
         public int NumDice
         {
             get { return FNumDice; }
@@ -174,7 +186,9 @@ namespace Sanet.Kniffel.WP.DicePanel
 
 
         private bool FDebugDrawMode = false;
+        #if WINDOWS_PHONE
         [Description("Draws a Box Around the Die for Collision Debugging"), Category("Dice"), DefaultValue(false)]
+#endif
         public bool DebugDrawMode
         {
             get { return FDebugDrawMode; }
@@ -185,7 +199,9 @@ namespace Sanet.Kniffel.WP.DicePanel
 
         private bool FClickToFreeze;
         //new
+        #if WINDOWS_PHONE
         [Description("Allows user to click dice to lock their movement"), Category("Dice"), DefaultValue(false)]
+#endif
         public bool ClickToFreeze
         {
             get { return FClickToFreeze; }
@@ -232,8 +248,9 @@ namespace Sanet.Kniffel.WP.DicePanel
             }
 
         }
-
+        #if WINDOWS_PHONE
         [Description("Summed Result of All the Dice"), Category("Dice")]
+#endif
         public int Result
         {
             get
@@ -870,8 +887,10 @@ namespace Sanet.Kniffel.WP.DicePanel
         public void PlaySound()
         {
             mSound = new MediaElement();
+#if WINDOWS_PHONE
             StreamResourceInfo sri = Application.GetResourceStream(new Uri("/KiniffelOnline;component/diceroll1.mp3", UriKind.RelativeOrAbsolute));
             mSound.SetSource(sri.Stream);
+#endif
             IsPlaying = true;
         }
         public void StopSound()
