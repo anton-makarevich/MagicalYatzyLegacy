@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
 using Windows.Foundation;
+using Windows.UI.Xaml;
 
 #else
 using System.Windows.Controls;
@@ -64,13 +65,18 @@ namespace Sanet.Kniffel.WP.DicePanel
         public delegate void StopLoadingEventHandler();
         public DicePanel()
         {
+#if WinRT
+            Tapped += DieClicked;
+#else
             MouseLeftButtonDown += DieClicked;
+#endif
             //InitializeComponent()
             Style = dpStyle.dpsBlue;
 
 
         }
 
+        
         private void LoadFrameImages(string rot)
         {
             for (int i = 0; i <= 35; i++)
@@ -344,6 +350,7 @@ namespace Sanet.Kniffel.WP.DicePanel
             BeginLoop();
 
         }
+                
         private void BeginLoop()
         {
             foreach (Die d in aDice)
@@ -364,7 +371,11 @@ namespace Sanet.Kniffel.WP.DicePanel
             }
             sbLoop.Begin();
         }
-        private void loop_Completed(object sender, EventArgs e)
+#if WinRT
+        private void loop_Completed(object sender, object e)
+#else
+        
+#endif
         {
             foreach (Die d in aDice)
             {
@@ -373,7 +384,11 @@ namespace Sanet.Kniffel.WP.DicePanel
                 if (d.IsPlaying)
                     d.StopSound();
             }
+#if WinRT
+            new System.Threading.ManualResetEvent(false).WaitOne(RollDelay);
+#else
             System.Threading.Thread.Sleep(RollDelay);
+#endif
             HandleCollisions();
             //Me.Invalidate()
             //System.Windows.Forms.Application.DoEvents()
@@ -433,8 +448,11 @@ namespace Sanet.Kniffel.WP.DicePanel
         }
 
         //new
-
+#if WinRT
+        public void DieClicked(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+#else
         public void DieClicked(object sender, MouseButtonEventArgs e)
+#endif
         {
 
             if (ClickToFreeze)
@@ -454,11 +472,6 @@ namespace Sanet.Kniffel.WP.DicePanel
                         break; // TODO: might not be correct. Was : Exit For
                     }
                 }
-
-
-
-
-
 
             }
         }
