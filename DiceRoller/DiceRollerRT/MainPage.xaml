@@ -1,13 +1,59 @@
 ﻿<Page
-    x:Class="DiceRoller.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:DiceRoller"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:DicePanel="using:Sanet.Kniffel.DicePanel"
+    x:Class="Sanet.Kniffel.DiceRoller.MainPage"
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="130"/>
+            </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+            <RowDefinition Height="130"/>
+        </Grid.RowDefinitions>
+        <TextBlock Style="{StaticResource HeaderTextStyle}"
+                   Foreground="{StaticResource SanetBlue}"
+                   Text="Sanet Dice"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"/>
+        <DicePanel:DicePanel
+            Grid.Row="1"
+            Grid.Column="1"
+            x:Name="DicePanel1"/>
+        <StackPanel
+            Grid.Column="2"
+            Grid.RowSpan="3"
+            >
+             <Button
+            Style="{StaticResource DiceRollAppBarButtonStyle}"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="center"
+            Tapped="Button_Tapped_1"/>
+             <Button
+            Style="{StaticResource ClearSelectionAppBarButtonStyle}"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="center"
+            Tapped="Button_Tapped_1"/>
+        </StackPanel>
+       
+        <GridView
+            Grid.Row="2"
+            Grid.ColumnSpan="3"
+            ItemTemplate="{StaticResource Standard130ItemTemplate}"
+            ItemsSource="{Binding RollResults}">
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+        </GridView>
     </Grid>
 </Page>

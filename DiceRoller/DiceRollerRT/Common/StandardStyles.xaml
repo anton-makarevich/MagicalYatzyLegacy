@@ -58,6 +58,8 @@
         <Setter Property="FontWeight" Value="SemiLight"/>
     </Style>
 
+
+    <SolidColorBrush x:Key="SanetBlue" Color="#009cd6"/>
     <!-- TextBlock styles -->
 
     <Style x:Key="BasicTextStyle" TargetType="TextBlock">
@@ -406,14 +408,14 @@
         Uncomment any style you reference (as not all may be required).
     -->
 
-    <!--
     
-    <Style x:Key="SkipBackAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
-        <Setter Property="AutomationProperties.AutomationId" Value="SkipBackAppBarButton"/>
-        <Setter Property="AutomationProperties.Name" Value="Skip Back"/>
-        <Setter Property="Content" Value="&#xE100;"/>
+    
+    <Style x:Key="DiceRollAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="DiceRollAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Roll"/>
+        <Setter Property="Content" Value="&#x2684;"/>
     </Style>
-    <Style x:Key="SkipAheadAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+    <!--<Style x:Key="SkipAheadAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="SkipAheadAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Skip Ahead"/>
         <Setter Property="Content" Value="&#xE101;"/>
@@ -1212,13 +1214,13 @@
         <Setter Property="AutomationProperties.AutomationId" Value="MapAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Map"/>
         <Setter Property="Content" Value="&#xE1C4;"/>
-    </Style>
+    </Style>-->
     <Style x:Key="ClearSelectionAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="ClearSelectionAppBarButton"/>
-        <Setter Property="AutomationProperties.Name" Value="Clear Selection"/>
+        <Setter Property="AutomationProperties.Name" Value="Clear"/>
         <Setter Property="Content" Value="&#xE1C5;"/>
     </Style>
-    <Style x:Key="FontDecreaseAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+    <!--><Style x:Key="FontDecreaseAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="FontDecreaseAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Decrease Font"/>
         <Setter Property="Content" Value="&#xE1C6;"/>
@@ -1674,19 +1676,19 @@
 
     <!-- List-appropriate 130 pixel high item template as seen in the SplitPage -->
     <DataTemplate x:Key="Standard130ItemTemplate">
-        <Grid Height="110" Margin="6">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="110" Height="110">
-                <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
-            </Border>
-            <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
-                <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextStyle}" TextWrapping="NoWrap"/>
-                <TextBlock Text="{Binding Subtitle}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
-                <TextBlock Text="{Binding Description}" Style="{StaticResource BodyTextStyle}" MaxHeight="60"/>
-            </StackPanel>
+        <Grid Height="110" Width="110" Background="{Binding Background}"
+              Margin="6">
+            <TextBlock
+                    Foreground="{Binding Foreground}"
+                VerticalAlignment="Top"
+                FontSize="45"
+                HorizontalAlignment="Center"
+                TextAlignment="Center"
+                    Text="{Binding Value}" TextWrapping="NoWrap"/>
+            <Grid VerticalAlignment="Bottom" Background="#7f3c3c3c" Height="40">
+                 
+                <TextBlock Text="{Binding Text}" VerticalAlignment="Center" />
+            </Grid>
         </Grid>
     </DataTemplate>
 

@@ -25,7 +25,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows.Resources;
 #endif
-namespace Sanet.Kniffel.WP.DicePanel
+namespace Sanet.Kniffel.DicePanel
+
 {
     public enum dpStyle
     {
@@ -57,7 +58,11 @@ namespace Sanet.Kniffel.WP.DicePanel
         public double TreeDScaleCoef { get; set; }
         //cashed images
         public Dictionary<string, BitmapSource> DieFrameImages = new Dictionary<string, BitmapSource>();
+#if WinRT
+        string strImageRoot = "ms-appx:///Images/";
+#else
         const string strImageRoot = "/Images/";
+#endif
         public string strStyle;
         
         public delegate void StartLoadingEventHandler();
@@ -71,7 +76,7 @@ namespace Sanet.Kniffel.WP.DicePanel
             MouseLeftButtonDown += DieClicked;
 #endif
             //InitializeComponent()
-            Style = dpStyle.dpsBlue;
+            PanelStyle = dpStyle.dpsBlue;
 
 
         }
@@ -82,17 +87,20 @@ namespace Sanet.Kniffel.WP.DicePanel
             for (int i = 0; i <= 35; i++)
             {
                 string sPath = strImageRoot + strStyle + rot + i.ToString() + ".png";
-                if (!DieFrameImages.ContainsKey(sPath))
+                if (!DieFrameImages.ContainsKey(sPath.Replace("ms-appx://","")))
                 {
-                    Uri ur = new Uri(sPath, UriKind.Relative);
+                    Uri ur = new Uri(sPath, UriKind.RelativeOrAbsolute);
                     BitmapSource img = new BitmapImage(ur);
+#if WinRT
+                    sPath = ur.AbsolutePath;
+#endif
                     DieFrameImages.Add(sPath, img);
                 }
             }
         }
 
         private Color dpBackcolor = Colors.LightGray;
-        public dpStyle Style
+        public dpStyle PanelStyle
         {
             get { return FStyle; }
             set
@@ -257,19 +265,19 @@ namespace Sanet.Kniffel.WP.DicePanel
         #if WINDOWS_PHONE
         [Description("Summed Result of All the Dice"), Category("Dice")]
 #endif
-        public int Result
+        public DieResult Result
         {
             get
             {
-                Die d = null;
+                var dr = new List<int>();
                 int i = 0;
 
-                foreach (Die d_loopVariable in aDice)
+                foreach (Die d in aDice)
                 {
-                    d = d_loopVariable;
+                    dr.Add(d.Result);
                     i += d.Result;
                 }
-                return i;
+                return new DieResult{ DiceResults=dr, Total=i};
             }
         }
 
@@ -542,300 +550,7 @@ namespace Sanet.Kniffel.WP.DicePanel
             //End If
 
         }
-
-        //the score for the numeric 1-6 categories in Y
-        public int YhatzeeNumberScore(int iNum)
-        {
-
-            Die d = null;
-            int iTot = 0;
-
-            foreach (Die d_loopVariable in aDice)
-            {
-                d = d_loopVariable;
-                if (d.Result == iNum)
-                {
-                    iTot += iNum;
-                }
-            }
-            return iTot;
-
-        }
-
-        public int YhatzeeeOfAKindScore(int NumofAKind)
-        {
-
-            Die d = null;
-            int[] iOccur = new int[7];
-            int i = 0;
-
-            foreach (Die d_loopVariable in aDice)
-            {
-                d = d_loopVariable;
-                iOccur[d.Result] += 1;
-            }
-
-            for (i = 0; i <= 6; i++)
-            {
-                if (iOccur[i] >= NumofAKind)
-                {
-                    return this.Result;
-                }
-            }
-            return 0;
-        }
-
-        public int YhatzeeeFiveOfAKindScore()
-        {
-
-            const int SCORE = 50;
-
-            Die d = null;
-            int[] iOccur = new int[7];
-            int i = 0;
-
-            foreach (Die d_loopVariable in aDice)
-            {
-                d = d_loopVariable;
-                iOccur[d.Result] += 1;
-            }
-
-            for (i = 0; i <= 6; i++)
-            {
-                if (iOccur[i] >= 5)
-                {
-                    return SCORE;
-                }
-            }
-            return 0;
-        }
-
-        public int YhatzeeeChanceScore()
-        {
-            return this.Result;
-        }
-
-        public void KniffelTreeInRow(ref bool Fixed, int n = 3)
-        {
-            bool[] Fr = {
-			false,
-			false,
-			false,
-			false,
-			false,
-			false,
-			false
-		};
-            Die d = null;
-            int[] iOccur = new int[7];
-            int MinNum = 0;
-            int i = 0;
-            foreach (Die d_loopVariable in aDice)
-            {
-                d = d_loopVariable;
-                iOccur[d.Result] += 1;
-            }
-
-            if (iOccur[1] >= 1 & iOccur[2] >= 1 & iOccur[3] >= 1)
-            {
-                MinNum = 1;
-
-            }
-
-            if (iOccur[2] >= 1 & iOccur[3] >= 1 & iOccur[4] >= 1)
-            {
-                MinNum = 2;
-
-            }
-
-            if (iOccur[3] >= 1 & iOccur[4] >= 1 & iOccur[5] >= 1)
-            {
-                MinNum = 3;
-
-            }
-            if (iOccur[4] >= 1 & iOccur[5] >= 1 & iOccur[6] >= 1)
-            {
-                MinNum = 4;
-
-            }
-            if (!(MinNum == 0))
-            {
-                Fixed = true;
-                for (i = MinNum; i <= MinNum + n; i++)
-                {
-                    foreach (Die d_loopVariable in aDice)
-                    {
-                        d = d_loopVariable;
-                        if (d.Result == i & i < 7)
-                        {
-                            if (!Fr[i])
-                            {
-                                d.Frozen = true;
-                                Fr[i] = true;
-                            }
-                        }
-                    }
-                }
-            }
-
-        }
-        
-        public int YhatzeeeSmallStraightScore(bool ToFix , ref bool Fixed , int n = 3)
-        {
-            bool[] Fr = {
-			false,
-			false,
-			false,
-			false,
-			false,
-			false,
-			false
-		};
-            const int SCORE = 30;
-            Die d = null;
-            int[] iOccur = new int[7];
-            int MinNum = 0;
-            int i = 0;
-
-            foreach (Die d_loopVariable in aDice)
-            {
-                d = d_loopVariable;
-                iOccur[d.Result] += 1;
-            }
-
-            if (iOccur[1] >= 1 & iOccur[2] >= 1 & iOccur[3] >= 1 & iOccur[4] >= 1)
-            {
-                MinNum = 1;
-            }
-
-            if (iOccur[2] >= 1 & iOccur[3] >= 1 & iOccur[4] >= 1 & iOccur[5] >= 1)
-            {
-                MinNum = 2;
-            }
-
-            if (iOccur[3] >= 1 & iOccur[4] >= 1 & iOccur[5] >= 1 & iOccur[6] >= 1)
-            {
-                MinNum = 3;
-
-            }
-            if (!(MinNum == 0))
-            {
-                if (ToFix)
-                {
-                    Fixed = true;
-                    for (i = MinNum; i <= MinNum + n; i++)
-                    {
-                        foreach (Die d_loopVariable in aDice)
-                        {
-                            d = d_loopVariable;
-
-                            if (d.Result == i & i < 7)
-                            {
-                                if (!Fr[i])
-                                {
-                                    d.Frozen = true;
-                                    Fr[i] = true;
-
-                                }
-                            }
-                        }
-                    }
-                }
-                return SCORE;
-            }
-            return 0;
-        }
-
-        public int YhatzeeeLargeStraightScore()
-        {
-
-            const int SCORE = 40;
-            Die d = null;
-            int[] iOccur = new int[7];
-
-            foreach (Die d_loopVariable in aDice)
-            {
-                d = d_loopVariable;
-                iOccur[d.Result] += 1;
-            }
-
-            if (iOccur[1] == 1 & iOccur[2] == 1 & iOccur[3] == 1 & iOccur[4] == 1 & iOccur[5] == 1)
-            {
-                return SCORE;
-            }
-
-            if (iOccur[2] == 1 & iOccur[3] == 1 & iOccur[4] == 1 & iOccur[5] == 1 & iOccur[6] == 1)
-            {
-                return SCORE;
-            }
-            return 0;
-        }
-
-        public int YhatzeeeFullHouseScore()
-        {
-
-            const int SCORE = 25;
-            int[] iOccur = new int[7];
-            int i = 0;
-            bool bPair = false;
-            bool bTrip = false;
-
-
-            foreach (Die d in aDice)
-            {
-                iOccur[d.Result] += 1;
-            }
-
-            for (i = 0; i <= 6; i++)
-            {
-                if (iOccur[i] == 2)
-                {
-                    bPair = true;
-                }
-                else if (iOccur[i] == 3)
-                {
-                    bTrip = true;
-                }
-            }
-
-            if (bPair & bTrip)
-            {
-                return SCORE;
-            }
-            return 0;
-        }
-
-        public int NumPairs()
-        {
-
-            int[] iOccur = new int[7];
-            int i = 0;
-            int bPair = 0;
-            
-            foreach (Die d in aDice)
-            {
-                iOccur[d.Result] += 1;
-            }
-
-            for (i = 0; i <= 6; i++)
-            {
-                if (iOccur[i] > 1)
-                {
-                    bPair++;
-                }
-                //if (iOccur[i] > 3)
-                //{
-                //    bPair++;
-                //}
-                //if (iOccur[i] > 5)
-                //{
-                //    bPair++;
-                //}
-            }
-
-
-            return bPair;
-        }
+               
 
     }
     public class Die : UserControl
@@ -1335,4 +1050,10 @@ namespace Sanet.Kniffel.WP.DicePanel
         }
 
     }
+    public class DieResult
+    {
+        public List<int> DiceResults { get; set; }
+        public int Total { get; set; }
+    }
+        
 }
