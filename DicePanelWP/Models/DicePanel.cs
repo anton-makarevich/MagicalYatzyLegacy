@@ -1054,6 +1054,16 @@ namespace Sanet.Kniffel.DicePanel
     {
         public List<int> DiceResults { get; set; }
         public int Total { get; set; }
+        public int NumDice
+        {
+            get
+            {
+                if (DiceResults != null)
+                    return DiceResults.Count;
+                return 0;
+            }
+        }
     }
+    
         
 }

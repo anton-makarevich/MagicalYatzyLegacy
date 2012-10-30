@@ -1,4 +1,5 @@
 ﻿using Sanet.AllWrite;
+using Sanet.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,17 +12,33 @@ namespace Sanet.Kniffel.Models
 {
     public class RollResult:BaseViewModel
     {
+        public ResourceModel RModel = new ResourceModel();
+
+        public RollResult(ResourceModel rmodel)
+        {
+            RModel = rmodel;
+        }
+
         string _Text;
         public string Text
         {
             get { return _Text; }
         }
-        int _Value;
-        public int Value
+        string _Value;
+        public string Value
         {
             get { return _Value; }
             set
             {
+                /*try
+                {
+                    int v = int.Parse(value);
+                    if (v > 0)
+                        _Value = value;
+                    else
+                        _Value = "";
+                }
+                catch { _Value = "";}*/
                 _Value = value;
                 NotifyPropertyChanged("Value");
             }
@@ -34,12 +51,27 @@ namespace Sanet.Kniffel.Models
             { 
                 return _Foreground; }
         }
-        Brush _Background;
+        //Brush _Background;
         public Brush Background
         {
             get
             {
-                return _Background;
+                //return _Background;
+                switch (ScoreType)
+                {
+                    case KniffelScores.Total:
+                        return Brushes.SolidSanetBlue;
+                    case KniffelScores.FourInRow:
+                    case KniffelScores.ThreeInRow:
+                    case KniffelScores.OfAKind:
+                    case KniffelScores.FullHouse:
+                    case KniffelScores.Pairs:
+                        return Brushes.SolidBronzeBackColor;
+                    case KniffelScores.SmallStraight:
+                    case KniffelScores.LargeStraight:
+                        return Brushes.SolidSilverBackColor;
+                }
+                return new SolidColorBrush(Colors.Gray);
             }
         }
         KniffelScores _ScoreType;
@@ -50,8 +82,9 @@ namespace Sanet.Kniffel.Models
             set
             {
                 _ScoreType = value;
-                _Text = value.ToString();
-                _Background = Brushes.SolidSanetBlue;
+                //add use of resource here
+                _Text = RModel.GetString(value.ToString());
+                //_Background = Brushes.SolidSanetBlue;
                 _Foreground = new SolidColorBrush(Colors.White);
                 NotifyPropertyChanged("ScoreType");
                 NotifyPropertyChanged("Text");
@@ -59,15 +92,17 @@ namespace Sanet.Kniffel.Models
                 NotifyPropertyChanged("Foreground");
             }
         }
+        
     }
     public enum KniffelScores
     {
         Total,
         FullHouse,
         LargeStraight,
-        SmallStraights,
+        SmallStraight,
         ThreeInRow,
         FourInRow,
-        Kniffel
+        OfAKind,
+        Pairs
     }
 }

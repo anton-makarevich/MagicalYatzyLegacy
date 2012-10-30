@@ -52,7 +52,7 @@ namespace Sanet.Kniffel.DiceRoller
             //_shakeSensor.ShakeDetectedHandler += ShakeDetected;
             //_shakeSensor.Start();
 
-            //DicePanel1.DieFrozen += new Sanet.Kniffel.DicePanel.DicePanel.DieFrozenEventHandler(DicePanel1_DieFrozen);
+            DicePanel1.DieFrozen += new Sanet.Kniffel.DicePanel.DicePanel.DieFrozenEventHandler(DicePanel1_DieFrozen);
             DicePanel1.EndRoll += new Sanet.Kniffel.DicePanel.DicePanel.EndRollEventHandler(DicePanel1_EndRoll);
             //ABClear.IsEnabled = false;
         }
@@ -63,10 +63,10 @@ namespace Sanet.Kniffel.DiceRoller
 
         void DicePanel1_DieFrozen(bool @fixed, int Value)
         {
-            //if (DicePanel1.AllDiceFrozen()) RollButton.IsEnabled = false;
-            //else RollButton.IsEnabled = true;
-            //if (DicePanel1.FrozenCount() == 0) ClearButton.IsEnabled = false;
-            //else ClearButton.IsEnabled = true;
+            if (DicePanel1.AllDiceFrozen()) RollButton.IsEnabled = false;
+            else RollButton.IsEnabled = true;
+            if (DicePanel1.FrozenCount() == 0) ClearButton.IsEnabled = false;
+            else ClearButton.IsEnabled = true;
         }
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
@@ -80,6 +80,14 @@ namespace Sanet.Kniffel.DiceRoller
         private void Button_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
             DicePanel1.RollDice(new List<int>());
+            ViewModel.ClearResultsList();
+        }
+
+        private void ClearButton_Tapped_1(object sender, TappedRoutedEventArgs e)
+        {
+            DicePanel1.ClearFreeze();
+            RollButton.IsEnabled = true;
+            ClearButton.IsEnabled = false;
         }
     }
 }
