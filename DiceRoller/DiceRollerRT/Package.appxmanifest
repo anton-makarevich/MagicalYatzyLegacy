@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="43862AntonMakarevich.SanetDice" Publisher="CN=DC1EF1A2-04E8-4269-B8EE-BF7A3DBF913C" Version="1.3.0.0" />
+  <Identity Name="43862AntonMakarevich.SanetDice" Publisher="CN=DC1EF1A2-04E8-4269-B8EE-BF7A3DBF913C" Version="1.3.0.2" />
   <Properties>
     <DisplayName>Sanet Dice</DisplayName>
     <PublisherDisplayName>Anton Makarevich</PublisherDisplayName>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="DiceRoller.App">
-      <VisualElements DisplayName="Sanet Dice" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="DiceRoller" ForegroundText="light" BackgroundColor="#009cd6">
+      <VisualElements DisplayName="Sanet Dice" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Dice Roller" ForegroundText="light" BackgroundColor="#009cd6">
         <DefaultTile ShowName="allLogos" ShortName="Dice Roller" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#009cd6" />
         <InitialRotationPreference>
@@ -27,7 +27,4 @@
       </VisualElements>
     </Application>
   </Applications>
-  <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
 </Package>
