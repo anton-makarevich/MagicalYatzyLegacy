@@ -1,0 +1,10 @@
+﻿Sanet Dice - virtuelle Würfel, die immer dabei sind! Sanet Dice ist in dem Lieblingspiel zu gebrauchen, ist auch eine kleine Hilfe bei den zufälligen Entscheidungsschwierigkeiten und Angst vor Entscheidungen.
+
+- von 1 bis 6 Würfeln zu werfen;
+- das Handy  schütteln und die Würfel sind gefallen;
+- markierte Würfel bleiben stehen;
+- Autosumme und Bestimmung von Poker/Yatzy/Kniffel-Kombinationen;
+- nette Pseudo-3D-Graphic und Wurf-Animation;
+- 3 Art-Variationen von Würfeln;
+- Wurftempo- und Sichtwinkeleinstellung;
+

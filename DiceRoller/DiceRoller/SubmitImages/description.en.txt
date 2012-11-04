@@ -1,0 +1,10 @@
+Sanet Dice - virtual dices you always have with you! You can use them in your favorite games, or just when you need to take a random decision.
+
+- the ability to roll from one to six dices;
+- to roll by shaking the phone;
+- the ability to fix some dices - do not roll them next time;
+- automatic scoring and definition of Poker(Yahtzee, Kniffel) hands;
+- a nice pseudo-3D graphics and roll animation;
+- 3 visual styles of the dices;
+- the roll speed and view angle settings;
+- a lot of fun!
