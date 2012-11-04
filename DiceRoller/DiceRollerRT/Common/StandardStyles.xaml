@@ -128,7 +128,14 @@
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="Foreground" Value="{StaticResource ApplicationSecondaryForegroundThemeBrush}"/>
     </Style>
-
+    <Style x:Key="SanetUris" TargetType="HyperlinkButton">
+        <Setter Property="FontSize" Value="25"/>
+        <Setter Property="Foreground" Value="{StaticResource SanetBlue}"/>
+    </Style>
+    <Style x:Key="BiggerText" TargetType="TextBlock" BasedOn="{StaticResource BasicTextStyle}">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
     <Style x:Key="GroupHeaderTextStyle" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
         <Setter Property="TextTrimming" Value="WordEllipsis"/>

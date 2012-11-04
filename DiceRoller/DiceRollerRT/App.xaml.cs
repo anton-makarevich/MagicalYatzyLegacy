@@ -109,13 +109,13 @@ namespace Sanet.Kniffel.DiceRoller
             });
 
             args.Request.ApplicationCommands.Add(cmd2);
-            ////about
-            //SettingsCommand cmd3 = new SettingsCommand("About", resProvider.GetString("about"), (command) =>
-            //{
-            //    ((Frame)Window.Current.Content).Navigate(typeof(AboutPage));
-            //});
+            //about
+            SettingsCommand cmd3 = new SettingsCommand("About", resProvider.GetString("AboutCaption/Text"), (command) =>
+            {
+                ((Frame)Window.Current.Content).Navigate(typeof(AboutPage));
+            });
 
-            //args.Request.ApplicationCommands.Add(cmd3);
+            args.Request.ApplicationCommands.Add(cmd3);
 
         }
         #endregion

@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Windows.Devices.Sensors;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,7 +30,22 @@ namespace Sanet.Kniffel.DiceRoller
             this.Loaded += MainPage_Loaded;
             
         }
-        
+        private Accelerometer _accelerometer;
+        private void VisibilityChanged(object sender, VisibilityChangedEventArgs e)
+        {
+            if (e.Visible)
+                {
+                    // Re-enable sensor input
+                    _accelerometer.Shaken += new TypedEventHandler<Accelerometer, AccelerometerShakenEventArgs>(Shaken);
+                }
+                else
+                {
+                    // Disable sensor input
+                    _accelerometer.Shaken -= new TypedEventHandler<Accelerometer, AccelerometerShakenEventArgs>(Shaken);
+                }
+            
+        }
+
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = App.ViewModel;
@@ -41,14 +58,28 @@ namespace Sanet.Kniffel.DiceRoller
             DicePanel1.ClickToFreeze = true;
 
 
-            //_shakeSensor = new AccelerometerSensorWithShakeDetection();
-            //_shakeSensor.ShakeDetectedHandler += ShakeDetected;
-            //_shakeSensor.Start();
+            _accelerometer = Accelerometer.GetDefault();
+            if (_accelerometer != null)
+            {
+                Window.Current.VisibilityChanged += new WindowVisibilityChangedEventHandler(VisibilityChanged);
+                _accelerometer.Shaken += new TypedEventHandler<Accelerometer, AccelerometerShakenEventArgs>(Shaken);
+            }
+            this.Focus(FocusState.Programmatic); 
+            this.KeyUp += MainPage_KeyUp;
 
             DicePanel1.DieFrozen += new Sanet.Kniffel.DicePanel.DicePanel.DieFrozenEventHandler(DicePanel1_DieFrozen);
             DicePanel1.EndRoll += new Sanet.Kniffel.DicePanel.DicePanel.EndRollEventHandler(DicePanel1_EndRoll);
             //ABClear.IsEnabled = false;
         }
+
+        void MainPage_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.R)
+            {
+                rollDice();
+            }
+        }
+
         void DicePanel1_EndRoll()
         {
             App.ViewModel.OnRollEnd(DicePanel1.Result);
@@ -68,12 +99,25 @@ namespace Sanet.Kniffel.DiceRoller
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            App.ViewModel.ClearResultsList();
         }
-
+        //roll events
+        async private void Shaken(object sender, AccelerometerShakenEventArgs e)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                rollDice();
+            });
+        }
         private void Button_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
+            rollDice();
+        }
+
+        void rollDice()
+        {
+           App.ViewModel.ClearResultsList();
             DicePanel1.RollDice(new List<int>());
-            App.ViewModel.ClearResultsList();
         }
 
         private void ClearButton_Tapped_1(object sender, TappedRoutedEventArgs e)

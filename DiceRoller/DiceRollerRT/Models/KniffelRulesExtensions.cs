@@ -205,12 +205,12 @@ namespace Sanet.Kniffel
                 iOccur[res] += 1;
             }
 
-            if (iOccur[1] == 1 & iOccur[2] == 1 & iOccur[3] == 1 & iOccur[4] == 1 & iOccur[5] == 1)
+            if (iOccur[1] > 0 & iOccur[2] > 0 & iOccur[3] > 0 & iOccur[4] > 0 & iOccur[5] > 0)
             {
                 return SCORE;
             }
 
-            if (iOccur[2] == 1 & iOccur[3] == 1 & iOccur[4] == 1 & iOccur[5] == 1 & iOccur[6] == 1)
+            if (iOccur[2] > 0 & iOccur[3] > 0 & iOccur[4] > 0 & iOccur[5] > 0 & iOccur[6] > 0)
             {
                 return SCORE;
             }

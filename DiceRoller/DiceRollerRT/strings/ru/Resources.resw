@@ -117,62 +117,62 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="about" xml:space="preserve">
-    <value>about</value>
+  <data name="AboutCaption.Text" xml:space="preserve">
+    <value>О программе</value>
   </data>
-  <data name="AboutLabel" xml:space="preserve">
-    <value>virtual dice in your phone</value>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>виртуальные кости в твоем планшете</value>
   </data>
-  <data name="AboutOnlineLabel" xml:space="preserve">
-    <value>About Kniffel Online</value>
+  <data name="OnlineLink.Content" xml:space="preserve">
+    <value>О Kniffel Online</value>
   </data>
   <data name="clear" xml:space="preserve">
-    <value>clear</value>
+    <value>снять выделение</value>
   </data>
-  <data name="CloseLabel" xml:space="preserve">
-    <value>Close</value>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>Закрыть</value>
   </data>
-  <data name="DevelopedByLabel" xml:space="preserve">
-    <value>Developed by:</value>
+  <data name="DevelopedBy.Text" xml:space="preserve">
+    <value>Разработано</value>
   </data>
   <data name="SpeedFast.Text" xml:space="preserve">
     <value>быстро</value>
   </data>
   <data name="FullHouse" xml:space="preserve">
-    <value>Full House</value>
+    <value>Фулл Хаус</value>
   </data>
   <data name="HighLabel" xml:space="preserve">
-    <value>high</value>
+    <value>высоко</value>
   </data>
   <data name="LargeStraight" xml:space="preserve">
-    <value>Large Straight</value>
+    <value>Ладж Стрит</value>
   </data>
   <data name="LowLabel" xml:space="preserve">
-    <value>low</value>
+    <value>низко</value>
   </data>
   <data name="OfAKind" xml:space="preserve">
-    <value>of a kind</value>
+    <value>одинаковые</value>
   </data>
-  <data name="OnlineLabel" xml:space="preserve">
-    <value>App uses DicePanel control of Kniffel Online game. DicePanel idea and "red dice" style belongs to Matthew Tagliaferri.</value>
+  <data name="OnlineVersionText.Text" xml:space="preserve">
+    <value>Приложение основано на контролле DicePanel из игры Kniffel Online. Идея контрола и 'красные' кости принадлежат  Matthew Tagliaferri</value>
   </data>
   <data name="Pairs" xml:space="preserve">
-    <value>pairs</value>
+    <value>пары</value>
   </data>
-  <data name="RateLabel" xml:space="preserve">
-    <value>Rate this app if you like it</value>
+  <data name="RateButton.Content" xml:space="preserve">
+    <value>Оцените это приложение, если оно вам нравится</value>
   </data>
   <data name="roll" xml:space="preserve">
-    <value>roll</value>
+    <value>бросок</value>
   </data>
   <data name="SpeedSlow.Text" xml:space="preserve">
     <value>медленно</value>
   </data>
   <data name="SmallStraight" xml:space="preserve">
-    <value>Small Straight</value>
+    <value>Смолл Стрит</value>
   </data>
-  <data name="SupportLabel" xml:space="preserve">
-    <value>Technical support service:</value>
+  <data name="Support.Text" xml:space="preserve">
+    <value>Служба технической поддержки:</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version</value>
@@ -181,7 +181,7 @@
     <value>очень быстро</value>
   </data>
   <data name="AngVeryHigh.Text" xml:space="preserve">
-    <value>very high</value>
+    <value>очень высоко</value>
   </data>
   <data name="SpeedVerySlow.Text" xml:space="preserve">
     <value>очень медленно</value>
@@ -200,5 +200,14 @@
   </data>
   <data name="SettingsStyleCaption.Text" xml:space="preserve">
     <value>Стиль костей</value>
+  </data>
+  <data name="OtherAllWrite.Content" xml:space="preserve">
+    <value>Электронные прописи - занимательное обучение письму.</value>
+  </data>
+  <data name="OtherSoft.Text" xml:space="preserve">
+    <value>Попробуйте другие программы:</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Всего</value>
   </data>
 </root>

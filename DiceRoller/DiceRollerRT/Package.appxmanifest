@@ -15,9 +15,9 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="DiceRoller.App">
-      <VisualElements DisplayName="DiceRoller" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="DiceRoller" ForegroundText="light" BackgroundColor="#464646">
-        <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="Assets\SplashScreen.png" />
+      <VisualElements DisplayName="Sanet Dice" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="DiceRoller" ForegroundText="light" BackgroundColor="#009cd6">
+        <DefaultTile ShowName="allLogos" ShortName="Dice Roller" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#009cd6" />
         <InitialRotationPreference>
           <Rotation Preference="portrait" />
           <Rotation Preference="landscape" />

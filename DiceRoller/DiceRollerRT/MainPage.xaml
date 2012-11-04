@@ -54,6 +54,7 @@
             Grid.Row="2"
             Grid.ColumnSpan="3"
             ItemTemplate="{StaticResource Standard130ItemTemplate}"
+            SelectionMode="None"
             ItemsSource="{Binding RollResults}">
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
