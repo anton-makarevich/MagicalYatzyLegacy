@@ -1,4 +1,5 @@
 ﻿using Sanet.Kniffel.DicePanel;
+using Sanet.Kniffel.DiceRoller;
 using Sanet.Kniffel.Models;
 using Sanet.Models;
 using System;
@@ -11,7 +12,13 @@ namespace Sanet.Kniffel.ViewModels
 {
     public class DiceRollerModel:BaseViewModel
     {
-        public ResourceModel RModel = new ResourceModel();
+        public ResourceModel RModel = (ResourceModel)App.Current.Resources["resModel"];
+        public SettingsViewModel Settings { get; set; }
+
+        public DiceRollerModel()
+        {
+            Settings = new SettingsViewModel();
+        }
         #region BindingProps
         List<RollResult> _RollResults;
         public List<RollResult> RollResults
@@ -78,7 +85,7 @@ namespace Sanet.Kniffel.ViewModels
                 tl.Add(new RollResult(RModel) { ScoreType = KniffelScores.Pairs, Value = dr.NumPairs().ToString() });
                 //TipsProvider1.ShowText(string.Format("{0} {1}", DicePanel1.NumPairs(), RModel.GetString("PairsLabel")), Colors.Orange);
             }
-            if (dr.NumDice == 5)
+            if (dr.NumDice >4)
             {
                 if (dr.KniffelFullHouseScore() > 0)
                     tl.Add(new RollResult(RModel) { ScoreType = KniffelScores.FullHouse, Value = "" });

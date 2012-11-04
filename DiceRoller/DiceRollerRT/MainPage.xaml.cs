@@ -26,24 +26,17 @@ namespace Sanet.Kniffel.DiceRoller
         {
             this.InitializeComponent();
             this.Loaded += MainPage_Loaded;
-            ViewModel = new DiceRollerModel();
+            
         }
-        DiceRollerModel _ViewModel;
-        public DiceRollerModel ViewModel
-        {
-            get { return _ViewModel; }
-            set
-            { 
-                _ViewModel = value;
-                DataContext = _ViewModel;
-            }
-        }
+        
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            DicePanel1.PanelStyle = Sanet.Kniffel.DicePanel.dpStyle.dpsBlue;
+            DataContext = App.ViewModel;
+            DicePanel1.PanelStyle = App.ViewModel.Settings.DiceStyle;
             DicePanel1.TreeDScaleCoef = 0.38;
-            DicePanel1.NumDice = 5;
-            DicePanel1.RollDelay = 5;
+            DicePanel1.NumDice = App.ViewModel.Settings.DiceNumber;
+            DicePanel1.RollDelay = App.ViewModel.Settings.DiceSpeed;
+            DicePanel1.DieAngle = App.ViewModel.Settings.DiceAngle;
             DicePanel1.MaxRollLoop = 40;
             DicePanel1.ClickToFreeze = true;
 
@@ -58,7 +51,7 @@ namespace Sanet.Kniffel.DiceRoller
         }
         void DicePanel1_EndRoll()
         {
-            ViewModel.OnRollEnd(DicePanel1.Result);
+            App.ViewModel.OnRollEnd(DicePanel1.Result);
         }
 
         void DicePanel1_DieFrozen(bool @fixed, int Value)
@@ -80,7 +73,7 @@ namespace Sanet.Kniffel.DiceRoller
         private void Button_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
             DicePanel1.RollDice(new List<int>());
-            ViewModel.ClearResultsList();
+            App.ViewModel.ClearResultsList();
         }
 
         private void ClearButton_Tapped_1(object sender, TappedRoutedEventArgs e)

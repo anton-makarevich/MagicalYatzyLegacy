@@ -106,12 +106,16 @@
     <Compile Include="..\..\..\AllWrite\Sanet.AllWrite.WP\Sanet.AllWrite.WP\Models\Brushes.cs">
       <Link>Models\Brushes.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\BelarusNews\BelarusNews\Classes\TaskPanePopup.cs">
+      <Link>Common\TaskPanePopup.cs</Link>
+    </Compile>
     <Compile Include="..\..\dicepanelwp\models\DicePanel.cs">
       <Link>Models\DicePanel.cs</Link>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\BasePage.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -131,9 +135,9 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="DiceRoller_TemporaryKey.pfx" />
-    <PRIResource Include="strings\ru\Resources.resw" />
-    <PRIResource Include="strings\en\Resources.resw" />
-    <PRIResource Include="strings\de\Resources.resw" />
+    <PRIResource Include="Strings\ru\Resources.resw" />
+    <PRIResource Include="Strings\en\Resources.resw" />
+    <PRIResource Include="Strings\de\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\slasm\pngs\0\stop.0.png">

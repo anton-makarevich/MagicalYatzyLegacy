@@ -135,8 +135,8 @@
   <data name="DevelopedByLabel" xml:space="preserve">
     <value>Developed by:</value>
   </data>
-  <data name="FastLabel" xml:space="preserve">
-    <value>fast</value>
+  <data name="SpeedFast.Text" xml:space="preserve">
+    <value>быстро</value>
   </data>
   <data name="FullHouse" xml:space="preserve">
     <value>Full House</value>
@@ -165,8 +165,8 @@
   <data name="roll" xml:space="preserve">
     <value>roll</value>
   </data>
-  <data name="SlowLabel" xml:space="preserve">
-    <value>slow</value>
+  <data name="SpeedSlow.Text" xml:space="preserve">
+    <value>медленно</value>
   </data>
   <data name="SmallStraight" xml:space="preserve">
     <value>Small Straight</value>
@@ -177,13 +177,28 @@
   <data name="Version" xml:space="preserve">
     <value>Version</value>
   </data>
-  <data name="VeryFastLabel" xml:space="preserve">
-    <value>very fast</value>
+  <data name="SpeedVeryFast.Text" xml:space="preserve">
+    <value>очень быстро</value>
   </data>
-  <data name="VeryHighLabel" xml:space="preserve">
+  <data name="AngVeryHigh.Text" xml:space="preserve">
     <value>very high</value>
   </data>
-  <data name="VerySlowLabel" xml:space="preserve">
-    <value>very slow</value>
+  <data name="SpeedVerySlow.Text" xml:space="preserve">
+    <value>очень медленно</value>
+  </data>
+  <data name="SettingsAngleCaption.Text" xml:space="preserve">
+    <value>Угол обзора</value>
+  </data>
+  <data name="SettingsCaption.Text" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="SettingsNumbersCaption.Text" xml:space="preserve">
+    <value>Число костей</value>
+  </data>
+  <data name="SettingsSpeedCaption.Text" xml:space="preserve">
+    <value>Скорость броска</value>
+  </data>
+  <data name="SettingsStyleCaption.Text" xml:space="preserve">
+    <value>Стиль костей</value>
   </data>
 </root>

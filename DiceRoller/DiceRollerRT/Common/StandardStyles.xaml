@@ -73,6 +73,10 @@
         <Setter Property="Typography.CaseSensitiveForms" Value="True"/>
     </Style>
 
+    <Style x:Key="SettingsTextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="25"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
     <Style x:Key="BaselineTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BasicTextStyle}">
         <Setter Property="LineHeight" Value="20"/>
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
@@ -143,6 +147,12 @@
         </Setter>
     </Style>
 
+    <!--ToggleButtons for settings page-->
+    <Style x:Key="SettingsToggleStyle" TargetType="ToggleButton">
+        <Setter Property="Width" Value="180"/>
+        <Setter Property="Height" Value="100"/>
+        <Setter Property="FontSize" Value="35"/>
+    </Style>
     <!-- Button styles -->
     
     <!--
@@ -1430,7 +1440,7 @@
         <Setter Property="MinWidth" Value="0"/>
         <Setter Property="Width" Value="48"/>
         <Setter Property="Height" Value="48"/>
-        <Setter Property="Margin" Value="36,0,36,36"/>
+        <Setter Property="Margin" Value="36,18,36,18"/>
         <Setter Property="VerticalAlignment" Value="Bottom"/>
         <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
         <Setter Property="FontWeight" Value="Normal"/>

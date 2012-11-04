@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Sanet.Kniffel.DiceRoller;
+using Sanet.Kniffel.ViewModels;
+using Sanet.Views;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,11 +19,21 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Sanet.Kniffel.Views
 {
-    public sealed partial class SettingsPage : UserControl
+    public sealed partial class SettingsPage : BasePage
     {
         public SettingsPage()
         {
             this.InitializeComponent();
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((Frame)Window.Current.Content).Navigate(typeof(MainPage));
+        }
+        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        {
+            var s = navigationParameter as SettingsViewModel;
+            this.DataContext = (SettingsViewModel)navigationParameter;
         }
     }
 }

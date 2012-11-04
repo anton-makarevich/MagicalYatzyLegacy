@@ -135,19 +135,19 @@
   <data name="DevelopedByLabel" xml:space="preserve">
     <value>Developed by:</value>
   </data>
-  <data name="FastLabel" xml:space="preserve">
+  <data name="SpeedFast.Text" xml:space="preserve">
     <value>fast</value>
   </data>
   <data name="FullHouse" xml:space="preserve">
     <value>Full House</value>
   </data>
-  <data name="HighLabel" xml:space="preserve">
+  <data name="AngHigh.Text" xml:space="preserve">
     <value>high</value>
   </data>
   <data name="LargeStraight" xml:space="preserve">
     <value>Large Straight</value>
   </data>
-  <data name="LowLabel" xml:space="preserve">
+  <data name="AngLow.Text" xml:space="preserve">
     <value>low</value>
   </data>
   <data name="OfAKind" xml:space="preserve">
@@ -165,7 +165,7 @@
   <data name="roll" xml:space="preserve">
     <value>roll</value>
   </data>
-  <data name="SlowLabel" xml:space="preserve">
+  <data name="SpeedSlow.Text" xml:space="preserve">
     <value>slow</value>
   </data>
   <data name="SmallStraight" xml:space="preserve">
@@ -177,13 +177,28 @@
   <data name="Version" xml:space="preserve">
     <value>Version</value>
   </data>
-  <data name="VeryFastLabel" xml:space="preserve">
+  <data name="SpeedVeryFast.Text" xml:space="preserve">
     <value>very fast</value>
   </data>
-  <data name="VeryHighLabel" xml:space="preserve">
+  <data name="AngVeryHigh.Text" xml:space="preserve">
     <value>very high</value>
   </data>
-  <data name="VerySlowLabel" xml:space="preserve">
+  <data name="SpeedVerySlow.Text" xml:space="preserve">
     <value>very slow</value>
+  </data>
+  <data name="SettingsAngleCaption.Text" xml:space="preserve">
+    <value>ViewAngle</value>
+  </data>
+  <data name="SettingsCaption.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SettingsNumbersCaption.Text" xml:space="preserve">
+    <value>Dice number</value>
+  </data>
+  <data name="SettingsSpeedCaption.Text" xml:space="preserve">
+    <value>Rotation speed</value>
+  </data>
+  <data name="SettingsStyleCaption.Text" xml:space="preserve">
+    <value>Dice style</value>
   </data>
 </root>

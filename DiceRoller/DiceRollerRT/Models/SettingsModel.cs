@@ -9,7 +9,7 @@ using Windows.Storage;
 
 namespace Sanet.Kniffel.Models
 {
-    class SettingsModel
+    public class SettingsModel
     {
         public int DiceNumber { get; set; }
         public dpStyle DiceStyle { get; set; }
@@ -31,14 +31,14 @@ namespace Sanet.Kniffel.Models
                  DiceStyle = dpStyle.dpsBlue;
 
              if (settings.Values.ContainsKey("DiceSpeed"))
-                 DiceSpeed = int.Parse((string)settings.Values["DiceSpeed"], CultureInfo.InvariantCulture);
+                 DiceSpeed = (int)settings.Values["DiceSpeed"];
              else
                  DiceSpeed = 5;
 
              if (settings.Values.ContainsKey("DiceAngle"))
-                 DiceAngle = int.Parse((string)settings.Values["DiceAngle"], CultureInfo.InvariantCulture);
+                 DiceAngle = (int)settings.Values["DiceAngle"];
              else
-                 DiceAngle = 1;
+                 DiceAngle = 0;
         }
 
         public void Save()

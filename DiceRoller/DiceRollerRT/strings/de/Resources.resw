@@ -141,7 +141,7 @@
     <value>Entwickelt von:</value>
     <comment>Entwickelt von:</comment>
   </data>
-  <data name="FastLabel" xml:space="preserve">
+  <data name="SpeedFast.Text" xml:space="preserve">
     <value>schnell</value>
     <comment>schnell</comment>
   </data>
@@ -149,7 +149,7 @@
     <value>Full House</value>
     <comment>Full House</comment>
   </data>
-  <data name="HighLabel" xml:space="preserve">
+  <data name="AngHigh.Text" xml:space="preserve">
     <value>hoch</value>
     <comment>hoch</comment>
   </data>
@@ -157,7 +157,7 @@
     <value>Große Straße</value>
     <comment>Große Straße</comment>
   </data>
-  <data name="LowLabel" xml:space="preserve">
+  <data name="AngLow.Text" xml:space="preserve">
     <value>niedrig</value>
     <comment>niedrig</comment>
   </data>
@@ -180,7 +180,7 @@
     <value>würfeln</value>
     <comment>würfeln</comment>
   </data>
-  <data name="SlowLabel" xml:space="preserve">
+  <data name="SpeedSlow.Text" xml:space="preserve">
     <value>ruhig</value>
     <comment>langsam</comment>
   </data>
@@ -196,15 +196,15 @@
     <value>Version</value>
     <comment>Version</comment>
   </data>
-  <data name="VeryFastLabel" xml:space="preserve">
+  <data name="SpeedVeryFast.Text" xml:space="preserve">
     <value>sehr schnell</value>
     <comment>sehr schnell</comment>
   </data>
-  <data name="VeryHighLabel" xml:space="preserve">
+  <data name="AngVeryHigh.Text" xml:space="preserve">
     <value>sehr hoch</value>
     <comment>sehr hoch</comment>
   </data>
-  <data name="VerySlowLabel" xml:space="preserve">
+  <data name="SpeedVerySlow.Text" xml:space="preserve">
     <value>sehr ruhig</value>
     <comment>sehr niedrig</comment>
   </data>

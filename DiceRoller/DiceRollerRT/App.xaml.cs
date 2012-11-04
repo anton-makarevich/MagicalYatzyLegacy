@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Sanet.Kniffel.ViewModels;
+using Sanet.Kniffel.Views;
+using Sanet.Models;
+using Sanet.News;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,6 +10,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -23,6 +28,7 @@ namespace Sanet.Kniffel.DiceRoller
     /// </summary>
     sealed partial class App : Application
     {
+        public static DiceRollerModel ViewModel;
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -33,6 +39,7 @@ namespace Sanet.Kniffel.DiceRoller
             this.Suspending += OnSuspending;
         }
 
+        ResourceModel resProvider; 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used when the application is launched to open a specific file, to display
@@ -42,7 +49,7 @@ namespace Sanet.Kniffel.DiceRoller
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
             Frame rootFrame = Window.Current.Content as Frame;
-
+            resProvider = (ResourceModel)App.Current.Resources["resModel"];
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (rootFrame == null)
@@ -64,6 +71,7 @@ namespace Sanet.Kniffel.DiceRoller
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
+                ViewModel = new DiceRollerModel();
                 if (!rootFrame.Navigate(typeof(MainPage), args.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
@@ -71,6 +79,8 @@ namespace Sanet.Kniffel.DiceRoller
             }
             // Ensure the current window is active
             Window.Current.Activate();
+            //register for settings charm event
+            SettingsPane.GetForCurrentView().CommandsRequested += App_CommandsRequested;
         }
 
         /// <summary>
@@ -86,5 +96,28 @@ namespace Sanet.Kniffel.DiceRoller
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
+
+        #region settings
+        private TaskPanePopup _settings;
+        private void App_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+            //options
+            SettingsCommand cmd2 = new SettingsCommand("Options", resProvider.GetString("SettingsCaption/Text"), (command) =>
+            {
+                if (ViewModel==null) ViewModel=new DiceRollerModel();
+                ((Frame)Window.Current.Content).Navigate(typeof(SettingsPage),ViewModel.Settings);
+            });
+
+            args.Request.ApplicationCommands.Add(cmd2);
+            ////about
+            //SettingsCommand cmd3 = new SettingsCommand("About", resProvider.GetString("about"), (command) =>
+            //{
+            //    ((Frame)Window.Current.Content).Navigate(typeof(AboutPage));
+            //});
+
+            //args.Request.ApplicationCommands.Add(cmd3);
+
+        }
+        #endregion
     }
 }
