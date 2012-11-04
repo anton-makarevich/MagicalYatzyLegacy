@@ -12,7 +12,8 @@
     <DefaultLanguage>en</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>DiceRoller_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>DiceRollerRT_StoreKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>10D77DF9259B6D3F1AF8E91D300D4B76B71DDDF3</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -137,6 +138,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="DiceRollerRT_StoreKey.pfx" />
     <None Include="DiceRoller_TemporaryKey.pfx" />
     <PRIResource Include="Strings\ru\Resources.resw" />
     <PRIResource Include="Strings\en\Resources.resw" />
@@ -1443,6 +1445,7 @@
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
+    <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

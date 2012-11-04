@@ -1,4 +1,5 @@
 ﻿using Sanet.Kniffel.ViewModels;
+using Sanet.Kniffel.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -125,6 +126,16 @@ namespace Sanet.Kniffel.DiceRoller
             DicePanel1.ClearFreeze();
             RollButton.IsEnabled = true;
             ClearButton.IsEnabled = false;
+        }
+
+        private void settingsButton_Tapped_1(object sender, TappedRoutedEventArgs e)
+        {
+            ((Frame)Window.Current.Content).Navigate(typeof(SettingsPage), App.ViewModel.Settings);
+        }
+
+        private void helpButton_Tapped_1(object sender, TappedRoutedEventArgs e)
+        {
+            ((Frame)Window.Current.Content).Navigate(typeof(AboutPage));
         }
     }
 }

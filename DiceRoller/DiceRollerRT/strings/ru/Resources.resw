@@ -119,69 +119,91 @@
   </resheader>
   <data name="AboutCaption.Text" xml:space="preserve">
     <value>О программе</value>
+    <comment>About</comment>
   </data>
   <data name="AboutText.Text" xml:space="preserve">
     <value>виртуальные кости в твоем планшете</value>
+    <comment>Virtuelle  Würfel in deinem Handy!</comment>
   </data>
   <data name="OnlineLink.Content" xml:space="preserve">
     <value>О Kniffel Online</value>
+    <comment>About Kniffel online</comment>
   </data>
   <data name="clear" xml:space="preserve">
     <value>снять выделение</value>
+    <comment>Löschen</comment>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
     <value>Закрыть</value>
+    <comment>Schließen</comment>
   </data>
   <data name="DevelopedBy.Text" xml:space="preserve">
     <value>Разработано</value>
+    <comment>Entwickelt von:</comment>
   </data>
   <data name="SpeedFast.Text" xml:space="preserve">
     <value>быстро</value>
+    <comment>schnell</comment>
   </data>
   <data name="FullHouse" xml:space="preserve">
     <value>Фулл Хаус</value>
+    <comment>Full House</comment>
   </data>
-  <data name="HighLabel" xml:space="preserve">
+  <data name="AngHigh.Text" xml:space="preserve">
     <value>высоко</value>
+    <comment>hoch</comment>
   </data>
   <data name="LargeStraight" xml:space="preserve">
     <value>Ладж Стрит</value>
+    <comment>Große Straße</comment>
   </data>
-  <data name="LowLabel" xml:space="preserve">
+  <data name="AngLow.Text" xml:space="preserve">
     <value>низко</value>
+    <comment>niedrig</comment>
   </data>
   <data name="OfAKind" xml:space="preserve">
     <value>одинаковые</value>
+    <comment>-ling</comment>
   </data>
   <data name="OnlineVersionText.Text" xml:space="preserve">
     <value>Приложение основано на контролле DicePanel из игры Kniffel Online. Идея контрола и 'красные' кости принадлежат  Matthew Tagliaferri</value>
+    <comment>Das Programm basiert sich auf dem Controll DicePanel aus dem Onlinespiel Kniffel.  Die Idee des Controlls und die Darstellung der  ''Roten"  Würfeln gehört Matthew Tagliaferri.</comment>
   </data>
   <data name="Pairs" xml:space="preserve">
     <value>пары</value>
+    <comment>Paare</comment>
   </data>
   <data name="RateButton.Content" xml:space="preserve">
     <value>Оцените это приложение, если оно вам нравится</value>
+    <comment>Bewerten</comment>
   </data>
   <data name="roll" xml:space="preserve">
     <value>бросок</value>
+    <comment>würfeln</comment>
   </data>
   <data name="SpeedSlow.Text" xml:space="preserve">
     <value>медленно</value>
+    <comment>ruhig</comment>
   </data>
   <data name="SmallStraight" xml:space="preserve">
     <value>Смолл Стрит</value>
+    <comment>Kleine Straße</comment>
   </data>
   <data name="Support.Text" xml:space="preserve">
     <value>Служба технической поддержки:</value>
+    <comment>Technischer Support:</comment>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version</value>
+    <comment>Version</comment>
   </data>
   <data name="SpeedVeryFast.Text" xml:space="preserve">
     <value>очень быстро</value>
+    <comment>sehr schnell</comment>
   </data>
   <data name="AngVeryHigh.Text" xml:space="preserve">
     <value>очень высоко</value>
+    <comment>sehr hoch</comment>
   </data>
   <data name="SpeedVerySlow.Text" xml:space="preserve">
     <value>очень медленно</value>

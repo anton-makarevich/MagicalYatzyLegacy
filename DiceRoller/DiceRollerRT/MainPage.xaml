@@ -7,7 +7,36 @@
     xmlns:DicePanel="using:Sanet.Kniffel.DicePanel"
     x:Class="Sanet.Kniffel.DiceRoller.MainPage"
     mc:Ignorable="d">
+    <Page.BottomAppBar>
+        <AppBar x:Name="BottomBar" Height="120" >
+            <Grid Width="1024" x:Name="AppGrid">
+                <StackPanel
+                     HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                    Orientation="Horizontal"
+                     Grid.Column="1">
+                    <Button 
+                    x:Name="helpButton"
+                    Tapped="helpButton_Tapped_1"
+                        Style="{StaticResource HelpAppBarButtonStyle}"
+                        
+                        VerticalAlignment="Center"
+                    AutomationProperties.Name="{Binding AboutLabel}"
+                        />
+                    <Button 
+                    x:Name="settingsButton"
+                    Tapped="settingsButton_Tapped_1"
+                        Style="{StaticResource SettingsAppBarButtonStyle}"
+                       VerticalAlignment="Center"
+                    AutomationProperties.Name="{Binding SettingsLabel}"
+                        />
+                </StackPanel>
+                
+            </Grid>
 
+
+        </AppBar>
+    </Page.BottomAppBar>
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="120"/>

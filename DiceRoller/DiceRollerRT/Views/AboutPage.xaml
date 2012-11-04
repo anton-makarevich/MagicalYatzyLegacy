@@ -101,8 +101,14 @@
                               />
                 
             </StackPanel>
-            
-            <Button x:Uid="RateButton" Content="Оценить" Grid.Row="5" Click="RateButton_Click"/>
+            <HyperlinkButton NavigateUri="ms-windows-store:REVIEW?PFN=43862AntonMakarevich.SanetDice_2wtrjzrdj31kc" 
+                           Style="{StaticResource SanetUris}"
+                             Grid.Row="5"
+                             x:Uid="RateButton"
+                           HorizontalAlignment="Left"  
+                           VerticalAlignment="Center"
+                              />
+
             <Button x:Uid="CloseButton" Content="Закрыть" Grid.Row="6" Click="BackButton_Click"/>
         </Grid>
 

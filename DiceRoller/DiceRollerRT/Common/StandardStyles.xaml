@@ -103,6 +103,7 @@
         <Setter Property="FontSize" Value="26.667"/>
         <Setter Property="FontWeight" Value="Light"/>
         <Setter Property="LineHeight" Value="30"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="RenderTransform">
             <Setter.Value>
                 <TranslateTransform X="-1" Y="6"/>
@@ -157,7 +158,7 @@
     <!--ToggleButtons for settings page-->
     <Style x:Key="SettingsToggleStyle" TargetType="ToggleButton">
         <Setter Property="Width" Value="180"/>
-        <Setter Property="Height" Value="100"/>
+        <Setter Property="Height" Value="90"/>
         <Setter Property="FontSize" Value="35"/>
     </Style>
     <!-- Button styles -->
@@ -531,13 +532,13 @@
         <Setter Property="AutomationProperties.AutomationId" Value="PhotoAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Photo"/>
         <Setter Property="Content" Value="&#xE114;"/>
-    </Style>
+    </Style>-->
     <Style x:Key="SettingsAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="SettingsAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Settings"/>
         <Setter Property="Content" Value="&#xE115;"/>
     </Style>
-    -->
+    
 
     <!--
     <Style x:Key="VideoAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
@@ -564,13 +565,13 @@
         <Setter Property="AutomationProperties.AutomationId" Value="SearchAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Search"/>
         <Setter Property="Content" Value="&#xE11A;"/>
-    </Style>
+    </Style>-->
     <Style x:Key="HelpAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="HelpAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Help"/>
         <Setter Property="Content" Value="&#xE11B;"/>
     </Style>
-    <Style x:Key="UploadAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+    <!--<Style x:Key="UploadAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="UploadAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Upload"/>
         <Setter Property="Content" Value="&#xE11C;"/>

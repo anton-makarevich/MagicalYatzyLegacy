@@ -98,7 +98,7 @@ namespace Sanet.Kniffel.DiceRoller
         }
 
         #region settings
-        private TaskPanePopup _settings;
+        
         private void App_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
         {
             //options

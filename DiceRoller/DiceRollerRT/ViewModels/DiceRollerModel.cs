@@ -54,7 +54,14 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return RModel.GetString("about");
+                return RModel.GetString("AboutCaption/Text");
+            }
+        }
+        public string SettingsLabel
+        {
+            get
+            {
+                return RModel.GetString("SettingsCaption/Text");
             }
         }
         
