@@ -60,14 +60,16 @@
                 <TextBlock x:Uid="OnlineVersionText" 
                            Style="{StaticResource BiggerText}"
                            TextWrapping="Wrap" Visibility="Visible" 
-                       Text="Программа основана на контролле DicePanel из игры Kniffel Online. Идея контрола и 'красные' кости принадлежат  Matthew Tagliaferri."/>
+                       Text="Программа основана на контролле DicePanel. Идея контрола и 'красные' кости принадлежат  Matthew Tagliaferri."/>
                 <HyperlinkButton NavigateUri="http://kniffel.sanet.by/" 
                              x:Uid="OnlineLink"
+                                 Visibility="Collapsed"
                            HorizontalAlignment="Left"  
                            VerticalAlignment="Center" Style="{StaticResource SanetUris}"
                               />
             </StackPanel>
-            <StackPanel Grid.Row="2" Margin="10">
+            <StackPanel Grid.Row="2" Margin="10"
+                        Visibility="Collapsed">
                 <TextBlock  
                        Style="{StaticResource BiggerText}"
                        TextWrapping="Wrap" x:Uid="OtherSoft"/>

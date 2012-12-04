@@ -123,7 +123,7 @@
   </data>
   <data name="AboutText.Text" xml:space="preserve">
     <value>виртуальные кости в твоем планшете</value>
-    <comment>Virtuelle  Würfel in deinem Handy!</comment>
+    <comment>Virtuelle  Würfel in deinem Tablet!</comment>
   </data>
   <data name="OnlineLink.Content" xml:space="preserve">
     <value>О Kniffel Online</value>
@@ -183,7 +183,7 @@
   </data>
   <data name="SpeedSlow.Text" xml:space="preserve">
     <value>медленно</value>
-    <comment>ruhig</comment>
+    <comment>langsam</comment>
   </data>
   <data name="SmallStraight" xml:space="preserve">
     <value>Смолл Стрит</value>
@@ -207,29 +207,38 @@
   </data>
   <data name="SpeedVerySlow.Text" xml:space="preserve">
     <value>очень медленно</value>
+    <comment>sehr langsam</comment>
   </data>
   <data name="SettingsAngleCaption.Text" xml:space="preserve">
     <value>Угол обзора</value>
+    <comment>Blickfeld</comment>
   </data>
   <data name="SettingsCaption.Text" xml:space="preserve">
     <value>Настройки</value>
+    <comment>Einstellungen</comment>
   </data>
   <data name="SettingsNumbersCaption.Text" xml:space="preserve">
     <value>Число костей</value>
+    <comment>Würfelzahl</comment>
   </data>
   <data name="SettingsSpeedCaption.Text" xml:space="preserve">
     <value>Скорость броска</value>
+    <comment>Wurftempo</comment>
   </data>
   <data name="SettingsStyleCaption.Text" xml:space="preserve">
     <value>Стиль костей</value>
+    <comment>Würfelstil</comment>
   </data>
   <data name="OtherAllWrite.Content" xml:space="preserve">
     <value>Электронные прописи - занимательное обучение письму.</value>
+    <comment>Elektronisches Schreibheft -spannendes Schreiben-Lernen</comment>
   </data>
   <data name="OtherSoft.Text" xml:space="preserve">
     <value>Попробуйте другие программы:</value>
+    <comment>Versuchen Sie andere Programme</comment>
   </data>
   <data name="Total" xml:space="preserve">
     <value>Всего</value>
+    <comment>insgesamt</comment>
   </data>
 </root>
