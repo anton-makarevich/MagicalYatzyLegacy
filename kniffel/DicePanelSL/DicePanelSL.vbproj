@@ -1,0 +1,1415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{2FB6F6C6-F8DF-48E8-95A6-E927ACED87F5}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Kniffel</RootNamespace>
+    <AssemblyName>DicePanelSL</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <MyType>Empty</MyType>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DocumentationFile>DicePanelSL.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DefineConstants>SILVERLIGHT=1</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DocumentationFile>DicePanelSL.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DefineConstants>SILVERLIGHT=1</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Controls, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Theming.Toolkit, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Theming.TwilightBlue, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Windows.Browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Net" />
+    <Import Include="System.Xml" />
+    <Import Include="System.Windows" />
+    <Import Include="System.Windows.Controls" />
+    <Import Include="System.Windows.Documents" />
+    <Import Include="System.Windows.Ink" />
+    <Import Include="System.Windows.Input" />
+    <Import Include="System.Windows.Media" />
+    <Import Include="System.Windows.Media.Animation" />
+    <Import Include="System.Windows.Shapes" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sound\diceroll.wma" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.0.png">
+      <Link>Images\0\stop.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.1.png">
+      <Link>Images\0\stop.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.10.png">
+      <Link>Images\0\stop.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.11.png">
+      <Link>Images\0\stop.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.12.png">
+      <Link>Images\0\stop.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.13.png">
+      <Link>Images\0\stop.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.14.png">
+      <Link>Images\0\stop.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.15.png">
+      <Link>Images\0\stop.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.16.png">
+      <Link>Images\0\stop.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.17.png">
+      <Link>Images\0\stop.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.18.png">
+      <Link>Images\0\stop.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.19.png">
+      <Link>Images\0\stop.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.2.png">
+      <Link>Images\0\stop.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.20.png">
+      <Link>Images\0\stop.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.21.png">
+      <Link>Images\0\stop.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.22.png">
+      <Link>Images\0\stop.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.23.png">
+      <Link>Images\0\stop.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.24.png">
+      <Link>Images\0\stop.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.25.png">
+      <Link>Images\0\stop.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.26.png">
+      <Link>Images\0\stop.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.27.png">
+      <Link>Images\0\stop.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.28.png">
+      <Link>Images\0\stop.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.29.png">
+      <Link>Images\0\stop.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.3.png">
+      <Link>Images\0\stop.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.30.png">
+      <Link>Images\0\stop.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.31.png">
+      <Link>Images\0\stop.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.32.png">
+      <Link>Images\0\stop.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.33.png">
+      <Link>Images\0\stop.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.34.png">
+      <Link>Images\0\stop.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.35.png">
+      <Link>Images\0\stop.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.4.png">
+      <Link>Images\0\stop.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.5.png">
+      <Link>Images\0\stop.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.6.png">
+      <Link>Images\0\stop.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.7.png">
+      <Link>Images\0\stop.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.8.png">
+      <Link>Images\0\stop.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\stop.9.png">
+      <Link>Images\0\stop.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.0.png">
+      <Link>Images\0\xrot.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.1.png">
+      <Link>Images\0\xrot.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.10.png">
+      <Link>Images\0\xrot.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.11.png">
+      <Link>Images\0\xrot.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.12.png">
+      <Link>Images\0\xrot.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.13.png">
+      <Link>Images\0\xrot.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.14.png">
+      <Link>Images\0\xrot.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.15.png">
+      <Link>Images\0\xrot.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.16.png">
+      <Link>Images\0\xrot.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.17.png">
+      <Link>Images\0\xrot.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.18.png">
+      <Link>Images\0\xrot.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.19.png">
+      <Link>Images\0\xrot.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.2.png">
+      <Link>Images\0\xrot.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.20.png">
+      <Link>Images\0\xrot.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.21.png">
+      <Link>Images\0\xrot.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.22.png">
+      <Link>Images\0\xrot.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.23.png">
+      <Link>Images\0\xrot.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.24.png">
+      <Link>Images\0\xrot.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.25.png">
+      <Link>Images\0\xrot.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.26.png">
+      <Link>Images\0\xrot.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.27.png">
+      <Link>Images\0\xrot.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.28.png">
+      <Link>Images\0\xrot.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.29.png">
+      <Link>Images\0\xrot.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.3.png">
+      <Link>Images\0\xrot.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.30.png">
+      <Link>Images\0\xrot.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.31.png">
+      <Link>Images\0\xrot.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.32.png">
+      <Link>Images\0\xrot.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.33.png">
+      <Link>Images\0\xrot.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.34.png">
+      <Link>Images\0\xrot.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.35.png">
+      <Link>Images\0\xrot.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.4.png">
+      <Link>Images\0\xrot.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.5.png">
+      <Link>Images\0\xrot.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.6.png">
+      <Link>Images\0\xrot.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.7.png">
+      <Link>Images\0\xrot.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.8.png">
+      <Link>Images\0\xrot.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\xrot.9.png">
+      <Link>Images\0\xrot.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.0.png">
+      <Link>Images\0\yrot.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.1.png">
+      <Link>Images\0\yrot.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.10.png">
+      <Link>Images\0\yrot.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.11.png">
+      <Link>Images\0\yrot.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.12.png">
+      <Link>Images\0\yrot.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.13.png">
+      <Link>Images\0\yrot.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.14.png">
+      <Link>Images\0\yrot.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.15.png">
+      <Link>Images\0\yrot.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.16.png">
+      <Link>Images\0\yrot.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.17.png">
+      <Link>Images\0\yrot.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.18.png">
+      <Link>Images\0\yrot.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.19.png">
+      <Link>Images\0\yrot.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.2.png">
+      <Link>Images\0\yrot.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.20.png">
+      <Link>Images\0\yrot.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.21.png">
+      <Link>Images\0\yrot.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.22.png">
+      <Link>Images\0\yrot.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.23.png">
+      <Link>Images\0\yrot.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.24.png">
+      <Link>Images\0\yrot.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.25.png">
+      <Link>Images\0\yrot.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.26.png">
+      <Link>Images\0\yrot.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.27.png">
+      <Link>Images\0\yrot.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.28.png">
+      <Link>Images\0\yrot.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.29.png">
+      <Link>Images\0\yrot.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.3.png">
+      <Link>Images\0\yrot.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.30.png">
+      <Link>Images\0\yrot.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.31.png">
+      <Link>Images\0\yrot.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.32.png">
+      <Link>Images\0\yrot.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.33.png">
+      <Link>Images\0\yrot.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.34.png">
+      <Link>Images\0\yrot.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.35.png">
+      <Link>Images\0\yrot.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.4.png">
+      <Link>Images\0\yrot.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.5.png">
+      <Link>Images\0\yrot.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.6.png">
+      <Link>Images\0\yrot.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.7.png">
+      <Link>Images\0\yrot.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.8.png">
+      <Link>Images\0\yrot.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\0\yrot.9.png">
+      <Link>Images\0\yrot.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.0.png">
+      <Link>Images\1\stop.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.1.png">
+      <Link>Images\1\stop.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.10.png">
+      <Link>Images\1\stop.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.11.png">
+      <Link>Images\1\stop.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.12.png">
+      <Link>Images\1\stop.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.13.png">
+      <Link>Images\1\stop.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.14.png">
+      <Link>Images\1\stop.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.15.png">
+      <Link>Images\1\stop.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.16.png">
+      <Link>Images\1\stop.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.17.png">
+      <Link>Images\1\stop.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.18.png">
+      <Link>Images\1\stop.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.19.png">
+      <Link>Images\1\stop.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.2.png">
+      <Link>Images\1\stop.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.20.png">
+      <Link>Images\1\stop.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.21.png">
+      <Link>Images\1\stop.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.22.png">
+      <Link>Images\1\stop.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.23.png">
+      <Link>Images\1\stop.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.24.png">
+      <Link>Images\1\stop.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.25.png">
+      <Link>Images\1\stop.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.26.png">
+      <Link>Images\1\stop.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.27.png">
+      <Link>Images\1\stop.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.28.png">
+      <Link>Images\1\stop.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.29.png">
+      <Link>Images\1\stop.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.3.png">
+      <Link>Images\1\stop.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.30.png">
+      <Link>Images\1\stop.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.31.png">
+      <Link>Images\1\stop.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.32.png">
+      <Link>Images\1\stop.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.33.png">
+      <Link>Images\1\stop.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.34.png">
+      <Link>Images\1\stop.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.35.png">
+      <Link>Images\1\stop.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.4.png">
+      <Link>Images\1\stop.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.5.png">
+      <Link>Images\1\stop.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.6.png">
+      <Link>Images\1\stop.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.7.png">
+      <Link>Images\1\stop.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.8.png">
+      <Link>Images\1\stop.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\stop.9.png">
+      <Link>Images\1\stop.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.0.png">
+      <Link>Images\1\xrot.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.1.png">
+      <Link>Images\1\xrot.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.10.png">
+      <Link>Images\1\xrot.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.11.png">
+      <Link>Images\1\xrot.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.12.png">
+      <Link>Images\1\xrot.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.13.png">
+      <Link>Images\1\xrot.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.14.png">
+      <Link>Images\1\xrot.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.15.png">
+      <Link>Images\1\xrot.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.16.png">
+      <Link>Images\1\xrot.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.17.png">
+      <Link>Images\1\xrot.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.18.png">
+      <Link>Images\1\xrot.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.19.png">
+      <Link>Images\1\xrot.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.2.png">
+      <Link>Images\1\xrot.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.20.png">
+      <Link>Images\1\xrot.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.21.png">
+      <Link>Images\1\xrot.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.22.png">
+      <Link>Images\1\xrot.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.23.png">
+      <Link>Images\1\xrot.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.24.png">
+      <Link>Images\1\xrot.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.25.png">
+      <Link>Images\1\xrot.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.26.png">
+      <Link>Images\1\xrot.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.27.png">
+      <Link>Images\1\xrot.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.28.png">
+      <Link>Images\1\xrot.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.29.png">
+      <Link>Images\1\xrot.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.3.png">
+      <Link>Images\1\xrot.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.30.png">
+      <Link>Images\1\xrot.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.31.png">
+      <Link>Images\1\xrot.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.32.png">
+      <Link>Images\1\xrot.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.33.png">
+      <Link>Images\1\xrot.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.34.png">
+      <Link>Images\1\xrot.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.35.png">
+      <Link>Images\1\xrot.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.4.png">
+      <Link>Images\1\xrot.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.5.png">
+      <Link>Images\1\xrot.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.6.png">
+      <Link>Images\1\xrot.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.7.png">
+      <Link>Images\1\xrot.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.8.png">
+      <Link>Images\1\xrot.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\xrot.9.png">
+      <Link>Images\1\xrot.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.0.png">
+      <Link>Images\1\yrot.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.1.png">
+      <Link>Images\1\yrot.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.10.png">
+      <Link>Images\1\yrot.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.11.png">
+      <Link>Images\1\yrot.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.12.png">
+      <Link>Images\1\yrot.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.13.png">
+      <Link>Images\1\yrot.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.14.png">
+      <Link>Images\1\yrot.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.15.png">
+      <Link>Images\1\yrot.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.16.png">
+      <Link>Images\1\yrot.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.17.png">
+      <Link>Images\1\yrot.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.18.png">
+      <Link>Images\1\yrot.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.19.png">
+      <Link>Images\1\yrot.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.2.png">
+      <Link>Images\1\yrot.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.20.png">
+      <Link>Images\1\yrot.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.21.png">
+      <Link>Images\1\yrot.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.22.png">
+      <Link>Images\1\yrot.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.23.png">
+      <Link>Images\1\yrot.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.24.png">
+      <Link>Images\1\yrot.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.25.png">
+      <Link>Images\1\yrot.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.26.png">
+      <Link>Images\1\yrot.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.27.png">
+      <Link>Images\1\yrot.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.28.png">
+      <Link>Images\1\yrot.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.29.png">
+      <Link>Images\1\yrot.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.3.png">
+      <Link>Images\1\yrot.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.30.png">
+      <Link>Images\1\yrot.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.31.png">
+      <Link>Images\1\yrot.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.32.png">
+      <Link>Images\1\yrot.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.33.png">
+      <Link>Images\1\yrot.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.34.png">
+      <Link>Images\1\yrot.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.35.png">
+      <Link>Images\1\yrot.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.4.png">
+      <Link>Images\1\yrot.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.5.png">
+      <Link>Images\1\yrot.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.6.png">
+      <Link>Images\1\yrot.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.7.png">
+      <Link>Images\1\yrot.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.8.png">
+      <Link>Images\1\yrot.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\1\yrot.9.png">
+      <Link>Images\1\yrot.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.0.png">
+      <Link>Images\2\stop.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.1.png">
+      <Link>Images\2\stop.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.10.png">
+      <Link>Images\2\stop.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.11.png">
+      <Link>Images\2\stop.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.12.png">
+      <Link>Images\2\stop.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.13.png">
+      <Link>Images\2\stop.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.14.png">
+      <Link>Images\2\stop.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.15.png">
+      <Link>Images\2\stop.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.16.png">
+      <Link>Images\2\stop.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.17.png">
+      <Link>Images\2\stop.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.18.png">
+      <Link>Images\2\stop.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.19.png">
+      <Link>Images\2\stop.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.2.png">
+      <Link>Images\2\stop.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.20.png">
+      <Link>Images\2\stop.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.21.png">
+      <Link>Images\2\stop.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.22.png">
+      <Link>Images\2\stop.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.23.png">
+      <Link>Images\2\stop.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.24.png">
+      <Link>Images\2\stop.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.25.png">
+      <Link>Images\2\stop.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.26.png">
+      <Link>Images\2\stop.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.27.png">
+      <Link>Images\2\stop.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.28.png">
+      <Link>Images\2\stop.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.29.png">
+      <Link>Images\2\stop.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.3.png">
+      <Link>Images\2\stop.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.30.png">
+      <Link>Images\2\stop.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.31.png">
+      <Link>Images\2\stop.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.32.png">
+      <Link>Images\2\stop.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.33.png">
+      <Link>Images\2\stop.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.34.png">
+      <Link>Images\2\stop.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.35.png">
+      <Link>Images\2\stop.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.4.png">
+      <Link>Images\2\stop.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.5.png">
+      <Link>Images\2\stop.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.6.png">
+      <Link>Images\2\stop.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.7.png">
+      <Link>Images\2\stop.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.8.png">
+      <Link>Images\2\stop.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\stop.9.png">
+      <Link>Images\2\stop.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.0.png">
+      <Link>Images\2\xrot.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.1.png">
+      <Link>Images\2\xrot.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.10.png">
+      <Link>Images\2\xrot.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.11.png">
+      <Link>Images\2\xrot.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.12.png">
+      <Link>Images\2\xrot.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.13.png">
+      <Link>Images\2\xrot.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.14.png">
+      <Link>Images\2\xrot.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.15.png">
+      <Link>Images\2\xrot.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.16.png">
+      <Link>Images\2\xrot.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.17.png">
+      <Link>Images\2\xrot.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.18.png">
+      <Link>Images\2\xrot.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.19.png">
+      <Link>Images\2\xrot.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.2.png">
+      <Link>Images\2\xrot.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.20.png">
+      <Link>Images\2\xrot.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.21.png">
+      <Link>Images\2\xrot.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.22.png">
+      <Link>Images\2\xrot.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.23.png">
+      <Link>Images\2\xrot.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.24.png">
+      <Link>Images\2\xrot.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.25.png">
+      <Link>Images\2\xrot.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.26.png">
+      <Link>Images\2\xrot.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.27.png">
+      <Link>Images\2\xrot.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.28.png">
+      <Link>Images\2\xrot.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.29.png">
+      <Link>Images\2\xrot.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.3.png">
+      <Link>Images\2\xrot.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.30.png">
+      <Link>Images\2\xrot.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.31.png">
+      <Link>Images\2\xrot.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.32.png">
+      <Link>Images\2\xrot.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.33.png">
+      <Link>Images\2\xrot.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.34.png">
+      <Link>Images\2\xrot.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.35.png">
+      <Link>Images\2\xrot.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.4.png">
+      <Link>Images\2\xrot.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.5.png">
+      <Link>Images\2\xrot.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.6.png">
+      <Link>Images\2\xrot.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.7.png">
+      <Link>Images\2\xrot.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.8.png">
+      <Link>Images\2\xrot.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\xrot.9.png">
+      <Link>Images\2\xrot.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.0.png">
+      <Link>Images\2\yrot.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.1.png">
+      <Link>Images\2\yrot.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.10.png">
+      <Link>Images\2\yrot.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.11.png">
+      <Link>Images\2\yrot.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.12.png">
+      <Link>Images\2\yrot.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.13.png">
+      <Link>Images\2\yrot.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.14.png">
+      <Link>Images\2\yrot.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.15.png">
+      <Link>Images\2\yrot.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.16.png">
+      <Link>Images\2\yrot.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.17.png">
+      <Link>Images\2\yrot.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.18.png">
+      <Link>Images\2\yrot.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.19.png">
+      <Link>Images\2\yrot.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.2.png">
+      <Link>Images\2\yrot.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.20.png">
+      <Link>Images\2\yrot.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.21.png">
+      <Link>Images\2\yrot.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.22.png">
+      <Link>Images\2\yrot.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.23.png">
+      <Link>Images\2\yrot.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.24.png">
+      <Link>Images\2\yrot.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.25.png">
+      <Link>Images\2\yrot.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.26.png">
+      <Link>Images\2\yrot.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.27.png">
+      <Link>Images\2\yrot.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.28.png">
+      <Link>Images\2\yrot.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.29.png">
+      <Link>Images\2\yrot.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.3.png">
+      <Link>Images\2\yrot.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.30.png">
+      <Link>Images\2\yrot.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.31.png">
+      <Link>Images\2\yrot.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.32.png">
+      <Link>Images\2\yrot.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.33.png">
+      <Link>Images\2\yrot.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.34.png">
+      <Link>Images\2\yrot.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.35.png">
+      <Link>Images\2\yrot.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.4.png">
+      <Link>Images\2\yrot.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.5.png">
+      <Link>Images\2\yrot.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.6.png">
+      <Link>Images\2\yrot.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.7.png">
+      <Link>Images\2\yrot.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.8.png">
+      <Link>Images\2\yrot.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\..\slasm\pngs\2\yrot.9.png">
+      <Link>Images\2\yrot.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.VisualBasic.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,55 @@
+﻿<controls:ChildWindow xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  x:Class="Kniffel.HelpPage"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+       xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+       xmlns:Theming="clr-namespace:System.Windows.Controls.Theming;assembly=System.Windows.Controls.Theming.TwilightBlue"
+       Title="Справка"
+       Width="463" Height="406" xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input">
+    <Theming:TwilightBlueTheme>
+        <StackPanel>
+            <sdk:TabControl Background="#FF4685AF" BorderBrush="#FF4685AF">
+                
+                <sdk:TabItem Header="Как играть">
+                    <StackPanel Height="290">
+                    <TextBlock Foreground="White" x:Name="tbHowPlay" Text="Для игры в Книффель Online необходимо подключиться к одному из игровых столов (нажать на соответствующую кнопку). Нельзя присесть за стол, на котором идет игра - дождитесь окончания партии. Можно создать свой собственный стол - иконка '+' на верхней панели. Играть можно как одному, так и с другими игроками.  Максимальное количество игроков за одним столом - 6 человек. Присев за стол не спишите жать кнопку 'готов' - подождите других игроков, игра начинается сразу после того, как все игроки 'готовы играть'. В начале каждого хода игрок бросает пять игральных костей и пытается собрать одну из возможных комбинаций. Если искомая комбинация не выпала, то кости можно перебросить еще два раза. При этом перебрасывать можно любое количество костей. Кости, которые перебрасывать не нужно, необходимо 'закрепить' кликнув по ним. В конце каждого броска игра подсчитывает результат каждой комбинации, для завершения хода, необходимо выбрать соответствующее значение, кликнув на нем." TextWrapping="Wrap" Width="413"/>
+                        <TextBlock Foreground="White" x:Name="tbHowPlayMore" Text="Подробнее о правилах игры и о том как играть можно узнать на официальном сайте игры 'http://kniffel.sanet.by'." TextWrapping="Wrap" Width="413"/>
+                        </StackPanel>
+                </sdk:TabItem>
+                <sdk:TabItem Header="Стандартные правила"  >
+                    <StackPanel Height="290">
+                        <TextBlock Foreground="White" x:Name="tbHelp" Text="Цель игры заключается в наборе максимального количества очков за 13 ходов. Очки начисляются за сбор оределенных комбинаций костей (одна комбинации за один ход). За каждый ход кости можно бросить три раза, при этом перебрасывать можно любое количество костей." TextWrapping="Wrap" Width="413"/>
+                        <TextBlock Foreground="White" x:Name="tbHelpsd" Text="В 'стандартных' правилах возможны следующие комбинации:" TextWrapping="Wrap"  Width="413"/>
+                        <TextBlock Foreground="White" x:Name="tbHelp16" Text="'1'-'6' - считается сумма костей соответствующего номинала" TextWrapping="Wrap"  Width="413"/>
+                        <TextBlock Foreground="White" x:Name="tbHelpB" Text="'Б' - 35 очков если сумма в ячейках '1'-'6' равна 63 и более очков" TextWrapping="Wrap"  Width="413"/>
+                        <TextBlock Foreground="White" x:Name="tbHelpT" Text="'T' - сумма всех костей, если среди них есть три одинаковые" TextWrapping="Wrap"  Width="413"/>
+                        <TextBlock Foreground="White" x:Name="tbHelpС" Text="'Ч' - сумма всех костей, если среди них есть четыре одинаковые" TextWrapping="Wrap"  Width="413"/>
+                        <TextBlock Foreground="White" x:Name="tbHelpFH" Text="'FH' - 25 очков, если выпало две и три одинаковые кости" TextWrapping="Wrap"  Width="413"/>
+                        <TextBlock Foreground="White" x:Name="tbHelpSS" Text="'SS' - 30 очков, если выпало четыре кости подряд" TextWrapping="Wrap"  Width="413"/>
+                        <TextBlock Foreground="White" x:Name="tbHelplS" Text="'LS' - 40 очков, если выпало пять костей подряд" TextWrapping="Wrap"  Width="413"/>
+                        <TextBlock Foreground="White" x:Name="tbHelpK" Text="'K!' - 'Книффель!', 50 очков, если выпало пять одинаковых костей, каждый последующий книффель приносит 100 очков бонуса" TextWrapping="Wrap"  Width="413"/>
+                        <TextBlock Foreground="White" x:Name="tbHelpSH" Text="'Ш' - сумма всех выпавших костей" TextWrapping="Wrap"  Width="413"/>
+                        
+                    </StackPanel>
+                </sdk:TabItem>
+                <sdk:TabItem Header="Вариации правил"  >
+                    <StackPanel Height="290">
+                        <TextBlock Foreground="White" x:Name="tbHelpAdv" Text="В Книффель онлайн есть несколько вариантов правил, которые упрощают или расширяют 'стандартные'." TextWrapping="Wrap" Width="413"/>
+                        <TextBlock Foreground="White" x:Name="tbHelpbaby" Text="1. В 'детских' правилах оставлены только комбинации, требующие сбора одинаковых костей (цифровые и книффель), игра длится 7 ходов. Эти правила были добавлены специально для одного юного игрока, который быстро их перерос)." TextWrapping="Wrap"  Width="413"/>
+                        <TextBlock Foreground="White" x:Name="tbHelpsimple" Text="2. В 'простых' правилах отсутствуют все виды бонусов." TextWrapping="Wrap"  Width="413"/>
+                        <TextBlock Foreground="White" x:Name="tbHelpen" Text="3. 'Расширенные' правила отличаются от 'стандартных' дополнительным бонусом в 100 очков за каждый последующий книффель, в независимости от того, куда записан результат броска и возможностью использовать книффель в качестве джокера для заполнения покерных комбинаций. Джокер можно использовать тогда, когда выпал книффель, но его ячейка уже занята (не важно там 50 или 0 очков), а также занята цифровая ячейка того номинала, на котором выброшен книффель (например, '4', если выпало 4,4,4,4,4). В этом случае, книффель можно записать в 'FH', 'SS' или 'LS'." TextWrapping="Wrap"  Width="413"/>
+                        
+                        
+                    </StackPanel>
+                </sdk:TabItem>
+            </sdk:TabControl>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="bThanksto" Content="Благодарности" Height="23" Width="115" Margin="15,14,20,6" />
+                 <Button x:Name="bAbout" Content="Об игре" Height="23" Width="115" Margin="15,14,20,6" />
+            <Button x:Name="btnJoin" Content="Закрыть" Click="btnJoin_Click"  Height="23" Width="115" Margin="15,14,20,6" />
+
+            </StackPanel>
+               
+        </StackPanel>
+        
+    </Theming:TwilightBlueTheme>
+</controls:ChildWindow>

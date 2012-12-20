@@ -1,0 +1,31 @@
+﻿<controls:ChildWindow x:Class="Kniffel.ThanksPage"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+       xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+       xmlns:Theme="clr-namespace:System.Windows.Controls.Theming;assembly=System.Windows.Controls.Theming.TwilightBlue" 
+       Title="Благодарности"
+       Width="463" Height="192" xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input">
+    <Theme:TwilightBlueTheme>
+        <Grid x:Name="LayoutRoot">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition Width="150*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="35*" />
+            </Grid.RowDefinitions>
+            <Button Grid.Row="5" x:Name="btnJoin" Content="Закрыть" Click="btnJoin_Click"  Height="23" Width="145" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="16,14,20,6" />
+            <dataInput:Label Foreground="White" Height="20" HorizontalAlignment="Left" Margin="16,5,0,0" Name="Label1" VerticalAlignment="Top" Width="148" Grid.Row="2" Content="Сергей Мудров" />
+            <dataInput:Label Foreground="White" Content="Станислав Шувалов" Height="20" HorizontalAlignment="Left" Margin="16,5,0,0" Name="Label2" VerticalAlignment="Top" Width="164" Grid.Row="3" />
+            <dataInput:Label Content="Silverlight VKontakte API" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" Margin="10,5,0,0" Name="hbHome" VerticalAlignment="Top" Width="156" Foreground="LightYellow" />
+            <dataInput:Label Content="Идея контрола DicePanel и 'красные' кости
+                             " Foreground="White" Height="23" HorizontalAlignment="Left" Margin="10,5,0,0" Name="hpRecords" VerticalAlignment="Top" Width="249" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" />
+            <dataInput:Label Foreground="White" Content="Matthew Tagliaferri" Height="20" HorizontalAlignment="Left" Margin="14,5,0,0" Name="Label4" VerticalAlignment="Top" Width="164" Grid.Row="1" />
+            <dataInput:Label Foreground="LightYellow" Content="Mail.ru platform SDK" Height="20" HorizontalAlignment="Left" Margin="10,5,0,0" Name="Label5" VerticalAlignment="Top" Width="164" Grid.Column="1" Grid.Row="42" />
+        </Grid>
+    </Theme:TwilightBlueTheme>
+</controls:ChildWindow>

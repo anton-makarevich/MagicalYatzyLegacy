@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Kniffel.Web" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Kniffel.Web" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://samples.microsoft.com/silverlight2/duplex" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="DoMoveMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://samples.microsoft.com/silverlight2/duplex" base="q1:DuplexMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GameId" type="xs:int" />
+          <xs:element minOccurs="0" name="Move" type="xs:int" />
+          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DoMoveMessage" nillable="true" type="tns:DoMoveMessage" />
+  <xs:complexType name="GameOverMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://samples.microsoft.com/silverlight2/duplex" base="q2:DuplexMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GameId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GameOverMessage" nillable="true" type="tns:GameOverMessage" />
+  <xs:complexType name="EncrytValueMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://samples.microsoft.com/silverlight2/duplex" base="q3:DuplexMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EncrytValueMessage" nillable="true" type="tns:EncrytValueMessage" />
+  <xs:complexType name="ClientDisconnectedMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://samples.microsoft.com/silverlight2/duplex" base="q4:DuplexMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ClientDisconnectedMessage" nillable="true" type="tns:ClientDisconnectedMessage" />
+  <xs:complexType name="ClientConnectedMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://samples.microsoft.com/silverlight2/duplex" base="q5:DuplexMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AllGames" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AllPlayers" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ClientConnectedMessage" nillable="true" type="tns:ClientConnectedMessage" />
+  <xs:complexType name="ChatMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://samples.microsoft.com/silverlight2/duplex" base="q6:DuplexMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FromID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="GameID" type="xs:int" />
+          <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ToID" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ChatMessage" nillable="true" type="tns:ChatMessage" />
+  <xs:complexType name="JoinSessionServerMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://samples.microsoft.com/silverlight2/duplex" base="q7:DuplexMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="EName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="EPassword" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Failed" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="JoinSessionServerMessage" nillable="true" type="tns:JoinSessionServerMessage" />
+  <xs:complexType name="JoinSessionMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://samples.microsoft.com/silverlight2/duplex" base="q8:DuplexMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="UserPass" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="JoinSessionMessage" nillable="true" type="tns:JoinSessionMessage" />
+  <xs:complexType name="ApplyScoreMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="http://samples.microsoft.com/silverlight2/duplex" base="q9:DuplexMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GameId" type="xs:int" />
+          <xs:element minOccurs="0" name="HaveBonus" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Move" type="xs:int" />
+          <xs:element minOccurs="0" name="ScoreType" type="xs:int" />
+          <xs:element minOccurs="0" name="ScoreValue" type="xs:int" />
+          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ApplyScoreMessage" nillable="true" type="tns:ApplyScoreMessage" />
+  <xs:complexType name="GeneralError">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q10="http://samples.microsoft.com/silverlight2/duplex" base="q10:DuplexMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GeneralError" nillable="true" type="tns:GeneralError" />
+  <xs:complexType name="DoRollMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q11="http://samples.microsoft.com/silverlight2/duplex" base="q11:DuplexMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GameId" type="xs:int" />
+          <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Value" nillable="true" type="q12:ArrayOfint" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DoRollMessage" nillable="true" type="tns:DoRollMessage" />
+  <xs:complexType name="DieFixedMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="http://samples.microsoft.com/silverlight2/duplex" base="q13:DuplexMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Fixed" type="xs:boolean" />
+          <xs:element minOccurs="0" name="GameId" type="xs:int" />
+          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Value" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DieFixedMessage" nillable="true" type="tns:DieFixedMessage" />
+  <xs:complexType name="PlayerIsReadyMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q14="http://samples.microsoft.com/silverlight2/duplex" base="q14:DuplexMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GameId" type="xs:int" />
+          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PlayerIsReadyMessage" nillable="true" type="tns:PlayerIsReadyMessage" />
+  <xs:complexType name="CreateGameRoomMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q15="http://samples.microsoft.com/silverlight2/duplex" base="q15:DuplexMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DieStyle" type="xs:int" />
+          <xs:element minOccurs="0" name="Rules" type="xs:int" />
+          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CreateGameRoomMessage" nillable="true" type="tns:CreateGameRoomMessage" />
+  <xs:complexType name="ConnectGameRoomMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q16="http://samples.microsoft.com/silverlight2/duplex" base="q16:DuplexMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DieStyle" type="xs:int" />
+          <xs:element minOccurs="0" name="GameId" type="xs:int" />
+          <xs:element minOccurs="0" name="GameTable" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OldGameId" type="xs:int" />
+          <xs:element minOccurs="0" name="Rules" type="xs:int" />
+          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ConnectGameRoomMessage" nillable="true" type="tns:ConnectGameRoomMessage" />
+  <xs:complexType name="GameStatusMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q17="http://samples.microsoft.com/silverlight2/duplex" base="q17:DuplexMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GameId" type="xs:int" />
+          <xs:element minOccurs="0" name="IsPlaying" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GameStatusMessage" nillable="true" type="tns:GameStatusMessage" />
+</xs:schema>

@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="Kniffel.KniffelScoreLabel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             
+    mc:Ignorable="d"
+    d:DesignHeight="40" d:DesignWidth="40" xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input">
+    
+        <StackPanel x:Name="LayoutRoot" >
+        <TextBlock Height="20" HorizontalAlignment="Left" Name="txtValue" Text="1" VerticalAlignment="Top" Width="30" FontSize="16" FontStyle="Italic" FontWeight="Bold" TextAlignment="Center" Foreground="White">
+            <ToolTipService.ToolTip>
+				<ToolTip x:Name="ttHelp" Background="#7F4684AE" Foreground="Black" Opacity="0.85">
+					<StackPanel>
+                        <TextBlock x:Name="tbHelpHeader" />
+                        <StackPanel x:Name="spHelpImages" Orientation="Horizontal">
+                            <Image x:Name="iHelp" Width="20" Height="20"/>
+                            <Image x:Name="iHelp2" Width="20" Height="20"/>
+                            <Image x:Name="iHelp3" Width="20" Height="20"/>
+                            <Image x:Name="iHelp4" Width="20" Height="20"/>
+                            <Image x:Name="iHelp5" Width="20" Height="20"/>
+                        </StackPanel>
+                        <TextBlock x:Name="tbHelpBody" MaxWidth="110" TextWrapping="Wrap"/>
+					
+				</StackPanel>
+				</ToolTip>
+			</ToolTipService.ToolTip>
+        </TextBlock>
+        
+        <StackPanel Name="spValueBackground" >
+            <StackPanel.Resources>
+            <Storyboard x:Name="colorStoryboard">
+                    <ColorAnimation x:Name="colorAnim" BeginTime="00:00:00" Storyboard.TargetName="spValueBackground" 
+         Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" From="Orange" To="LightGray" Duration="0:0:2" />
+
+                </Storyboard>
+</StackPanel.Resources>
+            <TextBlock Height="20" HorizontalAlignment="Left" x:FieldModifier="Public" x:Name="txtLabel" Text="30" VerticalAlignment="Top" Width="30" TextAlignment="Center" FontSize="16" >
+            
+                <ToolTipService.ToolTip>
+				<ToolTip x:Name="ttBonus" Background="#7F4684AE" Foreground="Black" Opacity="0.85">
+					                        <TextBlock x:Name="tbBonus" TextWrapping="Wrap" Text="+100 очков, бонус за повторный книффель"/>
+					</ToolTip>
+			</ToolTipService.ToolTip>    
+            </TextBlock>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

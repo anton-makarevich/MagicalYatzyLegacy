@@ -1,0 +1,14 @@
+﻿<controls:ChildWindow x:Class="Kniffel.WaitWindow"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+       xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+       xmlns:Theming="clr-namespace:System.Windows.Controls.Theming;assembly=System.Windows.Controls.Theming.TwilightBlue"
+       Title="Пожалуйста подождите"
+       Width="354" Height="81">
+    <Theming:TwilightBlueTheme>
+        <StackPanel Name="spLoading"  Margin="0,8,0,0" Orientation="Horizontal">
+           <TextBlock Name="tbLoading" FontSize="20" Text="Грузимся" Foreground="White"  /> 
+        </StackPanel>
+        
+    </Theming:TwilightBlueTheme>
+</controls:ChildWindow>

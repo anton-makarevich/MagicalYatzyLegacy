@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="981b1e8e-0f4f-4ccc-8493-a0cc2b57aa31" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="DicePanelSL" />
+      <ReferencedAssembly AssemblyName="KniffelCommonControls" />
+      <ReferencedAssembly AssemblyName="Microsoft.VisualBasic" />
+      <ReferencedAssembly AssemblyName="mscorlib" />
+      <ReferencedAssembly AssemblyName="System" />
+      <ReferencedAssembly AssemblyName="System.ComponentModel.DataAnnotations" />
+      <ReferencedAssembly AssemblyName="System.Core" />
+      <ReferencedAssembly AssemblyName="System.Net" />
+      <ReferencedAssembly AssemblyName="System.Runtime.Serialization" />
+      <ReferencedAssembly AssemblyName="System.ServiceModel" />
+      <ReferencedAssembly AssemblyName="System.ServiceModel.DomainServices.Client" />
+      <ReferencedAssembly AssemblyName="System.ServiceModel.DomainServices.Client.Web" />
+      <ReferencedAssembly AssemblyName="System.ServiceModel.Extensions" />
+      <ReferencedAssembly AssemblyName="System.ServiceModel.PollingDuplex" />
+      <ReferencedAssembly AssemblyName="System.ServiceModel.Web.Extensions" />
+      <ReferencedAssembly AssemblyName="System.Windows" />
+      <ReferencedAssembly AssemblyName="System.Windows.Browser" />
+      <ReferencedAssembly AssemblyName="System.Windows.Controls" />
+      <ReferencedAssembly AssemblyName="System.Windows.Controls.Data.Input" />
+      <ReferencedAssembly AssemblyName="System.Windows.Controls.Theming.Toolkit" />
+      <ReferencedAssembly AssemblyName="System.Windows.Controls.Theming.TwilightBlue" />
+      <ReferencedAssembly AssemblyName="System.Xml" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:1098/KniffelService.asmx" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="KniffelService.disco" MetadataType="Disco" ID="30d34226-e86e-4187-b4de-cfda35a0648a" SourceId="1" SourceUrl="http://localhost:1098/KniffelService.asmx?disco" />
+    <MetadataFile FileName="KniffelService.wsdl" MetadataType="Wsdl" ID="f5ee19af-f073-43c9-a087-1d0b1f525c6e" SourceId="1" SourceUrl="http://localhost:1098/KniffelService.asmx?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

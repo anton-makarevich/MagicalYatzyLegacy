@@ -1,0 +1,110 @@
+﻿<UserControl xmlns:sanet="clr-namespace:Sanet;assembly=Chat"  
+             xmlns:my="clr-namespace:Kniffel;assembly=DicePanelSL"  
+    x:Class="KniffelNet.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:Theme="clr-namespace:System.Windows.Controls.Theming;assembly=System.Windows.Controls.Theming.TwilightBlue" 
+    mc:Ignorable="d" d:DesignWidth="800"
+        
+             >
+    <UserControl.Resources>
+        
+            <Storyboard x:Name="rotateStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="Angle"
+   To="360" Duration="0:0:0.8" RepeatBehavior="Forever"></DoubleAnimation>
+            </Storyboard>
+            <Storyboard x:Name="unrotateStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="Angle" To="0"
+         Duration="0:0:0.2"></DoubleAnimation>
+            </Storyboard>
+       
+    </UserControl.Resources>
+    <Theme:TwilightBlueTheme>
+        <Grid x:Name="LayoutRoot" HorizontalAlignment="Center">
+            <StackPanel>
+             <StackPanel x:Name="spCaption" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="600" Orientation="Horizontal">
+                    <Image x:Name="iPlayer" />
+                    <TextBlock x:Name="tbName" Margin="4,0,4,0" Text="" FontSize="20" VerticalAlignment="Center" TextAlignment="left" Width="384" Foreground="White" />
+                    <Image x:Name="bCreateRoom" Source="/KniffelOnline;component/Images/plus.png" Opacity="0.6" >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Background="#7F4684AE" Foreground="Black" Opacity="0.85">
+                                <TextBlock TextWrapping="Wrap" Text="Создать новый стол для игры"/>
+                            </ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
+                    <Image x:Name="bExit" Source="/KniffelOnline;component/Images/back.png" Opacity="0.6"  >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Background="#7F4684AE" Foreground="Black" Opacity="0.85">
+                                <TextBlock TextWrapping="Wrap" Text="Встать из-за стола"/>
+                            </ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
+                    <Image x:Name="bInviteFriends" Source="/KniffelOnline;component/Images/invitefriends.png" Opacity="0.6" Visibility="Collapsed">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Background="#7F4684AE" Foreground="Black" Opacity="0.85">
+                                <TextBlock TextWrapping="Wrap" Text="Пригласить друзей"/>
+                            </ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
+                    <Image x:Name="bTopTen" Source="/KniffelOnline;component/Images/rating.png" Opacity="0.6"  >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Background="#7F4684AE" Foreground="Black" Opacity="0.85">
+                                <TextBlock TextWrapping="Wrap" Text="Лучшие игроки"/>
+                            </ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
+                    <Image x:Name="iHelp" Source="/KniffelOnline;component/Images/help.png" Opacity="0.6"  >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Background="#7F4684AE" Foreground="Black" Opacity="0.85">
+                                <TextBlock TextWrapping="Wrap" Text="Краткая справка"/>
+                            </ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
+                    
+                </StackPanel>
+                <StackPanel x:Name="spRoomInfoPanel">
+                    <TextBlock Foreground="White" x:Name="tbRoomInfo">
+                        
+                    </TextBlock>
+                </StackPanel>
+                    <StackPanel x:Name="spStatusPanel" Width="600">
+                    <TextBlock x:Name="tbGreatings" Foreground="White" FontSize="14" Text="Добро пожаловать в многопользовательскую игру в кости 'Книффель онлайн'!"/>
+                    <TextBlock x:Name="tbWhoPlay" Foreground="White" FontSize="12" Text="" TextWrapping="Wrap"/>
+                    <TextBlock x:Name="tbStartNew" Foreground="White" FontSize="12" Text="Чтобы создать свой игровой стол нажмите '+' на верхней панели." TextWrapping="Wrap"/>
+                    <TextBlock x:Name="tbHowPlay" Foreground="White" FontSize="12" Text="Не знаете как играть? Почитайте краткую справку - иконка '?' на верхней панели. Удачи!" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel x:Name="spPlayMenu" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="600" Orientation="Vertical">
+                                    
+                    <!--<Grid />-->
+                     <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="280" HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel Name="spRooms"  >
+                       
+                    </StackPanel>
+                         </ScrollViewer>
+                </StackPanel>
+                <StackPanel x:Name="spPlayPanel" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="600" Orientation="Vertical">
+                    
+                    <my:DicePanelSL Height="280" HorizontalAlignment="Left" Margin="0,6,0,0" Name="DicePanelSL1" VerticalAlignment="Top" Width="600"></my:DicePanelSL>
+                </StackPanel>
+                    <StackPanel x:Name="spPlaySingle" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="600" Orientation="Vertical">
+                    <StackPanel  Orientation="Horizontal">
+                        <TextBlock FontSize="18" FontWeight="SemiBold" Height="30" Name="tbMove" Text="" TextAlignment="Center" Width="150" Foreground="White" />
+                        <TextBlock Height="30" HorizontalAlignment="Right" Name="tbTotal" Text="" VerticalAlignment="Top" Width="350" FontSize="18" FontWeight="SemiBold" TextAlignment="Center" Foreground="White" />
+                        <Button Content="Новая игра" Height="30" Name="Button1" Width="100" />
+                        <Button Content="Бросок" Height="30" HorizontalAlignment="Left" Name="Button2" VerticalAlignment="Top" Width="100" IsEnabled="False" Visibility="Collapsed" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" Name="spScoreTables" VerticalAlignment="Top" >
+                       
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel x:Name="spСhat" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="600" Orientation="Vertical">
+                                                          
+                    <sanet:ChatPanel x:Name="cpMain" VerticalAlignment="Top" HorizontalAlignment="Center"></sanet:ChatPanel>
+                </StackPanel>
+                
+            </StackPanel>
+        </Grid >
+    </Theme:TwilightBlueTheme>
+</UserControl>

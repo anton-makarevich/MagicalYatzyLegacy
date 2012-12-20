@@ -1,0 +1,24 @@
+﻿<UserControl xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input"  x:Class="KniffelNet.KniffelChatPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    >
+
+    <Grid x:Name="LayoutRoot" Background="White">
+        <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <ListBox Name="lbPlayers" Width="150" SelectionMode="Single" MaxHeight="140" />
+            <ListBox Name="lbMessages" Width="390" MaxHeight="140" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock x:Name="tbTo" FontSize="13" Width="100"/>
+                <Button Content="Всем" HorizontalAlignment="Right" Name="btnToAll" Width="50" IsEnabled="False"> </Button>
+                
+                <TextBox HorizontalAlignment="Left" Name="txtChatMsg" VerticalAlignment="Center" Width="290" />
+            <Button Content="Отправить" HorizontalAlignment="Right" Name="btnChatMsg" Width="100" />
+        </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

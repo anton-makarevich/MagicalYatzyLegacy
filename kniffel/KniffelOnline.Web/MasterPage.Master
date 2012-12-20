@@ -1,0 +1,150 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="MasterPage.master.vb" Inherits=".MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+    <meta name="Keywords" content="кости книффель игра онлайн многопользовательская сетевая бросок очки деньги интерес" />
+    <meta name="Description" content="Книффель online - многопользовательская сетевая онлайн игра в кости" />
+    <meta name="copyright" content="Copyright (c) 2010 ИП Макаревич А.И. All rights reserved." />
+    <link href="App_Themes/Default/default.css" rel="stylesheet" type="text/css" media="screen" />
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <title>Книффель online</title>
+    <script type="text/javascript" src="Silverlight.js"></script>
+     <script type="text/javascript">
+         function onSilverlightError(sender, args) {
+             var appSource = "";
+             if (sender != null && sender != 0) {
+                 appSource = sender.getHost().Source;
+             }
+
+             var errorType = args.ErrorType;
+             var iErrorCode = args.ErrorCode;
+
+             if (errorType == "ImageError" || errorType == "MediaError") {
+                 return;
+             }
+
+             var errMsg = "Unhandled Error in Silverlight Application " + appSource + "\n";
+
+             errMsg += "Code: " + iErrorCode + "    \n";
+             errMsg += "Category: " + errorType + "       \n";
+             errMsg += "Message: " + args.ErrorMessage + "     \n";
+
+             if (errorType == "ParserError") {
+                 errMsg += "File: " + args.xamlFile + "     \n";
+                 errMsg += "Line: " + args.lineNumber + "     \n";
+                 errMsg += "Position: " + args.charPosition + "     \n";
+             }
+             else if (errorType == "RuntimeError") {
+                 if (args.lineNumber != 0) {
+                     errMsg += "Line: " + args.lineNumber + "     \n";
+                     errMsg += "Position: " + args.charPosition + "     \n";
+                 }
+                 errMsg += "MethodName: " + args.methodName + "     \n";
+             }
+
+             throw new Error(errMsg);
+         }
+    </script>
+    
+<script type="text/javascript" src="http://vkontakte.ru/js/api/share.js?10" charset="windows-1251"></script>
+
+</head>
+
+<body>
+    <form id="form1" runat="server">
+    
+        <div id="header">
+		    <div id="logo">
+			    <h1><a href="default.aspx"><span>книффель online</span></a></h1>
+			    <p>на <a href = "htttp://sanet.by">sanet.by</a></p>
+		    </div>
+		    <div id="menu">
+			    <ul id="main">
+				    <li><a href="Default.aspx">Главная</a></li>
+				    <li><a href="PlayKniffel.aspx">Играть</a></li>
+				    <li><a href="http://sanet.by/freewares.aspx?docid=Kniffel">Скачать</a></li>
+				    <li><a href="http://sanet.by/about.aspx">Контакт</a></li>
+			    </ul>
+		    </div>
+	    </div>
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    <div id="footer-wrapper">
+
+   
+
+	<div id="footer">
+		<p class="copyright">Разработка сайта и программ &copy;&nbsp;&nbsp;2010  <a href="http://sanet.by/about.aspx">ИП Макаревич А.И.</a></p>
+        
+         <!-- begin of Top100 logo -->
+<a href="http://top100.rambler.ru/home?id=2323312" target="_blank"><img src="http://top100-images.rambler.ru/top100/w4.gif" alt="Rambler's Top100" width="88" height="31" border="0" /></a>
+<!-- end of Top100 logo -->
+<!--Rating@Mail.ru counter-->
+<script language="javascript" type="text/javascript"><!--
+    d = document; var a = ''; a += ';r=' + escape(d.referrer); js = 10;//--></script>
+<script language="javascript1.1" type="text/javascript"><!--
+    a += ';j=' + navigator.javaEnabled(); js = 11;//--></script>
+<script language="javascript1.2" type="text/javascript"><!--
+    s = screen; a += ';s=' + s.width + '*' + s.height;
+    a += ';d=' + (s.colorDepth ? s.colorDepth : s.pixelDepth); js = 12;//--></script>
+<script language="javascript1.3" type="text/javascript"><!--
+    js = 13;//--></script>
+<script language="javascript" type="text/javascript"><!--
+    d.write('<a href="http://top.mail.ru/jump?from=1933338" target="_top">' +
+'<img src="http://d0.c8.bd.a1.top.mail.ru/counter?id=1933338;t=230;js=' + js +
+a + ';rand=' + Math.random() + '" alt="Рейтинг@Mail.ru" border="0" ' +
+'height="31" width="88"><\/a>'); if (11 < js) d.write('<' + '!-- ');//--></script>
+<noscript><a target="_top" href="http://top.mail.ru/jump?from=1933338">
+<img src="http://d0.c8.bd.a1.top.mail.ru/counter?js=na;id=1933338;t=230" 
+height="31" width="88" border="0" alt="Рейтинг@Mail.ru"/></a></noscript>
+<script language="javascript" type="text/javascript"><!--
+    if (11 < js) d.write('--' + '>');//--></script>
+<!--// Rating@Mail.ru counter-->
+<!-- Top YandeG StatCode for `kniffel.sanet.by` ID: 167692 -->
+<a href="http://yandeg.ru/" target="_blank" 
+title="Рейтинг сайтов YandeG" 
+onclick="img=new Image();img.src='http://count.yandeg.ru/sitecnt.php?id=167692';" 
+style="text-decoration:none; font-size: 8px;">
+<script type="text/javascript">
+<!--
+    document.write('<img ' +
+'src="http://count.yandeg.ru/cnt.php?id=167692&img=13&h=' + escape(document.URL) +
+'&ref=' + escape(document.referrer) + ((typeof (screen) == 'undefined') ? '' :
+'&s=' + screen.width + '*' + screen.height +
+'*' + (screen.colorDepth ? screen.colorDepth : screen.pixelDepth)) +
+'&rand=' + Math.random() +
+'" width="88" height="31" border="0"' +
+' alt="Рейтинг Сайтов YandeG" />')
+//--></script></a>
+<!-- /Top YandeG StatCode -->
+<a href="http://list.1k.by/" target="_blank" title="Первый Каталог - Каталог сайтов Беларуси, России, Украины"><img src="http://1k.by/images/site/pics/1klist88_31.gif" width="88" height="31" border="0" alt="Первый Каталог - Каталог сайтов Беларуси, России, Украины"></a>
+<!-- catalog.tut.by code begin -->
+<a href="http://catalog.tut.by/">
+<img src="http://catalog.tut.by/images/catalog-tut.gif" border=0 width=88 height=31 alt="Каталог TUT.BY"></a>
+<!-- catalog.tut.by code end -->	
+<!-- URL.BY code begin -->
+<a href="http://www.url.by/">
+<img src="http://www.url.by/images/url.gif" border=0 width=88 height=31 alt="белорусская поисковая система"></a>
+<!-- URL.BY code end -->
+<!--Openstat--><span id="openstat2150759"></span><script type="text/javascript">
+var openstat = { counter: 2150759, image: 51, next: openstat, track_links: "all" }; (function(d, t, p) {
+var j = d.createElement(t); j.async = true; j.type = "text/javascript";
+j.src = ("https:" == p ? "https:" : "http:") + "//openstat.net/cnt.js";
+var s = d.getElementsByTagName(t)[0]; s.parentNode.insertBefore(j, s);
+})(document, "script", document.location.protocol);
+</script><!--/Openstat-->
+</div>
+
+</div>
+
+    </form>
+    <!-- begin of Top100 code -->
+<script id="top100Counter" type="text/javascript" src="http://counter.rambler.ru/top100.jcn?2323312"></script><noscript><img src="http://counter.rambler.ru/top100.cnt?2323312" alt="" width="1" height="1" border="0"/></noscript>
+<!-- end of Top100 code -->
+</body>
+</html>

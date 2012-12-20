@@ -1,0 +1,5 @@
+﻿<%@ServiceHost
+ language="VB"
+ Debug="true"
+ Factory="Kniffel.Web.KniffelGameServiceFactory"
+ Service="Kniffel.Web.KniffelGameService" %>

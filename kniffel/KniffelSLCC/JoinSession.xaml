@@ -1,0 +1,41 @@
+﻿<controls:ChildWindow x:Class="Kniffel.JoinSession"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+       xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+       xmlns:Theming="clr-namespace:System.Windows.Controls.Theming;assembly=System.Windows.Controls.Theming.TwilightBlue"
+       Title="Подключение к игре"
+       Width="354" Height="192">
+    <Theming:TwilightBlueTheme>
+        <Grid x:Name="LayoutRoot" Height="140">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="19*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Foreground="White" Grid.Row="0" Grid.Column="0" Text="Имя" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,10,0" />
+            <TextBox Grid.Column="1" x:Name="txtUser" Width="150" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" Text="" TabIndex="1" />
+
+            <TextBlock Foreground="White" Grid.Row="1" Grid.Column="0" Text="Пароль" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,10,0" KeyDown="KeyDownHandler" />
+            <Button Grid.Row="3" x:Name="btnJoin" Content="Подключиться" Click="btnJoin_Click"  Height="23" Width="145" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,6,0,6" Grid.Column="1" TabIndex="5" />
+            <Button Grid.Row="3" x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click" Width="120" Height="23" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,6" TabIndex="4" />
+            <PasswordBox Grid.Column="1" Grid.Row="1" x:Name="txtPassword" Width="150" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" TabIndex="2" />
+            <CheckBox Content="Запомнить" Grid.Row="2" Height="16" HorizontalAlignment="Left" Margin="5,8,0,0" Name="cbRememberME" VerticalAlignment="Top" Foreground="White" IsChecked="True" Grid.Column="1" TabIndex="3" />
+            <Image Grid.Column="2" Height="16" HorizontalAlignment="Left" Margin="10,10,0,0" Name="Image1" Stretch="Fill" VerticalAlignment="Top" Width="16" Source="/KniffelOnline;component/Images/help.png">
+                <ToolTipService.ToolTip>
+                    <ToolTip Background="#7F4684AE" Foreground="Black" Opacity="0.85">
+                        
+                            <TextBlock MaxWidth="250" Margin="3" Text="Имя используется только для идентификации игрока и ведения статистики, регистрация не требуется" TextWrapping="Wrap"></TextBlock>
+                            
+                    </ToolTip>
+                </ToolTipService.ToolTip>
+            </Image>
+        </Grid>
+    </Theming:TwilightBlueTheme>
+</controls:ChildWindow>

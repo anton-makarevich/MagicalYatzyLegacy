@@ -1,0 +1,573 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <UICulture>ru-RU</UICulture>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{58408AB5-0E12-4359-BCD4-7CDFE6CFE71F}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>KniffelNet</RootNamespace>
+    <AssemblyName>KniffelOnline</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>KniffelOnlineMM.xap</XapFilename>
+    <SilverlightManifestTemplate>My Project\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>KniffelNet.App</SilverlightAppEntry>
+    <TestPageFileName>TestPage.html</TestPageFileName>
+    <CreateTestPage>true</CreateTestPage>
+    <ValidateXaml>true</ValidateXaml>
+    <EnableOutOfBrowser>false</EnableOutOfBrowser>
+    <OutOfBrowserSettingsFile>Properties\OutOfBrowserSettings.xml</OutOfBrowserSettingsFile>
+    <UsePlatformExtensions>false</UsePlatformExtensions>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <LinkedServerProject>..\KniffelOnline.Web\KniffelOnline.Web.vbproj</LinkedServerProject>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DefineConstants>SILVERLIGHT=True</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DefineConstants>SILVERLIGHT=True</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DicePanelSL">
+      <HintPath>..\KniffelSLCC\Bin\Debug\DicePanelSL.dll</HintPath>
+    </Reference>
+    <Reference Include="KniffelCommonControls">
+      <HintPath>..\KniffelSLCC\Bin\Debug\KniffelCommonControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Oogsoft.MyMir.SilverlightAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ff0d3da93ba7c835, processorArchitecture=MSIL" />
+    <Reference Include="System.ComponentModel.DataAnnotations, Version=2.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.DomainServices.Client, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.DomainServices.Client.Web, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.Extensions, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.PollingDuplex, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.Web.Extensions, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows" />
+    <Reference Include="mscorlib" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Controls, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Data.Input, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Windows.Controls.Theming.Toolkit">
+      <HintPath>..\..\..\..\..\Program Files\Microsoft SDKs\Silverlight\v4.0\Toolkit\Apr10\Bin\System.Windows.Controls.Theming.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Theming.TwilightBlue, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\Program Files\Microsoft SDKs\Silverlight\v4.0\Toolkit\Apr10\Themes\System.Windows.Controls.Theming.TwilightBlue.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Windows.Browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\KniffelOnline\KniffelChatPanel.xaml.vb">
+      <Link>KniffelChatPanel.xaml.vb</Link>
+      <DependentUpon>KniffelChatPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Application.xaml.vb">
+      <DependentUpon>Application.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.xaml.vb">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="Service References\KniffelGameService\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\KniffelPutScore\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="Application.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="..\KniffelOnline\KniffelChatPanel.xaml">
+      <Link>KniffelChatPanel.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\AppManifest.xml" />
+    <None Include="Service References\KniffelGameService\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\KniffelGameService\duplex.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\KniffelGameService\Kniffel.Web.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\KniffelGameService\service.wsdl" />
+    <None Include="Service References\KniffelGameService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\KniffelGameService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\KniffelGameService\configuration91.svcinfo" />
+    <None Include="Service References\KniffelGameService\configuration.svcinfo" />
+    <None Include="Service References\KniffelGameService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+    <None Include="Service References\KniffelPutScore\KniffelNet.KniffelPutScore.PutScoreIntoTableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelPutScore\KniffelNet.KniffelPutScore.PutScoreResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelPutScore\KniffelService.wsdl" />
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.0.png">
+      <Link>Images\0\stop.0.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.1.png">
+      <Link>Images\0\stop.1.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.10.png">
+      <Link>Images\0\stop.10.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.11.png">
+      <Link>Images\0\stop.11.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.12.png">
+      <Link>Images\0\stop.12.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.13.png">
+      <Link>Images\0\stop.13.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.14.png">
+      <Link>Images\0\stop.14.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.15.png">
+      <Link>Images\0\stop.15.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.16.png">
+      <Link>Images\0\stop.16.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.17.png">
+      <Link>Images\0\stop.17.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.18.png">
+      <Link>Images\0\stop.18.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.19.png">
+      <Link>Images\0\stop.19.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.2.png">
+      <Link>Images\0\stop.2.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.20.png">
+      <Link>Images\0\stop.20.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.21.png">
+      <Link>Images\0\stop.21.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.22.png">
+      <Link>Images\0\stop.22.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.23.png">
+      <Link>Images\0\stop.23.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.24.png">
+      <Link>Images\0\stop.24.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.25.png">
+      <Link>Images\0\stop.25.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.26.png">
+      <Link>Images\0\stop.26.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.27.png">
+      <Link>Images\0\stop.27.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.28.png">
+      <Link>Images\0\stop.28.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.29.png">
+      <Link>Images\0\stop.29.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.3.png">
+      <Link>Images\0\stop.3.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.30.png">
+      <Link>Images\0\stop.30.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.31.png">
+      <Link>Images\0\stop.31.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.32.png">
+      <Link>Images\0\stop.32.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.33.png">
+      <Link>Images\0\stop.33.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.34.png">
+      <Link>Images\0\stop.34.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.35.png">
+      <Link>Images\0\stop.35.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.4.png">
+      <Link>Images\0\stop.4.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.5.png">
+      <Link>Images\0\stop.5.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.6.png">
+      <Link>Images\0\stop.6.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.7.png">
+      <Link>Images\0\stop.7.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.8.png">
+      <Link>Images\0\stop.8.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\stop.9.png">
+      <Link>Images\0\stop.9.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.0.png">
+      <Link>Images\0\xrot.0.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.1.png">
+      <Link>Images\0\xrot.1.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.10.png">
+      <Link>Images\0\xrot.10.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.11.png">
+      <Link>Images\0\xrot.11.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.12.png">
+      <Link>Images\0\xrot.12.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.13.png">
+      <Link>Images\0\xrot.13.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.14.png">
+      <Link>Images\0\xrot.14.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.15.png">
+      <Link>Images\0\xrot.15.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.16.png">
+      <Link>Images\0\xrot.16.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.17.png">
+      <Link>Images\0\xrot.17.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.18.png">
+      <Link>Images\0\xrot.18.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.19.png">
+      <Link>Images\0\xrot.19.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.2.png">
+      <Link>Images\0\xrot.2.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.20.png">
+      <Link>Images\0\xrot.20.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.21.png">
+      <Link>Images\0\xrot.21.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.22.png">
+      <Link>Images\0\xrot.22.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.23.png">
+      <Link>Images\0\xrot.23.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.24.png">
+      <Link>Images\0\xrot.24.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.25.png">
+      <Link>Images\0\xrot.25.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.26.png">
+      <Link>Images\0\xrot.26.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.27.png">
+      <Link>Images\0\xrot.27.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.28.png">
+      <Link>Images\0\xrot.28.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.29.png">
+      <Link>Images\0\xrot.29.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.3.png">
+      <Link>Images\0\xrot.3.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.30.png">
+      <Link>Images\0\xrot.30.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.31.png">
+      <Link>Images\0\xrot.31.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.32.png">
+      <Link>Images\0\xrot.32.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.33.png">
+      <Link>Images\0\xrot.33.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.34.png">
+      <Link>Images\0\xrot.34.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.35.png">
+      <Link>Images\0\xrot.35.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.4.png">
+      <Link>Images\0\xrot.4.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.5.png">
+      <Link>Images\0\xrot.5.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.6.png">
+      <Link>Images\0\xrot.6.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.7.png">
+      <Link>Images\0\xrot.7.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.8.png">
+      <Link>Images\0\xrot.8.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\xrot.9.png">
+      <Link>Images\0\xrot.9.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.0.png">
+      <Link>Images\0\yrot.0.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.1.png">
+      <Link>Images\0\yrot.1.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.10.png">
+      <Link>Images\0\yrot.10.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.11.png">
+      <Link>Images\0\yrot.11.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.12.png">
+      <Link>Images\0\yrot.12.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.13.png">
+      <Link>Images\0\yrot.13.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.14.png">
+      <Link>Images\0\yrot.14.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.15.png">
+      <Link>Images\0\yrot.15.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.16.png">
+      <Link>Images\0\yrot.16.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.17.png">
+      <Link>Images\0\yrot.17.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.18.png">
+      <Link>Images\0\yrot.18.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.19.png">
+      <Link>Images\0\yrot.19.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.2.png">
+      <Link>Images\0\yrot.2.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.20.png">
+      <Link>Images\0\yrot.20.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.21.png">
+      <Link>Images\0\yrot.21.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.22.png">
+      <Link>Images\0\yrot.22.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.23.png">
+      <Link>Images\0\yrot.23.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.24.png">
+      <Link>Images\0\yrot.24.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.25.png">
+      <Link>Images\0\yrot.25.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.26.png">
+      <Link>Images\0\yrot.26.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.27.png">
+      <Link>Images\0\yrot.27.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.28.png">
+      <Link>Images\0\yrot.28.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.29.png">
+      <Link>Images\0\yrot.29.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.3.png">
+      <Link>Images\0\yrot.3.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.30.png">
+      <Link>Images\0\yrot.30.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.31.png">
+      <Link>Images\0\yrot.31.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.32.png">
+      <Link>Images\0\yrot.32.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.33.png">
+      <Link>Images\0\yrot.33.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.34.png">
+      <Link>Images\0\yrot.34.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.35.png">
+      <Link>Images\0\yrot.35.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.4.png">
+      <Link>Images\0\yrot.4.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.5.png">
+      <Link>Images\0\yrot.5.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.6.png">
+      <Link>Images\0\yrot.6.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.7.png">
+      <Link>Images\0\yrot.7.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.8.png">
+      <Link>Images\0\yrot.8.png</Link>
+    </Resource>
+    <Resource Include="..\..\..\..\..\slasm\pngs\2\yrot.9.png">
+      <Link>Images\0\yrot.9.png</Link>
+    </Resource>
+    <Resource Include="diceroll.mp3" />
+    <None Include="Service References\KniffelPutScore\KniffelService.disco" />
+    <None Include="Service References\KniffelPutScore\configuration91.svcinfo" />
+    <None Include="Service References\KniffelPutScore\configuration.svcinfo" />
+    <None Include="Service References\KniffelPutScore\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+    <Resource Include="Images\info.png" />
+    <Resource Include="Images\help.png" />
+    <Resource Include="Images\back.png" />
+    <Resource Include="Images\plus.png" />
+    <Content Include="ServiceReferences.ClientConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\KniffelGameService\" />
+    <WCFMetadataStorage Include="Service References\KniffelPutScore\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="System.Windows.Controls" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,363 @@
+Title: IGES Import Journal (built for Discreet's 3D Studio version 4.0)
+==============================================================================
+File: D:\old D\kniffel\cube\15.xli
+Date: Thu, Feb 22, 2007
+Time: 00:10:21
+==============================================================================
+
+Translating IGES file:        D:\old D\kniffel\cube\15.IGS
+
+
+==============================================================================
+
+Parse phase
+
+==============================================================================
+
+==============================================================================
+Start Section:
+
+Data from Parasolid IGES Translator,  Copyright (c) 2006 UGS Corp. All R
+ights Reserved.                                                         
+
+Global Section:
+
+Parameter Delimiter:      ,
+Record Delimiter:         ;
+Sending Product ID:       FEMAP Version 9.20
+File Name:                15.IGS
+System ID:                 By UGS Corp.
+Preprocessor Version:     XPlus GENERIC/IGES 3.0
+Size of Integer:          32
+Sgl. Precision Mag:       38
+Sgl. Precision Sig:       6
+Dbl. Precision Mag:       308
+Dbl. Precision Sig:       15
+Receiving Product ID:     Noname
+Model Space Scale:        1,000000e+000
+Unit Flag:                6
+Unit String:              M
+# of Line Weights:        1
+Maximum Line Width:       1,000000e+000
+Creation Date:            02/21/2007 17:53:43
+Minimum Resolution:       1,000000e-008
+Maximum Coordinate:       0,000000e+000
+Author:                   Noname
+Organization:             Noname
+IGES Version Number:      11  (IGES 5.3)
+Drafting Standard:        0
+Protocol Description:     
+Model Create/Modify Date: 02/21/2007 17:53:43
+
+Entity Summary:
+
+ Type     Form    Description                                            Count
+------------------------------------------------------------------------------
+  100        0    Circular Arc                                             192
+  110        0    Line                                                      24
+  116        0    Point                                                    110
+  123        0    Direction                                                220
+  124        0    Transformation Matrix                                    188
+  186        0    Manifold Solid B-Rep Object                                1
+  190        1    Plane Surface (parameterized)                              6
+  192        1    Right Circular Cylinder Surface (param)                   12
+  196        1    Spherical Surface (parameterized)                         92
+  502        1    Vertex List                                                1
+  504        1    Edge List                                                  1
+  508        1    Loop                                                     131
+  510        1    Face                                                     110
+  514        1    Shell (Closed)                                             1
+------------------------------------------------------------------------------
+                                                               Total      1089
+==============================================================================
+
+
+==============================================================================
+
+IGES entity validation phase
+
+==============================================================================
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 47, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 51, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 55, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 61, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 75, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 79, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 83, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 87, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 91, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 95, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 99, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 103, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 107, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 111, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 115, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 119, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 123, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 127, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 131, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+*** Warning (IEVM_BAD_SUBORD_VAL) ***
+(DE 135, TF 124:0) The Subordinate Entity Switch flag in the Status Value field
+in this entity's DE section was set to 1, which is invalid for this entity.
+Action taken: The Subordinate Entity Switch flag in the Status Value field has
+been set to 0
+
+ 
+
+==============================================================================
+
+Independent Entity Translation phase
+
+==============================================================================
+
+
+INFORMATION: 1 Independent entities detected.
+
+
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (MAP_UNDEFINED) ***
+Mapping "iges_108_1 -> gdx_face0" is not defined.
+
+*** Error (MAP_NOT_DEFINED) ***
+Mapping "gdx_face -> adesk-rebounded gdx_face" is not defined.
+
+*** Error (MAP_UNDEFINED) ***
+Mapping "iges_108_1 -> gdx_face0" is not defined.
+
+*** Error (MAP_NOT_DEFINED) ***
+Mapping "gdx_face -> adesk-rebounded gdx_face" is not defined.
+
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_IGES_TO_GDX_FAILURE) ***
+( DE: 2177 TF: 186:0 )
+Unable to convert IGES surface using direct interface.
+ 
+*** Error (IGESTRANS_UNABLE_TO_IMPORT_IGES_SURFACE) ***
+( DE: 2177 TF: 186:0 )
+Unable to translate Surface.
+Skipping this entity.
+
+INFORMATION: Processed 1 of the total 1 Independent entities.
+
+
+
+==============================================================================
+
+Logically Dependent Entity Translation phase
+
+==============================================================================
+
+
+INFORMATION: No Logically dependent entities detected.
+
+
+==============================================================================
+
+Group Translation phase
+
+==============================================================================
+
+
+INFORMATION: No Groups detected.
+
+==============================================================================
+Error Summary:
+
+The following message was issued 2 time(s)
+Mapping "%s" is not defined.
+
+The following message was issued 2 time(s)
+Mapping "%s" is not defined.
+
+The following message was issued 188 time(s)
+The Subordinate Entity Switch flag in the Status Value field in this entity's DE
+section was set to %d, which is invalid for this entity.
+
+The following message was issued 1 time(s)
+Unable to translate Surface.
+Skipping this entity.
+The following message was issued 110 time(s)
+Unable to convert IGES surface using direct interface.
+ 
+Information: 0
+Status:      0
+Warning:     188
+Error:       115
+Fatal:       0
+
+Elapsed Time:
+
+Processor: 00:00:01
+Clock:     00:00:02
+==============================================================================
+

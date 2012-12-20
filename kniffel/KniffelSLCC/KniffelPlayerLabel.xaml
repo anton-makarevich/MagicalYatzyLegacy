@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Kniffel.KniffelPlayerLabel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             
+    mc:Ignorable="d"
+    d:DesignHeight="25" d:DesignWidth="150" xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input">
+    
+        <StackPanel x:Name="LayoutRoot" Orientation="Horizontal" >
+        <TextBlock  HorizontalAlignment="Left" x:FieldModifier="Public" x:Name="tbName" Text="" VerticalAlignment="Top" Width="150" TextAlignment="Center" Foreground="White" TextWrapping="Wrap" >
+            <!--<ToolTipService.ToolTip>
+				<ToolTip x:Name="ttHelp" Background="#7F4684AE" Foreground="Black" Opacity="0.85">
+					<StackPanel>
+                        <TextBlock x:Name="tbHelpHeader" />
+                        <StackPanel x:Name="spHelpImages" Orientation="Horizontal">
+                            <Image x:Name="iHelp" Width="20" Height="20"/>
+                            <Image x:Name="iHelp2" Width="20" Height="20"/>
+                            <Image x:Name="iHelp3" Width="20" Height="20"/>
+                            <Image x:Name="iHelp4" Width="20" Height="20"/>
+                            <Image x:Name="iHelp5" Width="20" Height="20"/>
+                        </StackPanel>
+                        <TextBlock x:Name="tbHelpBody" MaxWidth="110" TextWrapping="Wrap"/>
+					
+				</StackPanel>
+				</ToolTip>
+			</ToolTipService.ToolTip>-->
+        </TextBlock>
+        
+        
+            <TextBlock Height="25" Foreground="White" HorizontalAlignment="Left" Name="tbScore" Text="40" VerticalAlignment="Top" Width="40" TextAlignment="Center" FontSize="14" TextWrapping="Wrap" Visibility="Collapsed" >
+               
+            </TextBlock>
+        
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,29 @@
+﻿<UserControl xmlns:my="clr-namespace:KniffelNet"  x:Class="KniffelNet.KniffelScorePanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             
+    mc:Ignorable="d"
+    >
+
+    <StackPanel x:Name="LayoutRoot" Orientation="Horizontal">
+<TextBlock Name="PlayerName" Width="110" FontSize="16" Text="" TextAlignment="Center" VerticalAlignment="Bottom" />
+        <StackPanel Name="spScoreLabels" Orientation="Horizontal">
+        <my:KniffelScoreLabel Width="30"  Type="kltNum1" BorderBrush="Black" />
+        <my:KniffelScoreLabel BorderBrush="Black"  Type="kltNum2" Width="30" />
+        <my:KniffelScoreLabel BorderBrush="Black"  Type="kltNum3" Width="30" />
+        <my:KniffelScoreLabel BorderBrush="Black" Type="kltNum4" Width="30" />
+        <my:KniffelScoreLabel BorderBrush="Black"  Type="kltNum5" Width="30" />
+        <my:KniffelScoreLabel BorderBrush="Black"  Type="kltNum6" Width="30" />
+        <my:KniffelScoreLabel BorderBrush="Black"  Type="kltNum3R" Width="30" />
+        <my:KniffelScoreLabel BorderBrush="Black"  Type="kltNum4R" Width="30" />
+        <my:KniffelScoreLabel BorderBrush="Black"  Type="kltNumFH" Width="30" />
+        <my:KniffelScoreLabel BorderBrush="Black"  Type="kltNumSS" Width="30" />
+        <my:KniffelScoreLabel BorderBrush="Black"  Type="kltNumLS" Width="30" />
+        <my:KniffelScoreLabel BorderBrush="Black"  Type="kltNumK" Width="30" />
+        <my:KniffelScoreLabel BorderBrush="Black"  Type="kltNumC" Width="30"  />
+        </StackPanel>
+        <TextBlock VerticalAlignment="Bottom" TextAlignment="Center" Text="0" Width="40" FontSize="16" FontWeight="ExtraBold" Name="Total" />
+    </StackPanel>
+</UserControl>
