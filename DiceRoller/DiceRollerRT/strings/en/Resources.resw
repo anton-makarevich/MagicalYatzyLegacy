@@ -210,4 +210,37 @@
   <data name="Total" xml:space="preserve">
     <value>Total</value>
   </data>
+  <data name="AboutAction" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>About game and authors</value>
+  </data>
+  <data name="LeaderboardAction" xml:space="preserve">
+    <value>Leaderboard</value>
+  </data>
+  <data name="LeaderboardDescription" xml:space="preserve">
+    <value>See your place and how others perform</value>
+  </data>
+  <data name="NetworkGameNotReadyMessage" xml:space="preserve">
+    <value>Sorry, network game is not ready yet</value>
+  </data>
+  <data name="NewLocalGameAction" xml:space="preserve">
+    <value>New Game</value>
+  </data>
+  <data name="NewLocalGameDescription" xml:space="preserve">
+    <value>Start a new game - alone, with friends or with bots</value>
+  </data>
+  <data name="NewOnlineGameAction" xml:space="preserve">
+    <value>Online game</value>
+  </data>
+  <data name="NewOnlineGameDescription" xml:space="preserve">
+    <value>Comming soon</value>
+  </data>
+  <data name="SettingsAction" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SettingsDescription" xml:space="preserve">
+    <value>Change game settings</value>
+  </data>
 </root>

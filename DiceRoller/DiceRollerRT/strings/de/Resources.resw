@@ -241,4 +241,27 @@
     <value>Version</value>
     <comment>Version</comment>
   </data>
+  <data name="AboutAction" xml:space="preserve">
+    <value>About</value>
+    <comment>About</comment>
+  </data>
+  <data name="LeaderboardAction" xml:space="preserve">
+    <value>Beste Spieler</value>
+    <comment>Beste Spieler</comment>
+  </data>
+  <data name="NetworkGameNotReadyMessage" xml:space="preserve">
+    <value>Sorry, das Networkspiel ist noch nicht vertig</value>
+    <comment>Sorry, das Networkspiel ist noch nicht vertig</comment>
+  </data>
+  <data name="NewLocalGameAction" xml:space="preserve">
+    <value>Neues Spiel </value>
+  </data>
+  <data name="NewOnlineGameAction" xml:space="preserve">
+    <value>Online Spiel</value>
+    <comment>Online Spiel</comment>
+  </data>
+  <data name="SettingsAction" xml:space="preserve">
+    <value>Einstellungen</value>
+    <comment>Einstellungen</comment>
+  </data>
 </root>

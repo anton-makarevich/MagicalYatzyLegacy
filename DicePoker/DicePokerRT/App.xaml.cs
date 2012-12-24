@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sanet.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -41,6 +42,8 @@ namespace DicePokerRT
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
+            LocalizerExtensions.RModel = new ResourceModel();
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,

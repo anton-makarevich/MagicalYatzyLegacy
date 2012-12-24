@@ -15,9 +15,15 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="DicePokerRT.App">
-      <VisualElements DisplayName="Sanet Dice Poker" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="DicePokerRT" ForegroundText="light" BackgroundColor="#464646">
+      <VisualElements DisplayName="Sanet Dice Poker" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="DicePokerRT" ForegroundText="light" BackgroundColor="#464646" ToastCapable="true">
         <DefaultTile ShowName="allLogos" />
         <SplashScreen Image="Assets\SplashScreen.png" />
+        <InitialRotationPreference>
+          <Rotation Preference="portrait" />
+          <Rotation Preference="landscape" />
+          <Rotation Preference="portraitFlipped" />
+          <Rotation Preference="landscapeFlipped" />
+        </InitialRotationPreference>
       </VisualElements>
     </Application>
   </Applications>

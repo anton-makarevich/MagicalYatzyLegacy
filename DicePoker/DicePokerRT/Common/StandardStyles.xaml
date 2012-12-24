@@ -58,6 +58,7 @@
         <Setter Property="FontWeight" Value="SemiLight"/>
     </Style>
 
+    <SolidColorBrush x:Key="SanetBlue" Color="#009cd6"/>
     <!-- TextBlock styles -->
 
     <Style x:Key="BasicTextStyle" TargetType="TextBlock">

@@ -241,4 +241,37 @@
     <value>Всего</value>
     <comment>insgesamt</comment>
   </data>
+  <data name="AboutAction" xml:space="preserve">
+    <value>Об игре</value>
+  </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>Посмотрите информацию об игре и авторах</value>
+  </data>
+  <data name="LeaderboardAction" xml:space="preserve">
+    <value>Таблица рекордов</value>
+  </data>
+  <data name="LeaderboardDescription" xml:space="preserve">
+    <value>Таблица рекордов - сравните достижения</value>
+  </data>
+  <data name="NetworkGameNotReadyMessage" xml:space="preserve">
+    <value>Извините, сетевая игра еще не готова. </value>
+  </data>
+  <data name="NewLocalGameAction" xml:space="preserve">
+    <value>Новая игра</value>
+  </data>
+  <data name="NewLocalGameDescription" xml:space="preserve">
+    <value>Новая игра - в одиночку, с друзьями или с компьютером</value>
+  </data>
+  <data name="NewOnlineGameAction" xml:space="preserve">
+    <value>Игра по сети</value>
+  </data>
+  <data name="NewOnlineGameDescription" xml:space="preserve">
+    <value>Скоро доступно</value>
+  </data>
+  <data name="SettingsAction" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="SettingsDescription" xml:space="preserve">
+    <value>Измените настройки игры</value>
+  </data>
 </root>

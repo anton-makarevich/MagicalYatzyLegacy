@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sanet.Models;
 
 namespace Sanet.Kniffel.ViewModels
 {
@@ -21,7 +22,48 @@ namespace Sanet.Kniffel.ViewModels
                     MenuAction=new Action(()=>
                         {
                             Utilities.ShowToastNotification("NewGameClicked");
-                        })
+                        }),
+                    Description = "NewLocalGameDescription"
+                });
+            MenuActions.Add(
+                new MainMenuAction
+                {
+                    Label = "NewOnlineGameAction",
+                    MenuAction = new Action(() =>
+                    {
+                        Utilities.ShowToastNotification(Messages.NETWORK_GAME_IS_NOT_READY.Localize());
+                    }),
+                    Description = "NewOnlineGameDescription"
+                });
+            MenuActions.Add(
+                new MainMenuAction
+                {
+                    Label = "SettingsAction",
+                    MenuAction = new Action(() =>
+                    {
+                        Utilities.ShowToastNotification("SettingsClicked");
+                    }),
+                    Description = "SettingsDescription"
+                });
+            MenuActions.Add(
+                new MainMenuAction
+                {
+                    Label = "LeaderboardAction",
+                    MenuAction = new Action(() =>
+                    {
+                        Utilities.ShowToastNotification("ChampionsClicked");
+                    }),
+                    Description = "LeaderboardDescription"
+                });
+            MenuActions.Add(
+                new MainMenuAction
+                {
+                    Label = "AboutAction",
+                    MenuAction = new Action(() =>
+                    {
+                        Utilities.ShowToastNotification("AboutClicked");
+                    }),
+                    Description = "AboutDescription"
                 });
         }
 

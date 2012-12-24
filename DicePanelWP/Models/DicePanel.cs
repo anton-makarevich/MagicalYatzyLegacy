@@ -286,20 +286,13 @@ namespace Sanet.Kniffel.DicePanel
         {
             get
             {
-                Die d = null;
-                bool r = false;
-
-                r = true;
-                foreach (Die d_loopVariable in aDice)
+                foreach (Die d in aDice)
                 {
-                    d = d_loopVariable;
                     if (d.IsRolling)
-                    {
-                        r = false;
-                    }
+                        return false;
                 }
 
-                return r;
+                return true;
             }
         }
 
@@ -347,6 +340,7 @@ namespace Sanet.Kniffel.DicePanel
                 d.InitializeRoll(iResult);
 
             }
+            
             sbLoop = new Storyboard();
             sbLoop.Duration = TimeSpan.FromMilliseconds(RollDelay);
 
@@ -361,6 +355,7 @@ namespace Sanet.Kniffel.DicePanel
                 
         private void BeginLoop()
         {
+            
             foreach (Die d in aDice)
             {
                 
@@ -406,11 +401,13 @@ namespace Sanet.Kniffel.DicePanel
             }
             else
             {
+                sbLoop.Completed -= loop_Completed;
+                sbLoop = null;
                 if (EndRoll != null)
                 {
                     EndRoll();
                 }
-                sbLoop = null;
+                
             }
 
 

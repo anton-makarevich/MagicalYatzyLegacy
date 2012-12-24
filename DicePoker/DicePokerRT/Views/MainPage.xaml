@@ -1,0 +1,74 @@
+﻿<views:BasePage
+    xmlns:DicePanel="using:Sanet.Kniffel.DicePanel" 
+    x:Class="DicePokerRT.MainPage"
+    xmlns:views="using:Sanet.Views"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DicePokerRT"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="Transparent">
+        <DicePanel:DicePanel
+            x:Name="dpBackground"
+            />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="130"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+                
+            </Grid.RowDefinitions>
+            <TextBlock Style="{StaticResource HeaderTextStyle}"
+                   Foreground="{StaticResource SanetBlue}"
+                   x:Name="titleText"
+                   Text="Sanet Dice Poker"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   Margin="120,0"
+                   VerticalAlignment="Center"/>
+            <ListView
+                Grid.Column="1"
+                   Grid.Row="1"
+            x:Name="itemListView"
+                Margin="20,0,10,20"
+                SelectionMode="None"
+                ItemsSource="{Binding MenuActions}"
+                SelectedItem="{Binding SelectedBook,Mode=TwoWay}"
+                ItemClick="itemListView_ItemClick_1"
+            IsItemClickEnabled="True"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+                >
+            <ListView.ItemTemplate
+                >
+                <DataTemplate>
+                    <Grid Height="90" Margin="10" HorizontalAlignment="Stretch"
+                          Background="{StaticResource SanetBlue}" Opacity="0.85">
+                            <StackPanel>
+                                <TextBlock Text="{Binding LocalizedLabel}" Foreground="White" 
+                                 FontSize="35" Height="50" Margin="10,5,10,0" />
+                                <TextBlock Text="{Binding LocalizedDescription}" Foreground="White" 
+                                 FontSize="15" Height="50" Margin="10,5" />
+                            </StackPanel>
+                                
+                    </Grid>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Width" Value="456"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+        </ListView>
+        </Grid>
+        
+    </Grid>
+</views:BasePage>
