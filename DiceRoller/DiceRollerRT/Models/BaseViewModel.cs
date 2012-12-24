@@ -14,8 +14,6 @@ namespace Sanet
         {
             if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
-        ////interface - every vm should save data and refersh its properties
-        //public abstract void Save();
-        //public abstract void Refresh();
+        
     }
 }

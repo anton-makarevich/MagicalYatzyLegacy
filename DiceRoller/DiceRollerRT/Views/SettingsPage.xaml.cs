@@ -1,4 +1,4 @@
-﻿using Sanet.Kniffel.DiceRoller;
+﻿using Sanet.Kniffel.Models;
 using Sanet.Kniffel.ViewModels;
 using Sanet.Views;
 using System;
@@ -28,7 +28,7 @@ namespace Sanet.Kniffel.Views
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            ((Frame)Window.Current.Content).Navigate(typeof(MainPage));
+            CommonNavigationActions.NavigateToMainPage();
         }
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {

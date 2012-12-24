@@ -1,5 +1,4 @@
 ﻿using Sanet.Kniffel.DicePanel;
-using Sanet.Kniffel.DiceRoller;
 using Sanet.Kniffel.Models;
 using Sanet.Models;
 using System;
@@ -12,7 +11,12 @@ namespace Sanet.Kniffel.ViewModels
 {
     public class SettingsViewModel:BaseViewModel
     {
-        public ResourceModel RModel = (ResourceModel)App.Current.Resources["resModel"];
+        public ResourceModel RModel;
+
+        public SettingsViewModel(ResourceModel rmodel)
+        {
+            RModel = rmodel;
+        }
 
         public SettingsModel Settings = new SettingsModel();
         #region bind props
