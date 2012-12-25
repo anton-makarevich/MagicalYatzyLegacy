@@ -724,7 +724,7 @@ namespace Sanet.Kniffel.DicePanel
                 xPos = FPanel.FRand.Next(0, Convert.ToInt32(FPanel.ActualWidth) - w);
                 yPos = FPanel.FRand.Next(0, Convert.ToInt32(FPanel.ActualHeight) - h);
             }
-            catch (Exception oEX)
+            catch 
             {
                 xPos = 0;
                 yPos = 0;
@@ -751,7 +751,7 @@ namespace Sanet.Kniffel.DicePanel
                 case DieStatus.dsStopped:
                     return;
 
-                    break;
+                 
             }
 
 

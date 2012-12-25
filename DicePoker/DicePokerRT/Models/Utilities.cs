@@ -37,7 +37,7 @@ namespace Sanet
               msg.Commands.Add(new UICommand("Ok", new UICommandInvokedHandler((s) => { })));
               IUICommand x = await msg.ShowAsync();
           }
-          catch (UnauthorizedAccessException ex)
+          catch 
           {
               //ExceptionLogger.LogException(ex);
           }
