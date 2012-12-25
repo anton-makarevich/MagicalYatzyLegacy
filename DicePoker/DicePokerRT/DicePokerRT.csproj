@@ -138,8 +138,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\EncriptionExtensions.cs" />
+    <Compile Include="Models\KniffelPlayer.cs" />
     <Compile Include="Models\LocalizerExtensions.cs" />
+    <Compile Include="Models\LocalSettings.cs" />
     <Compile Include="Models\Messages.cs" />
+    <Compile Include="ViewModels\NewGameViewModel.cs" />
+    <Compile Include="Views\NewGamePage.xaml.cs">
+      <DependentUpon>NewGamePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -1155,6 +1162,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Common\StandardStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewGamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

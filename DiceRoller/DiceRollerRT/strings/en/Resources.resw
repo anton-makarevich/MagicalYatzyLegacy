@@ -243,4 +243,7 @@
   <data name="SettingsDescription" xml:space="preserve">
     <value>Change game settings</value>
   </data>
+  <data name="StartNewGameMessage" xml:space="preserve">
+    <value>Start New Game</value>
+  </data>
 </root>

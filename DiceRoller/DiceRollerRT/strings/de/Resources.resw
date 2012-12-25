@@ -264,4 +264,7 @@
     <value>Einstellungen</value>
     <comment>Einstellungen</comment>
   </data>
+  <data name="StartNewGameMessage" xml:space="preserve">
+    <value>Начать новую игру</value>
+  </data>
 </root>

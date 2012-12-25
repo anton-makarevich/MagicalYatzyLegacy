@@ -1,10 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "KniffelOnline", "KniffelOnline.vbproj", "{58408AB5-0E12-4359-BCD4-7CDFE6CFE71F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{74D18529-01CA-4EEF-A902-252C7B234261} = {74D18529-01CA-4EEF-A902-252C7B234261}
-		{24AE2184-45D4-4D57-96C8-B90E2F71CFE7} = {24AE2184-45D4-4D57-96C8-B90E2F71CFE7}
 		{24AE2184-45D4-4D57-96C8-B90E2F71CFE7} = {24AE2184-45D4-4D57-96C8-B90E2F71CFE7}
 	EndProjectSection
 EndProject
@@ -15,6 +14,26 @@ EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "KniffelSLCC", "..\KniffelSLCC\KniffelSLCC.vbproj", "{0D3F0AF8-0D6C-4AC8-A826-05AC9DECDB40}"
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "screenagent", "..\..\..\websites\screenagent\", "{74D18529-01CA-4EEF-A902-252C7B234261}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv3.5"
+		Debug.AspNetCompiler.VirtualPath = "/screenagent"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\websites\screenagent\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\screenagent\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/screenagent"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\websites\screenagent\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\screenagent\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "1098"
+		VWDDynamicPort = "false"
+		VWDVirtualPath = "/"
+	EndProjectSection
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv3.5"
 		Debug.AspNetCompiler.VirtualPath = "/screenagent"

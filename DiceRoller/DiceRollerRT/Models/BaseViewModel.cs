@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sanet
+namespace Sanet.Models
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
