@@ -140,10 +140,12 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\EncriptionExtensions.cs" />
+    <Compile Include="Models\Enums\PlayerType.cs" />
     <Compile Include="Models\KniffelPlayer.cs" />
     <Compile Include="Models\LocalizerExtensions.cs" />
     <Compile Include="Models\LocalSettings.cs" />
     <Compile Include="Models\Messages.cs" />
+    <Compile Include="Models\RoamingSettings.cs" />
     <Compile Include="ViewModels\NewGameViewModel.cs" />
     <Compile Include="Views\NewGamePage.xaml.cs">
       <DependentUpon>NewGamePage.xaml</DependentUpon>
@@ -1150,6 +1152,7 @@
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\transparentlogo.png" />
     <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>

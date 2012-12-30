@@ -27,5 +27,25 @@ namespace Sanet.Kniffel.Models
         /// Avatar URI
         /// </summary>
         public string PicUrl { get; set; }
+
+        /// <summary>
+        /// Player type (human, network or AI controlled)
+        /// </summary>
+        public PlayerType Type { get; set; }
+
+        /// <summary>
+        /// If to remember pass (works only for human )
+        /// </summary>
+        
+
+        public bool IsLocalHuman
+        {
+            get
+            {
+                return Type == PlayerType.Local;
+            }
+        }
+
+        
     }
 }
