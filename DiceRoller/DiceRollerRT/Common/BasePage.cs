@@ -30,10 +30,24 @@ namespace Sanet.Views
         protected virtual void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
         }
-        #region ViewModel
-        public void SetViewModel<T>(T viewModel) where T : BaseViewModel
+
+        /// <summary>
+        /// Invoked as an event handler to navigate backward in the navigation stack
+        /// associated with this page's <see cref="Frame"/>.
+        /// </summary>
+        /// <param name="sender">Instance that triggered the event.</param>
+        /// <param name="e">Event data describing the conditions that led to the
+        /// event.</param>
+        protected virtual void GoBack(object sender, RoutedEventArgs e)
         {
-            DataContext = viewModel;
+            // Use the navigation frame to return to the previous page
+            if (this.Frame != null && this.Frame.CanGoBack) this.Frame.GoBack();
+        }
+
+        #region ViewModel
+        public void SetViewModel<T>() where T : BaseViewModel
+        {
+            DataContext = ViewModelProvider.GetViewModel<T>();
             
         }
 

@@ -22,7 +22,17 @@ namespace Sanet.Kniffel.Models
             }
             
         }
+        public static Action NavigateToNewGamePage
+        {
+            get
+            {
+                return new Action(() =>
+                {
+                    ((Frame)Window.Current.Content).Navigate(typeof(NewGamePage));
+                });
+            }
 
+        }
         
     }
 }

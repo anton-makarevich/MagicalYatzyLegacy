@@ -194,7 +194,7 @@
     <comment>Technischer Support:</comment>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version</value>
+    <value>Версия</value>
     <comment>Version</comment>
   </data>
   <data name="SpeedVeryFast.Text" xml:space="preserve">
@@ -276,5 +276,17 @@
   </data>
   <data name="StartNewGameMessage" xml:space="preserve">
     <value>Начать новую игру</value>
+  </data>
+  <data name="PlayerNameLabel" xml:space="preserve">
+    <value>имя</value>
+  </data>
+  <data name="PlayerPasswordLabel" xml:space="preserve">
+    <value>пароль</value>
+  </data>
+  <data name="PlayerTypeLabel" xml:space="preserve">
+    <value>тип</value>
+  </data>
+  <data name="PlayersLabel" xml:space="preserve">
+    <value>Игроки</value>
   </data>
 </root>

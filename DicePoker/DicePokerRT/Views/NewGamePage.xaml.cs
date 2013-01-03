@@ -54,12 +54,14 @@ namespace DicePokerRT
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            SetViewModel(new MainPageViewModel());
+            SetViewModel<NewGameViewModel>();
         }
 
-        private void itemListView_ItemClick_1(object sender, ItemClickEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            ((MainMenuAction)e.ClickedItem).MenuAction();
+            dpBackground.EndRoll -= StartRoll;
+            dpBackground.Dispose();
+            dpBackground = null;
         }
     }
 }

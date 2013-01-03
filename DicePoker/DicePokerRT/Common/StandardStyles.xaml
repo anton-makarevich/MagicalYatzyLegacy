@@ -61,6 +61,10 @@
     <SolidColorBrush x:Key="SanetBlue" Color="#009cd6"/>
     <!-- TextBlock styles -->
 
+    <Style x:Name="SimpleTextStyle" TargetType="TextBlock">
+        <Setter Property="Margin" Value="2"/>
+    </Style>
+    
     <Style x:Key="BasicTextStyle" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
         <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}"/>
@@ -70,6 +74,7 @@
         <Setter Property="Typography.StylisticSet20" Value="True"/>
         <Setter Property="Typography.DiscretionaryLigatures" Value="True"/>
         <Setter Property="Typography.CaseSensitiveForms" Value="True"/>
+        <Setter Property="Margin" Value="2"/>
     </Style>
 
     <Style x:Key="BaselineTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BasicTextStyle}">
@@ -1198,13 +1203,13 @@
         <Setter Property="AutomationProperties.AutomationId" Value="OtherUserAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Other User"/>
         <Setter Property="Content" Value="&#xE1A6;"/>
-    </Style>
+    </Style>-->
     <Style x:Key="AdminAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="AdminAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Admin"/>
-        <Setter Property="Content" Value="&#xE1A7;"/>
+        <Setter Property="Content" Value="&#xE1A6;"/>
     </Style>
-    <Style x:Key="StreetAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+    <!--<Style x:Key="StreetAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="StreetAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Street"/>
         <Setter Property="Content" Value="&#xE1C3;"/>
@@ -1402,6 +1407,21 @@
     </Style>
 
     -->
+
+    <!--Datatemplate for main menu item-->
+    <DataTemplate x:Key="MainMenuTemplate">
+        <Grid Height="90" Margin="10" HorizontalAlignment="Stretch"
+                          Background="{StaticResource SanetBlue}" Opacity="0.85">
+            <StackPanel>
+                <TextBlock Text="{Binding LocalizedLabel}" Foreground="White" 
+                                 FontSize="35" Height="50" Margin="10,5,10,0" />
+                <TextBlock Text="{Binding LocalizedDescription}" Foreground="White" 
+                                 FontSize="15" Height="50" Margin="10,5" />
+            </StackPanel>
+
+        </Grid>
+    </DataTemplate>
+    
 
     <!-- Title area styles -->
 
@@ -1641,20 +1661,39 @@
     </Style>
 
     <!-- Item templates -->
+    <!--Datatemplate for main menu item-->
+    <DataTemplate x:Key="NewPlayerTemplate">
+        <Grid Height="100" Margin="10" HorizontalAlignment="Stretch"
+                          Background="{StaticResource SanetBlue}" Opacity="0.85">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock
+                Style="{StaticResource SimpleTextStyle}"
+                Text="{Binding PlayerNameLabelLocalized}"/>
+            <TextBlock Text="{Binding PlayerPasswordLabelLocalized}"
+                     Style="{StaticResource SimpleTextStyle}"
+                Grid.Row="1"/>
+            <TextBlock Text="{Binding PlayerTypeLabelLocalized}"
+                     Style="{StaticResource SimpleTextStyle}"
+                Grid.Row="2"/>
+            
+            <TextBox Margin="2" Text="{Binding Name, Mode=TwoWay}"
+                     Grid.Column="1"/>
+            <PasswordBox Margin="2" Password="{Binding Password, Mode=TwoWay}"
+                     Grid.Column="1" Grid.Row="1"/>
 
-    <!-- Grid-appropriate 250 pixel square item template as seen in the GroupedItemsPage and ItemsPage -->
-    <DataTemplate x:Key="Standard250x250ItemTemplate">
-        <Grid HorizontalAlignment="Left" Width="250" Height="250">
-            <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
-            </Border>
-            <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                <TextBlock Text="{Binding Title}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
-                <TextBlock Text="{Binding Subtitle}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
-            </StackPanel>
         </Grid>
     </DataTemplate>
 
+    
     <!-- Grid-appropriate 500 by 130 pixel item template as seen in the GroupDetailPage -->
     <DataTemplate x:Key="Standard500x130ItemTemplate">
         <Grid Height="110" Width="480" Margin="10">

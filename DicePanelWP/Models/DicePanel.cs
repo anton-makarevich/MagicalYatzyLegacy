@@ -81,6 +81,18 @@ namespace Sanet.Kniffel.DicePanel
 
         }
 
+        /// <summary>
+        /// Try to clear everything
+        /// </summary>
+        public void Dispose()
+        {
+#if WinRT
+            Tapped += DieClicked;
+#else
+            MouseLeftButtonDown += DieClicked;
+#endif
+
+        }
         
         private void LoadFrameImages(string rot)
         {

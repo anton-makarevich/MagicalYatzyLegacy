@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sanet.Models;
 
 namespace Sanet.Kniffel.Models
 {
     public class Player
     {
+        #region Prperties
         /// <summary>
         /// Player display name
         /// </summary>
@@ -31,13 +33,47 @@ namespace Sanet.Kniffel.Models
         /// <summary>
         /// Player type (human, network or AI controlled)
         /// </summary>
-        public PlayerType Type { get; set; }
+        
+        private PlayerType _Type = PlayerType.Local;
+        public PlayerType Type
+        {
+            get { return _Type; }
+            set
+            {
+                if (_Type != value)
+                {
+                    _Type = value;
+                }
+            }
+        }
 
+            
         /// <summary>
         /// If to remember pass (works only for human )
         /// </summary>
-        
+        private bool _RememberPass;
+        public bool RememberPass
+        {
+            get 
+            { 
+                if (IsLocalHuman)
+                    return _RememberPass;
+                return false;
+            }
+            set
+            {
+                if (_RememberPass != value && IsLocalHuman)
+                {
+                    _RememberPass = value;
+                }
+                else
+                    _RememberPass = false;
+            }
+        }
 
+        /// <summary>
+        /// Returns if current player is human
+        /// </summary>
         public bool IsLocalHuman
         {
             get
@@ -46,6 +82,36 @@ namespace Sanet.Kniffel.Models
             }
         }
 
-        
+        /// <summary>
+        /// Label for user name
+        /// </summary>
+        public string PlayerNameLabelLocalized
+        {
+            get
+            {
+                return Messages.PLAYER_NAME.Localize();
+            }
+        }
+        /// <summary>
+        /// Label for user password
+        /// </summary>
+        public string PlayerPasswordLabelLocalized
+        {
+            get
+            {
+                return Messages.PLAYER_PASSWORD.Localize();
+            }
+        }
+        /// <summary>
+        /// Label for user type
+        /// </summary>
+        public string PlayerTypeLabelLocalized
+        {
+            get
+            {
+                return Messages.PLAYER_TYPE.Localize();
+            }
+        }
+        #endregion
     }
 }

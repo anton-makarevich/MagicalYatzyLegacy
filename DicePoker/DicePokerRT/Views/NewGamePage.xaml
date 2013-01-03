@@ -9,6 +9,71 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates"
     mc:Ignorable="d">
+
+    <Page.BottomAppBar>
+        <AppBar Padding="10,0,10,0" 
+                >
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+
+                    <Button  HorizontalAlignment="Left" x:Name="btnDownload"
+                    IsEnabled="true"  
+                    Style="{StaticResource AdminAppBarButtonStyle}"
+                             Command="{Binding DownloadCommand}" >
+
+                        <Path Data="M34.040939,32.487999C34.040939,32.487999,48.337685,35.892958,49.699997,49.509998L0,49.509998C0,49.509998,4.0869508,34.533576,16.341564,33.170291L19.660397,47.382327 22.099134,47.361846 24.873383,40.086325 22.283998,35.595997 27.458,35.595997 24.976557,40.200572 28.141075,47.311104 30.043301,47.295128z 
+                              M47.479897,4.5168266C46.270863,4.5168266,45.289436,5.4985542,45.289436,6.7067738L45.289436,11.039976 40.78931,11.039976C39.577377,11.039976 38.595852,12.024452 38.595852,13.230124 38.595852,14.437094 39.577377,15.418869 40.78931,15.418869L45.289436,15.418869 45.289436,19.670064C45.289436,20.879734 46.270863,21.85751 47.479897,21.85751 48.686329,21.85751 49.667755,20.879734 49.667755,19.670064L49.667755,15.418869 53.752567,15.418869C54.9589,15.418869 55.937828,14.437094 55.937828,13.230124 55.937828,12.024452 54.9589,11.039976 53.752567,11.039976L49.667755,11.039976 49.667755,6.7067738C49.667755,5.4985542,48.686329,4.5168266,47.479897,4.5168266z 
+                              M24.505455,3.4349995C27.075766,3.4349995 29.471275,4.153862 31.528282,5.3829517 30.509779,7.5899277 29.923777,10.041708 29.923777,12.638044 29.923777,17.678222 32.082584,22.195012 35.497997,25.335635 32.996387,28.689754 29.010973,30.872001 24.505455,30.872001 16.928925,30.872001 10.787,24.72875 10.787,17.152235 10.787,9.5756187 16.928925,3.4349995 24.505455,3.4349995z
+                              M47.230862,0C50.605629,0 53.980072,1.2877159 56.554344,3.8631535 61.705887,9.0141258 61.705887,17.362821 56.554344,22.513794 51.405804,27.662066 43.056572,27.662066 37.905434,22.513794 32.754189,17.362821 32.754189,9.0141258 37.905434,3.8631535 40.481003,1.2877159 43.856094,0 47.230862,0z" Stretch="Uniform" Fill="#FFFFFFFF" Width="26" Height="26" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <TransformGroup.Children>
+                                        <RotateTransform Angle="0" />
+                                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                                    </TransformGroup.Children>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Button>
+
+                    <Button  HorizontalAlignment="Left" 
+                    IsEnabled="true"  
+                    Style="{StaticResource AdminAppBarButtonStyle}"
+                             Command="{Binding DownloadCommand}" >
+                        <Grid>
+                            <Path Data="M24.434,43.724003L26.166908,47.133002 37.516708,47.133002 39.566002,43.724003z 
+                              M5.2005596,37.833L58.3256,37.833 64,49.34 0,49.34z M5.2010002,0L58.167,0 58.167,33.734001 54.540802,33.734001 54.540802,3.6249084 8.9834671,3.6249084 8.9834671,33.734001 5.2010002,33.734001z
+                              " Stretch="Uniform" Fill="#FFFFFFFF" Width="26" Height="26" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                <Path.RenderTransform>
+                                    <TransformGroup>
+                                        <TransformGroup.Children>
+                                            <RotateTransform Angle="0" />
+                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9" />
+                                        </TransformGroup.Children>
+                                    </TransformGroup>
+                                </Path.RenderTransform>
+                            </Path>
+                            <Path Data="M47.479897,4.5168266C46.270863,4.5168266,45.289436,5.4985542,45.289436,6.7067738L45.289436,11.039976 40.78931,11.039976C39.577377,11.039976 38.595852,12.024452 38.595852,13.230124 38.595852,14.437094 39.577377,15.418869 40.78931,15.418869L45.289436,15.418869 45.289436,19.670064C45.289436,20.879734 46.270863,21.85751 47.479897,21.85751 48.686329,21.85751 49.667755,20.879734 49.667755,19.670064L49.667755,15.418869 53.752567,15.418869C54.9589,15.418869 55.937828,14.437094 55.937828,13.230124 55.937828,12.024452 54.9589,11.039976 53.752567,11.039976L49.667755,11.039976 49.667755,6.7067738C49.667755,5.4985542,48.686329,4.5168266,47.479897,4.5168266z 
+                              M47.230862,0C50.605629,0 53.980072,1.2877159 56.554344,3.8631535 61.705887,9.0141258 61.705887,17.362821 56.554344,22.513794 51.405804,27.662066 43.056572,27.662066 37.905434,22.513794 32.754189,17.362821 32.754189,9.0141258 37.905434,3.8631535 40.481003,1.2877159 43.856094,0 47.230862,0z
+                              " Stretch="Uniform" Fill="#FFFFFFFF" Width="12" Height="12" Margin="14,0,0,14" RenderTransformOrigin="0.5,0.5">
+                                <Path.RenderTransform>
+                                    <TransformGroup>
+                                        <TransformGroup.Children>
+                                            <RotateTransform Angle="0" />
+                                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                                        </TransformGroup.Children>
+                                    </TransformGroup>
+                                </Path.RenderTransform>
+                            </Path>
+                        </Grid>
+                        
+                    </Button>
+                </StackPanel>
+
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
+
     <Viewbox
         StretchDirection="Both"
         Stretch="Fill">
@@ -30,9 +95,10 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100"/>
+                        <RowDefinition Height="100"/>
                         <RowDefinition/>
-
                     </Grid.RowDefinitions>
+                <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
                     <TextBlock Style="{StaticResource HeaderTextStyle}"
                    Foreground="{StaticResource SanetBlue}"
                    x:Name="titleText"
@@ -41,35 +107,30 @@
                    Grid.ColumnSpan="3"
                    Margin="120,0"
                    VerticalAlignment="Center"/>
-                    <ListView
-                Grid.Column="1"
+
+                <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                   Foreground="{StaticResource SanetBlue}"
+                   x:Name="playersText"
+                   Text="{Binding PlayersLabel}"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
                    Grid.Row="1"
+                   Margin="120,0"
+                   VerticalAlignment="Center"/>
+
+                <ListView
+                Grid.Column="1"
+                   Grid.Row="2"
             x:Name="itemListView"
                 Margin="20,0,10,20"
-                SelectionMode="None"
-                ItemsSource="{Binding MenuActions}"
+                SelectionMode="Single"
+                ItemsSource="{Binding Players}"
                 SelectedItem="{Binding SelectedBook,Mode=TwoWay}"
-                ItemClick="itemListView_ItemClick_1"
-            IsItemClickEnabled="True"
+                IsItemClickEnabled="True"
             HorizontalAlignment="Center"
-            VerticalAlignment="Center"
+            ItemTemplate="{StaticResource NewPlayerTemplate}"
                 >
-                        <ListView.ItemTemplate
-                >
-                            <DataTemplate>
-                                <Grid Height="90" Margin="10" HorizontalAlignment="Stretch"
-                          Background="{StaticResource SanetBlue}" Opacity="0.85">
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding LocalizedLabel}" Foreground="White" 
-                                 FontSize="35" Height="50" Margin="10,5,10,0" />
-                                        <TextBlock Text="{Binding LocalizedDescription}" Foreground="White" 
-                                 FontSize="15" Height="50" Margin="10,5" />
-                                    </StackPanel>
-
-                                </Grid>
-
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
+                        
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>

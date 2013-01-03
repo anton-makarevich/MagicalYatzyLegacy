@@ -10,5 +10,10 @@ namespace Sanet.Kniffel.Models
     {
         public const string NETWORK_GAME_IS_NOT_READY= "NetworkGameNotReadyMessage";
         public const string NEW_GAME_START = "StartNewGameMessage";
+        public const string NEW_GAME_PLAYERS = "PlayersLabel";
+
+        public const string PLAYER_NAME = "PlayerNameLabel";
+        public const string PLAYER_PASSWORD = "PlayerPasswordLabel";
+        public const string PLAYER_TYPE = "PlayerTypeLabel";
     }
 }

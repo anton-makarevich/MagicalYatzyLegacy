@@ -246,4 +246,16 @@
   <data name="StartNewGameMessage" xml:space="preserve">
     <value>Start New Game</value>
   </data>
+  <data name="PlayerNameLabel" xml:space="preserve">
+    <value>name</value>
+  </data>
+  <data name="PlayerPasswordLabel" xml:space="preserve">
+    <value>password</value>
+  </data>
+  <data name="PlayerTypeLabel" xml:space="preserve">
+    <value>type</value>
+  </data>
+  <data name="PlayersLabel" xml:space="preserve">
+    <value>Players</value>
+  </data>
 </root>

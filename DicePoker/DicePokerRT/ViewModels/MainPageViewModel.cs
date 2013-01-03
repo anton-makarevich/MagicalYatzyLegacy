@@ -21,7 +21,7 @@ namespace Sanet.Kniffel.ViewModels
                     Label="NewLocalGameAction",
                     MenuAction=new Action(()=>
                         {
-                            Utilities.ShowToastNotification("NewGameClicked");
+                            CommonNavigationActions.NavigateToNewGamePage();
                         }),
                     Description = "NewLocalGameDescription"
                 });

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 
-namespace BiblePronto.Roaming
+namespace Sanet.Kniffel.Settings
 {
     public static class RoamingSettings
     {
@@ -16,12 +16,12 @@ namespace BiblePronto.Roaming
 
         
         /// <summary>
-        /// Get current subitem name from roaming
+        /// Get player info from roaming
         /// </summary>
         public static Player GetLastPlayer(int index)
         {
             var valueKey = "LastPlayer" + index.ToString();
-            Player player;
+            Player player=null;
             if (roamingSettings.Values.ContainsKey(valueKey))
             {
                 ApplicationDataCompositeValue value = (ApplicationDataCompositeValue)roamingSettings.Values[valueKey];
@@ -29,22 +29,26 @@ namespace BiblePronto.Roaming
                 if (value != null && value.ContainsKey("strName"))
                     player.Name=  (string)value["strName"];
                 if (value != null && value.ContainsKey("strPass"))
-                    player.Name = (string)value["strName"];
+                    player.Password = (string)value["strPass"];
                 if (value != null && value.ContainsKey("strType"))
-                    player.Name = (string)value["strName"];
+                    player.Type = (PlayerType)Enum.Parse(typeof(PlayerType), (string)value["strType"]);
+                if (value != null && value.ContainsKey("boolPass"))
+                    player.RememberPass = (bool)value["boolPass"];
             }
-            return string.Empty;
+            return player;
         }
          
         /// <summary>
-        /// SaveSettings to roaming folder
+        /// Save player info to roaming
         /// </summary>
-        public static void SaveReadingPlanSettings(string readingplan, int day, string scripture)
+        public static void SaveReadingPlanSettings(Player player, int index)
         {
-            var valueKey = "ReadingPlan" + readingplan;
+            var valueKey = "LastPlayer" + index.ToString();
             ApplicationDataCompositeValue value = new ApplicationDataCompositeValue();
-            value["intDay"]=day;
-            value["strScripture"] = scripture;
+            value["strName"] = player.Name;
+            value["strPass"] = player.Password;
+            value["strType"] = player.Type.ToString();
+            value["boolPass"] = player.RememberPass;
             roamingSettings.Values[valueKey] = value;
         }
 

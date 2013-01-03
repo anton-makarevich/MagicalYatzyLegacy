@@ -146,6 +146,7 @@
     <Compile Include="Models\LocalSettings.cs" />
     <Compile Include="Models\Messages.cs" />
     <Compile Include="Models\RoamingSettings.cs" />
+    <Compile Include="Models\ViewModelProvider.cs" />
     <Compile Include="ViewModels\NewGameViewModel.cs" />
     <Compile Include="Views\NewGamePage.xaml.cs">
       <DependentUpon>NewGamePage.xaml</DependentUpon>
