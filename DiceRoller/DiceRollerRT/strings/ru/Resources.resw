@@ -296,6 +296,9 @@
     <value>Добавить игрока</value>
   </data>
   <data name="PlayerNameDefault" xml:space="preserve">
-    <value>Игрок 1</value>
+    <value>Игрок</value>
+  </data>
+  <data name="BotNameDefault" xml:space="preserve">
+    <value>Бот</value>
   </data>
 </root>

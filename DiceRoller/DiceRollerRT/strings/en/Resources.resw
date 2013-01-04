@@ -265,6 +265,9 @@
     <value>Add Player</value>
   </data>
   <data name="PlayerNameDefault" xml:space="preserve">
-    <value>Player 1</value>
+    <value>Player</value>
+  </data>
+  <data name="BotNameDefault" xml:space="preserve">
+    <value>Bot</value>
   </data>
 </root>

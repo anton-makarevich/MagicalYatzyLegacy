@@ -17,6 +17,7 @@ namespace Sanet.Kniffel.ViewModels
         #region Constructor
         public NewGameViewModel()
         {
+            CreateCommands();
             fillPlayers();
         }
         #endregion
@@ -124,7 +125,7 @@ namespace Sanet.Kniffel.ViewModels
                 Players.Add(p);
             }
             //if no players loaded - add one default
-            if (!HasPlayers)
+            if (!HasPlayers && CanAddPlayer )
             {
                 //get username from system
                 string userName = await UserInformation.GetDisplayNameAsync();
@@ -132,7 +133,7 @@ namespace Sanet.Kniffel.ViewModels
                     userName = await UserInformation.GetFirstNameAsync() + await UserInformation.GetFirstNameAsync();
                 //if no luck - add default name
                 if (string.IsNullOrEmpty(userName))
-                    userName = Messages.PLAYER_NAME_DEFAULT.Localize();
+                    userName = GetNewPlayerName(PlayerType.Local);
                 Players.Add(new Player()
                     {
                         Name = userName,
@@ -141,6 +142,60 @@ namespace Sanet.Kniffel.ViewModels
             }  
             NotifyPropertyChanged("Players");
         }
+        /// <summary>
+        /// Add new player or bot
+        /// </summary>
+        /// <param name="type"></param>
+        void AddPlayer(PlayerType type)
+        {
+            if (CanAddPlayer)
+            {
+                //get username from system
+                Players.Add(new Player()
+                {
+                    Name = GetNewPlayerName(type),
+                    Type = type
+                });
+                NotifyPropertyChanged("Players");
+            } 
+            
+        }
+        /// <summary>
+        /// Looks  for the free default player name
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        string GetNewPlayerName(PlayerType type)
+        {
+            string defName =(type== PlayerType.AI)?Messages.PLAYER_BOTNAME_DEFAULT.Localize():Messages.PLAYER_NAME_DEFAULT.Localize();
+            string userName;
+            int index = 1;
+            do
+            {
+                userName= string.Format("{0} {1}",defName, index);
+                index++;
+            }
+            while (Players.FirstOrDefault(f => f.Name == userName) != null);
+            return userName;
+        }
+
         #endregion
+
+        #region Commands
+        public RelayCommand AddPlayerCommand { get; set; }
+        public RelayCommand AddBotCommand { get; set; }
+        
+        protected void CreateCommands()
+        {
+            AddPlayerCommand = new RelayCommand(o => AddPlayer(PlayerType.Local), () => true);
+            AddBotCommand = new RelayCommand(o => AddPlayer(PlayerType.AI), () => true);
+            
+        }
+
+
+
+        #endregion
+
+
     }
 }
