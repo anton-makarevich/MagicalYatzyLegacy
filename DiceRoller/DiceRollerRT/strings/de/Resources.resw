@@ -279,4 +279,13 @@
   <data name="PlayersLabel" xml:space="preserve">
     <value>Игроки</value>
   </data>
+  <data name="AddBotLabel" xml:space="preserve">
+    <value>Добавить бота</value>
+  </data>
+  <data name="AddPlayerLabel" xml:space="preserve">
+    <value>Добавить игрока</value>
+  </data>
+  <data name="PlayerNameDefault" xml:space="preserve">
+    <value>Игрок 1</value>
+  </data>
 </root>

@@ -17,8 +17,9 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
 
                     <Button  HorizontalAlignment="Left" x:Name="btnDownload"
-                    IsEnabled="true"  
-                    Style="{StaticResource AdminAppBarButtonStyle}"
+                    IsEnabled="{Binding CanAddPlayer}"  
+                    Style="{StaticResource AppBarButtonStyle}"
+                             AutomationProperties.Name="{Binding AddPlayerLabel}"
                              Command="{Binding DownloadCommand}" >
 
                         <Path Data="M34.040939,32.487999C34.040939,32.487999,48.337685,35.892958,49.699997,49.509998L0,49.509998C0,49.509998,4.0869508,34.533576,16.341564,33.170291L19.660397,47.382327 22.099134,47.361846 24.873383,40.086325 22.283998,35.595997 27.458,35.595997 24.976557,40.200572 28.141075,47.311104 30.043301,47.295128z 
@@ -37,8 +38,9 @@
                     </Button>
 
                     <Button  HorizontalAlignment="Left" 
-                    IsEnabled="true"  
-                    Style="{StaticResource AdminAppBarButtonStyle}"
+                    IsEnabled="{Binding CanAddPlayer}"  
+                    Style="{StaticResource AppBarButtonStyle}"
+                             AutomationProperties.Name="{Binding AddBotLabel}"
                              Command="{Binding DownloadCommand}" >
                         <Grid>
                             <Path Data="M24.434,43.724003L26.166908,47.133002 37.516708,47.133002 39.566002,43.724003z 
@@ -125,9 +127,7 @@
                 Margin="20,0,10,20"
                 SelectionMode="Single"
                 ItemsSource="{Binding Players}"
-                SelectedItem="{Binding SelectedBook,Mode=TwoWay}"
-                IsItemClickEnabled="True"
-            HorizontalAlignment="Center"
+                HorizontalAlignment="Center"
             ItemTemplate="{StaticResource NewPlayerTemplate}"
                 >
                         

@@ -258,4 +258,13 @@
   <data name="PlayersLabel" xml:space="preserve">
     <value>Players</value>
   </data>
+  <data name="AddBotLabel" xml:space="preserve">
+    <value>Add Bot</value>
+  </data>
+  <data name="AddPlayerLabel" xml:space="preserve">
+    <value>Add Player</value>
+  </data>
+  <data name="PlayerNameDefault" xml:space="preserve">
+    <value>Player 1</value>
+  </data>
 </root>
