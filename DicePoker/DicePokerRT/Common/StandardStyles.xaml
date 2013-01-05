@@ -443,13 +443,13 @@
         <Setter Property="AutomationProperties.AutomationId" Value="SaveAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Save"/>
         <Setter Property="Content" Value="&#xE105;"/>
-    </Style>
+    </Style>-->
     <Style x:Key="DeleteAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="DeleteAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Delete"/>
         <Setter Property="Content" Value="&#xE106;"/>
     </Style>
-    <Style x:Key="DiscardAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+    <!--<Style x:Key="DiscardAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="DiscardAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Discard"/>
         <Setter Property="Content" Value="&#xE107;"/>
@@ -1203,13 +1203,13 @@
         <Setter Property="AutomationProperties.AutomationId" Value="OtherUserAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Other User"/>
         <Setter Property="Content" Value="&#xE1A6;"/>
-    </Style>-->
+    </Style>
     <Style x:Key="AdminAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="AdminAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Admin"/>
         <Setter Property="Content" Value="&#xE1A6;"/>
     </Style>
-    <!--<Style x:Key="StreetAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+    <Style x:Key="StreetAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="StreetAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Street"/>
         <Setter Property="Content" Value="&#xE1C3;"/>
@@ -1408,19 +1408,6 @@
 
     -->
 
-    <!--Datatemplate for main menu item-->
-    <DataTemplate x:Key="MainMenuTemplate">
-        <Grid Height="90" Margin="10" HorizontalAlignment="Stretch"
-                          Background="{StaticResource SanetBlue}" Opacity="0.85">
-            <StackPanel>
-                <TextBlock Text="{Binding LocalizedLabel}" Foreground="White" 
-                                 FontSize="35" Height="50" Margin="10,5,10,0" />
-                <TextBlock Text="{Binding LocalizedDescription}" Foreground="White" 
-                                 FontSize="15" Height="50" Margin="10,5" />
-            </StackPanel>
-
-        </Grid>
-    </DataTemplate>
     
 
     <!-- Title area styles -->
@@ -1662,8 +1649,24 @@
 
     <!-- Item templates -->
     <!--Datatemplate for main menu item-->
+    <DataTemplate x:Key="MainMenuTemplate">
+        <Grid Height="90" Margin="10" HorizontalAlignment="Stretch"
+                          Background="{StaticResource SanetBlue}" Opacity="0.85">
+            <StackPanel>
+                <TextBlock Text="{Binding LocalizedLabel}" Foreground="White" 
+                                 FontSize="35" Height="50" Margin="10,5,10,0" />
+                <TextBlock Text="{Binding LocalizedDescription}" Foreground="White" 
+                                 FontSize="15" Height="50" Margin="10,5" />
+            </StackPanel>
+
+        </Grid>
+    </DataTemplate>
+
+
+
+    <!--Datatemplate for main menu item-->
     <DataTemplate x:Key="NewPlayerTemplate">
-        <Grid Height="100" Margin="10" HorizontalAlignment="Stretch"
+        <Grid Height="120" Margin="5" HorizontalAlignment="Stretch"
                           Background="{StaticResource SanetBlue}" Opacity="0.85">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -1671,9 +1674,9 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="40*"/>
             </Grid.RowDefinitions>
             <TextBlock
                 Style="{StaticResource SimpleTextStyle}"
@@ -1688,8 +1691,21 @@
             <TextBox Margin="2" Text="{Binding Name, Mode=TwoWay}"
                      Grid.Column="1"/>
             <PasswordBox Margin="2" Password="{Binding Password, Mode=TwoWay}"
+                         IsEnabled="{Binding IsHuman}"
                      Grid.Column="1" Grid.Row="1"/>
-
+            <CheckBox IsChecked="{Binding RememberPass, Mode=TwoWay}"
+                IsEnabled="{Binding IsHuman}"
+                      Content="{Binding PlayerRememberLabelLocalized}"
+                      Grid.Column="2" Grid.Row="1"/>
+            
+            <ToggleButton 
+                Content="{Binding PlayerHumanLabelLocalized}" IsChecked="{Binding IsHuman, Mode=TwoWay}"
+                HorizontalAlignment="Stretch"
+                Grid.Column="1" Grid.Row="2"/>
+            <ToggleButton 
+                Content="{Binding PlayerBotLabelLocalized}" IsChecked="{Binding IsBot, Mode=TwoWay}"
+                HorizontalAlignment="Stretch"
+                Grid.Column="2" Grid.Row="2"/>
         </Grid>
     </DataTemplate>
 

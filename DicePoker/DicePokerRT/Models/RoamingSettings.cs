@@ -41,7 +41,7 @@ namespace Sanet.Kniffel.Settings
         /// <summary>
         /// Save player info to roaming
         /// </summary>
-        public static void SaveReadingPlanSettings(Player player, int index)
+        public static void SaveLastPlayer(Player player, int index)
         {
             var valueKey = "LastPlayer" + index.ToString();
             ApplicationDataCompositeValue value = new ApplicationDataCompositeValue();

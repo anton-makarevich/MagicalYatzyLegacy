@@ -35,13 +35,23 @@ namespace Sanet.Kniffel.ViewModels
         }
 
         /// <summary>
-        /// Page title
+        /// Players group label
         /// </summary>
         public string PlayersLabel
         {
             get
             {
                 return Messages.NEW_GAME_PLAYERS.Localize();
+            }
+        }
+        /// <summary>
+        /// Ruless group label
+        /// </summary>
+        public string RulesLabel
+        {
+            get
+            {
+                return Messages.NEW_GAME_RULES.Localize();
             }
         }
         /// <summary>
@@ -82,6 +92,33 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
+        
+        private Player _SelectedPlayer;
+        public Player SelectedPlayer
+        {
+            get { return _SelectedPlayer; }
+            set
+            {
+                if (_SelectedPlayer != value)
+                {
+                    _SelectedPlayer = value;
+                    NotifyPropertyChanged("SelectedPlayer");
+                    NotifyPropertyChanged("IsPlayerSelected");
+                    NotifyPropertyChanged("CanDeletePlayer");
+                }
+            }
+        }
+        /// <summary>
+        /// Do we have selected player?
+        /// </summary>
+        public bool IsPlayerSelected
+        {
+            get
+            {
+                return _SelectedPlayer != null;
+            }
+        }
+
         /// <summary>
         /// Returns if any players added
         /// </summary>
@@ -102,6 +139,19 @@ namespace Sanet.Kniffel.ViewModels
             get
             {
                 if (Players != null && Players.Count <4)
+                    return true;
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// If players count less then 4 we can add one more player
+        /// </summary>
+        public bool CanDeletePlayer
+        {
+            get
+            {
+                if (IsPlayerSelected && Players.Count >1)
                     return true;
                 return false;
             }
@@ -139,8 +189,8 @@ namespace Sanet.Kniffel.ViewModels
                         Name = userName,
                         Type = PlayerType.Local
                     });
-            }  
-            NotifyPropertyChanged("Players");
+            }
+            NotifyPlayersChanged();
         }
         /// <summary>
         /// Add new player or bot
@@ -156,7 +206,7 @@ namespace Sanet.Kniffel.ViewModels
                     Name = GetNewPlayerName(type),
                     Type = type
                 });
-                NotifyPropertyChanged("Players");
+                NotifyPlayersChanged();
             } 
             
         }
@@ -178,18 +228,53 @@ namespace Sanet.Kniffel.ViewModels
             while (Players.FirstOrDefault(f => f.Name == userName) != null);
             return userName;
         }
+        /// <summary>
+        /// Update UI according to players state
+        /// </summary>
+        void NotifyPlayersChanged()
+        {
+            NotifyPropertyChanged("Players");
+            NotifyPropertyChanged("CanAddPlayer");
+            NotifyPropertyChanged("CanDeletePlayer");
+        }
+        /// <summary>
+        /// Delete selected player from list
+        /// </summary>
+        void DeletePlayer()
+        {
+            if (IsPlayerSelected)
+            {
+                Players.Remove(SelectedPlayer);
+                SelectedPlayer = null;
+                NotifyPlayersChanged();
+            }
+        }
+
+        /// <summary>
+        /// Saves players to roaming
+        /// </summary>
+        public void SavePlayers()
+        {
+            int index = 0;
+            foreach (Player player in Players)
+            {
+                RoamingSettings.SaveLastPlayer(player, index);
+                index++;
+            }
+        }
 
         #endregion
 
         #region Commands
         public RelayCommand AddPlayerCommand { get; set; }
         public RelayCommand AddBotCommand { get; set; }
+        public RelayCommand DeleteCommand { get; set; }
         
         protected void CreateCommands()
         {
             AddPlayerCommand = new RelayCommand(o => AddPlayer(PlayerType.Local), () => true);
             AddBotCommand = new RelayCommand(o => AddPlayer(PlayerType.AI), () => true);
-            
+            DeleteCommand = new RelayCommand(o => DeletePlayer(), () => true);
         }
 
 

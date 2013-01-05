@@ -62,6 +62,7 @@ namespace DicePokerRT
             dpBackground.EndRoll -= StartRoll;
             dpBackground.Dispose();
             dpBackground = null;
+            GetViewModel<NewGameViewModel>().SavePlayers();
         }
     }
 }

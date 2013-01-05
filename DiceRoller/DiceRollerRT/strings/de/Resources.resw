@@ -291,4 +291,16 @@
   <data name="BotNameDefault" xml:space="preserve">
     <value>Бот</value>
   </data>
+  <data name="PlayerBotLabelLocalized" xml:space="preserve">
+    <value>Компьютер</value>
+  </data>
+  <data name="PlayerHumanLabelLocalized" xml:space="preserve">
+    <value>Человек</value>
+  </data>
+  <data name="PlayerRememberLabelLocalized" xml:space="preserve">
+    <value>Запомнить</value>
+  </data>
+  <data name="RulesLabel" xml:space="preserve">
+    <value>Правила</value>
+  </data>
 </root>

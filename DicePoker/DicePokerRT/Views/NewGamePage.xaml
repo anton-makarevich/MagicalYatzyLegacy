@@ -70,6 +70,12 @@
                         </Grid>
                         
                     </Button>
+
+                    <Button  HorizontalAlignment="Left" 
+                    IsEnabled="{Binding CanDeletePlayer}"  
+                    Style="{StaticResource DeleteAppBarButtonStyle}"
+                            Command="{Binding DeleteCommand}"/>
+                        
                 </StackPanel>
 
             </Grid>
@@ -111,13 +117,18 @@
                    VerticalAlignment="Center"/>
 
                 <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
                    Foreground="{StaticResource SanetBlue}"
-                   x:Name="playersText"
                    Text="{Binding PlayersLabel}"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="2"
+                   Grid.Column="1"
                    Grid.Row="1"
-                   Margin="120,0"
+                   VerticalAlignment="Center"/>
+                <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
+                   Foreground="{StaticResource SanetBlue}"
+                   Text="{Binding RulesLabel}"
+                   Grid.Column="2"
+                   Grid.Row="1"
                    VerticalAlignment="Center"/>
 
                 <ListView
@@ -128,13 +139,14 @@
                 SelectionMode="Single"
                 ItemsSource="{Binding Players}"
                 HorizontalAlignment="Center"
+                    SelectedItem="{Binding SelectedPlayer, Mode=TwoWay}"
             ItemTemplate="{StaticResource NewPlayerTemplate}"
                 >
                         
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                                <Setter Property="Width" Value="456"/>
+                                <Setter Property="Width" Value="500"/>
                             </Style>
                         </ListView.ItemContainerStyle>
                     </ListView>
