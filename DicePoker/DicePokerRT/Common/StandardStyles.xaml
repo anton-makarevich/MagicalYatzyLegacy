@@ -1662,7 +1662,18 @@
         </Grid>
     </DataTemplate>
 
+    <!--Datatemplate for main menu item-->
+    <DataTemplate x:Key="RuleTemplate">
+        <Grid Height="60" Margin="15" HorizontalAlignment="Stretch"
+                          Background="{StaticResource SanetBlue}" Opacity="0.85">
 
+
+            <TextBlock Margin="2" Text="{Binding RuleNameLocalized}"
+                     HorizontalAlignment="Center" VerticalAlignment="Center"
+                     FontSize="36"/>
+            
+        </Grid>
+    </DataTemplate>
 
     <!--Datatemplate for main menu item-->
     <DataTemplate x:Key="NewPlayerTemplate">

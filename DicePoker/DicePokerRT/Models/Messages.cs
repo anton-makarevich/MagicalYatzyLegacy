@@ -14,6 +14,7 @@ namespace Sanet.Kniffel.Models
         public const string NEW_GAME_RULES = "RulesLabel";
         public const string NEW_GAME_ADD_HUMAN = "AddPlayerLabel";
         public const string NEW_GAME_ADD_BOT = "AddBotLabel";
+        public const string NEW_GAME_START_GAME = "StartGameButton";
 
         public const string PLAYER_NAME = "PlayerNameLabel";
         public const string PLAYER_PASSWORD = "PlayerPasswordLabel";

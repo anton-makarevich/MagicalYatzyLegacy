@@ -52,6 +52,19 @@ namespace Sanet.Kniffel.Settings
             roamingSettings.Values[valueKey] = value;
         }
 
+        public static Rules LastRule
+        {
+            get
+            {
+                if (roamingSettings.Values["LastRule"] == null)
+                    roamingSettings.Values["LastRule"] = Rules.krStandard.ToString();
+                return ((Rules)Enum.Parse(typeof(Rules), (string)roamingSettings.Values["LastRule"]));
+            }
+            set
+            {
+                roamingSettings.Values["LastRule"] = value.ToString();
+            }
+        }
 
         
 

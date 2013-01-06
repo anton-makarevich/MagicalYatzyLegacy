@@ -19,6 +19,7 @@ namespace Sanet.Kniffel.ViewModels
         {
             CreateCommands();
             fillPlayers();
+            fillRules();
         }
         #endregion
 
@@ -33,7 +34,16 @@ namespace Sanet.Kniffel.ViewModels
                 return Messages.NEW_GAME_START.Localize();
             }
         }
-
+        /// <summary>
+        /// Start button label
+        /// </summary>
+        public string StartLabel
+        {
+            get
+            {
+                return Messages.NEW_GAME_START_GAME.Localize();
+            }
+        }
         /// <summary>
         /// Players group label
         /// </summary>
@@ -92,7 +102,9 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
-        
+        /// <summary>
+        /// Selected player, used to delete and maybe other actions
+        /// </summary>
         private Player _SelectedPlayer;
         public Player SelectedPlayer
         {
@@ -118,6 +130,48 @@ namespace Sanet.Kniffel.ViewModels
                 return _SelectedPlayer != null;
             }
         }
+
+        /// <summary>
+        /// Rules list
+        /// </summary>
+
+        private List<KniffelRule> _Rules;
+        public List<KniffelRule> Rules
+        {
+            get { return _Rules; }
+            set
+            {
+                if (_Rules != value)
+                {
+                    _Rules = value;
+                    NotifyPropertyChanged("Rules");
+                }
+            }
+        }
+
+
+        
+        /// <summary>
+        /// Selected rule for game
+        /// </summary>
+        private KniffelRule _SelectedRule;
+        public KniffelRule SelectedRule
+        {
+            get { return _SelectedRule; }
+            set
+            {
+                if (_SelectedRule != value)
+                {
+                    if (value!=null)
+                        _SelectedRule = value;
+                    NotifyPropertyChanged("SelectedRule");
+                    NotifyPropertyChanged("IsReadyToPlay");
+                }
+            }
+        }
+
+
+
 
         /// <summary>
         /// Returns if any players added
@@ -157,6 +211,18 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
+        /// <summary>
+        /// Conditions to start game
+        /// </summary>
+        public bool IsReadyToPlay
+        {
+            get 
+            {
+                return (Players.Count > 0 && SelectedRule != null);
+                
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -192,6 +258,28 @@ namespace Sanet.Kniffel.ViewModels
             }
             NotifyPlayersChanged();
         }
+        /// <summary>
+        /// fills players list
+        /// </summary>
+        void fillRules()
+        {
+            Rules = new List<KniffelRule>();
+            //create all possible rules
+            foreach (Rules rule in Enum.GetValues(typeof(Rules)))
+                Rules.Add(new KniffelRule(rule));
+            NotifyPropertyChanged("Rules");
+            //try to get prev selected from roaming
+            var lastRule = RoamingSettings.LastRule;
+            SelectedRule = Rules.FirstOrDefault(f => f.Rule == lastRule);
+            if (SelectedRule == null)
+                SelectedRule = Rules[0];
+            
+                
+
+
+
+        }
+
         /// <summary>
         /// Add new player or bot
         /// </summary>
@@ -236,6 +324,7 @@ namespace Sanet.Kniffel.ViewModels
             NotifyPropertyChanged("Players");
             NotifyPropertyChanged("CanAddPlayer");
             NotifyPropertyChanged("CanDeletePlayer");
+            NotifyPropertyChanged("IsReadyToPlay");
         }
         /// <summary>
         /// Delete selected player from list
@@ -251,7 +340,7 @@ namespace Sanet.Kniffel.ViewModels
         }
 
         /// <summary>
-        /// Saves players to roaming
+        /// Saves settings to roaming
         /// </summary>
         public void SavePlayers()
         {
@@ -261,6 +350,8 @@ namespace Sanet.Kniffel.ViewModels
                 RoamingSettings.SaveLastPlayer(player, index);
                 index++;
             }
+            if (SelectedRule != null)
+                RoamingSettings.LastRule = SelectedRule.Rule;
         }
 
         #endregion

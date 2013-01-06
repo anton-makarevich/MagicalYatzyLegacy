@@ -139,9 +139,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\BooleanNegationConverter.cs" />
+    <Compile Include="Common\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Common\ReverseBooleanToVisibilityConverter.cs" />
     <Compile Include="Models\EncriptionExtensions.cs" />
+    <Compile Include="Models\Enums\GameRule.cs" />
     <Compile Include="Models\Enums\PlayerType.cs" />
     <Compile Include="Models\KniffelPlayer.cs" />
+    <Compile Include="Models\KniffelRule.cs" />
     <Compile Include="Models\LocalizerExtensions.cs" />
     <Compile Include="Models\LocalSettings.cs" />
     <Compile Include="Models\Messages.cs" />

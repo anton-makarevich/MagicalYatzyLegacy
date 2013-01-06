@@ -282,4 +282,19 @@
   <data name="RulesLabel" xml:space="preserve">
     <value>Rules</value>
   </data>
+  <data name="krBaby" xml:space="preserve">
+    <value>for Kids</value>
+  </data>
+  <data name="krExtended" xml:space="preserve">
+    <value>Extended</value>
+  </data>
+  <data name="krSimple" xml:space="preserve">
+    <value>Simple</value>
+  </data>
+  <data name="krStandard" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="StartGameButton" xml:space="preserve">
+    <value>Start Game!</value>
+  </data>
 </root>

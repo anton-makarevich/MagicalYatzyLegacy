@@ -313,4 +313,19 @@
   <data name="RulesLabel" xml:space="preserve">
     <value>Правила</value>
   </data>
+  <data name="krBaby" xml:space="preserve">
+    <value>Детские</value>
+  </data>
+  <data name="krExtended" xml:space="preserve">
+    <value>Расширенные</value>
+  </data>
+  <data name="krSimple" xml:space="preserve">
+    <value>Простые</value>
+  </data>
+  <data name="krStandard" xml:space="preserve">
+    <value>Стандартные</value>
+  </data>
+  <data name="StartGameButton" xml:space="preserve">
+    <value>Начать игру!</value>
+  </data>
 </root>
