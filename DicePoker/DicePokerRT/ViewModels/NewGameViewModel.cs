@@ -169,9 +169,6 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
-
-
-
         /// <summary>
         /// Returns if any players added
         /// </summary>
@@ -353,18 +350,34 @@ namespace Sanet.Kniffel.ViewModels
                 RoamingSettings.LastRule = SelectedRule.Rule;
         }
 
+        public void StartGame()
+        {
+            if (HasPlayers && SelectedRule != null)
+            {
+                var gameModel = ViewModelProvider.GetViewModel<PlayGameViewModel>();
+                gameModel.Game = new KniffelGame();
+                gameModel.Game.Rules = SelectedRule;
+                foreach (Player player in Players)
+                    gameModel.Game.JoinGame(player);
+
+                CommonNavigationActions.NavigateToGamePage();
+            }
+        }
+
         #endregion
 
         #region Commands
         public RelayCommand AddPlayerCommand { get; set; }
         public RelayCommand AddBotCommand { get; set; }
         public RelayCommand DeleteCommand { get; set; }
+        public RelayCommand StartCommand { get; set; }
         
         protected void CreateCommands()
         {
             AddPlayerCommand = new RelayCommand(o => AddPlayer(PlayerType.Local), () => true);
             AddBotCommand = new RelayCommand(o => AddPlayer(PlayerType.AI), () => true);
             DeleteCommand = new RelayCommand(o => DeletePlayer(), () => true);
+            StartCommand = new RelayCommand(o => StartGame(), () => true);
         }
 
 

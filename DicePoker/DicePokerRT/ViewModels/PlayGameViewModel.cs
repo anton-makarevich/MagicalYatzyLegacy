@@ -1,5 +1,6 @@
 ﻿
 using Sanet.Kniffel.Models;
+using Sanet.Kniffel.Models.Events;
 using Sanet.Models;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.System.UserProfile;
+using Windows.UI.Xaml;
 
 namespace Sanet.Kniffel.ViewModels
 {
@@ -30,13 +32,14 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return Messages.NEW_GAME_START.Localize();
+                return _Title;
             }
             set 
             {
                 if (_Title != value)
                 {
                     _Title = value;
+                    NotifyPropertyChanged("Title");
                 }
             }
         }
@@ -65,36 +68,25 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// Players list
         /// </summary>
-        private ObservableCollection<Player> _Players;
         public ObservableCollection<Player> Players
         {
-            get { return _Players; }
-            set
+            get
             {
-                if (_Players != value)
-                {
-                    _Players = value;
-                    NotifyPropertyChanged("Players");
-                }
+                if (Game.Players == null)
+                    return null;
+                return new ObservableCollection<Player>(Game.Players);
             }
+            
         }
 
         /// <summary>
-        /// Selected player -aactually current player;
+        /// Selected player -actually current player;
         /// </summary>
-        private Player _SelectedPlayer;
         public Player SelectedPlayer
         {
-            get { return _SelectedPlayer; }
-            set
+            get
             {
-                if (_SelectedPlayer != value)
-                {
-                    _SelectedPlayer = value;
-                    NotifyPropertyChanged("SelectedPlayer");
-                    NotifyPropertyChanged("IsPlayerSelected");
-                    NotifyPropertyChanged("CanDeletePlayer");
-                }
+                return Game.CurrentPlayer;
             }
         }
         /// <summary>
@@ -104,245 +96,117 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return _SelectedPlayer != null;
+                return SelectedPlayer != null;
             }
         }
 
-        /// <summary>
-        /// Rules list
-        /// </summary>
-
-        private List<KniffelRule> _Rules;
-        public List<KniffelRule> Rules
+        public double DicePanelRTWidth
         {
-            get { return _Rules; }
-            set
+            get
             {
-                if (_Rules != value)
-                {
-                    _Rules = value;
-                    NotifyPropertyChanged("Rules");
-                }
+                if (Window.Current!=null && Players!=null)
+                    return Window.Current.Bounds.Width - 130 - (60 * Players.Count);
+                return 1238;
             }
         }
-
-
         
-        /// <summary>
-        /// Selected rule for game
-        /// </summary>
-        private KniffelRule _SelectedRule;
-        public KniffelRule SelectedRule
+        private KniffelGame _Game;
+        public KniffelGame Game
         {
-            get { return _SelectedRule; }
+            get { return _Game; }
             set
             {
-                if (_SelectedRule != value)
+                RemoveGameHandlers();
+                if (_Game != value)
                 {
-                    if (value!=null)
-                        _SelectedRule = value;
-                    NotifyPropertyChanged("SelectedRule");
-                    NotifyPropertyChanged("IsReadyToPlay");
+                    _Game = value;
+                    AddGameHandlers();
+                    NotifyPropertyChanged("Game");
                 }
             }
         }
 
-
-
-
-        /// <summary>
-        /// Returns if any players added
-        /// </summary>
-        public bool HasPlayers
-        {
-            get
-            {
-                if (Players != null && Players.Count > 0)
-                    return true;
-                return false;
-            }
-        }
-        /// <summary>
-        /// If players count less then 4 we can add one more player
-        /// </summary>
-        public bool CanAddPlayer
-        {
-            get
-            {
-                if (Players != null && Players.Count <4)
-                    return true;
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// If players count less then 4 we can add one more player
-        /// </summary>
-        public bool CanDeletePlayer
-        {
-            get
-            {
-                if (IsPlayerSelected && Players.Count >1)
-                    return true;
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Conditions to start game
-        /// </summary>
-        public bool IsReadyToPlay
-        {
-            get 
-            {
-                return (Players.Count > 0 && SelectedRule != null);
-                
-            }
-        }
 
         #endregion
 
         #region Methods
         /// <summary>
-        /// fills players list
+        /// Remove game handlers
+        /// should run this to dispose game oblject
         /// </summary>
-        async void  fillPlayers()
+        public void RemoveGameHandlers()
         {
-            Players = new ObservableCollection<Player>();
-            //trying toload previous players from roaming
-            for (int i = 0; i < 4; i++)
+            try
             {
-                var p=RoamingSettings.GetLastPlayer(i);
-                if (p == null)
-                    break;
-                Players.Add(p);
-            }
-            //if no players loaded - add one default
-            if (!HasPlayers && CanAddPlayer )
-            {
-                //get username from system
-                string userName = await UserInformation.GetDisplayNameAsync();
-                if (string.IsNullOrEmpty(userName))
-                    userName = await UserInformation.GetFirstNameAsync() + await UserInformation.GetFirstNameAsync();
-                //if no luck - add default name
-                if (string.IsNullOrEmpty(userName))
-                    userName = GetNewPlayerName(PlayerType.Local);
-                Players.Add(new Player()
-                    {
-                        Name = userName,
-                        Type = PlayerType.Local
-                    });
-            }
-            NotifyPlayersChanged();
-        }
-        /// <summary>
-        /// fills players list
-        /// </summary>
-        void fillRules()
-        {
-            Rules = new List<KniffelRule>();
-            //create all possible rules
-            foreach (Rules rule in Enum.GetValues(typeof(Rules)))
-                Rules.Add(new KniffelRule(rule));
-            NotifyPropertyChanged("Rules");
-            //try to get prev selected from roaming
-            var lastRule = RoamingSettings.LastRule;
-            SelectedRule = Rules.FirstOrDefault(f => f.Rule == lastRule);
-            if (SelectedRule == null)
-                SelectedRule = Rules[0];
-            
-                
-
-
-
-        }
-
-        /// <summary>
-        /// Add new player or bot
-        /// </summary>
-        /// <param name="type"></param>
-        void AddPlayer(PlayerType type)
-        {
-            if (CanAddPlayer)
-            {
-                //get username from system
-                Players.Add(new Player()
+                if (Game != null)
                 {
-                    Name = GetNewPlayerName(type),
-                    Type = type
-                });
-                NotifyPlayersChanged();
-            } 
-            
-        }
-        /// <summary>
-        /// Looks  for the free default player name
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        string GetNewPlayerName(PlayerType type)
-        {
-            string defName =(type== PlayerType.AI)?Messages.PLAYER_BOTNAME_DEFAULT.Localize():Messages.PLAYER_NAME_DEFAULT.Localize();
-            string userName;
-            int index = 1;
-            do
-            {
-                userName= string.Format("{0} {1}",defName, index);
-                index++;
+                    Game.DiceFixed -= Game_DiceFixed;
+                    Game.DiceRolled -= Game_DiceRolled;
+                    Game.GameFinished -= Game_GameFinished;
+                    Game.MoveChanged -= Game_MoveChanged;
+                    Game.PlayerJoined -= Game_PlayerJoined;
+                    Game.ResultApplied -= Game_ResultApplied;
+                }
             }
-            while (Players.FirstOrDefault(f => f.Name == userName) != null);
-            return userName;
+            catch { }
         }
         /// <summary>
-        /// Update UI according to players state
+        /// Game events handlers
+        /// all player actions should be as respond to game events
         /// </summary>
-        void NotifyPlayersChanged()
+        void AddGameHandlers()
+        {
+            if (Game != null)
+            {
+                Game.DiceFixed += Game_DiceFixed;
+                Game.DiceRolled += Game_DiceRolled;
+                Game.GameFinished += Game_GameFinished;
+                Game.MoveChanged += Game_MoveChanged;
+                Game.PlayerJoined += Game_PlayerJoined;
+                Game.ResultApplied += Game_ResultApplied;
+                
+            }
+        }
+
+        void Game_ResultApplied(object sender, ResultEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void Game_PlayerJoined(object sender, PlayerEventArgs e)
         {
             NotifyPropertyChanged("Players");
-            NotifyPropertyChanged("CanAddPlayer");
-            NotifyPropertyChanged("CanDeletePlayer");
-            NotifyPropertyChanged("IsReadyToPlay");
-        }
-        /// <summary>
-        /// Delete selected player from list
-        /// </summary>
-        void DeletePlayer()
-        {
-            if (IsPlayerSelected)
-            {
-                Players.Remove(SelectedPlayer);
-                SelectedPlayer = null;
-                NotifyPlayersChanged();
-            }
+            NotifyPropertyChanged("DicePanelRTWidth");
         }
 
-        /// <summary>
-        /// Saves settings to roaming
-        /// </summary>
-        public void SavePlayers()
+        void Game_MoveChanged(object sender, MoveEventArgs e)
         {
-            int index = 0;
-            foreach (Player player in Players)
-            {
-                RoamingSettings.SaveLastPlayer(player, index);
-                index++;
-            }
-            if (SelectedRule != null)
-                RoamingSettings.LastRule = SelectedRule.Rule;
+            NotifyPropertyChanged("SelectedPlayer");
+            Title = SelectedPlayer.Name + " Move";
         }
 
+        void Game_GameFinished(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void Game_DiceRolled(object sender, RollEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void Game_DiceFixed(object sender, FixDiceEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region Commands
-        public RelayCommand AddPlayerCommand { get; set; }
-        public RelayCommand AddBotCommand { get; set; }
         public RelayCommand DeleteCommand { get; set; }
         
         protected void CreateCommands()
         {
-            AddPlayerCommand = new RelayCommand(o => AddPlayer(PlayerType.Local), () => true);
-            AddBotCommand = new RelayCommand(o => AddPlayer(PlayerType.AI), () => true);
-            DeleteCommand = new RelayCommand(o => DeletePlayer(), () => true);
+            //DeleteCommand = new RelayCommand(o => DeletePlayer(), () => true);
         }
 
 

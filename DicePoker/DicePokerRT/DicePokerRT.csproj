@@ -141,9 +141,11 @@
     </Compile>
     <Compile Include="Common\BooleanNegationConverter.cs" />
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Common\BooleanToColorConverter.cs" />
     <Compile Include="Common\ReverseBooleanToVisibilityConverter.cs" />
     <Compile Include="Models\EncriptionExtensions.cs" />
     <Compile Include="Models\Enums\GameRule.cs" />
+    <Compile Include="Models\Enums\KniffelScore.cs" />
     <Compile Include="Models\Enums\PlayerType.cs" />
     <Compile Include="Models\Events\EventArgs.cs" />
     <Compile Include="Models\KniffelGame.cs" />

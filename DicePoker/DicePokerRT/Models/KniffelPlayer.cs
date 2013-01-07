@@ -22,8 +22,25 @@ namespace Sanet.Kniffel.Models
         /// Player ID (GUID?)
         /// </summary>
         public string ID { get; set; }
-        //is this player moves now
-        public bool IsMoving { get; set; }
+        
+        /// <summary>
+        /// is this player moves now
+        /// </summary>
+        private bool _IsMoving=false; 
+        public bool IsMoving
+        {
+            get { return _IsMoving; }
+            set
+            {
+                if (_IsMoving != value)
+                {
+                    _IsMoving = value;
+                    NotifyPropertyChanged("IsMoving");
+                }
+            }
+        }
+
+
         //Public Property GamePlatform As KniffelGamePlatform
         /// <summary>
         /// Avatar URI
@@ -55,6 +72,31 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         public int SeatNo
         { get; set; }
+
+
+        /// <summary>
+        /// Game instance (game to which this player connected)
+        /// </summary>
+        private KniffelGame _Game;
+        public KniffelGame Game
+        {
+            get { return _Game; }
+            set
+            {
+
+                if (_Game != value)
+                {
+                    _Game = value;
+                    var results = new List<RollResult>();
+                    foreach (var score in _Game.Rules.Scores)
+                        results.Add(new RollResult { ScoreType = score });
+                    Results = results;
+                    NotifyPropertyChanged("Game");
+                }
+            }
+        }
+
+
             
         /// <summary>
         /// If to remember pass (works only for human )
@@ -193,8 +235,30 @@ namespace Sanet.Kniffel.Models
             {
                 return Messages.PLAYER_PASSWORD_REMEMBER.Localize();
             }
+        }   
+
+        
+        private List<RollResult> _Results;
+        public List<RollResult> Results
+        {
+            get { return _Results; }
+            set
+            {
+                if (_Results != value)
+                {
+                    _Results = value;
+                    NotifyPropertyChanged("Results");
+                }
+            }
         }
 
+
         #endregion
+
+        #region Methods
+        
+
+        #endregion
+
     }
 }

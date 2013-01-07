@@ -22,28 +22,84 @@
                     <RowDefinition/>
                     <RowDefinition Height="130"/>
                 </Grid.RowDefinitions>
+            <Button x:Name="backButton" Click="GoBack" 
+                        IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" 
+                        Style="{StaticResource BackButtonStyle}"/>
+            
                 <TextBlock Style="{StaticResource HeaderTextStyle}"
                    Foreground="{StaticResource SanetBlue}"
                    x:Name="titleText"
-                   Text="{Binding MovingLabel}"
+                   Text="{Binding Title}"
                    Grid.Column="1"
                    VerticalAlignment="Center"/>
-        <Viewbox
+            <Grid
+                Grid.Row="1"
+                Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <ListView
+                    SelectionMode="None"
+                    ItemsSource="{Binding Players}"
+                    ItemTemplate="{StaticResource PlayerTableTemplate}"
+                    >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="Width" Value="60"/>
+                            <Setter Property="Margin" Value="0,0,0,-8"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    
+                </ListView>
+
+                <Viewbox
+                    Grid.Column="1"
         StretchDirection="Both"
         Stretch="Fill">
             <Grid
             x:Name="LayoutRoot"
             Background="Transparent"
               MinHeight="538"
-              MinWidth="1116">
+              MinWidth="{Binding DicePanelRTWidth}">
                 <DicePanel:DicePanel
             x:Name="dpBackground"
             />
             </Grid>
             
         </Viewbox>
-             
-    </Grid>
+            </Grid>
+            <StackPanel
+            Grid.Column="2"
+            Grid.Row="1"
+            Grid.RowSpan="3"
+            VerticalAlignment="Center"
+            >
+                <Button
+                 x:Name="RollButton"
+            Style="{StaticResource DiceRollAppBarButtonStyle}"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="center"
+                 AutomationProperties.Name="{Binding RollLabel}"
+            Tapped="Button_Tapped_1"/>
+                <Button
+                 x:Name="ClearButton"
+                 IsEnabled="False"
+            Style="{StaticResource ClearSelectionAppBarButtonStyle}"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="center"
+                 AutomationProperties.Name="{Binding ClearLabel}"
+            Tapped="ClearButton_Tapped_1"/>
+            </StackPanel>
+
+        </Grid>
     <Grid
                 x:Name="SnapGrid"
                 Visibility="Collapsed">
@@ -77,9 +133,9 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="MinWidth">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="768"/>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="MinHeight">
+                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="MinHeight">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="1366"/>
-                        </ObjectAnimationUsingKeyFrames>
+                        </ObjectAnimationUsingKeyFrames>-->
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Filled">

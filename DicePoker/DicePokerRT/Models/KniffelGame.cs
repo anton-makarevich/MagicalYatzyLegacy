@@ -16,6 +16,13 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         Random rand = new Random();
 
+
+        public KniffelGame()
+        {
+            //def rule
+            Rules = new KniffelRule(Models.Rules.krExtended );
+        }
+
         #region Events
         /// <summary>
         /// Notify that move started
@@ -41,6 +48,11 @@ namespace Sanet.Kniffel.Models
         /// current player applied roll result
         /// </summary>
         public event EventHandler<ResultEventArgs> ResultApplied;
+
+        /// <summary>
+        /// current player join game
+        /// </summary>
+        public event EventHandler<PlayerEventArgs> PlayerJoined;
 
         #endregion
 
@@ -69,7 +81,7 @@ namespace Sanet.Kniffel.Models
         /// <summary>
         /// Game rules
         /// </summary>
-        public Rules Rules { get; set; }
+        public KniffelRule Rules { get; set; }
         /// <summary>
         /// Move number
         /// </summary>
@@ -79,23 +91,7 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         public Player CurrentPlayer { get; set; }
 
-        /// <summary>
-        /// Maximum moves based on rules
-        /// </summary>
-        public int MaxMove
-        {
-            get
-            {
-                switch (Rules)
-                {
-                    case Models.Rules.krBaby:
-                        return 7;
-                    
-                       
-                }
-                 return 13;
-            }
-        }
+        
 #endregion
 
 #region Methods
@@ -126,10 +122,10 @@ namespace Sanet.Kniffel.Models
         /// <summary>
         /// Increase move or end game
         /// </summary>
-        private void NextMove()
+        public void NextMove()
         {
             
-                if (Move == MaxMove)
+                if (Move == Rules.MaxMove)
                 {
                     if (GameFinished != null)
                         GameFinished(this, null);
@@ -146,7 +142,7 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         /// <param name="value"></param>
         /// <param name="isfixed"></param>
-        private void FixDice(int value, bool isfixed)
+        public void FixDice(int value, bool isfixed)
         {
             if (DiceFixed != null)
                 DiceFixed(this, new FixDiceEventArgs(CurrentPlayer, value,isfixed ));
@@ -155,7 +151,7 @@ namespace Sanet.Kniffel.Models
         /// Player wants to move. generating value here with network play in mind
         /// </summary>
         /// <param name="player"></param>
-        private void ReportRoll()
+        public void ReportRoll()
         {
               
             var value=new int[5];
@@ -169,7 +165,7 @@ namespace Sanet.Kniffel.Models
                 DiceRolled(this, new RollEventArgs(CurrentPlayer, value));
 
         }
-        private void ApplyScore(RollResult result)
+        public void ApplyScore(RollResult result)
         {
             if (ResultApplied != null)
                 ResultApplied(this, new ResultEventArgs(CurrentPlayer, result));
@@ -178,7 +174,7 @@ namespace Sanet.Kniffel.Models
            
         }
 
-        private void StartGame()
+        public void StartGame()
         {
             
             {
@@ -204,6 +200,17 @@ namespace Sanet.Kniffel.Models
                 //UpdateGameStatus(msg.GameId, true);
                 DoMove();
             }
+        }
+
+        public void JoinGame(Player player)
+        {
+            if (Players==null)
+                Players = new List<Player>();
+            player.SeatNo=Players.Count;
+            Players.Add(player);
+            player.Game = this;
+            if (PlayerJoined != null)
+                PlayerJoined(this, new PlayerEventArgs(player));
         }
 
 #endregion

@@ -54,11 +54,24 @@ namespace DicePokerRT
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             SetViewModel<PlayGameViewModel>();
+            GetViewModel<PlayGameViewModel>().Game.StartGame();
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            GetViewModel<PlayGameViewModel>().RemoveGameHandlers();
+
             dpBackground.Dispose();
             dpBackground = null;
+        }
+
+        private void ClearButton_Tapped_1(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Tapped_1(object sender, TappedRoutedEventArgs e)
+        {
+
         }
        
     }

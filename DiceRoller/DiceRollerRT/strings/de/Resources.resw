@@ -318,4 +318,49 @@
   <data name="StartGameButton" xml:space="preserve">
     <value>Начать игру!</value>
   </data>
+  <data name="Bonus" xml:space="preserve">
+    <value>Бонус</value>
+  </data>
+  <data name="Chanse" xml:space="preserve">
+    <value>Шанс</value>
+  </data>
+  <data name="Fives" xml:space="preserve">
+    <value>Пятерки</value>
+  </data>
+  <data name="FourOfAKind" xml:space="preserve">
+    <value>Четыре одинаковые</value>
+  </data>
+  <data name="Fours" xml:space="preserve">
+    <value>Четверки</value>
+  </data>
+  <data name="Kniffel" xml:space="preserve">
+    <value>Покер!</value>
+  </data>
+  <data name="Ones" xml:space="preserve">
+    <value>Единицы</value>
+  </data>
+  <data name="Sixs" xml:space="preserve">
+    <value>Шестерки</value>
+  </data>
+  <data name="ThreeOfAKind" xml:space="preserve">
+    <value>Три одинаковые</value>
+  </data>
+  <data name="Threes" xml:space="preserve">
+    <value>Тройки</value>
+  </data>
+  <data name="Twos" xml:space="preserve">
+    <value>Двойки</value>
+  </data>
+  <data name="krBabyShort" xml:space="preserve">
+    <value>только цифровые комбинации и книффель, 7 ходов</value>
+  </data>
+  <data name="krExtendedShort" xml:space="preserve">
+    <value>все комбинации, бонус в 35 очков за сумму цифровых комбинаций 63 и более, бонус 100 очков за каждый последующий книффель, книффель-джокер, 13 ходов</value>
+  </data>
+  <data name="krSimpleShort" xml:space="preserve">
+    <value>все комбинации, без бонусов, 13 ходов</value>
+  </data>
+  <data name="krStandardShort" xml:space="preserve">
+    <value>все комбинации, бонус в 35 очков за сумму цифровых комбинаций 63 и более, 13 ходов</value>
+  </data>
 </root>

@@ -297,4 +297,94 @@
   <data name="StartGameButton" xml:space="preserve">
     <value>Start Game!</value>
   </data>
+  <data name="Bonus" xml:space="preserve">
+    <value>Bonus</value>
+  </data>
+  <data name="BonusShort" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="Chanse" xml:space="preserve">
+    <value>Chanse</value>
+  </data>
+  <data name="Fives" xml:space="preserve">
+    <value>Five's</value>
+  </data>
+  <data name="FivesShort" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="FourOfAKind" xml:space="preserve">
+    <value>Four Of A Kind</value>
+  </data>
+  <data name="FourOfAKindShort" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="Fours" xml:space="preserve">
+    <value>Four's</value>
+  </data>
+  <data name="FoursShort" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="FullHouseShort" xml:space="preserve">
+    <value>FH</value>
+    <comment>Full House</comment>
+  </data>
+  <data name="Kniffel" xml:space="preserve">
+    <value>Poker!</value>
+  </data>
+  <data name="KniffelShort" xml:space="preserve">
+    <value>P!</value>
+  </data>
+  <data name="krBabyShort" xml:space="preserve">
+    <value>numeric hands only and Poker, 7 moves</value>
+  </data>
+  <data name="krExtendedShort" xml:space="preserve">
+    <value>all hands, 35 points bonus for 63 and higher result in numerics, 100 points bonus for every additional Poker, Poker-Joker, 13 moves</value>
+  </data>
+  <data name="krSimpleShort" xml:space="preserve">
+    <value>all hands only, no bonuses, 13 moves</value>
+  </data>
+  <data name="krStandardShort" xml:space="preserve">
+    <value>all hands, 35 points bonus for 63 and higher result in numerics, 13 moves</value>
+  </data>
+  <data name="LargeStraightShort" xml:space="preserve">
+    <value>LS</value>
+    <comment>Große Straße</comment>
+  </data>
+  <data name="Ones" xml:space="preserve">
+    <value>One's</value>
+  </data>
+  <data name="OnesShort" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Sixs" xml:space="preserve">
+    <value>Six's</value>
+  </data>
+  <data name="SixsShort" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="SmallStraightShort" xml:space="preserve">
+    <value>SS</value>
+    <comment>Kleine Straße</comment>
+  </data>
+  <data name="ThreeOfAKind" xml:space="preserve">
+    <value>Three Of A Kind</value>
+  </data>
+  <data name="ThreeOfAKindShort" xml:space="preserve">
+    <value>Т</value>
+  </data>
+  <data name="Threes" xml:space="preserve">
+    <value>Three's</value>
+  </data>
+  <data name="ThreesShort" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="TotalShort" xml:space="preserve">
+    <value>Ch</value>
+  </data>
+  <data name="Twos" xml:space="preserve">
+    <value>Two's</value>
+  </data>
+  <data name="TwosShort" xml:space="preserve">
+    <value>2</value>
+  </data>
 </root>
