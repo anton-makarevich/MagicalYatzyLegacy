@@ -145,6 +145,8 @@
     <Compile Include="Models\EncriptionExtensions.cs" />
     <Compile Include="Models\Enums\GameRule.cs" />
     <Compile Include="Models\Enums\PlayerType.cs" />
+    <Compile Include="Models\Events\EventArgs.cs" />
+    <Compile Include="Models\KniffelGame.cs" />
     <Compile Include="Models\KniffelPlayer.cs" />
     <Compile Include="Models\KniffelRule.cs" />
     <Compile Include="Models\LocalizerExtensions.cs" />
@@ -153,7 +155,11 @@
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="Models\RoamingSettings.cs" />
     <Compile Include="Models\ViewModelProvider.cs" />
+    <Compile Include="ViewModels\PlayGameViewModel.cs" />
     <Compile Include="ViewModels\NewGameViewModel.cs" />
+    <Compile Include="Views\GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NewGamePage.xaml.cs">
       <DependentUpon>NewGamePage.xaml</DependentUpon>
     </Compile>
@@ -1173,6 +1179,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Common\StandardStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\GamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

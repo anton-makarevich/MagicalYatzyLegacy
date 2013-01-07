@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Windows.Storage;
 
-namespace Sanet.Kniffel
+namespace Sanet.Kniffel.Models
 {
     public static class LocalSettings
     {

@@ -11,14 +11,13 @@ using Windows.System.UserProfile;
 
 namespace Sanet.Kniffel.ViewModels
 {
-    public class NewGameViewModel:BaseViewModel
+    public class PlayGameViewModel:BaseViewModel
     {
         #region Constructor
-        public NewGameViewModel()
+        public PlayGameViewModel()
         {
             CreateCommands();
-            fillPlayers();
-            fillRules();
+            
         }
         #endregion
 
@@ -26,23 +25,22 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// Page title
         /// </summary>
+        string _Title;
         public string Title
         {
             get
             {
                 return Messages.NEW_GAME_START.Localize();
             }
-        }
-        /// <summary>
-        /// Start button label
-        /// </summary>
-        public string StartLabel
-        {
-            get
+            set 
             {
-                return Messages.NEW_GAME_START_GAME.Localize();
+                if (_Title != value)
+                {
+                    _Title = value;
+                }
             }
         }
+        
         /// <summary>
         /// Players group label
         /// </summary>
@@ -63,27 +61,7 @@ namespace Sanet.Kniffel.ViewModels
                 return Messages.NEW_GAME_RULES.Localize();
             }
         }
-        /// <summary>
-        /// Add Player appbar buton caption
-        /// </summary>
-        public string AddPlayerLabel
-        {
-            get
-            {
-                return Messages.NEW_GAME_ADD_HUMAN.Localize();
-            }
-        }
-        /// <summary>
-        /// Add Bot appbar buton caption
-        /// </summary>
-        public string AddBotLabel
-        {
-            get
-            {
-                return Messages.NEW_GAME_ADD_BOT.Localize();
-            }
-        }
-
+        
         /// <summary>
         /// Players list
         /// </summary>
@@ -102,7 +80,7 @@ namespace Sanet.Kniffel.ViewModels
         }
 
         /// <summary>
-        /// Selected player, used to delete and maybe other actions
+        /// Selected player -aactually current player;
         /// </summary>
         private Player _SelectedPlayer;
         public Player SelectedPlayer

@@ -22,7 +22,7 @@ namespace Sanet.Kniffel.Models
         /// Player ID (GUID?)
         /// </summary>
         public string ID { get; set; }
-
+        //is this player moves now
         public bool IsMoving { get; set; }
         //Public Property GamePlatform As KniffelGamePlatform
         /// <summary>
@@ -50,6 +50,11 @@ namespace Sanet.Kniffel.Models
             }
         }
 
+        /// <summary>
+        /// Oreder in game
+        /// </summary>
+        public int SeatNo
+        { get; set; }
             
         /// <summary>
         /// If to remember pass (works only for human )
@@ -73,6 +78,29 @@ namespace Sanet.Kniffel.Models
                     _RememberPass = false;
             }
         }
+
+        /// <summary>
+        /// If ready to start game, has sense only for network game
+        /// </summary>
+        private bool _IsReady;
+        public bool IsReady
+        {
+            get
+            {
+                if (Type != PlayerType.Network)
+                    return true;
+                return _IsReady; 
+            }
+            set
+            {
+                if (_IsReady != value)
+                {
+                    _IsReady = value;
+                    NotifyPropertyChanged("IsReady");
+                }
+            }
+        }
+
 
         /// <summary>
         /// Returns if current player is bot

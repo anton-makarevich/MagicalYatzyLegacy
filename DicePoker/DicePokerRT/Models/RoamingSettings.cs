@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 
-namespace Sanet.Kniffel.Settings
+namespace Sanet.Kniffel.Models
 {
     public static class RoamingSettings
     {

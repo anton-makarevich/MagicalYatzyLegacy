@@ -452,26 +452,10 @@ RemoveRoom:
 
             Dim sci As KniffelPlayerInfo = sessionConnections.Where(Function(x) (x.SessionId = Id)).FirstOrDefault()
             If Not sci Is Nothing Then
-                'If Not sci.GameId = 0 Then
-                '    If sci.IsMyMove Then
-                '        Dim asm As New ApplyScoreMessage
-                '        asm.GameId = sci.GameId
-                '        asm.Move = sci.Move
-                '        asm.Username = sci.Name
-                '        asm.ScoreType = 21
-                '        asm.ScoreValue = 0
-                '        ApplyScore(asm)
-                '    End If
-                '    Dim crm As New ConnectGameRoomMessage
-                '    crm.Username = sci.Name
-                '    crm.GameId = 0
-                '    crm.OldGameId = sci.GameId
-                '    ConnectGame(crm)
-                'End If
+                
                 sessionConnections.Remove(sci)
                 PushToAllClients(New ClientDisconnectedMessage() With {.Username = sci.Name})
-                'dbProvider.DeletePlayer(sci.Name)
-                'CheckActivePlayersInDb()
+                
             End If
         End Sub
 

@@ -12,13 +12,7 @@ namespace Sanet.Kniffel.Models
 {
     public class RollResult:BaseViewModel
     {
-        public ResourceModel RModel = new ResourceModel();
-
-        public RollResult(ResourceModel rmodel)
-        {
-            RModel = rmodel;
-        }
-
+       
         string _Text;
         public string Text
         {
@@ -30,68 +24,61 @@ namespace Sanet.Kniffel.Models
             get { return _Value; }
             set
             {
-                /*try
-                {
-                    int v = int.Parse(value);
-                    if (v > 0)
-                        _Value = value;
-                    else
-                        _Value = "";
-                }
-                catch { _Value = "";}*/
                 _Value = value;
                 NotifyPropertyChanged("Value");
             }
         }
 
-        Brush _Foreground;
-        public Brush Foreground
-        {
-            get 
-            { 
-                return _Foreground; }
-        }
-        //Brush _Background;
-        public Brush Background
-        {
-            get
-            {
-                //return _Background;
-                switch (ScoreType)
-                {
-                    case KniffelScores.Total:
-                        return Brushes.SolidSanetBlue;
-                    case KniffelScores.FourInRow:
-                    case KniffelScores.ThreeInRow:
-                    case KniffelScores.OfAKind:
-                    case KniffelScores.FullHouse:
-                    case KniffelScores.Pairs:
-                        return Brushes.SolidBronzeBackColor;
-                    case KniffelScores.SmallStraight:
-                    case KniffelScores.LargeStraight:
-                        return Brushes.SolidSilverBackColor;
-                }
-                return new SolidColorBrush(Colors.Gray);
-            }
-        }
-        KniffelScores _ScoreType;
-        public KniffelScores ScoreType
-        {
-            get
-            {return _ScoreType;}
-            set
-            {
-                _ScoreType = value;
-                //add use of resource here
-                _Text = RModel.GetString(value.ToString());
-                //_Background = Brushes.SolidSanetBlue;
-                _Foreground = new SolidColorBrush(Colors.White);
-                NotifyPropertyChanged("ScoreType");
-                NotifyPropertyChanged("Text");
-                NotifyPropertyChanged("Background");
-                NotifyPropertyChanged("Foreground");
-            }
-        }
+        //need to move to extensionn to keep core code platform independent
+
+        //Brush _Foreground;
+        //public Brush Foreground
+        //{
+        //    get 
+        //    { 
+        //        return _Foreground; }
+        //}
+        ////Brush _Background;
+        //public Brush Background
+        //{
+        //    get
+        //    {
+        //        //return _Background;
+        //        switch (ScoreType)
+        //        {
+        //            case KniffelScores.Total:
+        //                return Brushes.SolidSanetBlue;
+        //            case KniffelScores.FourInRow:
+        //            case KniffelScores.ThreeInRow:
+        //            case KniffelScores.OfAKind:
+        //            case KniffelScores.FullHouse:
+        //            case KniffelScores.Pairs:
+        //                return Brushes.SolidBronzeBackColor;
+        //            case KniffelScores.SmallStraight:
+        //            case KniffelScores.LargeStraight:
+        //                return Brushes.SolidSilverBackColor;
+        //        }
+        //        return new SolidColorBrush(Colors.Gray);
+        //    }
+        //}
+        //KniffelScores _ScoreType;
+        //public KniffelScores ScoreType
+        //{
+        //    get
+        //    {return _ScoreType;}
+        //    set
+        //    {
+        //        _ScoreType = value;
+        //        //add use of resource here
+        //        _Text = RModel.GetString(value.ToString());
+        //        //_Background = Brushes.SolidSanetBlue;
+        //        _Foreground = new SolidColorBrush(Colors.White);
+        //        NotifyPropertyChanged("ScoreType");
+        //        NotifyPropertyChanged("Text");
+        //        NotifyPropertyChanged("Background");
+        //        NotifyPropertyChanged("Foreground");
+        //    }
+        //}
         
     }
     public enum KniffelScores
