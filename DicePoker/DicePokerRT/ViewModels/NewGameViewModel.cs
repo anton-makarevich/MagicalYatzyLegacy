@@ -341,11 +341,15 @@ namespace Sanet.Kniffel.ViewModels
         public void SavePlayers()
         {
             int index = 0;
+            //save players in list
             foreach (Player player in Players)
             {
                 RoamingSettings.SaveLastPlayer(player, index);
                 index++;
             }
+            //save nulls for players if less then (in case if were deleted)
+            for(;index<4;index++)
+                RoamingSettings.SaveLastPlayer(null, index);
             if (SelectedRule != null)
                 RoamingSettings.LastRule = SelectedRule.Rule;
         }
@@ -357,8 +361,12 @@ namespace Sanet.Kniffel.ViewModels
                 var gameModel = ViewModelProvider.GetViewModel<PlayGameViewModel>();
                 gameModel.Game = new KniffelGame();
                 gameModel.Game.Rules = SelectedRule;
+                gameModel.RollResults = null;
                 foreach (Player player in Players)
+                {
+                    //player.Roll = 1;
                     gameModel.Game.JoinGame(player);
+                }
 
                 CommonNavigationActions.NavigateToGamePage();
             }

@@ -10,7 +10,7 @@ namespace Sanet.Kniffel
     public static class KniffelRulesExtensions
     {
         //the score for the numeric 1-6 categories in Y
-        public static int GetKniffelNumberScore(this DieResult result, int number)
+        public static int KniffelNumberScore(this DieResult result, int number)
         {
             int iTot = 0;
 

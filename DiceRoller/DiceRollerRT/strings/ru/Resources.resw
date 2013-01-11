@@ -360,7 +360,7 @@
     <comment>Full House</comment>
   </data>
   <data name="Kniffel" xml:space="preserve">
-    <value>Покер!</value>
+    <value>Флэш!</value>
   </data>
   <data name="KniffelShort" xml:space="preserve">
     <value>П!</value>
@@ -417,5 +417,20 @@
   </data>
   <data name="TwosShort" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="AgainLabel" xml:space="preserve">
+    <value>еще разок</value>
+  </data>
+  <data name="GameFinishedLabel" xml:space="preserve">
+    <value>Игра окончена!</value>
+  </data>
+  <data name="MoveLabel" xml:space="preserve">
+    <value>ход</value>
+  </data>
+  <data name="SaveScoreLabel" xml:space="preserve">
+    <value>в книгу рекордов</value>
+  </data>
+  <data name="WinLabel" xml:space="preserve">
+    <value>выиграл </value>
   </data>
 </root>

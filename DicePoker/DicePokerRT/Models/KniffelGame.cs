@@ -1,4 +1,6 @@
-﻿using Sanet.Kniffel.Models.Events;
+﻿using Sanet.Kniffel.DicePanel;
+using Sanet.Kniffel.Models.Enums;
+using Sanet.Kniffel.Models.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +12,15 @@ namespace Sanet.Kniffel.Models
         //sync object
         object syncRoot = new object();
 
+        int[] lastRollResults = new int[5];
+        List<int> fixedRollResults = new List<int>();
 
         /// <summary>
         /// actual dices here :)
         /// </summary>
         Random rand = new Random();
+
+
 
 
         public KniffelGame()
@@ -61,6 +67,18 @@ namespace Sanet.Kniffel.Models
         public bool IsPlaying { get; set; }
         public string Password { get; set; }
 
+        public DieResult LastDiceResult
+        {
+            get
+            {
+                return
+                    new DieResult() 
+                    {
+                         DiceResults=lastRollResults.ToList()
+                    };
+            }
+        }
+
         public List<Player> Players
         {
             get;
@@ -100,6 +118,7 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         public void DoMove()
         {
+            fixedRollResults = new List<int>();
             //if we have current player - move is continue, so selecting next
             if (CurrentPlayer != null)
             {
@@ -127,6 +146,8 @@ namespace Sanet.Kniffel.Models
             
                 if (Move == Rules.MaxMove)
                 {
+                    Players=Players.OrderByDescending(f => f.Total).ToList();
+                    CurrentPlayer = Players.First();
                     if (GameFinished != null)
                         GameFinished(this, null);
                 }
@@ -144,6 +165,13 @@ namespace Sanet.Kniffel.Models
         /// <param name="isfixed"></param>
         public void FixDice(int value, bool isfixed)
         {
+            if (isfixed)
+                fixedRollResults.Add(value);
+            else
+            {
+                if (fixedRollResults.Contains(value))
+                    fixedRollResults.Remove(value);
+            }
             if (DiceFixed != null)
                 DiceFixed(this, new FixDiceEventArgs(CurrentPlayer, value,isfixed ));
         }
@@ -153,23 +181,45 @@ namespace Sanet.Kniffel.Models
         /// <param name="player"></param>
         public void ReportRoll()
         {
-              
-            var value=new int[5];
-            for (int i = 0; i <= 4; i++)
+              int j = 0;
+              for (int i = j; i < fixedRollResults.Count; i++)
+              {
+                  lastRollResults[i] = fixedRollResults[i];
+              }
+              j = fixedRollResults.Count;
+            for (int i = j; i <= 4; i++)
             {
                 int ii = rand.Next(1, 7);//В цикл для нормальной игры, за циклом - только книффеля))
 
-                value[i] = ii;
+                lastRollResults[i] = ii;
             }
             if (DiceRolled != null)
-                DiceRolled(this, new RollEventArgs(CurrentPlayer, value));
+                DiceRolled(this, new RollEventArgs(CurrentPlayer, lastRollResults));
 
         }
         public void ApplyScore(RollResult result)
         {
             if (ResultApplied != null)
                 ResultApplied(this, new ResultEventArgs(CurrentPlayer, result));
-            
+            //check for bonus and apply it
+            if (Rules.Rule == Models.Rules.krExtended || Rules.Rule == Models.Rules.krStandard)
+            {
+                if (result.IsNumeric && !CurrentPlayer.Results.Find(f=>f.ScoreType== KniffelScores.Bonus).HasValue)
+                {
+                    if (CurrentPlayer.TotalNumeric>62)
+                        ResultApplied(this, new ResultEventArgs(CurrentPlayer, new RollResult() 
+                        { 
+                            ScoreType= KniffelScores.Bonus,
+                            PossibleValue=35
+                        }));
+                    else if (CurrentPlayer.TotalNumeric+CurrentPlayer.MaxRemainingNumeric <64)
+                        ResultApplied(this, new ResultEventArgs(CurrentPlayer, new RollResult()
+                        {
+                            ScoreType = KniffelScores.Bonus,
+                            PossibleValue = 0
+                        }));
+                }
+            }
             DoMove();
            
         }
@@ -197,9 +247,27 @@ namespace Sanet.Kniffel.Models
             //if yes - starting game
             if (bAllReady)
             {
-                //UpdateGameStatus(msg.GameId, true);
+                Move = 1;
                 DoMove();
             }
+        }
+
+        /// <summary>
+        /// On Play Again
+        /// </summary>
+        public void RestartGame()
+        {
+            foreach (Player p in Players)
+            {
+                p.Roll = 1;
+                p.SeatNo--;
+                if (p.SeatNo < 0)
+                    p.SeatNo = Players.Count - 1;
+                p.Init();
+            }
+            Players = Players.OrderBy(f => f.SeatNo).ToList();
+            CurrentPlayer = null;
+            StartGame();
         }
 
         public void JoinGame(Player player)

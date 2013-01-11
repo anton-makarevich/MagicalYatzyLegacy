@@ -1,5 +1,7 @@
 ﻿
+using Sanet.Kniffel.DicePanel;
 using Sanet.Kniffel.Models;
+using Sanet.Kniffel.Models.Enums;
 using Sanet.Kniffel.Models.Events;
 using Sanet.Models;
 using System;
@@ -34,7 +36,7 @@ namespace Sanet.Kniffel.ViewModels
             {
                 return _Title;
             }
-            set 
+            set
             {
                 if (_Title != value)
                 {
@@ -55,7 +57,7 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
         /// <summary>
-        /// Ruless group label
+        /// Rules label
         /// </summary>
         public string RulesLabel
         {
@@ -64,7 +66,63 @@ namespace Sanet.Kniffel.ViewModels
                 return Messages.NEW_GAME_RULES.Localize();
             }
         }
+        /// <summary>
+        /// Rules name label
+        /// </summary>
+        public string RulesNameLabel
+        {
+            get
+            {
+                if (Game != null)
+                    return Game.Rules.Rule.ToString().Localize();
+                return null;
+            }
+        }
+        /// <summary>
+        /// Roll button label
+        /// </summary>
+        public string RollLabel
+        {
+            get
+            {
+                if (SelectedPlayer != null)
+                    return string.Format("{0} {1}", Messages.GAME_ROLL.Localize(),SelectedPlayer.Roll);
+                return string.Empty;
+            }
+        }
+        /// <summary>
+        /// ClearButton label
+        /// </summary>
+        public string ClearLabel
+        {
+            get
+            {
+                return Messages.GAME_CLEAR.Localize();
+            }
+        }
         
+        /// <summary>
+        /// Play Again Button label
+        /// </summary>
+        public string PlayAgainLabel
+        {
+            get
+            {
+                return Messages.GAME_PLAY_AGAIN.Localize();
+            }
+        }
+
+        /// <summary>
+        /// Total for result label
+        /// </summary>
+        public string TotalLabel
+        {
+            get
+            {
+                return KniffelScores.Total.ToString().Localize();
+            }
+        }
+
         /// <summary>
         /// Players list
         /// </summary>
@@ -77,6 +135,34 @@ namespace Sanet.Kniffel.ViewModels
                 return new ObservableCollection<Player>(Game.Players);
             }
             
+        }
+
+        /// <summary>
+        /// If dices can be rolled
+        /// </summary>
+        private bool _CanRoll=true;
+        public bool CanRoll
+        {
+            get { return _CanRoll; }
+            
+        }
+
+        /// <summary>
+        /// If dices can be rolled
+        /// </summary>
+        public bool CanFix
+        {
+            get 
+            {
+                if (!IsPlayerSelected)
+                    return  false;
+                else if (!SelectedPlayer.IsHuman)
+                    return  false;
+                if (SelectedPlayer.Roll == 1)
+                    return false;
+                return true;
+            }
+
         }
 
         /// <summary>
@@ -105,7 +191,7 @@ namespace Sanet.Kniffel.ViewModels
             get
             {
                 if (Window.Current!=null && Players!=null)
-                    return Window.Current.Bounds.Width - 130 - (60 * Players.Count);
+                    return Window.Current.Bounds.Width - 230 - (60 * Players.Count);
                 return 1238;
             }
         }
@@ -126,6 +212,36 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
+        /// <summary>
+        /// Roll results for user to show
+        /// </summary>
+        List<RollResult> _RollResults;
+        public List<RollResult> RollResults
+        {
+            get
+            {
+                return _RollResults;
+            }
+            set
+            {
+                _RollResults = value;
+                NotifyPropertyChanged("RollResults");
+            }
+        }
+
+        /// <summary>
+        /// Results list to bind to table side caption
+        /// </summary>
+        public List<RollResult> SampleResults
+        {
+            get
+            {
+                if (IsPlayerSelected)
+                    return SelectedPlayer.Results;
+                return null;
+            }
+            
+        }
 
         #endregion
 
@@ -170,7 +286,9 @@ namespace Sanet.Kniffel.ViewModels
 
         void Game_ResultApplied(object sender, ResultEventArgs e)
         {
-            throw new NotImplementedException();
+            SelectedPlayer.Results.Find(f => f.ScoreType == e.Result.ScoreType).Value = e.Result.PossibleValue;
+            SelectedPlayer.UpdateTotal();
+            RollResults = null;
         }
 
         void Game_PlayerJoined(object sender, PlayerEventArgs e)
@@ -181,24 +299,93 @@ namespace Sanet.Kniffel.ViewModels
 
         void Game_MoveChanged(object sender, MoveEventArgs e)
         {
-            NotifyPropertyChanged("SelectedPlayer");
-            Title = SelectedPlayer.Name + " Move";
+            SetCanRoll(true);
+            NotifyPlayerChanged();
         }
 
         void Game_GameFinished(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Utilities.ShowToastNotification("GAMOVER vsem");
+            SetCanRoll(false);
+            NotifyPlayerChanged();
+            if (IsPlayerSelected)
+            {
+                Title = Messages.GAME_FINISHED.Localize();
+                NotifyPropertyChanged("Players");
+            }
+        
         }
 
         void Game_DiceRolled(object sender, RollEventArgs e)
         {
-            throw new NotImplementedException();
+           
+            SelectedPlayer.CheckRollResults();
+            RollResults = null;
+            SetCanRoll ( false);
+             NotifyPlayerChanged();
         }
 
         void Game_DiceFixed(object sender, FixDiceEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
+
+        void NotifyPlayerChanged()
+        {
+            NotifyPropertyChanged("SelectedPlayer");
+            
+            NotifyPropertyChanged("RollLabel");
+            NotifyPropertyChanged("CanFix");
+            NotifyPropertyChanged("SampleResults");
+            if (IsPlayerSelected)
+                Title = string.Format("{2} {0}, {1}",Game.Move ,SelectedPlayer.Name,Messages.GAME_MOVE.Localize() );
+        }
+        /// <summary>
+        /// dices stop
+        /// </summary>
+        public void OnRollEnd()
+        {
+            SetCanRoll(SelectedPlayer.Roll < 3);
+            SelectedPlayer.Roll++;
+
+            RollResults = SelectedPlayer.Results.Where(f => !f.HasValue && f.ScoreType != KniffelScores.Bonus).ToList();
+            NotifyPlayerChanged();
+        }
+        /// <summary>
+        /// method to check if player can manually roll dices
+        /// </summary>
+        /// <param name="value"></param>
+        void SetCanRoll(bool value)
+        {
+            if (!IsPlayerSelected)
+                _CanRoll = false;
+            else if (!SelectedPlayer.IsHuman)
+                _CanRoll = false;
+            else
+                _CanRoll = value;
+            NotifyPropertyChanged("CanRoll");
+        }
+
+        public void SaveResults()
+        {
+            foreach (Player p in Players)
+            {
+                if (p.ShouldSaveResult)
+                {
+                    var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+                    var ename = 
+                    ks.PutScoreIntoTableWithPicAsync(Encryptor.Encrypt(p.Name,33),Encryptor.Encrypt(p.Password,33),Encryptor.Encrypt(p.Total.ToString(),33), Encryptor.Encrypt(Game.Rules.ToString(),33),p.PicUrl);
+                }
+            }
+        }
+
+        public void PlayAgain()
+        {
+            SaveResults();
+            Game.RestartGame();
+            NotifyPropertyChanged("Players");
+        }
+
         #endregion
 
         #region Commands
@@ -209,8 +396,7 @@ namespace Sanet.Kniffel.ViewModels
             //DeleteCommand = new RelayCommand(o => DeletePlayer(), () => true);
         }
 
-
-
+        
         #endregion
 
 

@@ -130,5 +130,19 @@ namespace Sanet.Kniffel.Models
                 return 13;
             }
         }
+
+        public override string ToString()
+        {
+            switch (Rule)
+            {
+                case Rules.krBaby:
+                    return "ScoresB";
+                case Rules.krExtended:
+                    return "ScoresE";
+                case Rules.krStandard:
+                    return "ScoresS";
+            }
+            return "Scores";
+        }
     }
 }

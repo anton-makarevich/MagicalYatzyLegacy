@@ -38,12 +38,20 @@ namespace DicePokerRT
             dpBackground.RollDelay = 15;
             dpBackground.DieAngle = 3;
             dpBackground.MaxRollLoop = 40;
-            
+            dpBackground.ClickToFreeze = false;
+
+            dpBackground.DieFrozen += dpBackground_DieFrozen;
+            dpBackground.EndRoll += dpBackground_EndRoll;
         }
 
-        void StartRoll()
+        void dpBackground_EndRoll()
         {
-            dpBackground.RollDice(null);
+            GetViewModel<PlayGameViewModel>().OnRollEnd();
+        }
+
+        void dpBackground_DieFrozen(bool isfixed, int value)
+        {
+            GetViewModel<PlayGameViewModel>().Game.FixDice(value, isfixed);
         }
 
         /// <summary>
@@ -55,11 +63,45 @@ namespace DicePokerRT
         {
             SetViewModel<PlayGameViewModel>();
             GetViewModel<PlayGameViewModel>().Game.StartGame();
+            GetViewModel<PlayGameViewModel>().Game.DiceRolled += Game_DiceRolled;
+            GetViewModel<PlayGameViewModel>().Game.MoveChanged += Game_MoveChanged;
+            GetViewModel<PlayGameViewModel>().Game.GameFinished += Game_GameFinished;
+            GetViewModel<PlayGameViewModel>().PropertyChanged += GamePage_PropertyChanged;
+            gridResults.Visibility = Visibility.Collapsed;
+            dpBackground.Visibility = Visibility.Visible;
+        }
+
+        void Game_GameFinished(object sender, EventArgs e)
+        {
+            gridResults.Visibility = Visibility.Visible;
+            dpBackground.Visibility = Visibility.Collapsed;
+        }
+
+        void Game_MoveChanged(object sender, Sanet.Kniffel.Models.Events.MoveEventArgs e)
+        {
+            dpBackground.ClearFreeze();
+        }
+
+        void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "CanFix")
+                dpBackground.ClickToFreeze = GetViewModel<PlayGameViewModel>().CanFix;
+        }
+
+        void Game_DiceRolled(object sender, Sanet.Kniffel.Models.Events.RollEventArgs e)
+        {
+            dpBackground.RollDice(e.Value.ToList());
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            GetViewModel<PlayGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
+            GetViewModel<PlayGameViewModel>().Game.DiceRolled -= Game_DiceRolled;
+            GetViewModel<PlayGameViewModel>().Game.MoveChanged -= Game_MoveChanged;
+            GetViewModel<PlayGameViewModel>().Game.GameFinished -= Game_GameFinished;
             GetViewModel<PlayGameViewModel>().RemoveGameHandlers();
 
+            dpBackground.DieFrozen -= dpBackground_DieFrozen;
+            dpBackground.EndRoll -= dpBackground_EndRoll;
             dpBackground.Dispose();
             dpBackground = null;
         }
@@ -71,7 +113,24 @@ namespace DicePokerRT
 
         private void Button_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
+            GetViewModel<PlayGameViewModel>().Game.ReportRoll();
+        }
 
+        private void GridView_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
+            GetViewModel<PlayGameViewModel>().Game.ApplyScore((RollResult)e.ClickedItem);
+        }
+        protected override void GoBack(object sender, RoutedEventArgs e)
+        {
+            if (gridResults.Visibility==Visibility.Visible)
+                GetViewModel<PlayGameViewModel>().SaveResults();
+            base.GoBack(sender, e);
+        }
+        private void AgainButton_Tapped_1(object sender, TappedRoutedEventArgs e)
+        {
+            GetViewModel<PlayGameViewModel>().PlayAgain();
+            gridResults.Visibility = Visibility.Collapsed;
+            dpBackground.Visibility = Visibility.Visible;
         }
        
     }

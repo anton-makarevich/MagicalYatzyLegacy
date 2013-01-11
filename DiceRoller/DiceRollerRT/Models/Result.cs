@@ -26,23 +26,75 @@ namespace Sanet.Kniffel.Models
 
         public string AltText
         {
-            get { return ScoreType.ToString().Localize(); }
+            get
+            {
+                if (ScoreType == KniffelScores.Total)
+                    return "Chance".Localize();
+                return ScoreType.ToString().Localize();
+            }
         }
         //Aplied value
-        string _Value;
-        public string Value
+        int _Value;
+        public int Value
         {
             get { return _Value; }
             set
             {
                 _Value = value;
+                HasValue = true;
                 NotifyPropertyChanged("Value");
             }
         }
+
+        //maximum value for scoretype
+        public int MaxValue
+        {
+            get 
+            {
+                switch (ScoreType)
+                {
+                    case KniffelScores.Ones:
+                        return 5;
+                    case KniffelScores.Twos:
+                        return 10;
+                    case KniffelScores.Threes:
+                        return 15;
+                    case KniffelScores.Fours:
+                        return 20;
+                    case KniffelScores.Fives:
+                        return 25;
+                    case KniffelScores.Sixs:
+                        return 30;
+                    case KniffelScores.ThreeOfAKind:
+                        return 30;
+                        
+                    case KniffelScores.FourOfAKind:
+                        return 30;
+                        
+                    case KniffelScores.FullHouse:
+                        return 25;
+                        
+                    case KniffelScores.SmallStraight:
+                        return 30;
+                    case KniffelScores.LargeStraight:
+                        return 40;
+                       
+                    case KniffelScores.Total:
+                        return 30;
+                        
+                    case KniffelScores.Kniffel:
+                        return 50;
+                        
+                }
+                return 0;
+            }
+            
+        }
+
         //possible value
         
-        private string _PossibleValue;
-        public string PossibleValue
+        private int _PossibleValue;
+        public int PossibleValue
         {
             get { return _PossibleValue; }
             set
@@ -52,6 +104,56 @@ namespace Sanet.Kniffel.Models
                     _PossibleValue = value;
                     NotifyPropertyChanged("PossibleValue");
                 }
+            }
+        }
+
+        /// <summary>
+        /// Wheather this result has value (already filled)
+        /// </summary>
+        private bool _HasValue;
+        public bool HasValue
+        {
+            get { return _HasValue; }
+            set
+            {
+                if (_HasValue != value)
+                {
+                    _HasValue = value;
+                    NotifyPropertyChanged("HasValue");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Wheather this result has 100 point bonus for second kniffel (for extended rules only)
+        /// </summary>
+        private bool _HasBonus;
+        public bool HasBonus
+        {
+            get { return _HasBonus; }
+            set
+            {
+                if (_HasBonus != value)
+                {
+                    _HasBonus = value;
+                    NotifyPropertyChanged("HasBonus");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Wheather it's a numeric result
+        /// </summary>
+        public bool IsNumeric
+        {
+            get
+            {
+                return (ScoreType == KniffelScores.Ones ||
+                    ScoreType == KniffelScores.Twos ||
+                    ScoreType == KniffelScores.Threes ||
+                    ScoreType == KniffelScores.Fours ||
+                    ScoreType == KniffelScores.Fives ||
+                    ScoreType == KniffelScores.Sixs);
             }
         }
 

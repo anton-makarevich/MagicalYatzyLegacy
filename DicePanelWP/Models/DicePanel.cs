@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 using System.Collections;
 using System.Collections.Generic;
-
+using System.Linq;
 using System.Diagnostics;
 using System.ComponentModel;
 
@@ -282,14 +282,13 @@ namespace Sanet.Kniffel.DicePanel
             get
             {
                 var dr = new List<int>();
-                int i = 0;
-
+                
                 foreach (Die d in aDice)
                 {
                     dr.Add(d.Result);
-                    i += d.Result;
+                    
                 }
-                return new DieResult{ DiceResults=dr, Total=i};
+                return new DieResult{ DiceResults=dr};
             }
         }
 
@@ -331,7 +330,8 @@ namespace Sanet.Kniffel.DicePanel
             {
                 BeginRoll();
             }
-            int j = 0;
+            //first values for fixed dices
+            int j = aDice.Count(f=>f.Frozen);
 
             for (int i = 0; i <= aDice.Count - 1; i++)
             {
@@ -1062,7 +1062,15 @@ namespace Sanet.Kniffel.DicePanel
     public class DieResult
     {
         public List<int> DiceResults { get; set; }
-        public int Total { get; set; }
+        public int Total 
+        {
+            get
+            {
+                if (DiceResults != null)
+                    return DiceResults.Sum();
+                return 0;
+            }
+        }
         public int NumDice
         {
             get

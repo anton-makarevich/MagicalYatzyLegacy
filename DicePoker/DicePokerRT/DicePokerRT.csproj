@@ -157,6 +157,11 @@
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="Models\RoamingSettings.cs" />
     <Compile Include="Models\ViewModelProvider.cs" />
+    <Compile Include="Service References\KniffelLeaderBoardService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\PlayGameViewModel.cs" />
     <Compile Include="ViewModels\NewGameViewModel.cs" />
     <Compile Include="Views\GamePage.xaml.cs">
@@ -178,6 +183,24 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="packages.config" />
+    <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetChempionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetTopPlayersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.PutScoreResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\KniffelService.wsdl" />
     <PRIResource Include="..\..\DiceRoller\DiceRollerRT\strings\de\Resources.resw">
       <Link>Strings\de\Resources.resw</Link>
     </PRIResource>
@@ -1168,6 +1191,13 @@
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\transparentlogo.png" />
+    <None Include="Service References\KniffelLeaderBoardService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\configuration.svcinfo" />
+    <None Include="Service References\KniffelLeaderBoardService\configuration91.svcinfo" />
+    <None Include="Service References\KniffelLeaderBoardService\KniffelService.disco" />
     <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -1196,6 +1226,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="AdDuplex.Windows">
+      <HintPath>packages\AdDuplexWindows.8.0.2.0\lib\winrt45\AdDuplex.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Sanet.Encryptor">
+      <HintPath>..\..\..\AllWrite\Sanet.Encryptor\bin\Debug\Sanet.Encryptor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\KniffelLeaderBoardService\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

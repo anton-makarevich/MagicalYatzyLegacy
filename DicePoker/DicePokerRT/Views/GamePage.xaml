@@ -8,6 +8,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates"
+    xmlns:ad="using:AdDuplex.Controls"
     mc:Ignorable="d">
     <Grid>
         <Grid
@@ -25,13 +26,25 @@
             <Button x:Name="backButton" Click="GoBack" 
                         IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" 
                         Style="{StaticResource BackButtonStyle}"/>
-            
+            <Grid Grid.Column="1"
+                  Grid.ColumnSpan="2"
+                    VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
                 <TextBlock Style="{StaticResource HeaderTextStyle}"
                    Foreground="{StaticResource SanetBlue}"
                    x:Name="titleText"
+                           VerticalAlignment="Center"
                    Text="{Binding Title}"
-                   Grid.Column="1"
-                   VerticalAlignment="Center"/>
+                           TextTrimming="WordEllipsis"
+                  />
+                <ad:AdControl 
+                    Grid.Column="1"
+                    AppId="30603" x:Name="adDuplexAd" Size="500x130" />
+            </Grid>
+                
             <Grid
                 Grid.Row="1"
                 Grid.ColumnSpan="2">
@@ -39,27 +52,94 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                    <!--Results table-->
+                    <Grid
+                        VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                        <Border BorderThickness="0,0,1,0" BorderBrush="{StaticResource SanetBlue}">
+                        <StackPanel Margin="0,6,0,6">
+                            <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource SanetBlue}">
+                                <Grid Height="55" 
+                                  Width="100"
+                                  Margin="5,0" HorizontalAlignment="Stretch"
+                                   >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding RulesLabel}"
+                                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       TextAlignment="Center"
+                                       FontSize="12"/>
+                                    <TextBlock Text="{Binding RulesNameLabel}"
+                                               Grid.Row="1"
+                                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       TextAlignment="Center"
+                                       FontSize="12"/>
+                                    </Grid>
+                               
+                            </Border>
+                            <ListView
+                                 Width="100"
+                                Margin="0" HorizontalAlignment="Stretch"
+                                    SelectionMode="None"
+                                    ItemsSource="{Binding SampleResults}"
+                                    ItemTemplate="{StaticResource PlayerTableCaptionTemplate}"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                    >
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                        <Setter Property="Width" Value="100"/>
+                                        <Setter Property="Height" Value="33"/>
+                                        <Setter Property="Margin" Value="0,0,0,-2"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
 
-                <ListView
-                    SelectionMode="None"
-                    ItemsSource="{Binding Players}"
-                    ItemTemplate="{StaticResource PlayerTableTemplate}"
-                    >
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                            <Setter Property="Width" Value="60"/>
-                            <Setter Property="Margin" Value="0,0,0,-8"/>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"/>
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
+                            </ListView>
+                            <Grid Height="40" 
+                              Margin="0" HorizontalAlignment="Stretch"
+                              >
+                                                <TextBlock Text="{Binding TotalLabel}"
+                                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       TextTrimming="WordEllipsis"
+                                       TextWrapping="Wrap"
+                                                           Margin="5,0"
+                                       TextAlignment="Center"
+                                       FontSize="20"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                        <ListView
+                            Grid.Column="1"
+                        SelectionMode="None"
+                        ItemsSource="{Binding Players}"
+                        ItemTemplate="{StaticResource PlayerTableTemplate}"
+                        >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="Width" Value="60"/>
+                                <Setter Property="Margin" Value="0,0,0,-8"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
                     
-                </ListView>
+                    </ListView>
 
+                    </Grid>
+                   <!--Dice panel for game--> 
                 <Viewbox
                     Grid.Column="1"
         StretchDirection="Both"
@@ -75,7 +155,41 @@
             </Grid>
             
         </Viewbox>
+                <!--Panel to show results-->
+                <Grid Grid.Column="1" 
+                      x:Name="gridResults"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ListView
+                                 Margin="0" HorizontalAlignment="Stretch"
+                                    SelectionMode="None"
+                                    ItemsSource="{Binding Players}"
+                                    ItemTemplate="{StaticResource GameResultsTemplate}"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                    >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+
+                    </ListView>
+                    <Button
+                        Grid.Row="1"
+                         x:Name="ClearButton"
+                        Style="{StaticResource RedoAppBarButtonStyle}"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="center"
+                         AutomationProperties.Name="{Binding PlayAgainLabel}"
+                    Tapped="AgainButton_Tapped_1"/>
+                </Grid>
             </Grid>
+            <!--roll button-->
             <StackPanel
             Grid.Column="2"
             Grid.Row="1"
@@ -87,18 +201,35 @@
             Style="{StaticResource DiceRollAppBarButtonStyle}"
             VerticalAlignment="Bottom"
             HorizontalAlignment="center"
+                    IsEnabled="{Binding CanRoll}"
                  AutomationProperties.Name="{Binding RollLabel}"
             Tapped="Button_Tapped_1"/>
-                <Button
+                <!--<Button
                  x:Name="ClearButton"
                  IsEnabled="False"
             Style="{StaticResource ClearSelectionAppBarButtonStyle}"
             VerticalAlignment="Bottom"
             HorizontalAlignment="center"
                  AutomationProperties.Name="{Binding ClearLabel}"
-            Tapped="ClearButton_Tapped_1"/>
+            Tapped="ClearButton_Tapped_1"/>-->
             </StackPanel>
-
+            <!--tiles with roll result-->
+            <GridView
+            Grid.Row="2"
+            Grid.ColumnSpan="3"
+            ItemTemplate="{StaticResource ResultItemTemplate}"
+            SelectionMode="None"
+            ItemsSource="{Binding RollResults}"
+                IsItemClickEnabled="True"
+                ItemClick="GridView_ItemClick_1"
+                HorizontalAlignment="Center"
+                >
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+            </GridView>
         </Grid>
     <Grid
                 x:Name="SnapGrid"

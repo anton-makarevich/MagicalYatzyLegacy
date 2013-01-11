@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sanet.Models;
+using Sanet.Kniffel.Models.Enums;
 
 namespace Sanet.Kniffel.Models
 {
@@ -35,6 +36,7 @@ namespace Sanet.Kniffel.Models
                 if (_IsMoving != value)
                 {
                     _IsMoving = value;
+                    Roll = 1;
                     NotifyPropertyChanged("IsMoving");
                 }
             }
@@ -87,15 +89,27 @@ namespace Sanet.Kniffel.Models
                 if (_Game != value)
                 {
                     _Game = value;
-                    var results = new List<RollResult>();
-                    foreach (var score in _Game.Rules.Scores)
-                        results.Add(new RollResult { ScoreType = score });
-                    Results = results;
+                    Init();
                     NotifyPropertyChanged("Game");
                 }
             }
         }
 
+        bool _ShouldSaveResult=true;
+        public bool ShouldSaveResult
+        {
+            get
+            {
+                if (!IsHuman)
+                    return false;
+                return _ShouldSaveResult;
+            }
+            set
+            {
+                _ShouldSaveResult = value;
+                NotifyPropertyChanged("ShouldSaveResult");
+            }
+        }
 
             
         /// <summary>
@@ -235,8 +249,18 @@ namespace Sanet.Kniffel.Models
             {
                 return Messages.PLAYER_PASSWORD_REMEMBER.Localize();
             }
-        }   
+        }
 
+        /// <summary>
+        /// Label for 'save results to leaderboard'
+        /// </summary>
+        public string PlayerSaveScoreLabelLocalized
+        {
+            get
+            {
+                return Messages.PLAYER_SAVE_SCORE.Localize();
+            }
+        }   
         
         private List<RollResult> _Results;
         public List<RollResult> Results
@@ -252,11 +276,134 @@ namespace Sanet.Kniffel.Models
             }
         }
 
+        
+        private int _Roll=1;
+        public int Roll
+        {
+            get { return _Roll; }
+            set
+            {
+                if (_Roll != value)
+                {
+                    if (value > 3)
+                        value = 3;
+                    if (value < 1)
+                        value = 1;
+                    _Roll = value;
+                    NotifyPropertyChanged("Roll");
+                }
+            }
+        }
+
+        //Scores in current game
+
+        /// <summary>
+        /// Total score
+        /// </summary>
+        public int Total
+        {
+            get
+            {
+                var results = (from r in Results where r.HasValue select r.Value).ToList();
+                return results.Sum() + Results.Count(f=>f.HasBonus)*100;
+            }
+        }
+
+        /// <summary>
+        /// Total score for numeric hands
+        /// </summary>
+        public int TotalNumeric
+        {
+            get
+            {
+                var results = (from r in Results where (r.IsNumeric && r.HasValue) select r.Value).ToList();
+                return results.Sum();
+            }
+        }
+        /// <summary>
+        /// posible scores for numeric hands which is not filled yet
+        /// </summary>
+        public int MaxRemainingNumeric
+        {
+            get
+            {
+                var results = (from r in Results where (!r.HasValue && r.IsNumeric) select r.MaxValue).ToList();
+                return results.Sum();
+            }
+        }
+        
 
         #endregion
 
         #region Methods
-        
+        /// <summary>
+        /// Calculates possible results for each combination
+        /// </summary>
+        public void CheckRollResults()
+        {
+            foreach (RollResult result in Results)
+            {
+                if (!result.HasValue)
+                {
+                    switch (result.ScoreType)
+                    {
+                        case KniffelScores.Ones:
+                            result.PossibleValue = Game.LastDiceResult.KniffelNumberScore(1);
+                            break;
+                        case KniffelScores.Twos:
+                            result.PossibleValue = Game.LastDiceResult.KniffelNumberScore(2);
+                            break;
+                        case KniffelScores.Threes:
+                            result.PossibleValue = Game.LastDiceResult.KniffelNumberScore(3);
+                            break;
+                        case KniffelScores.Fours:
+                            result.PossibleValue = Game.LastDiceResult.KniffelNumberScore(4);
+                            break;
+                        case KniffelScores.Fives:
+                            result.PossibleValue = Game.LastDiceResult.KniffelNumberScore(5);
+                            break;
+                        case KniffelScores.Sixs:
+                            result.PossibleValue = Game.LastDiceResult.KniffelNumberScore(6);
+                            break;
+                        case KniffelScores.ThreeOfAKind:
+                            result.PossibleValue = Game.LastDiceResult.KniffelOfAKindScore(3);
+                            break;
+                        case KniffelScores.FourOfAKind:
+                            result.PossibleValue = Game.LastDiceResult.KniffelOfAKindScore(4);
+                            break;
+                        case KniffelScores.FullHouse:
+                            result.PossibleValue = Game.LastDiceResult.KniffelFullHouseScore();
+                            break;
+                        case KniffelScores.SmallStraight:
+                            result.PossibleValue = Game.LastDiceResult.KniffelSmallStraightScore();
+                            break;
+                        case KniffelScores.LargeStraight:
+                            result.PossibleValue = Game.LastDiceResult.KniffelLargeStraightScore();
+                            break;
+                        case KniffelScores.Total:
+                            result.PossibleValue = Game.LastDiceResult.KniffelChanceScore();
+                            break;
+                        case KniffelScores.Kniffel:
+                            result.PossibleValue = Game.LastDiceResult.KniffelFiveOfAKindScore();
+                            break;
+                    }
+                }
+            }
+        }
+
+        public void UpdateTotal()
+        {
+            NotifyPropertyChanged("Total");
+        }
+
+        public void Init()
+        {
+            Roll = 1;
+            var results = new List<RollResult>();
+            foreach (var score in _Game.Rules.Scores)
+                results.Add(new RollResult { ScoreType = score });
+            Results = results;
+        }
 
         #endregion
 

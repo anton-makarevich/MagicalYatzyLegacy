@@ -44,12 +44,17 @@ namespace Sanet.Kniffel.Models
         public static void SaveLastPlayer(Player player, int index)
         {
             var valueKey = "LastPlayer" + index.ToString();
-            ApplicationDataCompositeValue value = new ApplicationDataCompositeValue();
-            value["strName"] = player.Name;
-            value["strPass"] = player.Password;
-            value["strType"] = player.Type.ToString();
-            value["boolPass"] = player.RememberPass;
-            roamingSettings.Values[valueKey] = value;
+            if (player != null)
+            {
+                ApplicationDataCompositeValue value = new ApplicationDataCompositeValue();
+                value["strName"] = player.Name;
+                value["strPass"] = player.Password;
+                value["strType"] = player.Type.ToString();
+                value["boolPass"] = player.RememberPass;
+                roamingSettings.Values[valueKey] = value;
+            }
+            else
+                roamingSettings.Values[valueKey] = null;
         }
 
         public static Rules LastRule

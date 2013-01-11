@@ -6,6 +6,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:common="using:Sanet.Common"
     xmlns:local="using:DicePokerRT"
+    xmlns:ad="using:AdDuplex.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates"
@@ -58,15 +59,25 @@
                 <Button x:Name="backButton" Click="GoBack" 
                         IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" 
                         Style="{StaticResource BackButtonStyle}"/>
+                    
+                <Grid Grid.Column="1"
+                  Grid.ColumnSpan="3"
+                    VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
                     <TextBlock Style="{StaticResource HeaderTextStyle}"
                    Foreground="{StaticResource SanetBlue}"
                    x:Name="titleText"
+                           VerticalAlignment="Center"
                    Text="{Binding Title}"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="3"
-                   Margin="120,0"
-                   VerticalAlignment="Center"/>
-
+                           TextTrimming="WordEllipsis"
+                  />
+                    <ad:AdControl 
+                    Grid.Column="1"
+                    AppId="30603" x:Name="adDuplexAd" Size="500x130" />
+                </Grid>
                 <StackPanel
                     Grid.Column="1"
                     Grid.Row="1"

@@ -16,6 +16,13 @@ namespace Sanet.Kniffel.Models
         public const string NEW_GAME_ADD_BOT = "AddBotLabel";
         public const string NEW_GAME_START_GAME = "StartGameButton";
 
+        public const string GAME_ROLL = "roll";
+        public const string GAME_CLEAR = "clear";
+        public const string GAME_MOVE = "MoveLabel";
+        public const string GAME_FINISHED = "GameFinishedLabel";
+        public const string GAME_WIN = "WinLabel";
+        public const string GAME_PLAY_AGAIN = "AgainLabel";
+
         public const string PLAYER_NAME = "PlayerNameLabel";
         public const string PLAYER_PASSWORD = "PlayerPasswordLabel";
         public const string PLAYER_TYPE = "PlayerTypeLabel";
@@ -23,6 +30,7 @@ namespace Sanet.Kniffel.Models
         public const string PLAYER_BOTNAME_DEFAULT = "BotNameDefault";
         public const string PLAYER_PASSWORD_REMEMBER = "PlayerRememberLabelLocalized";
         public const string PLAYER_HUMAN = "PlayerHumanLabelLocalized";
+        public const string PLAYER_SAVE_SCORE = "SaveScoreLabel";
         public const string PLAYER_BOT = "PlayerBotLabelLocalized";
     }
 }
