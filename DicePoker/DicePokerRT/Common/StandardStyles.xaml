@@ -1768,12 +1768,24 @@
               Width="60"
               Margin="0,-2,0,0" HorizontalAlignment="Stretch"
                Background="{Binding HasValue, Converter={StaticResource ColorKey}}"           >
-                <TextBlock Text="{Binding Value}" TextAlignment="Center"
+                <Grid
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch">
+                    <TextBlock Text="{Binding Value}" TextAlignment="Center"
                            Width="45" 
-                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                               VerticalAlignment="Center"
+                     HorizontalAlignment="Left" 
                      FontSize="16"
                            Visibility="{Binding HasValue,Converter={StaticResource BooleanKey}}"/>
-
+                    <TextBlock Text="+100" TextAlignment="Center"
+                           Width="45" 
+                     HorizontalAlignment="Right" 
+                               VerticalAlignment="Bottom"
+                               Margin="0,0,0,-3"
+                     FontSize="10"
+                           Visibility="{Binding HasBonus,Converter={StaticResource BooleanKey}}"/>
+                </Grid>
+                    
             </Grid> 
             </Border>
            

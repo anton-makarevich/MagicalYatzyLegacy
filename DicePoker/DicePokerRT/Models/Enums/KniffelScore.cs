@@ -8,12 +8,12 @@ namespace Sanet.Kniffel.Models.Enums
 {
     public enum KniffelScores
     {
-        Ones,
-        Twos,
-        Threes,
-        Fours,
-        Fives,
-        Sixs,
+        Ones=1,
+        Twos=2,
+        Threes=3,
+        Fours=4,
+        Fives=5,
+        Sixs=6,
         Bonus,
         Total,
         FullHouse,

@@ -187,21 +187,34 @@ namespace Sanet.Kniffel.Models
                   lastRollResults[i] = fixedRollResults[i];
               }
               j = fixedRollResults.Count;
+            
             for (int i = j; i <= 4; i++)
             {
                 int ii = rand.Next(1, 7);//В цикл для нормальной игры, за циклом - только книффеля))
 
                 lastRollResults[i] = ii;
             }
+
+
+
             if (DiceRolled != null)
                 DiceRolled(this, new RollEventArgs(CurrentPlayer, lastRollResults));
 
         }
         public void ApplyScore(RollResult result)
         {
+            
+            //check for kniffel bonus
+            if (Rules.Rule == Models.Rules.krExtended && result.ScoreType!= KniffelScores.Kniffel)
+            {
+                //check if already have kniffel
+                var kresult = CurrentPlayer.Results.Find(f => f.ScoreType == KniffelScores.Kniffel);
+                result.HasBonus = LastDiceResult.KniffelFiveOfAKindScore() == 50;
+            }
+            //sending result to everyone
             if (ResultApplied != null)
                 ResultApplied(this, new ResultEventArgs(CurrentPlayer, result));
-            //check for bonus and apply it
+            //check for numeric bonus and apply it
             if (Rules.Rule == Models.Rules.krExtended || Rules.Rule == Models.Rules.krStandard)
             {
                 if (result.IsNumeric && !CurrentPlayer.Results.Find(f=>f.ScoreType== KniffelScores.Bonus).HasValue)

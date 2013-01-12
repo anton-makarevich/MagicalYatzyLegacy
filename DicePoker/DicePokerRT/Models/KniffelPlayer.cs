@@ -276,6 +276,33 @@ namespace Sanet.Kniffel.Models
             }
         }
 
+        public bool HasKniffel
+        {
+            get
+            {
+                if (Results != null)
+                {
+                    var kresult = Results.Find(f => f.ScoreType == KniffelScores.Kniffel);
+                    return kresult.Value==50;
+                    
+                }
+                return false;
+            }
+        }
+
+        public bool IsKniffelFilled
+        {
+            get 
+            {
+                if (Results!=null)
+                {
+                    var kresult = Results.Find(f => f.ScoreType == KniffelScores.Kniffel);
+                    return kresult.HasValue;
+                    //result.HasBonus = LastDiceResult.KniffelFiveOfAKindScore() == 50;
+                }
+                return false;
+            }
+        }
         
         private int _Roll=1;
         public int Roll
@@ -345,26 +372,11 @@ namespace Sanet.Kniffel.Models
             {
                 if (!result.HasValue)
                 {
+                    if (result.IsNumeric)
+                        result.PossibleValue = Game.LastDiceResult.KniffelNumberScore((int)result.ScoreType);
+                    else
                     switch (result.ScoreType)
                     {
-                        case KniffelScores.Ones:
-                            result.PossibleValue = Game.LastDiceResult.KniffelNumberScore(1);
-                            break;
-                        case KniffelScores.Twos:
-                            result.PossibleValue = Game.LastDiceResult.KniffelNumberScore(2);
-                            break;
-                        case KniffelScores.Threes:
-                            result.PossibleValue = Game.LastDiceResult.KniffelNumberScore(3);
-                            break;
-                        case KniffelScores.Fours:
-                            result.PossibleValue = Game.LastDiceResult.KniffelNumberScore(4);
-                            break;
-                        case KniffelScores.Fives:
-                            result.PossibleValue = Game.LastDiceResult.KniffelNumberScore(5);
-                            break;
-                        case KniffelScores.Sixs:
-                            result.PossibleValue = Game.LastDiceResult.KniffelNumberScore(6);
-                            break;
                         case KniffelScores.ThreeOfAKind:
                             result.PossibleValue = Game.LastDiceResult.KniffelOfAKindScore(3);
                             break;
@@ -372,12 +384,43 @@ namespace Sanet.Kniffel.Models
                             result.PossibleValue = Game.LastDiceResult.KniffelOfAKindScore(4);
                             break;
                         case KniffelScores.FullHouse:
+                           //if now kniffel extended rules and kniffel has value (0 or 50)
+                            if (IsKniffelFilled && Game.Rules.Rule == Rules.krExtended && Game.LastDiceResult.KniffelFiveOfAKindScore()==50)
+                            {
+                                //and numeric result corresponded to that kniffel also filled
+                                var nresult = Results.Find(f => f.ScoreType == (KniffelScores)Game.LastDiceResult.DiceResults[0]);
+                                if (nresult.HasValue)
+                                    result.PossibleValue = 25;//appying kniffel-joker
+                                else
+                                    result.PossibleValue = 0;
+                                break;
+                            }
                             result.PossibleValue = Game.LastDiceResult.KniffelFullHouseScore();
                             break;
                         case KniffelScores.SmallStraight:
+                            if (IsKniffelFilled && Game.Rules.Rule == Rules.krExtended && Game.LastDiceResult.KniffelFiveOfAKindScore()==50)
+                            {
+                                //and numeric result corresponded to that kniffel also filled
+                                var nresult = Results.Find(f => f.ScoreType == (KniffelScores)Game.LastDiceResult.DiceResults[0]);
+                                if (nresult.HasValue)
+                                    result.PossibleValue = 30;//appying kniffel-joker
+                                else
+                                    result.PossibleValue = 0;
+                                break;
+                            }
                             result.PossibleValue = Game.LastDiceResult.KniffelSmallStraightScore();
                             break;
                         case KniffelScores.LargeStraight:
+                            if (IsKniffelFilled && Game.Rules.Rule == Rules.krExtended && Game.LastDiceResult.KniffelFiveOfAKindScore()==50)
+                            {
+                                //and numeric result corresponded to that kniffel also filled
+                                var nresult = Results.Find(f => f.ScoreType == (KniffelScores)Game.LastDiceResult.DiceResults[0]);
+                                if (nresult.HasValue)
+                                    result.PossibleValue = 40;//appying kniffel-joker
+                                else
+                                    result.PossibleValue = 0;
+                                break;
+                            }
                             result.PossibleValue = Game.LastDiceResult.KniffelLargeStraightScore();
                             break;
                         case KniffelScores.Total:
