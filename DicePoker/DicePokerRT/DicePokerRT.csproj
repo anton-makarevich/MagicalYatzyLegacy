@@ -154,6 +154,7 @@
     <Compile Include="Models\LocalizerExtensions.cs" />
     <Compile Include="Models\LocalSettings.cs" />
     <Compile Include="Models\Messages.cs" />
+    <Compile Include="Models\PlayerAIExtensions.cs" />
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="Models\RoamingSettings.cs" />
     <Compile Include="Models\ViewModelProvider.cs" />

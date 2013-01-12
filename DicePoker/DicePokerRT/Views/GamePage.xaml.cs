@@ -51,7 +51,8 @@ namespace DicePokerRT
 
         void dpBackground_DieFrozen(bool isfixed, int value)
         {
-            GetViewModel<PlayGameViewModel>().Game.FixDice(value, isfixed);
+            if (GetViewModel<PlayGameViewModel>().SelectedPlayer.IsHuman)
+                GetViewModel<PlayGameViewModel>().Game.FixDice(value, isfixed);
         }
 
         /// <summary>
@@ -66,9 +67,16 @@ namespace DicePokerRT
             GetViewModel<PlayGameViewModel>().Game.DiceRolled += Game_DiceRolled;
             GetViewModel<PlayGameViewModel>().Game.MoveChanged += Game_MoveChanged;
             GetViewModel<PlayGameViewModel>().Game.GameFinished += Game_GameFinished;
+            GetViewModel<PlayGameViewModel>().Game.DiceFixed += Game_DiceFixed;
             GetViewModel<PlayGameViewModel>().PropertyChanged += GamePage_PropertyChanged;
             gridResults.Visibility = Visibility.Collapsed;
             dpBackground.Visibility = Visibility.Visible;
+        }
+
+        void Game_DiceFixed(object sender, Sanet.Kniffel.Models.Events.FixDiceEventArgs e)
+        {
+            if (!GetViewModel<PlayGameViewModel>().SelectedPlayer.IsHuman)
+                dpBackground.FixDice(e.Value);
         }
 
         void Game_GameFinished(object sender, EventArgs e)
@@ -80,6 +88,8 @@ namespace DicePokerRT
         void Game_MoveChanged(object sender, Sanet.Kniffel.Models.Events.MoveEventArgs e)
         {
             dpBackground.ClearFreeze();
+            if (GetViewModel<PlayGameViewModel>().SelectedPlayer.IsBot)
+                GetViewModel<PlayGameViewModel>().Game.ReportRoll();
         }
 
         void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -98,6 +108,7 @@ namespace DicePokerRT
             GetViewModel<PlayGameViewModel>().Game.DiceRolled -= Game_DiceRolled;
             GetViewModel<PlayGameViewModel>().Game.MoveChanged -= Game_MoveChanged;
             GetViewModel<PlayGameViewModel>().Game.GameFinished -= Game_GameFinished;
+            GetViewModel<PlayGameViewModel>().Game.DiceFixed -= Game_DiceFixed;
             GetViewModel<PlayGameViewModel>().RemoveGameHandlers();
 
             dpBackground.DieFrozen -= dpBackground_DieFrozen;

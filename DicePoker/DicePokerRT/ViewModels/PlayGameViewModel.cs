@@ -301,11 +301,12 @@ namespace Sanet.Kniffel.ViewModels
         {
             SetCanRoll(true);
             NotifyPlayerChanged();
+            
         }
 
         void Game_GameFinished(object sender, EventArgs e)
         {
-            Utilities.ShowToastNotification("GAMOVER vsem");
+            //Utilities.ShowToastNotification("GAMOVER vsem");
             SetCanRoll(false);
             NotifyPlayerChanged();
             if (IsPlayerSelected)
@@ -345,11 +346,27 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         public void OnRollEnd()
         {
+            
+            bool lastRoll =SelectedPlayer.Roll == 3;
+
             SetCanRoll(SelectedPlayer.Roll < 3);
             SelectedPlayer.Roll++;
 
             RollResults = SelectedPlayer.Results.Where(f => !f.HasValue && f.ScoreType != KniffelScores.Bonus).ToList();
             NotifyPlayerChanged();
+
+            //if bot
+            if (SelectedPlayer.IsBot)
+            {
+                if ( lastRoll|| !SelectedPlayer.AINeedRoll())
+                    SelectedPlayer.AIDecideFill();
+                else
+                {
+                    SelectedPlayer.AIFixDices();
+                    Game.ReportRoll();
+                }
+            }
+            
         }
         /// <summary>
         /// method to check if player can manually roll dices

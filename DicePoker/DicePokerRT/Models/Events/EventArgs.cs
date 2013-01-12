@@ -49,7 +49,7 @@ namespace Sanet.Kniffel.Models.Events
     {
         //dice with value to fix
         int _Value;
-        public int Move
+        public int Value
         {
             get
             {

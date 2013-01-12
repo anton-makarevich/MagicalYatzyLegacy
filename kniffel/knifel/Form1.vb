@@ -1981,6 +1981,73 @@ RollNow:
                 Return frmMain.dcPanel.YhatzeeeChanceScore
         End Select
     End Function
+    Private Sub AIDecideFill()
+
+        Dim i, j As Integer
+        Dim n(6) As Integer
+
+        'сколько кубикоков с каждым значением
+        For i = 1 To 6
+            n(i) = frmMain.dcPanel.YhatzeeNumberScore(i) / i
+        Next
+        'проверка на книффель
+        If Scores(0) = -1 And Now(0) = 50 Then
+            FillNumbers(0)
+            Exit Sub
+        End If
+        'проверка на фн
+        If Scores(9) = -1 And Now(0) = 25 Then
+            FillNumbers(9)
+            Exit Sub
+        End If
+
+        If Scores(6) = -1 And n(6) = 4 Then
+            FillNumbers(6)
+            Exit Sub
+        End If
+
+        For i = 11 To 9 Step -1
+            If Scores(i) = -1 And Now(i) >= ScoresMin(i) Then
+                FillNumbers(i)
+                Exit Sub
+            End If
+        Next
+        For i = 8 To 7 Step -1
+            If Scores(i) = -1 And Now(i) >= (ScoresMin(i) - Math.Round((frmMain.iMove - 1) / 2, 0)) Then
+                FillNumbers(i)
+                Exit Sub
+            End If
+        Next
+
+        For j = 5 To 1 Step -1
+            For i = 1 To 6 'Step -1
+                If Scores(i) = -1 And n(i) >= j Then
+                    FillNumbers(i)
+                    Exit Sub
+                End If
+            Next
+        Next
+        If Scores(12) = -1 And Now(12) >= (ScoresMin(12) - Math.Round((frmMain.iMove - 1) / 2, 0)) Then
+            FillNumbers(12)
+            Exit Sub
+        End If
+        For i = 8 To 7 Step -1
+            If Scores(i) = -1 And Now(i) > 0 Then
+                FillNumbers(i)
+                Exit Sub
+            End If
+        Next
+        For i = 1 To 12
+            If Scores(i) = -1 Then
+                FillNumbers(i)
+                Exit Sub
+            End If
+        Next
+        If Scores(0) = -1 Then
+            FillNumbers(0)
+            Exit Sub
+        End If
+    End Sub
     Private Sub AIFixDices()
         Dim Fixed As Boolean = False
         Dim i, j, l As Integer

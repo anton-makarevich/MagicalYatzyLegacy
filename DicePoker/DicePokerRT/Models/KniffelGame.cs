@@ -158,15 +158,21 @@ namespace Sanet.Kniffel.Models
                 }
             
         }
+        
         /// <summary>
-        /// 
+        /// fix singe dice with value
         /// </summary>
         /// <param name="value"></param>
         /// <param name="isfixed"></param>
         public void FixDice(int value, bool isfixed)
         {
             if (isfixed)
-                fixedRollResults.Add(value);
+            {
+                int count = LastDiceResult.NumDiceOf(value);
+                int fixedcount = fixedRollResults.Count(f => f == value);
+                if (count>fixedcount)
+                    fixedRollResults.Add(value);
+            }
             else
             {
                 if (fixedRollResults.Contains(value))
@@ -175,6 +181,38 @@ namespace Sanet.Kniffel.Models
             if (DiceFixed != null)
                 DiceFixed(this, new FixDiceEventArgs(CurrentPlayer, value,isfixed ));
         }
+
+        /// <summary>
+        /// fix all dice with value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="isfixed"></param>
+        public void FixAllDices(int value, bool isfixed)
+        {
+            
+            if (isfixed)
+            {
+                int count = LastDiceResult.NumDiceOf(value);
+                int fixedcount = fixedRollResults.Count(f => f == value);
+                for (int i = 0; i < (count - fixedcount); i++)
+                {
+                    fixedRollResults.Add(value);
+                    if (DiceFixed != null)
+                        DiceFixed(this, new FixDiceEventArgs(CurrentPlayer, value, isfixed));
+                }
+            }
+            else
+            {
+                while (fixedRollResults.Contains(value))
+                {
+                    fixedRollResults.Remove(value);
+                    if (DiceFixed != null)
+                        DiceFixed(this, new FixDiceEventArgs(CurrentPlayer, value, isfixed));
+                }
+            }
+            
+        }
+
         /// <summary>
         /// Player wants to move. generating value here with network play in mind
         /// </summary>
@@ -208,7 +246,7 @@ namespace Sanet.Kniffel.Models
             if (Rules.Rule == Models.Rules.krExtended && result.ScoreType!= KniffelScores.Kniffel)
             {
                 //check if already have kniffel
-                var kresult = CurrentPlayer.Results.Find(f => f.ScoreType == KniffelScores.Kniffel);
+                var kresult = CurrentPlayer.GetResultForScore( KniffelScores.Kniffel);
                 result.HasBonus = LastDiceResult.KniffelFiveOfAKindScore() == 50;
             }
             //sending result to everyone
@@ -292,6 +330,14 @@ namespace Sanet.Kniffel.Models
             player.Game = this;
             if (PlayerJoined != null)
                 PlayerJoined(this, new PlayerEventArgs(player));
+        }
+
+        /// <summary>
+        /// returns wheather we have at least one fixed dice of this value
+        /// </summary>
+        public bool IsDiceFiexed(int value)
+        {
+            return fixedRollResults.Contains(value);
         }
 
 #endregion

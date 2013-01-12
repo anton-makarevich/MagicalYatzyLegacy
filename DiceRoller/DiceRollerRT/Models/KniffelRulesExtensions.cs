@@ -69,67 +69,26 @@ namespace Sanet.Kniffel
             return result.Total;
         }
 
-        //public void XInRow(this DieResult result/*ref bool Fixed, int n = 3*/)
-        //{
-        ////    bool[] Fr = {
-        ////    false,
-        ////    false,
-        ////    false,
-        ////    false,
-        ////    false,
-        ////    false,
-        ////    false
-        ////};
-        //    int[] iOccur = new int[7];
-        //    int MinNum = 0;
-        //    foreach (int res in result.DiceResults)
-        //    {
-        //        iOccur[res] += 1;
-        //    }
+        public static int XInRow(this DieResult result, ref int count)
+        {
+            
+            int[] iOccur = new int[7];
+            count = 3;
+            foreach (int res in result.DiceResults)
+            {
+                iOccur[res] += 1;
+            }
+            for (int i = 1;i<5;i++)
+                if (iOccur[i] >= 1 & iOccur[i+1] >= 1 & iOccur[i+2] >= 1)
+                {
+                    if (i < 4 && iOccur[i + 3] >= 1)
+                        count = 4;
+                    return i;
 
-        //    if (iOccur[1] >= 1 & iOccur[2] >= 1 & iOccur[3] >= 1)
-        //    {
-        //        MinNum = 1;
+                }
 
-        //    }
-
-        //    if (iOccur[2] >= 1 & iOccur[3] >= 1 & iOccur[4] >= 1)
-        //    {
-        //        MinNum = 2;
-
-        //    }
-
-        //    if (iOccur[3] >= 1 & iOccur[4] >= 1 & iOccur[5] >= 1)
-        //    {
-        //        MinNum = 3;
-
-        //    }
-        //    if (iOccur[4] >= 1 & iOccur[5] >= 1 & iOccur[6] >= 1)
-        //    {
-        //        MinNum = 4;
-
-        //    }
-        //    if (!(MinNum == 0))
-        //    {
-        //        Fixed = true;
-        //        for (i = MinNum; i <= MinNum + n; i++)
-        //        {
-        //            foreach (Die d_loopVariable in aDice)
-        //            {
-        //                d = d_loopVariable;
-        //                if (d.Result == i & i < 7)
-        //                {
-        //                    if (!Fr[i])
-        //                    {
-        //                        d.Frozen = true;
-        //                        Fr[i] = true;
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //}
+            return 0;
+        }
 
         public static int KniffelSmallStraightScore(this DieResult result/*bool ToFix, ref bool Fixed, int n = 3*/)
         {

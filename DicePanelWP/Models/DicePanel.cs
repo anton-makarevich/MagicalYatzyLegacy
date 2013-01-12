@@ -1080,6 +1080,11 @@ namespace Sanet.Kniffel.DicePanel
                 return 0;
             }
         }
+
+        public int NumDiceOf(int value)
+        {
+            return DiceResults.Count(f => f == value);
+        }
     }
     
         

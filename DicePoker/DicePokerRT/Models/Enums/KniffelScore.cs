@@ -14,19 +14,20 @@ namespace Sanet.Kniffel.Models.Enums
         Fours=4,
         Fives=5,
         Sixs=6,
+        ThreeOfAKind=7,
+        FourOfAKind=8,
+        FullHouse=9,
+        SmallStraight=10,
+        LargeStraight=11,
+        Total=12,
+        Kniffel=13,
         Bonus,
-        Total,
-        FullHouse,
-        LargeStraight,
-        SmallStraight,
         ThreeInRow,
         FourInRow,
         OfAKind,
         Pairs,
         TwoPairs,
-        OnePair,
-        Kniffel,
-        ThreeOfAKind,
-        FourOfAKind
+        OnePair
+        
     }
 }

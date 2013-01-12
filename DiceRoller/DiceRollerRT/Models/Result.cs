@@ -46,7 +46,10 @@ namespace Sanet.Kniffel.Models
             }
         }
 
-        //maximum value for scoretype
+        
+        /// <summary>
+        /// maximum value for scoretype
+        /// </summary>
         public int MaxValue
         {
             get 
@@ -91,8 +94,9 @@ namespace Sanet.Kniffel.Models
             
         }
 
-        //possible value
-        
+        ///summary>
+        /// possible value after roll
+        /// </summary>
         private int _PossibleValue;
         public int PossibleValue
         {
