@@ -32,20 +32,31 @@ namespace DicePokerRT
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            dpBackground.PanelStyle = Sanet.Kniffel.DicePanel.dpStyle.dpsBlue;
+            Window.Current.SizeChanged += Current_SizeChanged;
+            dpBackground.PanelStyle = GetViewModel<PlayGameViewModel>().SettingsPanelStyle;
             dpBackground.TreeDScaleCoef = 0.38;
             dpBackground.NumDice = 5;
-            dpBackground.RollDelay = 15;
-            dpBackground.DieAngle = 3;
-            dpBackground.MaxRollLoop = 40;
+            dpBackground.RollDelay = GetViewModel<PlayGameViewModel>().SettingsPanelSpeed;
+            dpBackground.DieAngle = GetViewModel<PlayGameViewModel>().SettingsPanelAngle;
+            dpBackground.MaxRollLoop = 20;
             dpBackground.ClickToFreeze = false;
 
             dpBackground.DieFrozen += dpBackground_DieFrozen;
             dpBackground.EndRoll += dpBackground_EndRoll;
+
+            
+            GetViewModel<PlayGameViewModel>().Game.StartGame();
+        }
+
+        void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        {
+            GetViewModel<PlayGameViewModel>().UpdateDPWidth();
         }
 
         void dpBackground_EndRoll()
         {
+            //if (GetViewModel<PlayGameViewModel>().SelectedPlayer.IsBot)
+            //    dpBackground.ClearFreeze();
             GetViewModel<PlayGameViewModel>().OnRollEnd();
         }
 
@@ -63,12 +74,14 @@ namespace DicePokerRT
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             SetViewModel<PlayGameViewModel>();
-            GetViewModel<PlayGameViewModel>().Game.StartGame();
+            
             GetViewModel<PlayGameViewModel>().Game.DiceRolled += Game_DiceRolled;
             GetViewModel<PlayGameViewModel>().Game.MoveChanged += Game_MoveChanged;
             GetViewModel<PlayGameViewModel>().Game.GameFinished += Game_GameFinished;
             GetViewModel<PlayGameViewModel>().Game.DiceFixed += Game_DiceFixed;
             GetViewModel<PlayGameViewModel>().PropertyChanged += GamePage_PropertyChanged;
+            
+
             gridResults.Visibility = Visibility.Collapsed;
             dpBackground.Visibility = Visibility.Visible;
         }
@@ -96,6 +109,13 @@ namespace DicePokerRT
         {
             if (e.PropertyName == "CanFix")
                 dpBackground.ClickToFreeze = GetViewModel<PlayGameViewModel>().CanFix;
+            if (e.PropertyName == "SettingsPanelAngle")
+                dpBackground.DieAngle = GetViewModel<PlayGameViewModel>().SettingsPanelAngle;
+            if (e.PropertyName == "SettingsPanelSpeed")
+                dpBackground.RollDelay = GetViewModel<PlayGameViewModel>().SettingsPanelSpeed;
+            if (e.PropertyName == "SettingsPanelStyle")
+                dpBackground.PanelStyle = GetViewModel<PlayGameViewModel>().SettingsPanelStyle;
+            
         }
 
         void Game_DiceRolled(object sender, Sanet.Kniffel.Models.Events.RollEventArgs e)
@@ -104,6 +124,7 @@ namespace DicePokerRT
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            Window.Current.SizeChanged -= Current_SizeChanged;
             GetViewModel<PlayGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
             GetViewModel<PlayGameViewModel>().Game.DiceRolled -= Game_DiceRolled;
             GetViewModel<PlayGameViewModel>().Game.MoveChanged -= Game_MoveChanged;

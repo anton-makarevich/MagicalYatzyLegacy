@@ -431,6 +431,7 @@ namespace Sanet.Kniffel.Models
             var results = new List<RollResult>();
             foreach (var score in _Game.Rules.Scores)
                 results.Add(new RollResult { ScoreType = score });
+            IsMoving = false;
             Results = results;
         }
 

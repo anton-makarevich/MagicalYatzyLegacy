@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -74,6 +75,8 @@ namespace DicePokerRT
             }
             // Ensure the current window is active
             Window.Current.Activate();
+            //register for settings charm event
+            SettingsPane.GetForCurrentView().CommandsRequested += App_CommandsRequested;
         }
 
         /// <summary>
@@ -89,5 +92,32 @@ namespace DicePokerRT
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
+        #region settings
+
+        public static TaskPanePopup Settings;
+        private void App_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+            //options
+            SettingsCommand cmd2 = new SettingsCommand("Options", LocalizerExtensions.RModel.GetString("SettingsCaption/Text"), (command) =>
+            {
+                if (Settings == null)
+                {
+
+                    Settings = new TaskPanePopup(new SettingsPage());
+                }
+                Settings.Show();
+            });
+            
+            args.Request.ApplicationCommands.Add(cmd2);
+            //about
+            //SettingsCommand cmd3 = new SettingsCommand("About", resProvider.GetString("AboutCaption/Text"), (command) =>
+            //{
+            //    ((Frame)Window.Current.Content).Navigate(typeof(AboutPage));
+            //});
+
+            //args.Request.ApplicationCommands.Add(cmd3);
+
+        }
+        #endregion
     }
 }

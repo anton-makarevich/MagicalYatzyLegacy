@@ -11,45 +11,41 @@ namespace Sanet.Kniffel.ViewModels
 {
     public class SettingsViewModel:BaseViewModel
     {
-        public ResourceModel RModel;
-
-        public SettingsViewModel(ResourceModel rmodel)
+        public SettingsViewModel()
         {
-            RModel = rmodel;
         }
 
-        public SettingsModel Settings = new SettingsModel();
         #region bind props
         //main props from model
         public int DiceNumber
         {
             get 
             {
-                return Settings.DiceNumber;
+                return 5;//Settings.DiceNumber;
             }
             set
             {
-                Settings.DiceNumber = value;
-                Settings.Save();
-                NotifyPropertyChanged("DiceNumber");
-                NotifyPropertyChanged("IsNum1");
-                NotifyPropertyChanged("IsNum2");
-                NotifyPropertyChanged("IsNum3");
-                NotifyPropertyChanged("IsNum4");
-                NotifyPropertyChanged("IsNum5");
-                NotifyPropertyChanged("IsNum6");
+                //Settings.DiceNumber = value;
+                //Settings.Save();
+                //NotifyPropertyChanged("DiceNumber");
+                //NotifyPropertyChanged("IsNum1");
+                //NotifyPropertyChanged("IsNum2");
+                //NotifyPropertyChanged("IsNum3");
+                //NotifyPropertyChanged("IsNum4");
+                //NotifyPropertyChanged("IsNum5");
+                //NotifyPropertyChanged("IsNum6");
             }
         }
         public int DiceAngle
         {
             get
             {
-                return Settings.DiceAngle;
+                return RoamingSettings.DiceAngle;
             }
             set
             {
-                Settings.DiceAngle = value;
-                Settings.Save();
+                RoamingSettings.DiceAngle = value;
+                //RoamingSettings.Save();
                 NotifyPropertyChanged("DiceAngle");
                 NotifyPropertyChanged("IsAngLow");
                 NotifyPropertyChanged("IsAngHigh");
@@ -60,12 +56,12 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return Settings.DiceSpeed;
+                return RoamingSettings.DiceSpeed;
             }
             set
             {
-                Settings.DiceSpeed = value;
-                Settings.Save();
+                RoamingSettings.DiceSpeed = value;
+                //Settings.Save();
                 NotifyPropertyChanged("DiceSpeed");
                 NotifyPropertyChanged("IsSpeedVerySlow");
                 NotifyPropertyChanged("IsSpeedSlow");
@@ -77,12 +73,12 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return Settings.DiceStyle;
+                return RoamingSettings.DiceStyle;
             }
             set
             {
-                Settings.DiceStyle = value;
-                Settings.Save();
+                RoamingSettings.DiceStyle = value;
+                //Settings.Save();
                 NotifyPropertyChanged("DiceStyle");
                 NotifyPropertyChanged("IsStyleBlue");
                 NotifyPropertyChanged("IsStyleRed");

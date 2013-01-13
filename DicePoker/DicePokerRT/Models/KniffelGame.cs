@@ -166,20 +166,23 @@ namespace Sanet.Kniffel.Models
         /// <param name="isfixed"></param>
         public void FixDice(int value, bool isfixed)
         {
-            if (isfixed)
+            lock (syncRoot)
             {
-                int count = LastDiceResult.NumDiceOf(value);
-                int fixedcount = fixedRollResults.Count(f => f == value);
-                if (count>fixedcount)
-                    fixedRollResults.Add(value);
+                if (isfixed)
+                {
+                    int count = LastDiceResult.NumDiceOf(value);
+                    int fixedcount = fixedRollResults.Count(f => f == value);
+                    if (count > fixedcount)
+                        fixedRollResults.Add(value);
+                }
+                else
+                {
+                    if (fixedRollResults.Contains(value))
+                        fixedRollResults.Remove(value);
+                }
+                if (DiceFixed != null)
+                    DiceFixed(this, new FixDiceEventArgs(CurrentPlayer, value, isfixed));
             }
-            else
-            {
-                if (fixedRollResults.Contains(value))
-                    fixedRollResults.Remove(value);
-            }
-            if (DiceFixed != null)
-                DiceFixed(this, new FixDiceEventArgs(CurrentPlayer, value,isfixed ));
         }
 
         /// <summary>
@@ -189,25 +192,27 @@ namespace Sanet.Kniffel.Models
         /// <param name="isfixed"></param>
         public void FixAllDices(int value, bool isfixed)
         {
-            
-            if (isfixed)
+            lock (syncRoot)
             {
-                int count = LastDiceResult.NumDiceOf(value);
-                int fixedcount = fixedRollResults.Count(f => f == value);
-                for (int i = 0; i < (count - fixedcount); i++)
+                if (isfixed)
                 {
-                    fixedRollResults.Add(value);
-                    if (DiceFixed != null)
-                        DiceFixed(this, new FixDiceEventArgs(CurrentPlayer, value, isfixed));
+                    int count = LastDiceResult.NumDiceOf(value);
+                    int fixedcount = fixedRollResults.Count(f => f == value);
+                    for (int i = 0; i < (count - fixedcount); i++)
+                    {
+                        fixedRollResults.Add(value);
+                        if (DiceFixed != null)
+                            DiceFixed(this, new FixDiceEventArgs(CurrentPlayer, value, isfixed));
+                    }
                 }
-            }
-            else
-            {
-                while (fixedRollResults.Contains(value))
+                else
                 {
-                    fixedRollResults.Remove(value);
-                    if (DiceFixed != null)
-                        DiceFixed(this, new FixDiceEventArgs(CurrentPlayer, value, isfixed));
+                    while (fixedRollResults.Contains(value))
+                    {
+                        fixedRollResults.Remove(value);
+                        if (DiceFixed != null)
+                            DiceFixed(this, new FixDiceEventArgs(CurrentPlayer, value, isfixed));
+                    }
                 }
             }
             
@@ -219,25 +224,27 @@ namespace Sanet.Kniffel.Models
         /// <param name="player"></param>
         public void ReportRoll()
         {
-              int j = 0;
-              for (int i = j; i < fixedRollResults.Count; i++)
-              {
-                  lastRollResults[i] = fixedRollResults[i];
-              }
-              j = fixedRollResults.Count;
-            
-            for (int i = j; i <= 4; i++)
+            lock (syncRoot)
             {
-                int ii = rand.Next(1, 7);//В цикл для нормальной игры, за циклом - только книффеля))
+                int j = 0;
+                for (int i = j; i < fixedRollResults.Count; i++)
+                {
+                    lastRollResults[i] = fixedRollResults[i];
+                }
+                j = fixedRollResults.Count;
 
-                lastRollResults[i] = ii;
+                for (int i = j; i <= 4; i++)
+                {
+                    int ii = rand.Next(1, 7);//В цикл для нормальной игры, за циклом - только книффеля))
+
+                    lastRollResults[i] = ii;
+                }
+                //lastRollResults = new int[] { 3, 3, 4, 5, 5 };//for debugging
+
+
+                if (DiceRolled != null)
+                    DiceRolled(this, new RollEventArgs(CurrentPlayer, lastRollResults));
             }
-
-
-
-            if (DiceRolled != null)
-                DiceRolled(this, new RollEventArgs(CurrentPlayer, lastRollResults));
-
         }
         public void ApplyScore(RollResult result)
         {

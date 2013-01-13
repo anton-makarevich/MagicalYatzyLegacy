@@ -1,4 +1,5 @@
-﻿using Sanet.Kniffel.Models;
+﻿using Sanet.Kniffel.DicePanel;
+using Sanet.Kniffel.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,7 +72,47 @@ namespace Sanet.Kniffel.Models
             }
         }
 
-        
+        #region setting section
+        public static dpStyle DiceStyle
+        {
+            get
+            {
+                if (roamingSettings.Values["DiceStyle"] == null)
+                    roamingSettings.Values["DiceStyle"] = dpStyle.dpsBlue.ToString();
+                return ((dpStyle)Enum.Parse(typeof(dpStyle), (string)roamingSettings.Values["DiceStyle"]));
+            }
+            set 
+            {
+                roamingSettings.Values["DiceStyle"] = value.ToString();
+            }
+        }
+        public static int DiceSpeed
+        {
+            get
+            {
+                if (roamingSettings.Values["DiceSpeed"] == null)
+                    roamingSettings.Values["DiceSpeed"] = 5;
+                return (int)roamingSettings.Values["DiceSpeed"];
+            }
+            set
+            {
+                roamingSettings.Values["DiceSpeed"] = value;
+            }
+        }
+        public static int DiceAngle 
+        {
+            get
+            {
+                if (roamingSettings.Values["DiceAngle"] == null )
+                    roamingSettings.Values["DiceAngle"] = 0;
+                return (int)roamingSettings.Values["DiceAngle"];
+            }
+            set
+            {
+                roamingSettings.Values["DiceAngle"] = value;
+            }
+        }
+        #endregion
 
     }
 

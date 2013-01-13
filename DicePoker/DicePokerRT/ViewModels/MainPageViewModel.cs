@@ -25,23 +25,23 @@ namespace Sanet.Kniffel.ViewModels
                         }),
                     Description = "NewLocalGameDescription"
                 });
-            MenuActions.Add(
-                new MainMenuAction
-                {
-                    Label = "NewOnlineGameAction",
-                    MenuAction = new Action(() =>
-                    {
-                        Utilities.ShowToastNotification(Messages.NETWORK_GAME_IS_NOT_READY.Localize());
-                    }),
-                    Description = "NewOnlineGameDescription"
-                });
+            //MenuActions.Add(
+            //    new MainMenuAction
+            //    {
+            //        Label = "NewOnlineGameAction",
+            //        MenuAction = new Action(() =>
+            //        {
+            //            Utilities.ShowToastNotification(Messages.NETWORK_GAME_IS_NOT_READY.Localize());
+            //        }),
+            //        Description = "NewOnlineGameDescription"
+            //    });
             MenuActions.Add(
                 new MainMenuAction
                 {
                     Label = "SettingsAction",
                     MenuAction = new Action(() =>
                     {
-                        Utilities.ShowToastNotification("SettingsClicked");
+                        CommonNavigationActions.NavigateToSettingsPage();
                     }),
                     Description = "SettingsDescription"
                 });

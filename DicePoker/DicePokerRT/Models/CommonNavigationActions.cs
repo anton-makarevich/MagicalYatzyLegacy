@@ -1,4 +1,5 @@
 ﻿using DicePokerRT;
+using Sanet.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,21 @@ namespace Sanet.Kniffel.Models
             }
 
         }
-        
+        public static Action NavigateToSettingsPage
+        {
+            get
+            {
+                return new Action(() =>
+                {
+                    if (App.Settings == null)
+                    {
+
+                        App.Settings = new TaskPanePopup(new SettingsPage());
+                    }
+                    App.Settings.Show();
+                });
+            }
+
+        }
     }
 }

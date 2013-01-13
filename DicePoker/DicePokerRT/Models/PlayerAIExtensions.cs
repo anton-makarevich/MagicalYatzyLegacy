@@ -20,12 +20,10 @@ namespace Sanet.Kniffel.Models
 
             //this converted from my old vb kniffel game
 
-            int i = 0;
-            int j = 0;
             int[] n = new int[7];
 
             //сколько кубикоков с каждым значением
-            for (i = 1; i <= 6; i++)
+            for (int i = 1; i <= 6; i++)
             {
                 n[i] = player.Game.LastDiceResult.KniffelNumberScore(i) / i;
             }
@@ -54,7 +52,7 @@ namespace Sanet.Kniffel.Models
             }
             
             //checking poker hands LS, SS, FH
-            for (i = 11; i >= 9; i += -1)
+            for (int i = 11; i >= 9; i += -1)
             {
                 result = player.GetResultForScore((KniffelScores)i);
                 if (result != null && !result.HasValue && result.PossibleValue >= result.MinValue())
@@ -65,7 +63,7 @@ namespace Sanet.Kniffel.Models
             }
             
             //4 and 3 in a row
-            for (i = 8; i >= 7; i += -1)
+            for (int i = 8; i >= 7; i += -1)
             {
                 result = player.GetResultForScore((KniffelScores)i);
                 if (result != null && !result.HasValue && result.PossibleValue >= result.MinValue() - (int)((player.Game.Move - 1) / 2))
@@ -75,10 +73,10 @@ namespace Sanet.Kniffel.Models
                 }
             }
             //numerics 
-            for (j = 5; j >= 1; j += -1)
+            for (int j = 5; j >= 1; j += -1)
             {
                 //Step -1
-                for (i = 1; i <= 6; i++)
+                for (int i = 1; i <= 6; i++)
                 {
                     result = player.GetResultForScore((KniffelScores)i);
                     if (result != null && !result.HasValue && n[i] >= j)
@@ -96,7 +94,7 @@ namespace Sanet.Kniffel.Models
                 return;
             }
             //once again 4 and 3in row
-            for (i = 8; i >= 7; i += -1)
+            for (int i = 8; i >= 7; i += -1)
             {
                 result = player.GetResultForScore((KniffelScores)i);
                 if (result != null && !result.HasValue && result.PossibleValue >  0)
@@ -106,7 +104,7 @@ namespace Sanet.Kniffel.Models
                 }
             }
             //if not filled - filling at least anything including 0
-            for (i = 1; i <= 12; i++)
+            for (int i = 1; i <= 12; i++)
             {
                 result = player.GetResultForScore((KniffelScores)i);
                 if (result != null && !result.HasValue)
@@ -144,27 +142,26 @@ namespace Sanet.Kniffel.Models
                 result = player.GetResultForScore((KniffelScores)i);
                 if (result != null && !result.HasValue && n[i] > 2)
                 {
-                    foreach (int value in n)
-                        player.Game.FixDice(value, true);
+                    player.Game.FixAllDices(i, true);
                     return;
                 }
             }
 
             //проверяем нужны ли подряд и если больше трех отмечаем
             result = player.GetResultForScore(KniffelScores.LargeStraight);
-            var result2 = player.GetResultForScore(KniffelScores.SmallStraight);
-            if ((result != null && !result.HasValue) || (result2 != null && !result2.HasValue))
+            //var result2 = player.GetResultForScore(KniffelScores.SmallStraight);
+            if ((result != null && !result.HasValue) /*|| (result2 != null && !result2.HasValue)*/)
             {
                 int count=0;//count of dices in row (3 || 4)
                 int first =player.Game.LastDiceResult.XInRow(ref count);//first dice in row
                 if (first > 0)
                 {
-                    for (int i = first; i <= first + count; i++)
+                    for (int i = first; i < first + count; i++)
                     {
                         if (!player.Game.IsDiceFiexed(i))
                             player.Game.FixDice(i, true);
                     }
-                    
+                    return;
                 }
             }
             
@@ -190,7 +187,7 @@ namespace Sanet.Kniffel.Models
                 for (int i = 6; i >= 1; i += -1)
                 {
                     //not clear with this condition
-                    //if more then 2 same and  
+                    //if more then 2 same or numerics filled (why?) 
                     if (j > 2 | player.AllNumericFilled)
                     {
                         if (!player.IsScoreFilled(KniffelScores.Kniffel) |
@@ -219,11 +216,11 @@ namespace Sanet.Kniffel.Models
                     }
                 }
             }
-            if (!player.IsScoreFilled(KniffelScores.Kniffel))
+            if (!player.IsScoreFilled(KniffelScores.Total))
             {
-                for (int i = 6; i >= 5; i += -1)
+                for (int i = 6; i >= 4; i += -1)
                 {
-                    player.Game.FixDice(i, true);
+                    player.Game.FixAllDices(i, true);
                 }
             }
         }

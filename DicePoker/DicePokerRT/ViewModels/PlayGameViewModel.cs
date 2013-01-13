@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.System.UserProfile;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 
 namespace Sanet.Kniffel.ViewModels
@@ -185,16 +186,6 @@ namespace Sanet.Kniffel.ViewModels
                 return SelectedPlayer != null;
             }
         }
-
-        public double DicePanelRTWidth
-        {
-            get
-            {
-                if (Window.Current!=null && Players!=null)
-                    return Window.Current.Bounds.Width - 230 - (60 * Players.Count);
-                return 1238;
-            }
-        }
         
         private KniffelGame _Game;
         public KniffelGame Game
@@ -241,6 +232,80 @@ namespace Sanet.Kniffel.ViewModels
                 return null;
             }
             
+        }
+
+        /// <summary>
+        /// on window size change
+        /// </summary>
+        public void UpdateDPWidth()
+        {
+            NotifyPropertyChanged("DicePanelRTWidth");
+            NotifyPropertyChanged("DicePanelRTHeight");
+        }
+
+        /// <summary>
+        /// View state manadgment for dice panel
+        /// </summary>
+        public double DicePanelRTWidth
+        {
+            get
+            {
+                if (ApplicationView.Value == ApplicationViewState.FullScreenLandscape)
+                    return 1366 - 230 - (60 * Players.Count);
+                else if (ApplicationView.Value == ApplicationViewState.Filled)
+                    return 1024 - 230 - (60 * Players.Count);
+                else if (ApplicationView.Value == ApplicationViewState.FullScreenPortrait)
+                    return 768 - 230 - (60 * Players.Count);
+
+                return 1238;
+            }
+        }
+        public double DicePanelRTHeight
+        {
+            get
+            {
+                if (ApplicationView.Value == ApplicationViewState.FullScreenPortrait)
+                    return 1136;
+
+                return 538;
+            }
+        }
+
+        //Settings
+        
+        public int SettingsPanelAngle
+        {
+            get
+            {
+                return RoamingSettings.DiceAngle; 
+            }
+            
+        }
+
+        
+        public int SettingsPanelSpeed
+        {
+            get
+            { 
+                return RoamingSettings.DiceSpeed;
+            }
+            
+        }
+
+        public dpStyle SettingsPanelStyle
+        {
+            get
+            {
+                return RoamingSettings.DiceStyle;
+            }
+
+        }
+
+        public void NotifySettingsChanged()
+        {
+            NotifyPropertyChanged("SettingsPanelAngle");
+             NotifyPropertyChanged("SettingsPanelSpeed");
+             NotifyPropertyChanged("SettingsPanelStyle");
         }
 
         #endregion
@@ -363,6 +428,7 @@ namespace Sanet.Kniffel.ViewModels
                 else
                 {
                     SelectedPlayer.AIFixDices();
+                    
                     Game.ReportRoll();
                 }
             }
@@ -385,15 +451,19 @@ namespace Sanet.Kniffel.ViewModels
 
         public void SaveResults()
         {
-            foreach (Player p in Players)
+            try
             {
-                if (p.ShouldSaveResult)
+                foreach (Player p in Players)
                 {
-                    var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
-                    var ename = 
-                    ks.PutScoreIntoTableWithPicAsync(Encryptor.Encrypt(p.Name,33),Encryptor.Encrypt(p.Password,33),Encryptor.Encrypt(p.Total.ToString(),33), Encryptor.Encrypt(Game.Rules.ToString(),33),p.PicUrl);
+                    if (p.ShouldSaveResult)
+                    {
+                        var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+                        var ename =
+                        ks.PutScoreIntoTableWithPicAsync(Encryptor.Encrypt(p.Name, 33), Encryptor.Encrypt(p.Password, 33), Encryptor.Encrypt(p.Total.ToString(), 33), Encryptor.Encrypt(Game.Rules.ToString(), 33), p.PicUrl);
+                    }
                 }
             }
+            catch { }
         }
 
         public void PlayAgain()

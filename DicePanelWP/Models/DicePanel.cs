@@ -184,8 +184,8 @@ namespace Sanet.Kniffel.DicePanel
             get { return FMaxRollLoop; }
             set
             {
-                if (value < 50)
-                    value = 50;
+                if (value < 20)
+                    value = 20;
                 if (value > 150)
                     value = 150;
                 FMaxRollLoop = value;
@@ -538,6 +538,7 @@ namespace Sanet.Kniffel.DicePanel
                 if (d.Result == index)
                 {
                     d.Frozen = true;
+                    return;
                 }
             }
         }
