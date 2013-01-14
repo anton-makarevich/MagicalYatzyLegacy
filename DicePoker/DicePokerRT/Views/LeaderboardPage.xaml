@@ -38,13 +38,14 @@
                         <RowDefinition Height="130"/>
                         
                         <RowDefinition/>
-                    </Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
                 <Button x:Name="backButton" Click="GoBack" 
                         VerticalAlignment="Center"
                         IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" 
                         Style="{StaticResource BackButtonStyle}"/>
                     
-                <Grid Grid.Column="1"
+            <Grid Grid.Column="1"
                   Grid.ColumnSpan="3"
                     VerticalAlignment="Center"
                       x:Name="titleGrid">
@@ -84,24 +85,24 @@
                         <TextBlock Style="{StaticResource SubheaderTextStyle}"
                            HorizontalAlignment="Left"
                        Foreground="{StaticResource SanetBlue}"
-                       x:Uid="SettingsStyleCaption"
+                       Text="{Binding RulesBLabel}"
                        Grid.Row="0"
                        VerticalAlignment="Center"/>
                         <StackPanel
-                            Grid.Row="1">
+                            Grid.Row="1" Margin="0,0,100,0">
                             <Grid Height="30" Margin="5,5,0,0" HorizontalAlignment="Stretch"
                           >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="50"/>
-                                    <ColumnDefinition Width="203"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="204"/>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="80"/>
                                 </Grid.ColumnDefinitions>
                                 <Border Grid.Column="1"
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,1,2">
-                                                        <TextBlock Text="Player" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="White" 
                                                HorizontalAlignment="Left"
                                                TextAlignment="Left"
                                                TextWrapping="NoWrap"
@@ -112,7 +113,7 @@
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,1,2">
 
-                                                        <TextBlock Text="Games" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="White" 
                                                HorizontalAlignment="Left"
                                                TextAlignment="Left"
                                                Margin="5,0,0,0"
@@ -124,7 +125,7 @@
                                     BorderBrush="{StaticResource SanetBlue}"
                                 BorderThickness="0,0,1,2">
 
-                                                    <TextBlock Text="Total" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="White" 
                                            HorizontalAlignment="Left"
                                            TextAlignment="Left"
                                            Margin="5,0,0,0"
@@ -136,7 +137,7 @@
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,0,2">
 
-                                                        <TextBlock Text="Best" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="White" 
                                                HorizontalAlignment="Left"
                                                Margin="5,0,0,0"
                                                TextAlignment="Left"
@@ -146,9 +147,11 @@
                                 </Border>
                             </Grid>
                                     <ListView
+                                        SelectionMode="None"
+                                        IsHitTestVisible="False"
+                                        Background="Transparent"
                                  Margin="0" HorizontalAlignment="Stretch"
-                                    SelectionMode="None"
-                                    ItemsSource="{Binding Scores}"
+                                    ItemsSource="{Binding ScoresB}"
                                     ItemTemplate="{StaticResource TopPlayersTemplate}"
                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
@@ -161,31 +164,35 @@
                                 </ListView.ItemContainerStyle>
 
                         </ListView>
-                        </StackPanel>
+                        <ProgressRing 
+                            Foreground="{StaticResource SanetBlue}"
+                            Margin="50"
+                            IsActive="{Binding ScoresBLoading}"/>
+                    </StackPanel>
 
                         <TextBlock Style="{StaticResource SubheaderTextStyle}"
                            HorizontalAlignment="Left"
                        Foreground="{StaticResource SanetBlue}"
-                       x:Uid="SettingsStyleCaption"
+                       Text="{Binding RulesLabel}"
                        Grid.Row="0"
                                    Grid.Column="1"
                        VerticalAlignment="Center"/>
                         <StackPanel
                             Grid.Row="1"
-                            Grid.Column="1">
+                            Grid.Column="1"  Margin="0,0,100,0">
                             <Grid Height="30" Margin="5,5,0,0" HorizontalAlignment="Stretch"
                           >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="50"/>
-                                    <ColumnDefinition Width="203"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="204"/>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="80"/>
                                 </Grid.ColumnDefinitions>
                                 <Border Grid.Column="1"
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,1,2">
-                                    <TextBlock Text="Player" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="White" 
                                                HorizontalAlignment="Left"
                                                TextAlignment="Left"
                                                TextWrapping="NoWrap"
@@ -196,7 +203,7 @@
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,1,2">
 
-                                    <TextBlock Text="Games" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="White" 
                                                HorizontalAlignment="Left"
                                                TextAlignment="Left"
                                                Margin="5,0,0,0"
@@ -208,7 +215,7 @@
                                     BorderBrush="{StaticResource SanetBlue}"
                                 BorderThickness="0,0,1,2">
 
-                                    <TextBlock Text="Total" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="White" 
                                            HorizontalAlignment="Left"
                                            TextAlignment="Left"
                                            Margin="5,0,0,0"
@@ -220,7 +227,7 @@
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,0,2">
 
-                                    <TextBlock Text="Best" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="White" 
                                                HorizontalAlignment="Left"
                                                Margin="5,0,0,0"
                                                TextAlignment="Left"
@@ -232,6 +239,8 @@
                             <ListView
                                  Margin="0" HorizontalAlignment="Stretch"
                                     SelectionMode="None"
+                                IsHitTestVisible="False"
+                                IsItemClickEnabled="False"
                                     ItemsSource="{Binding Scores}"
                                     ItemTemplate="{StaticResource TopPlayersTemplate}"
                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -245,31 +254,35 @@
                                 </ListView.ItemContainerStyle>
 
                             </ListView>
-                        </StackPanel>
+                        <ProgressRing 
+                            Foreground="{StaticResource SanetBlue}"
+                            Margin="50"
+                            IsActive="{Binding ScoresLoading}"/>
+                    </StackPanel>
 
                         <TextBlock Style="{StaticResource SubheaderTextStyle}"
                            HorizontalAlignment="Left"
                        Foreground="{StaticResource SanetBlue}"
-                       x:Uid="SettingsStyleCaption"
+                       Text="{Binding RulesSLabel}"
                        Grid.Row="0"
                                    Grid.Column="2"
                        VerticalAlignment="Center"/>
                         <StackPanel
                             Grid.Row="2"
-                            Grid.Column="2">
+                            Grid.Column="2"  Margin="0,0,100,0">
                             <Grid Height="30" Margin="5,5,0,0" HorizontalAlignment="Stretch"
                           >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="50"/>
-                                    <ColumnDefinition Width="203"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="204"/>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="80"/>
                                 </Grid.ColumnDefinitions>
                                 <Border Grid.Column="1"
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,1,2">
-                                    <TextBlock Text="Player" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="White" 
                                                HorizontalAlignment="Left"
                                                TextAlignment="Left"
                                                TextWrapping="NoWrap"
@@ -280,7 +293,7 @@
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,1,2">
 
-                                    <TextBlock Text="Games" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="White" 
                                                HorizontalAlignment="Left"
                                                TextAlignment="Left"
                                                Margin="5,0,0,0"
@@ -292,7 +305,7 @@
                                     BorderBrush="{StaticResource SanetBlue}"
                                 BorderThickness="0,0,1,2">
 
-                                    <TextBlock Text="Total" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="White" 
                                            HorizontalAlignment="Left"
                                            TextAlignment="Left"
                                            Margin="5,0,0,0"
@@ -304,7 +317,7 @@
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,0,2">
 
-                                    <TextBlock Text="Best" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="White" 
                                                HorizontalAlignment="Left"
                                                Margin="5,0,0,0"
                                                TextAlignment="Left"
@@ -316,7 +329,8 @@
                             <ListView
                                  Margin="0" HorizontalAlignment="Stretch"
                                     SelectionMode="None"
-                                    ItemsSource="{Binding Scores}"
+                                IsHitTestVisible="False"
+                                    ItemsSource="{Binding ScoresS}"
                                     ItemTemplate="{StaticResource TopPlayersTemplate}"
                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
@@ -329,31 +343,35 @@
                                 </ListView.ItemContainerStyle>
 
                             </ListView>
-                        </StackPanel>
+                        <ProgressRing 
+                            Foreground="{StaticResource SanetBlue}"
+                            Margin="50"
+                            IsActive="{Binding ScoresSLoading}"/>
+                    </StackPanel>
 
                         <TextBlock Style="{StaticResource SubheaderTextStyle}"
                            HorizontalAlignment="Left"
                        Foreground="{StaticResource SanetBlue}"
-                       x:Uid="SettingsStyleCaption"
+                       Text="{Binding RulesELabel}"
                        Grid.Row="0"
                                    Grid.Column="3"
                        VerticalAlignment="Center"/>
                         <StackPanel
                             Grid.Row="1"
-                            Grid.Column="3">
+                            Grid.Column="3"  >
                             <Grid Height="30" Margin="5,5,0,0" HorizontalAlignment="Stretch"
                           >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="50"/>
-                                    <ColumnDefinition Width="203"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="204"/>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="80"/>
                                 </Grid.ColumnDefinitions>
                                 <Border Grid.Column="1"
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,1,2">
-                                    <TextBlock Text="Player" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="White" 
                                                HorizontalAlignment="Left"
                                                TextAlignment="Left"
                                                TextWrapping="NoWrap"
@@ -364,7 +382,7 @@
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,1,2">
 
-                                    <TextBlock Text="Games" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="White" 
                                                HorizontalAlignment="Left"
                                                TextAlignment="Left"
                                                Margin="5,0,0,0"
@@ -376,7 +394,7 @@
                                     BorderBrush="{StaticResource SanetBlue}"
                                 BorderThickness="0,0,1,2">
 
-                                    <TextBlock Text="Total" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="White" 
                                            HorizontalAlignment="Left"
                                            TextAlignment="Left"
                                            Margin="5,0,0,0"
@@ -388,7 +406,7 @@
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,0,2">
 
-                                    <TextBlock Text="Best" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="White" 
                                                HorizontalAlignment="Left"
                                                Margin="5,0,0,0"
                                                TextAlignment="Left"
@@ -400,7 +418,8 @@
                             <ListView
                                  Margin="0" HorizontalAlignment="Stretch"
                                     SelectionMode="None"
-                                    ItemsSource="{Binding Scores}"
+                                IsHitTestVisible="False"
+                                    ItemsSource="{Binding ScoresE}"
                                     ItemTemplate="{StaticResource TopPlayersTemplate}"
                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
@@ -413,11 +432,23 @@
                                 </ListView.ItemContainerStyle>
 
                             </ListView>
-                        </StackPanel>
+                        <ProgressRing 
+                            Foreground="{StaticResource SanetBlue}"
+                            Margin="50"
+                            IsActive="{Binding ScoresELoading}"/>
+                    </StackPanel>
 
                     </Grid>
                 </ScrollViewer>
-                
+                <HyperlinkButton
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    Foreground="{StaticResource SanetBlue}"
+                    Grid.Row="2"
+                    Grid.ColumnSpan="3"
+                    Content="{Binding NavigateToLeaderboardLabel}"
+                    NavigateUri="http://sanet.by/Kniffel"/>
             </Grid>
                 <Grid
                 x:Name="SnapGrid"
@@ -454,9 +485,6 @@
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="MinHeight">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="1366"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="groupsLayout" Storyboard.TargetProperty="Orientation">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="Vertical"/>
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="titleGrid" Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="648"/>

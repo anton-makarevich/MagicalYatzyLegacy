@@ -402,4 +402,16 @@
   <data name="WinLabel" xml:space="preserve">
     <value>won</value>
   </data>
+  <data name="AllRecordsLabel" xml:space="preserve">
+    <value>See whole leaderboard on the web</value>
+  </data>
+  <data name="PlayerBestScoreLabel" xml:space="preserve">
+    <value>Best</value>
+  </data>
+  <data name="PlayerGamesLabel" xml:space="preserve">
+    <value>Games</value>
+  </data>
+  <data name="PlayerTotalScoreLabel" xml:space="preserve">
+    <value>Total</value>
+  </data>
 </root>

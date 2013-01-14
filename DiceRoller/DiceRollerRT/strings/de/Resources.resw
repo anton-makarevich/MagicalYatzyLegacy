@@ -378,4 +378,16 @@
   <data name="WinLabel" xml:space="preserve">
     <value>выиграл </value>
   </data>
+  <data name="AllRecordsLabel" xml:space="preserve">
+    <value>Смотреть все рекорды в интенете</value>
+  </data>
+  <data name="PlayerBestScoreLabel" xml:space="preserve">
+    <value>Рекорд</value>
+  </data>
+  <data name="PlayerGamesLabel" xml:space="preserve">
+    <value>Игр</value>
+  </data>
+  <data name="PlayerTotalScoreLabel" xml:space="preserve">
+    <value>Очков</value>
+  </data>
 </root>

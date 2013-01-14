@@ -17,7 +17,7 @@ namespace Sanet.Kniffel.ViewModels
         #region Constructor
         public LeaderboardViewModel()
         {
-            GetScores();
+            //RefreshScores();
         }
         #endregion
 
@@ -29,62 +29,104 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return Messages.NEW_GAME_START.Localize();
+                return "LeaderboardAction".Localize();
             }
         }
+
         /// <summary>
-        /// Start button label
+        /// baby rules label
         /// </summary>
-        public string StartLabel
+        public string RulesBLabel
         {
             get
             {
-                return Messages.NEW_GAME_START_GAME.Localize();
+                return Rules.krBaby.ToString().Localize();
             }
         }
         /// <summary>
-        /// Players group label
-        /// </summary>
-        public string PlayersLabel
-        {
-            get
-            {
-                return Messages.NEW_GAME_PLAYERS.Localize();
-            }
-        }
-        /// <summary>
-        /// Ruless group label
+        /// simple rules label
         /// </summary>
         public string RulesLabel
         {
             get
             {
-                return Messages.NEW_GAME_RULES.Localize();
+                return Rules.krSimple.ToString().Localize();
             }
         }
         /// <summary>
-        /// Add Player appbar buton caption
+        /// standard rules label
         /// </summary>
-        public string AddPlayerLabel
+        public string RulesSLabel
         {
             get
             {
-                return Messages.NEW_GAME_ADD_HUMAN.Localize();
+                return Rules.krStandard.ToString().Localize();
             }
         }
         /// <summary>
-        /// Add Bot appbar buton caption
+        /// advanced rules label
         /// </summary>
-        public string AddBotLabel
+        public string RulesELabel
         {
             get
             {
-                return Messages.NEW_GAME_ADD_BOT.Localize();
+                return Rules.krExtended.ToString().Localize();
             }
         }
 
         /// <summary>
-        /// Players list
+        /// go to full leaderboard label
+        /// </summary>
+        public string NavigateToLeaderboardLabel
+        {
+            get
+            {
+                return Messages.LEADERBOARD_ALL_RECORDS.Localize();
+            }
+        }
+        /// <summary>
+        /// player name label
+        /// </summary>
+        public string PlayerNameLabel
+        {
+            get
+            {
+                return Messages.PLAYER_NAME_DEFAULT.Localize();
+            }
+        }
+        /// <summary>
+        /// player games label
+        /// </summary>
+        public string PlayerGamesLabel
+        {
+            get
+            {
+                return Messages.PLAYER_SCORE_COUNT.Localize();
+            }
+        }
+        /// <summary>
+        /// player name label
+        /// </summary>
+        public string PlayerTotalLabel
+        {
+            get
+            {
+                return Messages.PLAYER_SCORE_TOTAL.Localize();
+            }
+        }
+        /// <summary>
+        /// player score label
+        /// </summary>
+        public string PlayerScoreLabel
+        {
+            get
+            {
+                return Messages.PLAYER_SCORE.Localize();
+            }
+        }
+
+        /// <summary>
+        /// Scores for simple 
         /// </summary>
         private ObservableCollection<KniffelScoreWrapper> _Scores= new ObservableCollection<KniffelScoreWrapper>();
         public ObservableCollection<KniffelScoreWrapper> Scores
@@ -99,22 +141,212 @@ namespace Sanet.Kniffel.ViewModels
                 }
             }
         }
-
+        /// <summary>
+        /// Scores for baby
+        /// </summary>
+        private ObservableCollection<KniffelScoreWrapper> _ScoresB = new ObservableCollection<KniffelScoreWrapper>();
+        public ObservableCollection<KniffelScoreWrapper> ScoresB
+        {
+            get { return _ScoresB; }
+            set
+            {
+                if (_ScoresB != value)
+                {
+                    _ScoresB = value;
+                    NotifyPropertyChanged("ScoresB");
+                }
+            }
+        }
+        /// <summary>
+        /// Scores for standard
+        /// </summary>
+        private ObservableCollection<KniffelScoreWrapper> _ScoresS = new ObservableCollection<KniffelScoreWrapper>();
+        public ObservableCollection<KniffelScoreWrapper> ScoresS
+        {
+            get { return _ScoresS; }
+            set
+            {
+                if (_ScoresS != value)
+                {
+                    _ScoresS = value;
+                    NotifyPropertyChanged("ScoresS");
+                }
+            }
+        }
+        /// <summary>
+        /// Scores for advanced
+        /// </summary>
+        private ObservableCollection<KniffelScoreWrapper> _ScoresE = new ObservableCollection<KniffelScoreWrapper>();
+        public ObservableCollection<KniffelScoreWrapper> ScoresE
+        {
+            get { return _ScoresE; }
+            set
+            {
+                if (_ScoresE != value)
+                {
+                    _ScoresE = value;
+                    NotifyPropertyChanged("ScoresE");
+                }
+            }
+        }
         
+        /// <summary>
+        /// Flag to show waiting ring on loading 'baby' scores
+        /// </summary>
+        private bool _ScoresBLoading;
+        public bool ScoresBLoading
+        {
+            get { return _ScoresBLoading; }
+            set
+            {
+                if (_ScoresBLoading != value)
+                {
+                    _ScoresBLoading = value;
+                    NotifyPropertyChanged("ScoresBLoading");
+                }
+            }
+        }
+        /// <summary>
+        /// Flag to show waiting ring on loading 'simple' scores
+        /// </summary>
+        private bool _ScoresLoading;
+        public bool ScoresLoading
+        {
+            get { return _ScoresLoading; }
+            set
+            {
+                if (_ScoresLoading != value)
+                {
+                    _ScoresLoading = value;
+                    NotifyPropertyChanged("ScoresLoading");
+                }
+            }
+        }
+        /// <summary>
+        /// Flag to show waiting ring on loading 'standard' scores
+        /// </summary>
+        private bool _ScoresSLoading;
+        public bool ScoresSLoading
+        {
+            get { return _ScoresSLoading; }
+            set
+            {
+                if (_ScoresSLoading != value)
+                {
+                    _ScoresSLoading = value;
+                    NotifyPropertyChanged("ScoresSLoading");
+                }
+            }
+        }
+        /// <summary>
+        /// Flag to show waiting ring on loading 'baby' scores
+        /// </summary>
+        private bool _ScoresELoading;
+        public bool ScoresELoading
+        {
+            get { return _ScoresELoading; }
+            set
+            {
+                if (_ScoresELoading != value)
+                {
+                    _ScoresELoading = value;
+                    NotifyPropertyChanged("ScoresELoading");
+                }
+            }
+        }
 
         #endregion
 
         #region Methods
 
+        public void RefreshScores()
+        {
+            GetScores();
+            GetScoresB();
+            GetScoresS();
+            GetScoresE();
+        }
+
+        /// <summary>
+        /// Loads scores for simple rules
+        /// </summary>
         private async void GetScores()
         {
             var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
-            //ObservableCollection<KniffelScore> SimpleScores=new ObservableCollection<KniffelScore>();
-            var res =await ks.GetTopPlayersAsync("simple", null);
-            foreach (KniffelScore score in res.Body.Players)
-                Scores.Add(new KniffelScoreWrapper(score));
-            NotifyPropertyChanged("Scores");
-            
+            ScoresLoading = true;
+            try
+            {
+                var res =await ks.GetTopPlayersAsync("simple", null);
+                foreach (KniffelScore score in res.Body.Players)
+                    Scores.Add(new KniffelScoreWrapper(score));
+                NotifyPropertyChanged("Scores");
+            }
+            catch { }
+            finally
+            {
+                ScoresLoading = false;
+            }
+        }
+        /// <summary>
+        /// Loads scores for baby rules
+        /// </summary>
+        private async void GetScoresB()
+        {
+            var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+            ScoresBLoading = true;
+            try
+            {
+                var res = await ks.GetTopPlayersAsync("baby", null);
+                foreach (KniffelScore score in res.Body.Players)
+                    ScoresB.Add(new KniffelScoreWrapper(score));
+                NotifyPropertyChanged("ScoresB");
+            }
+            catch { }
+            finally
+            {
+                ScoresBLoading = false;
+            }
+
+        }
+        /// <summary>
+        /// Loads scores for standard rules
+        /// </summary>
+        private async void GetScoresS()
+        {
+            var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+            ScoresSLoading = true;
+            try
+            {
+                var res = await ks.GetTopPlayersAsync("standard", null);
+                foreach (KniffelScore score in res.Body.Players)
+                    ScoresS.Add(new KniffelScoreWrapper(score));
+                NotifyPropertyChanged("ScoresS");
+            }
+            catch { }
+            finally
+            {
+                ScoresSLoading = false;
+            }
+        }
+        /// <summary>
+        /// Loads scores for advanced rules
+        /// </summary>
+        private async void GetScoresE()
+        {
+            var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+            ScoresELoading = true;
+            try
+            {
+                var res = await ks.GetTopPlayersAsync("full", null);
+                foreach (KniffelScore score in res.Body.Players)
+                    ScoresE.Add(new KniffelScoreWrapper(score));
+                NotifyPropertyChanged("ScoresE");
+            }
+            catch { }
+            finally
+            {
+                ScoresELoading = false;
+            }
         }
 
         #endregion

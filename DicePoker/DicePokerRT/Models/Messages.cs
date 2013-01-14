@@ -32,5 +32,12 @@ namespace Sanet.Kniffel.Models
         public const string PLAYER_HUMAN = "PlayerHumanLabelLocalized";
         public const string PLAYER_SAVE_SCORE = "SaveScoreLabel";
         public const string PLAYER_BOT = "PlayerBotLabelLocalized";
+
+        public const string PLAYER_SCORE = "PlayerBestScoreLabel";
+        public const string PLAYER_SCORE_TOTAL = "PlayerTotalScoreLabel";
+        public const string PLAYER_SCORE_COUNT = "PlayerGamesLabel";
+        
+        public const string LEADERBOARD_ALL_RECORDS = "AllRecordsLabel";
+
     }
 }

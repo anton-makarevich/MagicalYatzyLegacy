@@ -1856,7 +1856,7 @@
                     Text="{Binding PossibleValue}" TextWrapping="NoWrap"/>
             <Grid VerticalAlignment="Bottom" Background="#7f3c3c3c" Height="35">
 
-                <TextBlock Text="{Binding Text}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" VerticalAlignment="Center" FontSize="14" />
+                <TextBlock Text="{Binding AltText}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" VerticalAlignment="Center" FontSize="14" />
             </Grid>
         </Grid>
     </DataTemplate>
@@ -1913,9 +1913,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
                 
             </Grid.ColumnDefinitions>
             <Image

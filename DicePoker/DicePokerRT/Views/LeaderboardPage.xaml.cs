@@ -55,6 +55,7 @@ namespace DicePokerRT
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             SetViewModel<LeaderboardViewModel>();
+            GetViewModel<LeaderboardViewModel>().RefreshScores();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -62,7 +63,7 @@ namespace DicePokerRT
             dpBackground.EndRoll -= StartRoll;
             dpBackground.Dispose();
             dpBackground = null;
-            GetViewModel<NewGameViewModel>().SavePlayers();
+           
         }
     }
 }
