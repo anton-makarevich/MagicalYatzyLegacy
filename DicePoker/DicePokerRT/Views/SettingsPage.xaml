@@ -12,17 +12,16 @@
     d:DesignHeight="600"
     d:DesignWidth="800">
 
-    <Viewbox
+    <!--<Viewbox
         StretchDirection="Both"
-        Stretch="Fill">
+        Stretch="Fill">-->
     <Grid
             x:Name="LayoutRoot"
-            Background="Black"
-              MinHeight="768"
-              MinWidth="1366">
-        <DicePanel:DicePanel
+            Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+              >
+        <!--<DicePanel:DicePanel
             x:Name="dpBackground"
-            />
+            />-->
         <Grid
                 x:Name="ControlGrid">
             <Grid.ColumnDefinitions>
@@ -63,6 +62,7 @@
                 <Grid
                     Grid.Column="1"
                     Grid.Row="1"
+                    Grid.ColumnSpan="2"
                     >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100"/>
@@ -82,7 +82,7 @@
                        VerticalAlignment="Center"/>
                     <StackPanel
                     Grid.Row="1"
-                        HorizontalAlignment="Center">
+                        >
                     <ToggleButton
             
                         Style="{StaticResource SettingsToggleStyle}"
@@ -187,39 +187,7 @@
                 </StackPanel>
 
             </Grid>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="100"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <TextBlock Style="{StaticResource SubheaderTextStyle}"
-                           HorizontalAlignment="Left"
-                   Foreground="{StaticResource SanetBlue}"
-                   Text="{Binding RulesLabel}"
-                   Grid.Row="0"
-                   VerticalAlignment="Center"/>
-                    <ListView
-                 Grid.Row="1"
-                Margin="20,0,10,20"
-                SelectionMode="Single"
-                ItemsSource="{Binding Rules}"
-                HorizontalAlignment="Center"
-                    SelectedItem="{Binding SelectedRule, Mode=TwoWay}"
-            ItemTemplate="{StaticResource RuleTemplate}"
-                >
-
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                                <Setter Property="Width" Value="500"/>
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                    </ListView>
-                </Grid>
-            
-
-            
+                          
         </Grid>
         <Grid
                 x:Name="SnapGrid"
@@ -244,8 +212,6 @@
                />
         </Grid>
 
-        
-    </Grid>
         <VisualStateManager.VisualStateGroups>
 
             <!-- Visual states reflect the application's view state -->
@@ -291,7 +257,9 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-    </Viewbox>
+    </Grid>
+        
+    <!--</Viewbox>-->
 
 
    

@@ -34,6 +34,17 @@ namespace Sanet.Kniffel.Models
             }
 
         }
+        public static Action NavigateToLeaderboardPage
+        {
+            get
+            {
+                return new Action(() =>
+                {
+                    ((Frame)Window.Current.Content).Navigate(typeof(LeaderboardPage));
+                });
+            }
+
+        }
         public static Action NavigateToGamePage
         {
             get

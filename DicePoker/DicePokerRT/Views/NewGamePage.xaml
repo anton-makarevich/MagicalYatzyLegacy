@@ -57,6 +57,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                 <Button x:Name="backButton" Click="GoBack" 
+                        VerticalAlignment="Center"
                         IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" 
                         Style="{StaticResource BackButtonStyle}"/>
                     

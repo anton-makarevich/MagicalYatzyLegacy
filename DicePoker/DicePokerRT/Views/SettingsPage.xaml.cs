@@ -27,28 +27,28 @@ namespace DicePokerRT
         {
             this.InitializeComponent();
             this.Loaded += MainPage_Loaded;
-            this.Width = 1366;
+            this.Width = Window.Current.Bounds.Width;
         }
 
         
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             SetViewModel<SettingsViewModel>();
-            dpBackground.PanelStyle = Sanet.Kniffel.DicePanel.dpStyle.dpsBlue;
-            dpBackground.TreeDScaleCoef = 0.38;
-            dpBackground.NumDice = 5;
-            dpBackground.RollDelay = 15;
-            dpBackground.DieAngle = 3;
-            dpBackground.MaxRollLoop = 40;
-            dpBackground.EndRoll += StartRoll;
-            StartRoll();
+            //dpBackground.PanelStyle = Sanet.Kniffel.DicePanel.dpStyle.dpsBlue;
+            //dpBackground.TreeDScaleCoef = 0.38;
+            //dpBackground.NumDice = 5;
+            //dpBackground.RollDelay = 15;
+            //dpBackground.DieAngle = 3;
+            //dpBackground.MaxRollLoop = 40;
+            //dpBackground.EndRoll += StartRoll;
+            //StartRoll();
             
         }
 
-        void StartRoll()
-        {
-            dpBackground.RollDice(null);
-        }
+        //void StartRoll()
+        //{
+        //    dpBackground.RollDice(null);
+        //}
 
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
@@ -62,9 +62,9 @@ namespace DicePokerRT
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            dpBackground.EndRoll -= StartRoll;
-            dpBackground.Dispose();
-            dpBackground = null;
+            //dpBackground.EndRoll -= StartRoll;
+            //dpBackground.Dispose();
+            //dpBackground = null;
             this.Loaded -= MainPage_Loaded;
         }
         protected override void GoBack(object sender, RoutedEventArgs e)

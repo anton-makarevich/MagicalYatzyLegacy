@@ -51,7 +51,7 @@ namespace Sanet.Kniffel.ViewModels
                     Label = "LeaderboardAction",
                     MenuAction = new Action(() =>
                     {
-                        Utilities.ShowToastNotification("ChampionsClicked");
+                        CommonNavigationActions.NavigateToLeaderboardPage();
                     }),
                     Description = "LeaderboardDescription"
                 });

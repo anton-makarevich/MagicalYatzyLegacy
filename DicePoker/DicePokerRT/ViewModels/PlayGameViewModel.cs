@@ -301,12 +301,7 @@ namespace Sanet.Kniffel.ViewModels
 
         }
 
-        public void NotifySettingsChanged()
-        {
-            NotifyPropertyChanged("SettingsPanelAngle");
-             NotifyPropertyChanged("SettingsPanelSpeed");
-             NotifyPropertyChanged("SettingsPanelStyle");
-        }
+        
 
         #endregion
 
@@ -449,6 +444,9 @@ namespace Sanet.Kniffel.ViewModels
             NotifyPropertyChanged("CanRoll");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void SaveResults()
         {
             try
@@ -458,7 +456,6 @@ namespace Sanet.Kniffel.ViewModels
                     if (p.ShouldSaveResult)
                     {
                         var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
-                        var ename =
                         ks.PutScoreIntoTableWithPicAsync(Encryptor.Encrypt(p.Name, 33), Encryptor.Encrypt(p.Password, 33), Encryptor.Encrypt(p.Total.ToString(), 33), Encryptor.Encrypt(Game.Rules.ToString(), 33), p.PicUrl);
                     }
                 }
@@ -466,6 +463,9 @@ namespace Sanet.Kniffel.ViewModels
             catch { }
         }
 
+        /// <summary>
+        /// /userc clicked 'Play Again'
+        /// </summary>
         public void PlayAgain()
         {
             SaveResults();
@@ -473,10 +473,19 @@ namespace Sanet.Kniffel.ViewModels
             NotifyPropertyChanged("Players");
         }
 
+        /// <summary>
+        /// Call when settings updated
+        /// </summary>
+        public void NotifySettingsChanged()
+        {
+            NotifyPropertyChanged("SettingsPanelAngle");
+            NotifyPropertyChanged("SettingsPanelSpeed");
+            NotifyPropertyChanged("SettingsPanelStyle");
+        }
         #endregion
 
         #region Commands
-        public RelayCommand DeleteCommand { get; set; }
+       // public RelayCommand DeleteCommand { get; set; }
         
         protected void CreateCommands()
         {

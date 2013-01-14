@@ -148,6 +148,7 @@
     <Compile Include="Models\KniffelGame.cs" />
     <Compile Include="Models\KniffelPlayer.cs" />
     <Compile Include="Models\KniffelRule.cs" />
+    <Compile Include="Models\KniffelScoreWrapper.cs" />
     <Compile Include="Models\LocalizerExtensions.cs" />
     <Compile Include="Models\LocalSettings.cs" />
     <Compile Include="Models\Messages.cs" />
@@ -161,8 +162,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\LeaderboardViewModel.cs" />
     <Compile Include="ViewModels\PlayGameViewModel.cs" />
     <Compile Include="ViewModels\NewGameViewModel.cs" />
+    <Compile Include="Views\LeaderboardPage.xaml.cs">
+      <DependentUpon>LeaderboardPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
@@ -1206,6 +1211,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Common\StandardStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LeaderboardPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

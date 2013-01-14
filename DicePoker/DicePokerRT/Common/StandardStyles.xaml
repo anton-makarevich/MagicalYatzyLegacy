@@ -1906,6 +1906,76 @@
         </Grid>
     </DataTemplate>
 
+    <!--Datatemplate for main menu item-->
+    <DataTemplate x:Key="TopPlayersTemplate">
+        <Grid Height="30" Margin="5,0,0,0" HorizontalAlignment="Stretch"
+                          >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                
+            </Grid.ColumnDefinitions>
+            <Image
+                    Height="30"
+                    Width="30"
+                    Source="{Binding Image}"
+                    />
+            <Border Grid.Column="1"
+                    BorderBrush="{StaticResource SanetBlue}"
+                BorderThickness="0,0,1,0">
+                
+                <TextBlock Text="{Binding Name}" Foreground="White" 
+                           HorizontalAlignment="Left"
+                           Margin="5,0,0,0"
+                           TextAlignment="Left"
+                           TextWrapping="NoWrap"
+                           TextTrimming="WordEllipsis"
+                           FontSize="18" Height="25" />
+            </Border>
+            <Border Grid.Column="2"
+                    BorderBrush="{StaticResource SanetBlue}"
+                BorderThickness="0,0,1,0">
+
+                <TextBlock Text="{Binding Games}" Foreground="White" 
+                           HorizontalAlignment="Left"
+                           TextAlignment="Left"
+                           Margin="5,0,0,0"
+                           TextWrapping="NoWrap"
+                           TextTrimming="WordEllipsis"
+                           FontSize="18" Height="25" />
+            </Border>
+            <Border Grid.Column="3"
+                    BorderBrush="{StaticResource SanetBlue}"
+                BorderThickness="0,0,1,0">
+
+                <TextBlock Text="{Binding Total}" Foreground="White" 
+                           HorizontalAlignment="Left"
+                           TextAlignment="Left"
+                           Margin="5,0,0,0"
+                           TextWrapping="NoWrap"
+                           TextTrimming="WordEllipsis"
+                           FontSize="18" Height="25" />
+            </Border>
+            <Border Grid.Column="4"
+                    BorderBrush="{StaticResource SanetBlue}"
+                BorderThickness="0,0,0,0">
+
+                <TextBlock Text="{Binding Score}" Foreground="White" 
+                           HorizontalAlignment="Left"
+                           Margin="5,0,0,0"
+                           TextAlignment="Left"
+                           TextWrapping="NoWrap"
+                           TextTrimming="WordEllipsis"
+                           FontSize="18" Height="25" />
+            </Border>
+
+
+
+        </Grid>
+    </DataTemplate>
     
     <!-- Grid-appropriate 500 by 130 pixel item template as seen in the GroupDetailPage -->
     <DataTemplate x:Key="Standard500x130ItemTemplate">
