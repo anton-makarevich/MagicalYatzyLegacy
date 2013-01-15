@@ -381,6 +381,12 @@
   <data name="AllRecordsLabel" xml:space="preserve">
     <value>Смотреть все рекорды в интенете</value>
   </data>
+  <data name="AppNameLabel" xml:space="preserve">
+    <value>Sanet Dice Poker</value>
+  </data>
+  <data name="OtherAppsLabel" xml:space="preserve">
+    <value>Другие приложения</value>
+  </data>
   <data name="PlayerBestScoreLabel" xml:space="preserve">
     <value>Рекорд</value>
   </data>
@@ -389,5 +395,35 @@
   </data>
   <data name="PlayerTotalScoreLabel" xml:space="preserve">
     <value>Очков</value>
+  </data>
+  <data name="RemoveAdAction" xml:space="preserve">
+    <value>Открыть все кости, убрать рекламу</value>
+  </data>
+  <data name="ReviewAppAction" xml:space="preserve">
+    <value>Оценить приложение в магазине</value>
+  </data>
+  <data name="SendFeedbackAction" xml:space="preserve">
+    <value>Отправить нам отзыв о приложении</value>
+  </data>
+  <data name="AWDescription" xml:space="preserve">
+    <value>электронная пропись, которая развивает мелкую моторику, память, обучает письму (цифры, русские, английские буквы, китайские иероглифы и различные символы), позволяет в современной форме овладеть основами графического письма, привить ребенку тягу к знаниям</value>
+  </data>
+  <data name="NewsDescription" xml:space="preserve">
+    <value>Читалка RSS лент для новостей из Беларуси. Все ваши новости собраны в одном месте. У нас новости с основных новостных сайтов Беларуси, а скоро их будет еще больше.</value>
+  </data>
+  <data name="LaterLabel" xml:space="preserve">
+    <value>В другой раз.</value>
+  </data>
+  <data name="NeverLabel" xml:space="preserve">
+    <value>Нет, спасибо.</value>
+  </data>
+  <data name="ReviewReminder" xml:space="preserve">
+    <value>Ваши отзывы, предложения и оценки помогают нам делать это приложение еще лучше. Хотите оценить приложение?</value>
+  </data>
+  <data name="ReviewReminderHeader" xml:space="preserve">
+    <value>Вам нравится?</value>
+  </data>
+  <data name="YesLabel" xml:space="preserve">
+    <value>Да, с удовольствием!</value>
   </data>
 </root>

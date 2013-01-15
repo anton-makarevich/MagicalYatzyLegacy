@@ -140,6 +140,8 @@
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="Common\BooleanToColorConverter.cs" />
     <Compile Include="Common\ReverseBooleanToVisibilityConverter.cs" />
+    <Compile Include="Models\AboutAppAction.cs" />
+    <Compile Include="Models\OtherAppAction.cs" />
     <Compile Include="Models\EncriptionExtensions.cs" />
     <Compile Include="Models\Enums\GameRule.cs" />
     <Compile Include="Models\Enums\KniffelScore.cs" />
@@ -154,6 +156,7 @@
     <Compile Include="Models\Messages.cs" />
     <Compile Include="Models\PlayerAIExtensions.cs" />
     <Compile Include="Models\RelayCommand.cs" />
+    <Compile Include="Models\ReviewBugger.cs" />
     <Compile Include="Models\RoamingSettings.cs" />
     <Compile Include="Models\TaskPanePopup.cs" />
     <Compile Include="Models\ViewModelProvider.cs" />
@@ -162,9 +165,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AboutPageViewModel.cs" />
     <Compile Include="ViewModels\LeaderboardViewModel.cs" />
     <Compile Include="ViewModels\PlayGameViewModel.cs" />
     <Compile Include="ViewModels\NewGameViewModel.cs" />
+    <Compile Include="Views\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LeaderboardPage.xaml.cs">
       <DependentUpon>LeaderboardPage.xaml</DependentUpon>
     </Compile>
@@ -1191,11 +1198,16 @@
     <Content Include="..\..\slasm\pngs\2\yrot.9.png">
       <Link>Images\2\yrot.9.png</Link>
     </Content>
+    <Content Include="Assets\AWLogo.png" />
     <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\Mail.png" />
+    <Content Include="Assets\NewsLogo.png" />
+    <Content Include="Assets\Rate.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\transparentlogo.png" />
+    <Content Include="Assets\Unlock.png" />
     <None Include="Service References\KniffelLeaderBoardService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -1211,6 +1223,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Common\StandardStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

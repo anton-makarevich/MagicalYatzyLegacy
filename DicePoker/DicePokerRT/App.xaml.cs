@@ -44,6 +44,8 @@ namespace DicePokerRT
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
             LocalizerExtensions.RModel = new ResourceModel();
+            //check numofruns
+            ReviewBugger.CheckNumOfRuns();
 
             Frame rootFrame = Window.Current.Content as Frame;
 

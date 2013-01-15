@@ -414,4 +414,40 @@
   <data name="PlayerTotalScoreLabel" xml:space="preserve">
     <value>Total</value>
   </data>
+  <data name="AppNameLabel" xml:space="preserve">
+    <value>Sanet Dice Poker</value>
+  </data>
+  <data name="OtherAppsLabel" xml:space="preserve">
+    <value>Other Apps</value>
+  </data>
+  <data name="RemoveAdAction" xml:space="preserve">
+    <value>Unlock all dice styles, remove ads</value>
+  </data>
+  <data name="ReviewAppAction" xml:space="preserve">
+    <value>Rate app in the store</value>
+  </data>
+  <data name="SendFeedbackAction" xml:space="preserve">
+    <value>Send us app feedback</value>
+  </data>
+  <data name="AWDescription" xml:space="preserve">
+    <value>Educational app to learn writing. This interactive software develops fine motor skills, memory, teaches how to write Russian (Cyrillic) letters, English ABC's characters, Chinese chars, numbers and various symbols.</value>
+  </data>
+  <data name="LaterLabel" xml:space="preserve">
+    <value>Later.</value>
+  </data>
+  <data name="NeverLabel" xml:space="preserve">
+    <value>No, thanks.</value>
+  </data>
+  <data name="NewsDescription" xml:space="preserve">
+    <value>RSS reader for news from Belarus. All your news in one place. We already have news from main Belarus sites, and will add more.</value>
+  </data>
+  <data name="ReviewReminder" xml:space="preserve">
+    <value>Your ratings and reviews encourage us to release frequent updates for this app. Would you like to rate it now?</value>
+  </data>
+  <data name="ReviewReminderHeader" xml:space="preserve">
+    <value>Do you like this app?</value>
+  </data>
+  <data name="YesLabel" xml:space="preserve">
+    <value>Yes, sure!</value>
+  </data>
 </root>

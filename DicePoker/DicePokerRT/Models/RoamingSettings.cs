@@ -112,6 +112,26 @@ namespace Sanet.Kniffel.Models
                 roamingSettings.Values["DiceAngle"] = value;
             }
         }
+
+        public const int _NumOfRuns = 0;
+        public static int NumOfRuns
+        {
+            get
+            {
+                if (roamingSettings.Values["NumOfRuns"] == null)
+                {
+                    roamingSettings.Values["NumOfRuns"] = _NumOfRuns;
+                    return _NumOfRuns;
+                }
+                return Convert.ToInt32(roamingSettings.Values["NumOfRuns"]);
+            }
+            set
+            {
+                roamingSettings.Values["NumOfRuns"] = value;
+
+            }
+        }
+
         #endregion
 
     }

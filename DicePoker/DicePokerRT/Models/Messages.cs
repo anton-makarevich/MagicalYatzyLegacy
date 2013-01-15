@@ -39,5 +39,7 @@ namespace Sanet.Kniffel.Models
         
         public const string LEADERBOARD_ALL_RECORDS = "AllRecordsLabel";
 
+        public const string APP_NAME="AppNameLabel";
+        public const string APP_NAME_OTHER = "OtherAppsLabel";
     }
 }

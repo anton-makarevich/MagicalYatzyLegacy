@@ -61,15 +61,25 @@ namespace Sanet.Kniffel.ViewModels
                     Label = "AboutAction",
                     MenuAction = new Action(() =>
                     {
-                        Utilities.ShowToastNotification("AboutClicked");
+                        CommonNavigationActions.NavigateToAboutPage();
                     }),
                     Description = "AboutDescription"
                 });
+            NotifyPropertyChanged("MenuActions");
         }
 
 #endregion
 #region Properties
-
+        /// <summary>
+        /// app name label
+        /// </summary>
+        public string CurrentAppName
+        {
+            get
+            {
+                return Messages.APP_NAME.Localize();
+            }
+        }
 
         private List<MainMenuAction> _MenuActions;
         public List<MainMenuAction> MenuActions
@@ -84,6 +94,8 @@ namespace Sanet.Kniffel.ViewModels
                 }
             }
         }
+
+
         
 #endregion
 

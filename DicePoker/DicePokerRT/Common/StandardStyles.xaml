@@ -1976,7 +1976,80 @@
 
         </Grid>
     </DataTemplate>
-    
+
+    <!--Datatemplate for app action in about page-->
+    <DataTemplate x:Key="AboutAppActionTemplate">
+        <Grid Height="70" Margin="0,15" HorizontalAlignment="Stretch"
+                          >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition/>
+
+            </Grid.ColumnDefinitions>
+            <Image
+                    Height="48"
+                    Width="48"
+                    Source="{Binding Image}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                    />
+            <TextBlock Grid.Column="1"
+                           Text="{Binding LocalizedLabel}" Foreground="{StaticResource SanetBlue}" 
+                           HorizontalAlignment="Left"
+                           Margin="5,0,0,0"
+                           TextAlignment="Left"
+                           TextWrapping="NoWrap"
+                           TextTrimming="WordEllipsis"
+                           FontSize="20" Height="25" />
+                        
+        </Grid>
+    </DataTemplate>
+
+    <!--Datatemplate for other apps list in about page-->
+    <DataTemplate x:Key="OtherAppActionTemplate">
+        <Grid Height="170" Margin="0,15" HorizontalAlignment="Stretch"
+                          >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition/>
+
+            </Grid.ColumnDefinitions>
+            <Image
+                    Height="150"
+                    Width="150"
+                    Source="{Binding Image}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                    />
+            <Grid
+                Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock 
+                           Text="{Binding LocalizedLabel}" Foreground="{StaticResource SanetBlue}" 
+                           HorizontalAlignment="Left"
+                           Margin="15,0,0,15"
+                           TextAlignment="Left"
+                           TextWrapping="NoWrap"
+                           TextTrimming="WordEllipsis"
+                           FontSize="20" Height="25" />
+                <TextBlock Grid.Row="1"
+                           Text="{Binding LocalizedDescription}" Foreground="{StaticResource SanetBlue}" 
+                           HorizontalAlignment="Left"
+                           Margin="15,0,0,0"
+                           TextAlignment="Left"
+                           TextWrapping="Wrap"
+                           MaxWidth="450"
+                           TextTrimming="WordEllipsis"
+                           FontSize="18" />
+            </Grid>
+           
+
+        </Grid>
+    </DataTemplate>
+
     <!-- Grid-appropriate 500 by 130 pixel item template as seen in the GroupDetailPage -->
     <DataTemplate x:Key="Standard500x130ItemTemplate">
         <Grid Height="110" Width="480" Margin="10">

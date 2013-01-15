@@ -1,6 +1,5 @@
 ﻿using Sanet.Kniffel.Models;
 using Sanet.Kniffel.ViewModels;
-using Sanet.Models;
 using Sanet.Views;
 using System;
 using System.Collections.Generic;
@@ -23,9 +22,9 @@ namespace DicePokerRT
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : BasePage
+    public sealed partial class AboutPage : BasePage
     {
-        public MainPage()
+        public AboutPage()
         {
             this.InitializeComponent();
             this.Loaded += MainPage_Loaded;
@@ -53,21 +52,27 @@ namespace DicePokerRT
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.  The Parameter
         /// property is typically used to configure the page.</param>
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            SetViewModel<MainPageViewModel>();
-            if (e.NavigationMode == NavigationMode.Back && ReviewBugger.IsTimeForReview())
-                await ReviewBugger.PromptUser();
+            SetViewModel<AboutPageViewModel>();
         }
+
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             dpBackground.EndRoll -= StartRoll;
             dpBackground.Dispose();
             dpBackground = null;
+           
         }
+
         private void itemListView_ItemClick_1(object sender, ItemClickEventArgs e)
         {
-            ((MainMenuAction)e.ClickedItem).MenuAction();
+            ((AboutAppAction)e.ClickedItem).MenuAction();
+        }
+
+        private void ListView_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
+            ((OtherAppAction)e.ClickedItem).MenuAction();
         }
     }
 }
