@@ -10,10 +10,10 @@ namespace Sanet.Kniffel.Models
     public static class StoreManager
     {
         static LicenseInformation licenseInformation= CurrentApp.LicenseInformation;
-        static bool _adfree=true;
+        //static bool _adfree=true;
         static bool isProductAvailable(string product)
         {
-            return _adfree;
+            //return _adfree;
             return (licenseInformation.ProductLicenses[product].IsActive);
 
             

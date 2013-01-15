@@ -78,7 +78,7 @@ namespace Sanet.Kniffel.Models
             get
             {
                 if (roamingSettings.Values["DiceStyle"] == null)
-                    roamingSettings.Values["DiceStyle"] = dpStyle.dpsBlue.ToString();
+                    roamingSettings.Values["DiceStyle"] = dpStyle.dpsClassic.ToString();
                 return ((dpStyle)Enum.Parse(typeof(dpStyle), (string)roamingSettings.Values["DiceStyle"]));
             }
             set 

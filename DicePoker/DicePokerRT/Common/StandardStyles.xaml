@@ -1819,12 +1819,12 @@
     </DataTemplate>
     <!--Game result table template-->
     <DataTemplate x:Key="GameResultsTemplate">
-        <Grid Width="500" HorizontalAlignment="Stretch"
+        <Grid Width="600" HorizontalAlignment="Stretch"
                 >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50*"/>
                 <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="50*"/>
             </Grid.ColumnDefinitions>
                 <TextBlock Text="{Binding Name}" TextAlignment="Left"
                            TextTrimming="WordEllipsis"

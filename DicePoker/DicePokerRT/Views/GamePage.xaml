@@ -192,6 +192,7 @@
                          x:Name="ClearButton"
                         Style="{StaticResource RedoAppBarButtonStyle}"
                         VerticalAlignment="Bottom"
+                        Margin="0,50"
                         HorizontalAlignment="center"
                          AutomationProperties.Name="{Binding PlayAgainLabel}"
                     Tapped="AgainButton_Tapped_1"/>

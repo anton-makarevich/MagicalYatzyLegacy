@@ -216,9 +216,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\KniffelLeaderBoardService\KniffelService.wsdl" />
-    <PRIResource Include="..\..\DiceRoller\DiceRollerRT\strings\de\Resources.resw">
-      <Link>Strings\de\Resources.resw</Link>
-    </PRIResource>
     <PRIResource Include="..\..\DiceRoller\DiceRollerRT\strings\en\Resources.resw">
       <Link>Strings\en\Resources.resw</Link>
     </PRIResource>
@@ -1202,15 +1199,32 @@
       <Link>Images\2\yrot.9.png</Link>
     </Content>
     <Content Include="Assets\AWLogo.png" />
-    <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\BadgeLogo.scale-140.png" />
+    <Content Include="Assets\BadgeLogo.scale-180.png" />
+    <Content Include="Assets\Logo.scale-80.png" />
+    <Content Include="Assets\Logo150.png" />
+    <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\Logo.scale-140.png" />
+    <Content Include="Assets\Logo.scale-180.png" />
     <Content Include="Assets\Mail.png" />
     <Content Include="Assets\NewsLogo.png" />
     <Content Include="Assets\Rate.png" />
-    <Content Include="Assets\SmallLogo.png" />
+    <Content Include="Assets\SmallLogo.scale-100.png" />
+    <Content Include="Assets\SmallLogo.scale-140.png" />
+    <Content Include="Assets\SmallLogo.scale-180.png" />
+    <Content Include="Assets\SmallLogo.scale-80.png" />
+    <Content Include="Assets\SmallLogo30.png" />
     <Content Include="Assets\SplashScreen.png" />
-    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-140.png" />
+    <Content Include="Assets\StoreLogo.scale-180.png" />
+    <Content Include="Assets\StoreLogo50.png" />
     <Content Include="Assets\transparentlogo.png" />
     <Content Include="Assets\Unlock.png" />
+    <Content Include="Assets\WideLogo.scale-100.png" />
+    <Content Include="Assets\WideLogo.scale-140.png" />
+    <Content Include="Assets\WideLogo.scale-180.png" />
+    <Content Include="Assets\WideLogo.scale-80.png" />
     <None Include="Service References\KniffelLeaderBoardService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

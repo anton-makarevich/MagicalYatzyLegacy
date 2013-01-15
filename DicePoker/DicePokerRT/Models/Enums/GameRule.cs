@@ -8,9 +8,9 @@ namespace Sanet.Kniffel.Models
 {
     public enum Rules
     {
-        krStandard = 3,
-        krExtended = 1,
-        krSimple = 0,
-        krBaby = 2
+        krBaby = 0,
+        krSimple = 1,
+        krStandard = 2,
+        krExtended = 3
     }
 }

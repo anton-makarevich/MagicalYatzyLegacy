@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="43862AntonMakarevich.SanetDicePoker" Publisher="CN=DC1EF1A2-04E8-4269-B8EE-BF7A3DBF913C" Version="0.6.4.7" />
+  <Identity Name="43862AntonMakarevich.SanetDicePoker" Publisher="CN=DC1EF1A2-04E8-4269-B8EE-BF7A3DBF913C" Version="1.0.0.0" />
   <Properties>
     <DisplayName>Sanet Dice Poker</DisplayName>
     <PublisherDisplayName>Anton Makarevich</PublisherDisplayName>
@@ -16,7 +16,7 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="DicePokerRT.App">
       <VisualElements DisplayName="Sanet Dice Poker" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="DicePokerRT" ForegroundText="light" BackgroundColor="#009cd6" ToastCapable="true">
-        <DefaultTile ShowName="allLogos" ShortName="Dice Poker" />
+        <DefaultTile ShowName="allLogos" ShortName="Dice Poker" WideLogo="Assets\WideLogo.png" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#009cd6" />
         <InitialRotationPreference>
           <Rotation Preference="portrait" />

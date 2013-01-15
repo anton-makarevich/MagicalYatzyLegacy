@@ -260,7 +260,7 @@
     <value>Новая игра</value>
   </data>
   <data name="NewLocalGameDescription" xml:space="preserve">
-    <value>Новая локальная игра - в одиночку, с друзьями или с компьютером</value>
+    <value>Новая игра - в одиночку, с друзьями или с компьютером</value>
   </data>
   <data name="NewOnlineGameAction" xml:space="preserve">
     <value>Игра по сети</value>

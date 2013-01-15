@@ -145,6 +145,8 @@ namespace DicePokerRT
 
         private void Button_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
+            if (dpBackground.AllDiceFrozen())
+                return;
             GetViewModel<PlayGameViewModel>().Game.ReportRoll();
         }
 

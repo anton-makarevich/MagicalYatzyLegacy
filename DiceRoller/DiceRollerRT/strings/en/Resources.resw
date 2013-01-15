@@ -286,7 +286,7 @@
     <value>For Kids</value>
   </data>
   <data name="krExtended" xml:space="preserve">
-    <value>Extended</value>
+    <value>Advanced</value>
   </data>
   <data name="krSimple" xml:space="preserve">
     <value>Simple</value>
