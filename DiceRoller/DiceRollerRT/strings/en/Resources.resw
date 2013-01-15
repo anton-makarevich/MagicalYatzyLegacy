@@ -154,7 +154,7 @@
     <value>of a kind</value>
   </data>
   <data name="OnlineVersionText.Text" xml:space="preserve">
-    <value>App uses DicePanel control of Kniffel Online game. DicePanel idea and "red dice" style belongs to Matthew Tagliaferri.</value>
+    <value>DicePanel idea and "red dice" style belongs to Matthew Tagliaferri.</value>
   </data>
   <data name="Pairs" xml:space="preserve">
     <value>pairs</value>
@@ -217,10 +217,10 @@
     <value>About game and authors</value>
   </data>
   <data name="LeaderboardAction" xml:space="preserve">
-    <value>Leaderboard</value>
+    <value>Hall of Fame</value>
   </data>
   <data name="LeaderboardDescription" xml:space="preserve">
-    <value>See your place and how others perform</value>
+    <value>See best results in every rules</value>
   </data>
   <data name="NetworkGameNotReadyMessage" xml:space="preserve">
     <value>Sorry, network game is not ready yet</value>
@@ -229,7 +229,7 @@
     <value>New Game</value>
   </data>
   <data name="NewLocalGameDescription" xml:space="preserve">
-    <value>Start a new game - alone, with friends or with bots</value>
+    <value>Start a new local game - alone, with friends or with bots</value>
   </data>
   <data name="NewOnlineGameAction" xml:space="preserve">
     <value>Online game</value>
@@ -283,7 +283,7 @@
     <value>Rules</value>
   </data>
   <data name="krBaby" xml:space="preserve">
-    <value>for Kids</value>
+    <value>For Kids</value>
   </data>
   <data name="krExtended" xml:space="preserve">
     <value>Extended</value>
@@ -335,16 +335,16 @@
     <value>P!</value>
   </data>
   <data name="krBabyShort" xml:space="preserve">
-    <value>numeric hands only and Poker, 7 moves</value>
+    <value>numeric hands only and Flush, 7 rounds</value>
   </data>
   <data name="krExtendedShort" xml:space="preserve">
-    <value>all hands, 35 points bonus for 63 and higher result in numerics, 100 points bonus for every additional Poker, Poker-Joker, 13 moves</value>
+    <value>all hands, 35 points bonus for 63 and higher result in numerics, 100 points bonus for every additional Flush, Flush-Joker, 13 rounds</value>
   </data>
   <data name="krSimpleShort" xml:space="preserve">
     <value>all hands only, no bonuses, 13 moves</value>
   </data>
   <data name="krStandardShort" xml:space="preserve">
-    <value>all hands, 35 points bonus for 63 and higher result in numerics, 13 moves</value>
+    <value>all hands, 35 points bonus for 63 and higher result in numerics, 13 rounds</value>
   </data>
   <data name="LargeStraightShort" xml:space="preserve">
     <value>LS</value>

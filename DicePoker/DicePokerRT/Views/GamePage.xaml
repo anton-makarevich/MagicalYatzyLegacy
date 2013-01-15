@@ -5,11 +5,17 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:DicePokerRT"
+    xmlns:common="using:Sanet.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates"
     xmlns:ad="using:AdDuplex.Controls"
     mc:Ignorable="d">
+
+    <views:BasePage.Resources>
+        <common:BooleanToVisibilityConverter x:Key="VisibilityKey"/>
+        <common:ReverseBooleanToVisibilityConverter x:Key="ReversedVisibilityKey"/>
+    </views:BasePage.Resources>
     <Grid>
         <Grid
             x:Name="ControlGrid">
@@ -43,7 +49,8 @@
                   />
                 <ad:AdControl 
                     Grid.Column="1"
-                    AppId="30603" x:Name="adDuplexAd" Size="500x130" />
+                    AppId="30603" x:Name="adDuplexAd" Size="500x130"
+                    Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"/>
             </Grid>
                 
             <Grid

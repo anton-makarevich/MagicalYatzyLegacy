@@ -78,7 +78,8 @@
                   />
                     <ad:AdControl 
                     Grid.Column="1"
-                    AppId="30603" x:Name="adDuplexAd" Size="500x130" />
+                    AppId="30603" x:Name="adDuplexAd" Size="500x130" 
+                         Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"/>
                 </Grid>
                 <StackPanel
                     Grid.Column="1"

@@ -75,5 +75,10 @@ namespace DicePokerRT
                 vm.NotifySettingsChanged();
             //SettingsPane.Show();
         }
+
+        private void itemListView_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
+            ((AboutAppAction)e.ClickedItem).MenuAction();
+        }
     }
 }

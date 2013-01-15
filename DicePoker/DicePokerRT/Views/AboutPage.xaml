@@ -61,7 +61,8 @@
                   />
                     <ad:AdControl 
                     Grid.Column="1"
-                    AppId="30603" x:Name="adDuplexAd" Size="500x130" />
+                    AppId="30603" x:Name="adDuplexAd" Size="500x130" 
+                        Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"/>
                 </Grid>
                 <ScrollViewer
                      Grid.Column="1"
@@ -93,6 +94,7 @@
                             <RowDefinition Height="Auto"/>
                                 
                             <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         
                         <TextBlock
@@ -115,6 +117,14 @@
                                 </Style>
                             </ListView.ItemContainerStyle>
                         </ListView>
+                        <TextBlock
+                            FontSize="20"
+                            Grid.Row="2"
+                            HorizontalAlignment="Left"
+                            TextWrapping="Wrap"
+                            MaxWidth="450"
+                            Foreground="{StaticResource SanetBlue}"
+                            x:Uid="OnlineVersionText"/>
                     </Grid>
 
                         <TextBlock Style="{StaticResource SubheaderTextStyle}"

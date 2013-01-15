@@ -12,7 +12,7 @@ using Windows.System.UserProfile;
 
 namespace Sanet.Kniffel.ViewModels
 {
-    public class LeaderboardViewModel:BaseViewModel
+    public class LeaderboardViewModel : AdBasedViewModel
     {
         #region Constructor
         public LeaderboardViewModel()

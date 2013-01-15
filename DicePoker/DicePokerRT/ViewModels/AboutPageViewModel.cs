@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace Sanet.Kniffel.ViewModels
 {
-    public class AboutPageViewModel:BaseViewModel
+    public class AboutPageViewModel:AdBasedViewModel
     {
         #region Constructor
         public AboutPageViewModel()
@@ -112,7 +112,7 @@ namespace Sanet.Kniffel.ViewModels
 
         #region Methods
 
-        private void FillAppActions()
+        public void FillAppActions()
         {
             _AboutAppActions = new List<AboutAppAction>();
             _AboutAppActions.Add(
@@ -131,17 +131,22 @@ namespace Sanet.Kniffel.ViewModels
                     Label = "ReviewAppAction",
                     MenuAction = new Action(() =>
                     {
-                        CommonNavigationActions.SendFeedback();
+                        CommonNavigationActions.RateApp();
                     }),
                     Image = new BitmapImage(new Uri("ms-appx:///Assets/Rate.png", UriKind.Absolute))
                 });
+            if (StoreManager.IsAdVisible())
             _AboutAppActions.Add(
                 new AboutAppAction
                 {
                     Label = "RemoveAdAction",
-                    MenuAction = new Action(() =>
+                    MenuAction = new Action(async () =>
                     {
-                        CommonNavigationActions.SendFeedback();
+                        await StoreManager.RemoveAd();
+                        ViewModelProvider.GetViewModel<AboutPageViewModel>().NotifyAdChanged();
+                        ViewModelProvider.GetViewModel<AboutPageViewModel>().FillAppActions();
+                        ViewModelProvider.GetViewModel<SettingsViewModel>().NotifyAdChanged();
+                        ViewModelProvider.GetViewModel<SettingsViewModel>().FillAppActions();
                     }),
                     Image = new BitmapImage(new Uri("ms-appx:///Assets/Unlock.png", UriKind.Absolute))
                 });

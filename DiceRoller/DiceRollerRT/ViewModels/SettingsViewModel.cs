@@ -6,13 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace Sanet.Kniffel.ViewModels
 {
-    public class SettingsViewModel:BaseViewModel
+    public class SettingsViewModel : AdBasedViewModel
     {
         public SettingsViewModel()
         {
+            FillAppActions();
         }
 
         #region bind props
@@ -313,7 +315,47 @@ namespace Sanet.Kniffel.ViewModels
                 }
             }
         }
-        
+
+
+        private List<AboutAppAction> _AboutAppActions;
+        public List<AboutAppAction> AboutAppActions
+        {
+            get { return _AboutAppActions; }
+            set
+            {
+                if (_AboutAppActions != value)
+                {
+                    _AboutAppActions = value;
+                    NotifyPropertyChanged("AboutAppActions");
+                }
+            }
+        }
 #endregion
+
+        #region Methods
+
+        public void FillAppActions()
+        {
+            _AboutAppActions = new List<AboutAppAction>();
+            
+            if (StoreManager.IsAdVisible())
+                _AboutAppActions.Add(
+                    new AboutAppAction
+                    {
+                        Label = "RemoveAdAction",
+                        MenuAction = new Action(async () =>
+                        {
+                            await StoreManager.RemoveAd();
+                            ViewModelProvider.GetViewModel<AboutPageViewModel>().NotifyAdChanged();
+                            ViewModelProvider.GetViewModel<AboutPageViewModel>().FillAppActions();
+                            ViewModelProvider.GetViewModel<SettingsViewModel>().NotifyAdChanged();
+                            ViewModelProvider.GetViewModel<SettingsViewModel>().FillAppActions();
+                        }),
+                        Image = new BitmapImage(new Uri("ms-appx:///Assets/Unlock.png", UriKind.Absolute))
+                    });
+            NotifyPropertyChanged("AboutAppActions");
+        }
+
+        #endregion
     }
 }

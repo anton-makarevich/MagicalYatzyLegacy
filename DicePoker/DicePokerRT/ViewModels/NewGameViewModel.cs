@@ -11,7 +11,7 @@ using Windows.System.UserProfile;
 
 namespace Sanet.Kniffel.ViewModels
 {
-    public class NewGameViewModel:BaseViewModel
+    public class NewGameViewModel : AdBasedViewModel
     {
         #region Constructor
         public NewGameViewModel()

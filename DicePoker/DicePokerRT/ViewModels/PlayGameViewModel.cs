@@ -16,7 +16,7 @@ using Windows.UI.Xaml;
 
 namespace Sanet.Kniffel.ViewModels
 {
-    public class PlayGameViewModel:BaseViewModel
+    public class PlayGameViewModel : AdBasedViewModel
     {
         #region Constructor
         public PlayGameViewModel()

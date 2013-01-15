@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Sanet.Kniffel.Views"
     xmlns:base="using:Sanet.Views"
+    xmlns:common="using:Sanet.Common"
     xmlns:DicePanel="using:Sanet.Kniffel.DicePanel" 
     xmlns:ad="using:AdDuplex.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,6 +13,10 @@
     d:DesignHeight="600"
     d:DesignWidth="800">
 
+    <base:BasePage.Resources>
+        <common:BooleanToVisibilityConverter x:Key="VisibilityKey"/>
+        <common:ReverseBooleanToVisibilityConverter x:Key="ReversedVisibilityKey"/>
+    </base:BasePage.Resources>
     <!--<Viewbox
         StretchDirection="Both"
         Stretch="Fill">-->
@@ -56,7 +61,8 @@
                   />
                 <ad:AdControl 
                     Grid.Column="1"
-                    AppId="30603" x:Name="adDuplexAd" Size="500x130" />
+                    AppId="30603" x:Name="adDuplexAd" Size="500x130"
+                     Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"/>
             </Grid>
             
                 <Grid
@@ -84,23 +90,39 @@
                     Grid.Row="1"
                         >
                     <ToggleButton
-            
+                            Style="{StaticResource SettingsToggleStyle}"
+                            IsChecked="{Binding IsStyleWhite,Mode=TwoWay}">
+                        <Image Source="../Images/0/xrot.10.png" />
+                    </ToggleButton>
+                    <ToggleButton
+                        IsEnabled="{Binding IsStylesAvailable}"
                         Style="{StaticResource SettingsToggleStyle}"
                         IsChecked="{Binding IsStyleBlue,Mode=TwoWay}">
                         <Image Source="../Images/2/xrot.26.png" />
                     </ToggleButton>
                     <ToggleButton
-                            Style="{StaticResource SettingsToggleStyle}"
-                            IsChecked="{Binding IsStyleWhite,Mode=TwoWay}">
-                                <Image Source="../Images/0/xrot.10.png" />
-                            </ToggleButton>
-                    <ToggleButton
+                        IsEnabled="{Binding IsStylesAvailable}"
                         Style="{StaticResource SettingsToggleStyle}"
                         IsChecked="{Binding IsStyleRed,Mode=TwoWay}">
                         <Image Source="../Images/1/xrot.28.png" />
                     </ToggleButton>
-                    
-                        
+                    <ListView
+                                Grid.Row="1"
+                                SelectionMode="None"
+                                ItemsSource="{Binding AboutAppActions}"
+                                ItemClick="itemListView_ItemClick_1"
+                            IsItemClickEnabled="True"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                                ItemTemplate="{StaticResource AboutAppActionTemplate}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+
                 </StackPanel>
 
                     <TextBlock Style="{StaticResource SubheaderTextStyle}"

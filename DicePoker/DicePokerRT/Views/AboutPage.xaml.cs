@@ -32,7 +32,7 @@ namespace DicePokerRT
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            dpBackground.PanelStyle = Sanet.Kniffel.DicePanel.dpStyle.dpsBlue;
+            dpBackground.PanelStyle = Sanet.Kniffel.DicePanel.dpStyle.dpsClassic;
             dpBackground.TreeDScaleCoef = 0.38;
             dpBackground.NumDice = 5;
             dpBackground.RollDelay = 15;
