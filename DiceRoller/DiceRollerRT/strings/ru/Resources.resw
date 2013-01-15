@@ -166,7 +166,7 @@
     <comment>-ling</comment>
   </data>
   <data name="OnlineVersionText.Text" xml:space="preserve">
-    <value>Приложение основано на контролле DicePanel из игры Kniffel Online. Идея контрола и 'красные' кости принадлежат  Matthew Tagliaferri</value>
+    <value>Идея контрола DicePanel и 'красные' кости принадлежат  Matthew Tagliaferri</value>
     <comment>Das Programm basiert sich auf dem Controll DicePanel aus dem Onlinespiel Kniffel.  Die Idee des Controlls und die Darstellung der  ''Roten"  Würfeln gehört Matthew Tagliaferri.</comment>
   </data>
   <data name="Pairs" xml:space="preserve">
@@ -248,10 +248,10 @@
     <value>Посмотрите информацию об игре и авторах</value>
   </data>
   <data name="LeaderboardAction" xml:space="preserve">
-    <value>Таблица рекордов</value>
+    <value>Зал славы</value>
   </data>
   <data name="LeaderboardDescription" xml:space="preserve">
-    <value>Таблица рекордов - сравните достижения</value>
+    <value>Лучшие результаты игр по каждым правилам</value>
   </data>
   <data name="NetworkGameNotReadyMessage" xml:space="preserve">
     <value>Извините, сетевая игра еще не готова. </value>
@@ -260,7 +260,7 @@
     <value>Новая игра</value>
   </data>
   <data name="NewLocalGameDescription" xml:space="preserve">
-    <value>Новая игра - в одиночку, с друзьями или с компьютером</value>
+    <value>Новая локальная игра - в одиночку, с друзьями или с компьютером</value>
   </data>
   <data name="NewOnlineGameAction" xml:space="preserve">
     <value>Игра по сети</value>
@@ -366,10 +366,10 @@
     <value>П!</value>
   </data>
   <data name="krBabyShort" xml:space="preserve">
-    <value>только цифровые комбинации и книффель, 7 ходов</value>
+    <value>только цифровые комбинации и флэш, 7 ходов</value>
   </data>
   <data name="krExtendedShort" xml:space="preserve">
-    <value>все комбинации, бонус в 35 очков за сумму цифровых комбинаций 63 и более, бонус 100 очков за каждый последующий книффель, книффель-джокер, 13 ходов</value>
+    <value>все комбинации, бонус в 35 очков за сумму цифровых комбинаций 63 и более, бонус 100 очков за каждый последующий флэш, книффель-джокер, 13 ходов</value>
   </data>
   <data name="krSimpleShort" xml:space="preserve">
     <value>все комбинации, без бонусов, 13 ходов</value>
@@ -428,7 +428,7 @@
     <value>ход</value>
   </data>
   <data name="SaveScoreLabel" xml:space="preserve">
-    <value>в книгу рекордов</value>
+    <value>сохранить в книгу рекордов</value>
   </data>
   <data name="WinLabel" xml:space="preserve">
     <value>выиграл </value>

@@ -154,7 +154,7 @@
     <value>of a kind</value>
   </data>
   <data name="OnlineVersionText.Text" xml:space="preserve">
-    <value>DicePanel idea and "red dice" style belongs to Matthew Tagliaferri.</value>
+    <value>Dice Panel idea and "red dice" style belongs to Matthew Tagliaferri.</value>
   </data>
   <data name="Pairs" xml:space="preserve">
     <value>pairs</value>
@@ -187,7 +187,7 @@
     <value>very slow</value>
   </data>
   <data name="SettingsAngleCaption.Text" xml:space="preserve">
-    <value>ViewAngle</value>
+    <value>View Angle</value>
   </data>
   <data name="SettingsCaption.Text" xml:space="preserve">
     <value>Settings</value>
@@ -341,7 +341,7 @@
     <value>all hands, 35 points bonus for 63 and higher result in numerics, 100 points bonus for every additional Flush, Flush-Joker, 13 rounds</value>
   </data>
   <data name="krSimpleShort" xml:space="preserve">
-    <value>all hands only, no bonuses, 13 moves</value>
+    <value>all hands, no bonuses, 13 rounds</value>
   </data>
   <data name="krStandardShort" xml:space="preserve">
     <value>all hands, 35 points bonus for 63 and higher result in numerics, 13 rounds</value>
@@ -397,7 +397,7 @@
     <value>Game is finished!</value>
   </data>
   <data name="SaveScoreLabel" xml:space="preserve">
-    <value>to the leaderboard</value>
+    <value>save result to the leaderboard</value>
   </data>
   <data name="WinLabel" xml:space="preserve">
     <value>won</value>
@@ -424,10 +424,10 @@
     <value>Unlock all dice styles, remove ads</value>
   </data>
   <data name="ReviewAppAction" xml:space="preserve">
-    <value>Rate app in the store</value>
+    <value>Rate this app in the store</value>
   </data>
   <data name="SendFeedbackAction" xml:space="preserve">
-    <value>Send us app feedback</value>
+    <value>Send us your feedback</value>
   </data>
   <data name="AWDescription" xml:space="preserve">
     <value>Educational app to learn writing. This interactive software develops fine motor skills, memory, teaches how to write Russian (Cyrillic) letters, English ABC's characters, Chinese chars, numbers and various symbols.</value>
