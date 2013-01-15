@@ -97,8 +97,20 @@ namespace DicePokerRT
         #region settings
 
         public static TaskPanePopup Settings;
+        private TaskPanePopup _policy;
         private void App_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
         {
+            //policy
+            SettingsCommand cmd = new SettingsCommand("PrivacyPolicy", LocalizerExtensions.RModel.GetString("PrivacyLabel/Text"), (command) =>
+            {
+                if (_policy == null)
+                {
+
+                    _policy = new TaskPanePopup(new PrivacyPolicyControl());
+                }
+                _policy.Show();
+            });
+            args.Request.ApplicationCommands.Add(cmd);
             //options
             SettingsCommand cmd2 = new SettingsCommand("Options", LocalizerExtensions.RModel.GetString("SettingsCaption/Text"), (command) =>
             {

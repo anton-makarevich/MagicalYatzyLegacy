@@ -1,0 +1,77 @@
+﻿<UserControl
+    x:Class="DicePokerRT.PrivacyPolicyControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SettingsDemo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="768"
+    Width="350">
+
+    <Grid
+        Background="{StaticResource SanetBlue}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="45" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="100" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid 
+            
+            VerticalAlignment="Stretch"
+            Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="45" />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button
+                Grid.Column="1"
+                Click="ButtonBack_Click"
+                HorizontalAlignment="Stretch"
+                Margin="0,25"
+                Style="{StaticResource SnappedBackButtonStyle}"
+                VerticalAlignment="Bottom" />
+            <TextBlock
+                x:Uid="PrivacyLabel"
+                Text="Privacy Policy"
+                Grid.Column="2"
+                VerticalAlignment="Center"
+                Style="{StaticResource SubheaderTextStyle}"
+                FontFamily="Segoe UI Semibold" />
+        </Grid>
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="1">
+            <StackPanel.ChildrenTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition
+                        FromHorizontalOffset="100" />
+                </TransitionCollection>
+            </StackPanel.ChildrenTransitions>
+            <TextBlock
+                x:Uid="Privacy1"
+                TextWrapping="Wrap"
+                Margin="0,10,20,10"
+                FontSize="16"
+                Foreground="White"
+                TextAlignment="Justify"
+                />
+            <TextBlock
+                x:Uid="Privacy2"
+                TextWrapping="Wrap"
+                Margin="0,10,20,10"
+                FontSize="16"
+                Foreground="White"
+                TextAlignment="Justify"
+                />
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -463,6 +463,15 @@
   <data name="OtherAppsLabel" xml:space="preserve">
     <value>Другие приложения</value>
   </data>
+  <data name="Privacy1.Text" xml:space="preserve">
+    <value>Политика конфиденциальности при использовании этого приложения. Покер-кости не собирает, не хранит и не передает третьим лицам личную информацию пользователя, а также не отслеживает его перемещения.</value>
+  </data>
+  <data name="Privacy2.Text" xml:space="preserve">
+    <value>Это приложение с ведома пользлвателя может сохранять результаты игр на web сервере. Покер-кости также может открывать страницы в интернете, которые могут быть сохранены вашим браузером.  Вы можете почитать об этом подробнее в политике конфиденциальности браузера, которым Вы пользуетесь.</value>
+  </data>
+  <data name="PrivacyLabel.Text" xml:space="preserve">
+    <value>Конфеденциальность</value>
+  </data>
   <data name="RemoveAdAction" xml:space="preserve">
     <value>Открыть все кости, убрать рекламу</value>
   </data>
