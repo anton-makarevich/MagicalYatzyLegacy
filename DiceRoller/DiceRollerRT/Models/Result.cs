@@ -161,6 +161,16 @@ namespace Sanet.Kniffel.Models
             }
         }
 
+        /// <summary>
+        /// wheather value is null
+        /// </summary>
+        public bool IsZeroValue
+        {
+            get
+            {
+                return Value == 0;
+            }
+        }
 
         KniffelScores _ScoreType;
         public KniffelScores ScoreType

@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;WinRT</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;WinRT;ROLLER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -114,18 +114,49 @@
     <Compile Include="..\..\dicepanelwp\models\DicePanel.cs">
       <Link>Models\DicePanel.cs</Link>
     </Compile>
+    <Compile Include="..\..\DicePoker\DicePokerRT\Common\BooleanToVisibilityConverter.cs">
+      <Link>Common\BooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DicePoker\DicePokerRT\Common\ReverseBooleanToVisibilityConverter.cs">
+      <Link>Common\ReverseBooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DicePoker\DicePokerRT\Models\AboutAppAction.cs">
+      <Link>Models\AboutAppAction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DicePoker\DicePokerRT\Models\Enums\GameRule.cs">
+      <Link>Models\enums\GameRule.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DicePoker\DicePokerRT\Models\Enums\KniffelScore.cs">
+      <Link>Models\enums\KniffelScore.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DicePoker\DicePokerRT\Models\Enums\PlayerType.cs">
+      <Link>Models\enums\PlayerType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DicePoker\DicePokerRT\Models\LocalizerExtensions.cs">
+      <Link>Models\LocalizerExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DicePoker\DicePokerRT\Models\RoamingSettings.cs">
+      <Link>Models\RoamingSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DicePoker\DicePokerRT\Models\ViewModelProvider.cs">
+      <Link>Models\ViewModelProvider.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\BasePage.cs" />
+    <Compile Include="Common\ScoreTypeToColorConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\CommonNavigationActions.cs" />
     <Compile Include="Models\KniffelRulesExtensions.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\SettingsModel.cs" />
+    <Compile Include="Models\TipsProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\BaseViewModel.cs" />
+    <Compile Include="ViewModels\AdBasedViewModel.cs" />
     <Compile Include="ViewModels\DiceRollerModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">

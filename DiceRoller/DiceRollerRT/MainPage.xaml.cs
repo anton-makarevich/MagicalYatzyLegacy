@@ -1,4 +1,5 @@
-﻿using Sanet.Kniffel.ViewModels;
+﻿using Sanet.AllWrite;
+using Sanet.Kniffel.ViewModels;
 using Sanet.Kniffel.Views;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Sanet.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -48,6 +50,11 @@ namespace Sanet.Kniffel.DiceRoller
             
         }
 
+        DispatcherTimer adTimer = new DispatcherTimer()
+        {
+            Interval = TimeSpan.FromSeconds(3)
+        };
+
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             StartLayoutUpdates(sender,e);
@@ -73,6 +80,22 @@ namespace Sanet.Kniffel.DiceRoller
             DicePanel1.DieFrozen += new Sanet.Kniffel.DicePanel.DicePanel.DieFrozenEventHandler(DicePanel1_DieFrozen);
             DicePanel1.EndRoll += new Sanet.Kniffel.DicePanel.DicePanel.EndRollEventHandler(DicePanel1_EndRoll);
             //ABClear.IsEnabled = false;
+            pokerAd.FontSize = 35;
+            pokerAd.LifeTime = 7;
+
+            adTimer.Tick += adTimer_Tick;
+            adTimer.Start();
+        }
+        /// <summary>
+        /// timer to run dicepoker ad
+        /// </summary>
+        int adLine = 1;
+        void adTimer_Tick(object sender, object e)
+        {
+            pokerAd.ShowText(("DicePokerAdLine"+adLine.ToString()).Localize(), Brushes.SolidSanetBlue.Color);
+            adLine++;
+            if (adLine > 8)
+                adLine = 1;
         }
 
         void MainPage_KeyUp(object sender, KeyRoutedEventArgs e)

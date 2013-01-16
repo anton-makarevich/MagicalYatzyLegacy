@@ -467,7 +467,7 @@
     <value>Политика конфиденциальности при использовании этого приложения. Покер-кости не собирает, не хранит и не передает третьим лицам личную информацию пользователя, а также не отслеживает его перемещения.</value>
   </data>
   <data name="Privacy2.Text" xml:space="preserve">
-    <value>Это приложение с ведома пользлвателя может сохранять результаты игр на web сервере. Покер-кости также может открывать страницы в интернете, которые могут быть сохранены вашим браузером.  Вы можете почитать об этом подробнее в политике конфиденциальности браузера, которым Вы пользуетесь.</value>
+    <value>Это приложение сведома пользователя может сохранять результаты игр на web сервере. Покер-кости также может открывать страницы в интернете, которые могут быть сохранены вашим браузером.  Вы можете почитать об этом подробнее в политике конфиденциальности браузера, которым Вы пользуетесь.</value>
   </data>
   <data name="PrivacyLabel.Text" xml:space="preserve">
     <value>Конфеденциальность</value>
@@ -489,5 +489,29 @@
   </data>
   <data name="YesLabel" xml:space="preserve">
     <value>Да, с удовольствием!</value>
+  </data>
+  <data name="DicePokerAdLine1" xml:space="preserve">
+    <value>Надоело просто бросать кости?</value>
+  </data>
+  <data name="DicePokerAdLine2" xml:space="preserve">
+    <value>Попробуй нашу новую игру -</value>
+  </data>
+  <data name="DicePokerAdLine3" xml:space="preserve">
+    <value>Sanet Dice Poker:</value>
+  </data>
+  <data name="DicePokerAdLine4" xml:space="preserve">
+    <value>4 набора правил</value>
+  </data>
+  <data name="DicePokerAdLine5" xml:space="preserve">
+    <value>игра с друзьями и компьютером</value>
+  </data>
+  <data name="DicePokerAdLine6" xml:space="preserve">
+    <value>таблица лучших результатов</value>
+  </data>
+  <data name="DicePokerAdLine7" xml:space="preserve">
+    <value>а скоро </value>
+  </data>
+  <data name="DicePokerAdLine8" xml:space="preserve">
+    <value>и сетевая игра!</value>
   </data>
 </root>

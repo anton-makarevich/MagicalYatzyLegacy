@@ -23,19 +23,19 @@ namespace Sanet.Kniffel.ViewModels
         {
             get 
             {
-                return 5;//Settings.DiceNumber;
+                return RoamingSettings.DiceNumber;
             }
             set
             {
-                //Settings.DiceNumber = value;
-                //Settings.Save();
-                //NotifyPropertyChanged("DiceNumber");
-                //NotifyPropertyChanged("IsNum1");
-                //NotifyPropertyChanged("IsNum2");
-                //NotifyPropertyChanged("IsNum3");
-                //NotifyPropertyChanged("IsNum4");
-                //NotifyPropertyChanged("IsNum5");
-                //NotifyPropertyChanged("IsNum6");
+                RoamingSettings.DiceNumber = value;
+                
+                NotifyPropertyChanged("DiceNumber");
+                NotifyPropertyChanged("IsNum1");
+                NotifyPropertyChanged("IsNum2");
+                NotifyPropertyChanged("IsNum3");
+                NotifyPropertyChanged("IsNum4");
+                NotifyPropertyChanged("IsNum5");
+                NotifyPropertyChanged("IsNum6");
             }
         }
         public int DiceAngle
@@ -336,6 +336,7 @@ namespace Sanet.Kniffel.ViewModels
 
         public void FillAppActions()
         {
+#if !ROLLER
             _AboutAppActions = new List<AboutAppAction>();
             
             if (StoreManager.IsAdVisible())
@@ -354,6 +355,7 @@ namespace Sanet.Kniffel.ViewModels
                         Image = new BitmapImage(new Uri("ms-appx:///Assets/Unlock.png", UriKind.Absolute))
                     });
             NotifyPropertyChanged("AboutAppActions");
+#endif
         }
 
         #endregion

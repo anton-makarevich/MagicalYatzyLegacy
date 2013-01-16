@@ -43,6 +43,7 @@ namespace DicePokerRT
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
+            //init localizer
             LocalizerExtensions.RModel = new ResourceModel();
             //check numofruns
             ReviewBugger.CheckNumOfRuns();

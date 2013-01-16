@@ -10,7 +10,8 @@
 
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:common="using:Sanet.Common">
 
     <!-- Non-brush values that vary across themes -->
 
@@ -27,6 +28,9 @@
     </ResourceDictionary.ThemeDictionaries>
 
     <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
+
+    <common:ScoreTypeToColorConverter x:Key="ScoreKey"/>
+    <common:ReverseBooleanToVisibilityConverter x:Key="VisibilityKey"/>
 
     <!-- RichTextBlock styles -->
 
@@ -426,12 +430,29 @@
         Uncomment any style you reference (as not all may be required).
     -->
 
-    
-    
+
+
     <Style x:Key="DiceRollAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
-        <Setter Property="AutomationProperties.AutomationId" Value="DiceRollAppBarButton"/>
-        <Setter Property="AutomationProperties.Name" Value="Roll"/>
-        <Setter Property="Content" Value="&#x2684;"/>
+        <Setter Property="AutomationProperties.AutomationId" Value="ClearSelectionAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Clear Selection"/>
+        <Setter Property="Content" Value="M23.52215,43.831001C21.940231,43.831001 20.658998,45.113468 20.658998,46.69425 20.658998,48.276333 21.940231,49.559 23.52215,49.559 25.104065,49.559 26.385998,48.276333 26.385998,46.69425 26.385998,45.113468 25.104065,43.831001 23.52215,43.831001z M6.7498002,43.830999C5.1678162,43.830999 3.8859999,45.113466 3.8859999,46.694248 3.8859999,48.276331 5.1678162,49.558996 6.7498002,49.558996 8.3317451,49.558996 9.6130009,48.276331 9.6130009,46.694248 9.6130009,45.113466 8.3317451,43.830999 6.7498002,43.830999z M15.340549,35.65C13.758356,35.65 12.477,36.932589 12.477,38.513499 12.477,40.094309 13.758356,41.376997 15.340549,41.376997 16.922842,41.376997 18.204998,40.094309 18.204998,38.513499 18.204998,36.932589 16.922842,35.65 15.340549,35.65z M40.468952,28.196C38.887089,28.196 37.606003,29.47832 37.606003,31.0589 37.606003,32.639379 38.887089,33.923001 40.468952,33.923001 42.050915,33.923001 43.332001,32.639379 43.332001,31.0589 43.332001,29.47832 42.050915,28.196 40.468952,28.196z M23.522148,27.196001C21.940231,27.196001 20.658998,28.478365 20.658998,30.059 20.658998,31.639532 21.940231,32.921998 23.522148,32.921998 25.104067,32.921998 26.386,31.639532 26.386,30.059 26.386,28.478365 25.104067,27.196001 23.522148,27.196001z M6.7498002,27.196001C5.1678162,27.196001 3.8859999,28.478365 3.8859999,30.059 3.8859999,31.639532 5.1678162,32.921998 6.7498002,32.921998 8.3317451,32.921998 9.6130009,31.639532 9.6130009,30.059 9.6130009,28.478365 8.3317451,27.196001 6.7498002,27.196001z M3.2728603,23.104L27.545166,23.104C29.353184,23.104,30.817999,24.569039,30.817999,26.376288L30.817999,50.104712C30.817999,51.91206,29.353184,53.376999,27.545166,53.376999L3.2728603,53.376999C1.4648635,53.376999,0,51.91206,0,50.104712L0,26.376288C0,24.569039,1.4648635,23.104,3.2728603,23.104z M40.468952,17.286C38.887089,17.286 37.606003,18.568322 37.606003,20.1501 37.606003,21.730679 38.887089,23.012999 40.468952,23.013 42.050915,23.012999 43.332001,21.730679 43.332001,20.1501 43.332001,18.568322 42.050915,17.286 40.468952,17.286z M40.468948,7.2410002C38.887089,7.2410011 37.606003,8.523653 37.606003,10.104425 37.606003,11.685377 38.887089,12.968 40.468948,12.968 42.050911,12.968 43.332001,11.685377 43.332001,10.104425 43.332001,8.523653 42.050911,7.2410011 40.468948,7.2410002z M40.775803,0.00044441223C41.665718,-0.014169693,42.558392,0.33234406,43.216248,1.0323658L59.840096,18.718661C61.078407,20.033662,61.013412,22.105262,59.695591,23.343564L42.407635,39.593569C41.089817,40.830767,39.019485,40.766768,37.781166,39.449068L34.088997,35.520806 34.088997,26.376407C34.088997,22.766948,31.153522,19.832,27.544752,19.831999L20.287712,19.831999 20.276829,19.735528C20.216105,18.79461,20.560606,17.834404,21.301823,17.13786L38.589779,0.88783455C39.207508,0.30739021,39.990582,0.013339996,40.775803,0.00044441223z" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Path 
+                         Data="{Binding Path=Content, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                         Stretch="Uniform" 
+                         Fill="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                         Width="26" 
+                         Height="26" 
+                         RenderTransformOrigin="0.5,0.5">
+
+                    </Path>
+                </DataTemplate>
+
+            </Setter.Value>
+
+        </Setter>
     </Style>
     <!--<Style x:Key="SkipAheadAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="SkipAheadAppBarButton"/>
@@ -1238,6 +1259,7 @@
         <Setter Property="AutomationProperties.Name" Value="Clear"/>
         <Setter Property="Content" Value="&#xE1C5;"/>
     </Style>
+    
     <!--><Style x:Key="FontDecreaseAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="FontDecreaseAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Decrease Font"/>
@@ -1694,9 +1716,10 @@
 
     <!-- List-appropriate 130 pixel high item template as seen in the SplitPage -->
     <DataTemplate x:Key="Standard130ItemTemplate">
-        <Grid Height="110" Width="110" Background="{Binding Background}"
+        <Grid Height="110" Width="110" Background="{Binding ScoreType,Converter={StaticResource ScoreKey}}"
               Margin="6">
             <TextBlock
+                Visibility="{Binding IsZeroValue,Converter={StaticResource VisibilityKey}}"
                     Foreground="{Binding Foreground}"
                 VerticalAlignment="Top"
                 FontSize="45"

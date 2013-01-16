@@ -48,6 +48,9 @@ namespace Sanet.Kniffel.DiceRoller
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
+            //init localizer
+            LocalizerExtensions.RModel = new ResourceModel();
+
             Frame rootFrame = Window.Current.Content as Frame;
             resProvider = (ResourceModel)App.Current.Resources["resModel"];
             // Do not repeat app initialization when the Window already has content,

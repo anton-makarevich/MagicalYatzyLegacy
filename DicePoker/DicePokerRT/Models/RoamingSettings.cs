@@ -15,7 +15,7 @@ namespace Sanet.Kniffel.Models
     {
         static Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
 
-        
+#if !ROLLER
         /// <summary>
         /// Get player info from roaming
         /// </summary>
@@ -57,7 +57,7 @@ namespace Sanet.Kniffel.Models
             else
                 roamingSettings.Values[valueKey] = null;
         }
-
+#endif
         public static Rules LastRule
         {
             get
@@ -110,6 +110,19 @@ namespace Sanet.Kniffel.Models
             set
             {
                 roamingSettings.Values["DiceAngle"] = value;
+            }
+        }
+        public static int DiceNumber
+        {
+            get
+            {
+                if (roamingSettings.Values["DiceNumber"] == null)
+                    roamingSettings.Values["DiceNumber"] = 5;
+                return (int)roamingSettings.Values["DiceNumber"];
+            }
+            set
+            {
+                roamingSettings.Values["DiceNumber"] = value;
             }
         }
 

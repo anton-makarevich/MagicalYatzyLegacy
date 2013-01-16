@@ -459,4 +459,28 @@
   <data name="YesLabel" xml:space="preserve">
     <value>Yes, sure!</value>
   </data>
+  <data name="DicePokerAdLine1" xml:space="preserve">
+    <value>Boring of just rolling dices?</value>
+  </data>
+  <data name="DicePokerAdLine2" xml:space="preserve">
+    <value>Try our new game-</value>
+  </data>
+  <data name="DicePokerAdLine3" xml:space="preserve">
+    <value>Sanet Dice Poker:</value>
+  </data>
+  <data name="DicePokerAdLine4" xml:space="preserve">
+    <value>4 sets of rules</value>
+  </data>
+  <data name="DicePokerAdLine5" xml:space="preserve">
+    <value>play with friends or bots</value>
+  </data>
+  <data name="DicePokerAdLine6" xml:space="preserve">
+    <value>best results table</value>
+  </data>
+  <data name="DicePokerAdLine7" xml:space="preserve">
+    <value>and soon...</value>
+  </data>
+  <data name="DicePokerAdLine8" xml:space="preserve">
+    <value>internet multiplayer game</value>
+  </data>
 </root>
