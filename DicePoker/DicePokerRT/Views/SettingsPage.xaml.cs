@@ -70,9 +70,22 @@ namespace DicePokerRT
         protected override void GoBack(object sender, RoutedEventArgs e)
         {
             ((Popup)this.Parent).IsOpen = false;
-            var vm = ViewModelProvider.GetViewModel<PlayGameViewModel>();
-            if (vm!=null)
-                vm.NotifySettingsChanged();
+            
+            if (ViewModelProvider.GetViewModel<PlayGameViewModel>() != null)
+                ViewModelProvider.GetViewModel<PlayGameViewModel>().NotifySettingsChanged();
+
+            if (ViewModelProvider.GetViewModel<MainPageViewModel>() != null)
+                ViewModelProvider.GetViewModel<MainPageViewModel>().NotifySettingsChanged();
+
+            if (ViewModelProvider.GetViewModel<AboutPageViewModel>() != null)
+                ViewModelProvider.GetViewModel<AboutPageViewModel>().NotifySettingsChanged();
+
+            if (ViewModelProvider.GetViewModel<LeaderboardViewModel>() != null)
+                ViewModelProvider.GetViewModel<LeaderboardViewModel>().NotifySettingsChanged();
+
+            if (ViewModelProvider.GetViewModel<NewGameViewModel>()!= null)
+                ViewModelProvider.GetViewModel<NewGameViewModel>().NotifySettingsChanged();
+
             //SettingsPane.Show();
         }
 

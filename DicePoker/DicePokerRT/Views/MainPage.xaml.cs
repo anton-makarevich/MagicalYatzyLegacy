@@ -33,11 +33,11 @@ namespace DicePokerRT
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            dpBackground.PanelStyle = Sanet.Kniffel.DicePanel.dpStyle.dpsClassic;
+            dpBackground.PanelStyle = GetViewModel<MainPageViewModel>().SettingsPanelStyle;
             dpBackground.TreeDScaleCoef = 0.38;
             dpBackground.NumDice = 5;
-            dpBackground.RollDelay = 15;
-            dpBackground.DieAngle = 3;
+            dpBackground.RollDelay = GetViewModel<MainPageViewModel>().SettingsPanelSpeed;
+            dpBackground.DieAngle = GetViewModel<MainPageViewModel>().SettingsPanelAngle;
             dpBackground.MaxRollLoop = 40;
             dpBackground.EndRoll += StartRoll;
             StartRoll();
@@ -56,12 +56,24 @@ namespace DicePokerRT
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             SetViewModel<MainPageViewModel>();
+            GetViewModel<MainPageViewModel>().PropertyChanged += GamePage_PropertyChanged;
             if (e.NavigationMode == NavigationMode.Back && ReviewBugger.IsTimeForReview())
                 await ReviewBugger.PromptUser();
+        }
+        void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "SettingsPanelAngle")
+                dpBackground.DieAngle = GetViewModel<MainPageViewModel>().SettingsPanelAngle;
+            else if (e.PropertyName == "SettingsPanelSpeed")
+                dpBackground.RollDelay = GetViewModel<MainPageViewModel>().SettingsPanelSpeed;
+            else if (e.PropertyName == "SettingsPanelStyle")
+                dpBackground.PanelStyle = GetViewModel<MainPageViewModel>().SettingsPanelStyle;
+
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             dpBackground.EndRoll -= StartRoll;
+            GetViewModel<MainPageViewModel>().PropertyChanged -= GamePage_PropertyChanged;
             dpBackground.Dispose();
             dpBackground = null;
         }

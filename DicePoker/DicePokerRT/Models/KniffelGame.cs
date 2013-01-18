@@ -239,7 +239,8 @@ namespace Sanet.Kniffel.Models
 
                     lastRollResults[i] = ii;
                 }
-                //lastRollResults = new int[] { 3, 3, 4, 5, 5 };//for debugging
+                //if (Move>6)
+                //   lastRollResults = new int[] { 3, 3, 3, 3, 3 };//for debugging
 
 
                 if (DiceRolled != null)
@@ -254,7 +255,7 @@ namespace Sanet.Kniffel.Models
             {
                 //check if already have kniffel
                 var kresult = CurrentPlayer.GetResultForScore( KniffelScores.Kniffel);
-                result.HasBonus = LastDiceResult.KniffelFiveOfAKindScore() == 50;
+                result.HasBonus = (LastDiceResult.KniffelFiveOfAKindScore() == 50&&kresult.Value==kresult.MaxValue);
             }
             //sending result to everyone
             if (ResultApplied != null)

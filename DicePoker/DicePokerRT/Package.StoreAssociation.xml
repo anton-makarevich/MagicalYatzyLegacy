@@ -348,5 +348,10 @@
     <MainPackageIdentityName>43862AntonMakarevich.SanetDice</MainPackageIdentityName>
     <MainPackageIdentityName>43862AntonMakarevich.SanetNews</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://appdev.microsoft.com:443/StorePortals/Developer/Catalog/ReleaseAnchor/5b0f9106-65a8-49ca-b1f0-641c54a7e3ef" />
+  <PackageInfoList LandingUrl="https://appdev.microsoft.com:443/StorePortals/Developer/Catalog/ReleaseAnchor/5b0f9106-65a8-49ca-b1f0-641c54a7e3ef">
+    <PackageInfo>
+      <PackageArchitecture>neutral</PackageArchitecture>
+      <PackageMaxArchitectureVersion>1.0.0.1</PackageMaxArchitectureVersion>
+    </PackageInfo>
+  </PackageInfoList>
 </StoreAssociation>

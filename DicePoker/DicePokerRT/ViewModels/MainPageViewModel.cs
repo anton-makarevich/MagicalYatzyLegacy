@@ -8,7 +8,7 @@ using Sanet.Models;
 
 namespace Sanet.Kniffel.ViewModels
 {
-    public class MainPageViewModel:BaseViewModel
+    public class MainPageViewModel:AdBasedViewModel
     {
 
 #region Constructor

@@ -334,7 +334,7 @@
   <data name="BonusShort" xml:space="preserve">
     <value>Б</value>
   </data>
-  <data name="Chanse" xml:space="preserve">
+  <data name="Chance" xml:space="preserve">
     <value>Шанс</value>
   </data>
   <data name="Fives" xml:space="preserve">
@@ -369,7 +369,7 @@
     <value>только цифровые комбинации и флэш, 7 ходов</value>
   </data>
   <data name="krExtendedShort" xml:space="preserve">
-    <value>все комбинации, бонус в 35 очков за сумму цифровых комбинаций 63 и более, бонус 100 очков за каждый последующий флэш, книффель-джокер, 13 ходов</value>
+    <value>все комбинации, бонус в 35 очков за сумму цифровых комбинаций 63 и более, бонус 100 очков за каждый последующий флэш, флэш-джокер, 13 ходов</value>
   </data>
   <data name="krSimpleShort" xml:space="preserve">
     <value>все комбинации, без бонусов, 13 ходов</value>

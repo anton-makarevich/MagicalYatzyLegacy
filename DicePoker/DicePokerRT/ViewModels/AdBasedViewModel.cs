@@ -1,5 +1,6 @@
 ﻿
 using DicePokerRT.KniffelLeaderBoardService;
+using Sanet.Kniffel.DicePanel;
 using Sanet.Kniffel.Models;
 using Sanet.Models;
 using System;
@@ -34,6 +35,35 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
+        //Settings
+
+        public int SettingsPanelAngle
+        {
+            get
+            {
+                return RoamingSettings.DiceAngle;
+            }
+
+        }
+
+
+        public int SettingsPanelSpeed
+        {
+            get
+            {
+                return RoamingSettings.DiceSpeed;
+            }
+
+        }
+
+        public dpStyle SettingsPanelStyle
+        {
+            get
+            {
+                return RoamingSettings.DiceStyle;
+            }
+
+        }
         #endregion
 
         #region Methods
@@ -43,7 +73,15 @@ namespace Sanet.Kniffel.ViewModels
             NotifyPropertyChanged("IsAdVisible");
             NotifyPropertyChanged("IsStylesAvailable");
         }
-
+        /// <summary>
+        /// Call when settings updated
+        /// </summary>
+        public void NotifySettingsChanged()
+        {
+            NotifyPropertyChanged("SettingsPanelAngle");
+            NotifyPropertyChanged("SettingsPanelSpeed");
+            NotifyPropertyChanged("SettingsPanelStyle");
+        }
         #endregion
 
     }

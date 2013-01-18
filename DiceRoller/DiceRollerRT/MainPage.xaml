@@ -64,7 +64,8 @@
             BorderBrush="{StaticResource SanetBlue}"
             BorderThickness="3">
             <Grid
-                Background="Black">
+                Background="Black"
+                Tapped="Grid_Tapped_1">
                 <Controls:TipsProvider
                     HorizontalAlignment="Stretch"
                     x:Name="pokerAd"/>

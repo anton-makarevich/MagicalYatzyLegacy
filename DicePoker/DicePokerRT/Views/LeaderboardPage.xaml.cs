@@ -32,11 +32,11 @@ namespace DicePokerRT
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            dpBackground.PanelStyle = Sanet.Kniffel.DicePanel.dpStyle.dpsClassic;
+            dpBackground.PanelStyle = GetViewModel<LeaderboardViewModel>().SettingsPanelStyle;
             dpBackground.TreeDScaleCoef = 0.38;
             dpBackground.NumDice = 5;
-            dpBackground.RollDelay = 15;
-            dpBackground.DieAngle = 3;
+            dpBackground.RollDelay = GetViewModel<LeaderboardViewModel>().SettingsPanelSpeed;
+            dpBackground.DieAngle = GetViewModel<LeaderboardViewModel>().SettingsPanelAngle;
             dpBackground.MaxRollLoop = 40;
             dpBackground.EndRoll += StartRoll;
             StartRoll();
@@ -56,11 +56,22 @@ namespace DicePokerRT
         {
             SetViewModel<LeaderboardViewModel>();
             GetViewModel<LeaderboardViewModel>().RefreshScores();
+            GetViewModel<LeaderboardViewModel>().PropertyChanged += GamePage_PropertyChanged;
         }
+        void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "SettingsPanelAngle")
+                dpBackground.DieAngle = GetViewModel<LeaderboardViewModel>().SettingsPanelAngle;
+            else if (e.PropertyName == "SettingsPanelSpeed")
+                dpBackground.RollDelay = GetViewModel<LeaderboardViewModel>().SettingsPanelSpeed;
+            else if (e.PropertyName == "SettingsPanelStyle")
+                dpBackground.PanelStyle = GetViewModel<LeaderboardViewModel>().SettingsPanelStyle;
 
+        }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             dpBackground.EndRoll -= StartRoll;
+            GetViewModel<LeaderboardViewModel>().PropertyChanged -= GamePage_PropertyChanged;
             dpBackground.Dispose();
             dpBackground = null;
            

@@ -25,6 +25,15 @@ namespace Sanet.Kniffel.Models
             }
             
         }
-       
+        public static Action NavigateToSanetDicePoker
+        {
+            get
+            {
+                return new Action(async () =>
+                {
+                    await Launcher.LaunchUriAsync(new Uri("http://apps.microsoft.com/windows/app/sanet-dice-poker/5b0f9106-65a8-49ca-b1f0-641c54a7e3ef"));
+                });
+            }
+        }
     }
 }

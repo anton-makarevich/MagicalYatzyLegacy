@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Sanet.Models;
+using Sanet.Kniffel.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -264,5 +265,10 @@ namespace Sanet.Kniffel.DiceRoller
         }
 
         #endregion
+
+        private void Grid_Tapped_1(object sender, TappedRoutedEventArgs e)
+        {
+            CommonNavigationActions.NavigateToSanetDicePoker();
+        }
     }
 }

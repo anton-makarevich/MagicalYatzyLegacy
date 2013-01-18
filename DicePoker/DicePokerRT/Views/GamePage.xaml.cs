@@ -109,11 +109,11 @@ namespace DicePokerRT
         {
             if (e.PropertyName == "CanFix")
                 dpBackground.ClickToFreeze = GetViewModel<PlayGameViewModel>().CanFix;
-            if (e.PropertyName == "SettingsPanelAngle")
+            else if (e.PropertyName == "SettingsPanelAngle")
                 dpBackground.DieAngle = GetViewModel<PlayGameViewModel>().SettingsPanelAngle;
-            if (e.PropertyName == "SettingsPanelSpeed")
+            else if (e.PropertyName == "SettingsPanelSpeed")
                 dpBackground.RollDelay = GetViewModel<PlayGameViewModel>().SettingsPanelSpeed;
-            if (e.PropertyName == "SettingsPanelStyle")
+            else if (e.PropertyName == "SettingsPanelStyle")
                 dpBackground.PanelStyle = GetViewModel<PlayGameViewModel>().SettingsPanelStyle;
             
         }

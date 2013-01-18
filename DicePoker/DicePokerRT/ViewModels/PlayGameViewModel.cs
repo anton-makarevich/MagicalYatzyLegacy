@@ -271,37 +271,7 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
-        //Settings
-        
-        public int SettingsPanelAngle
-        {
-            get
-            {
-                return RoamingSettings.DiceAngle; 
-            }
-            
-        }
-
-        
-        public int SettingsPanelSpeed
-        {
-            get
-            { 
-                return RoamingSettings.DiceSpeed;
-            }
-            
-        }
-
-        public dpStyle SettingsPanelStyle
-        {
-            get
-            {
-                return RoamingSettings.DiceStyle;
-            }
-
-        }
-
-        
+               
 
         #endregion
 
@@ -473,15 +443,7 @@ namespace Sanet.Kniffel.ViewModels
             NotifyPropertyChanged("Players");
         }
 
-        /// <summary>
-        /// Call when settings updated
-        /// </summary>
-        public void NotifySettingsChanged()
-        {
-            NotifyPropertyChanged("SettingsPanelAngle");
-            NotifyPropertyChanged("SettingsPanelSpeed");
-            NotifyPropertyChanged("SettingsPanelStyle");
-        }
+        
         #endregion
 
         #region Commands

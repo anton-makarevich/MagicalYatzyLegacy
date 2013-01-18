@@ -321,7 +321,7 @@
   <data name="Bonus" xml:space="preserve">
     <value>Бонус</value>
   </data>
-  <data name="Chanse" xml:space="preserve">
+  <data name="Chance" xml:space="preserve">
     <value>Шанс</value>
   </data>
   <data name="Fives" xml:space="preserve">
@@ -436,27 +436,35 @@
     <value>Конфеденциальность</value>
   </data>
   <data name="DicePokerAdLine1" xml:space="preserve">
-    <value>Надоело просто бросать кости?</value>
+    <value>Nur würfeln  finden Sie langweilig?</value>
+    <comment>Nur würfeln  finden Sie langweilig?</comment>
   </data>
   <data name="DicePokerAdLine2" xml:space="preserve">
-    <value>Попробуй нашу новую игру -</value>
+    <value>Das lang ersehnte Spiel ist endlich da!</value>
+    <comment>Das lang ersehnte Spiel ist endlich da!</comment>
   </data>
   <data name="DicePokerAdLine3" xml:space="preserve">
     <value>Sanet Dice Poker:</value>
+    <comment>Sanet Dice Poker:</comment>
   </data>
   <data name="DicePokerAdLine4" xml:space="preserve">
-    <value>4 набора правил</value>
+    <value>4 Regeleinstellungen</value>
+    <comment>4 Regeleinstellungen</comment>
   </data>
   <data name="DicePokerAdLine5" xml:space="preserve">
-    <value>игра с друзьями и компьютером</value>
+    <value>Wettkämpfe gegen Freunde oder Computer</value>
+    <comment>Wettkämpfe gegen Freunde oder Computer</comment>
   </data>
   <data name="DicePokerAdLine6" xml:space="preserve">
-    <value>таблица лучших результатов</value>
+    <value>Highscore-Tabelle und viel mehr!</value>
+    <comment>Highscore-Tabelle und viel mehr!</comment>
   </data>
   <data name="DicePokerAdLine7" xml:space="preserve">
-    <value>а скоро </value>
+    <value>Und bald...</value>
+    <comment>Und bald...</comment>
   </data>
   <data name="DicePokerAdLine8" xml:space="preserve">
-    <value>и сетевая игра!</value>
+    <value>das  Multiplayer-Online-Spiel ist zu erwarten!</value>
+    <comment> das  Multiplayer-Online-Spiel ist zu erwarten!</comment>
   </data>
 </root>
