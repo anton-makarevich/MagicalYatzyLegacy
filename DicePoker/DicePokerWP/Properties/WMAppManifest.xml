@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
+  <App xmlns="" ProductID="{919682ed-e1f1-43c6-9d92-dcef71b20f8e}" Title="DicePokerWP" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Anton Makarevich" Description="Sample description" Publisher="Anton Makarevich">
+    <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
+    <Capabilities>
+      <Capability Name="ID_CAP_IDENTITY_DEVICE" />
+      <Capability Name="ID_CAP_IDENTITY_USER" />
+      <Capability Name="ID_CAP_NETWORKING" />
+      <Capability Name="ID_CAP_PUSH_NOTIFICATION" />
+      <Capability Name="ID_CAP_SENSORS" />
+    </Capabilities>
+    <Tasks>
+      <DefaultTask Name="_default" NavigationPage="Views/MainPage.xaml" />
+    </Tasks>
+    <Tokens>
+      <PrimaryToken TokenID="DicePokerWPToken" TaskName="_default">
+        <TemplateType5>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
+          <Count>0</Count>
+          <Title>Dice Poker</Title>
+        </TemplateType5>
+      </PrimaryToken>
+    </Tokens>
+  </App>
+</Deployment>
