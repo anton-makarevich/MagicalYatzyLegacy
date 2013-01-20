@@ -1686,12 +1686,23 @@
     <!-- Item templates -->
     <!--Datatemplate for main menu item-->
     <DataTemplate x:Key="MainMenuTemplate">
-        <Grid Height="90" Margin="10" HorizontalAlignment="Stretch"
-                          Background="{StaticResource SanetBlue}" Opacity="0.85">
-            <StackPanel>
-                <TextBlock Text="{Binding LocalizedLabel}" Foreground="White" 
+        <Grid Height="95" Margin="10" HorizontalAlignment="Stretch"
+                          >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="95"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image
+                    Height="90"
+                    Width="90"
+                    Source="{Binding Image}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                    />
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="{Binding LocalizedLabel}" Foreground="{StaticResource SanetBlue}" 
                                  FontSize="35" Height="50" Margin="10,5,10,0" />
-                <TextBlock Text="{Binding LocalizedDescription}" Foreground="White" 
+                <TextBlock Text="{Binding LocalizedDescription}" Foreground="{StaticResource SanetBlue}" 
                                  FontSize="15" Height="50" Margin="10,5" />
             </StackPanel>
 

@@ -84,7 +84,7 @@ namespace DicePokerRT
 
         private void ListView_ItemClick_1(object sender, ItemClickEventArgs e)
         {
-            ((OtherAppAction)e.ClickedItem).MenuAction();
+            ((MainMenuAction)e.ClickedItem).MenuAction();
         }
     }
 }

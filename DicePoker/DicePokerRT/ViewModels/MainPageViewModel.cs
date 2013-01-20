@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sanet.Models;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace Sanet.Kniffel.ViewModels
 {
@@ -23,7 +24,8 @@ namespace Sanet.Kniffel.ViewModels
                         {
                             CommonNavigationActions.NavigateToNewGamePage();
                         }),
-                    Description = "NewLocalGameDescription"
+                    Description = "NewLocalGameDescription",
+                    Image = new BitmapImage(new Uri("ms-appx:///Assets/SanetDice.png", UriKind.Absolute)),
                 });
             //MenuActions.Add(
             //    new MainMenuAction
@@ -43,7 +45,8 @@ namespace Sanet.Kniffel.ViewModels
                     {
                         CommonNavigationActions.NavigateToSettingsPage();
                     }),
-                    Description = "SettingsDescription"
+                    Description = "SettingsDescription",
+                    Image = new BitmapImage(new Uri("ms-appx:///Assets/Settings.png", UriKind.Absolute)),
                 });
             MenuActions.Add(
                 new MainMenuAction
@@ -53,7 +56,8 @@ namespace Sanet.Kniffel.ViewModels
                     {
                         CommonNavigationActions.NavigateToLeaderboardPage();
                     }),
-                    Description = "LeaderboardDescription"
+                    Description = "LeaderboardDescription",
+                    Image = new BitmapImage(new Uri("ms-appx:///Assets/Victory.png", UriKind.Absolute)),
                 });
             MenuActions.Add(
                 new MainMenuAction
@@ -63,7 +67,8 @@ namespace Sanet.Kniffel.ViewModels
                     {
                         CommonNavigationActions.NavigateToAboutPage();
                     }),
-                    Description = "AboutDescription"
+                    Description = "AboutDescription",
+                    Image = new BitmapImage(new Uri("ms-appx:///Assets/About.png", UriKind.Absolute)),
                 });
             NotifyPropertyChanged("MenuActions");
         }

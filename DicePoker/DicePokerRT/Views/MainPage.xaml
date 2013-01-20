@@ -54,7 +54,7 @@
             <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Property="Width" Value="456"/>
+                        <Setter Property="Width" Value="550"/>
                     </Style>
                 </ListView.ItemContainerStyle>
         </ListView>

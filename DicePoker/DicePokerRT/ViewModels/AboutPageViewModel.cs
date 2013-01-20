@@ -94,8 +94,8 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
-        private List<OtherAppAction> _OtherAppActions;
-        public List<OtherAppAction> OtherAppActions
+        private List<MainMenuAction> _OtherAppActions;
+        public List<MainMenuAction> OtherAppActions
         {
             get { return _OtherAppActions; }
             set
@@ -155,9 +155,9 @@ namespace Sanet.Kniffel.ViewModels
 
         private void FillOtherApps()
         {
-            OtherAppActions = new List<OtherAppAction>();
+            OtherAppActions = new List<MainMenuAction>();
             _OtherAppActions.Add(
-                new OtherAppAction
+                new MainMenuAction
                 {
                     Label = "SANET ALLWRITE",
                     MenuAction = new Action(() =>
@@ -168,7 +168,7 @@ namespace Sanet.Kniffel.ViewModels
                     Description = "AWDescription"
                 });
             _OtherAppActions.Add(
-                new OtherAppAction
+                new MainMenuAction
                 {
                     Label = "SANET NEWS",
                     MenuAction = new Action(() =>

@@ -147,6 +147,60 @@ namespace Sanet.Kniffel.Models
 
         #endregion
 
+        #region records
+        public static int LocalBabyRecord
+        {
+            get
+            {
+                if (roamingSettings.Values["LocalBabyRecord"] == null)
+                    roamingSettings.Values["LocalBabyRecord"] = 0;
+                return (int)roamingSettings.Values["LocalBabyRecord"];
+            }
+            set
+            {
+                roamingSettings.Values["LocalBabyRecord"] = value;
+            }
+        }
+        public static int LocalSimpleRecord
+        {
+            get
+            {
+                if (roamingSettings.Values["LocalSimpleRecord"] == null)
+                    roamingSettings.Values["LocalSimpleRecord"] = 0;
+                return (int)roamingSettings.Values["LocalSimpleRecord"];
+            }
+            set
+            {
+                roamingSettings.Values["LocalSimpleRecord"] = value;
+            }
+        }
+        public static int LocalStandardRecord
+        {
+            get
+            {
+                if (roamingSettings.Values["LocalStandardRecord"] == null)
+                    roamingSettings.Values["LocalStandardRecord"] = 0;
+                return (int)roamingSettings.Values["LocalStandardRecord"];
+            }
+            set
+            {
+                roamingSettings.Values["LocalStandardRecord"] = value;
+            }
+        }
+        public static int LocalExtendedRecord
+        {
+            get
+            {
+                if (roamingSettings.Values["LocalExtendedRecord"] == null)
+                    roamingSettings.Values["LocalExtendedRecord"] = 0;
+                return (int)roamingSettings.Values["LocalExtendedRecord"];
+            }
+            set
+            {
+                roamingSettings.Values["LocalExtendedRecord"] = value;
+            }
+        }
+        #endregion
     }
 
 }
