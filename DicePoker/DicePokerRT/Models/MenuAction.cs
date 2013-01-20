@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Sanet.Models;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media;
 
 namespace Sanet.Kniffel.Models
 {
@@ -61,6 +62,20 @@ namespace Sanet.Kniffel.Models
             get
             {
                 return _Description.Localize();
+            }
+        }
+
+        private ImageSource _Image;
+        public ImageSource Image
+        {
+            get { return _Image; }
+            set
+            {
+                if (_Image != value)
+                {
+                    _Image = value;
+                    NotifyPropertyChanged("Image");
+                }
             }
         }
         #endregion

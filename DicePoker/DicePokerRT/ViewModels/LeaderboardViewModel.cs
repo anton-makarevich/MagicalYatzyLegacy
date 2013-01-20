@@ -272,6 +272,7 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         private async void GetScores()
         {
+            Scores = new ObservableCollection<KniffelScoreWrapper>();
             var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
             ScoresLoading = true;
             try
@@ -292,6 +293,7 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         private async void GetScoresB()
         {
+            ScoresB = new ObservableCollection<KniffelScoreWrapper>();
             var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
             ScoresBLoading = true;
             try
@@ -313,6 +315,7 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         private async void GetScoresS()
         {
+            ScoresS = new ObservableCollection<KniffelScoreWrapper>();
             var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
             ScoresSLoading = true;
             try
@@ -333,6 +336,7 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         private async void GetScoresE()
         {
+            ScoresE = new ObservableCollection<KniffelScoreWrapper>();
             var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
             ScoresELoading = true;
             try

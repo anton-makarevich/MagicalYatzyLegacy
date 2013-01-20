@@ -421,14 +421,61 @@ namespace Sanet.Kniffel.ViewModels
         {
             try
             {
+                int score, scoreb, scores, scoree;
+                scoreb=RoamingSettings.LocalBabyRecord;
+                scoree = RoamingSettings.LocalExtendedRecord;
+                score = RoamingSettings.LocalSimpleRecord;
+                scores = RoamingSettings.LocalStandardRecord;
                 foreach (Player p in Players)
                 {
+                    
                     if (p.ShouldSaveResult)
                     {
                         var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
                         ks.PutScoreIntoTableWithPicAsync(Encryptor.Encrypt(p.Name, 33), Encryptor.Encrypt(p.Password, 33), Encryptor.Encrypt(p.Total.ToString(), 33), Encryptor.Encrypt(Game.Rules.ToString(), 33), p.PicUrl);
                     }
+                    switch (Game.Rules.Rule)
+                    {
+                        case Rules.krBaby:
+                            if (p.Total > scoreb)
+                            {
+                                scoreb = p.Total;
+                                RoamingSettings.LocalBabyRecord = scoreb;
+                            }
+                            break;
+                        case Rules.krExtended:
+                            if (p.Total > scoree)
+                            {
+                                scoree = p.Total;
+                                RoamingSettings.LocalExtendedRecord = scoree;
+                            }
+                            break;
+                        case Rules.krSimple:
+                            if (p.Total > score)
+                            {
+                                score = p.Total;
+                                RoamingSettings.LocalSimpleRecord = score;
+                            }
+                            break;
+                        case Rules.krStandard:
+                            if (p.Total > scores)
+                            {
+                                scores = p.Total;
+                                RoamingSettings.LocalStandardRecord = scores;
+                            }
+                            break;
+                    }
                 }
+                List<string> tileLines = new List<string>();
+                if (scoree > 0) tileLines.Add(string.Format("{0} - {1}", Rules.krExtended.ToString().Localize(), scoree));
+                if (scores > 0) tileLines.Add(string.Format("{0} - {1}", Rules.krStandard.ToString().Localize(), scores));
+                if (score > 0) tileLines.Add(string.Format("{0} - {1}", Rules.krSimple.ToString().Localize(), score));
+                if (scoreb > 0) tileLines.Add(string.Format("{0} - {1}", Rules.krBaby.ToString().Localize(), scoreb));
+
+                for (int i = tileLines.Count; i <= 4;i++ )
+                    tileLines.Add("");
+
+                TileHelper.UpdateTileContent("main", "BestLocalLabel".Localize(), tileLines[0], tileLines[1], tileLines[2], tileLines[3]);
             }
             catch { }
         }
