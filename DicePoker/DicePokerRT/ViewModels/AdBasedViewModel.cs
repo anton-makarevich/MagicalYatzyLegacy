@@ -1,5 +1,5 @@
 ﻿
-using DicePokerRT.KniffelLeaderBoardService;
+
 using Sanet.Kniffel.DicePanel;
 using Sanet.Kniffel.Models;
 using Sanet.Models;
@@ -9,9 +9,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+#if WinRT
+using DicePokerRT.KniffelLeaderBoardService;
 using Windows.ApplicationModel;
 using Windows.System.UserProfile;
 using Windows.UI.Xaml.Media.Imaging;
+#else
+#endif
 
 namespace Sanet.Kniffel.ViewModels
 {

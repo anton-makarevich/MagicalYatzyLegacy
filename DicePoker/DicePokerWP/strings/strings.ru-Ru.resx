@@ -1,0 +1,520 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutCaption.Text" xml:space="preserve">
+    <value>О программе</value>
+    <comment>About</comment>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>виртуальные кости в твоем планшете</value>
+    <comment>Virtuelle  Würfel in deinem Tablet!</comment>
+  </data>
+  <data name="OnlineLink.Content" xml:space="preserve">
+    <value>О Kniffel Online</value>
+    <comment>About Kniffel online</comment>
+  </data>
+  <data name="clear" xml:space="preserve">
+    <value>снять выделение</value>
+    <comment>Löschen</comment>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>Закрыть</value>
+    <comment>Schließen</comment>
+  </data>
+  <data name="DevelopedBy.Text" xml:space="preserve">
+    <value>Разработано:</value>
+    <comment>Entwickelt von:</comment>
+  </data>
+  <data name="SpeedFast.Text" xml:space="preserve">
+    <value>быстро</value>
+    <comment>schnell</comment>
+  </data>
+  <data name="FullHouse" xml:space="preserve">
+    <value>Фулл Хаус</value>
+    <comment>Full House</comment>
+  </data>
+  <data name="AngHigh.Text" xml:space="preserve">
+    <value>высоко</value>
+    <comment>hoch</comment>
+  </data>
+  <data name="LargeStraight" xml:space="preserve">
+    <value>Ладж Стрит</value>
+    <comment>Große Straße</comment>
+  </data>
+  <data name="AngLow.Text" xml:space="preserve">
+    <value>низко</value>
+    <comment>niedrig</comment>
+  </data>
+  <data name="OfAKind" xml:space="preserve">
+    <value>одинаковые</value>
+    <comment>-ling</comment>
+  </data>
+  <data name="OnlineVersionText.Text" xml:space="preserve">
+    <value>Идея контрола DicePanel и 'красные' кости принадлежат  Matthew Tagliaferri</value>
+    <comment>Das Programm basiert sich auf dem Controll DicePanel aus dem Onlinespiel Kniffel.  Die Idee des Controlls und die Darstellung der  ''Roten"  Würfeln gehört Matthew Tagliaferri.</comment>
+  </data>
+  <data name="Pairs" xml:space="preserve">
+    <value>пары</value>
+    <comment>Paare</comment>
+  </data>
+  <data name="RateButton.Content" xml:space="preserve">
+    <value>Оцените это приложение, если оно вам нравится</value>
+    <comment>Bewerten</comment>
+  </data>
+  <data name="roll" xml:space="preserve">
+    <value>бросок</value>
+    <comment>würfeln</comment>
+  </data>
+  <data name="SpeedSlow.Text" xml:space="preserve">
+    <value>медленно</value>
+    <comment>langsam</comment>
+  </data>
+  <data name="SmallStraight" xml:space="preserve">
+    <value>Смолл Стрит</value>
+    <comment>Kleine Straße</comment>
+  </data>
+  <data name="Support.Text" xml:space="preserve">
+    <value>Служба технической поддержки:</value>
+    <comment>Technischer Support:</comment>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Версия</value>
+    <comment>Version</comment>
+  </data>
+  <data name="SpeedVeryFast.Text" xml:space="preserve">
+    <value>очень быстро</value>
+    <comment>sehr schnell</comment>
+  </data>
+  <data name="AngVeryHigh.Text" xml:space="preserve">
+    <value>очень высоко</value>
+    <comment>sehr hoch</comment>
+  </data>
+  <data name="SpeedVerySlow.Text" xml:space="preserve">
+    <value>очень медленно</value>
+    <comment>sehr langsam</comment>
+  </data>
+  <data name="SettingsAngleCaption.Text" xml:space="preserve">
+    <value>Угол обзора</value>
+    <comment>Blickfeld</comment>
+  </data>
+  <data name="SettingsCaption.Text" xml:space="preserve">
+    <value>Настройки</value>
+    <comment>Einstellungen</comment>
+  </data>
+  <data name="SettingsNumbersCaption.Text" xml:space="preserve">
+    <value>Число костей</value>
+    <comment>Würfelzahl</comment>
+  </data>
+  <data name="SettingsSpeedCaption.Text" xml:space="preserve">
+    <value>Скорость броска</value>
+    <comment>Wurftempo</comment>
+  </data>
+  <data name="SettingsStyleCaption.Text" xml:space="preserve">
+    <value>Стиль костей</value>
+    <comment>Würfelstil</comment>
+  </data>
+  <data name="OtherAllWrite.Content" xml:space="preserve">
+    <value>Электронные прописи - занимательное обучение письму.</value>
+    <comment>Elektronisches Schreibheft -spannendes Schreiben-Lernen</comment>
+  </data>
+  <data name="OtherSoft.Text" xml:space="preserve">
+    <value>Попробуйте другие программы:</value>
+    <comment>Versuchen Sie andere Programme</comment>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Всего</value>
+    <comment>insgesamt</comment>
+  </data>
+  <data name="AboutAction" xml:space="preserve">
+    <value>Об игре</value>
+  </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>Посмотрите информацию об игре и авторах</value>
+  </data>
+  <data name="LeaderboardAction" xml:space="preserve">
+    <value>Зал славы</value>
+  </data>
+  <data name="LeaderboardDescription" xml:space="preserve">
+    <value>Лучшие результаты игр по каждым правилам</value>
+  </data>
+  <data name="NetworkGameNotReadyMessage" xml:space="preserve">
+    <value>Извините, сетевая игра еще не готова. </value>
+  </data>
+  <data name="NewLocalGameAction" xml:space="preserve">
+    <value>Новая игра</value>
+  </data>
+  <data name="NewLocalGameDescription" xml:space="preserve">
+    <value>Новая игра - в одиночку, с друзьями или с компьютером</value>
+  </data>
+  <data name="NewOnlineGameAction" xml:space="preserve">
+    <value>Игра по сети</value>
+  </data>
+  <data name="NewOnlineGameDescription" xml:space="preserve">
+    <value>Скоро доступно</value>
+  </data>
+  <data name="SettingsAction" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="SettingsDescription" xml:space="preserve">
+    <value>Измените настройки игры</value>
+  </data>
+  <data name="StartNewGameMessage" xml:space="preserve">
+    <value>Начать новую игру</value>
+  </data>
+  <data name="PlayerNameLabel" xml:space="preserve">
+    <value>имя</value>
+  </data>
+  <data name="PlayerPasswordLabel" xml:space="preserve">
+    <value>пароль</value>
+  </data>
+  <data name="PlayerTypeLabel" xml:space="preserve">
+    <value>тип</value>
+  </data>
+  <data name="PlayersLabel" xml:space="preserve">
+    <value>Игроки</value>
+  </data>
+  <data name="AddBotLabel" xml:space="preserve">
+    <value>Добавить бота</value>
+  </data>
+  <data name="AddPlayerLabel" xml:space="preserve">
+    <value>Добавить игрока</value>
+  </data>
+  <data name="PlayerNameDefault" xml:space="preserve">
+    <value>Игрок</value>
+  </data>
+  <data name="BotNameDefault" xml:space="preserve">
+    <value>Бот</value>
+  </data>
+  <data name="PlayerBotLabelLocalized" xml:space="preserve">
+    <value>Компьютер</value>
+  </data>
+  <data name="PlayerHumanLabelLocalized" xml:space="preserve">
+    <value>Человек</value>
+  </data>
+  <data name="PlayerRememberLabelLocalized" xml:space="preserve">
+    <value>Запомнить</value>
+  </data>
+  <data name="RulesLabel" xml:space="preserve">
+    <value>Правила</value>
+  </data>
+  <data name="krBaby" xml:space="preserve">
+    <value>Детские</value>
+  </data>
+  <data name="krExtended" xml:space="preserve">
+    <value>Расширенные</value>
+  </data>
+  <data name="krSimple" xml:space="preserve">
+    <value>Простые</value>
+  </data>
+  <data name="krStandard" xml:space="preserve">
+    <value>Стандартные</value>
+  </data>
+  <data name="StartGameButton" xml:space="preserve">
+    <value>Начать игру!</value>
+  </data>
+  <data name="Bonus" xml:space="preserve">
+    <value>Бонус</value>
+  </data>
+  <data name="BonusShort" xml:space="preserve">
+    <value>Б</value>
+  </data>
+  <data name="Chance" xml:space="preserve">
+    <value>Шанс</value>
+  </data>
+  <data name="Fives" xml:space="preserve">
+    <value>Пятерки</value>
+  </data>
+  <data name="FivesShort" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="FourOfAKind" xml:space="preserve">
+    <value>Четыре одинаковые</value>
+  </data>
+  <data name="FourOfAKindShort" xml:space="preserve">
+    <value>Ч</value>
+  </data>
+  <data name="Fours" xml:space="preserve">
+    <value>Четверки</value>
+  </data>
+  <data name="FoursShort" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="FullHouseShort" xml:space="preserve">
+    <value>ФХ</value>
+    <comment>Full House</comment>
+  </data>
+  <data name="Kniffel" xml:space="preserve">
+    <value>Флэш!</value>
+  </data>
+  <data name="KniffelShort" xml:space="preserve">
+    <value>П!</value>
+  </data>
+  <data name="krBabyShort" xml:space="preserve">
+    <value>только цифровые комбинации и флэш, 7 ходов</value>
+  </data>
+  <data name="krExtendedShort" xml:space="preserve">
+    <value>все комбинации, бонус в 35 очков за сумму цифровых комбинаций 63 и более, бонус 100 очков за каждый последующий флэш, флэш-джокер, 13 ходов</value>
+  </data>
+  <data name="krSimpleShort" xml:space="preserve">
+    <value>все комбинации, без бонусов, 13 ходов</value>
+  </data>
+  <data name="krStandardShort" xml:space="preserve">
+    <value>все комбинации, бонус в 35 очков за сумму цифровых комбинаций 63 и более, 13 ходов</value>
+  </data>
+  <data name="LargeStraightShort" xml:space="preserve">
+    <value>ЛС</value>
+    <comment>Große Straße</comment>
+  </data>
+  <data name="Ones" xml:space="preserve">
+    <value>Единицы</value>
+  </data>
+  <data name="OnesShort" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Sixs" xml:space="preserve">
+    <value>Шестерки</value>
+  </data>
+  <data name="SixsShort" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="SmallStraightShort" xml:space="preserve">
+    <value>СС</value>
+    <comment>Kleine Straße</comment>
+  </data>
+  <data name="ThreeOfAKind" xml:space="preserve">
+    <value>Три одинаковые</value>
+  </data>
+  <data name="ThreeOfAKindShort" xml:space="preserve">
+    <value>Т</value>
+  </data>
+  <data name="Threes" xml:space="preserve">
+    <value>Тройки</value>
+  </data>
+  <data name="ThreesShort" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="TotalShort" xml:space="preserve">
+    <value>Ш</value>
+  </data>
+  <data name="Twos" xml:space="preserve">
+    <value>Двойки</value>
+  </data>
+  <data name="TwosShort" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="AgainLabel" xml:space="preserve">
+    <value>еще разок</value>
+  </data>
+  <data name="GameFinishedLabel" xml:space="preserve">
+    <value>Игра окончена!</value>
+  </data>
+  <data name="MoveLabel" xml:space="preserve">
+    <value>ход</value>
+  </data>
+  <data name="SaveScoreLabel" xml:space="preserve">
+    <value>сохранить в книгу рекордов</value>
+  </data>
+  <data name="WinLabel" xml:space="preserve">
+    <value>выиграл </value>
+  </data>
+  <data name="AllRecordsLabel" xml:space="preserve">
+    <value>Смотреть все рекорды в интернете</value>
+  </data>
+  <data name="PlayerBestScoreLabel" xml:space="preserve">
+    <value>Рекорд</value>
+  </data>
+  <data name="PlayerGamesLabel" xml:space="preserve">
+    <value>Игр</value>
+  </data>
+  <data name="PlayerTotalScoreLabel" xml:space="preserve">
+    <value>Очков</value>
+  </data>
+  <data name="AppNameLabel" xml:space="preserve">
+    <value>Покер-кости</value>
+  </data>
+  <data name="AWDescription" xml:space="preserve">
+    <value>Электронная пропись, которая развивает мелкую моторику, память, обучает письму (цифры, русские, английские буквы, китайские иероглифы и различные символы), позволяет в современной форме овладеть основами графического письма, привить ребенку тягу к знаниям</value>
+  </data>
+  <data name="LaterLabel" xml:space="preserve">
+    <value>В другой раз.</value>
+  </data>
+  <data name="NeverLabel" xml:space="preserve">
+    <value>Нет, спасибо.</value>
+  </data>
+  <data name="NewsDescription" xml:space="preserve">
+    <value>Читалка RSS лент для новостей из Беларуси. Все ваши новости собраны в одном месте. У нас новости с основных новостных сайтов Беларуси, а скоро их будет еще больше.</value>
+  </data>
+  <data name="OtherAppsLabel" xml:space="preserve">
+    <value>Другие приложения</value>
+  </data>
+  <data name="Privacy1.Text" xml:space="preserve">
+    <value>Политика конфиденциальности при использовании этого приложения. Покер-кости не собирает, не хранит и не передает третьим лицам личную информацию пользователя, а также не отслеживает его перемещения.</value>
+  </data>
+  <data name="Privacy2.Text" xml:space="preserve">
+    <value>В качестве идентификатора игрока может быть использовано имя пользователя Windows, его адрес электронной почты. Приложение сохраняет эти данные в интернет таблице рекордов только с ведома пользователя. Покер-кости также может открывать страницы в интернете, которые могут быть сохранены вашим браузером.  Вы можете почитать об этом подробнее в политике конфиденциальности браузера, которым Вы пользуетесь.</value>
+  </data>
+  <data name="PrivacyLabel.Text" xml:space="preserve">
+    <value>Конфиденциальность</value>
+  </data>
+  <data name="RemoveAdAction" xml:space="preserve">
+    <value>Открыть все кости, убрать рекламу</value>
+  </data>
+  <data name="ReviewAppAction" xml:space="preserve">
+    <value>Оценить приложение в магазине</value>
+  </data>
+  <data name="ReviewReminder" xml:space="preserve">
+    <value>Ваши отзывы, предложения и оценки помогают нам делать это приложение еще лучше. Хотите оценить приложение?</value>
+  </data>
+  <data name="ReviewReminderHeader" xml:space="preserve">
+    <value>Вам нравится?</value>
+  </data>
+  <data name="SendFeedbackAction" xml:space="preserve">
+    <value>Отправить нам отзыв о приложении</value>
+  </data>
+  <data name="YesLabel" xml:space="preserve">
+    <value>Да, с удовольствием!</value>
+  </data>
+  <data name="DicePokerAdLine1" xml:space="preserve">
+    <value>Надоело просто бросать кости?</value>
+  </data>
+  <data name="DicePokerAdLine2" xml:space="preserve">
+    <value>Попробуй нашу новую игру -</value>
+  </data>
+  <data name="DicePokerAdLine3" xml:space="preserve">
+    <value>Sanet Dice Poker:</value>
+  </data>
+  <data name="DicePokerAdLine4" xml:space="preserve">
+    <value>4 набора правил</value>
+  </data>
+  <data name="DicePokerAdLine5" xml:space="preserve">
+    <value>игра с друзьями и компьютером</value>
+  </data>
+  <data name="DicePokerAdLine6" xml:space="preserve">
+    <value>таблица лучших результатов</value>
+  </data>
+  <data name="DicePokerAdLine7" xml:space="preserve">
+    <value>а скоро </value>
+  </data>
+  <data name="DicePokerAdLine8" xml:space="preserve">
+    <value>и сетевая игра!</value>
+  </data>
+  <data name="BestLocalLabel" xml:space="preserve">
+    <value>Локальные рекорды:</value>
+  </data>
+</root>

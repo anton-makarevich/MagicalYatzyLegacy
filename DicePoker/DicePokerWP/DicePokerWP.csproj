@@ -73,27 +73,27 @@
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\BaseViewModel.cs">
+      <Link>Common\BaseViewModel.cs</Link>
+    </Compile>
     <Compile Include="..\DicePokerRT\Models\LocalizerExtensions.cs">
       <Link>Common\LocalizerExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\DicePokerRT\Models\ReviewBugger.cs">
-      <Link>Common\ReviewBugger.cs</Link>
-    </Compile>
-    <Compile Include="..\DicePokerRT\Models\StoreManager.cs">
-      <Link>Common\StoreManager.cs</Link>
-    </Compile>
-    <Compile Include="..\DicePokerRT\Models\TileHelper.cs">
-      <Link>Common\TileHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\DicePokerRT\Models\Utilities.cs">
-      <Link>Common\Utilities.cs</Link>
     </Compile>
     <Compile Include="..\DicePokerRT\Models\ViewModelProvider.cs">
       <Link>Common\ViewModelProvider.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\AdBasedViewModel.cs">
+      <Link>ViewModels\AdBasedViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\MainPageViewModel.cs">
+      <Link>ViewModels\MainPageViewModel.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\WPBasePageExtensions.cs" />
+    <Compile Include="Models\ResourceModel.cs" />
+    <Compile Include="Models\StoreManager.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -113,6 +113,9 @@
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
+    <EmbeddedResource Include="strings\strings.resx" />
+    <EmbeddedResource Include="strings\strings.ru-Ru.resx" />
+    <EmbeddedResource Include="strings\strings.de-DE.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationIcon.png">
@@ -123,10 +126,7 @@
     </Content>
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

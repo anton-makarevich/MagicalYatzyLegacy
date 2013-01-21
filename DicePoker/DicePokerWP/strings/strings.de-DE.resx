@@ -1,0 +1,549 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutCaption.Text" xml:space="preserve">
+    <value>About</value>
+    <comment>About</comment>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>Virtuelle  Würfel in deinem Tablet!</value>
+    <comment>Virtuelle  Würfel in deinem Tablet!</comment>
+  </data>
+  <data name="AngHigh.Text" xml:space="preserve">
+    <value>hoch</value>
+    <comment>hoch</comment>
+  </data>
+  <data name="AngLow.Text" xml:space="preserve">
+    <value>niedrig</value>
+    <comment>niedrig</comment>
+  </data>
+  <data name="AngVeryHigh.Text" xml:space="preserve">
+    <value>sehr hoch</value>
+    <comment>sehr hoch</comment>
+  </data>
+  <data name="clear" xml:space="preserve">
+    <value>Löschen</value>
+    <comment>Löschen</comment>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>Schließen</value>
+    <comment>Schließen</comment>
+  </data>
+  <data name="DevelopedBy.Text" xml:space="preserve">
+    <value>Entwickelt von:</value>
+    <comment>Entwickelt von:</comment>
+  </data>
+  <data name="FullHouse" xml:space="preserve">
+    <value>Full House</value>
+    <comment>Full House</comment>
+  </data>
+  <data name="LargeStraight" xml:space="preserve">
+    <value>Große Straße</value>
+    <comment>Große Straße</comment>
+  </data>
+  <data name="OfAKind" xml:space="preserve">
+    <value>-ling</value>
+    <comment>-ling</comment>
+  </data>
+  <data name="OnlineLink.Content" xml:space="preserve">
+    <value>About Kniffel online</value>
+    <comment>About Kniffel online</comment>
+  </data>
+  <data name="OnlineVersionText.Text" xml:space="preserve">
+    <value>Die Idee des Controlls und die Darstellung der  ''Roten"  Würfeln gehört Matthew Tagliaferri.</value>
+    <comment>Die Idee des Controlls und die Darstellung der  ''Roten"  Würfeln gehört Matthew Tagliaferri.</comment>
+  </data>
+  <data name="OtherAllWrite.Content" xml:space="preserve">
+    <value>Elektronisches Schreibheft -spannendes Schreiben-Lernen</value>
+    <comment>Elektronisches Schreibheft -spannendes Schreiben-Lernen</comment>
+  </data>
+  <data name="OtherSoft.Text" xml:space="preserve">
+    <value>Versuchen Sie andere Programme</value>
+    <comment>Versuchen Sie andere Programme</comment>
+  </data>
+  <data name="Pairs" xml:space="preserve">
+    <value>Paare</value>
+    <comment>Paare</comment>
+  </data>
+  <data name="RateButton.Content" xml:space="preserve">
+    <value>Bewerten</value>
+    <comment>Bewerten</comment>
+  </data>
+  <data name="roll" xml:space="preserve">
+    <value>würfeln</value>
+    <comment>würfeln</comment>
+  </data>
+  <data name="SettingsAngleCaption.Text" xml:space="preserve">
+    <value>Blickfeld</value>
+    <comment>Blickfeld</comment>
+  </data>
+  <data name="SettingsCaption.Text" xml:space="preserve">
+    <value>Einstellungen</value>
+    <comment>Einstellungen</comment>
+  </data>
+  <data name="SettingsNumbersCaption.Text" xml:space="preserve">
+    <value>Würfelzahl</value>
+    <comment>Würfelzahl</comment>
+  </data>
+  <data name="SettingsSpeedCaption.Text" xml:space="preserve">
+    <value>Wurftempo</value>
+    <comment>Wurftempo</comment>
+  </data>
+  <data name="SettingsStyleCaption.Text" xml:space="preserve">
+    <value>Würfelstil</value>
+    <comment>Würfelstil</comment>
+  </data>
+  <data name="SmallStraight" xml:space="preserve">
+    <value>Kleine Straße</value>
+    <comment>Kleine Straße</comment>
+  </data>
+  <data name="SpeedFast.Text" xml:space="preserve">
+    <value>schnell</value>
+    <comment>schnell</comment>
+  </data>
+  <data name="SpeedSlow.Text" xml:space="preserve">
+    <value>langsam</value>
+    <comment>langsam</comment>
+  </data>
+  <data name="SpeedVeryFast.Text" xml:space="preserve">
+    <value>sehr schnell</value>
+    <comment>sehr schnell</comment>
+  </data>
+  <data name="SpeedVerySlow.Text" xml:space="preserve">
+    <value>sehr langsam</value>
+    <comment>sehr langsam</comment>
+  </data>
+  <data name="Support.Text" xml:space="preserve">
+    <value>Technischer Support:</value>
+    <comment>Technischer Support:</comment>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Summe</value>
+    <comment>insgesamt</comment>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+    <comment>Version</comment>
+  </data>
+  <data name="AboutAction" xml:space="preserve">
+    <value>About</value>
+    <comment>About</comment>
+  </data>
+  <data name="LeaderboardAction" xml:space="preserve">
+    <value>Beste Spieler</value>
+    <comment>Beste Spieler</comment>
+  </data>
+  <data name="NetworkGameNotReadyMessage" xml:space="preserve">
+    <value>Sorry, das Networkspiel ist noch nicht vertig</value>
+    <comment>Sorry, das Networkspiel ist noch nicht vertig</comment>
+  </data>
+  <data name="NewLocalGameAction" xml:space="preserve">
+    <value>Neues Spiel </value>
+  </data>
+  <data name="NewOnlineGameAction" xml:space="preserve">
+    <value>Online Spiel</value>
+    <comment>Online Spiel</comment>
+  </data>
+  <data name="SettingsAction" xml:space="preserve">
+    <value>Einstellungen</value>
+    <comment>Einstellungen</comment>
+  </data>
+  <data name="StartNewGameMessage" xml:space="preserve">
+    <value>Neues Spiel starten</value>
+    <comment>Neues Spiel starten</comment>
+  </data>
+  <data name="PlayerNameLabel" xml:space="preserve">
+    <value>Name</value>
+    <comment>Name</comment>
+  </data>
+  <data name="PlayerPasswordLabel" xml:space="preserve">
+    <value>Passwort</value>
+    <comment>Passwort</comment>
+  </data>
+  <data name="PlayerTypeLabel" xml:space="preserve">
+    <value>Typ</value>
+    <comment>Typ</comment>
+  </data>
+  <data name="PlayersLabel" xml:space="preserve">
+    <value>Spieler</value>
+    <comment>Spieler</comment>
+  </data>
+  <data name="AddBotLabel" xml:space="preserve">
+    <value>den Bot hinzufügen</value>
+    <comment>den Bot hinzufügen</comment>
+  </data>
+  <data name="AddPlayerLabel" xml:space="preserve">
+    <value>den Spieler hinzufügen</value>
+    <comment>den Spieler hinzufügen</comment>
+  </data>
+  <data name="PlayerNameDefault" xml:space="preserve">
+    <value>Spieler</value>
+    <comment>Spieler</comment>
+  </data>
+  <data name="BotNameDefault" xml:space="preserve">
+    <value>Bot</value>
+    <comment>Bot</comment>
+  </data>
+  <data name="PlayerBotLabelLocalized" xml:space="preserve">
+    <value>Computer</value>
+    <comment>Computer</comment>
+  </data>
+  <data name="PlayerHumanLabelLocalized" xml:space="preserve">
+    <value>Mensch</value>
+    <comment>Mensch</comment>
+  </data>
+  <data name="PlayerRememberLabelLocalized" xml:space="preserve">
+    <value>speichern</value>
+    <comment>speichern</comment>
+  </data>
+  <data name="RulesLabel" xml:space="preserve">
+    <value>Regeln</value>
+    <comment>Regeln</comment>
+  </data>
+  <data name="krBaby" xml:space="preserve">
+    <value>für Kinder</value>
+    <comment> für Kinder</comment>
+  </data>
+  <data name="krExtended" xml:space="preserve">
+    <value>für Experte</value>
+    <comment>für Experte</comment>
+  </data>
+  <data name="krSimple" xml:space="preserve">
+    <value>für Anfänger</value>
+    <comment>für Anfänger</comment>
+  </data>
+  <data name="krStandard" xml:space="preserve">
+    <value>für Klassikschätzer</value>
+    <comment>für Klassikschätzer</comment>
+  </data>
+  <data name="StartGameButton" xml:space="preserve">
+    <value>Spielen!</value>
+    <comment>Spielen!</comment>
+  </data>
+  <data name="Bonus" xml:space="preserve">
+    <value>Bonus</value>
+    <comment>Bonus</comment>
+  </data>
+  <data name="Chance" xml:space="preserve">
+    <value>Glücksfall</value>
+    <comment>Glücksfall</comment>
+  </data>
+  <data name="Fives" xml:space="preserve">
+    <value>Fünfer</value>
+    <comment>Fünfer</comment>
+  </data>
+  <data name="FourOfAKind" xml:space="preserve">
+    <value>Viererpasch</value>
+    <comment>Viererpasch</comment>
+  </data>
+  <data name="Fours" xml:space="preserve">
+    <value>Vierer</value>
+    <comment>Vierer</comment>
+  </data>
+  <data name="Kniffel" xml:space="preserve">
+    <value>Flush!</value>
+    <comment>Flush!</comment>
+  </data>
+  <data name="Ones" xml:space="preserve">
+    <value>Einer</value>
+    <comment>Einer</comment>
+  </data>
+  <data name="Sixs" xml:space="preserve">
+    <value>Sechser</value>
+    <comment>Sechser</comment>
+  </data>
+  <data name="ThreeOfAKind" xml:space="preserve">
+    <value>Dreierpasch</value>
+    <comment>Dreier</comment>
+  </data>
+  <data name="Threes" xml:space="preserve">
+    <value>Dreier</value>
+    <comment>Dreierpasch</comment>
+  </data>
+  <data name="Twos" xml:space="preserve">
+    <value>Zweier</value>
+    <comment>Zweier</comment>
+  </data>
+  <data name="krBabyShort" xml:space="preserve">
+    <value>Nur Kombinationen von Zahlen sammeln (Einer, Zweier etc.), 7 Runden</value>
+    <comment>Nur Kombinationen von Zahlen sammeln (Einer, Zweier etc.), 7 Runden</comment>
+  </data>
+  <data name="krExtendedShort" xml:space="preserve">
+    <value>alle Kombinationen, Bonus  von 35 Punkten für mindestens 63 Punkte  beim Sammeln, Bonus von 100 Punkten für jeden nachfolgenden Flush, Flush-Joker, 13 Runden</value>
+    <comment>alle Kombinationen, Bonus  von 35 Punkten für mindestens 63 Punkte  beim Sammeln, Bonus von 100 Punkten für jeden nachfolgenden Flush, Flush-Joker, 13 Runden</comment>
+  </data>
+  <data name="krSimpleShort" xml:space="preserve">
+    <value>alle Kombinationen, ohne Bonus, 13 Runden</value>
+    <comment>alle Kombinationen, ohne Bonus, 13 Runden</comment>
+  </data>
+  <data name="krStandardShort" xml:space="preserve">
+    <value>alle Kombinationen, Bonus  von 35 Punkten für mindestens 63 Punkte  beim Sammeln,  13 Runden</value>
+    <comment>alle Kombinationen, Bonus  von 35 Punkten für mindestens 63 Punkte  beim Sammeln,  13 Runden</comment>
+  </data>
+  <data name="MoveLabel" xml:space="preserve">
+    <value>Runde</value>
+    <comment>Runde</comment>
+  </data>
+  <data name="AgainLabel" xml:space="preserve">
+    <value>noch einmal</value>
+    <comment>noch einmal</comment>
+  </data>
+  <data name="GameFinishedLabel" xml:space="preserve">
+    <value>Das Spiel ist zu Ende!</value>
+    <comment>Das Spiel ist zu Ende!</comment>
+  </data>
+  <data name="SaveScoreLabel" xml:space="preserve">
+    <value>in die Highscore-Liste</value>
+    <comment>in die Highscore-Liste</comment>
+  </data>
+  <data name="WinLabel" xml:space="preserve">
+    <value>hat gewonnen</value>
+    <comment>hat gewonnen</comment>
+  </data>
+  <data name="AllRecordsLabel" xml:space="preserve">
+    <value>Die volle Highscore-Liste im Internet</value>
+    <comment>Die volle Highscore-Liste im Internet</comment>
+  </data>
+  <data name="AppNameLabel" xml:space="preserve">
+    <value>Sanet Dice Poker</value>
+    <comment>Sanet Dice Poker</comment>
+  </data>
+  <data name="OtherAppsLabel" xml:space="preserve">
+    <value>Andere Apps</value>
+    <comment>Andere Applikationen</comment>
+  </data>
+  <data name="PlayerBestScoreLabel" xml:space="preserve">
+    <value>Rekord</value>
+    <comment>Das beste Ergebnis</comment>
+  </data>
+  <data name="PlayerGamesLabel" xml:space="preserve">
+    <value>Spiele</value>
+    <comment>Spiele</comment>
+  </data>
+  <data name="PlayerTotalScoreLabel" xml:space="preserve">
+    <value>Punkte</value>
+    <comment>Punkte</comment>
+  </data>
+  <data name="RemoveAdAction" xml:space="preserve">
+    <value>alle Würfel öffnen, Werbung loswerden</value>
+    <comment>alle Würfel öffnen, Werbung loswerden</comment>
+  </data>
+  <data name="ReviewAppAction" xml:space="preserve">
+    <value>die App in Windows store bewerten</value>
+    <comment>die App in Windows store bewerten</comment>
+  </data>
+  <data name="SendFeedbackAction" xml:space="preserve">
+    <value>Die App Bewertung senden</value>
+    <comment>Die App Bewertung senden</comment>
+  </data>
+  <data name="AWDescription" xml:space="preserve">
+    <value>Sanet Allwrite ist ein elektronisches Schreibheft, das Feinmotorik und Gedächtnis entwickelt. Es bringt Buchstaben, Zahlen und verschiedene Zeichen bei. Mit diesem interaktiven Programm können Sie selber die russische (kyrillische), die englische Schrift und die chinesischen Symbole  lernen. Es fördert  den Wissensdurst und Forscherdrang Ihres Kindes.</value>
+    <comment>Sanet Allwrite ist ein elektronisches Schreibheft, das Feinmotorik und Gedächtnis entwickelt. Es bringt Buchstaben, Zahlen und verschiedene Zeichen bei. Mit diesem interaktiven Programm können Sie selber die russische (kyrillische), die englische Schrift und die chinesischen Symbole  lernen. Es fördert  den Wissensdurst und Forscherdrang Ihres Kindes.</comment>
+  </data>
+  <data name="NewsDescription" xml:space="preserve">
+    <value>RSS Reader für Nachrichten aus Belarus. Alle Nachrichten an einem Platz. Wir haben führende Nachrichtenseiten von Belarus.  Alles Wichtige aus Politik, Wirtschaft, Sport, Kultur, Wissenschaft, Technik und mehr.</value>
+    <comment>RSS Reader für Nachrichten aus Belarus. Alle Nachrichten an einem Platz. Wir haben führende Nachrichtenseiten von Belarus.  Alles Wichtige aus Politik, Wirtschaft, Sport, Kultur, Wissenschaft, Technik und mehr.</comment>
+  </data>
+  <data name="LaterLabel" xml:space="preserve">
+    <value>später</value>
+    <comment>später</comment>
+  </data>
+  <data name="NeverLabel" xml:space="preserve">
+    <value>Nein, Danke!</value>
+    <comment>Nein, Danke!</comment>
+  </data>
+  <data name="ReviewReminder" xml:space="preserve">
+    <value>Ihre Beurteilung, Ratschläge und Bewertungen helfen uns die App noch besser zu machen. Möchten Sie die App bewerten?</value>
+    <comment>Ihre Beurteilung, Ratschläge und Bewertungen helfen uns die App noch besser zu machen. Möchten Sie die App bewerten?</comment>
+  </data>
+  <data name="ReviewReminderHeader" xml:space="preserve">
+    <value>Gefällt es Ihnen?</value>
+    <comment>Gefällt es Ihnen?</comment>
+  </data>
+  <data name="YesLabel" xml:space="preserve">
+    <value>Ja, mit Vergnügen!</value>
+    <comment>Ja, mit Vergnügen!</comment>
+  </data>
+  <data name="Privacy1.Text" xml:space="preserve">
+    <value>Sanet Dice Poker sammelt, publiziert, speichert, übergibt keine Iher persönlichen Informationen oder Daten und überwacht keiner Iher Bewegungen.</value>
+    <comment>Sanet Dice Poker sammelt, publiziert, speichert, übergibt keine Iher persönlichen Informationen oder Daten und überwacht keiner Iher Bewegungen.</comment>
+  </data>
+  <data name="Privacy2.Text" xml:space="preserve">
+    <value>Die Veröffentlichung Ihrer Daten wie Windows-User-Name, Email, Live-Id für Ihre 	
+Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.</value>
+    <comment>Die Veröffentlichung Ihrer Daten wie Windows-User-Name, Email, Live-Id für Ihre 	
+Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.</comment>
+  </data>
+  <data name="PrivacyLabel.Text" xml:space="preserve">
+    <value>Datenschutzrichtlinien</value>
+    <comment>Datenschutzrichtlinien</comment>
+  </data>
+  <data name="DicePokerAdLine1" xml:space="preserve">
+    <value>Nur würfeln  finden Sie langweilig?</value>
+    <comment>Nur würfeln  finden Sie langweilig?</comment>
+  </data>
+  <data name="DicePokerAdLine2" xml:space="preserve">
+    <value>Das lang ersehnte Spiel ist endlich da!</value>
+    <comment>Das lang ersehnte Spiel ist endlich da!</comment>
+  </data>
+  <data name="DicePokerAdLine3" xml:space="preserve">
+    <value>Sanet Dice Poker:</value>
+    <comment>Sanet Dice Poker:</comment>
+  </data>
+  <data name="DicePokerAdLine4" xml:space="preserve">
+    <value>4 Regeleinstellungen</value>
+    <comment>4 Regeleinstellungen</comment>
+  </data>
+  <data name="DicePokerAdLine5" xml:space="preserve">
+    <value>Wettkämpfe gegen Freunde oder Computer</value>
+    <comment>Wettkämpfe gegen Freunde oder Computer</comment>
+  </data>
+  <data name="DicePokerAdLine6" xml:space="preserve">
+    <value>Highscore-Liste und viel mehr!</value>
+    <comment>Highscore-Liste und viel mehr!</comment>
+  </data>
+  <data name="DicePokerAdLine7" xml:space="preserve">
+    <value>Und bald...</value>
+    <comment>Und bald...</comment>
+  </data>
+  <data name="DicePokerAdLine8" xml:space="preserve">
+    <value>das  Multiplayer-Online-Spiel ist zu erwarten!</value>
+    <comment> das  Multiplayer-Online-Spiel ist zu erwarten!</comment>
+  </data>
+  <data name="BestLocalLabel" xml:space="preserve">
+    <value>Lokale  Highscore-Liste</value>
+    <comment>Lokale  Highscore-Liste</comment>
+  </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>Informationen über das Spiel und die Entwickler</value>
+    <comment>Informationen über das Spiel und die Entwickler</comment>
+  </data>
+  <data name="LeaderboardDescription" xml:space="preserve">
+    <value>Highscore-Liste für alle Spielregeln</value>
+    <comment>Highscore-Liste für alle Spielregeln</comment>
+  </data>
+  <data name="NewLocalGameDescription" xml:space="preserve">
+    <value>Einzelspiel, Wettkämpfe gegen Freunde oder Computer</value>
+    <comment>Neues Spiel - Einzelspiel, Wettkämpfe gegen Freunde oder Computer</comment>
+  </data>
+  <data name="SettingsDescription" xml:space="preserve">
+    <value>Die Spieleinstellungen ändern</value>
+    <comment>Die Spieleinstellungen ändern</comment>
+  </data>
+</root>

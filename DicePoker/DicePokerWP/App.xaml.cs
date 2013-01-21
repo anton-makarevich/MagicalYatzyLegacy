@@ -12,11 +12,13 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Sanet.Models;
 
 namespace DicePokerWP
 {
     public partial class App : Application
     {
+        public static ApplicationResources ResourceProvider = new ApplicationResources();
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
