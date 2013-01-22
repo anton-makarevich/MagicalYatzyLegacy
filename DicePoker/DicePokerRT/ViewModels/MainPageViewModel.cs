@@ -5,7 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sanet.Models;
+
+#if WinRT
 using Windows.UI.Xaml.Media.Imaging;
+#else
+using System.Windows.Media.Imaging;
+#endif
 
 namespace Sanet.Kniffel.ViewModels
 {
@@ -83,6 +88,13 @@ namespace Sanet.Kniffel.ViewModels
             get
             {
                 return Messages.APP_NAME.Localize();
+            }
+        }
+        public string CurrentAppNameUpper
+        {
+            get
+            {
+                return Messages.APP_NAME.Localize().ToUpper();
             }
         }
 

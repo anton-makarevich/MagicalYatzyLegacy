@@ -389,7 +389,7 @@ namespace Sanet.Kniffel.DicePanel
 #if WinRT
         private void loop_Completed(object sender, object e)
 #else
-        
+        private void loop_Completed(object sender, EventArgs e)
 #endif
         {
             foreach (Die d in aDice)

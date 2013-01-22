@@ -126,7 +126,7 @@ namespace Sanet.Kniffel.Models
                 CurrentPlayer = Players.FirstOrDefault(f => f.SeatNo == CurrentPlayer.SeatNo + 1);
             }
             else//else it's new move and we select first player as current
-                CurrentPlayer = Players.Find(f => f.SeatNo == 0);
+                CurrentPlayer = Players.FirstOrDefault(f => f.SeatNo == 0);
             //if current player null then all palyers are done in this move - move next
             if (CurrentPlayer == null)
             {
@@ -263,7 +263,7 @@ namespace Sanet.Kniffel.Models
             //check for numeric bonus and apply it
             if (Rules.Rule == Models.Rules.krExtended || Rules.Rule == Models.Rules.krStandard)
             {
-                if (result.IsNumeric && !CurrentPlayer.Results.Find(f=>f.ScoreType== KniffelScores.Bonus).HasValue)
+                if (result.IsNumeric && !CurrentPlayer.Results.FirstOrDefault(f=>f.ScoreType== KniffelScores.Bonus).HasValue)
                 {
                     if (CurrentPlayer.TotalNumeric>62)
                         ResultApplied(this, new ResultEventArgs(CurrentPlayer, new RollResult() 

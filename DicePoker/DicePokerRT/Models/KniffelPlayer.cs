@@ -370,7 +370,8 @@ namespace Sanet.Kniffel.Models
                             if (IsScoreFilled(KniffelScores.Kniffel) && Game.Rules.Rule == Rules.krExtended && Game.LastDiceResult.KniffelFiveOfAKindScore()==50)
                             {
                                 //and numeric result corresponded to that kniffel also filled
-                                var nresult = GetResultForScore(  (KniffelScores)Game.LastDiceResult.DiceResults[0]);
+                                RollResult nresult = null;
+                                nresult=GetResultForScore((KniffelScores)Game.LastDiceResult.DiceResults[0]);
                                 if (nresult.HasValue)
                                     result.PossibleValue = 25;//appying kniffel-joker
                                 else
@@ -383,7 +384,8 @@ namespace Sanet.Kniffel.Models
                             if (IsScoreFilled(KniffelScores.Kniffel) && Game.Rules.Rule == Rules.krExtended && Game.LastDiceResult.KniffelFiveOfAKindScore() == 50)
                             {
                                 //and numeric result corresponded to that kniffel also filled
-                                var nresult = GetResultForScore( (KniffelScores)Game.LastDiceResult.DiceResults[0]);
+                                RollResult nresult = null;
+                                nresult = GetResultForScore((KniffelScores)Game.LastDiceResult.DiceResults[0]);
                                 if (nresult.HasValue)
                                     result.PossibleValue = 30;//appying kniffel-joker
                                 else
@@ -396,7 +398,8 @@ namespace Sanet.Kniffel.Models
                             if (IsScoreFilled(KniffelScores.Kniffel) && Game.Rules.Rule == Rules.krExtended && Game.LastDiceResult.KniffelFiveOfAKindScore()==50)
                             {
                                 //and numeric result corresponded to that kniffel also filled
-                                var nresult = GetResultForScore( (KniffelScores)Game.LastDiceResult.DiceResults[0]);
+                                RollResult nresult = null;
+                                nresult = GetResultForScore((KniffelScores)Game.LastDiceResult.DiceResults[0]);
                                 if (nresult.HasValue)
                                     result.PossibleValue = 40;//appying kniffel-joker
                                 else
