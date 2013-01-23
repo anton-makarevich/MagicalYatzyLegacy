@@ -285,12 +285,12 @@ namespace Sanet.Kniffel.ViewModels
             if (CanAddPlayer)
             {
                 //get username from system
-                Players.Add(new Player()
-                {
-                    Name = GetNewPlayerName(type),
-                    Type = type
-                });
+                var p=new Player();
+                
+                Players.Add(p);
                 NotifyPlayersChanged();
+                p.Name = GetNewPlayerName(type);
+                p.Type = type;
             } 
             
         }

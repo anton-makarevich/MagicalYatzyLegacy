@@ -1,4 +1,4 @@
-﻿<views:BasePage
+﻿<views:BasePage 
     xmlns:DicePanel="using:Sanet.Kniffel.DicePanel" 
     x:Class="DicePokerRT.MainPage"
     xmlns:views="using:Sanet.Views"
@@ -58,7 +58,8 @@
                     </Style>
                 </ListView.ItemContainerStyle>
         </ListView>
-        </Grid>
+                
+            </Grid>
             <Grid
                 x:Name="SnapGrid"
                 Visibility="Collapsed">

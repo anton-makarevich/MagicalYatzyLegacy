@@ -103,7 +103,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Folder Include="Controls\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\..\AllWrite\Sanet.ABCs\Sanet.ABCs.Xaml\Model\ResourceModel.cs">
@@ -111,6 +110,9 @@
     </Compile>
     <Compile Include="..\..\..\AllWrite\Sanet.AllWrite.WP\Sanet.AllWrite.WP\Models\Brushes.cs">
       <Link>Models\Brushes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Controls\Sanet.Animations\Animations.cs">
+      <Link>Common\Animations.cs</Link>
     </Compile>
     <Compile Include="..\..\DicePanelWP\Models\DicePanel.cs">
       <Link>Models\DicePanel.cs</Link>
@@ -140,6 +142,7 @@
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="Common\BooleanToColorConverter.cs" />
     <Compile Include="Common\ReverseBooleanToVisibilityConverter.cs" />
+    <Compile Include="Controls\RotatingPanel.cs" />
     <Compile Include="Models\AboutAppAction.cs" />
     <Compile Include="Models\EncriptionExtensions.cs" />
     <Compile Include="Models\Enums\GameRule.cs" />
@@ -1203,8 +1206,13 @@
     </Content>
     <Content Include="Assets\About.png" />
     <Content Include="Assets\AWLogo.png" />
+    <Content Include="Assets\Baby.png" />
     <Content Include="Assets\BadgeLogo.scale-140.png" />
     <Content Include="Assets\BadgeLogo.scale-180.png" />
+    <Content Include="Assets\Children.png" />
+    <Content Include="Assets\Customer.png" />
+    <Content Include="Assets\Desktop.png" />
+    <Content Include="Assets\Expert.png" />
     <Content Include="Assets\Logo.scale-80.png" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\Logo.scale-140.png" />
@@ -1224,6 +1232,7 @@
     <Content Include="Assets\StoreLogo.scale-180.png" />
     <Content Include="Assets\transparentlogo.png" />
     <Content Include="Assets\Unlock.png" />
+    <Content Include="Assets\User.png" />
     <Content Include="Assets\Victory.png" />
     <Content Include="Assets\WideLogo.scale-100.png" />
     <Content Include="Assets\WideLogo.scale-140.png" />

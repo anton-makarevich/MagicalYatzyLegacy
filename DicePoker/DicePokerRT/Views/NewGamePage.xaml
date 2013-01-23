@@ -102,7 +102,9 @@
                         <ListView
                  Grid.Row="1"
                 Margin="20,0,10,20"
-                SelectionMode="Single"
+                SelectionMode="None"
+                            IsItemClickEnabled="False"
+                            ManipulationMode="None"
                 ItemsSource="{Binding Players}"
                 HorizontalAlignment="Center"
                     SelectedItem="{Binding SelectedPlayer, Mode=TwoWay}"

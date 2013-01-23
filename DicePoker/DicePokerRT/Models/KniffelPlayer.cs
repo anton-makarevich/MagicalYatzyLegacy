@@ -14,7 +14,19 @@ namespace Sanet.Kniffel.Models
         /// <summary>
         /// Player display name
         /// </summary>
-        public string Name { get; set; }
+        string _Name;
+        public string Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                _Name = value;
+                NotifyPropertyChanged("Name");
+            }
+        }
         /// <summary>
         /// Player Password
         /// </summary>
@@ -186,6 +198,9 @@ namespace Sanet.Kniffel.Models
             {
                 if (value)
                     Type = PlayerType.Local;
+                else
+                    Type = PlayerType.AI;
+                NotifyPropertyChanged("IsHuman");
             }
         }
 

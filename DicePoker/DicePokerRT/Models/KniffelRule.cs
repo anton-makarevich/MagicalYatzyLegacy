@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace Sanet.Kniffel.Models
 {
@@ -129,6 +131,32 @@ namespace Sanet.Kniffel.Models
                 }
                 return 13;
             }
+        }
+
+        /// <summary>
+        /// Icon for main menu
+        /// </summary>
+        public ImageSource Image
+        {
+            get 
+            {
+                switch (Rule)
+                {
+                    case Rules.krBaby:
+                        return new BitmapImage(new Uri("ms-appx:///Assets/Baby.png", UriKind.Absolute));
+
+                    case Rules.krSimple:
+                        return new BitmapImage(new Uri("ms-appx:///Assets/Children.png", UriKind.Absolute));
+
+                    case Rules.krStandard:
+                        return new BitmapImage(new Uri("ms-appx:///Assets/Customer.png", UriKind.Absolute));
+                    case Rules.krExtended:
+                        return new BitmapImage(new Uri("ms-appx:///Assets/Expert.png", UriKind.Absolute));
+                        
+                }
+                return null;
+            }
+            
         }
 
         public override string ToString()
