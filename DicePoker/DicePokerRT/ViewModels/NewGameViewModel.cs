@@ -234,6 +234,7 @@ namespace Sanet.Kniffel.ViewModels
                 var p=RoamingSettings.GetLastPlayer(i);
                 if (p == null)
                     break;
+                p.DeletePressed += p_DeletePressed;
                 Players.Add(p);
             }
             //if no players loaded - add one default
@@ -246,11 +247,13 @@ namespace Sanet.Kniffel.ViewModels
                 //if no luck - add default name
                 if (string.IsNullOrEmpty(userName))
                     userName = GetNewPlayerName(PlayerType.Local);
-                Players.Add(new Player()
+                var p = new Player()
                     {
                         Name = userName,
                         Type = PlayerType.Local
-                    });
+                    };
+                p.DeletePressed += p_DeletePressed;
+                Players.Add(p);
             }
             NotifyPlayersChanged();
         }
@@ -286,7 +289,7 @@ namespace Sanet.Kniffel.ViewModels
             {
                 //get username from system
                 var p=new Player();
-                
+                p.DeletePressed += p_DeletePressed;
                 Players.Add(p);
                 NotifyPlayersChanged();
                 p.Name = GetNewPlayerName(type);
@@ -294,6 +297,8 @@ namespace Sanet.Kniffel.ViewModels
             } 
             
         }
+
+        
         /// <summary>
         /// Looks  for the free default player name
         /// </summary>
@@ -321,6 +326,8 @@ namespace Sanet.Kniffel.ViewModels
             NotifyPropertyChanged("CanAddPlayer");
             NotifyPropertyChanged("CanDeletePlayer");
             NotifyPropertyChanged("IsReadyToPlay");
+            foreach (var p in Players)
+                p.IsDeleteable = Players.Count > 1;
         }
         /// <summary>
         /// Delete selected player from list
@@ -334,7 +341,13 @@ namespace Sanet.Kniffel.ViewModels
                 NotifyPlayersChanged();
             }
         }
-
+        void p_DeletePressed(object sender, EventArgs e)
+        {
+            SelectedPlayer = (Player)sender;
+            SelectedPlayer.DeletePressed -= p_DeletePressed;
+            DeletePlayer();
+            
+        }
         /// <summary>
         /// Saves settings to roaming
         /// </summary>

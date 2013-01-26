@@ -518,4 +518,7 @@
   <data name="BestLocalLabel" xml:space="preserve">
     <value>Локальные рекорды:</value>
   </data>
+  <data name="DeletePlayerLabel" xml:space="preserve">
+    <value>Удалить игрока</value>
+  </data>
 </root>

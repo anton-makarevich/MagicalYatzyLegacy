@@ -9,53 +9,44 @@ using Windows.UI.Xaml.Media;
 
 namespace Sanet.Controls
 {
-    public class RotatingPanel:Grid
+    public class RotatingPanel : Grid
     {
+        /// <summary>
+        /// Olane projection to simulate rotation
+        /// </summary>
         PlaneProjection Rotator = new PlaneProjection();
-
+        /// <summary>
+        /// I have a problem with ui,xaml error
+        /// noticed it happens only when control invisible on load
+        /// so this is attempt to show control on load and hide on timer
+        /// </summary>
+        DispatcherTimer workAroundTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
         #region Constructor
+        
         public RotatingPanel()
         {
-            this.Projection= Rotator;
+            this.Projection = Rotator;
             this.Tapped += RotatingPanel_Tapped;
+
+            workAroundTimer.Tick += workAroundTimer_Tick;
+            workAroundTimer.Start();
         }
 
-       
+        void workAroundTimer_Tick(object sender, object e)
+        {
+            workAroundTimer.Tick -= workAroundTimer_Tick;
+            workAroundTimer.Stop();
+            if (!outsidechange)
+                IsFace = true;
+            
+        }
+
+
         #endregion
-        
+
         #region DependencyProperties
-        /// <summary>
-        /// Gets or sets content of face panel
-        /// </summary>
-        public Border FaceSide
-        {
-            get { return (Border)GetValue(FaceSideProperty); }
-            set { SetValue(FaceSideProperty, value); }
-        }
 
-        public static readonly DependencyProperty FaceSideProperty =
-            DependencyProperty.Register("FaceSide",
-            typeof(Border),
-            typeof(RotatingPanel),
-            new PropertyMetadata(new Border(),new PropertyChangedCallback(OnSideChanged)));
-
-        
-        /// <summary>
-        /// Gets or sets content of face panel
-        /// </summary>
-        public Border BackSide
-        {
-            get { return (Border)GetValue(BackSideProperty); }
-            set { SetValue(BackSideProperty, value); }
-        }
-
-        public static readonly DependencyProperty BackSideProperty =
-            DependencyProperty.Register("BackSide",
-            typeof(Border),
-            typeof(RotatingPanel),
-            new PropertyMetadata(new Border(), new PropertyChangedCallback(OnSideChanged)));
-
-
+        bool outsidechange = false;
         /// <summary>
         /// Returns if visible side is face
         /// </summary>
@@ -68,29 +59,20 @@ namespace Sanet.Controls
             set
             {
                 SetValue(IsFaceProperty, value);
-                if (value)
-                {
-                    FaceSide.Visibility = Visibility.Visible;
-                    BackSide.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    FaceSide.Visibility = Visibility.Collapsed;
-                    BackSide.Visibility = Visibility.Visible;
-                }
+                
             }
         }
         public static readonly DependencyProperty IsFaceProperty =
             DependencyProperty.Register("IsFace",
             typeof(bool),
             typeof(RotatingPanel),
-            new PropertyMetadata(true, new PropertyChangedCallback(OnIsFaceChanged)));
+            new PropertyMetadata(false,new PropertyChangedCallback(OnSideChange)));
         #endregion
 
         #region Properties
-       
 
-        
+
+
         #endregion
 
         #region Methods
@@ -109,34 +91,12 @@ namespace Sanet.Controls
             Animations.RotateProjection(Rotator, RotationAxis.X, 90, 0, 0.35);
         }
 
-
-        /// <summary>
-        /// Add face/back borders to visual tree
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        static void OnSideChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        static void OnSideChange(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            var grid = (RotatingPanel)sender;
-            var border = (Border)e.NewValue;
-            grid.Children.Add(border);
-            grid.IsFace = grid.IsFace;
+            var control = (RotatingPanel)sender;
+            control.outsidechange=true;
         }
 
-        static void OnIsFaceChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        {
-            var grid = (RotatingPanel)sender;
-            if ((bool)e.NewValue)
-            {
-                grid.FaceSide.Visibility = Visibility.Visible;
-                grid.BackSide.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                grid.FaceSide.Visibility = Visibility.Collapsed;
-                grid.BackSide.Visibility = Visibility.Visible;
-            }
-        }
         #endregion
     }
 }

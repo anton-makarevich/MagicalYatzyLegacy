@@ -10,6 +10,18 @@ namespace Sanet.Kniffel.Models
 {
     public class Player:BaseViewModel
     {
+        public Player()
+        {
+            CreateCommands();
+        }
+
+        #region Events
+        /// <summary>
+        /// call this on delete 
+        /// </summary>
+        public event EventHandler DeletePressed;
+        #endregion
+
         #region Prperties
         /// <summary>
         /// Player display name
@@ -54,6 +66,23 @@ namespace Sanet.Kniffel.Models
             }
         }
 
+        /// <summary>
+        /// Check if it can be deleted - game must have at least one player
+        /// </summary>
+        bool _IsDeleteable;
+        public bool IsDeleteable
+        {
+            get
+            {
+                
+                return _IsDeleteable;
+            }
+            set
+            {
+                _IsDeleteable = value;
+                NotifyPropertyChanged("IsDeleteable");
+            }
+        }
 
         //Public Property GamePlatform As KniffelGamePlatform
         /// <summary>
@@ -232,6 +261,14 @@ namespace Sanet.Kniffel.Models
             get
             {
                 return Messages.PLAYER_TYPE.Localize();
+            }
+        }
+
+        public string DeleteLabel
+        {
+            get
+            {
+                return "DeletePlayerLabel".Localize();
             }
         }
 
@@ -461,7 +498,11 @@ namespace Sanet.Kniffel.Models
             return Results.FirstOrDefault(f => f.ScoreType == score);
         }
 
-        
+        /// <summary>
+        /// Determine if current score has any value (including 0)
+        /// </summary>
+        /// <param name="score"></param>
+        /// <returns></returns>
         public bool IsScoreFilled(KniffelScores score)
         {
             
@@ -472,6 +513,25 @@ namespace Sanet.Kniffel.Models
             return false;
             
         }
+
+        private void Delete()
+        {
+            if (DeletePressed != null)
+                DeletePressed(this,null);
+        }
+
+        #endregion
+
+
+        #region Commands
+        public RelayCommand DeleteCommand { get; set; }
+
+        protected void CreateCommands()
+        {
+            DeleteCommand = new RelayCommand(o => Delete(), () => true);
+        }
+
+
 
         #endregion
 

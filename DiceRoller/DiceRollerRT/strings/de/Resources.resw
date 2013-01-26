@@ -546,4 +546,7 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>Die Spieleinstellungen ändern</value>
     <comment>Die Spieleinstellungen ändern</comment>
   </data>
+  <data name="DeletePlayerLabel" xml:space="preserve">
+    <value>Удалить игрока</value>
+  </data>
 </root>

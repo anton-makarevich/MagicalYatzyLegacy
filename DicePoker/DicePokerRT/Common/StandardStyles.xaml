@@ -32,6 +32,7 @@
     <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
     <common:BooleanToColorConverter x:Key="ColorKey"/>
     <common:BooleanToVisibilityConverter x:Key="BooleanKey"/>
+    <common:ReverseBooleanToVisibilityConverter x:Key="NotBooleanKey"/>
     <!-- RichTextBlock styles -->
 
     <Style x:Key="BasicRichTextStyle" TargetType="RichTextBlock">
@@ -1726,9 +1727,9 @@
                 VerticalAlignment="Center"
                     />
             <StackPanel Grid.Column="1">
-                <TextBlock Text="{Binding NameLocalized}" Foreground="White" 
+                <TextBlock Text="{Binding NameLocalized}" Foreground="{StaticResource SanetBlue}" 
                                  FontSize="30" Height="40" Margin="10,5,10,0" />
-                <TextBlock Text="{Binding ShortDescriptionLocalized}" Foreground="White" 
+                <TextBlock Text="{Binding ShortDescriptionLocalized}" Foreground="{StaticResource SanetBlue}" 
                                  FontSize="15" Height="80" Margin="10,5" 
                            TextWrapping="Wrap" TextTrimming="WordEllipsis"
                            />
@@ -1893,44 +1894,36 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
-            <Controls:RotatingPanel Width="120" Height="120" Background="Blue"
+            <Controls:RotatingPanel
+                x:Name="NamePanel" Width="120" Height="120" Background="Blue"
                                     Margin="5,0">
-                <Controls:RotatingPanel.FaceSide>
-                    <Border >
-                        <Grid Background="{StaticResource SanetBlue}" >
+                <Grid Background="{StaticResource SanetBlue}" 
+                      Visibility="{Binding IsFace,ElementName=NamePanel,Converter={StaticResource BooleanKey}}">
                             <TextBlock VerticalAlignment="Bottom"
                                        Margin="2"
                                        Text="{Binding Text,ElementName=nameText}"/>
-                            
-                        </Grid>
-                    </Border>
-                </Controls:RotatingPanel.FaceSide>
-                <Controls:RotatingPanel.BackSide>
-                    <Border >
-                        <Grid 
-                            Background="{StaticResource SanetBlue}">
+                  </Grid>
+
+                <Grid Visibility="{Binding IsFace,ElementName=NamePanel,Converter={StaticResource NotBooleanKey}}"
+                    Background="{StaticResource SanetBlue}">
                             <TextBox x:Name="nameText" Margin="2" Text="{Binding Name, Mode=TwoWay}"
                      Height="30"/>
-                        </Grid>
-                    </Border>
-                </Controls:RotatingPanel.BackSide>
+                 </Grid>
             </Controls:RotatingPanel>
-            <Controls:RotatingPanel Width="120" Height="120" Background="Blue"
+            
+            <Controls:RotatingPanel
+               x:Name="TypePanel" Width="120" Height="120" Background="Blue"
                                     Grid.Column="1" IsFace="{Binding IsHuman, Mode=TwoWay}" Margin="5,0" ><!---->
-                <Controls:RotatingPanel.FaceSide>
-                    <Border >
-                        <Grid Background="{StaticResource SanetBlue}" >
+                 <Grid Background="{StaticResource SanetBlue}" 
+                      Visibility="{Binding IsFace,ElementName=TypePanel,Converter={StaticResource BooleanKey}}" >
                             <Image Source="ms-appx:///Assets/User.png"
                                    />
                            <TextBlock VerticalAlignment="Bottom"
                                        Margin="2"
                                        Text="{Binding PlayerHumanLabelLocalized}"/>
                         </Grid>
-                    </Border>
-                </Controls:RotatingPanel.FaceSide>
-                <Controls:RotatingPanel.BackSide>
-                    <Border >
-                        <Grid 
+                    
+                <Grid Visibility="{Binding IsFace,ElementName=TypePanel,Converter={StaticResource NotBooleanKey}}"
                             Background="{StaticResource SanetBlue}">
                              <Image Source="ms-appx:///Assets/Desktop.png"
                                     />
@@ -1939,73 +1932,35 @@
                                        Text="{Binding PlayerBotLabelLocalized}"/>
                             
                         </Grid>
-                    </Border>
-                </Controls:RotatingPanel.BackSide>
+                               
             </Controls:RotatingPanel>
-            <Controls:RotatingPanel Width="120" Height="120" Background="Blue"
+            <Controls:RotatingPanel
+                x:Name="PassPanel" Width="120" Height="120" Background="Blue"
                                     Margin="5,0" Grid.Column="2" Visibility="{Binding IsHuman,Converter={StaticResource BooleanKey}}">
-                <Controls:RotatingPanel.FaceSide>
-                    <Border >
-                        <Grid Background="{StaticResource SanetBlue}" >
+                <Grid Background="{StaticResource SanetBlue}"
+                      Visibility="{Binding IsFace,ElementName=PassPanel,Converter={StaticResource BooleanKey}}">
                             <TextBlock VerticalAlignment="Bottom"
                                        Margin="2"
                                        Text="{Binding PlayerPasswordLabelLocalized}"/>
                             
                         </Grid>
-                    </Border>
-                </Controls:RotatingPanel.FaceSide>
-                <Controls:RotatingPanel.BackSide>
-                    <Border >
-                        <Grid 
+                      <Grid Visibility="{Binding IsFace,ElementName=PassPanel,Converter={StaticResource NotBooleanKey}}"
                             Background="{StaticResource SanetBlue}">
                             <PasswordBox x:Name="passText" Margin="2" Password="{Binding Password, Mode=TwoWay}"
                      Height="30"/>
                         </Grid>
-                    </Border>
-                </Controls:RotatingPanel.BackSide>
+                               
             </Controls:RotatingPanel>
+            
+            <Button  HorizontalAlignment="Left" 
+                     VerticalAlignment="Bottom"
+                     Grid.Column="3"
+                     AutomationProperties.Name="{Binding DeleteLabel}"
+                    IsEnabled="{Binding IsDeleteable}"  
+                    Style="{StaticResource DeleteAppBarButtonStyle}"
+                            Command="{Binding DeleteCommand}"/>
         </Grid>
-        <!--<Grid Height="120" Margin="5" HorizontalAlignment="Stretch"
-                          Background="{StaticResource SanetBlue}" Opacity="0.85">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30*"/>
-                <RowDefinition Height="30*"/>
-                <RowDefinition Height="40*"/>
-            </Grid.RowDefinitions>
-            <TextBlock
-                Style="{StaticResource SimpleTextStyle}"
-                Text="{Binding PlayerNameLabelLocalized}"/>
-            <TextBlock Text="{Binding PlayerPasswordLabelLocalized}"
-                     Style="{StaticResource SimpleTextStyle}"
-                Grid.Row="1"/>
-            <TextBlock Text="{Binding PlayerTypeLabelLocalized}"
-                     Style="{StaticResource SimpleTextStyle}"
-                Grid.Row="2"/>
-            
-            <TextBox Margin="2" Text="{Binding Name, Mode=TwoWay}"
-                     Grid.Column="1"/>
-            <PasswordBox Margin="2" Password="{Binding Password, Mode=TwoWay}"
-                         IsEnabled="{Binding IsHuman}"
-                     Grid.Column="1" Grid.Row="1"/>
-            <CheckBox IsChecked="{Binding RememberPass, Mode=TwoWay}"
-                IsEnabled="{Binding IsHuman}"
-                      Content="{Binding PlayerRememberLabelLocalized}"
-                      Grid.Column="2" Grid.Row="1"/>
-            
-            <ToggleButton 
-                Content="{Binding PlayerHumanLabelLocalized}" IsChecked="{Binding IsHuman, Mode=TwoWay}"
-                HorizontalAlignment="Stretch"
-                Grid.Column="1" Grid.Row="2"/>
-            <ToggleButton 
-                Content="{Binding PlayerBotLabelLocalized}" IsChecked="{Binding IsBot, Mode=TwoWay}"
-                HorizontalAlignment="Stretch"
-                Grid.Column="2" Grid.Row="2"/>
-        </Grid>-->
+       
     </DataTemplate>
 
     <!--Datatemplate for main menu item-->

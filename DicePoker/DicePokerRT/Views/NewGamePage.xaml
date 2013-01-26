@@ -16,7 +16,7 @@
         <common:BooleanToVisibilityConverter x:Key="VisibilityKey"/>
         <common:ReverseBooleanToVisibilityConverter x:Key="ReversedVisibilityKey"/>
     </views:BasePage.Resources>
-    <Page.BottomAppBar>
+    <!--<Page.BottomAppBar>
         <AppBar Padding="10,0,10,0" 
                 IsOpen="{Binding IsPlayerSelected, Mode=TwoWay}">
             <Grid>
@@ -31,7 +31,7 @@
 
             </Grid>
         </AppBar>
-    </Page.BottomAppBar>
+    </Page.BottomAppBar>-->
 
     <Viewbox
         StretchDirection="Both"
@@ -107,7 +107,8 @@
                             ManipulationMode="None"
                 ItemsSource="{Binding Players}"
                 HorizontalAlignment="Center"
-                    SelectedItem="{Binding SelectedPlayer, Mode=TwoWay}"
+                    ScrollViewer.HorizontalScrollMode="Disabled"
+            ScrollViewer.VerticalScrollMode="Disabled"
             ItemTemplate="{StaticResource NewPlayerTemplate}"
                 >
                         
@@ -144,7 +145,7 @@
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                                    <Setter Property="Width" Value="500"/>
+                                    <Setter Property="Width" Value="550"/>
                                 </Style>
                             </ListView.ItemContainerStyle>
                         </ListView>

@@ -486,4 +486,7 @@
   <data name="BestLocalLabel" xml:space="preserve">
     <value>Best local results</value>
   </data>
+  <data name="DeletePlayerLabel" xml:space="preserve">
+    <value>Delete Player</value>
+  </data>
 </root>
