@@ -535,7 +535,7 @@ namespace Sanet.Kniffel.DicePanel
         {
             foreach (Die d in aDice)
             {
-                if (d.Result == index)
+                if (d.Result == index && !d.Frozen)
                 {
                     d.Frozen = true;
                     return;

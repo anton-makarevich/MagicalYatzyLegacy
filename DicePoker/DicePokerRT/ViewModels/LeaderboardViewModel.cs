@@ -261,10 +261,17 @@ namespace Sanet.Kniffel.ViewModels
 
         public void RefreshScores()
         {
-            GetScores();
-            GetScoresB();
-            GetScoresS();
-            GetScoresE();
+            if (InternetCheker.IsInternetAvailable())
+            {
+                GetScores();
+                GetScoresB();
+                GetScoresS();
+                GetScoresE();
+            }
+            else
+            {
+                Utilities.ShowMessage("NoInetMessage".Localize(), Messages.APP_NAME.Localize());
+            }
         }
 
         /// <summary>

@@ -112,7 +112,7 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(async () =>
                 {
-                    await Launcher.LaunchUriAsync(new Uri("http://apps.microsoft.com/windows/app/sanet-news/1b98de81-1b9a-4ee2-a266-aa3bc336f507"));
+                    await Launcher.LaunchUriAsync(new Uri("ms-windows-store:PDP?PFN=43862AntonMakarevich.SanetNews_2wtrjzrdj31kc"));
                 });
             }
 
@@ -123,7 +123,7 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(async () =>
                 {
-                    await Launcher.LaunchUriAsync(new Uri("http://apps.microsoft.com/windows/app/sanet-allwrite/022fd522-54cf-4acd-9341-eab7c2185218"));
+                    await Launcher.LaunchUriAsync(new Uri("ms-windows-store:PDP?PFN=43862AntonMakarevich.SanetAllWrite_2wtrjzrdj31kc"));
                 });
             }
         }

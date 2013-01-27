@@ -9,6 +9,7 @@ playing with a computer
 several visual styles and dice settings
 storing results in web-based records books
 nice pseudo-3D graphics and animation
+clear UI in Windows 8 style and optimized for tablets
 
 dice
 knifel

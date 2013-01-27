@@ -18,7 +18,7 @@ namespace Sanet.Kniffel.ViewModels
         {
             CreateCommands();
             fillPlayers();
-            fillRules();
+            //fillRules();
         }
         #endregion
 
@@ -256,11 +256,12 @@ namespace Sanet.Kniffel.ViewModels
                 Players.Add(p);
             }
             NotifyPlayersChanged();
+            
         }
         /// <summary>
         /// fills players list
         /// </summary>
-        void fillRules()
+        public void FillRules()
         {
             Rules = new List<KniffelRule>();
             //create all possible rules
@@ -327,7 +328,11 @@ namespace Sanet.Kniffel.ViewModels
             NotifyPropertyChanged("CanDeletePlayer");
             NotifyPropertyChanged("IsReadyToPlay");
             foreach (var p in Players)
+            {
                 p.IsDeleteable = Players.Count > 1;
+                //p.UpdateType();
+            }
+            
         }
         /// <summary>
         /// Delete selected player from list

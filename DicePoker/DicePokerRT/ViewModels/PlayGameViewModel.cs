@@ -421,6 +421,17 @@ namespace Sanet.Kniffel.ViewModels
         {
             try
             {
+                var needsave = Players.Count(f => f.ShouldSaveResult) > 0;
+                bool inet=true;
+                if (needsave)
+                {
+                    inet = InternetCheker.IsInternetAvailable();
+                    if (!inet)
+                    {
+                        Utilities.ShowMessage("NoInetMessage".Localize(), Messages.APP_NAME.Localize());
+                    }
+                }
+
                 int score, scoreb, scores, scoree;
                 scoreb=RoamingSettings.LocalBabyRecord;
                 scoree = RoamingSettings.LocalExtendedRecord;
@@ -428,8 +439,9 @@ namespace Sanet.Kniffel.ViewModels
                 scores = RoamingSettings.LocalStandardRecord;
                 foreach (Player p in Players)
                 {
-                    
-                    if (p.ShouldSaveResult)
+                    if (p.IsBot)
+                        continue;
+                    if (p.ShouldSaveResult && inet)
                     {
                         var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
                         ks.PutScoreIntoTableWithPicAsync(Encryptor.Encrypt(p.Name, 33), Encryptor.Encrypt(p.Password, 33), Encryptor.Encrypt(p.Total.ToString(), 33), Encryptor.Encrypt(Game.Rules.ToString(), 33), p.PicUrl);
@@ -467,10 +479,10 @@ namespace Sanet.Kniffel.ViewModels
                     }
                 }
                 List<string> tileLines = new List<string>();
-                if (scoree > 0) tileLines.Add(string.Format("{0} - {1}", Rules.krExtended.ToString().Localize(), scoree));
-                if (scores > 0) tileLines.Add(string.Format("{0} - {1}", Rules.krStandard.ToString().Localize(), scores));
-                if (score > 0) tileLines.Add(string.Format("{0} - {1}", Rules.krSimple.ToString().Localize(), score));
-                if (scoreb > 0) tileLines.Add(string.Format("{0} - {1}", Rules.krBaby.ToString().Localize(), scoreb));
+                if (scoree > 0) tileLines.Add(string.Format("{1} - {0}", Rules.krExtended.ToString().Localize(), scoree));
+                if (scores > 0) tileLines.Add(string.Format("{1} - {0}", Rules.krStandard.ToString().Localize(), scores));
+                if (score > 0) tileLines.Add(string.Format("{1} - {0}", Rules.krSimple.ToString().Localize(), score));
+                if (scoreb > 0) tileLines.Add(string.Format("{1} - {0}", Rules.krBaby.ToString().Localize(), scoreb));
 
                 for (int i = tileLines.Count; i <= 4;i++ )
                     tileLines.Add("");

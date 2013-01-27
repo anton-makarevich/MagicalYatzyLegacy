@@ -547,6 +547,23 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <comment>Die Spieleinstellungen ändern</comment>
   </data>
   <data name="DeletePlayerLabel" xml:space="preserve">
-    <value>Удалить игрока</value>
+    <value>löschen</value>
+    <comment>löschen</comment>
+  </data>
+  <data name="NoInetMessage" xml:space="preserve">
+    <value>Kein Internetzugang. Prüfen Sie die Verbindung und versuchen Sie es noch einmal.</value>
+    <comment>Kein Internetzugang. Prüfen Sie die Verbindung und versuchen Sie es noch einmal.</comment>
+  </data>
+  <data name="BestLocalShort" xml:space="preserve">
+    <value>Das beste lokale Ergebnis</value>
+    <comment>Das beste lokale Ergebnis</comment>
+  </data>
+  <data name="BestWeekLabel" xml:space="preserve">
+    <value>Bester Spieler der Woche</value>
+    <comment>Bester Spieler der Woche</comment>
+  </data>
+  <data name="BestDayLabel" xml:space="preserve">
+    <value>Bester Spieler des Tages</value>
+    <comment>Bester Spieler des Tages</comment>
   </data>
 </root>

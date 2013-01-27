@@ -518,6 +518,15 @@
     <value>Локальные рекорды:</value>
   </data>
   <data name="DeletePlayerLabel" xml:space="preserve">
-    <value>Удалить игрока</value>
+    <value>Удалить </value>
+  </data>
+  <data name="BestLocalShort" xml:space="preserve">
+    <value>Лучший локальный</value>
+  </data>
+  <data name="BestWeekLabel" xml:space="preserve">
+    <value>Лучший за неделю</value>
+  </data>
+  <data name="NoInetMessage" xml:space="preserve">
+    <value>Нет доступа в интернет. Пожалуйста проверьте соединение и попробуйте снова.</value>
   </data>
 </root>

@@ -20,7 +20,7 @@ namespace Sanet.Controls
         /// noticed it happens only when control invisible on load
         /// so this is attempt to show control on load and hide on timer
         /// </summary>
-        DispatcherTimer workAroundTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
+        DispatcherTimer workAroundTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(100) };
         #region Constructor
         
         public RotatingPanel()
@@ -30,6 +30,7 @@ namespace Sanet.Controls
 
             workAroundTimer.Tick += workAroundTimer_Tick;
             workAroundTimer.Start();
+            
         }
 
         void workAroundTimer_Tick(object sender, object e)
@@ -37,6 +38,7 @@ namespace Sanet.Controls
             workAroundTimer.Tick -= workAroundTimer_Tick;
             workAroundTimer.Stop();
             if (!outsidechange)
+                if (this.Tag==null)
                 IsFace = true;
             
         }
@@ -95,6 +97,7 @@ namespace Sanet.Controls
         {
             var control = (RotatingPanel)sender;
             control.outsidechange=true;
+            control.IsFace = (bool)e.NewValue;
         }
 
         #endregion

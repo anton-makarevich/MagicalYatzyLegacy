@@ -141,6 +141,7 @@
     <Compile Include="Common\BooleanNegationConverter.cs" />
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="Common\BooleanToColorConverter.cs" />
+    <Compile Include="Common\InternetCheker.cs" />
     <Compile Include="Common\ReverseBooleanToVisibilityConverter.cs" />
     <Compile Include="Controls\RotatingPanel.cs" />
     <Compile Include="Models\AboutAppAction.cs" />
@@ -207,6 +208,9 @@
     <None Include="packages.config" />
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
     <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetChempionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetLastWeekChempionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetTopPlayersResponse.datasource">

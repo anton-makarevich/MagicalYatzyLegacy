@@ -487,6 +487,15 @@
     <value>Best local results</value>
   </data>
   <data name="DeletePlayerLabel" xml:space="preserve">
-    <value>Delete Player</value>
+    <value>Delete</value>
+  </data>
+  <data name="NoInetMessage" xml:space="preserve">
+    <value>No Internet access. Please check your connection and try again.</value>
+  </data>
+  <data name="BestLocalShort" xml:space="preserve">
+    <value>Best local </value>
+  </data>
+  <data name="BestWeekLabel" xml:space="preserve">
+    <value>Best of the week</value>
   </data>
 </root>

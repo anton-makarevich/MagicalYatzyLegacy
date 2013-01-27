@@ -15,6 +15,7 @@ namespace Sanet.Kniffel.Models
         public KniffelRule(Rules rule)
         {
             Rule = rule;
+            LoadScores();
         }
 
         /// <summary>
@@ -157,6 +158,123 @@ namespace Sanet.Kniffel.Models
                 return null;
             }
             
+        }
+
+        
+        private string _BestScoreLabel;
+        public string BestScoreLabel
+        {
+            get { return _BestScoreLabel; }
+            set
+            {
+                if (_BestScoreLabel != value)
+                {
+                    _BestScoreLabel = value;
+                    NotifyPropertyChanged("BestScoreLabel");
+                }
+            }
+        }
+
+        
+        private string _BestScorePlayer;
+        public string BestScorePlayer
+        {
+            get { return _BestScorePlayer; }
+            set
+            {
+                if (_BestScorePlayer != value)
+                {
+                    _BestScorePlayer = value;
+                    NotifyPropertyChanged("BestScorePlayer");
+                }
+            }
+        }
+
+        
+        private string _BestScore;
+        public string BestScore
+        {
+            get { return _BestScore; }
+            set
+            {
+                if (_BestScore != value)
+                {
+                    _BestScore = value;
+                    NotifyPropertyChanged("BestScore");
+                }
+            }
+        }
+
+        
+        private bool _IsScoreLoading;
+        public bool IsScoreLoading
+        {
+            get { return _IsScoreLoading; }
+            set
+            {
+                if (_IsScoreLoading != value)
+                {
+                    _IsScoreLoading = value;
+                    NotifyPropertyChanged("IsScoreLoading");
+                }
+            }
+        }
+
+        private async void LoadScores()
+        {
+            if (InternetCheker.IsInternetAvailable())
+            {
+                try
+                {
+                    var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+                    IsScoreLoading = true;
+                    var res = await ks.GetLastWeekChempionAsync(this.ToString(), BestScorePlayer, BestScore);
+                    if (!string.IsNullOrEmpty(res.Body.Score))
+                    {
+                        BestScore = res.Body.Score;
+                        BestScorePlayer = res.Body.Name;
+                        IsScoreLoading = false;
+                        BestScoreLabel = "BestWeekLabel".Localize();
+                    }
+                    else
+                        LoadLocalScores();
+                   
+                }
+                catch (Exception ex)
+                {
+                    var t = ex.Message;
+                    LoadLocalScores();
+                }
+                finally
+                {
+                    IsScoreLoading = false;
+                }
+            }
+            else
+            {
+                LoadLocalScores();
+            }
+        }
+
+        private void LoadLocalScores()
+        {
+            switch (Rule)
+            {
+                case Rules.krBaby:
+                    BestScore = RoamingSettings.LocalBabyRecord.ToString();
+                    break;
+                case Rules.krExtended:
+                    BestScore = RoamingSettings.LocalExtendedRecord.ToString();
+                    break;
+                case Rules.krStandard:
+                    BestScore = RoamingSettings.LocalStandardRecord.ToString();
+                    break;
+                case Rules.krSimple:
+                    BestScore = RoamingSettings.LocalSimpleRecord.ToString();
+                    break;
+            }
+            BestScorePlayer = "";
+            BestScoreLabel = "BestLocalShort".Localize();
         }
 
         public override string ToString()

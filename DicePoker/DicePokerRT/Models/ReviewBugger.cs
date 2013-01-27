@@ -29,7 +29,7 @@ namespace Sanet.Models
 {
     public static class ReviewBugger
     {
-        private const int numOfRunsBeforeFeedback = 7;
+        private const int numOfRunsBeforeFeedback = 9;
         /// <summary>
         /// Increase number of runs if needed
         /// </summary>

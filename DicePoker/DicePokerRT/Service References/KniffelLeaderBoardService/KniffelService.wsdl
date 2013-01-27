@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.sanet.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.sanet.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.sanet.com/">
+      <s:element name="PutScore">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Score" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PutScoreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PutScoreResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PutScoreIntoTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Score" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="table" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PutScoreIntoTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PutScoreIntoTableResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PutScoreIntoTableWithPic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Score" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="table" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="picurl" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PutScoreIntoTableWithPicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PutScoreIntoTableWithPicResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTopPlayers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rules" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Players" type="tns:ArrayOfKniffelScore" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfKniffelScore">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="KniffelScore" nillable="true" type="tns:KniffelScore" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="KniffelScore">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="HighScore" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Total" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Games" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Player" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pass" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PicUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Table" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Place" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTopPlayersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetTopPlayersResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="Players" type="tns:ArrayOfKniffelScore" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChempion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rules" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Score" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChempionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetChempionResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Score" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLastWeekChempion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rules" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Score" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLastWeekChempionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetLastWeekChempionResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Score" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="PutScoreSoapIn">
+    <wsdl:part name="parameters" element="tns:PutScore" />
+  </wsdl:message>
+  <wsdl:message name="PutScoreSoapOut">
+    <wsdl:part name="parameters" element="tns:PutScoreResponse" />
+  </wsdl:message>
+  <wsdl:message name="PutScoreIntoTableSoapIn">
+    <wsdl:part name="parameters" element="tns:PutScoreIntoTable" />
+  </wsdl:message>
+  <wsdl:message name="PutScoreIntoTableSoapOut">
+    <wsdl:part name="parameters" element="tns:PutScoreIntoTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="PutScoreIntoTableWithPicSoapIn">
+    <wsdl:part name="parameters" element="tns:PutScoreIntoTableWithPic" />
+  </wsdl:message>
+  <wsdl:message name="PutScoreIntoTableWithPicSoapOut">
+    <wsdl:part name="parameters" element="tns:PutScoreIntoTableWithPicResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTopPlayersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTopPlayers" />
+  </wsdl:message>
+  <wsdl:message name="GetTopPlayersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTopPlayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetChempionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetChempion" />
+  </wsdl:message>
+  <wsdl:message name="GetChempionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetChempionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLastWeekChempionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLastWeekChempion" />
+  </wsdl:message>
+  <wsdl:message name="GetLastWeekChempionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLastWeekChempionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="KniffelServiceSoap">
+    <wsdl:operation name="PutScore">
+      <wsdl:input message="tns:PutScoreSoapIn" />
+      <wsdl:output message="tns:PutScoreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PutScoreIntoTable">
+      <wsdl:input message="tns:PutScoreIntoTableSoapIn" />
+      <wsdl:output message="tns:PutScoreIntoTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PutScoreIntoTableWithPic">
+      <wsdl:input message="tns:PutScoreIntoTableWithPicSoapIn" />
+      <wsdl:output message="tns:PutScoreIntoTableWithPicSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopPlayers">
+      <wsdl:input message="tns:GetTopPlayersSoapIn" />
+      <wsdl:output message="tns:GetTopPlayersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChempion">
+      <wsdl:input message="tns:GetChempionSoapIn" />
+      <wsdl:output message="tns:GetChempionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastWeekChempion">
+      <wsdl:input message="tns:GetLastWeekChempionSoapIn" />
+      <wsdl:output message="tns:GetLastWeekChempionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="KniffelServiceSoap" type="tns:KniffelServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PutScore">
+      <soap:operation soapAction="http://www.sanet.com/PutScore" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutScoreIntoTable">
+      <soap:operation soapAction="http://www.sanet.com/PutScoreIntoTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutScoreIntoTableWithPic">
+      <soap:operation soapAction="http://www.sanet.com/PutScoreIntoTableWithPic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopPlayers">
+      <soap:operation soapAction="http://www.sanet.com/GetTopPlayers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChempion">
+      <soap:operation soapAction="http://www.sanet.com/GetChempion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastWeekChempion">
+      <soap:operation soapAction="http://www.sanet.com/GetLastWeekChempion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="KniffelServiceSoap12" type="tns:KniffelServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PutScore">
+      <soap12:operation soapAction="http://www.sanet.com/PutScore" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutScoreIntoTable">
+      <soap12:operation soapAction="http://www.sanet.com/PutScoreIntoTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutScoreIntoTableWithPic">
+      <soap12:operation soapAction="http://www.sanet.com/PutScoreIntoTableWithPic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopPlayers">
+      <soap12:operation soapAction="http://www.sanet.com/GetTopPlayers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChempion">
+      <soap12:operation soapAction="http://www.sanet.com/GetChempion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastWeekChempion">
+      <soap12:operation soapAction="http://www.sanet.com/GetLastWeekChempion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="KniffelService">
+    <wsdl:port name="KniffelServiceSoap" binding="tns:KniffelServiceSoap">
+      <soap:address location="http://sanet.by/KniffelService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="KniffelServiceSoap12" binding="tns:KniffelServiceSoap12">
+      <soap12:address location="http://sanet.by/KniffelService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -520,6 +520,10 @@ namespace Sanet.Kniffel.Models
                 DeletePressed(this,null);
         }
 
+        public void UpdateType()
+        {
+            NotifyPropertyChanged("IsHuman");
+        }
         #endregion
 
 

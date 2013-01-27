@@ -11,6 +11,12 @@ Wettkampf gegen Computer
 3 Art-Variationen von Würfeln, Wurftempo- und Sichtwinkeleinstellung
 Ergebnisspeicherung in der Highscore-Liste im Internet
 Pseudo-3D-Graphic und Wurf-Animation
+optimiert für die Bedienung auf einem Windows 8 Tablet
+
+улучшенный экран начала игры; der Startbildschirm ist verbessert worden
+проверка соединения; Prüfung der Verbindung
+исправлена ошибка с ботами. der Fehler mit dem Botspiel ist behoben worden 
+
 
 Knobel
 Knifel
