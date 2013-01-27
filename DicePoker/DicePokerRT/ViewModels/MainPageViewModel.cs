@@ -30,7 +30,7 @@ namespace Sanet.Kniffel.ViewModels
                             CommonNavigationActions.NavigateToNewGamePage();
                         }),
                     Description = "NewLocalGameDescription",
-                    Image = new BitmapImage(new Uri("ms-appx:///Assets/SanetDice.png", UriKind.Absolute)),
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("SanetDice.png")),
                 });
             //MenuActions.Add(
             //    new MainMenuAction
@@ -51,7 +51,7 @@ namespace Sanet.Kniffel.ViewModels
                         CommonNavigationActions.NavigateToSettingsPage();
                     }),
                     Description = "SettingsDescription",
-                    Image = new BitmapImage(new Uri("ms-appx:///Assets/Settings.png", UriKind.Absolute)),
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("Settings.png")),
                 });
             MenuActions.Add(
                 new MainMenuAction
@@ -62,7 +62,7 @@ namespace Sanet.Kniffel.ViewModels
                         CommonNavigationActions.NavigateToLeaderboardPage();
                     }),
                     Description = "LeaderboardDescription",
-                    Image = new BitmapImage(new Uri("ms-appx:///Assets/Victory.png", UriKind.Absolute)),
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("Victory.png")),
                 });
             MenuActions.Add(
                 new MainMenuAction
@@ -73,7 +73,7 @@ namespace Sanet.Kniffel.ViewModels
                         CommonNavigationActions.NavigateToAboutPage();
                     }),
                     Description = "AboutDescription",
-                    Image = new BitmapImage(new Uri("ms-appx:///Assets/About.png", UriKind.Absolute)),
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("About.png")),
                 });
             NotifyPropertyChanged("MenuActions");
         }

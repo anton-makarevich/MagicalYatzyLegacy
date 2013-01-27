@@ -5,8 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+#if WinRT
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
+#else
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+#endif
 
 namespace Sanet.Kniffel.Models
 {
@@ -226,7 +232,14 @@ namespace Sanet.Kniffel.Models
             {
                 try
                 {
-                    var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+                    var ks = new 
+#if WinRT
+                        DicePokerRT
+#else
+                    DicePokerWP
+#endif
+                        .KniffelLeaderBoardService.KniffelServiceSoapClient();
+#if WinRT
                     IsScoreLoading = true;
                     var res = await ks.GetLastWeekChempionAsync(this.ToString(), BestScorePlayer, BestScore);
                     if (!string.IsNullOrEmpty(res.Body.Score))
@@ -238,7 +251,7 @@ namespace Sanet.Kniffel.Models
                     }
                     else
                         LoadLocalScores();
-                   
+#endif
                 }
                 catch (Exception ex)
                 {

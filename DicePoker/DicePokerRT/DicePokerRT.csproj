@@ -143,6 +143,7 @@
     <Compile Include="Common\BooleanToColorConverter.cs" />
     <Compile Include="Common\InternetCheker.cs" />
     <Compile Include="Common\ReverseBooleanToVisibilityConverter.cs" />
+    <Compile Include="Common\SanetImageProvider.cs" />
     <Compile Include="Controls\RotatingPanel.cs" />
     <Compile Include="Models\AboutAppAction.cs" />
     <Compile Include="Models\EncriptionExtensions.cs" />

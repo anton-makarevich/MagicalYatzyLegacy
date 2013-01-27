@@ -7,6 +7,30 @@
 
     <!--Application Resources-->
     <Application.Resources>
+        <SolidColorBrush x:Key="SanetBlue" Color="#009cd6"/>
+        <DataTemplate x:Key="MainMenuTemplate">
+            <Grid Height="95" Margin="10" HorizontalAlignment="Stretch"
+                          >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="95"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image
+                    Height="90"
+                    Width="90"
+                    Source="{Binding Image}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                    />
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{Binding LocalizedLabel}" Foreground="{StaticResource SanetBlue}" 
+                                 FontSize="35" Height="40" Margin="10,5,10,0" />
+                    <TextBlock Text="{Binding LocalizedDescription}" Foreground="{StaticResource SanetBlue}" 
+                                 FontSize="15" Height="60" Margin="10,5" TextWrapping="Wrap" />
+                </StackPanel>
+
+            </Grid>
+        </DataTemplate>
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

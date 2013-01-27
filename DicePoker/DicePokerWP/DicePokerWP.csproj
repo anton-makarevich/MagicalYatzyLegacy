@@ -62,6 +62,8 @@
     <Reference Include="System.Runtime">
       <HintPath>packages\Microsoft.Bcl.1.0.11-beta\lib\sl4-windowsphone71\System.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Threading.Tasks">
       <HintPath>packages\Microsoft.Bcl.1.0.11-beta\lib\sl4-windowsphone71\System.Threading.Tasks.dll</HintPath>
     </Reference>
@@ -116,6 +118,9 @@
     <Compile Include="..\DicePokerRT\Models\Messages.cs">
       <Link>Models\Messages.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerRT\Models\RelayCommand.cs">
+      <Link>Common\RelayCommand.cs</Link>
+    </Compile>
     <Compile Include="..\DicePokerRT\Models\ViewModelProvider.cs">
       <Link>Common\ViewModelProvider.cs</Link>
     </Compile>
@@ -128,12 +133,19 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\InternetCheker.cs" />
     <Compile Include="Common\LocalSettings.cs" />
     <Compile Include="Common\RoamingSettings.cs" />
+    <Compile Include="Common\SanetImageProvider.cs" />
     <Compile Include="Common\WPBasePageExtensions.cs" />
     <Compile Include="Models\CommonNavigationActions.cs" />
     <Compile Include="Models\ResourceModel.cs" />
     <Compile Include="Models\StoreManager.cs" />
+    <Compile Include="Service References\KniffelLeaderBoardService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -156,6 +168,38 @@
     <EmbeddedResource Include="strings\strings.resx" />
     <EmbeddedResource Include="strings\strings.ru-Ru.resx" />
     <EmbeddedResource Include="strings\strings.de-DE.resx" />
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerWP.KniffelLeaderBoardService.GetChempionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerWP.KniffelLeaderBoardService.GetLastWeekChempionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerWP.KniffelLeaderBoardService.GetTopPlayersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerWP.KniffelLeaderBoardService.PutScoreIntoTableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerWP.KniffelLeaderBoardService.PutScoreIntoTableWithPicResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerWP.KniffelLeaderBoardService.PutScoreResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\KniffelService.wsdl" />
+    <Content Include="..\DicePokerRT\Assets\About.png">
+      <Link>Assets\About.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\SanetDice.png">
+      <Link>Assets\SanetDice.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Settings.png">
+      <Link>Assets\Settings.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Victory.png">
+      <Link>Assets\Victory.png</Link>
+    </Content>
+    <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\slasm\pngs\0\stop.0.png">
@@ -1460,9 +1504,21 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Service References\KniffelLeaderBoardService\KniffelService.disco" />
+    <None Include="Service References\KniffelLeaderBoardService\configuration91.svcinfo" />
+    <None Include="Service References\KniffelLeaderBoardService\configuration.svcinfo" />
+    <None Include="Service References\KniffelLeaderBoardService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\KniffelLeaderBoardService\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
