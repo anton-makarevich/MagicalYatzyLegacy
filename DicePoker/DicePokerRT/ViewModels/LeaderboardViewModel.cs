@@ -73,6 +73,16 @@ namespace Sanet.Kniffel.ViewModels
                 return Rules.krExtended.ToString().Localize();
             }
         }
+        /// <summary>
+        /// magic rules label
+        /// </summary>
+        public string RulesMLabel
+        {
+            get
+            {
+                return Rules.krMagic.ToString().Localize();
+            }
+        }
 
         /// <summary>
         /// go to full leaderboard label

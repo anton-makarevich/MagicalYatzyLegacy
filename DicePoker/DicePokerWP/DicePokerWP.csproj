@@ -140,6 +140,7 @@
     <Compile Include="Common\WPBasePageExtensions.cs" />
     <Compile Include="Models\CommonNavigationActions.cs" />
     <Compile Include="Models\ResourceModel.cs" />
+    <Compile Include="Models\ServiceAsyncExtensions.cs" />
     <Compile Include="Models\StoreManager.cs" />
     <Compile Include="Service References\KniffelLeaderBoardService\Reference.cs">
       <AutoGen>True</AutoGen>

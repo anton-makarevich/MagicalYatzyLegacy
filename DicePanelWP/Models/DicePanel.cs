@@ -17,6 +17,7 @@ using Windows.UI;
 using Windows.UI.Xaml.Media;
 using Windows.Foundation;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls.Primitives;
 
 #else
 using System.Windows.Controls;
@@ -34,9 +35,14 @@ namespace Sanet.Kniffel.DicePanel
         dpsBrutalRed = 1,
         dpsBlue = 2
     }
+    /// <summary>
+    /// Dice Panel Control - where we are rolling dices
+    /// </summary>
     public class DicePanel : Canvas
     {
-
+        //popup to show dice value selection panel
+        Popup _popup = new Popup();
+        DiceValueSelectionPanel _selectionPanel = new DiceValueSelectionPanel();
 
         public Random FRand = new Random();
         public bool PlaySound { get; set; }
@@ -77,8 +83,21 @@ namespace Sanet.Kniffel.DicePanel
 #endif
             //InitializeComponent()
             PanelStyle = dpStyle.dpsBlue;
+             _popup.Child = _selectionPanel;
+             _selectionPanel.Tag = _popup;
+             _popup.Closed += _popup_Closed;
+            for (int i = 0; i < 6;i++ )
+            {
+                _selectionPanel.AddDice(new Die(this) { Result = i + 1 });
+            }
+           
+        }
 
-
+        void _popup_Closed(object sender, object e)
+        {
+            _lastClickedDie.Result = _selectionPanel.SelectedDice.Result;
+            _lastClickedDie.DrawDie();
+            ManualSetMode = false;
         }
 
         /// <summary>
@@ -87,9 +106,11 @@ namespace Sanet.Kniffel.DicePanel
         public void Dispose()
         {
 #if WinRT
-            Tapped += DieClicked;
+            Tapped -= DieClicked;
+            _popup.Closed -= _popup_Closed;
 #else
-            MouseLeftButtonDown += DieClicked;
+            MouseLeftButtonDown -= DieClicked;
+            _popup.Closed -= _popup_Closed;
 #endif
 
         }
@@ -195,9 +216,10 @@ namespace Sanet.Kniffel.DicePanel
 
 
         private int FNumDice = 2;
-#if WINDOWS_PHONE
-        [Description("Number of Dice in the Panel"), Category("Dice"), DefaultValue(2)]
-#endif
+
+        /// <summary>
+        /// Number of Dice in the Panel
+        /// </summary>
         public int NumDice
         {
             get { return FNumDice; }
@@ -212,9 +234,10 @@ namespace Sanet.Kniffel.DicePanel
 
 
         private bool FDebugDrawMode = false;
-        #if WINDOWS_PHONE
-        [Description("Draws a Box Around the Die for Collision Debugging"), Category("Dice"), DefaultValue(false)]
-#endif
+        
+        /// <summary>
+        /// Draws a Box Around the Die for Collision Debugging
+        /// </summary>
         public bool DebugDrawMode
         {
             get { return FDebugDrawMode; }
@@ -225,9 +248,10 @@ namespace Sanet.Kniffel.DicePanel
 
         private bool FClickToFreeze;
         //new
-        #if WINDOWS_PHONE
-        [Description("Allows user to click dice to lock their movement"), Category("Dice"), DefaultValue(false)]
-#endif
+       
+        /// <summary>
+        /// Allows user to click dice to lock their movement
+        /// </summary>
         public bool ClickToFreeze
         {
             get { return FClickToFreeze; }
@@ -319,6 +343,8 @@ namespace Sanet.Kniffel.DicePanel
         
         public void RollDice(List<int> aResults )
         {
+            if (ManualSetMode)
+                ManualSetMode = false;
             //if (isRolling) return;
             Die d = null;
 
@@ -464,6 +490,7 @@ namespace Sanet.Kniffel.DicePanel
 
         }
 
+        Die _lastClickedDie;
         //new
 #if WinRT
         public void DieClicked(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
@@ -471,23 +498,29 @@ namespace Sanet.Kniffel.DicePanel
         public void DieClicked(object sender, MouseButtonEventArgs e)
 #endif
         {
-
-            if (ClickToFreeze)
+            Point pointClicked = e.GetPosition(this);
+            //determine if die was clicked
+            foreach (Die d in aDice)
             {
-                Point pointClicked = e.GetPosition(this);
-
-                foreach (Die d in aDice)
+                if (d.ClickedOn(pointClicked.X, pointClicked.Y))
                 {
-                    if (d.ClickedOn(pointClicked.X, pointClicked.Y))
-                    {
-                        d.Frozen = !d.Frozen;
-                        d.DrawDie();
-                        if (DieFrozen != null)
-                        {
-                            DieFrozen(d.Frozen, d.Result);
-                        }
-                        break; // TODO: might not be correct. Was : Exit For
-                    }
+                    _lastClickedDie = d;
+                    break; // TODO: might not be correct. Was : Exit For
+                }
+            }
+            if (ManualSetMode)
+            {
+                _selectionPanel.SelectedDice = _lastClickedDie;
+                _selectionPanel.Draw();
+                _popup.IsOpen = true;
+            }
+            else if (ClickToFreeze)
+            {
+                _lastClickedDie.Frozen = !_lastClickedDie.Frozen;
+                _lastClickedDie.DrawDie();
+                if (DieFrozen != null)
+                {
+                    DieFrozen(_lastClickedDie.Frozen, _lastClickedDie.Result);
                 }
 
             }
@@ -560,9 +593,27 @@ namespace Sanet.Kniffel.DicePanel
             //End If
 
         }
-               
+
+        
+        private bool _ManualSetMode=false;
+        public bool ManualSetMode
+        {
+            get { return _ManualSetMode; }
+            set
+            {
+                if (_ManualSetMode != value)
+                {
+                    _ManualSetMode = value;
+                    if (!value && _popup.IsOpen)
+                        _popup.IsOpen = false;
+                }
+            }
+        }
 
     }
+    /// <summary>
+    /// Dice oject
+    /// </summary>
     public class Die : UserControl
     {
 
@@ -592,7 +643,7 @@ namespace Sanet.Kniffel.DicePanel
         //направление движения
         private int dyDir;
 
-        private DicePanel FPanel;
+        public DicePanel FPanel;
 
         private DieStatus FStatus = DieStatus.dsLanding;
         public string StyleString
@@ -1060,6 +1111,9 @@ namespace Sanet.Kniffel.DicePanel
         }
 
     }
+    /// <summary>
+    /// array of dice values with helpers
+    /// </summary>
     public class DieResult
     {
         public List<int> DiceResults { get; set; }
@@ -1087,6 +1141,7 @@ namespace Sanet.Kniffel.DicePanel
             return DiceResults.Count(f => f == value);
         }
     }
+
     
         
 }

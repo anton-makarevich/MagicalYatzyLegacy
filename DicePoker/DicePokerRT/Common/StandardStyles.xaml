@@ -1251,6 +1251,50 @@
             
         </Setter> 
     </Style>
+    <Style x:Key="MagicRollAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="ClearSelectionAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Clear Selection"/>
+        <Setter Property="Content" Value="M40.110691,17.336001L43.787209,19.603006 47.739838,17.851579 46.722206,22.052104 49.609001,25.26417 45.300961,25.597356 43.13229,29.337 41.485435,25.338367 37.260998,24.432104 40.553104,21.631422z M30.316431,15.311499C30.737907,15.3207,31.141415,15.45716,31.470024,15.730532L33.818306,17.694105C34.694302,18.424594,34.7043,19.856977,33.841408,20.888161L6.1638265,54.03081C5.2956729,55.0699,3.888453,55.316195,3.0118785,54.583106L0.66258836,52.621932C-0.21271044,51.889041,-0.22314736,50.462062,0.64531529,49.424178L28.322847,16.281325C28.861591,15.634333,29.61397,15.296166,30.316431,15.311499z M17.982637,0.28100014L22.582518,3.1118908 27.524708,0.93214035 26.253859,6.1756935 29.865,10.203163 24.47509,10.621074 21.760185,15.288001 19.702805,10.298364 14.42,9.1577039 18.53216,5.6602993z M37.014431,0L40.23534,1.97754 43.692245,0.45019531 42.80167,4.1220703 45.327003,6.9426298 41.552406,7.2316895 39.658558,10.5 38.221096,7.0024395 34.521999,6.2094698 37.39922,3.7629395z" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Path 
+                         Data="{Binding Path=Content, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                         Stretch="Uniform" 
+                         Fill="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                         Width="26" 
+                         Height="26" 
+                         RenderTransformOrigin="0.5,0.5">
+
+                    </Path>
+                </DataTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+    </Style>
+    <Style x:Key="ManualRollAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="ClearSelectionAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Clear Selection"/>
+        <Setter Property="Content" Value="M15.981499,13.747002C18.05169,13.747002,19.73,15.426697,19.73,17.496992L19.73,29.981703 19.779463,29.852098C20.305013,28.579597 21.683165,27.672002 23.300499,27.672002 25.370689,27.672002 27.049,29.159006 27.049,30.994911L27.049,32.286549 27.098465,32.167931C27.624022,31.003298 29.002193,30.172002 30.619551,30.172002 32.689867,30.172002 34.368,31.533998 34.368,33.213693L34.368,42.065532 34.802896,37.581322C34.973396,35.815634 36.543791,34.521343 38.310686,34.693342 40.076281,34.862541 41.370577,36.435431 41.198677,38.201019L39.531998,55.4002 39.531998,56.770905C39.531998,60.763145,36.295256,64,32.301731,64L19.449066,64C16.080709,64,13.24998,61.695639,12.447613,58.577476L12.385349,58.30774 2.4728718,41.726652C1.7229061,40.474153 2.3947554,38.692953 3.9740238,37.750153 5.5534835,36.807454 7.4387784,37.057454 8.1887436,38.310053L12.233,45.075792 12.233,17.496992C12.232999,15.426697,13.91121,13.747002,15.981499,13.747002z M2.4651451,5.512001C3.0964394,5.512001,3.7279081,5.7528877,4.2096834,6.2346535L8.3473825,10.372528C9.3108721,11.336092 9.3108721,12.895937 8.3473825,13.859404 7.3840122,14.822868 5.821506,14.822868 4.8593559,13.859404L0.7216568,9.7214584C-0.2405529,8.7580528 -0.2405529,7.1982384 0.7216568,6.2346535 1.2027321,5.7528877 1.8338509,5.512001 2.4651451,5.512001z M29.787703,5.512001C30.419058,5.512001 31.050566,5.7528877 31.532339,6.2346535 32.495886,7.1982384 32.495886,8.7580528 31.532339,9.7214584L27.394133,13.859404C26.430585,14.822868 24.869307,14.822868 23.905759,13.859404 22.943411,12.895937 22.943411,11.336092 23.905759,10.372528L28.043965,6.2346535C28.525139,5.7528877,29.156345,5.512001,29.787703,5.512001z M16.182049,0C17.543967,0,18.648,1.1041412,18.647999,2.466156L18.647999,8.3178291C18.648,9.6823425 17.543967,10.784 16.182049,10.784 14.820132,10.784 13.715999,9.6823425 13.716,8.3178291L13.716,2.466156C13.715999,1.1041412,14.820132,0,16.182049,0z" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Path 
+                         Data="{Binding Path=Content, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                         Stretch="Uniform" 
+                         Fill="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                         Width="26" 
+                         Height="26" 
+                         RenderTransformOrigin="0.5,0.5">
+
+                    </Path>
+                </DataTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+    </Style>
     <!--<Style x:Key="FontDecreaseAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="FontDecreaseAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Decrease Font"/>
@@ -1713,7 +1757,7 @@
 
     <!--Datatemplate for main menu item-->
     <DataTemplate x:Key="RuleTemplate">
-        <Grid Height="120" Margin="5" HorizontalAlignment="Stretch"
+        <Grid Height="100" Margin="5" HorizontalAlignment="Stretch"
                           ><!--Opacity="0.85" Background="{StaticResource SanetBlue}"--> 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="125"/>
@@ -1726,8 +1770,8 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                     />-->
-            <Grid Height="120"
-                    Width="120"
+            <Grid Height="100"
+                    Width="100"
                   Background="{StaticResource SanetBlue}"
                   >
                 <TextBlock Text="{Binding BestScoreLabel}"
@@ -1739,7 +1783,7 @@
                            HorizontalAlignment="Right"
                            Foreground="White"
                            Margin="2"
-                           FontSize="40"/>
+                           FontSize="30"/>
                 <TextBlock Text="{Binding BestScorePlayer}"
                            VerticalAlignment="Bottom" Margin="2"
                            Foreground="White" TextWrapping="Wrap"
@@ -1751,9 +1795,9 @@
             </Grid>
             <StackPanel Grid.Column="1">
                 <TextBlock Text="{Binding NameLocalized}" Foreground="{StaticResource SanetBlue}" 
-                                 FontSize="30" Height="40" Margin="10,5,10,0" />
+                                 FontSize="25" Height="30" Margin="10,5,10,0" />
                 <TextBlock Text="{Binding ShortDescriptionLocalized}" Foreground="{StaticResource SanetBlue}" 
-                                 FontSize="15" Height="80" Margin="10,5" 
+                                 FontSize="15" Height="70" Margin="10,5" 
                            TextWrapping="Wrap" TextTrimming="WordEllipsis"
                            />
             </StackPanel>

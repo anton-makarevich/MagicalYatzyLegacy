@@ -24,6 +24,7 @@ namespace Sanet.Kniffel.Models
             LoadScores();
         }
 
+        #region Properties
         /// <summary>
         /// Rule
         /// </summary>
@@ -140,7 +141,7 @@ namespace Sanet.Kniffel.Models
             }
         }
 
-        /// <summary>
+        /*/// <summary>
         /// Icon for main menu
         /// </summary>
         public ImageSource Image
@@ -164,9 +165,8 @@ namespace Sanet.Kniffel.Models
                 return null;
             }
             
-        }
-
-        
+        }*/
+                
         private string _BestScoreLabel;
         public string BestScoreLabel
         {
@@ -180,8 +180,7 @@ namespace Sanet.Kniffel.Models
                 }
             }
         }
-
-        
+                
         private string _BestScorePlayer;
         public string BestScorePlayer
         {
@@ -195,8 +194,7 @@ namespace Sanet.Kniffel.Models
                 }
             }
         }
-
-        
+                
         private string _BestScore;
         public string BestScore
         {
@@ -211,7 +209,9 @@ namespace Sanet.Kniffel.Models
             }
         }
 
-        
+        /// <summary>
+        /// Deetermines if recordscore loading in progress
+        /// </summary>
         private bool _IsScoreLoading;
         public bool IsScoreLoading
         {
@@ -226,6 +226,45 @@ namespace Sanet.Kniffel.Models
             }
         }
 
+        /// <summary>
+        /// Helper method to get if we play with extended bonuses
+        /// </summary>
+        public bool HasExtendedBonuses
+        {
+            get
+            {
+                return Rule == Rules.krExtended || Rule == Rules.krMagic;
+            }
+        }
+
+        /// <summary>
+        /// Helper method to get if we play with standard bonuses
+        /// </summary>
+        public bool HasStandardBonus
+        {
+            get
+            {
+                return Rule==Rules.krStandard || Rule == Rules.krExtended || Rule == Rules.krMagic;
+            }
+        }
+
+
+        /// <summary>
+        /// returns list of available hands
+        /// </summary>
+        static public KniffelScores[] PokerHands = new KniffelScores[]
+        {
+            KniffelScores.ThreeOfAKind,
+            KniffelScores.FourOfAKind,
+            KniffelScores.FullHouse,
+            KniffelScores.SmallStraight,
+            KniffelScores.LargeStraight,
+            KniffelScores.Kniffel
+        };
+        
+        #endregion
+
+        #region Methods
         private async void LoadScores()
         {
             if (InternetCheker.IsInternetAvailable())
@@ -239,8 +278,9 @@ namespace Sanet.Kniffel.Models
                     DicePokerWP
 #endif
                         .KniffelLeaderBoardService.KniffelServiceSoapClient();
-#if WinRT
+
                     IsScoreLoading = true;
+#if WinRT
                     var res = await ks.GetLastWeekChempionAsync(this.ToString(), BestScorePlayer, BestScore);
                     if (!string.IsNullOrEmpty(res.Body.Score))
                     {
@@ -251,7 +291,19 @@ namespace Sanet.Kniffel.Models
                     }
                     else
                         LoadLocalScores();
+#else
+                    var res = (await ks.GetLastWeekChempionTaskAsync(this.ToString())).ToList();
+                    if (!string.IsNullOrEmpty(res[1]))
+                    {
+                        BestScore = res[1];
+                        BestScorePlayer = res[0];
+                        IsScoreLoading = false;
+                        BestScoreLabel = "BestWeekLabel".Localize();
+                    }
+                    else
+                        LoadLocalScores();
 #endif
+
                 }
                 catch (Exception ex)
                 {
@@ -285,6 +337,9 @@ namespace Sanet.Kniffel.Models
                 case Rules.krSimple:
                     BestScore = RoamingSettings.LocalSimpleRecord.ToString();
                     break;
+                case Rules.krMagic:
+                    BestScore = RoamingSettings.LocalMagicRecord.ToString();
+                    break;
             }
             BestScorePlayer = "";
             BestScoreLabel = "BestLocalShort".Localize();
@@ -300,8 +355,11 @@ namespace Sanet.Kniffel.Models
                     return "ScoresE";
                 case Rules.krStandard:
                     return "ScoresS";
+                case Rules.krMagic:
+                    return "ScoresM";
             }
             return "Scores";
         }
+        #endregion
     }
 }

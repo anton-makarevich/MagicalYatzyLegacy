@@ -530,4 +530,13 @@
   <data name="BestWeekLabel" xml:space="preserve">
     <value>Лучший за неделю</value>
   </data>
+  <data name="krMagic" xml:space="preserve">
+    <value>Магические</value>
+  </data>
+  <data name="krMagicShort" xml:space="preserve">
+    <value>все комбинации, бонус в 35 очков за сумму цифровых комбинаций 63 и более, бонус 100 очков за каждый последующий флэш, флэш-джокер, магические артефакты, 13 ходов</value>
+  </data>
+  <data name="MagicRollLabel" xml:space="preserve">
+    <value>Магический бросок</value>
+  </data>
 </root>

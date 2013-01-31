@@ -60,6 +60,11 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         public event EventHandler<PlayerEventArgs> PlayerJoined;
 
+        /// <summary>
+        /// current player used Magical Roll
+        /// </summary>
+        public event EventHandler<PlayerEventArgs> MagicRollUsed;
+
         #endregion
 
         #region Properties
@@ -247,11 +252,81 @@ namespace Sanet.Kniffel.Models
                     DiceRolled(this, new RollEventArgs(CurrentPlayer, lastRollResults));
             }
         }
+        public void ReporMagictRoll()
+        {
+            lock (syncRoot)
+            {
+                //set magic value
+                //1) check how much free hands we have
+                int freeHandsIndex = 0;
+                Dictionary<int,KniffelScores> freeHands = new Dictionary<int,KniffelScores>();
+                foreach (var score in KniffelRule.PokerHands)
+                {
+                    if (!CurrentPlayer.GetResultForScore(score).HasValue)
+                    {
+                        freeHands.Add(freeHandsIndex, score);
+                        freeHandsIndex++;
+                    }
+                }
+                if (freeHands.Count==0)
+                    ReportRoll();// no available hands - just roll
+                else
+                {
+                    setMagicResults( freeHands[rand.Next(freeHands.Count)]);
+
+                    if (MagicRollUsed != null)
+                        MagicRollUsed(this, new PlayerEventArgs(CurrentPlayer));
+                    //CurrentPlayer.OnMagicRollUsed();
+                    //roll report
+                    if (DiceRolled != null)
+                        DiceRolled(this, new RollEventArgs(CurrentPlayer, lastRollResults));
+                }
+            }
+        }
+
+        void setMagicResults(KniffelScores hands)
+        {
+            int firstinrow;
+            switch (hands)
+            {
+                case KniffelScores.ThreeOfAKind:
+                    lastRollResults[0] = lastRollResults[1] = lastRollResults[2] = rand.Next(1, 7);
+                    lastRollResults[3]= rand.Next(1, 7);
+                    lastRollResults[4]= rand.Next(1, 7);
+                    break;
+                case KniffelScores.FourOfAKind:
+                    lastRollResults[0] = lastRollResults[1] = lastRollResults[2] = lastRollResults[3] =rand.Next(1, 7);
+                    lastRollResults[4] = rand.Next(1, 7);
+                    break;
+                case KniffelScores.FullHouse:
+                    lastRollResults[0] = lastRollResults[1] = lastRollResults[2] = rand.Next(1, 7);
+                    lastRollResults[3] = lastRollResults[4] = rand.Next(1, 7);
+                    break;
+                case KniffelScores.SmallStraight:
+                    firstinrow = rand.Next(3);
+                    for (int i = 0; i < 4; i++)
+                        lastRollResults[i] = firstinrow + i;
+                    lastRollResults[4] = rand.Next(1, 7);
+                    break;
+                case KniffelScores.LargeStraight:
+                    firstinrow = rand.Next(2);
+                    for (int i = 0; i < 5; i++)
+                        lastRollResults[i] = firstinrow + i;
+                    break;
+                case KniffelScores.Kniffel:
+                    firstinrow = rand.Next(1, 7);
+                    for (int i = 0; i < 5; i++)
+                        lastRollResults[i] = firstinrow;
+                    break;
+                    
+            }
+        }
+
         public void ApplyScore(RollResult result)
         {
             
             //check for kniffel bonus
-            if (Rules.Rule == Models.Rules.krExtended && result.ScoreType!= KniffelScores.Kniffel)
+            if (Rules.HasExtendedBonuses && result.ScoreType != KniffelScores.Kniffel)
             {
                 //check if already have kniffel
                 var kresult = CurrentPlayer.GetResultForScore( KniffelScores.Kniffel);
@@ -261,7 +336,7 @@ namespace Sanet.Kniffel.Models
             if (ResultApplied != null)
                 ResultApplied(this, new ResultEventArgs(CurrentPlayer, result));
             //check for numeric bonus and apply it
-            if (Rules.Rule == Models.Rules.krExtended || Rules.Rule == Models.Rules.krStandard)
+            if (Rules.HasStandardBonus)
             {
                 if (result.IsNumeric && !CurrentPlayer.Results.FirstOrDefault(f=>f.ScoreType== KniffelScores.Bonus).HasValue)
                 {

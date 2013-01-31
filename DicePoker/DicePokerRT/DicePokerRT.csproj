@@ -142,9 +142,11 @@
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="Common\BooleanToColorConverter.cs" />
     <Compile Include="Common\InternetCheker.cs" />
+    <Compile Include="Common\PopupHelper.cs" />
     <Compile Include="Common\ReverseBooleanToVisibilityConverter.cs" />
     <Compile Include="Common\SanetImageProvider.cs" />
     <Compile Include="Controls\RotatingPanel.cs" />
+    <Compile Include="DicePanel\DiceSelector.cs" />
     <Compile Include="Models\AboutAppAction.cs" />
     <Compile Include="Models\EncriptionExtensions.cs" />
     <Compile Include="Models\Enums\GameRule.cs" />
@@ -1294,18 +1296,15 @@
     <Reference Include="AdDuplex.Windows">
       <HintPath>packages\AdDuplexWindows.8.0.2.0\lib\winrt45\AdDuplex.Windows.dll</HintPath>
     </Reference>
+    <Reference Include="MyToolkit">
+      <HintPath>packages\MyToolkit.1.9.0\lib\netcore45\MyToolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\KniffelLeaderBoardService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\AllWrite\Sanet.Encryptor\Sanet.Encryptor.vbproj">
-      <Project>{984dd8d3-8fcd-47dc-a711-ae9b20492453}</Project>
-      <Name>Sanet.Encryptor</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

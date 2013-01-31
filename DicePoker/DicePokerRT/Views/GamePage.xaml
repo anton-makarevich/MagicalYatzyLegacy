@@ -205,6 +205,26 @@
             Grid.RowSpan="3"
             VerticalAlignment="Center"
             >
+                <StackPanel
+                    Visibility="{Binding IsMagicVisible,Converter={StaticResource VisibilityKey}}">
+                    <Button
+                         Style="{StaticResource MagicRollAppBarButtonStyle}"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="center"
+                            IsEnabled="{Binding IsMagicRollEnabled}"
+                         AutomationProperties.Name="{Binding MagicRollLabel}"
+                    Tapped="MagicRoll_Tapped_1"/>
+                    <Button
+                         Style="{StaticResource ManualRollAppBarButtonStyle}"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="center"
+                            IsEnabled="{Binding IsMagicRollEnabled}"
+                         AutomationProperties.Name="{Binding MagicRollLabel}"
+                    Tapped="MagicRoll_Tapped_1"/>
+                </StackPanel>
+                
+                
+                <Grid Height="50"/>
                 <Button
                  x:Name="RollButton"
             Style="{StaticResource DiceRollAppBarButtonStyle}"

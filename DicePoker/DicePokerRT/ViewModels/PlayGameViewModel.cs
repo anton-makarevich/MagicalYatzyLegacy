@@ -271,7 +271,34 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
-               
+        //Magic things
+        public bool IsMagicVisible
+        {
+            get
+            {
+                if (Game == null)
+                    return false;
+                return Game.Rules.Rule == Rules.krMagic;
+            }
+        }
+        public bool IsMagicRollEnabled
+        {
+            get
+            {
+                if (SelectedPlayer == null)
+                    return false;
+                if (!CanRoll)
+                    return false;
+                return SelectedPlayer.IsMagicRollAvailable;
+            }
+        }
+        public string MagicRollLabel
+        {
+            get
+            {
+                return "MagicRollLabel".Localize();
+            }
+        }
 
         #endregion
 
@@ -292,6 +319,7 @@ namespace Sanet.Kniffel.ViewModels
                     Game.MoveChanged -= Game_MoveChanged;
                     Game.PlayerJoined -= Game_PlayerJoined;
                     Game.ResultApplied -= Game_ResultApplied;
+                    Game.MagicRollUsed -= Game_MagicRollUsed;
                 }
             }
             catch { }
@@ -310,8 +338,13 @@ namespace Sanet.Kniffel.ViewModels
                 Game.MoveChanged += Game_MoveChanged;
                 Game.PlayerJoined += Game_PlayerJoined;
                 Game.ResultApplied += Game_ResultApplied;
-                
+                Game.MagicRollUsed += Game_MagicRollUsed;
             }
+        }
+
+        void Game_MagicRollUsed(object sender, PlayerEventArgs e)
+        {
+            SelectedPlayer.OnMagicRollUsed();
         }
 
         void Game_ResultApplied(object sender, ResultEventArgs e)
@@ -370,6 +403,8 @@ namespace Sanet.Kniffel.ViewModels
             NotifyPropertyChanged("SampleResults");
             if (IsPlayerSelected)
                 Title = string.Format("{2} {0}, {1}",Game.Move ,SelectedPlayer.Name,Messages.GAME_MOVE.Localize() );
+            if (IsMagicVisible)
+                NotifyPropertyChanged("IsMagicRollEnabled");
         }
         /// <summary>
         /// dices stop
@@ -432,11 +467,12 @@ namespace Sanet.Kniffel.ViewModels
                     }
                 }
 
-                int score, scoreb, scores, scoree;
+                int score, scoreb, scores, scoree, scorem;
                 scoreb=RoamingSettings.LocalBabyRecord;
                 scoree = RoamingSettings.LocalExtendedRecord;
                 score = RoamingSettings.LocalSimpleRecord;
                 scores = RoamingSettings.LocalStandardRecord;
+                scorem = RoamingSettings.LocalStandardRecord;
                 foreach (Player p in Players)
                 {
                     if (p.IsBot)
@@ -444,7 +480,7 @@ namespace Sanet.Kniffel.ViewModels
                     if (p.ShouldSaveResult && inet)
                     {
                         var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
-                        ks.PutScoreIntoTableWithPicAsync(Encryptor.Encrypt(p.Name, 33), Encryptor.Encrypt(p.Password, 33), Encryptor.Encrypt(p.Total.ToString(), 33), Encryptor.Encrypt(Game.Rules.ToString(), 33), p.PicUrl);
+                        ks.PutScoreIntoTableWithPicAsync(p.Name.Encrypt( 33),p.Password.Encrypt(33), p.Total.ToString().Encrypt(33), Game.Rules.ToString().Encrypt(33), p.PicUrl);
                     }
                     switch (Game.Rules.Rule)
                     {
@@ -476,9 +512,17 @@ namespace Sanet.Kniffel.ViewModels
                                 RoamingSettings.LocalStandardRecord = scores;
                             }
                             break;
+                        case Rules.krMagic:
+                            if (p.Total > scorem)
+                            {
+                                scorem = p.Total;
+                                RoamingSettings.LocalMagicRecord = scorem;
+                            }
+                            break;
                     }
                 }
                 List<string> tileLines = new List<string>();
+                if (scorem > 0) tileLines.Add(string.Format("{1} - {0}", Rules.krMagic.ToString().Localize(), scorem));
                 if (scoree > 0) tileLines.Add(string.Format("{1} - {0}", Rules.krExtended.ToString().Localize(), scoree));
                 if (scores > 0) tileLines.Add(string.Format("{1} - {0}", Rules.krStandard.ToString().Localize(), scores));
                 if (score > 0) tileLines.Add(string.Format("{1} - {0}", Rules.krSimple.ToString().Localize(), score));
@@ -493,7 +537,7 @@ namespace Sanet.Kniffel.ViewModels
         }
 
         /// <summary>
-        /// /userc clicked 'Play Again'
+        /// userc clicked 'Play Again'
         /// </summary>
         public void PlayAgain()
         {

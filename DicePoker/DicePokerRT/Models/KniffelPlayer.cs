@@ -129,6 +129,7 @@ namespace Sanet.Kniffel.Models
 
                 if (_Game != value)
                 {
+                                                         
                     _Game = value;
                     Init();
                     NotifyPropertyChanged("Game");
@@ -394,6 +395,87 @@ namespace Sanet.Kniffel.Models
                 return false;
             }
         }
+
+        //Magic artifacts related props
+        /// <summary>
+        /// Property to check if magic roll currently available 
+        /// </summary>
+        private bool _IsMagicRollAvailable;
+        public bool IsMagicRollAvailable
+        {
+            get
+            {
+                //if no game - no sense
+                if (Game == null)
+                    return false;
+                //if Rules are different from magic
+                if (Game.Rules.Rule != Rules.krMagic)
+                    return false;
+                //if no rolls in store
+                if (RoamingSettings.GetMagicRollsCount(this) == 0)
+                    return false;
+                return _IsMagicRollAvailable;
+            }
+            set
+            {
+                if (_IsMagicRollAvailable != value)
+                {
+                    _IsMagicRollAvailable = value;
+                    NotifyPropertyChanged("IsMagicRollAvailable");
+                }
+            }
+        }
+        private bool _IsManualSetlAvailable;
+        public bool IsManualSetlAvailable
+        {
+            get
+            {
+                //if no game - no sense
+                if (Game == null)
+                    return false;
+                //if Rules are different from magic
+                if (Game.Rules.Rule != Rules.krMagic)
+                    return false;
+                //if no rolls in store
+                if (RoamingSettings.GetManualSetsCount(this) == 0)
+                    return false;
+                return _IsManualSetlAvailable;
+            }
+            set
+            {
+                if (_IsManualSetlAvailable != value)
+                {
+                    _IsManualSetlAvailable = value;
+                    NotifyPropertyChanged("IsManualSetlAvailable");
+                }
+            }
+        }
+        private bool _IsForthRolllAvailable;
+        public bool IsForthRolllAvailable
+        {
+            get
+            {
+                //if no game - no sense
+                if (Game == null)
+                    return false;
+                //if Rules are different from magic
+                if (Game.Rules.Rule != Rules.krMagic)
+                    return false;
+                //if no rolls in store
+                if (RoamingSettings.GetForthRollsCount(this) == 0)
+                    return false;
+                return _IsForthRolllAvailable;
+            }
+            set
+            {
+                if (_IsForthRolllAvailable != value)
+                {
+                    _IsForthRolllAvailable = value;
+                    NotifyPropertyChanged("IsForthRolllAvailable");
+                }
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -419,7 +501,7 @@ namespace Sanet.Kniffel.Models
                             break;
                         case KniffelScores.FullHouse:
                            //if now kniffel extended rules and kniffel has value (0 or 50)
-                            if (IsScoreFilled(KniffelScores.Kniffel) && Game.Rules.Rule == Rules.krExtended && Game.LastDiceResult.KniffelFiveOfAKindScore()==50)
+                            if (IsScoreFilled(KniffelScores.Kniffel) && Game.Rules.HasExtendedBonuses && Game.LastDiceResult.KniffelFiveOfAKindScore()==50)
                             {
                                 //and numeric result corresponded to that kniffel also filled
                                 RollResult nresult = null;
@@ -433,7 +515,7 @@ namespace Sanet.Kniffel.Models
                             result.PossibleValue = Game.LastDiceResult.KniffelFullHouseScore();
                             break;
                         case KniffelScores.SmallStraight:
-                            if (IsScoreFilled(KniffelScores.Kniffel) && Game.Rules.Rule == Rules.krExtended && Game.LastDiceResult.KniffelFiveOfAKindScore() == 50)
+                            if (IsScoreFilled(KniffelScores.Kniffel) && Game.Rules.HasExtendedBonuses && Game.LastDiceResult.KniffelFiveOfAKindScore() == 50)
                             {
                                 //and numeric result corresponded to that kniffel also filled
                                 RollResult nresult = null;
@@ -447,7 +529,7 @@ namespace Sanet.Kniffel.Models
                             result.PossibleValue = Game.LastDiceResult.KniffelSmallStraightScore();
                             break;
                         case KniffelScores.LargeStraight:
-                            if (IsScoreFilled(KniffelScores.Kniffel) && Game.Rules.Rule == Rules.krExtended && Game.LastDiceResult.KniffelFiveOfAKindScore()==50)
+                            if (IsScoreFilled(KniffelScores.Kniffel) && Game.Rules.HasExtendedBonuses && Game.LastDiceResult.KniffelFiveOfAKindScore()==50)
                             {
                                 //and numeric result corresponded to that kniffel also filled
                                 RollResult nresult = null;
@@ -483,6 +565,9 @@ namespace Sanet.Kniffel.Models
         public void Init()
         {
             Roll = 1;
+            IsMagicRollAvailable = true;
+            IsManualSetlAvailable = true;
+            IsForthRolllAvailable = true;
             var results = new List<RollResult>();
             foreach (var score in _Game.Rules.Scores)
                 results.Add(new RollResult { ScoreType = score });
@@ -526,6 +611,10 @@ namespace Sanet.Kniffel.Models
         }
         #endregion
 
+        public void OnMagicRollUsed()
+        {
+            IsMagicRollAvailable = false;
+        }
 
         #region Commands
         public RelayCommand DeleteCommand { get; set; }

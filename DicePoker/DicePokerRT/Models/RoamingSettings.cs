@@ -8,6 +8,7 @@ using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Sanet.Models;
 
 namespace Sanet.Kniffel.Models
 {
@@ -200,6 +201,93 @@ namespace Sanet.Kniffel.Models
                 roamingSettings.Values["LocalExtendedRecord"] = value;
             }
         }
+        public static int LocalMagicRecord
+        {
+            get
+            {
+                if (roamingSettings.Values["LocalMagicRecord"] == null)
+                    roamingSettings.Values["LocalMagicRecord"] = 0;
+                return (int)roamingSettings.Values["LocalMagicRecord"];
+            }
+            set
+            {
+                roamingSettings.Values["LocalMagicRecord"] = value;
+            }
+        }
+        #endregion
+
+        #region Magic artifacts
+        /// <summary>
+        /// Returns count of magic rolls for current player
+        /// </summary>
+        public static int GetMagicRollsCount(Player player)
+        {
+            return 1;
+            int res = 0;
+            var valueKey = string.Format("MR_{0}_{1}", player.Name, player.Password);
+            if (roamingSettings.Values.ContainsKey(valueKey))
+            {
+                if (int.TryParse(roamingSettings.Values[valueKey].ToString().Decrypt(32),out res)){};
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// Returns count of manual sets for current player
+        /// </summary>
+        public static int GetManualSetsCount(Player player)
+        {
+            int res = 0;
+            var valueKey = string.Format("MS_{0}_{1}", player.Name, player.Password);
+            if (roamingSettings.Values.ContainsKey(valueKey))
+            {
+                if (int.TryParse(roamingSettings.Values[valueKey].ToString().Decrypt(32), out res)) { };
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// Returns count of manual sets for current player
+        /// </summary>
+        public static int GetForthRollsCount(Player player)
+        {
+            int res = 0;
+            var valueKey = string.Format("FR_{0}_{1}", player.Name, player.Password);
+            if (roamingSettings.Values.ContainsKey(valueKey))
+            {
+                if (int.TryParse(roamingSettings.Values[valueKey].ToString().Decrypt(32), out res)) { };
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// Sets count of magic rolls for current player
+        /// </summary>
+        public static void SetMagicRollsCount(Player player, int count)
+        {
+            var valueKey = string.Format("MR_{0}_{1}", player.Name, player.Password);
+            roamingSettings.Values[valueKey] = count.ToString().Encrypt(32);
+            
+        }
+        /// <summary>
+        /// Sets count of manual sets for current player
+        /// </summary>
+        public static void SetManualSetsCount(Player player, int count)
+        {
+            var valueKey = string.Format("MS_{0}_{1}", player.Name, player.Password);
+            roamingSettings.Values[valueKey] = count.ToString().Encrypt(32);
+
+        }
+        /// <summary>
+        /// Sets count of forth rolls for current player
+        /// </summary>
+        public static void SetForthRollsCount(Player player, int count)
+        {
+            var valueKey = string.Format("FR_{0}_{1}", player.Name, player.Password);
+            roamingSettings.Values[valueKey] = count.ToString().Encrypt(32);
+
+        }
+
         #endregion
     }
 

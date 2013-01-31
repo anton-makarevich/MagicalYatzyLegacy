@@ -166,6 +166,12 @@ namespace DicePokerRT
             gridResults.Visibility = Visibility.Collapsed;
             dpBackground.Visibility = Visibility.Visible;
         }
+
+        private void MagicRoll_Tapped_1(object sender, TappedRoutedEventArgs e)
+        {
+            dpBackground.ClearFreeze();
+            GetViewModel<PlayGameViewModel>().Game.ReporMagictRoll();
+        }
        
     }
 }
