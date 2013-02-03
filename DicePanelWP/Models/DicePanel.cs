@@ -82,12 +82,7 @@ namespace Sanet.Kniffel.DicePanel
         public delegate void StopLoadingEventHandler();
         public DicePanel()
         {
-            //prepare caption
-            caption.Foreground = Brushes.SolidSanetBlue;
-            caption.FontSize = 28;
-            caption.SetValue(Canvas.LeftProperty, Convert.ToDouble(15));
-            caption.SetValue(Canvas.TopProperty, Convert.ToDouble(15));
-                        
+                                    
 #if WinRT
             Tapped += DieClicked;
 #else
@@ -281,6 +276,12 @@ namespace Sanet.Kniffel.DicePanel
             Die dOld = null;
             bool bDone = false;
             int iTry = 0;
+
+            //prepare caption
+            caption.Foreground = Brushes.SolidSanetBlue;
+            caption.FontSize = 28;
+            caption.SetValue(Canvas.LeftProperty, Convert.ToDouble(15));
+            caption.SetValue(Canvas.TopProperty, Convert.ToDouble(15));
 
             aDice = new List<Die>();
             this.Children.Clear();

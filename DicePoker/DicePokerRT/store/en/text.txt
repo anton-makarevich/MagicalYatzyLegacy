@@ -1,8 +1,9 @@
-Dice Poker - exciting dice game based on the worldwide popular Kniffel (Yatzy) game . The goal is to get as many points as posible by collecting different poker combinations of five dices.
+Dice Poker - exciting dice game based on the worldwide popular Kniffel (Yatzy) game. The goal is to get as many points as posible by collecting different poker combinations of five dices. Possibility to use "magical artifacts" to improve your score makes this game more fun.
 Dice Poker - this is a great opportunity to test your luck and have fun.
-Four sets of rules are implemented in the Dice Poker game, which makes it accessible for players with different levels, including children.
+Five sets of rules are implemented in the Dice Poker game, which makes it accessible for players with different levels, including children.
 
-four sets of rules
+five sets of rules
+unique "magic" rules
 single game
 game with friends (up to 4 people)
 playing with a computer

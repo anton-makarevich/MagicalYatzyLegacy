@@ -1792,29 +1792,60 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                     />-->
-            <Grid Height="100"
+            <Controls:RotatingPanel
+                x:Name="RulePanel" Width="100" Height="100" Background="Blue"
+                                    Margin="5,0">
+                <Grid Height="100"
                     Width="100"
+                      Visibility="{Binding IsFace,ElementName=RulePanel,Converter={StaticResource NotBooleanKey}}"
                   Background="{StaticResource SanetBlue}"
                   >
-                <TextBlock Text="{Binding BestScoreLabel}"
+                    <TextBlock Text="{Binding BestWeekScoreLabel}"
                            VerticalAlignment="Top" Margin="2"
                            TextWrapping="Wrap"
                            Foreground="White"/>
-                <TextBlock Text="{Binding BestScore}"
+                    <TextBlock Text="{Binding BestWeekScore}"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Right"
                            Foreground="White"
                            Margin="2"
                            FontSize="30"/>
-                <TextBlock Text="{Binding BestScorePlayer}"
+                    <TextBlock Text="{Binding BestWeekScorePlayer}"
                            VerticalAlignment="Bottom" Margin="2"
                            Foreground="White" TextWrapping="Wrap"
                            />
-                <ProgressRing HorizontalAlignment="Center"
+                    <ProgressRing HorizontalAlignment="Center"
                               VerticalAlignment="Center" 
                               Foreground="White"
-                              IsActive="{Binding IsScoreLoading}"/>
-            </Grid>
+                              IsActive="{Binding IsWeekScoreLoading}"/>
+                </Grid>
+
+                <Grid Height="100"
+                    Width="100"
+                      Visibility="{Binding IsFace,ElementName=RulePanel,Converter={StaticResource BooleanKey}}"
+                  Background="{StaticResource SanetBlue}"
+                  >
+                    <TextBlock Text="{Binding BestDayScoreLabel}"
+                           VerticalAlignment="Top" Margin="2"
+                           TextWrapping="Wrap"
+                           Foreground="White"/>
+                    <TextBlock Text="{Binding BestDayScore}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           Foreground="White"
+                           Margin="2"
+                           FontSize="30"/>
+                    <TextBlock Text="{Binding BestDayScorePlayer}"
+                           VerticalAlignment="Bottom" Margin="2"
+                           Foreground="White" TextWrapping="Wrap"
+                           />
+                    <ProgressRing HorizontalAlignment="Center"
+                              VerticalAlignment="Center" 
+                              Foreground="White"
+                              IsActive="{Binding IsDayScoreLoading}"/>
+                </Grid>
+            </Controls:RotatingPanel>
+            
             <StackPanel Grid.Column="1">
                 <TextBlock Text="{Binding NameLocalized}" Foreground="{StaticResource SanetBlue}" 
                                  FontSize="25" Height="30" Margin="10,5,10,0" />

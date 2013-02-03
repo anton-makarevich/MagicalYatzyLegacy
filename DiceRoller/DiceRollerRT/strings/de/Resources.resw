@@ -385,7 +385,7 @@
     <comment>Nur Kombinationen von Zahlen sammeln (Einer, Zweier etc.), 7 Runden</comment>
   </data>
   <data name="krExtendedShort" xml:space="preserve">
-    <value>alle Kombinationen, Bonus  von 35 Punkten für mindestens 63 Punkte  beim Sammeln, Bonus von 100 Punkten für jeden nachfolgenden Flush, Flush-Joker, 13 Runden</value>
+    <value>"für Klassikschätzer" + Bonus von 100 Punkten für jeden nachfolgenden Flush, Flush-Joker, 13 Runden</value>
     <comment>alle Kombinationen, Bonus  von 35 Punkten für mindestens 63 Punkte  beim Sammeln, Bonus von 100 Punkten für jeden nachfolgenden Flush, Flush-Joker, 13 Runden</comment>
   </data>
   <data name="krSimpleShort" xml:space="preserve">
@@ -393,7 +393,7 @@
     <comment>alle Kombinationen, ohne Bonus, 13 Runden</comment>
   </data>
   <data name="krStandardShort" xml:space="preserve">
-    <value>alle Kombinationen, Bonus  von 35 Punkten für mindestens 63 Punkte  beim Sammeln,  13 Runden</value>
+    <value>"für Anfänger" + Bonus  von 35 Punkten für mindestens 63 Punkte  beim Sammeln,  13 Runden</value>
     <comment>alle Kombinationen, Bonus  von 35 Punkten für mindestens 63 Punkte  beim Sammeln,  13 Runden</comment>
   </data>
   <data name="MoveLabel" xml:space="preserve">
@@ -555,7 +555,7 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <comment>Kein Internetzugang. Prüfen Sie die Verbindung und versuchen Sie es noch einmal.</comment>
   </data>
   <data name="BestLocalShort" xml:space="preserve">
-    <value>Das beste lokale Ergebnis</value>
+    <value>Das beste lokale</value>
     <comment>Das beste lokale Ergebnis</comment>
   </data>
   <data name="BestWeekLabel" xml:space="preserve">
@@ -567,24 +567,31 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <comment>Bester Spieler des Tages</comment>
   </data>
   <data name="krMagic" xml:space="preserve">
-    <value>Магические</value>
+    <value>für Zauberer</value>
+    <comment>я сам</comment>
   </data>
   <data name="krMagicShort" xml:space="preserve">
-    <value>все комбинации, бонус в 35 очков за сумму цифровых комбинаций 63 и более, бонус 100 очков за каждый последующий флэш, флэш-джокер, магические артефакты, 13 ходов</value>
+    <value>"für Experte" + magische Artefakte, 13 Runden</value>
+    <comment>я сам</comment>
   </data>
   <data name="MagicRollLabel" xml:space="preserve">
-    <value>Магический бросок</value>
+    <value>Magie Wurf</value>
+    <comment>я сам</comment>
   </data>
   <data name="ManualSetLabel" xml:space="preserve">
-    <value>Ручная установка</value>
+    <value>manuell ändern</value>
+    <comment>я сам</comment>
   </data>
   <data name="ForthRollLabel" xml:space="preserve">
-    <value>Переиграть ход</value>
+    <value>zurücksetzen Runde</value>
+    <comment>ja sam</comment>
   </data>
   <data name="SelectNewDiceValueMessage" xml:space="preserve">
-    <value>Установите новое значение кости</value>
+    <value>Setzen Sie den neuen Wert des Würfels</value>
+    <comment>я сам</comment>
   </data>
   <data name="SelectDiceToChangeMessage" xml:space="preserve">
-    <value>Выберите кость значение которой нужно изменить</value>
+    <value>Wählen Sie den Würfel, um den Wert zu ändern</value>
+    <comment>я сам</comment>
   </data>
 </root>

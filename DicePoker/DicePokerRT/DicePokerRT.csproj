@@ -214,6 +214,9 @@
     <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetChempionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetLastDayChempionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetLastWeekChempionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

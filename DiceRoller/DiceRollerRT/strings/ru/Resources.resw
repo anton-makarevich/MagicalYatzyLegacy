@@ -119,127 +119,96 @@
   </resheader>
   <data name="AboutCaption.Text" xml:space="preserve">
     <value>О программе</value>
-    <comment>About</comment>
   </data>
   <data name="AboutText.Text" xml:space="preserve">
     <value>виртуальные кости в твоем планшете</value>
-    <comment>Virtuelle  Würfel in deinem Tablet!</comment>
   </data>
   <data name="OnlineLink.Content" xml:space="preserve">
     <value>О Kniffel Online</value>
-    <comment>About Kniffel online</comment>
   </data>
   <data name="clear" xml:space="preserve">
     <value>снять выделение</value>
-    <comment>Löschen</comment>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
     <value>Закрыть</value>
-    <comment>Schließen</comment>
   </data>
   <data name="DevelopedBy.Text" xml:space="preserve">
     <value>Разработано:</value>
-    <comment>Entwickelt von:</comment>
   </data>
   <data name="SpeedFast.Text" xml:space="preserve">
     <value>быстро</value>
-    <comment>schnell</comment>
   </data>
   <data name="FullHouse" xml:space="preserve">
     <value>Фулл Хаус</value>
-    <comment>Full House</comment>
   </data>
   <data name="AngHigh.Text" xml:space="preserve">
     <value>высоко</value>
-    <comment>hoch</comment>
   </data>
   <data name="LargeStraight" xml:space="preserve">
     <value>Ладж Стрит</value>
-    <comment>Große Straße</comment>
   </data>
   <data name="AngLow.Text" xml:space="preserve">
     <value>низко</value>
-    <comment>niedrig</comment>
   </data>
   <data name="OfAKind" xml:space="preserve">
     <value>одинаковые</value>
-    <comment>-ling</comment>
   </data>
   <data name="OnlineVersionText.Text" xml:space="preserve">
     <value>Идея контрола DicePanel и 'красные' кости принадлежат  Matthew Tagliaferri</value>
-    <comment>Das Programm basiert sich auf dem Controll DicePanel aus dem Onlinespiel Kniffel.  Die Idee des Controlls und die Darstellung der  ''Roten"  Würfeln gehört Matthew Tagliaferri.</comment>
   </data>
   <data name="Pairs" xml:space="preserve">
     <value>пары</value>
-    <comment>Paare</comment>
   </data>
   <data name="RateButton.Content" xml:space="preserve">
     <value>Оцените это приложение, если оно вам нравится</value>
-    <comment>Bewerten</comment>
   </data>
   <data name="roll" xml:space="preserve">
     <value>бросок</value>
-    <comment>würfeln</comment>
   </data>
   <data name="SpeedSlow.Text" xml:space="preserve">
     <value>медленно</value>
-    <comment>langsam</comment>
   </data>
   <data name="SmallStraight" xml:space="preserve">
     <value>Смолл Стрит</value>
-    <comment>Kleine Straße</comment>
   </data>
   <data name="Support.Text" xml:space="preserve">
     <value>Служба технической поддержки:</value>
-    <comment>Technischer Support:</comment>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Версия</value>
-    <comment>Version</comment>
   </data>
   <data name="SpeedVeryFast.Text" xml:space="preserve">
     <value>очень быстро</value>
-    <comment>sehr schnell</comment>
   </data>
   <data name="AngVeryHigh.Text" xml:space="preserve">
     <value>очень высоко</value>
-    <comment>sehr hoch</comment>
   </data>
   <data name="SpeedVerySlow.Text" xml:space="preserve">
     <value>очень медленно</value>
-    <comment>sehr langsam</comment>
   </data>
   <data name="SettingsAngleCaption.Text" xml:space="preserve">
     <value>Угол обзора</value>
-    <comment>Blickfeld</comment>
   </data>
   <data name="SettingsCaption.Text" xml:space="preserve">
     <value>Настройки</value>
-    <comment>Einstellungen</comment>
   </data>
   <data name="SettingsNumbersCaption.Text" xml:space="preserve">
     <value>Число костей</value>
-    <comment>Würfelzahl</comment>
   </data>
   <data name="SettingsSpeedCaption.Text" xml:space="preserve">
     <value>Скорость броска</value>
-    <comment>Wurftempo</comment>
   </data>
   <data name="SettingsStyleCaption.Text" xml:space="preserve">
     <value>Стиль костей</value>
-    <comment>Würfelstil</comment>
   </data>
   <data name="OtherAllWrite.Content" xml:space="preserve">
     <value>Электронные прописи - занимательное обучение письму.</value>
-    <comment>Elektronisches Schreibheft -spannendes Schreiben-Lernen</comment>
   </data>
   <data name="OtherSoft.Text" xml:space="preserve">
     <value>Попробуйте другие программы:</value>
-    <comment>Versuchen Sie andere Programme</comment>
   </data>
   <data name="Total" xml:space="preserve">
     <value>Всего</value>
-    <comment>insgesamt</comment>
   </data>
   <data name="AboutAction" xml:space="preserve">
     <value>Об игре</value>
@@ -357,7 +326,6 @@
   </data>
   <data name="FullHouseShort" xml:space="preserve">
     <value>ФХ</value>
-    <comment>Full House</comment>
   </data>
   <data name="Kniffel" xml:space="preserve">
     <value>Флэш!</value>
@@ -369,17 +337,16 @@
     <value>только цифровые комбинации и флэш, 7 ходов</value>
   </data>
   <data name="krExtendedShort" xml:space="preserve">
-    <value>все комбинации, бонус в 35 очков за сумму цифровых комбинаций 63 и более, бонус 100 очков за каждый последующий флэш, флэш-джокер, 13 ходов</value>
+    <value>стандартные + бонус в 100 очков за каждый последующий флэш, флэш-джокер, 13 ходов</value>
   </data>
   <data name="krSimpleShort" xml:space="preserve">
     <value>все комбинации, без бонусов, 13 ходов</value>
   </data>
   <data name="krStandardShort" xml:space="preserve">
-    <value>все комбинации, бонус в 35 очков за сумму цифровых комбинаций 63 и более, 13 ходов</value>
+    <value>простые + бонус в 35 очков за сумму цифровых комбинаций 63 и более, 13 ходов</value>
   </data>
   <data name="LargeStraightShort" xml:space="preserve">
     <value>ЛС</value>
-    <comment>Große Straße</comment>
   </data>
   <data name="Ones" xml:space="preserve">
     <value>Единицы</value>
@@ -395,7 +362,6 @@
   </data>
   <data name="SmallStraightShort" xml:space="preserve">
     <value>СС</value>
-    <comment>Kleine Straße</comment>
   </data>
   <data name="ThreeOfAKind" xml:space="preserve">
     <value>Три одинаковые</value>
@@ -533,7 +499,7 @@
     <value>Магические</value>
   </data>
   <data name="krMagicShort" xml:space="preserve">
-    <value>все комбинации, бонус в 35 очков за сумму цифровых комбинаций 63 и более, бонус 100 очков за каждый последующий флэш, флэш-джокер, магические артефакты, 13 ходов</value>
+    <value>расширенные + возможность использовать "магические артефакты", 13 ходов</value>
   </data>
   <data name="MagicRollLabel" xml:space="preserve">
     <value>Магический бросок</value>
@@ -549,5 +515,8 @@
   </data>
   <data name="SelectDiceToChangeMessage" xml:space="preserve">
     <value>Выберите кость значение которой нужно изменить</value>
+  </data>
+  <data name="BestDayLabel" xml:space="preserve">
+    <value>Лучший за cегодня</value>
   </data>
 </root>

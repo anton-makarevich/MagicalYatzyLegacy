@@ -123,6 +123,24 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetLastDayChempion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rules" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Score" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLastDayChempionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetLastDayChempionResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Score" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="PutScoreSoapIn">
@@ -161,6 +179,12 @@
   <wsdl:message name="GetLastWeekChempionSoapOut">
     <wsdl:part name="parameters" element="tns:GetLastWeekChempionResponse" />
   </wsdl:message>
+  <wsdl:message name="GetLastDayChempionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLastDayChempion" />
+  </wsdl:message>
+  <wsdl:message name="GetLastDayChempionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLastDayChempionResponse" />
+  </wsdl:message>
   <wsdl:portType name="KniffelServiceSoap">
     <wsdl:operation name="PutScore">
       <wsdl:input message="tns:PutScoreSoapIn" />
@@ -185,6 +209,10 @@
     <wsdl:operation name="GetLastWeekChempion">
       <wsdl:input message="tns:GetLastWeekChempionSoapIn" />
       <wsdl:output message="tns:GetLastWeekChempionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastDayChempion">
+      <wsdl:input message="tns:GetLastDayChempionSoapIn" />
+      <wsdl:output message="tns:GetLastDayChempionSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="KniffelServiceSoap" type="tns:KniffelServiceSoap">
@@ -243,6 +271,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetLastDayChempion">
+      <soap:operation soapAction="http://www.sanet.com/GetLastDayChempion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="KniffelServiceSoap12" type="tns:KniffelServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -293,6 +330,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetLastWeekChempion">
       <soap12:operation soapAction="http://www.sanet.com/GetLastWeekChempion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastDayChempion">
+      <soap12:operation soapAction="http://www.sanet.com/GetLastDayChempion" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

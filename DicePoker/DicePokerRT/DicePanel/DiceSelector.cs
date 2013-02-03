@@ -50,7 +50,6 @@ namespace Sanet.Kniffel.DicePanel
 
             //Add cption
             caption.Foreground = Brushes.SolidSanetBlue;
-            caption.Text = "SelectNewDiceValueMessage".Localize();
             caption.Margin = new Thickness(15);
             caption.FontSize = 28;
             this.Children.Add(caption);
@@ -79,7 +78,9 @@ namespace Sanet.Kniffel.DicePanel
 
             parentPopup.HorizontalOffset = bounds.Left;
             parentPopup.VerticalOffset = bounds.Top;
-
+            
+            caption.Text = "SelectNewDiceValueMessage".Localize();
+            
             foreach (var dice in aDice)
                 dice.DrawDie();
         }

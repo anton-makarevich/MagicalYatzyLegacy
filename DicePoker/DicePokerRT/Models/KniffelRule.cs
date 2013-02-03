@@ -21,7 +21,8 @@ namespace Sanet.Kniffel.Models
         public KniffelRule(Rules rule)
         {
             Rule = rule;
-            LoadScores();
+            LoadWeekScores();
+            LoadDayScores();
         }
 
         #region Properties
@@ -166,45 +167,52 @@ namespace Sanet.Kniffel.Models
             }
             
         }*/
-                
-        private string _BestScoreLabel;
-        public string BestScoreLabel
+        //wwek scores
+        /// <summary>
+        /// just label
+        /// </summary>
+        private string _BestWeekScoreLabel;
+        public string BestWeekScoreLabel
         {
-            get { return _BestScoreLabel; }
+            get { return _BestWeekScoreLabel; }
             set
             {
-                if (_BestScoreLabel != value)
+                if (_BestWeekScoreLabel != value)
                 {
-                    _BestScoreLabel = value;
-                    NotifyPropertyChanged("BestScoreLabel");
+                    _BestWeekScoreLabel = value;
+                    NotifyPropertyChanged("BestWeekScoreLabel");
                 }
             }
         }
-                
-        private string _BestScorePlayer;
-        public string BestScorePlayer
+                /// <summary>
+                /// Best week player name
+                /// </summary>
+        private string _BestWeekScorePlayer;
+        public string BestWeekScorePlayer
         {
-            get { return _BestScorePlayer; }
+            get { return _BestWeekScorePlayer; }
             set
             {
-                if (_BestScorePlayer != value)
+                if (_BestWeekScorePlayer != value)
                 {
-                    _BestScorePlayer = value;
-                    NotifyPropertyChanged("BestScorePlayer");
+                    _BestWeekScorePlayer = value;
+                    NotifyPropertyChanged("BestWeekScorePlayer");
                 }
             }
         }
-                
-        private string _BestScore;
-        public string BestScore
+                /// <summary>
+                /// Best week score
+                /// </summary>
+        private string _BestWeekScore;
+        public string BestWeekScore
         {
-            get { return _BestScore; }
+            get { return _BestWeekScore; }
             set
             {
-                if (_BestScore != value)
+                if (_BestWeekScore != value)
                 {
-                    _BestScore = value;
-                    NotifyPropertyChanged("BestScore");
+                    _BestWeekScore = value;
+                    NotifyPropertyChanged("BestWeekScore");
                 }
             }
         }
@@ -212,16 +220,83 @@ namespace Sanet.Kniffel.Models
         /// <summary>
         /// Deetermines if recordscore loading in progress
         /// </summary>
-        private bool _IsScoreLoading;
-        public bool IsScoreLoading
+        private bool _IsWeekScoreLoading;
+        public bool IsWeekScoreLoading
         {
-            get { return _IsScoreLoading; }
+            get { return _IsWeekScoreLoading; }
             set
             {
-                if (_IsScoreLoading != value)
+                if (_IsWeekScoreLoading != value)
                 {
-                    _IsScoreLoading = value;
-                    NotifyPropertyChanged("IsScoreLoading");
+                    _IsWeekScoreLoading = value;
+                    NotifyPropertyChanged("IsWeekScoreLoading");
+                }
+            }
+        }
+
+        //dayscores
+        /// <summary>
+        /// just label
+        /// </summary>
+        private string _BestDayScoreLabel;
+        public string BestDayScoreLabel
+        {
+            get { return _BestDayScoreLabel; }
+            set
+            {
+                if (_BestDayScoreLabel != value)
+                {
+                    _BestDayScoreLabel = value;
+                    NotifyPropertyChanged("BestDayScoreLabel");
+                }
+            }
+        }
+        /// <summary>
+        /// Best week player name
+        /// </summary>
+        private string _BestDayScorePlayer;
+        public string BestDayScorePlayer
+        {
+            get { return _BestDayScorePlayer; }
+            set
+            {
+                if (_BestDayScorePlayer != value)
+                {
+                    _BestDayScorePlayer = value;
+                    NotifyPropertyChanged("BestDayScorePlayer");
+                }
+            }
+        }
+        /// <summary>
+        /// Best week score
+        /// </summary>
+        private string _BestDayScore;
+        public string BestDayScore
+        {
+            get { return _BestDayScore; }
+            set
+            {
+                if (_BestDayScore != value)
+                {
+                    _BestDayScore = value;
+                    NotifyPropertyChanged("BestDayScore");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deetermines if recordscore loading in progress
+        /// </summary>
+        private bool _IsDayScoreLoading;
+        public bool IsDayScoreLoading
+        {
+            get { return _IsDayScoreLoading; }
+            set
+            {
+                if (_IsDayScoreLoading != value)
+                {
+                    _IsDayScoreLoading = value;
+                    NotifyPropertyChanged("IsDayScoreLoading");
                 }
             }
         }
@@ -265,7 +340,10 @@ namespace Sanet.Kniffel.Models
         #endregion
 
         #region Methods
-        private async void LoadScores()
+        /// <summary>
+        /// Get best players for week
+        /// </summary>
+        private async void LoadWeekScores()
         {
             if (InternetCheker.IsInternetAvailable())
             {
@@ -279,15 +357,15 @@ namespace Sanet.Kniffel.Models
 #endif
                         .KniffelLeaderBoardService.KniffelServiceSoapClient();
 
-                    IsScoreLoading = true;
+                    IsWeekScoreLoading = true;
 #if WinRT
-                    var res = await ks.GetLastWeekChempionAsync(this.ToString(), BestScorePlayer, BestScore);
+                    var res = await ks.GetLastWeekChempionAsync(this.ToString(), BestWeekScorePlayer, BestWeekScore);
                     if (!string.IsNullOrEmpty(res.Body.Score))
                     {
-                        BestScore = res.Body.Score;
-                        BestScorePlayer = res.Body.Name;
-                        IsScoreLoading = false;
-                        BestScoreLabel = "BestWeekLabel".Localize();
+                        BestWeekScore = res.Body.Score;
+                        BestWeekScorePlayer = res.Body.Name;
+                        IsWeekScoreLoading = false;
+                        BestWeekScoreLabel = "BestWeekLabel".Localize();
                     }
                     else
                         LoadLocalScores();
@@ -312,7 +390,7 @@ namespace Sanet.Kniffel.Models
                 }
                 finally
                 {
-                    IsScoreLoading = false;
+                    IsWeekScoreLoading = false;
                 }
             }
             else
@@ -321,28 +399,90 @@ namespace Sanet.Kniffel.Models
             }
         }
 
+        // <summary>
+        /// Get best players for week
+        /// </summary>
+        private async void LoadDayScores()
+        {
+            if (InternetCheker.IsInternetAvailable())
+            {
+                try
+                {
+                    var ks = new
+#if WinRT
+ DicePokerRT
+#else
+                    DicePokerWP
+#endif
+.KniffelLeaderBoardService.KniffelServiceSoapClient();
+
+                    IsDayScoreLoading = true;
+#if WinRT
+                    var res = await ks.GetLastDayChempionAsync(this.ToString(), BestDayScorePlayer, BestDayScore);
+                    if (!string.IsNullOrEmpty(res.Body.Score))
+                    {
+                        BestDayScore = res.Body.Score;
+                        BestDayScorePlayer = res.Body.Name;
+                        IsDayScoreLoading = false;
+                        BestDayScoreLabel = "BestDayLabel".Localize();
+                    }
+                    else
+                        LoadLocalScores();
+#else
+                    var res = (await ks.GetLastWeekChempionTaskAsync(this.ToString())).ToList();
+                    if (!string.IsNullOrEmpty(res[1]))
+                    {
+                        BestScore = res[1];
+                        BestScorePlayer = res[0];
+                        IsScoreLoading = false;
+                        BestScoreLabel = "BestWeekLabel".Localize();
+                    }
+                    else
+                        LoadLocalScores();
+#endif
+
+                }
+                catch (Exception ex)
+                {
+                    var t = ex.Message;
+                    LoadLocalScores();
+                }
+                finally
+                {
+                    IsDayScoreLoading = false;
+                }
+            }
+            else
+            {
+                LoadLocalScores();
+            }
+        }
+
+        /// <summary>
+        /// Get best local results
+        /// </summary>
         private void LoadLocalScores()
         {
             switch (Rule)
             {
                 case Rules.krBaby:
-                    BestScore = RoamingSettings.LocalBabyRecord.ToString();
+                    BestWeekScore=BestDayScore = RoamingSettings.LocalBabyRecord.ToString();
                     break;
                 case Rules.krExtended:
-                    BestScore = RoamingSettings.LocalExtendedRecord.ToString();
+                    BestWeekScore =BestDayScore= RoamingSettings.LocalExtendedRecord.ToString();
                     break;
                 case Rules.krStandard:
-                    BestScore = RoamingSettings.LocalStandardRecord.ToString();
+                    BestWeekScore = BestDayScore = RoamingSettings.LocalStandardRecord.ToString();
                     break;
                 case Rules.krSimple:
-                    BestScore = RoamingSettings.LocalSimpleRecord.ToString();
+                    BestWeekScore = BestDayScore = RoamingSettings.LocalSimpleRecord.ToString();
                     break;
                 case Rules.krMagic:
-                    BestScore = RoamingSettings.LocalMagicRecord.ToString();
+                    BestWeekScore = BestDayScore = RoamingSettings.LocalMagicRecord.ToString();
                     break;
             }
-            BestScorePlayer = "";
-            BestScoreLabel = "BestLocalShort".Localize();
+            BestWeekScorePlayer= BestDayScorePlayer = "";
+            BestWeekScoreLabel =BestDayScoreLabel= "BestLocalShort".Localize();
         }
 
         public override string ToString()

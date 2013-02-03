@@ -186,6 +186,9 @@ namespace DicePokerRT.KniffelLeaderBoardService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.sanet.com/GetLastWeekChempion", ReplyAction="*")]
         System.Threading.Tasks.Task<DicePokerRT.KniffelLeaderBoardService.GetLastWeekChempionResponse> GetLastWeekChempionAsync(DicePokerRT.KniffelLeaderBoardService.GetLastWeekChempionRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.sanet.com/GetLastDayChempion", ReplyAction="*")]
+        System.Threading.Tasks.Task<DicePokerRT.KniffelLeaderBoardService.GetLastDayChempionResponse> GetLastDayChempionAsync(DicePokerRT.KniffelLeaderBoardService.GetLastDayChempionRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -660,6 +663,86 @@ namespace DicePokerRT.KniffelLeaderBoardService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetLastDayChempionRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetLastDayChempion", Namespace="http://www.sanet.com/", Order=0)]
+        public DicePokerRT.KniffelLeaderBoardService.GetLastDayChempionRequestBody Body;
+        
+        public GetLastDayChempionRequest() {
+        }
+        
+        public GetLastDayChempionRequest(DicePokerRT.KniffelLeaderBoardService.GetLastDayChempionRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://www.sanet.com/")]
+    public partial class GetLastDayChempionRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string rules;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string Name;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string Score;
+        
+        public GetLastDayChempionRequestBody() {
+        }
+        
+        public GetLastDayChempionRequestBody(string rules, string Name, string Score) {
+            this.rules = rules;
+            this.Name = Name;
+            this.Score = Score;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetLastDayChempionResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetLastDayChempionResponse", Namespace="http://www.sanet.com/", Order=0)]
+        public DicePokerRT.KniffelLeaderBoardService.GetLastDayChempionResponseBody Body;
+        
+        public GetLastDayChempionResponse() {
+        }
+        
+        public GetLastDayChempionResponse(DicePokerRT.KniffelLeaderBoardService.GetLastDayChempionResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://www.sanet.com/")]
+    public partial class GetLastDayChempionResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool GetLastDayChempionResult;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string Name;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string Score;
+        
+        public GetLastDayChempionResponseBody() {
+        }
+        
+        public GetLastDayChempionResponseBody(bool GetLastDayChempionResult, string Name, string Score) {
+            this.GetLastDayChempionResult = GetLastDayChempionResult;
+            this.Name = Name;
+            this.Score = Score;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface KniffelServiceSoapChannel : DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoap, System.ServiceModel.IClientChannel {
     }
@@ -787,6 +870,20 @@ namespace DicePokerRT.KniffelLeaderBoardService {
             inValue.Body.Name = Name;
             inValue.Body.Score = Score;
             return ((DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoap)(this)).GetLastWeekChempionAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<DicePokerRT.KniffelLeaderBoardService.GetLastDayChempionResponse> DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoap.GetLastDayChempionAsync(DicePokerRT.KniffelLeaderBoardService.GetLastDayChempionRequest request) {
+            return base.Channel.GetLastDayChempionAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<DicePokerRT.KniffelLeaderBoardService.GetLastDayChempionResponse> GetLastDayChempionAsync(string rules, string Name, string Score) {
+            DicePokerRT.KniffelLeaderBoardService.GetLastDayChempionRequest inValue = new DicePokerRT.KniffelLeaderBoardService.GetLastDayChempionRequest();
+            inValue.Body = new DicePokerRT.KniffelLeaderBoardService.GetLastDayChempionRequestBody();
+            inValue.Body.rules = rules;
+            inValue.Body.Name = Name;
+            inValue.Body.Score = Score;
+            return ((DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoap)(this)).GetLastDayChempionAsync(inValue);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync() {

@@ -551,4 +551,7 @@
   <data name="SelectDiceToChangeMessage" xml:space="preserve">
     <value>Выберите кость значение которой нужно изменить</value>
   </data>
+  <data name="BestDayLabel" xml:space="preserve">
+    <value>Лучший за cегодня</value>
+  </data>
 </root>

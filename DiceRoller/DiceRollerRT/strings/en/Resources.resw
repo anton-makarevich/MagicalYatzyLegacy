@@ -326,7 +326,6 @@
   </data>
   <data name="FullHouseShort" xml:space="preserve">
     <value>FH</value>
-    <comment>Full House</comment>
   </data>
   <data name="Kniffel" xml:space="preserve">
     <value>Flush!</value>
@@ -338,17 +337,16 @@
     <value>numeric hands only and Flush, 7 rounds</value>
   </data>
   <data name="krExtendedShort" xml:space="preserve">
-    <value>all hands, 35 points bonus for 63 and higher result in numerics, 100 points bonus for every additional Flush, Flush-Joker, 13 rounds</value>
+    <value>standard + 100 points bonus for every additional Flush, Flush-Joker, 13 rounds</value>
   </data>
   <data name="krSimpleShort" xml:space="preserve">
     <value>all hands, no bonuses, 13 rounds</value>
   </data>
   <data name="krStandardShort" xml:space="preserve">
-    <value>all hands, 35 points bonus for 63 and higher result in numerics, 13 rounds</value>
+    <value>simple + 35 points bonus for 63 and higher result in numerics, 13 rounds</value>
   </data>
   <data name="LargeStraightShort" xml:space="preserve">
     <value>LS</value>
-    <comment>Große Straße</comment>
   </data>
   <data name="Ones" xml:space="preserve">
     <value>One's</value>
@@ -364,7 +362,6 @@
   </data>
   <data name="SmallStraightShort" xml:space="preserve">
     <value>SS</value>
-    <comment>Kleine Straße</comment>
   </data>
   <data name="ThreeOfAKind" xml:space="preserve">
     <value>Three Of A Kind</value>
@@ -502,7 +499,7 @@
     <value>Magical</value>
   </data>
   <data name="krMagicShort" xml:space="preserve">
-    <value>all hands, 35 points bonus for 63 and higher result in numerics, 100 points bonus for every additional Flush, Flush-Joker, magical artifacts, 13 rounds</value>
+    <value>advanced + "magical artifacts", 13 rounds</value>
   </data>
   <data name="MagicRollLabel" xml:space="preserve">
     <value>Magical Roll</value>
@@ -521,5 +518,8 @@
   </data>
   <data name="SelectDiceToChangeMessage" xml:space="preserve">
     <value>Select dice you want to change</value>
+  </data>
+  <data name="BestDayLabel" xml:space="preserve">
+    <value>Best of the day</value>
   </data>
 </root>

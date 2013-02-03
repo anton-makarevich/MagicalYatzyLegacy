@@ -1,10 +1,10 @@
-﻿Dice Poker - ein spannendes  Würfelspiel, das anhand des weltberühmten Spiels  Kniffel (Yahtzee) entwickelt ist. Das Spielziel ist - während der
-bestimmten Zahl von Runden die höchste Summe durch verschiedene Pokerkombinationen zu erzielen. 
+﻿Dice Poker - ein spannendes  Würfelspiel, das anhand des weltberühmten Spiels  Kniffel (Yahtzee) entwickelt ist. Das Spielziel ist - während der bestimmten Zahl von Runden die höchste Summe durch verschiedene Pokerkombinationen zu erzielen. Und die Verwendung von "magische Artefakte" macht dieses Spiel noch spannender.
 Dice Poker erfordert Glück, taktisches Geschick, gute Nerven, bringt auch viel Spielspaß.
-Da das dargestellte Spiel 4 Regeleinstellungen hat, ermöglicht es den Wettkampf nicht nur für Experte, sondern auch für Anfänger und Kinder.
+Da das dargestellte Spiel 5 Regeleinstellungen hat, ermöglicht es den Wettkampf nicht nur für Experte, sondern auch für Anfänger und Kinder.
 
 
-Spiel mit 4 Regeleinstellungen: für Kinder, Anfänger, Klassikschätzer, Experte
+Spiel mit 5 Regeleinstellungen: für Kinder, Anfänger, Klassikschätzer, Experte und...
+einzigartige "magic"-Regeln
 Einzelspiel
 Wettkampf gegen Freunde (bis zu 4 Personen)
 Wettkampf gegen Computer
