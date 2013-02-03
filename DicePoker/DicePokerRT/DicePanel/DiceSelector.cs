@@ -1,4 +1,5 @@
 ﻿using MyToolkit.UI;
+using Sanet.AllWrite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media;
+using Sanet.Models;
 
 namespace Sanet.Kniffel.DicePanel
 {
@@ -33,16 +35,26 @@ namespace Sanet.Kniffel.DicePanel
         //Border border = new Border();
         GridView panel = new GridView();
 
+        TextBlock caption = new TextBlock();
+
         public DiceValueSelectionPanel()
         {
             //border.Child = panel;
-            this.Children.Add(panel);
+           
             panel.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
             panel.Height = 90;
 
             this.Background = new SolidColorBrush(Colors.Black);
 
             panel.SelectionChanged += panel_SelectionChanged;
+
+            //Add cption
+            caption.Foreground = Brushes.SolidSanetBlue;
+            caption.Text = "SelectNewDiceValueMessage".Localize();
+            caption.Margin = new Thickness(15);
+            caption.FontSize = 28;
+            this.Children.Add(caption);
+            this.Children.Add(panel);
         }
 
         void panel_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -79,11 +91,19 @@ namespace Sanet.Kniffel.DicePanel
             return new Windows.Foundation.Rect(point, new Windows.Foundation.Size(element.ActualWidth, element.ActualHeight));
         }
 
+        public void Dispose()
+        {
+            panel.SelectionChanged -= panel_SelectionChanged;
+            parentPopup.IsOpen = false;
+            
+        }
+
         Popup parentPopup
         {
             get
             {
                 return this.Tag as Popup;
+                               
             }
         }
     }

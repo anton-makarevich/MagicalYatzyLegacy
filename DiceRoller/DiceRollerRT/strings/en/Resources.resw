@@ -507,4 +507,19 @@
   <data name="MagicRollLabel" xml:space="preserve">
     <value>Magical Roll</value>
   </data>
+  <data name="ManualSetLabel" xml:space="preserve">
+    <value>Manual Set</value>
+  </data>
+  <data name="ForthRollLabel" xml:space="preserve">
+    <value>Reset Roll</value>
+  </data>
+  <data name="SelectNewDiceValueMessage" xml:space="preserve">
+    <value>Select the new dice value</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SelectDiceToChangeMessage" xml:space="preserve">
+    <value>Select dice you want to change</value>
+  </data>
 </root>

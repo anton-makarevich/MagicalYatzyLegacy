@@ -222,7 +222,8 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         public static int GetMagicRollsCount(Player player)
         {
-            return 1;
+            if (AdminModule.IsAdmin(player))
+                return 1;
             int res = 0;
             var valueKey = string.Format("MR_{0}_{1}", player.Name, player.Password);
             if (roamingSettings.Values.ContainsKey(valueKey))
@@ -237,6 +238,8 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         public static int GetManualSetsCount(Player player)
         {
+            if (AdminModule.IsAdmin(player))
+                return 1;
             int res = 0;
             var valueKey = string.Format("MS_{0}_{1}", player.Name, player.Password);
             if (roamingSettings.Values.ContainsKey(valueKey))
@@ -251,6 +254,8 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         public static int GetForthRollsCount(Player player)
         {
+            if (AdminModule.IsAdmin(player))
+                return 1;
             int res = 0;
             var valueKey = string.Format("FR_{0}_{1}", player.Name, player.Password);
             if (roamingSettings.Values.ContainsKey(valueKey))

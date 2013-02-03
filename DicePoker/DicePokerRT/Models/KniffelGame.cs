@@ -51,6 +51,11 @@ namespace Sanet.Kniffel.Models
         public event EventHandler<RollEventArgs> DiceRolled;
 
         /// <summary>
+        /// current player manually changed dice
+        /// </summary>
+        public event EventHandler<RollEventArgs> DiceChanged;
+
+        /// <summary>
         /// current player applied roll result
         /// </summary>
         public event EventHandler<ResultEventArgs> ResultApplied;
@@ -226,7 +231,6 @@ namespace Sanet.Kniffel.Models
         /// <summary>
         /// Player wants to move. generating value here with network play in mind
         /// </summary>
-        /// <param name="player"></param>
         public void ReportRoll()
         {
             lock (syncRoot)
@@ -252,6 +256,29 @@ namespace Sanet.Kniffel.Models
                     DiceRolled(this, new RollEventArgs(CurrentPlayer, lastRollResults));
             }
         }
+
+        /// <summary>
+        /// Player changed dice result manually
+        /// </summary>
+        public void ManualChange(bool isfixed, int oldvalue, int newvalue)
+        {
+            lock (syncRoot)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    if (lastRollResults[i] == oldvalue /*&& fixedRollResults.Contains(oldvalue)==isfixed*/)
+                    {
+                        lastRollResults[i] = newvalue;
+                        break;
+                    }
+                }
+                if (DiceChanged != null)
+                    DiceChanged(this, new RollEventArgs(CurrentPlayer, lastRollResults));
+            }
+        }
+        /// <summary>
+        /// Player used 'MagicRoll'
+        /// </summary>
         public void ReporMagictRoll()
         {
             lock (syncRoot)
@@ -303,13 +330,13 @@ namespace Sanet.Kniffel.Models
                     lastRollResults[3] = lastRollResults[4] = rand.Next(1, 7);
                     break;
                 case KniffelScores.SmallStraight:
-                    firstinrow = rand.Next(3);
+                    firstinrow = rand.Next(1,4);
                     for (int i = 0; i < 4; i++)
                         lastRollResults[i] = firstinrow + i;
                     lastRollResults[4] = rand.Next(1, 7);
                     break;
                 case KniffelScores.LargeStraight:
-                    firstinrow = rand.Next(2);
+                    firstinrow = rand.Next(1,3);
                     for (int i = 0; i < 5; i++)
                         lastRollResults[i] = firstinrow + i;
                     break;

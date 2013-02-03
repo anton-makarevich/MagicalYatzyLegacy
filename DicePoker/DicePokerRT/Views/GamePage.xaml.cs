@@ -43,9 +43,14 @@ namespace DicePokerRT
 
             dpBackground.DieFrozen += dpBackground_DieFrozen;
             dpBackground.EndRoll += dpBackground_EndRoll;
-
+            dpBackground.DieChangedManual += dpBackground_DieChangedManual;
             
             GetViewModel<PlayGameViewModel>().Game.StartGame();
+        }
+
+        void dpBackground_DieChangedManual(bool isfixed, int oldvalue, int newvalue)
+        {
+            GetViewModel<PlayGameViewModel>().Game.ManualChange(isfixed,oldvalue,newvalue);
         }
 
         void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
@@ -134,6 +139,7 @@ namespace DicePokerRT
 
             dpBackground.DieFrozen -= dpBackground_DieFrozen;
             dpBackground.EndRoll -= dpBackground_EndRoll;
+            dpBackground.DieChangedManual -= dpBackground_DieChangedManual;
             dpBackground.Dispose();
             dpBackground = null;
         }
@@ -171,6 +177,23 @@ namespace DicePokerRT
         {
             dpBackground.ClearFreeze();
             GetViewModel<PlayGameViewModel>().Game.ReporMagictRoll();
+        }
+
+        private void ManualSet_Tapped_1(object sender, TappedRoutedEventArgs e)
+        {
+            dpBackground.ManualSetMode=true;
+            GetViewModel<PlayGameViewModel>().IsControlsVisible = false;
+        }
+
+        private void ForthRoll_Tapped_1(object sender, TappedRoutedEventArgs e)
+        {
+            dpBackground.ClearFreeze();
+            GetViewModel<PlayGameViewModel>().ResetRolls();
+
+            //if (dpBackground.AllDiceFrozen())
+            //    return;
+            //GetViewModel<PlayGameViewModel>().Game.ReportRoll();
+            //GetViewModel<PlayGameViewModel>().SelectedPlayer.OnForthRollUsed();
         }
        
     }

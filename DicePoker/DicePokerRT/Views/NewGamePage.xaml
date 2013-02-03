@@ -52,7 +52,7 @@
                         <ColumnDefinition Width="130"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="130"/>
+                        <RowDefinition Height="90"/>
                         
                         <RowDefinition/>
                     </Grid.RowDefinitions>
@@ -78,7 +78,7 @@
                   />
                     <ad:AdControl 
                     Grid.Column="1"
-                    AppId="30603" x:Name="adDuplexAd" Size="500x130" 
+                    AppId="30603" x:Name="adDuplexAd" Size="728x90" 
                          Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"/>
                 </Grid>
                 <StackPanel

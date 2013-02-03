@@ -115,7 +115,7 @@
       <Link>Common\Animations.cs</Link>
     </Compile>
     <Compile Include="..\..\DicePanelWP\Models\DicePanel.cs">
-      <Link>Models\DicePanel.cs</Link>
+      <Link>DicePanel\DicePanel.cs</Link>
     </Compile>
     <Compile Include="..\..\DiceRoller\DiceRollerRT\Common\BasePage.cs">
       <Link>Models\BasePage.cs</Link>
@@ -148,6 +148,7 @@
     <Compile Include="Controls\RotatingPanel.cs" />
     <Compile Include="DicePanel\DiceSelector.cs" />
     <Compile Include="Models\AboutAppAction.cs" />
+    <Compile Include="Models\AdminModule.cs" />
     <Compile Include="Models\EncriptionExtensions.cs" />
     <Compile Include="Models\Enums\GameRule.cs" />
     <Compile Include="Models\Enums\KniffelScore.cs" />

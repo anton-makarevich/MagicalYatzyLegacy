@@ -2,7 +2,7 @@
 using System.Net;
 using System.Windows;
 using System.Windows.Input;
-
+using Sanet.Models;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Media;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
+using Sanet.AllWrite;
 
 #else
 using System.Windows.Controls;
@@ -44,6 +45,9 @@ namespace Sanet.Kniffel.DicePanel
         Popup _popup = new Popup();
         DiceValueSelectionPanel _selectionPanel = new DiceValueSelectionPanel();
 
+        //To show messages
+        TextBlock caption = new TextBlock();
+
         public Random FRand = new Random();
         public bool PlaySound { get; set; }
 
@@ -51,6 +55,8 @@ namespace Sanet.Kniffel.DicePanel
         public delegate void DieBouncedEventHandler();
         public event DieFrozenEventHandler DieFrozen;
         public delegate void DieFrozenEventHandler(bool @fixed, int Value);
+        public delegate void DieChangedEventHandler(bool isfixed, int oldvalue,int newvalue);
+        public event DieChangedEventHandler DieChangedManual;
         private dpStyle FStyle = dpStyle.dpsClassic;
         public List<Die> aDice = new List<Die>();
 
@@ -76,6 +82,12 @@ namespace Sanet.Kniffel.DicePanel
         public delegate void StopLoadingEventHandler();
         public DicePanel()
         {
+            //prepare caption
+            caption.Foreground = Brushes.SolidSanetBlue;
+            caption.FontSize = 28;
+            caption.SetValue(Canvas.LeftProperty, Convert.ToDouble(15));
+            caption.SetValue(Canvas.TopProperty, Convert.ToDouble(15));
+                        
 #if WinRT
             Tapped += DieClicked;
 #else
@@ -95,9 +107,12 @@ namespace Sanet.Kniffel.DicePanel
 
         void _popup_Closed(object sender, object e)
         {
+            int oldvalue = _lastClickedDie.Result;
             _lastClickedDie.Result = _selectionPanel.SelectedDice.Result;
             _lastClickedDie.DrawDie();
             ManualSetMode = false;
+            if (DieChangedManual != null)
+                DieChangedManual(_lastClickedDie.Frozen, oldvalue, _lastClickedDie.Result);
         }
 
         /// <summary>
@@ -112,7 +127,8 @@ namespace Sanet.Kniffel.DicePanel
             MouseLeftButtonDown -= DieClicked;
             _popup.Closed -= _popup_Closed;
 #endif
-
+            _selectionPanel.Dispose();
+            
         }
         
         private void LoadFrameImages(string rot)
@@ -293,14 +309,15 @@ namespace Sanet.Kniffel.DicePanel
                 aDice.Add(d);
                 d.DrawDie();
                 this.Children.Add(d.PNG);
-                //Me.Children.Add(d.mSound)
+                
 
             }
-
+            this.Children.Add(caption);
         }
-        #if WINDOWS_PHONE
-        [Description("Summed Result of All the Dice"), Category("Dice")]
-#endif
+
+        /// <summary>
+        /// Summed Result of All the Dice
+        /// </summary>
         public DieResult Result
         {
             get
@@ -604,8 +621,19 @@ namespace Sanet.Kniffel.DicePanel
                 if (_ManualSetMode != value)
                 {
                     _ManualSetMode = value;
-                    if (!value && _popup.IsOpen)
-                        _popup.IsOpen = false;
+                    if (value)
+                    {
+                        caption.Text = "SelectDiceToChangeMessage".Localize();
+                        caption.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        caption.Text = string.Empty;
+                        caption.Visibility = Visibility.Collapsed;
+                        if (_popup.IsOpen)
+                            _popup.IsOpen = false;
+                    }
+                    
                 }
             }
         }

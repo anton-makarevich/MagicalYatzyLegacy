@@ -272,15 +272,20 @@ namespace Sanet.Kniffel.ViewModels
         }
 
         //Magic things
-        public bool IsMagicVisible
+        public bool IsMagicRollVisible
         {
             get
             {
-                if (Game == null)
+                if (Game == null||Game.Rules.Rule != Rules.krMagic)
                     return false;
-                return Game.Rules.Rule == Rules.krMagic;
+                if (SelectedPlayer == null)
+                    return false;
+                return SelectedPlayer.IsMagicRollAvailable;
             }
         }
+        /// <summary>
+        /// Wheather we can use magic roll
+        /// </summary>
         public bool IsMagicRollEnabled
         {
             get
@@ -289,7 +294,7 @@ namespace Sanet.Kniffel.ViewModels
                     return false;
                 if (!CanRoll)
                     return false;
-                return SelectedPlayer.IsMagicRollAvailable;
+                return true;
             }
         }
         public string MagicRollLabel
@@ -299,6 +304,88 @@ namespace Sanet.Kniffel.ViewModels
                 return "MagicRollLabel".Localize();
             }
         }
+
+        public bool IsManualSetVisible
+        {
+            get
+            {
+                if (Game == null || Game.Rules.Rule != Rules.krMagic)
+                    return false;
+                if (SelectedPlayer == null)
+                    return false;
+                return SelectedPlayer.IsManualSetlAvailable;
+            }
+        }
+        /// <summary>
+        /// Wheather we can use manual set
+        /// </summary>
+        public bool IsManualSetEnabled
+        {
+            get
+            {
+                if (SelectedPlayer == null)
+                    return false;
+                if (SelectedPlayer.Roll < 2)
+                    return false;
+                return true;
+            }
+        }
+        public string ManualSetLabel
+        {
+            get
+            {
+                return "ManualSetLabel".Localize();
+            }
+        }
+
+        public bool IsForthRollVisible
+        {
+            get
+            {
+                if (Game == null || Game.Rules.Rule != Rules.krMagic)
+                    return false;
+                if (SelectedPlayer == null)
+                    return false;
+                return SelectedPlayer.IsForthRollAvailable;
+            }
+        }
+        /// <summary>
+        /// Wheather we can use forth roll
+        /// </summary>
+        public bool IsForthRollEnabled
+        {
+            get
+            {
+                if (SelectedPlayer == null)
+                    return false;
+                if (SelectedPlayer.Roll == 3 && !CanRoll)
+                    return true;
+                return false;
+            }
+        }
+        public string ForthRollLabel
+        {
+            get
+            {
+                return "ForthRollLabel".Localize();
+            }
+        }
+
+        
+        private bool _IsControlsVisible=true;
+        public bool IsControlsVisible
+        {
+            get { return _IsControlsVisible; }
+            set
+            {
+                if (_IsControlsVisible != value)
+                {
+                    _IsControlsVisible = value;
+                    NotifyPropertyChanged("IsControlsVisible");
+                }
+            }
+        }
+
 
         #endregion
 
@@ -320,6 +407,7 @@ namespace Sanet.Kniffel.ViewModels
                     Game.PlayerJoined -= Game_PlayerJoined;
                     Game.ResultApplied -= Game_ResultApplied;
                     Game.MagicRollUsed -= Game_MagicRollUsed;
+                    Game.DiceChanged -= Game_DiceChanged;
                 }
             }
             catch { }
@@ -339,7 +427,17 @@ namespace Sanet.Kniffel.ViewModels
                 Game.PlayerJoined += Game_PlayerJoined;
                 Game.ResultApplied += Game_ResultApplied;
                 Game.MagicRollUsed += Game_MagicRollUsed;
+                Game.DiceChanged += Game_DiceChanged;
             }
+        }
+
+        void Game_DiceChanged(object sender, RollEventArgs e)
+        {
+            SelectedPlayer.CheckRollResults();
+            SelectedPlayer.OnManaulSetUsed();
+            RollResults = SelectedPlayer.Results.Where(f => !f.HasValue && f.ScoreType != KniffelScores.Bonus).ToList();
+            IsControlsVisible = true;
+            NotifyPlayerChanged();
         }
 
         void Game_MagicRollUsed(object sender, PlayerEventArgs e)
@@ -386,7 +484,7 @@ namespace Sanet.Kniffel.ViewModels
             SelectedPlayer.CheckRollResults();
             RollResults = null;
             SetCanRoll ( false);
-             NotifyPlayerChanged();
+            NotifyPlayerChanged();
         }
 
         void Game_DiceFixed(object sender, FixDiceEventArgs e)
@@ -403,8 +501,15 @@ namespace Sanet.Kniffel.ViewModels
             NotifyPropertyChanged("SampleResults");
             if (IsPlayerSelected)
                 Title = string.Format("{2} {0}, {1}",Game.Move ,SelectedPlayer.Name,Messages.GAME_MOVE.Localize() );
-            if (IsMagicVisible)
+            if (Game.Rules.Rule== Rules.krMagic)
+            {
                 NotifyPropertyChanged("IsMagicRollEnabled");
+                NotifyPropertyChanged("IsManualSetEnabled");
+                NotifyPropertyChanged("IsForthRollEnabled");
+                NotifyPropertyChanged("IsMagicRollVisible");
+                NotifyPropertyChanged("IsManualSetVisible");
+                NotifyPropertyChanged("IsForthRollVisible");
+            }
         }
         /// <summary>
         /// dices stop
@@ -545,7 +650,17 @@ namespace Sanet.Kniffel.ViewModels
             Game.RestartGame();
             NotifyPropertyChanged("Players");
         }
-
+        /// <summary>
+        /// Player used "Reset Roll magic"
+        /// </summary>
+        public void ResetRolls()
+        {
+            SelectedPlayer.Roll = 1;
+            SelectedPlayer.OnForthRollUsed();
+            RollResults = null;
+            SetCanRoll(true);
+            NotifyPlayerChanged();
+        }
         
         #endregion
 

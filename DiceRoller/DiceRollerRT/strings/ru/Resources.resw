@@ -538,4 +538,16 @@
   <data name="MagicRollLabel" xml:space="preserve">
     <value>Магический бросок</value>
   </data>
+  <data name="ManualSetLabel" xml:space="preserve">
+    <value>Ручная установка</value>
+  </data>
+  <data name="ForthRollLabel" xml:space="preserve">
+    <value>Переиграть ход</value>
+  </data>
+  <data name="SelectNewDiceValueMessage" xml:space="preserve">
+    <value>Установите новое значение кости</value>
+  </data>
+  <data name="SelectDiceToChangeMessage" xml:space="preserve">
+    <value>Выберите кость значение которой нужно изменить</value>
+  </data>
 </root>

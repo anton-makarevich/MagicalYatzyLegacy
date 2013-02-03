@@ -1295,6 +1295,28 @@
 
         </Setter>
     </Style>
+    <Style x:Key="ResetRollAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="ClearSelectionAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Clear Selection"/>
+        <Setter Property="Content" Value="F1M476.992,336.992C476.752,335.393 476.339,333.403 475.591,331.255 475.029,329.646 474.28,327.946 473.251,326.271 471.716,323.767 469.522,321.298 466.49,319.493 463.467,317.679 459.662,316.603 455.249,316.613 452.634,316.613 450.235,316.979 448.081,317.667 446.199,318.265 444.507,319.109 443.031,320.119 440.442,321.887 438.537,324.133 437.164,326.409 435.102,329.836 434.16,333.331 433.67,335.999 433.19,338.669 433.184,340.532 433.184,340.722L433.184,355.752 423.21,355.752 437.566,380.612 451.921,355.752 441.95,355.752 441.95,340.739C441.95,340.739 441.95,340.678 441.956,340.551 441.974,340.081 442.052,338.764 442.382,337.123 442.626,335.891 443.011,334.477 443.58,333.104 444.009,332.074 444.539,331.069 445.179,330.156 446.146,328.792 447.326,327.648 448.882,326.805 450.448,325.969 452.438,325.385 455.249,325.377 457.053,325.379 458.524,325.629 459.756,326.021 460.832,326.364 461.733,326.819 462.524,327.358 463.904,328.303 464.975,329.53 465.834,330.947 467.12,333.059 467.85,335.587 468.201,337.556 468.378,338.538 468.466,339.379 468.51,339.949 468.531,340.23 468.541,340.449 468.546,340.584L468.549,340.721 468.549,340.722 468.549,380.612 477.317,380.612 477.317,340.722C477.317,340.557,477.309,339.122,476.992,336.992z" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Path 
+                         Data="{Binding Path=Content, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                         Stretch="Uniform" 
+                         Fill="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                         Width="26" 
+                         Height="26" 
+                         RenderTransformOrigin="0.5,0.5">
+
+                    </Path>
+                </DataTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+    </Style>
     <!--<Style x:Key="FontDecreaseAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="FontDecreaseAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Decrease Font"/>

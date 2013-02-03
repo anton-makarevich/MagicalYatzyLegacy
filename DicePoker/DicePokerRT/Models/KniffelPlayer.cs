@@ -451,7 +451,7 @@ namespace Sanet.Kniffel.Models
             }
         }
         private bool _IsForthRolllAvailable;
-        public bool IsForthRolllAvailable
+        public bool IsForthRollAvailable
         {
             get
             {
@@ -471,7 +471,7 @@ namespace Sanet.Kniffel.Models
                 if (_IsForthRolllAvailable != value)
                 {
                     _IsForthRolllAvailable = value;
-                    NotifyPropertyChanged("IsForthRolllAvailable");
+                    NotifyPropertyChanged("IsForthRollAvailable");
                 }
             }
         }
@@ -567,7 +567,7 @@ namespace Sanet.Kniffel.Models
             Roll = 1;
             IsMagicRollAvailable = true;
             IsManualSetlAvailable = true;
-            IsForthRolllAvailable = true;
+            IsForthRollAvailable = true;
             var results = new List<RollResult>();
             foreach (var score in _Game.Rules.Scores)
                 results.Add(new RollResult { ScoreType = score });
@@ -614,6 +614,14 @@ namespace Sanet.Kniffel.Models
         public void OnMagicRollUsed()
         {
             IsMagicRollAvailable = false;
+        }
+        public void OnManaulSetUsed()
+        {
+            IsManualSetlAvailable = false;
+        }
+        public void OnForthRollUsed()
+        {
+            IsForthRollAvailable = false;
         }
 
         #region Commands
