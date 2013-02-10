@@ -244,6 +244,18 @@ namespace Sanet.Kniffel.Models
                 return Messages.PLAYER_NAME.Localize();
             }
         }
+
+        /// <summary>
+        /// Label for "artifacts"
+        /// </summary>
+        public string ArtifactsLabelLocalized
+        {
+            get
+            {
+                return "ArtifactsLabel".Localize();
+            }
+        }
+
         /// <summary>
         /// Label for user password
         /// </summary>
@@ -473,6 +485,28 @@ namespace Sanet.Kniffel.Models
                     _IsForthRolllAvailable = value;
                     NotifyPropertyChanged("IsForthRollAvailable");
                 }
+            }
+        }
+
+        public int MagicRollsCount
+        {
+            get
+            {
+                return RoamingSettings.GetMagicRollsCount(this);
+            }
+        }
+        public int ManualSetsCount
+        {
+            get
+            {
+                return RoamingSettings.GetManualSetsCount(this);
+            }
+        }
+        public int RollResetsCount
+        {
+            get
+            {
+                return RoamingSettings.GetForthRollsCount(this);
             }
         }
 

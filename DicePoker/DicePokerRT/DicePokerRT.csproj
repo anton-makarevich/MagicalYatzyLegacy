@@ -211,6 +211,9 @@
     </PRIResource>
     <None Include="packages.config" />
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.AddPlayersMagicsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetChempionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -218,6 +221,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetLastWeekChempionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetPlayersMagicsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetTopPlayersResponse.datasource">

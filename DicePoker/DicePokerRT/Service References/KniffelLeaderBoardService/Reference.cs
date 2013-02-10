@@ -189,6 +189,12 @@ namespace DicePokerRT.KniffelLeaderBoardService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.sanet.com/GetLastDayChempion", ReplyAction="*")]
         System.Threading.Tasks.Task<DicePokerRT.KniffelLeaderBoardService.GetLastDayChempionResponse> GetLastDayChempionAsync(DicePokerRT.KniffelLeaderBoardService.GetLastDayChempionRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.sanet.com/GetPlayersMagics", ReplyAction="*")]
+        System.Threading.Tasks.Task<DicePokerRT.KniffelLeaderBoardService.GetPlayersMagicsResponse> GetPlayersMagicsAsync(DicePokerRT.KniffelLeaderBoardService.GetPlayersMagicsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.sanet.com/AddPlayersMagics", ReplyAction="*")]
+        System.Threading.Tasks.Task<DicePokerRT.KniffelLeaderBoardService.AddPlayersMagicsResponse> AddPlayersMagicsAsync(DicePokerRT.KniffelLeaderBoardService.AddPlayersMagicsRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -743,6 +749,182 @@ namespace DicePokerRT.KniffelLeaderBoardService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetPlayersMagicsRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetPlayersMagics", Namespace="http://www.sanet.com/", Order=0)]
+        public DicePokerRT.KniffelLeaderBoardService.GetPlayersMagicsRequestBody Body;
+        
+        public GetPlayersMagicsRequest() {
+        }
+        
+        public GetPlayersMagicsRequest(DicePokerRT.KniffelLeaderBoardService.GetPlayersMagicsRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://www.sanet.com/")]
+    public partial class GetPlayersMagicsRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string username;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string pass;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public int rolls;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+        public int manuals;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=4)]
+        public int resets;
+        
+        public GetPlayersMagicsRequestBody() {
+        }
+        
+        public GetPlayersMagicsRequestBody(string username, string pass, int rolls, int manuals, int resets) {
+            this.username = username;
+            this.pass = pass;
+            this.rolls = rolls;
+            this.manuals = manuals;
+            this.resets = resets;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetPlayersMagicsResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetPlayersMagicsResponse", Namespace="http://www.sanet.com/", Order=0)]
+        public DicePokerRT.KniffelLeaderBoardService.GetPlayersMagicsResponseBody Body;
+        
+        public GetPlayersMagicsResponse() {
+        }
+        
+        public GetPlayersMagicsResponse(DicePokerRT.KniffelLeaderBoardService.GetPlayersMagicsResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://www.sanet.com/")]
+    public partial class GetPlayersMagicsResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool GetPlayersMagicsResult;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public int rolls;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public int manuals;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+        public int resets;
+        
+        public GetPlayersMagicsResponseBody() {
+        }
+        
+        public GetPlayersMagicsResponseBody(bool GetPlayersMagicsResult, int rolls, int manuals, int resets) {
+            this.GetPlayersMagicsResult = GetPlayersMagicsResult;
+            this.rolls = rolls;
+            this.manuals = manuals;
+            this.resets = resets;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class AddPlayersMagicsRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="AddPlayersMagics", Namespace="http://www.sanet.com/", Order=0)]
+        public DicePokerRT.KniffelLeaderBoardService.AddPlayersMagicsRequestBody Body;
+        
+        public AddPlayersMagicsRequest() {
+        }
+        
+        public AddPlayersMagicsRequest(DicePokerRT.KniffelLeaderBoardService.AddPlayersMagicsRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://www.sanet.com/")]
+    public partial class AddPlayersMagicsRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string username;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string pass;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string rolls;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string manuals;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string resets;
+        
+        public AddPlayersMagicsRequestBody() {
+        }
+        
+        public AddPlayersMagicsRequestBody(string username, string pass, string rolls, string manuals, string resets) {
+            this.username = username;
+            this.pass = pass;
+            this.rolls = rolls;
+            this.manuals = manuals;
+            this.resets = resets;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class AddPlayersMagicsResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="AddPlayersMagicsResponse", Namespace="http://www.sanet.com/", Order=0)]
+        public DicePokerRT.KniffelLeaderBoardService.AddPlayersMagicsResponseBody Body;
+        
+        public AddPlayersMagicsResponse() {
+        }
+        
+        public AddPlayersMagicsResponse(DicePokerRT.KniffelLeaderBoardService.AddPlayersMagicsResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://www.sanet.com/")]
+    public partial class AddPlayersMagicsResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool AddPlayersMagicsResult;
+        
+        public AddPlayersMagicsResponseBody() {
+        }
+        
+        public AddPlayersMagicsResponseBody(bool AddPlayersMagicsResult) {
+            this.AddPlayersMagicsResult = AddPlayersMagicsResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface KniffelServiceSoapChannel : DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoap, System.ServiceModel.IClientChannel {
     }
@@ -884,6 +1066,38 @@ namespace DicePokerRT.KniffelLeaderBoardService {
             inValue.Body.Name = Name;
             inValue.Body.Score = Score;
             return ((DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoap)(this)).GetLastDayChempionAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<DicePokerRT.KniffelLeaderBoardService.GetPlayersMagicsResponse> DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoap.GetPlayersMagicsAsync(DicePokerRT.KniffelLeaderBoardService.GetPlayersMagicsRequest request) {
+            return base.Channel.GetPlayersMagicsAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<DicePokerRT.KniffelLeaderBoardService.GetPlayersMagicsResponse> GetPlayersMagicsAsync(string username, string pass, int rolls, int manuals, int resets) {
+            DicePokerRT.KniffelLeaderBoardService.GetPlayersMagicsRequest inValue = new DicePokerRT.KniffelLeaderBoardService.GetPlayersMagicsRequest();
+            inValue.Body = new DicePokerRT.KniffelLeaderBoardService.GetPlayersMagicsRequestBody();
+            inValue.Body.username = username;
+            inValue.Body.pass = pass;
+            inValue.Body.rolls = rolls;
+            inValue.Body.manuals = manuals;
+            inValue.Body.resets = resets;
+            return ((DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoap)(this)).GetPlayersMagicsAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<DicePokerRT.KniffelLeaderBoardService.AddPlayersMagicsResponse> DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoap.AddPlayersMagicsAsync(DicePokerRT.KniffelLeaderBoardService.AddPlayersMagicsRequest request) {
+            return base.Channel.AddPlayersMagicsAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<DicePokerRT.KniffelLeaderBoardService.AddPlayersMagicsResponse> AddPlayersMagicsAsync(string username, string pass, string rolls, string manuals, string resets) {
+            DicePokerRT.KniffelLeaderBoardService.AddPlayersMagicsRequest inValue = new DicePokerRT.KniffelLeaderBoardService.AddPlayersMagicsRequest();
+            inValue.Body = new DicePokerRT.KniffelLeaderBoardService.AddPlayersMagicsRequestBody();
+            inValue.Body.username = username;
+            inValue.Body.pass = pass;
+            inValue.Body.rolls = rolls;
+            inValue.Body.manuals = manuals;
+            inValue.Body.resets = resets;
+            return ((DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoap)(this)).AddPlayersMagicsAsync(inValue);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync() {

@@ -2012,10 +2012,11 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="80"/>
             </Grid.ColumnDefinitions>
             <Controls:RotatingPanel
-                x:Name="NamePanel" Width="120" Height="120" Background="Blue"
+                x:Name="NamePanel" Width="100" Height="100" Background="Blue"
                                     Margin="5,0">
                 <Grid Background="{StaticResource SanetBlue}" 
                       Visibility="{Binding IsFace,ElementName=NamePanel,Converter={StaticResource BooleanKey}}">
@@ -2032,7 +2033,7 @@
             </Controls:RotatingPanel>
             
             <Controls:RotatingPanel
-               x:Name="TypePanel" Width="120" Height="120" Background="Blue" Tag="Type"
+               x:Name="TypePanel" Width="100" Height="100" Background="Blue" Tag="Type"
                                     Grid.Column="1" IsFace="{Binding IsHuman, Mode=TwoWay}" Margin="5,0" ><!---->
                  <Grid Background="{StaticResource SanetBlue}" 
                       Visibility="{Binding IsFace,ElementName=TypePanel,Converter={StaticResource BooleanKey}}" >
@@ -2055,7 +2056,7 @@
                                
             </Controls:RotatingPanel>
             <Controls:RotatingPanel
-                x:Name="PassPanel" Width="120" Height="120" Background="Blue"
+                x:Name="PassPanel" Width="100" Height="100" Background="Blue"
                                     Margin="5,0" Grid.Column="2" Visibility="{Binding IsHuman,Converter={StaticResource BooleanKey}}">
                 <Grid Background="{StaticResource SanetBlue}"
                       Visibility="{Binding IsFace,ElementName=PassPanel,Converter={StaticResource BooleanKey}}">
@@ -2079,9 +2080,28 @@
                                
             </Controls:RotatingPanel>
             
+             <Grid
+                 Margin="5,0"
+                 Height="100"
+                 Width="100"
+                Grid.Column="3"
+                Background="{StaticResource SanetBlue}"
+                Visibility="{Binding IsHuman,Converter={StaticResource BooleanKey}}">
+                 <TextBlock Text="{Binding ArtifactsInfoMessage}"
+                           VerticalAlignment="Bottom" Margin="2"
+                           Foreground="White" TextWrapping="Wrap"
+                            Visibility="{Binding IsHasArtifacts,Converter={StaticResource NotBooleanKey}}"
+                           />
+                 
+                <TextBlock Text="{Binding ArtifactsLabelLocalized}"
+                           VerticalAlignment="Bottom" Margin="2"
+                           Foreground="White" TextWrapping="Wrap"
+                           />
+            </Grid>
+            
             <Button  HorizontalAlignment="Left" 
                      VerticalAlignment="Bottom"
-                     Grid.Column="3"
+                     Grid.Column="4"
                      AutomationProperties.Name="{Binding DeleteLabel}"
                     IsEnabled="{Binding IsDeleteable}"  
                     Style="{StaticResource DeleteAppBarButtonStyle}"

@@ -82,6 +82,7 @@
                          Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"/>
                 </Grid>
                 <StackPanel
+                    Margin="-60,0,0,0"
                     Grid.Column="1"
                     Grid.Row="1"
                     Orientation="Horizontal"
@@ -115,7 +116,7 @@
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                                <Setter Property="Width" Value="500"/>
+                                <Setter Property="Width" Value="540"/>
                             </Style>
                         </ListView.ItemContainerStyle>
                     </ListView>

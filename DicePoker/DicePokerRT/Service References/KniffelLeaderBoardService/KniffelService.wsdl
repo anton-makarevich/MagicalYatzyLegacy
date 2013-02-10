@@ -141,6 +141,45 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetPlayersMagics">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="rolls" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="manuals" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="resets" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPlayersMagicsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetPlayersMagicsResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="rolls" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="manuals" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="resets" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddPlayersMagics">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rolls" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="manuals" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="resets" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddPlayersMagicsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddPlayersMagicsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="PutScoreSoapIn">
@@ -185,6 +224,18 @@
   <wsdl:message name="GetLastDayChempionSoapOut">
     <wsdl:part name="parameters" element="tns:GetLastDayChempionResponse" />
   </wsdl:message>
+  <wsdl:message name="GetPlayersMagicsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPlayersMagics" />
+  </wsdl:message>
+  <wsdl:message name="GetPlayersMagicsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPlayersMagicsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddPlayersMagicsSoapIn">
+    <wsdl:part name="parameters" element="tns:AddPlayersMagics" />
+  </wsdl:message>
+  <wsdl:message name="AddPlayersMagicsSoapOut">
+    <wsdl:part name="parameters" element="tns:AddPlayersMagicsResponse" />
+  </wsdl:message>
   <wsdl:portType name="KniffelServiceSoap">
     <wsdl:operation name="PutScore">
       <wsdl:input message="tns:PutScoreSoapIn" />
@@ -213,6 +264,14 @@
     <wsdl:operation name="GetLastDayChempion">
       <wsdl:input message="tns:GetLastDayChempionSoapIn" />
       <wsdl:output message="tns:GetLastDayChempionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayersMagics">
+      <wsdl:input message="tns:GetPlayersMagicsSoapIn" />
+      <wsdl:output message="tns:GetPlayersMagicsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPlayersMagics">
+      <wsdl:input message="tns:AddPlayersMagicsSoapIn" />
+      <wsdl:output message="tns:AddPlayersMagicsSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="KniffelServiceSoap" type="tns:KniffelServiceSoap">
@@ -280,6 +339,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetPlayersMagics">
+      <soap:operation soapAction="http://www.sanet.com/GetPlayersMagics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPlayersMagics">
+      <soap:operation soapAction="http://www.sanet.com/AddPlayersMagics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="KniffelServiceSoap12" type="tns:KniffelServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -339,6 +416,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetLastDayChempion">
       <soap12:operation soapAction="http://www.sanet.com/GetLastDayChempion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayersMagics">
+      <soap12:operation soapAction="http://www.sanet.com/GetPlayersMagics" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPlayersMagics">
+      <soap12:operation soapAction="http://www.sanet.com/AddPlayersMagics" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

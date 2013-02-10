@@ -554,4 +554,7 @@
   <data name="BestDayLabel" xml:space="preserve">
     <value>Лучший за cегодня</value>
   </data>
+  <data name="ArtifactsLabel" xml:space="preserve">
+    <value>Артифакты</value>
+  </data>
 </root>

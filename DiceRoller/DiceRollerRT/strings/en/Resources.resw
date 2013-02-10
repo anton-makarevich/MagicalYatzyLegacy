@@ -522,4 +522,7 @@
   <data name="BestDayLabel" xml:space="preserve">
     <value>Best of the day</value>
   </data>
+  <data name="ArtifactsLabel" xml:space="preserve">
+    <value>Artifacts</value>
+  </data>
 </root>

@@ -594,4 +594,7 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>Wählen Sie den Würfel, um den Wert zu ändern</value>
     <comment>я сам</comment>
   </data>
+  <data name="ArtifactsLabel" xml:space="preserve">
+    <value>Артифакты</value>
+  </data>
 </root>
