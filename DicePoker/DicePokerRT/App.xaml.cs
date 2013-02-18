@@ -1,4 +1,5 @@
-﻿using Sanet.Models;
+﻿using Sanet;
+using Sanet.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -48,6 +49,10 @@ namespace DicePokerRT
             //check numofruns
             ReviewBugger.CheckNumOfRuns();
 
+            //init logger
+            LogManager.LoggingLevel = LogLevel.Warning;
+            LogManager.MessageLogged += LogManager_MessageLogged;
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -80,6 +85,12 @@ namespace DicePokerRT
             Window.Current.Activate();
             //register for settings charm event
             SettingsPane.GetForCurrentView().CommandsRequested += App_CommandsRequested;
+        }
+        static ILogConsole Logger = new RTLogger();
+        void LogManager_MessageLogged(string from, string line, int level)
+        {
+            String message = string.Format("{0}: {1}, {2}", DateTime.Now, from, line);
+            Logger.WriteLine(message);
         }
 
         /// <summary>

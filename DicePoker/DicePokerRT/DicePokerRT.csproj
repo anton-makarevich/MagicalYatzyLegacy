@@ -114,6 +114,9 @@
     <Compile Include="..\..\..\Controls\Sanet.Animations\Animations.cs">
       <Link>Common\Animations.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\SanetWeb\Models\LogManager.cs">
+      <Link>Common\LogManager.cs</Link>
+    </Compile>
     <Compile Include="..\..\DicePanelWP\Models\DicePanel.cs">
       <Link>DicePanel\DicePanel.cs</Link>
     </Compile>
@@ -141,6 +144,7 @@
     <Compile Include="Common\BooleanNegationConverter.cs" />
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="Common\BooleanToColorConverter.cs" />
+    <Compile Include="Common\Logger.cs" />
     <Compile Include="Common\InternetCheker.cs" />
     <Compile Include="Common\PopupHelper.cs" />
     <Compile Include="Common\ReverseBooleanToVisibilityConverter.cs" />
@@ -1234,9 +1238,12 @@
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\Logo.scale-140.png" />
     <Content Include="Assets\Logo.scale-180.png" />
+    <Content Include="Assets\MagicWand.png" />
     <Content Include="Assets\Mail.png" />
+    <Content Include="Assets\Manual.png" />
     <Content Include="Assets\NewsLogo.png" />
     <Content Include="Assets\Rate.png" />
+    <Content Include="Assets\ResetRoll.png" />
     <Content Include="Assets\SanetDice.png" />
     <Content Include="Assets\Settings.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
@@ -1308,6 +1315,9 @@
     </Reference>
     <Reference Include="MyToolkit">
       <HintPath>packages\MyToolkit.1.9.0\lib\netcore45\MyToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="WinRT.Triggers">
+      <HintPath>packages\WinRTTriggers.1.2.0\lib\winrt45\WinRT.Triggers.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -36,6 +36,10 @@ namespace Sanet.Kniffel.Models
         public const string PLAYER_SCORE = "PlayerBestScoreLabel";
         public const string PLAYER_SCORE_TOTAL = "PlayerTotalScoreLabel";
         public const string PLAYER_SCORE_COUNT = "PlayerGamesLabel";
+
+        public const string PLAYER_ARTIFACTS_BONUS = "ArtifactsBonusMessage";
+        public const string PLAYER_ARTIFACTS_WINBUY = "ArtifactsWinBuyMessage";
+        public const string PLAYER_ARTIFACTS_WRONGNP = "ArtifactsWrongMessage";
         
         public const string LEADERBOARD_ALL_RECORDS = "AllRecordsLabel";
 

@@ -15,6 +15,9 @@ namespace Sanet.Kniffel.Models
         /// <param name="player"></param>
         public static void AIDecideFill(this Player player)
         {
+            LogManager.Log(LogLevel.Message, "AI.DecideFill", 
+                "Bot {0} decides where to fill", player.Name);
+            
             //TODO
             //delay to simulate thinking...
 
@@ -104,7 +107,7 @@ namespace Sanet.Kniffel.Models
                 }
             }
             //if not filled - filling at least anything including 0
-            for (int i = 1; i <= 12; i++)
+            for (int i = 1; i <= 13; i++)
             {
                 result = player.GetResultForScore((KniffelScores)i);
                 if (result != null && !result.HasValue)
@@ -113,12 +116,14 @@ namespace Sanet.Kniffel.Models
                     return;
                 }
             }
-            result = player.GetResultForScore(KniffelScores.Kniffel);
-            if (result != null && !result.HasValue)
-            {
-                player.Game.ApplyScore(result);
-                return;
-            }
+            //result = player.GetResultForScore(KniffelScores.Kniffel);
+            //if (result != null && !result.HasValue)
+            //{
+            //    player.Game.ApplyScore(result);
+            //    return;
+            //}
+            var t = 8;
+            t += 5;
         }
 
         /// <summary>
@@ -127,7 +132,8 @@ namespace Sanet.Kniffel.Models
         /// <param name="player"></param>
         public static void AIFixDices(this Player player)
         {
-            
+            LogManager.Log(LogLevel.Message, "AI.FixDices",
+                "Bot {0} fixes dices", player.Name);
             int[] n = new int[7];
             
             //сколько кубикоков с каждым значением
@@ -232,7 +238,9 @@ namespace Sanet.Kniffel.Models
         /// <returns></returns>
         public static bool AINeedRoll(this Player player)
         {
-            
+            LogManager.Log(LogLevel.Message, "AI.NeedRoll",
+                "Bot {0} decides if he will roll more", player.Name);
+
             var result = player.GetResultForScore(KniffelScores.Kniffel);
             if (result != null && !result.HasValue && result.PossibleValue == result.MaxValue)
                 return false;
@@ -241,18 +249,18 @@ namespace Sanet.Kniffel.Models
             result = player.GetResultForScore(KniffelScores.FullHouse);
             if (result != null && !result.HasValue && result.PossibleValue == result.MaxValue)
                 return false;
+
             result = player.GetResultForScore(KniffelScores.LargeStraight);
             if (result != null && !result.HasValue)
             {
                 if (result.PossibleValue == result.MaxValue)
                     return false;
             }
-            else
-            {
-                result = player.GetResultForScore(KniffelScores.SmallStraight);
-                if (result != null && !result.HasValue && result.PossibleValue == result.MaxValue)
+            
+            result = player.GetResultForScore(KniffelScores.SmallStraight);
+            if (result != null && !result.HasValue && result.PossibleValue == result.MaxValue)
                     return false;
-            }
+            
             return true;
         }
 

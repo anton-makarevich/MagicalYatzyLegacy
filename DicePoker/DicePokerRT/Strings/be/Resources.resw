@@ -557,4 +557,7 @@
   <data name="ArtifactsLabel" xml:space="preserve">
     <value>Артифакты</value>
   </data>
+  <data name="ArtifactsBonusMessage" xml:space="preserve">
+    <value>{0}, Поздравляем! Вы получили бонусные магические артифакты!</value>
+  </data>
 </root>

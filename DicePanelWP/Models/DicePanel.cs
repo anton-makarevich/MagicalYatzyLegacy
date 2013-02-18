@@ -359,8 +359,11 @@ namespace Sanet.Kniffel.DicePanel
             }
         }
         
-        public void RollDice(List<int> aResults )
+        public bool RollDice(List<int> aResults )
         {
+            LogManager.Log(LogLevel.Message, "DicePanel.RollDice",
+                "Rolling...");
+
             if (ManualSetMode)
                 ManualSetMode = false;
             //if (isRolling) return;
@@ -369,7 +372,11 @@ namespace Sanet.Kniffel.DicePanel
 
             //don't roll if all frozen
             if (AllDiceFrozen())
-                return;
+            {
+                LogManager.Log(LogLevel.Message, "DicePanel.RollDice",
+                "Can't roll... allfixed");
+                return false;
+            }
             if (BeginRoll != null)
             {
                 BeginRoll();
@@ -406,7 +413,7 @@ namespace Sanet.Kniffel.DicePanel
             // Start playing the Storyboard loop
 
             BeginLoop();
-
+            return true;
         }
                 
         private void BeginLoop()

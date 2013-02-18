@@ -13,7 +13,9 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:common="using:Sanet.Common"
-    >
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Triggers="using:WinRT.Triggers" mc:Ignorable="d">
     
     <!-- Non-brush values that vary across themes -->
 
@@ -1919,7 +1921,25 @@
     <DataTemplate x:Key="PlayerTableItemTemplate">
         <Border Margin="-5,-2,0,-2"
                 BorderThickness="0,0,0,1" BorderBrush="{StaticResource SanetBlue}">
-                <Grid Height="30" 
+            <Border.Resources>
+                <!--Storyboards-->
+                <Storyboard x:Name="ValueChanged">
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)" Storyboard.TargetName="backGrid">
+                        <EasingColorKeyFrame KeyTime="0" Value="Yellow"/>
+                        <EasingColorKeyFrame KeyTime="0:0:2" Value="#009cd6"/>
+                    </ColorAnimationUsingKeyFrames>
+                    
+                </Storyboard>
+                
+            </Border.Resources>
+            <Triggers:Interactions.Triggers>
+                <Triggers:PropertySetTrigger Binding="{Binding HasValue}" RequiredValue="True">
+                    <Triggers:ControlStoryboardAction Action="Start" Storyboard="{StaticResource ValueChanged}" />
+                </Triggers:PropertySetTrigger>
+                
+            </Triggers:Interactions.Triggers>
+            <Grid Height="30"
+                  x:Name="backGrid"
               Width="60"
               Margin="0,-2,0,0" HorizontalAlignment="Stretch"
                Background="{Binding HasValue, Converter={StaticResource ColorKey}}"           >
@@ -1945,6 +1965,7 @@
             </Border>
            
         </DataTemplate>
+    <!--Datatablet for cells in table captions (left side scores names)-->
     <DataTemplate x:Key="PlayerTableCaptionTemplate">
         <Border Margin="0,-2,0,-2"
                 BorderThickness="0,0,0,1" BorderBrush="{StaticResource SanetBlue}">
@@ -2057,6 +2078,7 @@
             </Controls:RotatingPanel>
             <Controls:RotatingPanel
                 x:Name="PassPanel" Width="100" Height="100" Background="Blue"
+                IsFace="{Binding IsPasswordReady, Mode=TwoWay}"
                                     Margin="5,0" Grid.Column="2" Visibility="{Binding IsHuman,Converter={StaticResource BooleanKey}}">
                 <Grid Background="{StaticResource SanetBlue}"
                       Visibility="{Binding IsFace,ElementName=PassPanel,Converter={StaticResource BooleanKey}}">
@@ -2069,7 +2091,7 @@
                             Background="{StaticResource SanetBlue}">
                           <StackPanel VerticalAlignment="Center">
                               <PasswordBox x:Name="passText" Margin="2" Password="{Binding Password, Mode=TwoWay}"
-                     Height="30"/>
+                     Height="30" IsPasswordRevealButtonEnabled="True"/>
                           <CheckBox IsChecked="{Binding RememberPass, Mode=TwoWay}"
                 IsEnabled="{Binding IsHuman}"
                       Content="{Binding PlayerRememberLabelLocalized}"
@@ -2088,10 +2110,59 @@
                 Background="{StaticResource SanetBlue}"
                 Visibility="{Binding IsHuman,Converter={StaticResource BooleanKey}}">
                  <TextBlock Text="{Binding ArtifactsInfoMessage}"
-                           VerticalAlignment="Bottom" Margin="2"
+                           VerticalAlignment="Top" Margin="2"
                            Foreground="White" TextWrapping="Wrap"
-                            Visibility="{Binding IsHasArtifacts,Converter={StaticResource NotBooleanKey}}"
+                            Visibility="{Binding HasArtifacts,Converter={StaticResource NotBooleanKey}}"
                            />
+                 <Grid
+                     VerticalAlignment="Top" Margin="2"
+                           Visibility="{Binding HasArtifacts,Converter={StaticResource BooleanKey}}">
+                     <Grid.ColumnDefinitions>
+                         <ColumnDefinition/>
+                         <ColumnDefinition/>
+                         <ColumnDefinition/>
+                     </Grid.ColumnDefinitions>
+                     <Grid.RowDefinitions>
+                         <RowDefinition Height="50"/>
+                         <RowDefinition/>
+                     </Grid.RowDefinitions>
+                     <Image Source="ms-appx:///Assets/MagicWand.png"
+                            Width="32"
+                            VerticalAlignment="Bottom"/>
+                     <Image Source="ms-appx:///Assets/Manual.png"
+                            Grid.Column="1"
+                            Width="32"
+                            VerticalAlignment="Bottom"/>
+                     <Image Source="ms-appx:///Assets/ResetRoll.png"
+                            Width="32"
+                            Grid.Column="2"
+                            VerticalAlignment="Bottom"/>
+                      <TextBlock Text="{Binding MagicRollsCount}"
+                           VerticalAlignment="Bottom" Margin="2"
+                                 HorizontalAlignment="Center"
+                                 TextAlignment="Center"
+                                 Grid.Row="1"
+                                 Grid.Column="0"
+                           Foreground="White" 
+                           />
+                      <TextBlock Text="{Binding ManualSetsCount}"
+                           VerticalAlignment="Bottom" Margin="2"
+                                 HorizontalAlignment="Center"
+                                 TextAlignment="Center"
+                                 Grid.Row="1"
+                                 Grid.Column="1"
+                           Foreground="White" 
+                           />
+                      <TextBlock Text="{Binding RollResetsCount}"
+                           VerticalAlignment="Bottom" Margin="2"
+                                 HorizontalAlignment="Center"
+                                 TextAlignment="Center"
+                                 Grid.Row="1"
+                                 Grid.Column="2"
+                           Foreground="White" 
+                           />
+                     
+                 </Grid>
                  
                 <TextBlock Text="{Binding ArtifactsLabelLocalized}"
                            VerticalAlignment="Bottom" Margin="2"

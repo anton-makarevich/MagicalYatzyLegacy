@@ -20,6 +20,10 @@ namespace Sanet.Kniffel.Models
         /// call this on delete 
         /// </summary>
         public event EventHandler DeletePressed;
+        /// <summary>
+        /// Call this to ask server about artifacts...
+        /// </summary>
+        public event EventHandler ArtifactsSyncRequest;
         #endregion
 
         #region Prperties
@@ -37,12 +41,50 @@ namespace Sanet.Kniffel.Models
             {
                 _Name = value;
                 NotifyPropertyChanged("Name");
+                Password = "";
+                RememberPass = false;
+                if (!string.IsNullOrEmpty(value))
+                    RefreshArtifactsInfo();
+                //NotifyPropertyChanged("HasArtifacts");
             }
         }
         /// <summary>
         /// Player Password
         /// </summary>
-        public string Password { get; set; }
+        string _Password;
+        public string Password 
+        {
+            get
+            {
+                return _Password;
+            }
+            set
+            {
+                _Password = value;
+                NotifyPropertyChanged("Password");
+                
+                //NotifyPropertyChanged("HasArtifacts");
+            }   
+        }
+
+        
+        private bool _IsPasswordReady;
+        public bool IsPasswordReady
+        {
+            get { return _IsPasswordReady; }
+            set
+            {
+                if (_IsPasswordReady != value)
+                {
+                    _IsPasswordReady = value;
+                    NotifyPropertyChanged("IsPasswordReady");
+                    if (value && !string.IsNullOrEmpty(Password))
+                        RefreshArtifactsInfo();
+                }
+            }
+        }
+
+
         /// <summary>
         /// Player ID (GUID?)
         /// </summary>
@@ -487,6 +529,21 @@ namespace Sanet.Kniffel.Models
                 }
             }
         }
+        
+        private string _ArtifactsInfoMessage;
+        public string ArtifactsInfoMessage
+        {
+            get { return _ArtifactsInfoMessage; }
+            set
+            {
+                if (_ArtifactsInfoMessage != value)
+                {
+                    _ArtifactsInfoMessage = value;
+                    NotifyPropertyChanged("ArtifactsInfoMessage");
+                }
+            }
+        }
+
 
         public int MagicRollsCount
         {
@@ -510,6 +567,30 @@ namespace Sanet.Kniffel.Models
             }
         }
 
+        public bool HasArtifacts
+        {
+            get
+            {
+                return MagicRollsCount!=0 && ManualSetsCount!=0 && RollResetsCount!=0;
+            }
+        }
+
+        
+        private bool _HadStartupMagic;
+        public bool HadStartupMagic
+        {
+            get { return _HadStartupMagic; }
+            set
+            {
+                if (_HadStartupMagic != value)
+                {
+                    _HadStartupMagic = value;
+                    NotifyPropertyChanged("HadStartupMagic");
+                }
+            }
+        }
+
+
         #endregion
 
         #region Methods
@@ -518,6 +599,8 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         public void CheckRollResults()
         {
+            //LogManager.Log(LogLevel.WarningLow, "Player.CheckRollResults",
+            //    "Player {0} checking rool result", Name);
             foreach (RollResult result in Results)
             {
                 if (!result.HasValue)
@@ -607,6 +690,7 @@ namespace Sanet.Kniffel.Models
                 results.Add(new RollResult { ScoreType = score });
             IsMoving = false;
             Results = results;
+            //NotifyPropertyChanged("HasArtifacts");
         }
 
         public RollResult GetResultForScore(KniffelScores score)
@@ -642,6 +726,55 @@ namespace Sanet.Kniffel.Models
         public void UpdateType()
         {
             NotifyPropertyChanged("IsHuman");
+        }
+
+        public void RefreshArtifactsInfo(bool aftersync=false)
+        {
+            NotifyPropertyChanged("MagicRollsCount");
+            NotifyPropertyChanged("ManualSetsCount");
+            NotifyPropertyChanged("RollResetsCount");
+            NotifyPropertyChanged("HasArtifacts");
+            if (!HasArtifacts)
+            {
+                if (HadStartupMagic)
+                    ArtifactsInfoMessage = Messages.PLAYER_ARTIFACTS_WINBUY.Localize();
+                else
+                {
+                    if (aftersync)
+                        ArtifactsInfoMessage = "неправильное имя или пароль";
+                    var nameparts = Name.Split(' ');
+                    if (nameparts.Length == 2 && nameparts[0] == Messages.PLAYER_NAME_DEFAULT.Localize())
+                    {
+                        int n;
+                        if (int.TryParse(nameparts[1], out n))
+                        {
+                            ArtifactsInfoMessage = "измените имя";
+                            return;
+                        }
+                    }
+                    if (string.IsNullOrEmpty(Password))
+                    {
+                        ArtifactsInfoMessage = "введите пароль";
+                        return;
+                    }
+                    if (!aftersync)
+                    {
+                        if (InternetCheker.IsInternetAvailable())
+                        {
+                            if (ArtifactsSyncRequest != null)
+                            {
+                                ArtifactsSyncRequest(this, null);
+                                ArtifactsInfoMessage = "checking...";
+                            }
+                        }
+                        else
+                            ArtifactsInfoMessage = "нет интернета";
+                    }
+                }
+
+            }
+            
+            
         }
         #endregion
 

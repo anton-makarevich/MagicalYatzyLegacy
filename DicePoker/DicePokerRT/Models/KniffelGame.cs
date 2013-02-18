@@ -95,6 +95,15 @@ namespace Sanet.Kniffel.Models
             set;
         }
 
+        public int FixedDicesCount
+        {
+            get
+            {
+                if (fixedRollResults == null)
+                    return 0;
+                return fixedRollResults.Count;
+            }
+        }
 
         /// <summary>
         /// Players Count
@@ -233,6 +242,8 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         public void ReportRoll()
         {
+            LogManager.Log(LogLevel.Message, "Game.ReportRoll",
+                "reporting roll results for player {0}. we have {1} fixed dices", CurrentPlayer.Name, fixedRollResults.Count);
             lock (syncRoot)
             {
                 int j = 0;
@@ -351,7 +362,7 @@ namespace Sanet.Kniffel.Models
 
         public void ApplyScore(RollResult result)
         {
-            
+            LogManager.Log(LogLevel.Message,"Game.ApplyScore","Applying score {0} of {1} for {2}", result.PossibleValue,result.ScoreType,CurrentPlayer.Name);
             //check for kniffel bonus
             if (Rules.HasExtendedBonuses && result.ScoreType != KniffelScores.Kniffel)
             {

@@ -1,4 +1,5 @@
 ﻿
+using DicePokerRT.KniffelLeaderBoardService;
 using Sanet.Kniffel.Models;
 using Sanet.Models;
 using System;
@@ -235,6 +236,8 @@ namespace Sanet.Kniffel.ViewModels
                 if (p == null)
                     break;
                 p.DeletePressed += p_DeletePressed;
+                p.ArtifactsSyncRequest+=ArtifactsSyncRequest;
+                p.RefreshArtifactsInfo();
                 Players.Add(p);
             }
             //if no players loaded - add one default
@@ -291,12 +294,35 @@ namespace Sanet.Kniffel.ViewModels
                 //get username from system
                 var p=new Player();
                 p.DeletePressed += p_DeletePressed;
+                p.ArtifactsSyncRequest += ArtifactsSyncRequest;
                 Players.Add(p);
                 NotifyPlayersChanged();
                 p.Name = GetNewPlayerName(type);
                 p.Type = type;
             } 
             
+        }
+
+        /// <summary>
+        /// Sync artifacts data with server
+        /// </summary>
+        async void ArtifactsSyncRequest(object sender, EventArgs e)
+        {
+            var player = sender as Player;
+            KniffelServiceSoapClient client = new KniffelServiceSoapClient();
+            int rolls = 0;
+            int manuals = 0;
+            int resets = 0;
+
+            var result=await client.GetPlayersMagicsAsync(player.Name, player.Password.Encrypt(33), rolls,  manuals,  resets);
+            player.HadStartupMagic = result.Body.GetPlayersMagicsResult;
+            if (RoamingSettings.GetMagicRollsCount(player) == 0 && result.Body.rolls == 10)
+                Utilities.ShowToastNotification(string.Format(Messages.PLAYER_ARTIFACTS_BONUS.Localize(), player.Name));
+            RoamingSettings.SetMagicRollsCount(player, result.Body.rolls);
+            RoamingSettings.SetManualSetsCount(player, result.Body.manuals);
+            RoamingSettings.SetForthRollsCount(player, result.Body.resets);
+            player.RefreshArtifactsInfo(true);
+            await client.CloseAsync();
         }
 
         

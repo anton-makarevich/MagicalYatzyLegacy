@@ -533,8 +533,10 @@ namespace Sanet.Kniffel.ViewModels
                 else
                 {
                     SelectedPlayer.AIFixDices();
-                    
-                    Game.ReportRoll();
+                    if (Game.FixedDicesCount==5)
+                        SelectedPlayer.AIDecideFill();
+                    else
+                        Game.ReportRoll();
                 }
             }
             
@@ -557,18 +559,24 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// 
         /// </summary>
-        public void SaveResults()
+        public /*async*/ void SaveResults()
         {
             try
             {
                 var needsave = Players.Count(f => f.ShouldSaveResult) > 0;
                 bool inet=true;
+                DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient ks=null;
                 if (needsave)
                 {
                     inet = InternetCheker.IsInternetAvailable();
                     if (!inet)
                     {
                         Utilities.ShowMessage("NoInetMessage".Localize(), Messages.APP_NAME.Localize());
+                    }
+                    else
+                    {
+                        if (ks == null)
+                        ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
                     }
                 }
 
@@ -580,13 +588,38 @@ namespace Sanet.Kniffel.ViewModels
                 scorem = RoamingSettings.LocalStandardRecord;
                 foreach (Player p in Players)
                 {
+                    //don't do anything score related for bots
                     if (p.IsBot)
                         continue;
+
+                    //decreasing amount of magic artifacts
+                    if (Game.Rules.Rule == Rules.krMagic)
+                    {
+                        int rollsused = (p.IsMagicRollAvailable)?0:-1;
+                        int manualsused = (p.IsManualSetlAvailable) ? 0 : -1;
+                        int resetsused = (p.IsForthRollAvailable) ? 0 : -1;
+
+                        if (rollsused!=0)
+                            RoamingSettings.SetMagicRollsCount(p,RoamingSettings.GetMagicRollsCount(p)+rollsused);
+                        if (rollsused != 0)
+                            RoamingSettings.SetManualSetsCount(p, RoamingSettings.GetManualSetsCount(p) + rollsused);
+                        if (rollsused != 0)
+                            RoamingSettings.SetForthRollsCount(p, RoamingSettings.GetForthRollsCount(p) + rollsused);
+                        
+                        if (ks == null)
+                            ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+                        ks.AddPlayersMagicsAsync(p.Name,p.Password.Encrypt(33),rollsused.ToString().Encrypt(33),manualsused.ToString().Encrypt(33),resetsused.ToString().Encrypt(33));
+                    }
+
+                    //score saving to leaderboard
                     if (p.ShouldSaveResult && inet)
                     {
-                        var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
-                        ks.PutScoreIntoTableWithPicAsync(p.Name.Encrypt( 33),p.Password.Encrypt(33), p.Total.ToString().Encrypt(33), Game.Rules.ToString().Encrypt(33), p.PicUrl);
+                        if (ks==null)
+                            ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+                        /*var rs= await */ks.PutScoreIntoTableWithPicAsync(p.Name.Encrypt( 33),p.Password.Encrypt(33), p.Total.ToString().Encrypt(33), Game.Rules.ToString().Encrypt(33), p.PicUrl);
+                        
                     }
+                    
                     switch (Game.Rules.Rule)
                     {
                         case Rules.krBaby:
@@ -636,6 +669,8 @@ namespace Sanet.Kniffel.ViewModels
                 for (int i = tileLines.Count; i <= 4;i++ )
                     tileLines.Add("");
 
+                if (inet && ks != null)
+                    ks.CloseAsync();
                 TileHelper.UpdateTileContent("main", "BestLocalLabel".Localize(), tileLines[0], tileLines[1], tileLines[2], tileLines[3]);
             }
             catch { }

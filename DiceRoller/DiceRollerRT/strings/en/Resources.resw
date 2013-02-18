@@ -525,4 +525,7 @@
   <data name="ArtifactsLabel" xml:space="preserve">
     <value>Artifacts</value>
   </data>
+  <data name="ArtifactsBonusMessage" xml:space="preserve">
+    <value>{0}, Congratulations! You got Magical Artifacts bonus!</value>
+  </data>
 </root>

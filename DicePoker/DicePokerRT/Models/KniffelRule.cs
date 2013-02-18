@@ -440,7 +440,7 @@ namespace Sanet.Kniffel.Models
                     else
                         LoadLocalScores();
 #endif
-
+                    await ks.CloseAsync();
                 }
                 catch (Exception ex)
                 {

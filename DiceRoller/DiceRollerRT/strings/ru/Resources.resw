@@ -522,4 +522,13 @@
   <data name="ArtifactsLabel" xml:space="preserve">
     <value>Артифакты</value>
   </data>
+  <data name="ArtifactsBonusMessage" xml:space="preserve">
+    <value>{0}, Поздравляем! Вы получили бонусные магические артефакты!</value>
+  </data>
+  <data name="ArtifactsWinBuyMessage" xml:space="preserve">
+    <value>выиграйте или купите</value>
+  </data>
+  <data name="ArtifactsWrongMessage" xml:space="preserve">
+    <value>неправильное имя или пароль</value>
+  </data>
 </root>
