@@ -82,6 +82,128 @@ namespace Sanet.Kniffel.ViewModels
 
             }
         }
+        public string MagicArtifactsDescription
+        {
+            get
+            {
+                return "MagicArtifactsDescription".Localize();
+
+            }
+        }
+        public string HowToGetDescription
+        {
+            get
+            {
+                return "HowToGetDescription".Localize();
+
+            }
+        }
+
+        public string PurchaseDescription
+        {
+            get
+            {
+                return "PurchaseDescription".Localize();
+
+            }
+        }
+        public string MagicRollLabel
+        {
+            get
+            {
+                return "MagicRollLabel".Localize()+".";
+
+            }
+        }
+        public string ForthRollLabel
+        {
+            get
+            {
+                return "ForthRollLabel".Localize() + ".";
+
+            }
+        }
+        public string ManualSetLabel
+        {
+            get
+            {
+                return "ManualSetLabel".Localize() + ".";
+
+            }
+        }
+        public string MagicRollDescription
+        {
+            get
+            {
+                return "MagicRollDescription".Localize();
+
+            }
+        }
+        public string ManualSetDescription
+        {
+            get
+            {
+                return "ManualSetDescription".Localize();
+
+            }
+        }
+        public string RerollDescription
+        {
+            get
+            {
+                return "RerollDescription".Localize();
+
+            }
+        }
+        public string FirstTimeBonusDescription
+        {
+            get
+            {
+                return "FirstTimeBonusDescription".Localize();
+
+            }
+        }
+        public string FirstTimeBonusLabel
+        {
+            get
+            {
+                return "FirstTimeBonusLabel".Localize();
+
+            }
+        }
+        public string ResultBonusDescription
+        {
+            get
+            {
+                return "ResultBonusDescription".Localize();
+
+            }
+        }
+        public string ResultBonusLabel
+        {
+            get
+            {
+                return "ResultBonusLabel".Localize();
+
+            }
+        }
+        public string PurchaseMiniLabel
+        {
+            get
+            {
+                return "PurchaseMiniLabel".Localize();
+
+            }
+        }
+        public string PurchaseMiniDescription
+        {
+            get
+            {
+                return "PurchaseMiniDescription".Localize();
+
+            }
+        }
+
 
 
         private ObservableCollection<OfferAction> _Offers;
@@ -111,7 +233,20 @@ namespace Sanet.Kniffel.ViewModels
                 {
                     MenuAction = new Action(async () =>
                     {
-                        await StoreManager.BuyLicense("WizardTools30");
+                        if (await StoreManager.BuyLicense("WizardTools30"))
+                        {
+                            RoamingSettings.SetMagicRollsCount(CurrentPlayer, RoamingSettings.GetMagicRollsCount(CurrentPlayer) + 30);
+                            RoamingSettings.SetManualSetsCount(CurrentPlayer, RoamingSettings.GetManualSetsCount(CurrentPlayer) + 30);
+                            RoamingSettings.SetForthRollsCount(CurrentPlayer, RoamingSettings.GetForthRollsCount(CurrentPlayer) + 30);
+                            var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+                            var res = await ks.AddPlayersMagicsAsync(CurrentPlayer.Name, CurrentPlayer.Password.Encrypt(33), "30".Encrypt(33), "30".Encrypt(33), "30".Encrypt(33));
+                            if (!res.Body.AddPlayersMagicsResult)
+                            {
+                                Utilities.ShowMessage("PurchaseErrorMessage".Localize(), "ErrorLabel".Localize());
+                                LogManager.Log(LogLevel.Error, "Purchase30", "Can't send info to server for user {0}", CurrentPlayer.Name);
+                            }
+
+                        }
                         RefreshOffers();
                     }),
                     Description = "Offer1Description",
@@ -125,7 +260,20 @@ namespace Sanet.Kniffel.ViewModels
                {
                    MenuAction = new Action(async () =>
                    {
-                       await StoreManager.BuyLicense("WizardTools50");
+                       if (await StoreManager.BuyLicense("WizardTools50"))
+                       {
+                           RoamingSettings.SetMagicRollsCount(CurrentPlayer, RoamingSettings.GetMagicRollsCount(CurrentPlayer) + 50);
+                           RoamingSettings.SetManualSetsCount(CurrentPlayer, RoamingSettings.GetManualSetsCount(CurrentPlayer) + 50);
+                           RoamingSettings.SetForthRollsCount(CurrentPlayer, RoamingSettings.GetForthRollsCount(CurrentPlayer) + 50);
+                           var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+                           var res = await ks.AddPlayersMagicsAsync(CurrentPlayer.Name, CurrentPlayer.Password.Encrypt(33), "50".Encrypt(33), "50".Encrypt(33), "50".Encrypt(33));
+                           if (!res.Body.AddPlayersMagicsResult)
+                           {
+                               Utilities.ShowMessage("PurchaseErrorMessage".Localize(), "ErrorLabel".Localize());
+                               LogManager.Log(LogLevel.Error, "Purchase50", "Can't send info to server for user {0}", CurrentPlayer.Name);
+                           }
+
+                       }
                        RefreshOffers();
                    }),
                    Description = "Offer2Description",
@@ -140,7 +288,20 @@ namespace Sanet.Kniffel.ViewModels
                {
                    MenuAction = new Action(async () =>
                    {
-                       await StoreManager.BuyLicense("WizardTools100");
+                       if (await StoreManager.BuyLicense("WizardTools100"))
+                       {
+                           RoamingSettings.SetMagicRollsCount(CurrentPlayer, RoamingSettings.GetMagicRollsCount(CurrentPlayer) + 100);
+                           RoamingSettings.SetManualSetsCount(CurrentPlayer, RoamingSettings.GetManualSetsCount(CurrentPlayer) + 100);
+                           RoamingSettings.SetForthRollsCount(CurrentPlayer, RoamingSettings.GetForthRollsCount(CurrentPlayer) + 100);
+                           var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+                           var res= await ks.AddPlayersMagicsAsync(CurrentPlayer.Name, CurrentPlayer.Password.Encrypt(33), "100".Encrypt(33), "100".Encrypt(33), "100".Encrypt(33));
+                           if (!res.Body.AddPlayersMagicsResult)
+                           {
+                               Utilities.ShowMessage("PurchaseErrorMessage".Localize(), "ErrorLabel".Localize());
+                               LogManager.Log(LogLevel.Error, "Purchase100", "Can't send info to server for user {0}", CurrentPlayer.Name);
+                           }
+                           
+                       }
                        RefreshOffers();
                    }),
                    Description = "Offer3Description",

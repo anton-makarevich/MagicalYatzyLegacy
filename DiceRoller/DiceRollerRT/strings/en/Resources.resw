@@ -543,8 +543,29 @@
   <data name="Cost3Label" xml:space="preserve">
     <value>$2.49</value>
   </data>
+  <data name="ErrorLabel" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="FirstTimeBonusDescription" xml:space="preserve">
+    <value> Каждый новый игрок с уникальным именем пользователя и паролем получает артефакты в качестве бонуса.</value>
+  </data>
+  <data name="FirstTimeBonusLabel" xml:space="preserve">
+    <value>Начальный бонус.</value>
+  </data>
   <data name="HowGetLabel" xml:space="preserve">
     <value>How to get?</value>
+  </data>
+  <data name="HowToGetDescription" xml:space="preserve">
+    <value>Магические артефакты - ценый ресурс, количество которого ограничено. Существует несколько способов пополнить запасы магии:</value>
+  </data>
+  <data name="MagicArtifactsDescription" xml:space="preserve">
+    <value>Магические артефакты могут повысить ваши шансы на хороошую комбинацию в магических правилах. Каждый вид артефактов можно использовать только один раз за игру. Всего в игре 3 вида артефактов:</value>
+  </data>
+  <data name="MagicRollDescription" xml:space="preserve">
+    <value> Позволяет в выбросить одну из незаполненных покерных комбинаций - от трех одинаковых до флэша в случайном порядке.</value>
+  </data>
+  <data name="ManualSetDescription" xml:space="preserve">
+    <value> Позволяет изменить значение одной из выпавших костей по вашему желанию.</value>
   </data>
   <data name="Offer1Description" xml:space="preserve">
     <value>Basic offer with price $0.016 for one artifact</value>
@@ -555,7 +576,28 @@
   <data name="Offer3Description" xml:space="preserve">
     <value>Excelent offer with only $0.008 for one artifact. It's 2 times cheaper!</value>
   </data>
+  <data name="PurchaseDescription" xml:space="preserve">
+    <value>Вы можете пополнить запас магичечких артефактов, воспользовавшись одним из следующих предложений. Возпользоваться каждым предложением можно не чаще чем один раз в сутки.</value>
+  </data>
+  <data name="PurchaseErrorMessage" xml:space="preserve">
+    <value>Просим прощения. Что-то случилось при отправке информации на сервер. Свяжитесь со службой поддержки.</value>
+  </data>
   <data name="PurchaseLabel" xml:space="preserve">
     <value>Magical offers</value>
+  </data>
+  <data name="PurchaseMiniDescription" xml:space="preserve">
+    <value>Магические артефакты можно преобрести в магазине. Доступно несколько предлажений по очень превлекательным ценам!</value>
+  </data>
+  <data name="PurchaseMiniLabel" xml:space="preserve">
+    <value>Покупка.</value>
+  </data>
+  <data name="RerollDescription" xml:space="preserve">
+    <value> Позволяет переиграть текущий ход сначала (все три броска). Значения костей будут выпадать в том же порядке.</value>
+  </data>
+  <data name="ResultBonusDescription" xml:space="preserve">
+    <value> Получите артифакты за хорошую игру по расширенным правлам. Чем лучше Вы играете, тем больше артефактов Вы получаете в подарок!</value>
+  </data>
+  <data name="ResultBonusLabel" xml:space="preserve">
+    <value>Бонус за результат.</value>
   </data>
 </root>

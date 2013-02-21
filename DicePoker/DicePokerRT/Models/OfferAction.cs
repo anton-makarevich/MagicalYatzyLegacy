@@ -66,10 +66,18 @@ namespace Sanet.Kniffel.Models
                 {
                     _Discount = value;
                     NotifyPropertyChanged("Discount");
+                    NotifyPropertyChanged("HasDiscount");
                 }
             }
         }
 
+        public bool HasDiscount
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(Discount);
+            }
+        }
         
         private string _OfferID;
         public string OfferID

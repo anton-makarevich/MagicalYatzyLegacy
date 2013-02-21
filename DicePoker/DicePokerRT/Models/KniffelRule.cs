@@ -385,7 +385,7 @@ namespace Sanet.Kniffel.Models
                 }
                 catch (Exception ex)
                 {
-                    var t = ex.Message;
+                    LogManager.Log(LogLevel.Error, "Rule.LoadWeekScores", "ex {0}, trace {1}", ex.Message, ex.StackTrace);
                     LoadLocalScores();
                 }
                 finally
@@ -444,7 +444,7 @@ namespace Sanet.Kniffel.Models
                 }
                 catch (Exception ex)
                 {
-                    var t = ex.Message;
+                    LogManager.Log(LogLevel.Error, "Rule.LoadDayScores", "ex {0}, trace {1}", ex.Message, ex.StackTrace);
                     LoadLocalScores();
                 }
                 finally

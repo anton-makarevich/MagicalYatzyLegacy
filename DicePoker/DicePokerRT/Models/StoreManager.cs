@@ -13,12 +13,12 @@ namespace Sanet.Kniffel.Models
         //static bool _adfree=true;
         static public bool IsProductAvailable(string product)
         {
-            //return true;//_adfree;
+            //return product == "WizardTools50";
             return (licenseInformation.ProductLicenses[product].IsActive);
 
             
         }
-        static public async Task BuyLicense(string product)
+        static public async Task<bool> BuyLicense(string product)
         {
             if (!IsProductAvailable(product))
             {
@@ -28,17 +28,20 @@ namespace Sanet.Kniffel.Models
 
                     //await CurrentAppSimulator.RequestProductPurchaseAsync(thisfolder, false);
 
-                    await CurrentApp.RequestProductPurchaseAsync(product, false);
-
+                    var cert = await CurrentApp.RequestProductPurchaseAsync(product, true);
+                    LogManager.Log(LogLevel.Error, "StoreManager.BuyLicense", "product '{0}' is purchased, your receipt is {1}", product, cert);
+                    return true;
                 }
                 catch (Exception Ex)
                 {
-                    var s = Ex.Message;
+                    LogManager.Log(LogLevel.Error, "StoreManager.BuyLicense", "can't purchase '{0}', ex: {1}", product, Ex.Message);
+                    return false;
                 }
             }
             else
             {
-                // The customer already owns this feature.
+                LogManager.Log(LogLevel.Error, "StoreManager.BuyLicense", "product '{0}' is already purchased", product);
+                return false;
             }
             
         }

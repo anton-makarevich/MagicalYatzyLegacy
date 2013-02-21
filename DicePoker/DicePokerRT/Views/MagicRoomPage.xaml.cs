@@ -37,6 +37,11 @@ namespace DicePokerRT
             mainScroll.ScrollToHorizontalOffset(mainScroll.ScrollableWidth);
         }
 
+        private void itemListView_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
+            ((OfferAction)e.ClickedItem).MenuAction();
+        }
+
         
 
         

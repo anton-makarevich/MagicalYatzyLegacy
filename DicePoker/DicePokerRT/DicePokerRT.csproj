@@ -1239,6 +1239,7 @@
     <Content Include="Assets\Children.png" />
     <Content Include="Assets\Customer.png" />
     <Content Include="Assets\Desktop.png" />
+    <Content Include="Assets\Discount.png" />
     <Content Include="Assets\Expert.png" />
     <Content Include="Assets\Logo.scale-80.png" />
     <Content Include="Assets\Logo.scale-100.png" />

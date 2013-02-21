@@ -1763,7 +1763,9 @@
     <!-- Item templates -->
     <!--Datatemplate for magical offers-->
     <DataTemplate x:Key="OfferTemplate">
-        <Grid Height="120" Margin="10" HorizontalAlignment="Stretch"
+        <Grid
+            Visibility="{Binding IsAvailable,Converter={StaticResource VisibilityKey}}"
+            Height="120" Margin="10" HorizontalAlignment="Stretch"
                           >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="90"/>
@@ -1788,26 +1790,21 @@
                                        Foreground="White"/>
                 
                 <Grid
-                    Background="Azure"
-                    Height="40"
-                    Width="40">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
-                        
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid
-                    Height="20" Width="80"
-                    Background="Yellow">
-                    <Grid.RenderTransform>
-                        <RotateTransform Angle="-45" CenterX="40" CenterY="20" />
-                    </Grid.RenderTransform>
+                    Visibility="{Binding HasDiscount,Converter={StaticResource VisibilityKey}}"
+                    Height="42" Width="42"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    >
+                    
+                    <Image Source="ms-appx:///Assets/Discount.png"/>
                     <TextBlock Text="{Binding Discount}"
-                                       FontSize="16" Foreground="Red"/>
+                               FontSize="16" Foreground="Red">
+                        <TextBlock.RenderTransform>
+                        <RotateTransform Angle="-45" CenterX="20" CenterY="20" />
+                    </TextBlock.RenderTransform>
+                    </TextBlock>
                 </Grid>
-                </Grid>
+                
                 
                 
             </Grid>

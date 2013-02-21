@@ -276,6 +276,7 @@ namespace Sanet.Kniffel.ViewModels
 
         void p_MagicPressed(object sender, EventArgs e)
         {
+            _magic.GetViewModel<MagicRoomViewModel>().CurrentPlayer = (Player)sender;
             _magicPopup.IsOpen = true;
         }
         /// <summary>

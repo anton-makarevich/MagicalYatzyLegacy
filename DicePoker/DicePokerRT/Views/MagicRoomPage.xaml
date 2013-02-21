@@ -56,10 +56,7 @@
                    Text="{Binding Title}"
                            TextTrimming="WordEllipsis"
                   />
-                    <ad:AdControl 
-                    Grid.Column="1"
-                    AppId="30603" x:Name="adDuplexAd" Size="500x130" 
-                        Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"/>
+                    
                 </Grid>
                 <ScrollViewer
                     x:Name="mainScroll"
@@ -103,7 +100,7 @@
                                 TextWrapping="Wrap"
                             FontSize="20" Grid.ColumnSpan="2"
                             Foreground="{StaticResource SanetBlue}"
-                            Text="Магические артефакты могут повысить ваши шансы на хороошую комбинацию в магических правилах. Каждый вид артефактов можно использовать только один раз за игру. Всего в игре 3 вида артефактов:"/>
+                            Text="{Binding MagicArtifactsDescription}"/>
                             <Image
                                 Grid.Row="1" Margin="10"
                                 Source="ms-appx:///Assets/MagicWand.png" />
@@ -115,9 +112,9 @@
                             Foreground="{StaticResource SanetBlue}"
                             >
                                 <Run FontWeight="SemiBold"
-                                     Text="Магический бросок."/>
+                                     Text="{Binding MagicRollLabel}"/>
                                 <Run 
-                                     Text=" Позволяет в выбросить одну из незаполненных покерных комбинаций - от трех одинаковых до флэша в случайном порядке."/>
+                                     Text="{Binding MagicRollDescription}"/>
                             </TextBlock>
 
                         <Image
@@ -131,9 +128,9 @@
                             Foreground="{StaticResource SanetBlue}"
                             >
                                 <Run FontWeight="SemiBold"
-                                     Text="Ручная установка."/>
+                                     Text="{Binding ManualSetLabel}"/>
                                 <Run 
-                                     Text=" Позволяет изменить значение одной из выпавших костей по вашему желанию."/>
+                                     Text="{Binding ManualSetDescription}"/>
                         </TextBlock>
 
                         <Image
@@ -147,9 +144,9 @@
                             Foreground="{StaticResource SanetBlue}"
                             >
                                 <Run FontWeight="SemiBold"
-                                     Text="Повтор хода."/>
+                                     Text="{Binding ForthRollLabel}"/>
                                 <Run 
-                                     Text=" Позволяет переиграть текущий ход сначала (все три броска). Значения костей будут выпадать в том же порядке."/>
+                                     Text="{Binding RerollDescription}"/>
                         </TextBlock>
                     </Grid>
                                     
@@ -182,7 +179,7 @@
                                 TextWrapping="Wrap"
                             FontSize="20" Grid.ColumnSpan="2"
                             Foreground="{StaticResource SanetBlue}"
-                            Text="Магические артефакты - ценый ресурс, количество которого ограничено. Существует несколько способов пополнить запасы магии:"/>
+                            Text="{Binding HowToGetDescription}"/>
                         
                         <Grid
                             Width="80"
@@ -208,9 +205,9 @@
                             Foreground="{StaticResource SanetBlue}"
                             >
                                 <Run FontWeight="SemiBold"
-                                     Text="Начальный бонус"/>
+                                     Text="{Binding FirstTimeBonusLabel}"/>
                                 <Run 
-                                     Text=" Каждый новый игрок с уникальным именем пользователя и паролем получает артефакты в качестве бонуса. "/>
+                                     Text="{Binding FirstTimeBonusDescription}"/>
                         </TextBlock>
 
                         <Grid
@@ -237,9 +234,9 @@
                             Foreground="{StaticResource SanetBlue}"
                             >
                                 <Run FontWeight="SemiBold"
-                                     Text="Бонус за результат."/>
+                                     Text="{Binding ResultBonusLabel}"/>
                                 <Run 
-                                     Text=" Получите артифакты за хорошую игру по расширенным правлам. Чем лучше Вы играете, тем больше артефактов Вы получаете в подарок!"/>
+                                     Text="{Binding ResultBonusDescription}"/>
                         </TextBlock>
 
                         <Grid
@@ -267,9 +264,9 @@
                             Foreground="{StaticResource SanetBlue}"
                             >
                                 <Run FontWeight="SemiBold"
-                                     Text="Покупка. "/>
+                                     Text="{Binding PurchaseMiniLabel}"/>
                                 <Run 
-                                     Text=" Магические артефакты ожно преобрести в магазине. Доступно несколько предлажений по очень превлекательным ценам!"/>
+                                     Text="{Binding PurchaseMiniDescription}"/>
                         </TextBlock>
                     </Grid>
 
@@ -289,7 +286,7 @@
                                 TextWrapping="Wrap"
                             FontSize="20" Grid.ColumnSpan="2"
                             Foreground="{StaticResource SanetBlue}"
-                            Text="Вы можете пополнить запас магичечких артифактов, воспользовавшись одним из следующих предложений. Возпользоваться каждым предложением можно не чаще чем один раз в сутки."/>
+                            Text="{Binding PurchaseDescription}"/>
 
 
                     <ListView VerticalAlignment="Bottom"
@@ -298,6 +295,8 @@
                                     SelectionMode="None"
                                 ItemsSource="{Binding Offers}"
                                     ItemTemplate="{StaticResource OfferTemplate}"
+                              ItemClick="itemListView_ItemClick_1"
+                            IsItemClickEnabled="True"
                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                     >
