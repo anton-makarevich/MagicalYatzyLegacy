@@ -11,16 +11,16 @@ namespace Sanet.Kniffel.Models
     {
         static LicenseInformation licenseInformation= CurrentApp.LicenseInformation;
         //static bool _adfree=true;
-        static bool isProductAvailable(string product)
+        static public bool IsProductAvailable(string product)
         {
             //return true;//_adfree;
             return (licenseInformation.ProductLicenses[product].IsActive);
 
             
         }
-        static async Task BuyLicense(string product)
+        static public async Task BuyLicense(string product)
         {
-            if (!isProductAvailable(product))
+            if (!IsProductAvailable(product))
             {
                 
                 try
@@ -45,12 +45,12 @@ namespace Sanet.Kniffel.Models
 
         static public bool IsAdVisible()
         {
-            return !isProductAvailable("AdFree");
+            return !IsProductAvailable("AdFree");
         }
 
         static public bool IsStylesAvailable()
         {
-             return isProductAvailable("AdFree");
+             return IsProductAvailable("AdFree");
         }
 
         static async public Task RemoveAd()

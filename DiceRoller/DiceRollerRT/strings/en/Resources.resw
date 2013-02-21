@@ -528,4 +528,34 @@
   <data name="ArtifactsBonusMessage" xml:space="preserve">
     <value>{0}, Congratulations! You got Magical Artifacts bonus!</value>
   </data>
+  <data name="MagicRoomLabel" xml:space="preserve">
+    <value>Wizard's room</value>
+  </data>
+  <data name="ArtifactsForLabel" xml:space="preserve">
+    <value>artifacts for</value>
+  </data>
+  <data name="Cost1Label" xml:space="preserve">
+    <value>$1.49</value>
+  </data>
+  <data name="Cost2Label" xml:space="preserve">
+    <value>$1.99</value>
+  </data>
+  <data name="Cost3Label" xml:space="preserve">
+    <value>$2.49</value>
+  </data>
+  <data name="HowGetLabel" xml:space="preserve">
+    <value>How to get?</value>
+  </data>
+  <data name="Offer1Description" xml:space="preserve">
+    <value>Basic offer with price $0.016 for one artifact</value>
+  </data>
+  <data name="Offer2Description" xml:space="preserve">
+    <value>Better offer with price reduced to $0.013 for one artifact. Your discount is 20%!</value>
+  </data>
+  <data name="Offer3Description" xml:space="preserve">
+    <value>Excelent offer with only $0.008 for one artifact. It's 2 times cheaper!</value>
+  </data>
+  <data name="PurchaseLabel" xml:space="preserve">
+    <value>Magical offers</value>
+  </data>
 </root>

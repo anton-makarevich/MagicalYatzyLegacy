@@ -12,11 +12,7 @@
     Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates"
     mc:Ignorable="d">
 
-    <views:BasePage.Resources>
-        <common:BooleanToVisibilityConverter x:Key="VisibilityKey"/>
-        <common:ReverseBooleanToVisibilityConverter x:Key="ReversedVisibilityKey"/>
-    </views:BasePage.Resources>
-   
+    
     <!--<Viewbox
         StretchDirection="Both"
         Stretch="Fill">-->

@@ -361,8 +361,8 @@ namespace Sanet.Kniffel.DicePanel
         
         public bool RollDice(List<int> aResults )
         {
-            LogManager.Log(LogLevel.Message, "DicePanel.RollDice",
-                "Rolling...");
+            //LogManager.Log(LogLevel.Message, "DicePanel.RollDice",
+            //    "Rolling...");
 
             if (ManualSetMode)
                 ManualSetMode = false;

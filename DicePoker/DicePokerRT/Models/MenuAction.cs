@@ -23,7 +23,7 @@ namespace Sanet.Kniffel.Models
         /// Action Id - string suitable to be a key for resource file
         /// </summary>
         private string _Label;
-        public string Label
+        virtual public string Label
         {
             get { return _Label; }
             set

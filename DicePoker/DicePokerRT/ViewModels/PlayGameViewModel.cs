@@ -692,6 +692,7 @@ namespace Sanet.Kniffel.ViewModels
         {
             SelectedPlayer.Roll = 1;
             SelectedPlayer.OnForthRollUsed();
+            Game.RerollMode = true;
             RollResults = null;
             SetCanRoll(true);
             NotifyPlayerChanged();

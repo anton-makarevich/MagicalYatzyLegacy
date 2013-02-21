@@ -1,4 +1,5 @@
 ﻿
+using DicePokerRT;
 using DicePokerRT.KniffelLeaderBoardService;
 using Sanet.Kniffel.Models;
 using Sanet.Models;
@@ -9,16 +10,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.System.UserProfile;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace Sanet.Kniffel.ViewModels
 {
     public class NewGameViewModel : AdBasedViewModel
     {
+        Popup _magicPopup = new Popup();
+        MagicRoomPage _magic = new MagicRoomPage();
+
         #region Constructor
         public NewGameViewModel()
         {
             CreateCommands();
             fillPlayers();
+
+            _magicPopup.Child = _magic;
+            _magic.Tag = _magicPopup;
             //fillRules();
         }
         #endregion
@@ -230,16 +238,17 @@ namespace Sanet.Kniffel.ViewModels
         {
             Players = new ObservableCollection<Player>();
             //trying toload previous players from roaming
-            for (int i = 0; i < 4; i++)
+            /*for (int i = 0; i < 4; i++)
             {
                 var p=RoamingSettings.GetLastPlayer(i);
                 if (p == null)
                     break;
                 p.DeletePressed += p_DeletePressed;
+                p.MagicPressed += p_MagicPressed;
                 p.ArtifactsSyncRequest+=ArtifactsSyncRequest;
                 p.RefreshArtifactsInfo();
                 Players.Add(p);
-            }
+            }*/
             //if no players loaded - add one default
             if (!HasPlayers && CanAddPlayer )
             {
@@ -256,10 +265,18 @@ namespace Sanet.Kniffel.ViewModels
                         Type = PlayerType.Local
                     };
                 p.DeletePressed += p_DeletePressed;
+                p.MagicPressed += p_MagicPressed;
+                p.ArtifactsSyncRequest += ArtifactsSyncRequest;
+                p.RefreshArtifactsInfo();
                 Players.Add(p);
             }
             NotifyPlayersChanged();
             
+        }
+
+        void p_MagicPressed(object sender, EventArgs e)
+        {
+            _magicPopup.IsOpen = true;
         }
         /// <summary>
         /// fills players list
@@ -294,6 +311,7 @@ namespace Sanet.Kniffel.ViewModels
                 //get username from system
                 var p=new Player();
                 p.DeletePressed += p_DeletePressed;
+                p.MagicPressed += p_MagicPressed;
                 p.ArtifactsSyncRequest += ArtifactsSyncRequest;
                 Players.Add(p);
                 NotifyPlayersChanged();

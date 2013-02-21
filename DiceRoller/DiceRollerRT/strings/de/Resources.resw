@@ -600,4 +600,25 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
   <data name="ArtifactsBonusMessage" xml:space="preserve">
     <value>{0}, Поздравляем! Вы получили бонусные магические артифакты!</value>
   </data>
+  <data name="MagicRoomLabel" xml:space="preserve">
+    <value>Комната волшебника</value>
+  </data>
+  <data name="ArtifactsForLabel" xml:space="preserve">
+    <value>артефактов за</value>
+  </data>
+  <data name="Cost1Label" xml:space="preserve">
+    <value>€1.19</value>
+  </data>
+  <data name="Cost2Label" xml:space="preserve">
+    <value>€1.59</value>
+  </data>
+  <data name="Cost3Label" xml:space="preserve">
+    <value>€1.99</value>
+  </data>
+  <data name="HowGetLabel" xml:space="preserve">
+    <value>Как получить?</value>
+  </data>
+  <data name="PurchaseLabel" xml:space="preserve">
+    <value>Купить</value>
+  </data>
 </root>

@@ -520,7 +520,7 @@
     <value>Лучший за cегодня</value>
   </data>
   <data name="ArtifactsLabel" xml:space="preserve">
-    <value>Артифакты</value>
+    <value>Магические артефакты</value>
   </data>
   <data name="ArtifactsBonusMessage" xml:space="preserve">
     <value>{0}, Поздравляем! Вы получили бонусные магические артефакты!</value>
@@ -530,5 +530,35 @@
   </data>
   <data name="ArtifactsWrongMessage" xml:space="preserve">
     <value>неправильное имя или пароль</value>
+  </data>
+  <data name="MagicRoomLabel" xml:space="preserve">
+    <value>Комната волшебника</value>
+  </data>
+  <data name="ArtifactsForLabel" xml:space="preserve">
+    <value>артефактов за</value>
+  </data>
+  <data name="Cost1Label" xml:space="preserve">
+    <value>45 p.</value>
+  </data>
+  <data name="Cost2Label" xml:space="preserve">
+    <value>60 p.</value>
+  </data>
+  <data name="Cost3Label" xml:space="preserve">
+    <value>75 p.</value>
+  </data>
+  <data name="HowGetLabel" xml:space="preserve">
+    <value>Как получить?</value>
+  </data>
+  <data name="Offer1Description" xml:space="preserve">
+    <value>Базавое предложение с ценой 0,5 р. за артефакт.</value>
+  </data>
+  <data name="Offer2Description" xml:space="preserve">
+    <value>Выгодное предложение с ценой 0,4 р. за артефакт. Ваша скидка составляет 20%!</value>
+  </data>
+  <data name="Offer3Description" xml:space="preserve">
+    <value>Удивительное предложение с ценой 0,25 р. за артефакт. Покупайте в 2 раза дешевле!</value>
+  </data>
+  <data name="PurchaseLabel" xml:space="preserve">
+    <value>Волшебные предложения</value>
   </data>
 </root>

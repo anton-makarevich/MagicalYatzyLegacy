@@ -14,6 +14,7 @@ namespace Sanet.Kniffel.Models
 
         int[] lastRollResults = new int[5];
         List<int> fixedRollResults = new List<int>();
+        Queue<int> thisTurnValues = new Queue<int>();
 
         /// <summary>
         /// actual dices here :)
@@ -129,6 +130,22 @@ namespace Sanet.Kniffel.Models
         public Player CurrentPlayer { get; set; }
 
         
+        private bool _RerollMode;
+        public bool RerollMode
+        {
+            get { return _RerollMode; }
+            set
+            {
+                _RerollMode = value;
+                if (!value)
+                    thisTurnValues = new Queue<int>();
+                else
+                    fixedRollResults = new List<int>();
+                LogManager.Log(LogLevel.Message, "Game.RerollMode", "RerollMode set to {0}", value);
+            }
+        }
+
+        
 #endregion
 
 #region Methods
@@ -172,6 +189,8 @@ namespace Sanet.Kniffel.Models
                 }
                 else
                 {
+                    if (Rules.Rule == Models.Rules.krMagic)
+                        RerollMode=false;
                     Move++;
                     DoMove();
                 }
@@ -258,6 +277,14 @@ namespace Sanet.Kniffel.Models
                     int ii = rand.Next(1, 7);//В цикл для нормальной игры, за циклом - только книффеля))
 
                     lastRollResults[i] = ii;
+                    if (Rules.Rule == Models.Rules.krMagic)
+                    {
+                        if (!RerollMode)
+                            thisTurnValues.Enqueue(ii);
+                        else if (thisTurnValues.Count>0)
+                            lastRollResults[i]=thisTurnValues.Dequeue();
+                        
+                    }
                 }
                 //if (Move>6)
                 //   lastRollResults = new int[] { 3, 3, 3, 3, 3 };//for debugging
@@ -315,6 +342,8 @@ namespace Sanet.Kniffel.Models
                     if (MagicRollUsed != null)
                         MagicRollUsed(this, new PlayerEventArgs(CurrentPlayer));
                     //CurrentPlayer.OnMagicRollUsed();
+                    foreach (int result in lastRollResults)
+                        thisTurnValues.Enqueue(result);
                     //roll report
                     if (DiceRolled != null)
                         DiceRolled(this, new RollEventArgs(CurrentPlayer, lastRollResults));

@@ -24,6 +24,10 @@ namespace Sanet.Kniffel.Models
         /// Call this to ask server about artifacts...
         /// </summary>
         public event EventHandler ArtifactsSyncRequest;
+        /// <summary>
+        /// call this to open 'magic room popup' for this player 
+        /// </summary>
+        public event EventHandler MagicPressed;
         #endregion
 
         #region Prperties
@@ -776,9 +780,14 @@ namespace Sanet.Kniffel.Models
             
             
         }
-        #endregion
 
-        public void OnMagicRollUsed()
+        private void OnMagicPressed()
+        {
+            if (MagicPressed != null)
+                MagicPressed(this, null);
+        }
+
+    public void OnMagicRollUsed()
         {
             IsMagicRollAvailable = false;
         }
@@ -790,13 +799,18 @@ namespace Sanet.Kniffel.Models
         {
             IsForthRollAvailable = false;
         }
+        #endregion
+
+        
 
         #region Commands
         public RelayCommand DeleteCommand { get; set; }
+        public RelayCommand MagicCommand { get; set; }
 
         protected void CreateCommands()
         {
             DeleteCommand = new RelayCommand(o => Delete(), () => true);
+            MagicCommand = new RelayCommand(o => OnMagicPressed(), () => true);
         }
 
 

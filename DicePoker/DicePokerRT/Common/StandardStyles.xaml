@@ -33,8 +33,9 @@
 
     <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
     <common:BooleanToColorConverter x:Key="ColorKey"/>
-    <common:BooleanToVisibilityConverter x:Key="BooleanKey"/>
-    <common:ReverseBooleanToVisibilityConverter x:Key="NotBooleanKey"/>
+    <common:ReverseBooleanToVisibilityConverter x:Key="ReversedVisibilityKey"/>
+    <common:BooleanToVisibilityConverter x:Key="VisibilityKey"/>
+    
     <!-- RichTextBlock styles -->
 
     <Style x:Key="BasicRichTextStyle" TargetType="RichTextBlock">
@@ -93,6 +94,12 @@
                 <TranslateTransform X="-1" Y="4"/>
             </Setter.Value>
         </Setter>
+    </Style>
+    
+    <Style x:Key="BlueCommonTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BasicTextStyle}">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="{StaticResource SanetBlue}"/>
     </Style>
 
     <Style x:Key="HeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BaselineTextStyle}">
@@ -1754,6 +1761,66 @@
     </Style>
 
     <!-- Item templates -->
+    <!--Datatemplate for magical offers-->
+    <DataTemplate x:Key="OfferTemplate">
+        <Grid Height="120" Margin="10" HorizontalAlignment="Stretch"
+                          >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid
+                            Width="80"
+                            Height="80"
+                                
+                                Background="{StaticResource SanetBlue}">
+                <TextBlock Text="{Binding Amount}"
+                                       FontSize="35"
+                           Margin="10"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"/>
+                <TextBlock Text="{Binding Cost}"
+                                       
+                           Margin="2"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Bottom"
+                                       Foreground="White"/>
+                
+                <Grid
+                    Background="Azure"
+                    Height="40"
+                    Width="40">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid
+                    Height="20" Width="80"
+                    Background="Yellow">
+                    <Grid.RenderTransform>
+                        <RotateTransform Angle="-45" CenterX="40" CenterY="20" />
+                    </Grid.RenderTransform>
+                    <TextBlock Text="{Binding Discount}"
+                                       FontSize="16" Foreground="Red"/>
+                </Grid>
+                </Grid>
+                
+                
+            </Grid>
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="{Binding Label}" Foreground="{StaticResource SanetBlue}" 
+                                 FontSize="35" Height="50" Margin="10,5,10,0" />
+                <TextBlock Text="{Binding LocalizedDescription}"
+                                 FontSize="18"  Margin="10,5"  Style="{StaticResource BlueCommonTextStyle}"/>
+            </StackPanel>
+
+        </Grid>
+    </DataTemplate>
+
     <!--Datatemplate for main menu item-->
     <DataTemplate x:Key="MainMenuTemplate">
         <Grid Height="95" Margin="10" HorizontalAlignment="Stretch"
@@ -1799,7 +1866,7 @@
                                     Margin="5,0">
                 <Grid Height="100"
                     Width="100"
-                      Visibility="{Binding IsFace,ElementName=RulePanel,Converter={StaticResource NotBooleanKey}}"
+                      Visibility="{Binding IsFace,ElementName=RulePanel,Converter={StaticResource ReversedVisibilityKey}}"
                   Background="{StaticResource SanetBlue}"
                   >
                     <TextBlock Text="{Binding BestWeekScoreLabel}"
@@ -1824,7 +1891,7 @@
 
                 <Grid Height="100"
                     Width="100"
-                      Visibility="{Binding IsFace,ElementName=RulePanel,Converter={StaticResource BooleanKey}}"
+                      Visibility="{Binding IsFace,ElementName=RulePanel,Converter={StaticResource VisibilityKey}}"
                   Background="{StaticResource SanetBlue}"
                   >
                     <TextBlock Text="{Binding BestDayScoreLabel}"
@@ -1951,14 +2018,14 @@
                                VerticalAlignment="Center"
                      HorizontalAlignment="Left" 
                      FontSize="16"
-                           Visibility="{Binding HasValue,Converter={StaticResource BooleanKey}}"/>
+                           Visibility="{Binding HasValue,Converter={StaticResource VisibilityKey}}"/>
                     <TextBlock Text="+100" TextAlignment="Center"
                            Width="45" 
                      HorizontalAlignment="Right" 
                                VerticalAlignment="Bottom"
                                Margin="0,0,0,-3"
                      FontSize="10"
-                           Visibility="{Binding HasBonus,Converter={StaticResource BooleanKey}}"/>
+                           Visibility="{Binding HasBonus,Converter={StaticResource VisibilityKey}}"/>
                 </Grid>
                     
             </Grid> 
@@ -2040,13 +2107,13 @@
                 x:Name="NamePanel" Width="100" Height="100" Background="Blue"
                                     Margin="5,0">
                 <Grid Background="{StaticResource SanetBlue}" 
-                      Visibility="{Binding IsFace,ElementName=NamePanel,Converter={StaticResource BooleanKey}}">
+                      Visibility="{Binding IsFace,ElementName=NamePanel,Converter={StaticResource VisibilityKey}}">
                             <TextBlock VerticalAlignment="Bottom"
                                        Margin="2" TextWrapping="Wrap"
                                        Text="{Binding Text,ElementName=nameText}"/>
                   </Grid>
 
-                <Grid Visibility="{Binding IsFace,ElementName=NamePanel,Converter={StaticResource NotBooleanKey}}"
+                <Grid Visibility="{Binding IsFace,ElementName=NamePanel,Converter={StaticResource ReversedVisibilityKey}}"
                     Background="{StaticResource SanetBlue}">
                             <TextBox x:Name="nameText" Margin="2" Text="{Binding Name, Mode=TwoWay}"
                      Height="30"/>
@@ -2057,7 +2124,7 @@
                x:Name="TypePanel" Width="100" Height="100" Background="Blue" Tag="Type"
                                     Grid.Column="1" IsFace="{Binding IsHuman, Mode=TwoWay}" Margin="5,0" ><!---->
                  <Grid Background="{StaticResource SanetBlue}" 
-                      Visibility="{Binding IsFace,ElementName=TypePanel,Converter={StaticResource BooleanKey}}" >
+                      Visibility="{Binding IsFace,ElementName=TypePanel,Converter={StaticResource VisibilityKey}}" >
                             <Image Source="ms-appx:///Assets/User.png"
                                    />
                            <TextBlock VerticalAlignment="Bottom"
@@ -2065,7 +2132,7 @@
                                        Text="{Binding PlayerHumanLabelLocalized}"/>
                         </Grid>
                     
-                <Grid Visibility="{Binding IsFace,ElementName=TypePanel,Converter={StaticResource NotBooleanKey}}"
+                <Grid Visibility="{Binding IsFace,ElementName=TypePanel,Converter={StaticResource ReversedVisibilityKey}}"
                             Background="{StaticResource SanetBlue}">
                              <Image Source="ms-appx:///Assets/Desktop.png"
                                     />
@@ -2079,15 +2146,15 @@
             <Controls:RotatingPanel
                 x:Name="PassPanel" Width="100" Height="100" Background="Blue"
                 IsFace="{Binding IsPasswordReady, Mode=TwoWay}"
-                                    Margin="5,0" Grid.Column="2" Visibility="{Binding IsHuman,Converter={StaticResource BooleanKey}}">
+                                    Margin="5,0" Grid.Column="2" Visibility="{Binding IsHuman,Converter={StaticResource VisibilityKey}}">
                 <Grid Background="{StaticResource SanetBlue}"
-                      Visibility="{Binding IsFace,ElementName=PassPanel,Converter={StaticResource BooleanKey}}">
+                      Visibility="{Binding IsFace,ElementName=PassPanel,Converter={StaticResource VisibilityKey}}">
                             <TextBlock VerticalAlignment="Bottom"
                                        Margin="2"
                                        Text="{Binding PlayerPasswordLabelLocalized}"/>
                             
                         </Grid>
-                      <Grid Visibility="{Binding IsFace,ElementName=PassPanel,Converter={StaticResource NotBooleanKey}}"
+                      <Grid Visibility="{Binding IsFace,ElementName=PassPanel,Converter={StaticResource ReversedVisibilityKey}}"
                             Background="{StaticResource SanetBlue}">
                           <StackPanel VerticalAlignment="Center">
                               <PasswordBox x:Name="passText" Margin="2" Password="{Binding Password, Mode=TwoWay}"
@@ -2102,21 +2169,29 @@
                                
             </Controls:RotatingPanel>
             
-             <Grid
-                 Margin="5,0"
+            <Button
+            Margin="5,0"
                  Height="100"
                  Width="100"
                 Grid.Column="3"
-                Background="{StaticResource SanetBlue}"
-                Visibility="{Binding IsHuman,Converter={StaticResource BooleanKey}}">
+                 Tapped="Magic_Tap"
+                 Visibility="{Binding IsHuman,Converter={StaticResource VisibilityKey}}"
+            Style="{StaticResource ImageButtonStyle}"
+                HorizontalContentAlignment="Center"
+                VerticalAlignment="Center"
+                Command="{Binding MagicCommand}">
+                     <Grid
+                         Height="100"
+                 Width="100"
+                         Background="{StaticResource SanetBlue}">
                  <TextBlock Text="{Binding ArtifactsInfoMessage}"
                            VerticalAlignment="Top" Margin="2"
                            Foreground="White" TextWrapping="Wrap"
-                            Visibility="{Binding HasArtifacts,Converter={StaticResource NotBooleanKey}}"
+                            Visibility="{Binding HasArtifacts,Converter={StaticResource ReversedVisibilityKey}}"
                            />
                  <Grid
                      VerticalAlignment="Top" Margin="2"
-                           Visibility="{Binding HasArtifacts,Converter={StaticResource BooleanKey}}">
+                           Visibility="{Binding HasArtifacts,Converter={StaticResource VisibilityKey}}">
                      <Grid.ColumnDefinitions>
                          <ColumnDefinition/>
                          <ColumnDefinition/>
@@ -2169,6 +2244,8 @@
                            Foreground="White" TextWrapping="Wrap"
                            />
             </Grid>
+            
+            </Button>
             
             <Button  HorizontalAlignment="Left" 
                      VerticalAlignment="Bottom"
@@ -2271,11 +2348,12 @@
             <TextBlock Grid.Column="1"
                            Text="{Binding LocalizedLabel}" Foreground="{StaticResource SanetBlue}" 
                            HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
                            Margin="5,0,0,0"
                            TextAlignment="Left"
-                           TextWrapping="NoWrap"
+                           TextWrapping="Wrap"
                            TextTrimming="WordEllipsis"
-                           FontSize="20" Height="25" />
+                           FontSize="20" MaxHeight="65" />
                         
         </Grid>
     </DataTemplate>
@@ -2325,7 +2403,50 @@
         </Grid>
     </DataTemplate>
 
-    <!-- Grid-appropriate 500 by 130 pixel item template as seen in the GroupDetailPage -->
+
+    <!--Image Button with simple pressed state -->
+    <Style x:Key="ImageButtonStyle" TargetType="Button">
+        <Setter Property="Height" Value="78"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <PointerDownThemeAnimation TargetName="Border"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                </VisualState>
+                                <VisualState x:Name="Unfocused" />
+                                <VisualState x:Name="PointerFocused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="Border">
+                            <ContentPresenter x:Name="ContentPresenter"
+                                    Content="{TemplateBinding Content}"
+                                    ContentTransitions="{TemplateBinding ContentTransitions}"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+                <!-- Grid-appropriate 500 by 130 pixel item template as seen in the GroupDetailPage -->
     <DataTemplate x:Key="Standard500x130ItemTemplate">
         <Grid Height="110" Width="480" Margin="10">
             <Grid.ColumnDefinitions>
