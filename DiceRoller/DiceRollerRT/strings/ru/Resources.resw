@@ -520,7 +520,7 @@
     <value>Лучший за cегодня</value>
   </data>
   <data name="ArtifactsLabel" xml:space="preserve">
-    <value>Магические артефакты</value>
+    <value>Артефакты</value>
   </data>
   <data name="ArtifactsBonusMessage" xml:space="preserve">
     <value>{0}, Поздравляем! Вы получили бонусные магические артефакты!</value>
@@ -553,7 +553,7 @@
     <value> Каждый новый игрок с уникальным именем пользователя и паролем получает артефакты в качестве бонуса.</value>
   </data>
   <data name="FirstTimeBonusLabel" xml:space="preserve">
-    <value>Начальный бонус.</value>
+    <value>Начальный бонус</value>
   </data>
   <data name="HowGetLabel" xml:space="preserve">
     <value>Как получить?</value>
@@ -571,7 +571,7 @@
     <value> Позволяет изменить значение одной из выпавших костей по вашему желанию.</value>
   </data>
   <data name="Offer1Description" xml:space="preserve">
-    <value>Базавое предложение с ценой 0,5 р. за артефакт.</value>
+    <value>Базовое предложение с ценой 0,5 р. за артефакт.</value>
   </data>
   <data name="Offer2Description" xml:space="preserve">
     <value>Выгодное предложение с ценой 0,4 р. за артефакт. Ваша скидка составляет 20%!</value>
@@ -580,7 +580,7 @@
     <value>Удивительное предложение с ценой 0,25 р. за артефакт. Покупайте в 2 раза дешевле!</value>
   </data>
   <data name="PurchaseDescription" xml:space="preserve">
-    <value>Вы можете пополнить запас магичечких артефактов, воспользовавшись одним из следующих предложений. Возпользоваться каждым предложением можно не чаще чем один раз в сутки.</value>
+    <value>Вы можете пополнить запас магических артефактов, воспользовавшись одним из следующих предложений. Воспользоваться каждым предложением можно не чаще, чем один раз в сутки.</value>
   </data>
   <data name="PurchaseErrorMessage" xml:space="preserve">
     <value>Просим прощения. Что-то случилось при отправке информации на сервер. Свяжитесь со службой поддержки.</value>
@@ -589,7 +589,7 @@
     <value>Волшебные предложения</value>
   </data>
   <data name="PurchaseMiniDescription" xml:space="preserve">
-    <value>Магические артефакты можно преобрести в магазине. Доступно несколько предлажений по очень превлекательным ценам!</value>
+    <value>Магические артефакты можно приобрести в магазине. Доступно несколько предлажений по очень превлекательным ценам!</value>
   </data>
   <data name="PurchaseMiniLabel" xml:space="preserve">
     <value>Покупка.</value>
@@ -598,9 +598,24 @@
     <value> Позволяет переиграть текущий ход сначала (все три броска). Значения костей будут выпадать в том же порядке.</value>
   </data>
   <data name="ResultBonusDescription" xml:space="preserve">
-    <value> Получите артифакты за хорошую игру по расширенным правлам. Чем лучше Вы играете, тем больше артефактов Вы получаете в подарок!</value>
+    <value> Получите артефакты за хорошую игру по расширенным правилам. Чем лучше Вы играете, тем больше артефактов Вы получаете в подарок!</value>
   </data>
   <data name="ResultBonusLabel" xml:space="preserve">
-    <value>Бонус за результат.</value>
+    <value>Бонус за результат</value>
+  </data>
+  <data name="ChangeNameLabel" xml:space="preserve">
+    <value>измените имя</value>
+  </data>
+  <data name="ChangePasswordLabel" xml:space="preserve">
+    <value>введите пароль</value>
+  </data>
+  <data name="CheckingLabel" xml:space="preserve">
+    <value>проверяем...</value>
+  </data>
+  <data name="NoInternetLabel" xml:space="preserve">
+    <value>нет интернета</value>
+  </data>
+  <data name="WrongNamePassLabel" xml:space="preserve">
+    <value>неправильное имя или пароль</value>
   </data>
 </root>

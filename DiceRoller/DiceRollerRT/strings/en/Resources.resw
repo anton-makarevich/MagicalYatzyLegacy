@@ -508,13 +508,10 @@
     <value>Manual Set</value>
   </data>
   <data name="ForthRollLabel" xml:space="preserve">
-    <value>Reset Roll</value>
+    <value>Reset round</value>
   </data>
   <data name="SelectNewDiceValueMessage" xml:space="preserve">
     <value>Select the new dice value</value>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
   <data name="SelectDiceToChangeMessage" xml:space="preserve">
     <value>Select dice you want to change</value>
@@ -526,7 +523,7 @@
     <value>Artifacts</value>
   </data>
   <data name="ArtifactsBonusMessage" xml:space="preserve">
-    <value>{0}, Congratulations! You got Magical Artifacts bonus!</value>
+    <value>{0}, Congratulations! You got {1} Magical Artifacts as a bonus!</value>
   </data>
   <data name="MagicRoomLabel" xml:space="preserve">
     <value>Wizard's room</value>
@@ -544,28 +541,33 @@
     <value>$2.49</value>
   </data>
   <data name="ErrorLabel" xml:space="preserve">
-    <value>Ошибка</value>
+    <value>Error!</value>
   </data>
   <data name="FirstTimeBonusDescription" xml:space="preserve">
-    <value> Каждый новый игрок с уникальным именем пользователя и паролем получает артефакты в качестве бонуса.</value>
+    <value> Each new player with unique name and password gets artifacts as a bonus.</value>
+    <comment>Each new player with unique name and password gets artifacts as a bonus.</comment>
   </data>
   <data name="FirstTimeBonusLabel" xml:space="preserve">
-    <value>Начальный бонус.</value>
+    <value>First Game Bonus</value>
   </data>
   <data name="HowGetLabel" xml:space="preserve">
     <value>How to get?</value>
   </data>
   <data name="HowToGetDescription" xml:space="preserve">
-    <value>Магические артефакты - ценый ресурс, количество которого ограничено. Существует несколько способов пополнить запасы магии:</value>
+    <value>Magical artifacts - are valueable resources and they are limited. There are several ways to get more magic:</value>
+    <comment>Magical artifacts - are valueable resources and they are limited. There are several ways to get more magic:</comment>
   </data>
   <data name="MagicArtifactsDescription" xml:space="preserve">
-    <value>Магические артефакты могут повысить ваши шансы на хороошую комбинацию в магических правилах. Каждый вид артефактов можно использовать только один раз за игру. Всего в игре 3 вида артефактов:</value>
+    <value>Magical artifacts raise your chances to get better hand in Magical rules. Each type of artifacts can be used only once per game. There are 3 types of artifacts:</value>
+    <comment>Magical artifacts raise your chances to get better hand in Magical rules. Each type of artifacts can be used only once per game. There are 3 types of artifacts:</comment>
   </data>
   <data name="MagicRollDescription" xml:space="preserve">
-    <value> Позволяет в выбросить одну из незаполненных покерных комбинаций - от трех одинаковых до флэша в случайном порядке.</value>
+    <value>Allows you to get one of the unfilled poker hands (from '3 of a kind' to 'Flush') in random order.</value>
+    <comment> Allows you to get one of the unfilled poker hands (from '3 of a kind' to 'Flush' in random order.</comment>
   </data>
   <data name="ManualSetDescription" xml:space="preserve">
-    <value> Позволяет изменить значение одной из выпавших костей по вашему желанию.</value>
+    <value>Alows you to change the value of one dice by your choice.</value>
+    <comment>Alows you to change the value of one dice by your choice.</comment>
   </data>
   <data name="Offer1Description" xml:space="preserve">
     <value>Basic offer with price $0.016 for one artifact</value>
@@ -577,27 +579,52 @@
     <value>Excelent offer with only $0.008 for one artifact. It's 2 times cheaper!</value>
   </data>
   <data name="PurchaseDescription" xml:space="preserve">
-    <value>Вы можете пополнить запас магичечких артефактов, воспользовавшись одним из следующих предложений. Возпользоваться каждым предложением можно не чаще чем один раз в сутки.</value>
+    <value>Buy more artifacts using one of the following offers. Each offer can be used only once a day.</value>
+    <comment>You buy more artifacts using one of the following offers. Each offer can be used only once a day.</comment>
   </data>
   <data name="PurchaseErrorMessage" xml:space="preserve">
-    <value>Просим прощения. Что-то случилось при отправке информации на сервер. Свяжитесь со службой поддержки.</value>
+    <value>Sorry! Something bad happened. Please contact support service.</value>
+    <comment>Sorry! Something bad happened. Please contact support service.</comment>
   </data>
   <data name="PurchaseLabel" xml:space="preserve">
     <value>Magical offers</value>
   </data>
   <data name="PurchaseMiniDescription" xml:space="preserve">
-    <value>Магические артефакты можно преобрести в магазине. Доступно несколько предлажений по очень превлекательным ценам!</value>
+    <value>You can buy magical artifacts in the store. There are several offers with very good prices!</value>
+    <comment>You can buy magical artifacts in the store. There are several offers with very good prices!</comment>
   </data>
   <data name="PurchaseMiniLabel" xml:space="preserve">
-    <value>Покупка.</value>
+    <value>Purchase</value>
+    <comment>Purchase</comment>
   </data>
   <data name="RerollDescription" xml:space="preserve">
-    <value> Позволяет переиграть текущий ход сначала (все три броска). Значения костей будут выпадать в том же порядке.</value>
+    <value> Allows you to replay current round (all 3 rolls). The order of  dice values will be the same.</value>
+    <comment>Allows you to replay current round (all 3 rolls). The order of  dice values will be the same.</comment>
   </data>
   <data name="ResultBonusDescription" xml:space="preserve">
-    <value> Получите артифакты за хорошую игру по расширенным правлам. Чем лучше Вы играете, тем больше артефактов Вы получаете в подарок!</value>
+    <value> Get more artifacts for good results playing in 'Advanced' rules. The better you play - the more artifacts you get!</value>
+    <comment>Get more artifacts for good results playing in 'Advanced' rules. The better you play - the more artifacts you get!</comment>
   </data>
   <data name="ResultBonusLabel" xml:space="preserve">
-    <value>Бонус за результат.</value>
+    <value>Bonus for good results</value>
+    <comment>Bonus for good results</comment>
+  </data>
+  <data name="ArtifactsWinBuyMessage" xml:space="preserve">
+    <value>win or buy</value>
+  </data>
+  <data name="ChangeNameLabel" xml:space="preserve">
+    <value>change name</value>
+  </data>
+  <data name="ChangePasswordLabel" xml:space="preserve">
+    <value>enter password</value>
+  </data>
+  <data name="CheckingLabel" xml:space="preserve">
+    <value>checking...</value>
+  </data>
+  <data name="NoInternetLabel" xml:space="preserve">
+    <value>no connection</value>
+  </data>
+  <data name="WrongNamePassLabel" xml:space="preserve">
+    <value>wrong name or password</value>
   </data>
 </root>

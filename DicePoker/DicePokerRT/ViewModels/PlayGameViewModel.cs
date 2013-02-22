@@ -559,7 +559,7 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// 
         /// </summary>
-        public /*async*/ void SaveResults()
+        public async void SaveResults()
         {
             try
             {
@@ -602,13 +602,35 @@ namespace Sanet.Kniffel.ViewModels
                         if (rollsused!=0)
                             RoamingSettings.SetMagicRollsCount(p,RoamingSettings.GetMagicRollsCount(p)+rollsused);
                         if (rollsused != 0)
-                            RoamingSettings.SetManualSetsCount(p, RoamingSettings.GetManualSetsCount(p) + rollsused);
+                            RoamingSettings.SetManualSetsCount(p, RoamingSettings.GetManualSetsCount(p) + manualsused);
                         if (rollsused != 0)
-                            RoamingSettings.SetForthRollsCount(p, RoamingSettings.GetForthRollsCount(p) + rollsused);
+                            RoamingSettings.SetForthRollsCount(p, RoamingSettings.GetForthRollsCount(p) + resetsused);
                         
                         if (ks == null)
                             ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
                         ks.AddPlayersMagicsAsync(p.Name,p.Password.Encrypt(33),rollsused.ToString().Encrypt(33),manualsused.ToString().Encrypt(33),resetsused.ToString().Encrypt(33));
+                    }//add bonus
+                    else if (Game.Rules.Rule == Rules.krExtended)
+                    {
+                        int addartifacts =0;
+
+                        if (p.Total > 600)
+                            addartifacts = 100;
+                        else if (p.Total > 500)
+                            addartifacts = 30;
+                        else if (p.Total > 400)
+                                addartifacts = 10;
+                        if (addartifacts>0)
+                        {
+                            RoamingSettings.SetMagicRollsCount(p, RoamingSettings.GetMagicRollsCount(p) + addartifacts);
+                            RoamingSettings.SetManualSetsCount(p, RoamingSettings.GetManualSetsCount(p) + addartifacts);
+                            RoamingSettings.SetForthRollsCount(p, RoamingSettings.GetForthRollsCount(p) + addartifacts);
+                            if (ks == null)
+                                ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+                            var res = await ks.AddPlayersMagicsAsync(p.Name, p.Password.Encrypt(33), addartifacts.ToString().Encrypt(33), addartifacts.ToString().Encrypt(33), addartifacts.ToString().Encrypt(33));
+                            if (res.Body.AddPlayersMagicsResult)
+                                Utilities.ShowToastNotification(string.Format(Messages.PLAYER_ARTIFACTS_BONUS.Localize(), p.Name,addartifacts));
+                        }
                     }
 
                     //score saving to leaderboard

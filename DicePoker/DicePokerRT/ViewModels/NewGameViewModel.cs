@@ -238,7 +238,7 @@ namespace Sanet.Kniffel.ViewModels
         {
             Players = new ObservableCollection<Player>();
             //trying toload previous players from roaming
-            /*for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 var p=RoamingSettings.GetLastPlayer(i);
                 if (p == null)
@@ -248,7 +248,7 @@ namespace Sanet.Kniffel.ViewModels
                 p.ArtifactsSyncRequest+=ArtifactsSyncRequest;
                 p.RefreshArtifactsInfo();
                 Players.Add(p);
-            }*/
+            }
             //if no players loaded - add one default
             if (!HasPlayers && CanAddPlayer )
             {
@@ -336,7 +336,7 @@ namespace Sanet.Kniffel.ViewModels
             var result=await client.GetPlayersMagicsAsync(player.Name, player.Password.Encrypt(33), rolls,  manuals,  resets);
             player.HadStartupMagic = result.Body.GetPlayersMagicsResult;
             if (RoamingSettings.GetMagicRollsCount(player) == 0 && result.Body.rolls == 10)
-                Utilities.ShowToastNotification(string.Format(Messages.PLAYER_ARTIFACTS_BONUS.Localize(), player.Name));
+                Utilities.ShowToastNotification(string.Format(Messages.PLAYER_ARTIFACTS_BONUS.Localize(), player.Name,10));
             RoamingSettings.SetMagicRollsCount(player, result.Body.rolls);
             RoamingSettings.SetManualSetsCount(player, result.Body.manuals);
             RoamingSettings.SetForthRollsCount(player, result.Body.resets);

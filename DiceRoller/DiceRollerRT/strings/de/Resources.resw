@@ -255,6 +255,7 @@
   </data>
   <data name="NewLocalGameAction" xml:space="preserve">
     <value>Neues Spiel </value>
+    <comment>Neues Spiel</comment>
   </data>
   <data name="NewOnlineGameAction" xml:space="preserve">
     <value>Online Spiel</value>
@@ -445,8 +446,8 @@
     <comment>alle Würfel öffnen, Werbung loswerden</comment>
   </data>
   <data name="ReviewAppAction" xml:space="preserve">
-    <value>die App in Windows store bewerten</value>
-    <comment>die App in Windows store bewerten</comment>
+    <value>die App in Windows Store bewerten</value>
+    <comment>die App in Windows Store bewerten</comment>
   </data>
   <data name="SendFeedbackAction" xml:space="preserve">
     <value>Die App Bewertung senden</value>
@@ -507,8 +508,8 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <comment>Sanet Dice Poker:</comment>
   </data>
   <data name="DicePokerAdLine4" xml:space="preserve">
-    <value>4 Regeleinstellungen</value>
-    <comment>4 Regeleinstellungen</comment>
+    <value>4 Regelneinstellungen</value>
+    <comment>4 Regelneinstellungen</comment>
   </data>
   <data name="DicePokerAdLine5" xml:space="preserve">
     <value>Wettkämpfe gegen Freunde oder Computer</value>
@@ -567,44 +568,48 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <comment>Bester Spieler des Tages</comment>
   </data>
   <data name="krMagic" xml:space="preserve">
-    <value>für Zauberer</value>
-    <comment>я сам</comment>
+    <value>für Magierer</value>
+    <comment>für Magierer</comment>
   </data>
   <data name="krMagicShort" xml:space="preserve">
     <value>"für Experte" + magische Artefakte, 13 Runden</value>
-    <comment>я сам</comment>
+    <comment>"für Experte" + magische Artefakte, 13 Runden</comment>
   </data>
   <data name="MagicRollLabel" xml:space="preserve">
-    <value>Magie Wurf</value>
-    <comment>я сам</comment>
+    <value>Magischer Wurf</value>
+    <comment>Magischer Wurf</comment>
   </data>
   <data name="ManualSetLabel" xml:space="preserve">
-    <value>manuell ändern</value>
-    <comment>я сам</comment>
+    <value>Manuell ändern</value>
+    <comment>manuell ändern</comment>
   </data>
   <data name="ForthRollLabel" xml:space="preserve">
-    <value>zurücksetzen Runde</value>
-    <comment>ja sam</comment>
+    <value>Die Runde zurücksetzen</value>
+    <comment>die Runde zurücksetzen</comment>
   </data>
   <data name="SelectNewDiceValueMessage" xml:space="preserve">
     <value>Setzen Sie den neuen Wert des Würfels</value>
-    <comment>я сам</comment>
+    <comment>Wählen Sie eine andere Augenzahl </comment>
   </data>
   <data name="SelectDiceToChangeMessage" xml:space="preserve">
     <value>Wählen Sie den Würfel, um den Wert zu ändern</value>
-    <comment>я сам</comment>
+    <comment>Wählen Sie den Würfel, um die Augenzahl zu ändern</comment>
   </data>
   <data name="ArtifactsLabel" xml:space="preserve">
-    <value>Артифакты</value>
+    <value>Artefakte</value>
+    <comment>Artefakte</comment>
   </data>
   <data name="ArtifactsBonusMessage" xml:space="preserve">
-    <value>{0}, Поздравляем! Вы получили бонусные магические артифакты!</value>
+    <value>{0}, Herzliche Gratulation!  Sie haben  {1} magische Artefakte als Bonus bekommen.</value>
+    <comment>{0}, Herzliche Gratulation!  Sie haben  {1} magische Artefakte als Bonus bekommen.</comment>
   </data>
   <data name="MagicRoomLabel" xml:space="preserve">
-    <value>Комната волшебника</value>
+    <value>Magierzimmer</value>
+    <comment>Magierzimmer</comment>
   </data>
   <data name="ArtifactsForLabel" xml:space="preserve">
-    <value>артефактов за</value>
+    <value>Artefakte für</value>
+    <comment>Artefakte für</comment>
   </data>
   <data name="Cost1Label" xml:space="preserve">
     <value>€1.19</value>
@@ -616,51 +621,96 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>€1.99</value>
   </data>
   <data name="ErrorLabel" xml:space="preserve">
-    <value>Ошибка</value>
+    <value>Fehler</value>
+    <comment>Fehler</comment>
   </data>
   <data name="FirstTimeBonusDescription" xml:space="preserve">
-    <value> Каждый новый игрок с уникальным именем пользователя и паролем получает артефакты в качестве бонуса.</value>
+    <value>Jeder neue Spieler mit den einmaligen Username und Passwort bekommt Artefakte als Bonus.</value>
+    <comment>Jeder neue Spieler mit den einmaligen Username und Passwort bekommt Artefakte als Bonus.</comment>
   </data>
   <data name="FirstTimeBonusLabel" xml:space="preserve">
-    <value>Начальный бонус.</value>
+    <value>Anfangsbonus</value>
+    <comment>Anfangsbonus</comment>
   </data>
   <data name="HowGetLabel" xml:space="preserve">
-    <value>Как получить?</value>
+    <value>Wie bekommt man Artefakte?</value>
+    <comment>Wie bekommt man Artefakte?</comment>
   </data>
   <data name="HowToGetDescription" xml:space="preserve">
-    <value>Магические артефакты - ценый ресурс, количество которого ограничено. Существует несколько способов пополнить запасы магии:</value>
+    <value>Magische Artefakte – eine wertvolle Ressource, die begrenzt ist. Es gibt folgende Varianten, den Vorrat der Magie aufzufüllen:</value>
+    <comment>Magische Artefakte – eine wertvolle Ressource, die begrenzt ist. Es gibt folgende Varianten, den Vorrat der Magie aufzufüllen:</comment>
   </data>
   <data name="MagicArtifactsDescription" xml:space="preserve">
-    <value>Магические артефакты могут повысить ваши шансы на хороошую комбинацию в магических правилах. Каждый вид артефактов можно использовать только один раз за игру. Всего в игре 3 вида артефактов:</value>
+    <value>Magische Artefakte können  Ihre Chancen auf eine gute Pokerkombination  in den Regeln für Magierer erhöhen. Jede Art von Artefakten kann man nur einmal pro Spiel verwenden. Insgesamt gibt es im Spiel drei Arten von Artefakten:</value>
+    <comment>Magische Artefakte können  Ihre Chancen auf eine gute Pokerkombination  in den Regeln für Magierer erhöhen. Jede Art von Artefakten kann man nur einmal pro Spiel verwenden. Insgesamt gibt es im Spiel drei Arten von Artefakten:</comment>
   </data>
   <data name="MagicRollDescription" xml:space="preserve">
-    <value> Позволяет в выбросить одну из незаполненных покерных комбинаций - от трех одинаковых до флэша в случайном порядке.</value>
+    <value> Ermöglicht eine von den noch nicht eingetragenen  Pokerkombinationen - von dem Dreierpasch bis zum Flush,  in einer zufälligen Reihenfolge.</value>
+    <comment>Ermöglicht eine von den noch nicht eingetragenen  Pokerkombinationen - von dem Dreierpasch bis zum Flush,  in einer zufälligen Reihenfolge.</comment>
   </data>
   <data name="ManualSetDescription" xml:space="preserve">
-    <value> Позволяет изменить значение одной из выпавших костей по вашему желанию.</value>
+    <value> Ermöglicht die Änderung der Augenzahl nach Ihrem Wunsch.</value>
+    <comment>Ermöglicht die Änderung der Augenzahl nach Ihrem Wunsch.</comment>
   </data>
   <data name="PurchaseDescription" xml:space="preserve">
-    <value>Вы можете пополнить запас магичечких артефактов, воспользовавшись одним из следующих предложений. Возпользоваться каждым предложением можно не чаще чем один раз в сутки.</value>
+    <value>Sie können den Vorrat von den magischen Artefakten auffüllen: wählen Sie aus den folgenden Angeboten. Man kann nur ein Angebot pro 24 Stunden wählen.</value>
+    <comment>Sie können den Vorrat von den magischen Artefakten auffüllen: wählen Sie aus den folgenden Angeboten. Man kann nur ein Angebot pro 24 Stunden wählen.</comment>
   </data>
   <data name="PurchaseErrorMessage" xml:space="preserve">
-    <value>Просим прощения. Что-то случилось при отправке информации на сервер. Свяжитесь со службой поддержки.</value>
+    <value>Entschuldigung, es ist ein Fehler aufgetreten.  Kontaktieren Sie den Technischen Support.</value>
+    <comment>Entschuldigung, es ist ein Fehler aufgetreten.  Kontaktieren Sie den Technischen Support.</comment>
   </data>
   <data name="PurchaseLabel" xml:space="preserve">
-    <value>Купить</value>
+    <value>Magische Angebote</value>
   </data>
   <data name="PurchaseMiniDescription" xml:space="preserve">
-    <value>Магические артефакты можно преобрести в магазине. Доступно несколько предлажений по очень превлекательным ценам!</value>
+    <value>Die magischen Artefakte kann man im Windows Store kaufen. Günstige Angebote sind verfügbar!</value>
+    <comment>Die magischen Artefakte kann man im Windows Store kaufen. Günstige Angebote sind verfügbar!</comment>
   </data>
   <data name="PurchaseMiniLabel" xml:space="preserve">
-    <value>Покупка.</value>
+    <value>Kaufen.</value>
+    <comment>Kaufen.</comment>
   </data>
   <data name="RerollDescription" xml:space="preserve">
-    <value> Позволяет переиграть текущий ход сначала (все три броска). Значения костей будут выпадать в том же порядке.</value>
+    <value> Ermöglicht die laufende Runde zurückzusetzen (alle drei Wurfe), dabei wird Ihnen  die künftige Reihenfolge der Würfel  bekannt.</value>
+    <comment>Ermöglicht die laufende Runde zurückzusetzen (alle drei Wurfe), dabei wird Ihnen  die künftige Reihenfolge der Würfel  bekannt.</comment>
   </data>
   <data name="ResultBonusDescription" xml:space="preserve">
-    <value> Получите артифакты за хорошую игру по расширенным правлам. Чем лучше Вы играете, тем больше артефактов Вы получаете в подарок!</value>
+    <value> Gewinnen Sie  die Artefakte für die gute Leistung im Spiel für Experte. Je besser sie spielen, desto mehr Artefakte können Sie geschenkt bekommen.</value>
+    <comment>Gewinnen Sie  die Artefakte für die gute Leistung im Spiel für Experte. Je besser sie spielen, desto mehr Artefakte können Sie geschenkt bekommen.</comment>
   </data>
   <data name="ResultBonusLabel" xml:space="preserve">
-    <value>Бонус за результат.</value>
+    <value>Bonus für die Leistung</value>
+    <comment>Bonus für die Leistung</comment>
+  </data>
+  <data name="Offer1Description" xml:space="preserve">
+    <value>Basisangebot zum Preis €0.014 für den Artefakt.</value>
+    <comment>Basisangebot zum Preis €0.014 für den Artefakt.</comment>
+  </data>
+  <data name="Offer2Description" xml:space="preserve">
+    <value>Profitangebot zum Preis €0.01 für den Artefakt. Ihr Rabatt ist 20%!</value>
+    <comment>Profitangebot zum Preis €0.01 für den Artefakt. Ihr Rabatt ist 20%!</comment>
+  </data>
+  <data name="Offer3Description" xml:space="preserve">
+    <value>Magisches Angebot  zum Preis €0.007 für den Artefakt. Kaufen Sie es zweimal günstiger!</value>
+    <comment>Magisches Angebot  zum Preis €0.007 für den Artefakt. Kaufen Sie es zweimal günstiger!</comment>
+  </data>
+  <data name="ArtifactsWinBuyMessage" xml:space="preserve">
+    <value>Gewinnen oder kaufen</value>
+  </data>
+  <data name="ChangeNameLabel" xml:space="preserve">
+    <value>ändern Sie den Namen</value>
+  </data>
+  <data name="ChangePasswordLabel" xml:space="preserve">
+    <value>geben Sie das Passwort</value>
+  </data>
+  <data name="CheckingLabel" xml:space="preserve">
+    <value>überprüfen ...</value>
+  </data>
+  <data name="NoInternetLabel" xml:space="preserve">
+    <value>kein Internet</value>
+  </data>
+  <data name="WrongNamePassLabel" xml:space="preserve">
+    <value>falschen Namen oder Passwort</value>
   </data>
 </root>

@@ -167,7 +167,7 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return "FirstTimeBonusLabel".Localize();
+                return "FirstTimeBonusLabel".Localize() + ".";
 
             }
         }
@@ -183,7 +183,7 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return "ResultBonusLabel".Localize();
+                return "ResultBonusLabel".Localize() + ".";
 
             }
         }

@@ -199,6 +199,22 @@ namespace Sanet.Kniffel.ViewModels
                 }
             }
         }
+        /// <summary>
+        /// Scores for magic
+        /// </summary>
+        private ObservableCollection<KniffelScoreWrapper> _ScoresM = new ObservableCollection<KniffelScoreWrapper>();
+        public ObservableCollection<KniffelScoreWrapper> ScoresM
+        {
+            get { return _ScoresM; }
+            set
+            {
+                if (_ScoresM != value)
+                {
+                    _ScoresM = value;
+                    NotifyPropertyChanged("ScoresM");
+                }
+            }
+        }
         
         /// <summary>
         /// Flag to show waiting ring on loading 'baby' scores
@@ -249,7 +265,7 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
         /// <summary>
-        /// Flag to show waiting ring on loading 'baby' scores
+        /// Flag to show waiting ring on loading 'advanced' scores
         /// </summary>
         private bool _ScoresELoading;
         public bool ScoresELoading
@@ -261,6 +277,22 @@ namespace Sanet.Kniffel.ViewModels
                 {
                     _ScoresELoading = value;
                     NotifyPropertyChanged("ScoresELoading");
+                }
+            }
+        }
+        /// <summary>
+        /// Flag to show waiting ring on loading 'magic' scores
+        /// </summary>
+        private bool _ScoresMLoading;
+        public bool ScoresMLoading
+        {
+            get { return _ScoresMLoading; }
+            set
+            {
+                if (_ScoresMLoading != value)
+                {
+                    _ScoresMLoading = value;
+                    NotifyPropertyChanged("ScoresMLoading");
                 }
             }
         }
@@ -277,6 +309,7 @@ namespace Sanet.Kniffel.ViewModels
                 GetScoresB();
                 GetScoresS();
                 GetScoresE();
+                GetScoresM();
             }
             else
             {
@@ -367,6 +400,27 @@ namespace Sanet.Kniffel.ViewModels
             finally
             {
                 ScoresELoading = false;
+            }
+        }
+        /// <summary>
+        /// Loads scores for magical rules
+        /// </summary>
+        private async void GetScoresM()
+        {
+            ScoresE = new ObservableCollection<KniffelScoreWrapper>();
+            var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+            ScoresMLoading = true;
+            try
+            {
+                var res = await ks.GetTopPlayersAsync("magic", null);
+                foreach (KniffelScore score in res.Body.Players)
+                    ScoresM.Add(new KniffelScoreWrapper(score));
+                NotifyPropertyChanged("ScoresM");
+            }
+            catch { }
+            finally
+            {
+                ScoresMLoading = false;
             }
         }
 

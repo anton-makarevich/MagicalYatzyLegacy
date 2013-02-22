@@ -745,20 +745,20 @@ namespace Sanet.Kniffel.Models
                 else
                 {
                     if (aftersync)
-                        ArtifactsInfoMessage = "неправильное имя или пароль";
+                        ArtifactsInfoMessage = "WrongNamePassLabel".Localize();
                     var nameparts = Name.Split(' ');
                     if (nameparts.Length == 2 && nameparts[0] == Messages.PLAYER_NAME_DEFAULT.Localize())
                     {
                         int n;
                         if (int.TryParse(nameparts[1], out n))
                         {
-                            ArtifactsInfoMessage = "измените имя";
+                            ArtifactsInfoMessage = "ChangeNameLabel".Localize();
                             return;
                         }
                     }
                     if (string.IsNullOrEmpty(Password))
                     {
-                        ArtifactsInfoMessage = "введите пароль";
+                        ArtifactsInfoMessage = "ChangePasswordLabel".Localize();
                         return;
                     }
                     if (!aftersync)
@@ -768,11 +768,11 @@ namespace Sanet.Kniffel.Models
                             if (ArtifactsSyncRequest != null)
                             {
                                 ArtifactsSyncRequest(this, null);
-                                ArtifactsInfoMessage = "checking...";
+                                ArtifactsInfoMessage = "CheckingLabel".Localize();
                             }
                         }
                         else
-                            ArtifactsInfoMessage = "нет интернета";
+                            ArtifactsInfoMessage = "NoInternetLabel".Localize();
                     }
                 }
 
