@@ -155,6 +155,8 @@ namespace Sanet.Kniffel.Models
         public void DoMove()
         {
             fixedRollResults = new List<int>();
+            if (Rules.Rule == Models.Rules.krMagic)
+                RerollMode = false;
             //if we have current player - move is continue, so selecting next
             if (CurrentPlayer != null)
             {
@@ -189,8 +191,7 @@ namespace Sanet.Kniffel.Models
                 }
                 else
                 {
-                    if (Rules.Rule == Models.Rules.krMagic)
-                        RerollMode=false;
+                    
                     Move++;
                     DoMove();
                 }

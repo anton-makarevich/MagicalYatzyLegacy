@@ -71,7 +71,9 @@ namespace Sanet.Kniffel.Models
             }   
         }
 
-        
+        /// <summary>
+        /// this property binded to rotating panel with passwors - updated only on rotate
+        /// </summary>
         private bool _IsPasswordReady;
         public bool IsPasswordReady
         {
@@ -83,7 +85,7 @@ namespace Sanet.Kniffel.Models
                     _IsPasswordReady = value;
                     NotifyPropertyChanged("IsPasswordReady");
                     if (value && !string.IsNullOrEmpty(Password))
-                        RefreshArtifactsInfo();
+                        RefreshArtifactsInfo(false, true);
                 }
             }
         }
@@ -578,8 +580,7 @@ namespace Sanet.Kniffel.Models
                 return MagicRollsCount!=0 && ManualSetsCount!=0 && RollResetsCount!=0;
             }
         }
-
-        
+                
         private bool _HadStartupMagic;
         public bool HadStartupMagic
         {
@@ -732,13 +733,13 @@ namespace Sanet.Kniffel.Models
             NotifyPropertyChanged("IsHuman");
         }
 
-        public void RefreshArtifactsInfo(bool aftersync=false)
+        public void RefreshArtifactsInfo(bool aftersync=false, bool forcesync=false)
         {
             NotifyPropertyChanged("MagicRollsCount");
             NotifyPropertyChanged("ManualSetsCount");
             NotifyPropertyChanged("RollResetsCount");
             NotifyPropertyChanged("HasArtifacts");
-            if (!HasArtifacts)
+            if (!HasArtifacts || forcesync)
             {
                 if (HadStartupMagic)
                     ArtifactsInfoMessage = Messages.PLAYER_ARTIFACTS_WINBUY.Localize();
@@ -763,13 +764,10 @@ namespace Sanet.Kniffel.Models
                     }
                     if (!aftersync)
                     {
-                        if (InternetCheker.IsInternetAvailable())
+                        if (ArtifactsSyncRequest != null)
                         {
-                            if (ArtifactsSyncRequest != null)
-                            {
-                                ArtifactsSyncRequest(this, null);
-                                ArtifactsInfoMessage = "CheckingLabel".Localize();
-                            }
+                            ArtifactsSyncRequest(this, null);
+                            ArtifactsInfoMessage = "CheckingLabel".Localize();
                         }
                         else
                             ArtifactsInfoMessage = "NoInternetLabel".Localize();
