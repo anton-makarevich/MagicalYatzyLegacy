@@ -126,7 +126,19 @@ namespace Sanet.Kniffel.Models
                 roamingSettings.Values["DiceNumber"] = value;
             }
         }
-
+        public static bool IsSoundEnabled
+        {
+            get
+            {
+                if (roamingSettings.Values["IsSoundEnabled"] == null)
+                    roamingSettings.Values["IsSoundEnabled"] = true;
+                return (bool)(roamingSettings.Values["IsSoundEnabled"]);
+            }
+            set
+            {
+                roamingSettings.Values["IsSoundEnabled"] = value;
+            }
+        }
         public const int _NumOfRuns = 0;
         public static int NumOfRuns
         {

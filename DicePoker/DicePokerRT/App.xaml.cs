@@ -46,6 +46,8 @@ namespace DicePokerRT
         {
             //init localizer
             LocalizerExtensions.RModel = new ResourceModel();
+            //load sounds
+            SoundsProvider.Init();
             //check numofruns
             ReviewBugger.CheckNumOfRuns();
 

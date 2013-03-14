@@ -149,6 +149,7 @@
     <Compile Include="Common\PopupHelper.cs" />
     <Compile Include="Common\ReverseBooleanToVisibilityConverter.cs" />
     <Compile Include="Common\SanetImageProvider.cs" />
+    <Compile Include="Common\SoundsProvider.cs" />
     <Compile Include="Controls\PopupPaneBase.cs" />
     <Compile Include="Controls\RotatingPanel.cs" />
     <Compile Include="DicePanel\DiceSelector.cs" />
@@ -1272,6 +1273,9 @@
     <Content Include="Assets\WideLogo.scale-140.png" />
     <Content Include="Assets\WideLogo.scale-180.png" />
     <Content Include="Assets\WideLogo.scale-80.png" />
+    <Content Include="Audio\dice.mp3" />
+    <Content Include="Audio\fanfare.mp3" />
+    <Content Include="Audio\win.mp3" />
     <None Include="Service References\KniffelLeaderBoardService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

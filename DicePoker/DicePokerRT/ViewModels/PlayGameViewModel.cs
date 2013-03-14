@@ -459,6 +459,14 @@ namespace Sanet.Kniffel.ViewModels
 
         void Game_ResultApplied(object sender, ResultEventArgs e)
         {
+            if (e.Result.PossibleValue > 0 || e.Result.HasBonus)
+            {
+                if (e.Result.PossibleValue == 50 || e.Result.HasBonus)
+                    SoundsProvider.PlaySound(_player, "fanfare");
+                else
+                    SoundsProvider.PlaySound(_player, "win");
+            }
+            
             SelectedPlayer.Results.Find(f => f.ScoreType == e.Result.ScoreType).Value = e.Result.PossibleValue;
             SelectedPlayer.UpdateTotal();
             RollResults = null;

@@ -122,8 +122,13 @@ namespace Sanet.Kniffel.DicePanel
             MouseLeftButtonDown -= DieClicked;
             _popup.Closed -= _popup_Closed;
 #endif
+            foreach(var d in aDice)
+            {
+                d.Dispose();
+                
+            }
             _selectionPanel.Dispose();
-            
+            aDice.Clear();
         }
         
         private void LoadFrameImages(string rot)
@@ -291,7 +296,7 @@ namespace Sanet.Kniffel.DicePanel
             {
                 d = new Die(this);
                 iTry = 0;
-
+                d.iSound = aDice.Count;
                 do
                 {
                     iTry += 1;
@@ -422,18 +427,16 @@ namespace Sanet.Kniffel.DicePanel
             foreach (Die d in aDice)
             {
                 
-                if (PlaySound)
+                if (d.iSound >= 8)
                 {
-                    if (d.iSound >= 8)
-                    {
-                        d.PlaySound();
-                        d.iSound = 1;
-                    }
-                    else
-                    {
-                        d.iSound += 1;
-                    }
+                    d.PlaySound();
+                    d.iSound = 1;
                 }
+                else
+                {
+                    d.iSound += 1;
+                }
+                
             }
             sbLoop.Begin();
         }
@@ -447,8 +450,7 @@ namespace Sanet.Kniffel.DicePanel
             {
                 d.UpdateDiePosition();
                 d.DrawDie();
-                if (d.IsPlaying)
-                    d.StopSound();
+                
             }
 #if WinRT
             new System.Threading.ManualResetEvent(false).WaitOne(RollDelay);
@@ -708,23 +710,13 @@ namespace Sanet.Kniffel.DicePanel
             //mSound.AutoPlay = False
             pStatus = DieStatus.dsStopped;
         }
-        public bool IsPlaying;
         public void PlaySound()
         {
-            mSound = new MediaElement();
-#if WINDOWS_PHONE
-            StreamResourceInfo sri = Application.GetResourceStream(new Uri("/KiniffelOnline;component/diceroll1.mp3", UriKind.RelativeOrAbsolute));
-            mSound.SetSource(sri.Stream);
-#endif
-            IsPlaying = true;
+            if (mSound == null)
+                mSound = new MediaElement();
+            SoundsProvider.PlaySound(mSound, "dice");
         }
-        public void StopSound()
-        {
-            IsPlaying = false;
-            mSound.Stop();
-            mSound = null;
-        }
-
+        
         private int FFrame;
         private int Frame
         {
@@ -1146,6 +1138,12 @@ namespace Sanet.Kniffel.DicePanel
             return this.Rect.Contains(new Point(x, y));
         }
 
+        
+        public void Dispose()
+        {
+            mSound = null;
+            PNG = null;
+        }
     }
     /// <summary>
     /// array of dice values with helpers
@@ -1176,6 +1174,7 @@ namespace Sanet.Kniffel.DicePanel
         {
             return DiceResults.Count(f => f == value);
         }
+
     }
 
     
