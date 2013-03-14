@@ -46,7 +46,8 @@ namespace Sanet.Kniffel.Models
                 _Name = value;
                 NotifyPropertyChanged("Name");
                 Password = "";
-                RememberPass = false;
+                //RememberPass = false;
+                HadStartupMagic = false;
                 if (!string.IsNullOrEmpty(value))
                     RefreshArtifactsInfo();
                 //NotifyPropertyChanged("HasArtifacts");
@@ -209,9 +210,9 @@ namespace Sanet.Kniffel.Models
         public bool RememberPass
         {
             get 
-            { 
+            {
                 if (IsHuman)
-                    return _RememberPass;
+                    return true;//_RememberPass;
                 return false;
             }
             set
@@ -324,6 +325,23 @@ namespace Sanet.Kniffel.Models
                 return Messages.PLAYER_TYPE.Localize();
             }
         }
+        /// <summary>
+        /// Labels - tile helpers for new user ui
+        /// </summary>
+        public string TapToChangeLabel
+        {
+            get
+            {
+                return "TapToChangeLabel".Localize();
+            }
+        }
+        public string TapToApplyLabel
+        {
+            get
+            {
+                return "TapToApplyLabel".Localize();
+            }
+        }
 
         public string DeleteLabel
         {
@@ -343,6 +361,7 @@ namespace Sanet.Kniffel.Models
                 return Messages.PLAYER_HUMAN.Localize();
             }
         }
+
         /// <summary>
         /// Label for 'Bot'
         /// </summary>
@@ -373,7 +392,15 @@ namespace Sanet.Kniffel.Models
             {
                 return Messages.PLAYER_SAVE_SCORE.Localize();
             }
-        }   
+        }
+
+        public string TapToChangeLabelLocalized
+        {
+            get
+            {
+                return Messages.PLAYER_SAVE_SCORE.Localize();
+            }
+        } 
         
         private List<RollResult> _Results;
         public List<RollResult> Results

@@ -1,5 +1,6 @@
 ﻿using Sanet.Kniffel.Models;
 using Sanet.Kniffel.ViewModels;
+using Sanet.Models;
 using Sanet.Views;
 using System;
 using System.Collections.Generic;
@@ -194,6 +195,13 @@ namespace DicePokerRT
             //    return;
             //GetViewModel<PlayGameViewModel>().Game.ReportRoll();
             //GetViewModel<PlayGameViewModel>().SelectedPlayer.OnForthRollUsed();
+        }
+
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            await StoreManager.RemoveAd();
+            ViewModelProvider.GetViewModel<PlayGameViewModel>().NotifyAdChanged();
+            
         }
        
     }

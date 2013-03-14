@@ -412,7 +412,7 @@
     <value>Очков</value>
   </data>
   <data name="AppNameLabel" xml:space="preserve">
-    <value>Покер-кости</value>
+    <value>Магия Yatzy</value>
   </data>
   <data name="AWDescription" xml:space="preserve">
     <value>Электронная пропись, которая развивает мелкую моторику, память, обучает письму (цифры, русские, английские буквы, китайские иероглифы и различные символы), позволяет в современной форме овладеть основами графического письма, привить ребенку тягу к знаниям</value>
@@ -617,5 +617,26 @@
   </data>
   <data name="WrongNamePassLabel" xml:space="preserve">
     <value>неправильное имя или пароль</value>
+  </data>
+  <data name="ContinueLabel" xml:space="preserve">
+    <value>Продолжить</value>
+  </data>
+  <data name="MoreLabel" xml:space="preserve">
+    <value>Подробнее...</value>
+  </data>
+  <data name="NoArtifactsLabel" xml:space="preserve">
+    <value>Нет магических артефактов</value>
+  </data>
+  <data name="NoArtifactsMessage" xml:space="preserve">
+    <value>У игрока {0} нет магических артефактов. Вам необходимо пополнить запас артефактов, чтобы воспользоваться преимуществами игры по магическим правилам.</value>
+  </data>
+  <data name="RemoveAdLabel" xml:space="preserve">
+    <value>Убрать рекламу</value>
+  </data>
+  <data name="TapToApplyLabel" xml:space="preserve">
+    <value>Нажмите, чтобы применить</value>
+  </data>
+  <data name="TapToChangeLabel" xml:space="preserve">
+    <value>Нажмите, чтобы изменить</value>
   </data>
 </root>

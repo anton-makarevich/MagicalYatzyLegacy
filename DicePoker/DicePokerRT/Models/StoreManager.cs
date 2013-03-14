@@ -29,8 +29,12 @@ namespace Sanet.Kniffel.Models
                     //await CurrentAppSimulator.RequestProductPurchaseAsync(thisfolder, false);
 
                     var cert = await CurrentApp.RequestProductPurchaseAsync(product, true);
-                    LogManager.Log(LogLevel.Error, "StoreManager.BuyLicense", "product '{0}' is purchased, your receipt is {1}", product, cert);
-                    return true;
+                    if (!string.IsNullOrEmpty(cert))
+                    {
+                        LogManager.Log(LogLevel.Error, "StoreManager.BuyLicense", "product '{0}' is purchased, your receipt is {1}", product, cert);
+                        return true;
+                    }
+                    return false;
                 }
                 catch (Exception Ex)
                 {
@@ -48,6 +52,7 @@ namespace Sanet.Kniffel.Models
 
         static public bool IsAdVisible()
         {
+            //return false;
             return !IsProductAvailable("AdFree");
         }
 

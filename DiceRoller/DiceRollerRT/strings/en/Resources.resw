@@ -412,7 +412,7 @@
     <value>Total</value>
   </data>
   <data name="AppNameLabel" xml:space="preserve">
-    <value>Sanet Dice Poker</value>
+    <value>Magical Yatzy</value>
   </data>
   <data name="OtherAppsLabel" xml:space="preserve">
     <value>Other Apps</value>
@@ -626,5 +626,26 @@
   </data>
   <data name="WrongNamePassLabel" xml:space="preserve">
     <value>wrong name or password</value>
+  </data>
+  <data name="ContinueLabel" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="MoreLabel" xml:space="preserve">
+    <value>More...</value>
+  </data>
+  <data name="NoArtifactsLabel" xml:space="preserve">
+    <value>No Magical Artifacts</value>
+  </data>
+  <data name="NoArtifactsMessage" xml:space="preserve">
+    <value>Player {0} hasn't any magical artifacts. You have to get some artifacts to use advantages of the Magical rules.</value>
+  </data>
+  <data name="RemoveAdLabel" xml:space="preserve">
+    <value>Remove Ad</value>
+  </data>
+  <data name="TapToApplyLabel" xml:space="preserve">
+    <value>Tap to Apply</value>
+  </data>
+  <data name="TapToChangeLabel" xml:space="preserve">
+    <value>Tap to change</value>
   </data>
 </root>

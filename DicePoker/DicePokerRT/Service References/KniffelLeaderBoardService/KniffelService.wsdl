@@ -53,6 +53,24 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="PutScoreIntoTableWithPicPureName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Score" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="table" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="picurl" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PutScoreIntoTableWithPicPureNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PutScoreIntoTableWithPicPureNameResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetTopPlayers">
         <s:complexType>
           <s:sequence>
@@ -200,6 +218,12 @@
   <wsdl:message name="PutScoreIntoTableWithPicSoapOut">
     <wsdl:part name="parameters" element="tns:PutScoreIntoTableWithPicResponse" />
   </wsdl:message>
+  <wsdl:message name="PutScoreIntoTableWithPicPureNameSoapIn">
+    <wsdl:part name="parameters" element="tns:PutScoreIntoTableWithPicPureName" />
+  </wsdl:message>
+  <wsdl:message name="PutScoreIntoTableWithPicPureNameSoapOut">
+    <wsdl:part name="parameters" element="tns:PutScoreIntoTableWithPicPureNameResponse" />
+  </wsdl:message>
   <wsdl:message name="GetTopPlayersSoapIn">
     <wsdl:part name="parameters" element="tns:GetTopPlayers" />
   </wsdl:message>
@@ -249,6 +273,10 @@
       <wsdl:input message="tns:PutScoreIntoTableWithPicSoapIn" />
       <wsdl:output message="tns:PutScoreIntoTableWithPicSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="PutScoreIntoTableWithPicPureName">
+      <wsdl:input message="tns:PutScoreIntoTableWithPicPureNameSoapIn" />
+      <wsdl:output message="tns:PutScoreIntoTableWithPicPureNameSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetTopPlayers">
       <wsdl:input message="tns:GetTopPlayersSoapIn" />
       <wsdl:output message="tns:GetTopPlayersSoapOut" />
@@ -296,6 +324,15 @@
     </wsdl:operation>
     <wsdl:operation name="PutScoreIntoTableWithPic">
       <soap:operation soapAction="http://www.sanet.com/PutScoreIntoTableWithPic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutScoreIntoTableWithPicPureName">
+      <soap:operation soapAction="http://www.sanet.com/PutScoreIntoTableWithPicPureName" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -380,6 +417,15 @@
     </wsdl:operation>
     <wsdl:operation name="PutScoreIntoTableWithPic">
       <soap12:operation soapAction="http://www.sanet.com/PutScoreIntoTableWithPic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutScoreIntoTableWithPicPureName">
+      <soap12:operation soapAction="http://www.sanet.com/PutScoreIntoTableWithPicPureName" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

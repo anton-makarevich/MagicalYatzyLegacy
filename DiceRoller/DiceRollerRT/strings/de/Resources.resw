@@ -422,7 +422,7 @@
     <comment>Die volle Highscore-Liste im Internet</comment>
   </data>
   <data name="AppNameLabel" xml:space="preserve">
-    <value>Sanet Dice Poker</value>
+    <value>Magischer Yatzy</value>
     <comment>Sanet Dice Poker</comment>
   </data>
   <data name="OtherAppsLabel" xml:space="preserve">
@@ -711,6 +711,34 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>kein Internet</value>
   </data>
   <data name="WrongNamePassLabel" xml:space="preserve">
-    <value>falschen Namen oder Passwort</value>
+    <value>falscher Name oder Passwort</value>
+  </data>
+  <data name="ContinueLabel" xml:space="preserve">
+    <value>fortsetzen</value>
+    <comment>fortsetzen</comment>
+  </data>
+  <data name="MoreLabel" xml:space="preserve">
+    <value>Mehr...</value>
+    <comment>Mehr...</comment>
+  </data>
+  <data name="NoArtifactsLabel" xml:space="preserve">
+    <value>Keine magischen Artefakte</value>
+    <comment>Keine magischen Artefakte</comment>
+  </data>
+  <data name="NoArtifactsMessage" xml:space="preserve">
+    <value>Der Spieler {0} hat keine magischen Artefakte. Sie brauchen den Vorrat an magischen Artefakten aufzufüllen, um die Vorteile des Spiels für Magierer auszunutzen.</value>
+    <comment>Der Spieler {0} hat keine magischen Artefakte. Sie brauchen den Vorrat an magischen Artefakten aufzufüllen, um die Vorteile des Spiels für Magierer auszunutzen.</comment>
+  </data>
+  <data name="RemoveAdLabel" xml:space="preserve">
+    <value>Werbung loswerden</value>
+    <comment>Werbung loswerden</comment>
+  </data>
+  <data name="TapToApplyLabel" xml:space="preserve">
+    <value>Klicken, um anzuwenden</value>
+    <comment>Klicken Sie, um anzuwenden</comment>
+  </data>
+  <data name="TapToChangeLabel" xml:space="preserve">
+    <value>Klicken, um zu verändern</value>
+    <comment>Klicken Sie, um zu verändern</comment>
   </data>
 </root>

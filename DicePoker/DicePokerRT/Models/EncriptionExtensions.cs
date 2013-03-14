@@ -60,6 +60,7 @@ namespace Sanet.Models
         }
         public static string Encrypt(this string StringToEncrypt, int key)
         {
+            LogManager.Log(LogLevel.Message, "Encryptor.Encrypt", "Encrypting '{0}' with key {1}",StringToEncrypt,key);
             StringBuilder sbEncr = new StringBuilder();
             Random rand = new Random();
             int dblCountLength = 0;
@@ -77,40 +78,47 @@ namespace Sanet.Models
             const int intUpperBounds = 28;
 
             int iPK = 126 - key;
-
-            for (dblCountLength = 1; dblCountLength <= StringToEncrypt.Length; dblCountLength++)
+            try
             {
-                intRandomNumber = rand.Next(intLowerBounds, intUpperBounds);
-                strCurrentChar = StringToEncrypt[dblCountLength - 1];
-                intAscCurrentChar = System.Convert.ToInt32(strCurrentChar);
-                intInverseAsc = 256 - intAscCurrentChar;
-                intAddNinetyNine = intInverseAsc + 99;
-                dblMultiRandom = intAddNinetyNine * intRandomNumber;
-                dblWithRandom = Convert.ToInt32(dblMultiRandom.ToString().Substring(0, 2) + intRandomNumber + dblMultiRandom.ToString().Substring(2, 2));
-                for (intCountPower = 0; intCountPower <= 5; intCountPower++)
+                for (dblCountLength = 1; dblCountLength <= StringToEncrypt.Length; dblCountLength++)
                 {
-                    if (dblWithRandom / (Math.Pow(93, intCountPower)) >= 1)
+                    intRandomNumber = rand.Next(intLowerBounds, intUpperBounds);
+                    strCurrentChar = StringToEncrypt[dblCountLength - 1];
+                    intAscCurrentChar = System.Convert.ToInt32(strCurrentChar);
+                    intInverseAsc = 256 - intAscCurrentChar;
+                    intAddNinetyNine = intInverseAsc + 99;
+                    dblMultiRandom = intAddNinetyNine * intRandomNumber;
+                    dblWithRandom = Convert.ToInt32(dblMultiRandom.ToString().Substring(0, 2) + intRandomNumber + dblMultiRandom.ToString().Substring(2, 2));
+                    for (intCountPower = 0; intCountPower <= 5; intCountPower++)
                     {
-                        intPower = intCountPower;
+                        if (dblWithRandom / (Math.Pow(93, intCountPower)) >= 1)
+                        {
+                            intPower = intCountPower;
+                        }
+                        else
+                        {
+                            break; // TODO: might not be correct. Was : Exit For
+                        }
                     }
-                    else
+                    sbEncr.Append((intPower + 1).ToString());
+                    for (intCountPower = intPower; intCountPower >= 0; intCountPower += -1)
                     {
-                        break; // TODO: might not be correct. Was : Exit For
+                        int powermod = (int)Math.Pow(iPK, intCountPower);
+                        int charcode = (dblWithRandom / powermod) + key;
+                        dynamic tchar = System.Convert.ToChar(charcode);
+                        sbEncr.Append(tchar);
+
+                        dblWithRandom = dblWithRandom - ((charcode - key) * powermod);
                     }
-                }
-                sbEncr.Append((intPower + 1).ToString());
-                for (intCountPower = intPower; intCountPower >= 0; intCountPower += -1)
-                {
-                    int powermod = (int)Math.Pow(iPK, intCountPower);
-                    int charcode = (dblWithRandom / powermod) + key;
-                    dynamic tchar = System.Convert.ToChar(charcode);
-                    sbEncr.Append(tchar);
 
-                    dblWithRandom = dblWithRandom - ((charcode - key) * powermod);
                 }
-
+            }
+            catch (Exception ex)
+            {
+                LogManager.Log("Encryptor.Encrypt()", ex);
             }
             return sbEncr.ToString();
         }
     }
 }
+

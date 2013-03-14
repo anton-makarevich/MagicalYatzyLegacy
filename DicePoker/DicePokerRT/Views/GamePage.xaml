@@ -47,10 +47,22 @@
                    Text="{Binding Title}"
                            TextTrimming="WordEllipsis"
                   />
-                <ad:AdControl 
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                           Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}">
+                    <ad:AdControl 
                     Grid.Column="1"
                     AppId="30603" x:Name="adDuplexAd" Size="500x130"
-                    Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"/>
+                    />
+                    <Button  HorizontalAlignment="Left" 
+                     VerticalAlignment="Top"
+                     AutomationProperties.Name="{Binding RemoveAdLabel}"
+                    IsEnabled="{Binding IsDeleteable}"  
+                             Margin="0,20,15,0"
+                    Style="{StaticResource DeleteAppBarButtonStyle}"
+                            Click="Button_Click_1"/>
+                </StackPanel>
+                
             </Grid>
                 
             <Grid

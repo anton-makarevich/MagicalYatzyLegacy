@@ -101,7 +101,17 @@ namespace Sanet.Kniffel.ViewModels
                 return Messages.GAME_CLEAR.Localize();
             }
         }
-        
+
+        /// <summary>
+        /// Remove ad Button label
+        /// </summary>
+        public string RemoveAdLabel
+        {
+            get
+            {
+                return "RemoveAdLabel".Localize();
+            }
+        }
         /// <summary>
         /// Play Again Button label
         /// </summary>
@@ -325,9 +335,11 @@ namespace Sanet.Kniffel.ViewModels
             {
                 if (SelectedPlayer == null)
                     return false;
-                if (SelectedPlayer.Roll < 2)
-                    return false;
-                return true;
+                if (SelectedPlayer.Roll == 3 && lastRoll)
+                    return true;
+                if (SelectedPlayer.Roll > 1 && CanRoll)
+                    return true;
+                return false;
             }
         }
         public string ManualSetLabel
@@ -358,7 +370,7 @@ namespace Sanet.Kniffel.ViewModels
             {
                 if (SelectedPlayer == null)
                     return false;
-                if (SelectedPlayer.Roll == 3 && !CanRoll)
+                if (SelectedPlayer.Roll == 3 && lastRoll)
                     return true;
                 return false;
             }
@@ -511,13 +523,14 @@ namespace Sanet.Kniffel.ViewModels
                 NotifyPropertyChanged("IsForthRollVisible");
             }
         }
+        bool lastRoll;
         /// <summary>
         /// dices stop
         /// </summary>
         public void OnRollEnd()
         {
             
-            bool lastRoll =SelectedPlayer.Roll == 3;
+            lastRoll =SelectedPlayer.Roll == 3;
 
             SetCanRoll(SelectedPlayer.Roll < 3);
             SelectedPlayer.Roll++;
@@ -608,7 +621,7 @@ namespace Sanet.Kniffel.ViewModels
                         
                         if (ks == null)
                             ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
-                        ks.AddPlayersMagicsAsync(p.Name,p.Password.Encrypt(33),rollsused.ToString().Encrypt(33),manualsused.ToString().Encrypt(33),resetsused.ToString().Encrypt(33));
+                        await ks.AddPlayersMagicsAsync(p.Name,p.Password.Encrypt(33),rollsused.ToString().Encrypt(33),manualsused.ToString().Encrypt(33),resetsused.ToString().Encrypt(33));
                     }//add bonus
                     else if (Game.Rules.Rule == Rules.krExtended)
                     {
@@ -638,8 +651,20 @@ namespace Sanet.Kniffel.ViewModels
                     {
                         if (ks==null)
                             ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
-                        /*var rs= await */ks.PutScoreIntoTableWithPicAsync(p.Name.Encrypt( 33),p.Password.Encrypt(33), p.Total.ToString().Encrypt(33), Game.Rules.ToString().Encrypt(33), p.PicUrl);
-                        
+                        LogManager.Log(LogLevel.Message, "GameVM.SaveResults", "{0} scores for {1} will be saved", p.Total, p.Name);
+                        int attempt=1;
+                        bool done=false;
+                        do
+                        {
+                            var rs = await ks.PutScoreIntoTableWithPicPureNameAsync(p.Name, p.Password.Encrypt(33), p.Total.ToString().Encrypt(33), Game.Rules.ToString().Encrypt(33), p.PicUrl);
+                            done = rs.Body.PutScoreIntoTableWithPicPureNameResult;
+                            if (attempt == 3)
+                                break;
+                            attempt++;
+                        }
+                        while (!done);
+                            LogManager.Log(LogLevel.Message, "GameVM.SaveResults", "Save score operation for {0} result is: {1}, attempts used: {2}", p.Name,done,attempt);
+                            
                     }
                     
                     switch (Game.Rules.Rule)
@@ -692,10 +717,13 @@ namespace Sanet.Kniffel.ViewModels
                     tileLines.Add("");
 
                 if (inet && ks != null)
-                    ks.CloseAsync();
+                    await ks.CloseAsync();
                 TileHelper.UpdateTileContent("main", "BestLocalLabel".Localize(), tileLines[0], tileLines[1], tileLines[2], tileLines[3]);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                LogManager.Log("GVM.SaveResults", ex);
+            }
         }
 
         /// <summary>

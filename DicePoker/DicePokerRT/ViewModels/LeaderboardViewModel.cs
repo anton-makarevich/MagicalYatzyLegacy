@@ -407,7 +407,7 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         private async void GetScoresM()
         {
-            ScoresE = new ObservableCollection<KniffelScoreWrapper>();
+            ScoresM = new ObservableCollection<KniffelScoreWrapper>();
             var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
             ScoresMLoading = true;
             try

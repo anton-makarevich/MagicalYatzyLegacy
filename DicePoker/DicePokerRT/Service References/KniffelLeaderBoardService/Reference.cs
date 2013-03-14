@@ -178,6 +178,9 @@ namespace DicePokerRT.KniffelLeaderBoardService {
         [System.ServiceModel.OperationContractAttribute(Action="http://www.sanet.com/PutScoreIntoTableWithPic", ReplyAction="*")]
         System.Threading.Tasks.Task<DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicResponse> PutScoreIntoTableWithPicAsync(DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicRequest request);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.sanet.com/PutScoreIntoTableWithPicPureName", ReplyAction="*")]
+        System.Threading.Tasks.Task<DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicPureNameResponse> PutScoreIntoTableWithPicPureNameAsync(DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicPureNameRequest request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://www.sanet.com/GetTopPlayers", ReplyAction="*")]
         System.Threading.Tasks.Task<DicePokerRT.KniffelLeaderBoardService.GetTopPlayersResponse> GetTopPlayersAsync(DicePokerRT.KniffelLeaderBoardService.GetTopPlayersRequest request);
         
@@ -434,6 +437,90 @@ namespace DicePokerRT.KniffelLeaderBoardService {
         
         public PutScoreIntoTableWithPicResponseBody(bool PutScoreIntoTableWithPicResult) {
             this.PutScoreIntoTableWithPicResult = PutScoreIntoTableWithPicResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class PutScoreIntoTableWithPicPureNameRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="PutScoreIntoTableWithPicPureName", Namespace="http://www.sanet.com/", Order=0)]
+        public DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicPureNameRequestBody Body;
+        
+        public PutScoreIntoTableWithPicPureNameRequest() {
+        }
+        
+        public PutScoreIntoTableWithPicPureNameRequest(DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicPureNameRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://www.sanet.com/")]
+    public partial class PutScoreIntoTableWithPicPureNameRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string UserName;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string Pass;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string Score;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string table;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string picurl;
+        
+        public PutScoreIntoTableWithPicPureNameRequestBody() {
+        }
+        
+        public PutScoreIntoTableWithPicPureNameRequestBody(string UserName, string Pass, string Score, string table, string picurl) {
+            this.UserName = UserName;
+            this.Pass = Pass;
+            this.Score = Score;
+            this.table = table;
+            this.picurl = picurl;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class PutScoreIntoTableWithPicPureNameResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="PutScoreIntoTableWithPicPureNameResponse", Namespace="http://www.sanet.com/", Order=0)]
+        public DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicPureNameResponseBody Body;
+        
+        public PutScoreIntoTableWithPicPureNameResponse() {
+        }
+        
+        public PutScoreIntoTableWithPicPureNameResponse(DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicPureNameResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://www.sanet.com/")]
+    public partial class PutScoreIntoTableWithPicPureNameResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool PutScoreIntoTableWithPicPureNameResult;
+        
+        public PutScoreIntoTableWithPicPureNameResponseBody() {
+        }
+        
+        public PutScoreIntoTableWithPicPureNameResponseBody(bool PutScoreIntoTableWithPicPureNameResult) {
+            this.PutScoreIntoTableWithPicPureNameResult = PutScoreIntoTableWithPicPureNameResult;
         }
     }
     
@@ -1011,6 +1098,22 @@ namespace DicePokerRT.KniffelLeaderBoardService {
             inValue.Body.table = table;
             inValue.Body.picurl = picurl;
             return ((DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoap)(this)).PutScoreIntoTableWithPicAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicPureNameResponse> DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoap.PutScoreIntoTableWithPicPureNameAsync(DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicPureNameRequest request) {
+            return base.Channel.PutScoreIntoTableWithPicPureNameAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicPureNameResponse> PutScoreIntoTableWithPicPureNameAsync(string UserName, string Pass, string Score, string table, string picurl) {
+            DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicPureNameRequest inValue = new DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicPureNameRequest();
+            inValue.Body = new DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicPureNameRequestBody();
+            inValue.Body.UserName = UserName;
+            inValue.Body.Pass = Pass;
+            inValue.Body.Score = Score;
+            inValue.Body.table = table;
+            inValue.Body.picurl = picurl;
+            return ((DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoap)(this)).PutScoreIntoTableWithPicPureNameAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

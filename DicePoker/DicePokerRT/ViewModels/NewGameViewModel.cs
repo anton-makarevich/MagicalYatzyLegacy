@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.System.UserProfile;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls.Primitives;
 
 namespace Sanet.Kniffel.ViewModels
@@ -421,7 +422,7 @@ namespace Sanet.Kniffel.ViewModels
                 RoamingSettings.LastRule = SelectedRule.Rule;
         }
 
-        public void StartGame()
+        public async void StartGame()
         {
             if (HasPlayers && SelectedRule != null)
             {
@@ -431,6 +432,26 @@ namespace Sanet.Kniffel.ViewModels
                 gameModel.RollResults = null;
                 foreach (Player player in Players)
                 {
+                    //notify user that he haven't artifacts
+                    if (SelectedRule.Rule == Models.Rules.krMagic)
+                    {
+                        if (!player.HasArtifacts && player.IsHuman)
+                        {
+                            var msg = new MessageDialog(string.Format("NoArtifactsMessage".Localize(),player.Name), "NoArtifactsLabel".Localize());
+
+                            // Add buttons and set their command handlers
+                            msg.Commands.Add(new UICommand("MoreLabel".Localize()));
+                            msg.Commands.Add(new UICommand("ContinueLabel".Localize()));
+
+                            // Show the message dialog
+                            IUICommand res =await msg.ShowAsync();
+                            if (res.Label == "MoreLabel".Localize())
+                            {
+                                p_MagicPressed(player, null);
+                                return;
+                            }
+                        }
+                    }
                     //player.Roll = 1;
                     gameModel.Game.JoinGame(player);
                 }
