@@ -81,5 +81,10 @@ namespace DicePokerRT
         {
             ((MainMenuAction)e.ClickedItem).MenuAction();
         }
+
+        private void itemGridView_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
+            ((AboutAppAction)e.ClickedItem).MenuAction();
+        }
     }
 }

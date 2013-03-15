@@ -296,7 +296,7 @@ namespace Sanet.Kniffel.DicePanel
             {
                 d = new Die(this);
                 iTry = 0;
-                d.iSound = aDice.Count;
+                
                 do
                 {
                     iTry += 1;
@@ -313,6 +313,7 @@ namespace Sanet.Kniffel.DicePanel
                 } while (!(bDone | iTry > 1000));
 
                 aDice.Add(d);
+                
                 d.DrawDie();
                 this.Children.Add(d.PNG);
                 
@@ -404,7 +405,7 @@ namespace Sanet.Kniffel.DicePanel
                     }
 
                 }
-
+                d.iSound = FRand.Next(1, 10);
                 d.InitializeRoll(iResult);
 
             }
@@ -427,7 +428,7 @@ namespace Sanet.Kniffel.DicePanel
             foreach (Die d in aDice)
             {
                 
-                if (d.iSound >= 8)
+                if (d.iSound > 9)
                 {
                     d.PlaySound();
                     d.iSound = 1;
@@ -712,6 +713,8 @@ namespace Sanet.Kniffel.DicePanel
         }
         public void PlaySound()
         {
+            if (pStatus != DieStatus.dsRolling)
+                return;
             if (mSound == null)
                 mSound = new MediaElement();
             SoundsProvider.PlaySound(mSound, "dice");

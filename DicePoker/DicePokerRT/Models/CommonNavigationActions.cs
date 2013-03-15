@@ -19,6 +19,7 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(()=>
                     {
+                        SoundsProvider.PlaySound("click");
                         ((Frame)Window.Current.Content).Navigate(typeof(MainPage));
                 });
             }
@@ -30,6 +31,7 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(() =>
                 {
+                    SoundsProvider.PlaySound("click");
                     ((Frame)Window.Current.Content).Navigate(typeof(NewGamePage));
                 });
             }
@@ -41,6 +43,7 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(() =>
                 {
+                    SoundsProvider.PlaySound("click");
                     ((Frame)Window.Current.Content).Navigate(typeof(AboutPage));
                 });
             }
@@ -52,6 +55,7 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(() =>
                 {
+                    SoundsProvider.PlaySound("click");
                     ((Frame)Window.Current.Content).Navigate(typeof(LeaderboardPage));
                 });
             }
@@ -63,6 +67,7 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(() =>
                 {
+                    SoundsProvider.PlaySound("click");
                     ((Frame)Window.Current.Content).Navigate(typeof(GamePage));
                 });
             }
@@ -76,9 +81,9 @@ namespace Sanet.Kniffel.Models
                 {
                     if (App.Settings == null)
                     {
-
                         App.Settings = new TaskPanePopup(new SettingsPage());
                     }
+                    SoundsProvider.PlaySound("click");
                     App.Settings.Show();
                 });
             }
@@ -90,6 +95,7 @@ namespace Sanet.Kniffel.Models
             {
                 return new  Action(async() =>
                 {
+                    SoundsProvider.PlaySound("click");
                     await Launcher.LaunchUriAsync(new Uri("mailto:support@sanet.by"));
                 });
             }
@@ -101,6 +107,7 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(async () =>
                 {
+                    SoundsProvider.PlaySound("click");
                     await Launcher.LaunchUriAsync(new Uri("ms-windows-store:REVIEW?PFN=43862AntonMakarevich.SanetDicePoker_2wtrjzrdj31kc"));
                 });
             }
@@ -112,6 +119,7 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(async () =>
                 {
+                    SoundsProvider.PlaySound("click");
                     await Launcher.LaunchUriAsync(new Uri("ms-windows-store:PDP?PFN=43862AntonMakarevich.SanetNews_2wtrjzrdj31kc"));
                 });
             }
@@ -123,6 +131,7 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(async () =>
                 {
+                    SoundsProvider.PlaySound("click");
                     await Launcher.LaunchUriAsync(new Uri("ms-windows-store:PDP?PFN=43862AntonMakarevich.SanetAllWrite_2wtrjzrdj31kc"));
                 });
             }

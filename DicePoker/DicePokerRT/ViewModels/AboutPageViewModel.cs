@@ -147,6 +147,8 @@ namespace Sanet.Kniffel.ViewModels
                         ViewModelProvider.GetViewModel<AboutPageViewModel>().FillAppActions();
                         ViewModelProvider.GetViewModel<SettingsViewModel>().NotifyAdChanged();
                         ViewModelProvider.GetViewModel<SettingsViewModel>().FillAppActions();
+                        ViewModelProvider.GetViewModel<MainPageViewModel>().NotifyAdChanged();
+                        ViewModelProvider.GetViewModel<MainPageViewModel>().FillSecondaryActions();
                     }),
                     Image = new BitmapImage(new Uri("ms-appx:///Assets/Unlock.png", UriKind.Absolute))
                 });

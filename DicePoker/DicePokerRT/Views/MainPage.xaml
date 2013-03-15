@@ -40,7 +40,20 @@
                    Grid.ColumnSpan="3"
                    Margin="120,0"
                    VerticalAlignment="Center"/>
-            <ListView
+            <GridView
+                Grid.Column="1"
+                   Grid.Row="0"
+            Margin="20,0"
+                SelectionMode="None"
+                ItemsSource="{Binding SecondaryMenuActions}"
+                ItemClick="itemGridView_ItemClick_1"
+            IsItemClickEnabled="True"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+                ItemTemplate="{StaticResource SecondaryMenuTemplate}">
+                    
+                </GridView>
+                <ListView
                 Grid.Column="1"
                    Grid.Row="1"
             Margin="20,0,10,20"

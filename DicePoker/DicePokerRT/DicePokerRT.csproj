@@ -1257,6 +1257,7 @@
     <Content Include="Assets\ResetRoll.png" />
     <Content Include="Assets\SanetDice.png" />
     <Content Include="Assets\Settings.png" />
+    <Content Include="Assets\Share.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-140.png" />
     <Content Include="Assets\SmallLogo.scale-180.png" />
@@ -1273,9 +1274,12 @@
     <Content Include="Assets\WideLogo.scale-140.png" />
     <Content Include="Assets\WideLogo.scale-180.png" />
     <Content Include="Assets\WideLogo.scale-80.png" />
+    <Content Include="Audio\click.mp3" />
     <Content Include="Audio\dice.mp3" />
     <Content Include="Audio\fanfare.mp3" />
+    <Content Include="Audio\magic.mp3" />
     <Content Include="Audio\win.mp3" />
+    <Content Include="Audio\wrong.mp3" />
     <None Include="Service References\KniffelLeaderBoardService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

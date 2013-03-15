@@ -176,18 +176,21 @@ namespace DicePokerRT
 
         private void MagicRoll_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
+            SoundsProvider.PlaySound("magic");
             dpBackground.ClearFreeze();
             GetViewModel<PlayGameViewModel>().Game.ReporMagictRoll();
         }
 
         private void ManualSet_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
+            SoundsProvider.PlaySound("magic");
             dpBackground.ManualSetMode=true;
             GetViewModel<PlayGameViewModel>().IsControlsVisible = false;
         }
 
         private void ForthRoll_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
+            SoundsProvider.PlaySound("magic");
             dpBackground.ClearFreeze();
             GetViewModel<PlayGameViewModel>().ResetRolls();
 

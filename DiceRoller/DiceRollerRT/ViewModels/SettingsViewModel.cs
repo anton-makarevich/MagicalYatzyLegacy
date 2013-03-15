@@ -316,7 +316,39 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
-
+        public bool IsSoundEnabled
+        {
+            get
+            {
+                return RoamingSettings.IsSoundEnabled;
+            }
+            set
+            {
+                RoamingSettings.IsSoundEnabled = value;
+                NotifyPropertyChanged("IsSoundEnabled");
+            }
+        }
+        public string SoundLabel
+        {
+            get
+            {
+                return "SoundLabel".Localize();
+            }
+        }
+        public string OffContent
+        {
+            get
+            {
+                return "OffContent".Localize();
+            }
+        }
+        public string OnContent
+        {
+            get
+            {
+                return "OffContent".Localize();
+            }
+        }
         private List<AboutAppAction> _AboutAppActions;
         public List<AboutAppAction> AboutAppActions
         {
@@ -351,6 +383,8 @@ namespace Sanet.Kniffel.ViewModels
                             ViewModelProvider.GetViewModel<AboutPageViewModel>().FillAppActions();
                             ViewModelProvider.GetViewModel<SettingsViewModel>().NotifyAdChanged();
                             ViewModelProvider.GetViewModel<SettingsViewModel>().FillAppActions();
+                            ViewModelProvider.GetViewModel<MainPageViewModel>().NotifyAdChanged();
+                            ViewModelProvider.GetViewModel<MainPageViewModel>().FillSecondaryActions();
                         }),
                         Image = new BitmapImage(new Uri("ms-appx:///Assets/Unlock.png", UriKind.Absolute))
                     });

@@ -358,8 +358,8 @@
     <comment>Vierer</comment>
   </data>
   <data name="Kniffel" xml:space="preserve">
-    <value>Flush!</value>
-    <comment>Flush!</comment>
+    <value>Yatzy!</value>
+    <comment>Yatzy!</comment>
   </data>
   <data name="Ones" xml:space="preserve">
     <value>Einer</value>
@@ -740,5 +740,11 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
   <data name="TapToChangeLabel" xml:space="preserve">
     <value>Klicken, um zu verändern</value>
     <comment>Klicken Sie, um zu verändern</comment>
+  </data>
+  <data name="SoundLabel" xml:space="preserve">
+    <value>Звуки</value>
+  </data>
+  <data name="ShareTitle" xml:space="preserve">
+    <value>"Magischer Yatzy" für Windows 8 </value>
   </data>
 </root>

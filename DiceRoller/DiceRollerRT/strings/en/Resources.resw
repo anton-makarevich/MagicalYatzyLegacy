@@ -328,7 +328,7 @@
     <value>FH</value>
   </data>
   <data name="Kniffel" xml:space="preserve">
-    <value>Flush!</value>
+    <value>Yatzy!</value>
   </data>
   <data name="KniffelShort" xml:space="preserve">
     <value>P!</value>
@@ -647,5 +647,11 @@
   </data>
   <data name="TapToChangeLabel" xml:space="preserve">
     <value>Tap to change</value>
+  </data>
+  <data name="SoundLabel" xml:space="preserve">
+    <value>Sound</value>
+  </data>
+  <data name="ShareTitle" xml:space="preserve">
+    <value>"Magical Yatzy" for Windows 8 </value>
   </data>
 </root>

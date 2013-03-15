@@ -205,7 +205,17 @@
                             x:Uid="AngVeryHigh"
                         />
                     </ToggleButton>
+                    <StackPanel
+                        Margin="20">
+                        <TextBlock
+                            Style="{StaticResource SubheaderTextStyle}"
+                               HorizontalAlignment="Left"
+                            Margin="-20,0,0,20"
+                           Foreground="{StaticResource SanetBlue}"
+                            Text="{Binding SoundLabel}"/>
+                        <ToggleSwitch IsOn="{Binding IsSoundEnabled,Mode=TwoWay}" />
 
+                    </StackPanel>
                 </StackPanel>
 
             </Grid>

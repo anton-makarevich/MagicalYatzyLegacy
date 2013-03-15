@@ -15,7 +15,7 @@ namespace Sanet.Models
     {
         static Dictionary<string, IRandomAccessStream> audioStreams;
 
-
+        static MediaElement _globalPlayer = new MediaElement();
             static StorageFolder dataFolder;
         /// <summary>
         /// Loads files from the disk
@@ -56,6 +56,13 @@ namespace Sanet.Models
             {
                 LogManager.Log("PVM.PlaySound", ex);
             }
+        }
+        /// <summary>
+        /// play sound usng default mediaelement
+        /// </summary>
+        public static void PlaySound(String filename)
+        {
+            PlaySound(_globalPlayer, filename);
         }
     }
 }

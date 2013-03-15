@@ -1843,6 +1843,22 @@
         </Grid>
     </DataTemplate>
 
+    <!--Datatemplate for actions in main page top menu-->
+    <DataTemplate x:Key="SecondaryMenuTemplate">
+        <Grid Height="70" Margin="5,0" HorizontalAlignment="Stretch"
+                          >
+            
+            <Image
+                    Height="48"
+                    Width="48"
+                    Source="{Binding Image}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                    />
+            
+        </Grid>
+    </DataTemplate>
+
     <!--Datatemplate for main menu item-->
     <DataTemplate x:Key="RuleTemplate">
         <Grid Height="100" Margin="5" HorizontalAlignment="Stretch"
@@ -1878,6 +1894,7 @@
                            FontSize="30"/>
                     <TextBlock Text="{Binding BestWeekScorePlayer}"
                            VerticalAlignment="Bottom" Margin="2"
+                               MaxHeight="40" TextTrimming="WordEllipsis"
                            Foreground="White" TextWrapping="Wrap"
                            />
                     <ProgressRing HorizontalAlignment="Center"
@@ -1903,6 +1920,7 @@
                            FontSize="30"/>
                     <TextBlock Text="{Binding BestDayScorePlayer}"
                            VerticalAlignment="Bottom" Margin="2"
+                                MaxHeight="40" TextTrimming="WordEllipsis"
                            Foreground="White" TextWrapping="Wrap"
                            />
                     <ProgressRing HorizontalAlignment="Center"

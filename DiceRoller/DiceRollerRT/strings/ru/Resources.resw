@@ -328,7 +328,7 @@
     <value>ФХ</value>
   </data>
   <data name="Kniffel" xml:space="preserve">
-    <value>Флэш!</value>
+    <value>Yatzy!</value>
   </data>
   <data name="KniffelShort" xml:space="preserve">
     <value>П!</value>
@@ -638,5 +638,17 @@
   </data>
   <data name="TapToChangeLabel" xml:space="preserve">
     <value>Нажмите, чтобы изменить</value>
+  </data>
+  <data name="OffContent" xml:space="preserve">
+    <value>Откл.</value>
+  </data>
+  <data name="OnContent" xml:space="preserve">
+    <value>Вкл.</value>
+  </data>
+  <data name="SoundLabel" xml:space="preserve">
+    <value>Звуки</value>
+  </data>
+  <data name="ShareTitle" xml:space="preserve">
+    <value>"Магия Yatzy" для Windows 8 </value>
   </data>
 </root>
