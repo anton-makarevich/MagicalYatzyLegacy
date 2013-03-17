@@ -240,7 +240,6 @@
     <Language Code="pt-br" InMinimumRequirementSet="true" />
     <Language Code="pt-pt" InMinimumRequirementSet="true" />
     <Language Code="quc-latn" InMinimumRequirementSet="false" />
-    <Language Code="qut" InMinimumRequirementSet="false" />
     <Language Code="qut-gt" InMinimumRequirementSet="false" />
     <Language Code="qut-latn" InMinimumRequirementSet="false" />
     <Language Code="quz" InMinimumRequirementSet="false" />
@@ -292,9 +291,10 @@
     <Language Code="ti" InMinimumRequirementSet="false" />
     <Language Code="ti-et" InMinimumRequirementSet="false" />
     <Language Code="tk-cyrl" InMinimumRequirementSet="false" />
+    <Language Code="tk-cyrl-tr" InMinimumRequirementSet="false" />
     <Language Code="tk-latn" InMinimumRequirementSet="false" />
+    <Language Code="tk-latn-tr" InMinimumRequirementSet="false" />
     <Language Code="tk-tm" InMinimumRequirementSet="false" />
-    <Language Code="tk-tr" InMinimumRequirementSet="false" />
     <Language Code="tn" InMinimumRequirementSet="false" />
     <Language Code="tn-bw" InMinimumRequirementSet="false" />
     <Language Code="tn-za" InMinimumRequirementSet="false" />
@@ -340,8 +340,9 @@
     <MainPackageIdentityName>43862AntonMakarevich.SanetDicePoker</MainPackageIdentityName>
     <ReservedNames>
       <ReservedName>Sanet Dice Poker</ReservedName>
-      <ReservedName>Покер-кости</ReservedName>
-      <ReservedName>Magical Dice Poker</ReservedName>
+      <ReservedName>Magical Yatzy</ReservedName>
+      <ReservedName>Магия Yatzy</ReservedName>
+      <ReservedName>Magischer Yatzy</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
@@ -352,7 +353,7 @@
   <PackageInfoList LandingUrl="https://appdev.microsoft.com:443/StorePortals/Developer/Catalog/ReleaseAnchor/5b0f9106-65a8-49ca-b1f0-641c54a7e3ef">
     <PackageInfo>
       <PackageArchitecture>neutral</PackageArchitecture>
-      <PackageMaxArchitectureVersion>1.5.0.1</PackageMaxArchitectureVersion>
+      <PackageMaxArchitectureVersion>1.7.0.8</PackageMaxArchitectureVersion>
     </PackageInfo>
   </PackageInfoList>
 </StoreAssociation>

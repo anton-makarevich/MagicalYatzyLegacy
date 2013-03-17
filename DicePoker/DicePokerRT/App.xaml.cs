@@ -1,4 +1,5 @@
 ﻿using Sanet;
+using Sanet.Kniffel.ViewModels;
 using Sanet.Models;
 using System;
 using System.Collections.Generic;
@@ -44,12 +45,18 @@ namespace DicePokerRT
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
+            //init markedup analitics
+            MarkedUp.AnalyticClient.Initialize("72937eb8-be46-4b18-8816-2a433254af62");
             //init localizer
             LocalizerExtensions.RModel = new ResourceModel();
             //load sounds
             SoundsProvider.Init();
             //check numofruns
             ReviewBugger.CheckNumOfRuns();
+
+            //init viewmodels
+            var ngvm = ViewModelProvider.GetViewModel<NewGameViewModel>();
+            var pgvm=ViewModelProvider.GetViewModel<PlayGameViewModel>();
 
             //init logger
             LogManager.LoggingLevel = LogLevel.Warning;

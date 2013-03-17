@@ -37,6 +37,7 @@ namespace DicePokerRT
             dpBackground.PanelStyle = GetViewModel<PlayGameViewModel>().SettingsPanelStyle;
             dpBackground.TreeDScaleCoef = 0.38;
             dpBackground.NumDice = 5;
+            dpBackground.WithSound = true;
             dpBackground.RollDelay = GetViewModel<PlayGameViewModel>().SettingsPanelSpeed;
             dpBackground.DieAngle = GetViewModel<PlayGameViewModel>().SettingsPanelAngle;
             dpBackground.MaxRollLoop = 20;
@@ -154,6 +155,7 @@ namespace DicePokerRT
         {
             if (dpBackground.AllDiceFrozen())
                 return;
+            //SoundsProvider.PlaySound("click");
             GetViewModel<PlayGameViewModel>().Game.ReportRoll();
         }
 
@@ -161,10 +163,10 @@ namespace DicePokerRT
         {
             GetViewModel<PlayGameViewModel>().Game.ApplyScore((RollResult)e.ClickedItem);
         }
-        protected override void GoBack(object sender, RoutedEventArgs e)
+        protected async override void GoBack(object sender, RoutedEventArgs e)
         {
             if (gridResults.Visibility==Visibility.Visible)
-                GetViewModel<PlayGameViewModel>().SaveResults();
+                await GetViewModel<PlayGameViewModel>().SaveResults();
             base.GoBack(sender, e);
         }
         private void AgainButton_Tapped_1(object sender, TappedRoutedEventArgs e)

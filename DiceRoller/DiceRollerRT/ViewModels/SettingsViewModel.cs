@@ -346,7 +346,7 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return "OffContent".Localize();
+                return "OnContent".Localize();
             }
         }
         private List<AboutAppAction> _AboutAppActions;

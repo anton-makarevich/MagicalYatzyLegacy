@@ -328,16 +328,16 @@
     <value>ФХ</value>
   </data>
   <data name="Kniffel" xml:space="preserve">
-    <value>Yatzy!</value>
+    <value>Ятзи!</value>
   </data>
   <data name="KniffelShort" xml:space="preserve">
-    <value>П!</value>
+    <value>Я!</value>
   </data>
   <data name="krBabyShort" xml:space="preserve">
-    <value>только цифровые комбинации и флэш, 7 ходов</value>
+    <value>только цифровые комбинации и ятзи, 7 ходов</value>
   </data>
   <data name="krExtendedShort" xml:space="preserve">
-    <value>стандартные + бонус в 100 очков за каждый последующий флэш, флэш-джокер, 13 ходов</value>
+    <value>стандартные + бонус в 100 очков за каждый последующий ятзи, ятзи-джокер, 13 ходов</value>
   </data>
   <data name="krSimpleShort" xml:space="preserve">
     <value>все комбинации, без бонусов, 13 ходов</value>
@@ -412,7 +412,7 @@
     <value>Очков</value>
   </data>
   <data name="AppNameLabel" xml:space="preserve">
-    <value>Магия Yatzy</value>
+    <value>Магический Yatzy</value>
   </data>
   <data name="AWDescription" xml:space="preserve">
     <value>Электронная пропись, которая развивает мелкую моторику, память, обучает письму (цифры, русские, английские буквы, китайские иероглифы и различные символы), позволяет в современной форме овладеть основами графического письма, привить ребенку тягу к знаниям</value>
@@ -559,13 +559,13 @@
     <value>Как получить?</value>
   </data>
   <data name="HowToGetDescription" xml:space="preserve">
-    <value>Магические артефакты - ценый ресурс, количество которого ограничено. Существует несколько способов пополнить запасы магии:</value>
+    <value>Магические артефакты - ценный ресурс, количество которого ограничено. Существует несколько способов пополнить запасы магии:</value>
   </data>
   <data name="MagicArtifactsDescription" xml:space="preserve">
-    <value>Магические артефакты могут повысить ваши шансы на хороошую комбинацию в магических правилах. Каждый вид артефактов можно использовать только один раз за игру. Всего в игре 3 вида артефактов:</value>
+    <value>Магические артефакты могут повысить ваши шансы на хорошую комбинацию в магических правилах. Каждый вид артефактов можно использовать только один раз за игру. Всего в игре 3 вида артефактов:</value>
   </data>
   <data name="MagicRollDescription" xml:space="preserve">
-    <value> Позволяет в выбросить одну из незаполненных покерных комбинаций - от трех одинаковых до флэша в случайном порядке.</value>
+    <value> Позволяет выбросить одну из незаполненных покерных комбинаций - от трех одинаковых до ятзи в случайном порядке.</value>
   </data>
   <data name="ManualSetDescription" xml:space="preserve">
     <value> Позволяет изменить значение одной из выпавших костей по вашему желанию.</value>
@@ -589,7 +589,7 @@
     <value>Волшебные предложения</value>
   </data>
   <data name="PurchaseMiniDescription" xml:space="preserve">
-    <value>Магические артефакты можно приобрести в магазине. Доступно несколько предлажений по очень превлекательным ценам!</value>
+    <value>Магические артефакты можно приобрести в магазине. Доступно несколько предложений по очень привлекательным ценам!</value>
   </data>
   <data name="PurchaseMiniLabel" xml:space="preserve">
     <value>Покупка.</value>
@@ -607,7 +607,7 @@
     <value>измените имя</value>
   </data>
   <data name="ChangePasswordLabel" xml:space="preserve">
-    <value>введите пароль</value>
+    <value>нужен пароль</value>
   </data>
   <data name="CheckingLabel" xml:space="preserve">
     <value>проверяем...</value>
@@ -647,6 +647,9 @@
   </data>
   <data name="SoundLabel" xml:space="preserve">
     <value>Звуки</value>
+  </data>
+  <data name="ShareDescription" xml:space="preserve">
+    <value>Присоединяйся ко мне в этой волшебной игре и проверь свою удачу!</value>
   </data>
   <data name="ShareTitle" xml:space="preserve">
     <value>"Магия Yatzy" для Windows 8 </value>

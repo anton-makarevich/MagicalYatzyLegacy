@@ -213,7 +213,10 @@
                             Margin="-20,0,0,20"
                            Foreground="{StaticResource SanetBlue}"
                             Text="{Binding SoundLabel}"/>
-                        <ToggleSwitch IsOn="{Binding IsSoundEnabled,Mode=TwoWay}" />
+                        <ToggleSwitch 
+                            IsOn="{Binding IsSoundEnabled,Mode=TwoWay}"
+                            OnContent="{Binding OnContent}"
+                            OffContent="{Binding OffContent}"/>
 
                     </StackPanel>
                 </StackPanel>

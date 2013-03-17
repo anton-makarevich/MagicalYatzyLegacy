@@ -14,7 +14,7 @@ namespace Sanet.Kniffel.Models
 {
     public static class RoamingSettings
     {
-        static Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+        static Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.LocalSettings;//.RoamingSettings;
 
 #if !ROLLER
         /// <summary>

@@ -421,23 +421,39 @@ namespace Sanet.Kniffel.DicePanel
             BeginLoop();
             return true;
         }
-                
+
+        private bool _WithSound=false;
+        public bool WithSound
+        {
+            get { return _WithSound; }
+            set
+            {
+                if (_WithSound != value)
+                {
+                    _WithSound = value;
+                   
+                }
+            }
+        }
+    
         private void BeginLoop()
         {
-            
-            foreach (Die d in aDice)
+            if (WithSound)
             {
-                
-                if (d.iSound > 9)
+                foreach (Die d in aDice)
                 {
-                    d.PlaySound();
-                    d.iSound = 1;
+
+                    if (d.iSound > 9)
+                    {
+                        d.PlaySound();
+                        d.iSound = 1;
+                    }
+                    else
+                    {
+                        d.iSound += 1;
+                    }
+
                 }
-                else
-                {
-                    d.iSound += 1;
-                }
-                
             }
             sbLoop.Begin();
         }
@@ -717,7 +733,8 @@ namespace Sanet.Kniffel.DicePanel
                 return;
             if (mSound == null)
                 mSound = new MediaElement();
-            SoundsProvider.PlaySound(mSound, "dice");
+            int index = FPanel.FRand.Next(1, 4);
+            SoundsProvider.PlaySound(mSound, "dice"+index.ToString());
         }
         
         private int FFrame;

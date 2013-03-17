@@ -334,10 +334,10 @@
     <value>P!</value>
   </data>
   <data name="krBabyShort" xml:space="preserve">
-    <value>numeric hands only and Flush, 7 rounds</value>
+    <value>numeric hands only and Yatzy, 7 rounds</value>
   </data>
   <data name="krExtendedShort" xml:space="preserve">
-    <value>standard + 100 points bonus for every additional Flush, Flush-Joker, 13 rounds</value>
+    <value>standard + 100 points bonus for every additional Yatzy, Yatzy-Joker, 13 rounds</value>
   </data>
   <data name="krSimpleShort" xml:space="preserve">
     <value>all hands, no bonuses, 13 rounds</value>
@@ -562,11 +562,11 @@
     <comment>Magical artifacts raise your chances to get better hand in Magical rules. Each type of artifacts can be used only once per game. There are 3 types of artifacts:</comment>
   </data>
   <data name="MagicRollDescription" xml:space="preserve">
-    <value>Allows you to get one of the unfilled poker hands (from '3 of a kind' to 'Flush') in random order.</value>
+    <value> Allows you to get one of the unfilled poker hands (from '3 of a kind' to 'Yatzy') in random order.</value>
     <comment> Allows you to get one of the unfilled poker hands (from '3 of a kind' to 'Flush' in random order.</comment>
   </data>
   <data name="ManualSetDescription" xml:space="preserve">
-    <value>Alows you to change the value of one dice by your choice.</value>
+    <value> Alows you to change the value of one dice by your choice.</value>
     <comment>Alows you to change the value of one dice by your choice.</comment>
   </data>
   <data name="Offer1Description" xml:space="preserve">
@@ -616,7 +616,7 @@
     <value>change name</value>
   </data>
   <data name="ChangePasswordLabel" xml:space="preserve">
-    <value>enter password</value>
+    <value>password needed</value>
   </data>
   <data name="CheckingLabel" xml:space="preserve">
     <value>checking...</value>
@@ -650,6 +650,15 @@
   </data>
   <data name="SoundLabel" xml:space="preserve">
     <value>Sound</value>
+  </data>
+  <data name="OffContent" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="OnContent" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="ShareDescription" xml:space="preserve">
+    <value>Join me in this magical game and get some luck to bit me on the leaderboard!</value>
   </data>
   <data name="ShareTitle" xml:space="preserve">
     <value>"Magical Yatzy" for Windows 8 </value>

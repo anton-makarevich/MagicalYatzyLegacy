@@ -217,6 +217,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <PRIResource Include="Strings\be\Resources.resw" />
     <PRIResource Include="..\..\DiceRoller\DiceRollerRT\strings\de\Resources.resw">
       <Link>Strings\de\Resources.resw</Link>
     </PRIResource>
@@ -1275,7 +1276,9 @@
     <Content Include="Assets\WideLogo.scale-180.png" />
     <Content Include="Assets\WideLogo.scale-80.png" />
     <Content Include="Audio\click.mp3" />
-    <Content Include="Audio\dice.mp3" />
+    <Content Include="Audio\dice1.mp3" />
+    <Content Include="Audio\dice2.mp3" />
+    <Content Include="Audio\dice3.mp3" />
     <Content Include="Audio\fanfare.mp3" />
     <Content Include="Audio\magic.mp3" />
     <Content Include="Audio\win.mp3" />
@@ -1334,6 +1337,9 @@
   <ItemGroup>
     <Reference Include="AdDuplex.Windows">
       <HintPath>packages\AdDuplexWindows.8.0.2.0\lib\winrt45\AdDuplex.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="MarkedUp">
+      <HintPath>packages\MarkedUp.0.6.7\lib\winrt45\MarkedUp.winmd</HintPath>
     </Reference>
     <Reference Include="MyToolkit">
       <HintPath>packages\MyToolkit.1.9.0\lib\netcore45\MyToolkit.dll</HintPath>

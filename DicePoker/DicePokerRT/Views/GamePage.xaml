@@ -287,6 +287,15 @@
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>
             </GridView>
+            
+            <ProgressRing
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Grid.ColumnSpan="3"
+                Grid.RowSpan="3"
+                IsActive="{Binding IsBusy}"
+                Width="50"
+                Height="50"/>
         </Grid>
     <Grid
                 x:Name="SnapGrid"

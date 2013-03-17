@@ -584,13 +584,15 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// 
         /// </summary>
-        public async void SaveResults()
+        public async Task SaveResults()
         {
+            IsBusy = true;
             try
             {
+
                 var needsave = Players.Count(f => f.ShouldSaveResult) > 0;
-                bool inet=true;
-                DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient ks=null;
+                bool inet = true;
+                DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient ks = null;
                 if (needsave)
                 {
                     inet = InternetCheker.IsInternetAvailable();
@@ -601,12 +603,12 @@ namespace Sanet.Kniffel.ViewModels
                     else
                     {
                         if (ks == null)
-                        ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+                            ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
                     }
                 }
 
                 int score, scoreb, scores, scoree, scorem;
-                scoreb=RoamingSettings.LocalBabyRecord;
+                scoreb = RoamingSettings.LocalBabyRecord;
                 scoree = RoamingSettings.LocalExtendedRecord;
                 score = RoamingSettings.LocalSimpleRecord;
                 scores = RoamingSettings.LocalStandardRecord;
@@ -620,32 +622,32 @@ namespace Sanet.Kniffel.ViewModels
                     //decreasing amount of magic artifacts
                     if (Game.Rules.Rule == Rules.krMagic)
                     {
-                        int rollsused = (p.IsMagicRollAvailable)?0:-1;
+                        int rollsused = (p.IsMagicRollAvailable) ? 0 : -1;
                         int manualsused = (p.IsManualSetlAvailable) ? 0 : -1;
                         int resetsused = (p.IsForthRollAvailable) ? 0 : -1;
 
-                        if (rollsused!=0)
-                            RoamingSettings.SetMagicRollsCount(p,RoamingSettings.GetMagicRollsCount(p)+rollsused);
+                        if (rollsused != 0)
+                            RoamingSettings.SetMagicRollsCount(p, RoamingSettings.GetMagicRollsCount(p) + rollsused);
                         if (rollsused != 0)
                             RoamingSettings.SetManualSetsCount(p, RoamingSettings.GetManualSetsCount(p) + manualsused);
                         if (rollsused != 0)
                             RoamingSettings.SetForthRollsCount(p, RoamingSettings.GetForthRollsCount(p) + resetsused);
-                        
+
                         if (ks == null)
                             ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
-                        await ks.AddPlayersMagicsAsync(p.Name,p.Password.Encrypt(33),rollsused.ToString().Encrypt(33),manualsused.ToString().Encrypt(33),resetsused.ToString().Encrypt(33));
+                        await ks.AddPlayersMagicsAsync(p.Name, p.Password.Encrypt(33), rollsused.ToString().Encrypt(33), manualsused.ToString().Encrypt(33), resetsused.ToString().Encrypt(33));
                     }//add bonus
                     else if (Game.Rules.Rule == Rules.krExtended)
                     {
-                        int addartifacts =0;
+                        int addartifacts = 0;
 
                         if (p.Total > 600)
                             addartifacts = 100;
                         else if (p.Total > 500)
                             addartifacts = 30;
                         else if (p.Total > 400)
-                                addartifacts = 10;
-                        if (addartifacts>0)
+                            addartifacts = 10;
+                        if (addartifacts > 0)
                         {
                             RoamingSettings.SetMagicRollsCount(p, RoamingSettings.GetMagicRollsCount(p) + addartifacts);
                             RoamingSettings.SetManualSetsCount(p, RoamingSettings.GetManualSetsCount(p) + addartifacts);
@@ -654,18 +656,18 @@ namespace Sanet.Kniffel.ViewModels
                                 ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
                             var res = await ks.AddPlayersMagicsAsync(p.Name, p.Password.Encrypt(33), addartifacts.ToString().Encrypt(33), addartifacts.ToString().Encrypt(33), addartifacts.ToString().Encrypt(33));
                             if (res.Body.AddPlayersMagicsResult)
-                                Utilities.ShowToastNotification(string.Format(Messages.PLAYER_ARTIFACTS_BONUS.Localize(), p.Name,addartifacts));
+                                Utilities.ShowToastNotification(string.Format(Messages.PLAYER_ARTIFACTS_BONUS.Localize(), p.Name, addartifacts));
                         }
                     }
 
                     //score saving to leaderboard
                     if (p.ShouldSaveResult && inet)
                     {
-                        if (ks==null)
+                        if (ks == null)
                             ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
                         LogManager.Log(LogLevel.Message, "GameVM.SaveResults", "{0} scores for {1} will be saved", p.Total, p.Name);
-                        int attempt=1;
-                        bool done=false;
+                        int attempt = 1;
+                        bool done = false;
                         do
                         {
                             var rs = await ks.PutScoreIntoTableWithPicPureNameAsync(p.Name, p.Password.Encrypt(33), p.Total.ToString().Encrypt(33), Game.Rules.ToString().Encrypt(33), p.PicUrl);
@@ -675,10 +677,10 @@ namespace Sanet.Kniffel.ViewModels
                             attempt++;
                         }
                         while (!done);
-                            LogManager.Log(LogLevel.Message, "GameVM.SaveResults", "Save score operation for {0} result is: {1}, attempts used: {2}", p.Name,done,attempt);
-                            
+                        LogManager.Log(LogLevel.Message, "GameVM.SaveResults", "Save score operation for {0} result is: {1}, attempts used: {2}", p.Name, done, attempt);
+
                     }
-                    
+
                     switch (Game.Rules.Rule)
                     {
                         case Rules.krBaby:
@@ -725,7 +727,7 @@ namespace Sanet.Kniffel.ViewModels
                 if (score > 0) tileLines.Add(string.Format("{1} - {0}", Rules.krSimple.ToString().Localize(), score));
                 if (scoreb > 0) tileLines.Add(string.Format("{1} - {0}", Rules.krBaby.ToString().Localize(), scoreb));
 
-                for (int i = tileLines.Count; i <= 4;i++ )
+                for (int i = tileLines.Count; i <= 4; i++)
                     tileLines.Add("");
 
                 if (inet && ks != null)
@@ -736,14 +738,20 @@ namespace Sanet.Kniffel.ViewModels
             {
                 LogManager.Log("GVM.SaveResults", ex);
             }
+            finally 
+            {
+                IsBusy = false;
+            }
         }
 
         /// <summary>
         /// userc clicked 'Play Again'
         /// </summary>
-        public void PlayAgain()
+        public async void PlayAgain()
         {
-            SaveResults();
+            
+            await SaveResults();
+            
             Game.RestartGame();
             NotifyPropertyChanged("Players");
         }

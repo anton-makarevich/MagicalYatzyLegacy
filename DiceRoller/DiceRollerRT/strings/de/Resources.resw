@@ -386,7 +386,7 @@
     <comment>Nur Kombinationen von Zahlen sammeln (Einer, Zweier etc.), 7 Runden</comment>
   </data>
   <data name="krExtendedShort" xml:space="preserve">
-    <value>"für Klassikschätzer" + Bonus von 100 Punkten für jeden nachfolgenden Flush, Flush-Joker, 13 Runden</value>
+    <value>"für Klassikschätzer" + Bonus von 100 Punkten für jeden nachfolgenden Yatzy, Yatzy-Joker, 13 Runden</value>
     <comment>alle Kombinationen, Bonus  von 35 Punkten für mindestens 63 Punkte  beim Sammeln, Bonus von 100 Punkten für jeden nachfolgenden Flush, Flush-Joker, 13 Runden</comment>
   </data>
   <data name="krSimpleShort" xml:space="preserve">
@@ -645,7 +645,7 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <comment>Magische Artefakte können  Ihre Chancen auf eine gute Pokerkombination  in den Regeln für Magierer erhöhen. Jede Art von Artefakten kann man nur einmal pro Spiel verwenden. Insgesamt gibt es im Spiel drei Arten von Artefakten:</comment>
   </data>
   <data name="MagicRollDescription" xml:space="preserve">
-    <value> Ermöglicht eine von den noch nicht eingetragenen  Pokerkombinationen - von dem Dreierpasch bis zum Flush,  in einer zufälligen Reihenfolge.</value>
+    <value> Ermöglicht eine von den noch nicht eingetragenen  Pokerkombinationen - von dem Dreierpasch bis zum Yatzy,  in einer zufälligen Reihenfolge.</value>
     <comment>Ermöglicht eine von den noch nicht eingetragenen  Pokerkombinationen - von dem Dreierpasch bis zum Flush,  in einer zufälligen Reihenfolge.</comment>
   </data>
   <data name="ManualSetDescription" xml:space="preserve">
@@ -742,9 +742,21 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <comment>Klicken Sie, um zu verändern</comment>
   </data>
   <data name="SoundLabel" xml:space="preserve">
-    <value>Звуки</value>
+    <value>Töne</value>
+    <comment>Töne</comment>
+  </data>
+  <data name="OffContent" xml:space="preserve">
+    <value>Off</value>
+    <comment>aus.</comment>
+  </data>
+  <data name="OnContent" xml:space="preserve">
+    <value>On</value>
+    <comment>ein.</comment>
+  </data>
+  <data name="ShareDescription" xml:space="preserve">
+    <value>Присоединяйся ко мне в этой волшебной игре и проверь свою удачу!</value>
   </data>
   <data name="ShareTitle" xml:space="preserve">
-    <value>"Magischer Yatzy" für Windows 8 </value>
+    <value>"Magischer Yatzy" für Windows 8</value>
   </data>
 </root>
