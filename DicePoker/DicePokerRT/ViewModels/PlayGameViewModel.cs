@@ -640,7 +640,7 @@ namespace Sanet.Kniffel.ViewModels
                             ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
                         await ks.AddPlayersMagicsAsync(p.Name, p.Password.Encrypt(33), rollsused.ToString().Encrypt(33), manualsused.ToString().Encrypt(33), resetsused.ToString().Encrypt(33));
                     }//add bonus
-                    else if (Game.Rules.Rule == Rules.krExtended)
+                    else if (Game.Rules.Rule == Rules.krExtended && p.HasPassword)
                     {
                         int addartifacts = 0;
 

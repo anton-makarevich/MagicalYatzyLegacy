@@ -53,12 +53,20 @@ namespace Sanet.Kniffel.Models
                 player.Game.ApplyScore(result);
                 return;
             }
-            
-            //checking poker hands LS, SS, FH
-            for (int i = 11; i >= 9; i += -1)
+
+            //check for LS
+            result = player.GetResultForScore(KniffelScores.LargeStraight);
+            if (result != null && !result.HasValue && result.PossibleValue >= result.MinValue())
+            {
+                player.Game.ApplyScore(result);
+                return;
+            }
+
+            //checking  SS and FH
+            for (int i = 10; i >= 9; i += -1)
             {
                 result = player.GetResultForScore((KniffelScores)i);
-                if (result != null && !result.HasValue && result.PossibleValue >= result.MinValue())
+                if (result != null && !result.HasValue && result.PossibleValue >= result.MinValue() && i-player.Roll<8) //last condition - fill SS only on third roll, and FH - not on first
                 {
                     player.Game.ApplyScore(result);
                     return;

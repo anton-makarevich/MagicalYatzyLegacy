@@ -702,7 +702,7 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>ändern Sie den Namen</value>
   </data>
   <data name="ChangePasswordLabel" xml:space="preserve">
-    <value>geben Sie das Passwort</value>
+    <value>geben Sie das Passwort ein</value>
   </data>
   <data name="CheckingLabel" xml:space="preserve">
     <value>überprüfen ...</value>
@@ -757,9 +757,11 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>"Magischer Yatzy" für Windows 8</value>
   </data>
   <data name="OnlyUniqueCanBuyMessage" xml:space="preserve">
-    <value>Только игроки с уникальным именем и паролем могут купить артефакты. Это необходимо, чтобы обезопасить ваши приобретения. Пожалуйста, измените информацию на странице новой игры.</value>
+    <value>Nur der Spieler mit einem einmaligen Usernamen und  einem Passwort kann Artefakte kaufen. Einmaliger Username und ein Passwort sind nötig, damit nur Sie Ihre gekauften Artefakte gebrauchen können.  Prüfen Sie zuerst den Usernamen und das Passwort, dann kaufen Sie die Artefakte.</value>
+    <comment>Nur der Spieler mit einem einmaligen Usernamen und  einem Passwort kann Artefakte kaufen. Einmaliger Username und ein Passwort sind nötig, damit nur Sie Ihre gekauften Artefakte gebrauchen können.  Prüfen Sie zuerst den Usernamen und das Passwort, dann kaufen Sie die Artefakte.</comment>
   </data>
   <data name="PlayerNoPasswordLabel" xml:space="preserve">
-    <value>нет пароля</value>
+    <value>kein Passwort</value>
+    <comment>kein Passwort</comment>
   </data>
 </root>

@@ -44,7 +44,10 @@ namespace Sanet.Kniffel.Models
         private string _Amount;
         public string Amount
         {
-            get { return _Amount; }
+            get 
+            {
+                return _Amount;
+            }
             set
             {
                 if (_Amount != value)

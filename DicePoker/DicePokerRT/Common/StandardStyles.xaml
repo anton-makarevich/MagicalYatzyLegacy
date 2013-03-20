@@ -1766,7 +1766,7 @@
     <DataTemplate x:Key="OfferTemplate">
         <Grid
             Visibility="{Binding IsAvailable,Converter={StaticResource VisibilityKey}}"
-            Height="120" Margin="10" HorizontalAlignment="Stretch"
+            Height="110" Margin="10,5" HorizontalAlignment="Stretch"
                           >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="90"/>

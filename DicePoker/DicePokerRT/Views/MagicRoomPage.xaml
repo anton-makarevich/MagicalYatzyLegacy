@@ -282,16 +282,23 @@
                         Grid.Row="1"
                         Grid.Column="2"
                         >
+                        
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
                         <TextBlock
                                 TextWrapping="Wrap"
-                            FontSize="20" Grid.ColumnSpan="2"
+                            FontSize="20" 
                             Foreground="{StaticResource SanetBlue}"
                             Text="{Binding PurchaseDescription}"/>
 
 
-                    <ListView VerticalAlignment="Bottom"
-                                 Grid.Row="2"
-                            Grid.Column="2"  Margin="0,0,10,0" HorizontalAlignment="Stretch"
+                    <ListView VerticalAlignment="Center"
+                              Grid.Row="1" Grid.RowSpan="3"
+                              Margin="0,0,20,0" HorizontalAlignment="Stretch"
                                     SelectionMode="None"
                                 ItemsSource="{Binding Offers}"
                                     ItemTemplate="{StaticResource OfferTemplate}"
