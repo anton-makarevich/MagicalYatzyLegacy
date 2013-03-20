@@ -50,6 +50,7 @@ namespace Sanet.Models
             }
             catch (Exception ex)
             {
+                LogManager.Log("Encryptor.Decrypt", ex);
                 return "something wrong:" + ex.Message;
             }
             finally

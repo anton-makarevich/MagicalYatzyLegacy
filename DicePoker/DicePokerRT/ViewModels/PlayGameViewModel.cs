@@ -422,7 +422,10 @@ namespace Sanet.Kniffel.ViewModels
                     Game.DiceChanged -= Game_DiceChanged;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                LogManager.Log("PGVM.ClearHandlers", ex);
+            }
         }
         /// <summary>
         /// Game events handlers

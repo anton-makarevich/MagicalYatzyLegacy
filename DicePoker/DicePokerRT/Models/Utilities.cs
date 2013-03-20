@@ -37,15 +37,15 @@ namespace Sanet
               msg.Commands.Add(new UICommand("Ok", new UICommandInvokedHandler((s) => { })));
               IUICommand x = await msg.ShowAsync();
           }
-          catch 
+          catch (Exception ex)
           {
-              //ExceptionLogger.LogException(ex);
+              LogManager.Log("Utilities.ShowMessage", ex);
           }
 
       }
       public static void ShowMessage(string msgString)
       {
-          ShowMessage(msgString, "Sanet Systems");
+          ShowMessage(msgString, "Yatzy");
       }
 
       public static async Task<int> ShowMessageAsync(string msgString, string title)

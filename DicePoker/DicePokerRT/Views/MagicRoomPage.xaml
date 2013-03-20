@@ -291,7 +291,7 @@
 
                     <ListView VerticalAlignment="Bottom"
                                  Grid.Row="2"
-                            Grid.Column="2"  Margin="0,0,100,0" HorizontalAlignment="Stretch"
+                            Grid.Column="2"  Margin="0,0,10,0" HorizontalAlignment="Stretch"
                                     SelectionMode="None"
                                 ItemsSource="{Binding Offers}"
                                     ItemTemplate="{StaticResource OfferTemplate}"

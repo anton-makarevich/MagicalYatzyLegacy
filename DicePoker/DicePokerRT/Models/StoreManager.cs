@@ -32,20 +32,21 @@ namespace Sanet.Kniffel.Models
                     var cert = await CurrentApp.RequestProductPurchaseAsync(product, true);
                     if (!string.IsNullOrEmpty(cert))
                     {
-                        LogManager.Log(LogLevel.Error, "StoreManager.BuyLicense", "product '{0}' is purchased, your receipt is {1}", product, cert);
+                        LogManager.Log(LogLevel.Message, "StoreManager.BuyLicense", "product '{0}' is purchased, your receipt is {1}", product, cert);
+                        MarkedUp.AnalyticClient.InAppPurchaseOfferCompleted(product);
                         return true;
                     }
                     return false;
                 }
-                catch (Exception Ex)
+                catch (Exception ex)
                 {
-                    LogManager.Log(LogLevel.Error, "StoreManager.BuyLicense", "can't purchase '{0}', ex: {1}", product, Ex.Message);
+                    LogManager.Log("StoreManager.BuyLicense",ex);
                     return false;
                 }
             }
             else
             {
-                LogManager.Log(LogLevel.Error, "StoreManager.BuyLicense", "product '{0}' is already purchased", product);
+                LogManager.Log(LogLevel.Message, "StoreManager.BuyLicense", "product '{0}' is already purchased", product);
                 return false;
             }
             

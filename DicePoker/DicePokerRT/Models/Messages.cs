@@ -25,6 +25,7 @@ namespace Sanet.Kniffel.Models
 
         public const string PLAYER_NAME = "PlayerNameLabel";
         public const string PLAYER_PASSWORD = "PlayerPasswordLabel";
+        public const string PLAYER_NO_PASSWORD = "PlayerNoPasswordLabel";
         public const string PLAYER_TYPE = "PlayerTypeLabel";
         public const string PLAYER_NAME_DEFAULT = "PlayerNameDefault";
         public const string PLAYER_BOTNAME_DEFAULT = "BotNameDefault";

@@ -32,6 +32,7 @@
     </ResourceDictionary.ThemeDictionaries>
 
     <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
+    <common:ScoreTypeToColorConverter x:Key="ScoreKey"/>
     <common:BooleanToColorConverter x:Key="ColorKey"/>
     <common:ReverseBooleanToVisibilityConverter x:Key="ReversedVisibilityKey"/>
     <common:BooleanToVisibilityConverter x:Key="VisibilityKey"/>
@@ -2092,7 +2093,7 @@
     </DataTemplate>
     <!---->
     <DataTemplate x:Key="ResultItemTemplate">
-        <Grid Height="90" Width="90" Background="{StaticResource SanetBlue}"
+        <Grid Height="90" Width="90" Background="{Binding ScoreType,Converter={StaticResource ScoreKey}}"
               Margin="5,0,0,0">
             <TextBlock
                     Foreground="White"

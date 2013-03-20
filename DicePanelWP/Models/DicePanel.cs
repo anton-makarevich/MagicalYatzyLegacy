@@ -129,6 +129,7 @@ namespace Sanet.Kniffel.DicePanel
             }
             _selectionPanel.Dispose();
             aDice.Clear();
+            DieFrameImages.Clear();
         }
         
         private void LoadFrameImages(string rot)
@@ -544,6 +545,7 @@ namespace Sanet.Kniffel.DicePanel
         {
             Point pointClicked = e.GetPosition(this);
             //determine if die was clicked
+            _lastClickedDie = null;
             foreach (Die d in aDice)
             {
                 if (d.ClickedOn(pointClicked.X, pointClicked.Y))
@@ -552,6 +554,10 @@ namespace Sanet.Kniffel.DicePanel
                     break; // TODO: might not be correct. Was : Exit For
                 }
             }
+            //no die was clicked
+            if (_lastClickedDie == null)
+                return;
+
             if (ManualSetMode)
             {
                 _selectionPanel.SelectedDice = _lastClickedDie;

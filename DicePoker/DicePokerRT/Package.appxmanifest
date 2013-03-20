@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="43862AntonMakarevich.SanetDicePoker" Publisher="CN=DC1EF1A2-04E8-4269-B8EE-BF7A3DBF913C" Version="1.8.0.1" />
+  <Identity Name="43862AntonMakarevich.SanetDicePoker" Publisher="CN=DC1EF1A2-04E8-4269-B8EE-BF7A3DBF913C" Version="1.8.1.4" />
   <Properties>
-    <DisplayName>Sanet Dice Poker</DisplayName>
+    <DisplayName>ms-resource:AppNameLabel</DisplayName>
     <PublisherDisplayName>Anton Makarevich</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -15,8 +15,8 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="DicePokerRT.App">
-      <VisualElements DisplayName="ms-resource:AppNameLabel" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="DicePokerRT" ForegroundText="light" BackgroundColor="#009cd6" ToastCapable="true">
-        <DefaultTile ShowName="allLogos" ShortName="Dice Poker" WideLogo="Assets\WideLogo.png" />
+      <VisualElements DisplayName="ms-resource:AppNameLabel" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Magical Yatzy game" ForegroundText="light" BackgroundColor="#009cd6" ToastCapable="true">
+        <DefaultTile ShowName="allLogos" ShortName="Magical Yatzy" WideLogo="Assets\WideLogo.png" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#009cd6" />
         <InitialRotationPreference>
           <Rotation Preference="portrait" />

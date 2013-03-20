@@ -753,10 +753,13 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>On</value>
     <comment>ein.</comment>
   </data>
-  <data name="ShareDescription" xml:space="preserve">
-    <value>Присоединяйся ко мне в этой волшебной игре и проверь свою удачу!</value>
-  </data>
   <data name="ShareTitle" xml:space="preserve">
     <value>"Magischer Yatzy" für Windows 8</value>
+  </data>
+  <data name="OnlyUniqueCanBuyMessage" xml:space="preserve">
+    <value>Только игроки с уникальным именем и паролем могут купить артефакты. Это необходимо, чтобы обезопасить ваши приобретения. Пожалуйста, измените информацию на странице новой игры.</value>
+  </data>
+  <data name="PlayerNoPasswordLabel" xml:space="preserve">
+    <value>нет пароля</value>
   </data>
 </root>

@@ -190,7 +190,7 @@
     <value>Вугал агляду</value>
   </data>
   <data name="SettingsCaption.Text" xml:space="preserve">
-    <value>Настройкі</value>
+    <value>Налады</value>
   </data>
   <data name="SettingsNumbersCaption.Text" xml:space="preserve">
     <value>Число костей</value>
@@ -220,7 +220,7 @@
     <value>Зал славы</value>
   </data>
   <data name="LeaderboardDescription" xml:space="preserve">
-    <value>Лепшыя вынікі па кожным правілам</value>
+    <value>Лепшыя вынікі па кожных правілах</value>
   </data>
   <data name="NetworkGameNotReadyMessage" xml:space="preserve">
     <value>Извините, сетевая игра еще не готова. </value>
@@ -238,10 +238,10 @@
     <value>Скоро доступно</value>
   </data>
   <data name="SettingsAction" xml:space="preserve">
-    <value>Настройкі</value>
+    <value>Налады</value>
   </data>
   <data name="SettingsDescription" xml:space="preserve">
-    <value>Зьмяніце настройкі гульні</value>
+    <value>Зьмяніце параметры гульні</value>
   </data>
   <data name="StartNewGameMessage" xml:space="preserve">
     <value>Пачаць новую гульню</value>
@@ -653,5 +653,11 @@
   </data>
   <data name="ShareTitle" xml:space="preserve">
     <value>"Магічны Yatzy" для Windows 8 </value>
+  </data>
+  <data name="OnlyUniqueCanBuyMessage" xml:space="preserve">
+    <value>Прабачце. Толькі гульцы з унікальным імем і паролем могуць купіць артэфакты. Гэта неабходна, каб засцерагчы вашы набыткі. Калі ласка зьмяніце інфармацыю на старонцы новай гульні. Дзякуй!</value>
+  </data>
+  <data name="PlayerNoPasswordLabel" xml:space="preserve">
+    <value>няма пароля</value>
   </data>
 </root>

@@ -654,4 +654,10 @@
   <data name="ShareTitle" xml:space="preserve">
     <value>"Магия Yatzy" для Windows 8 </value>
   </data>
+  <data name="OnlyUniqueCanBuyMessage" xml:space="preserve">
+    <value>Только игроки с уникальным именем и паролем могут купить артефакты. Это необходимо, чтобы обезопасить ваши приобретения. Пожалуйста, измените информацию на странице новой игры.</value>
+  </data>
+  <data name="PlayerNoPasswordLabel" xml:space="preserve">
+    <value>нет пароля</value>
+  </data>
 </root>

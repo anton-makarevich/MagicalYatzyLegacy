@@ -149,6 +149,7 @@
     <Compile Include="Common\PopupHelper.cs" />
     <Compile Include="Common\ReverseBooleanToVisibilityConverter.cs" />
     <Compile Include="Common\SanetImageProvider.cs" />
+    <Compile Include="Common\ScoreTypeToColorConverter.cs" />
     <Compile Include="Common\SoundsProvider.cs" />
     <Compile Include="Controls\PopupPaneBase.cs" />
     <Compile Include="Controls\RotatingPanel.cs" />

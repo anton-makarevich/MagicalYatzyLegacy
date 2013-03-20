@@ -67,8 +67,8 @@ namespace Sanet.Kniffel.Models
             {
                 _Password = value;
                 NotifyPropertyChanged("Password");
-                
-                //NotifyPropertyChanged("HasArtifacts");
+                NotifyPropertyChanged("HasPassword");
+                NotifyPropertyChanged("PlayerPasswordLabelLocalized");
             }   
         }
 
@@ -312,7 +312,9 @@ namespace Sanet.Kniffel.Models
         {
             get
             {
-                return Messages.PLAYER_PASSWORD.Localize();
+                if (HasPassword) 
+                    return Messages.PLAYER_PASSWORD.Localize();
+                return Messages.PLAYER_NO_PASSWORD.Localize();
             }
         }
         /// <summary>
@@ -577,6 +579,45 @@ namespace Sanet.Kniffel.Models
             }
         }
 
+        public bool IsDefaultName
+        {
+            get
+            {
+                var nameparts = Name.Split(' ');
+                if (nameparts.Length == 2 && nameparts[0].ToLower() == Messages.PLAYER_NAME_DEFAULT.Localize().ToLower())
+                {
+                    int n;
+                    if (int.TryParse(nameparts[1], out n))
+                    {
+                        
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+        public bool HasPassword
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(Password);
+            }
+        }
+
+        /// <summary>
+        /// Returns if player can buy artifacts
+        /// only with unique name and password can buy
+        /// </summary>
+        public bool CanBuy
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Name) || !HasPassword || IsDefaultName)
+                    return false;
+                return true;
+            }
+        }
 
         public int MagicRollsCount
         {
@@ -774,15 +815,11 @@ namespace Sanet.Kniffel.Models
                 {
                     if (aftersync)
                         ArtifactsInfoMessage = "WrongNamePassLabel".Localize();
-                    var nameparts = Name.Split(' ');
-                    if (nameparts.Length == 2 && nameparts[0] == Messages.PLAYER_NAME_DEFAULT.Localize())
+
+                    if (IsDefaultName)
                     {
-                        int n;
-                        if (int.TryParse(nameparts[1], out n))
-                        {
-                            ArtifactsInfoMessage = "ChangeNameLabel".Localize();
-                            return;
-                        }
+                        ArtifactsInfoMessage = "ChangeNameLabel".Localize();
+                        return;
                     }
                     if (string.IsNullOrEmpty(Password))
                     {

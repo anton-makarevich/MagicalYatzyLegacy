@@ -233,22 +233,29 @@ namespace Sanet.Kniffel.ViewModels
                 {
                     MenuAction = new Action(async () =>
                     {
-                        if (await StoreManager.BuyLicense("WizardTools30"))
+                        if (CurrentPlayer.CanBuy)
                         {
-                            if (StoreManager.IsProductAvailable("WizardTools30"))
+                            if (await StoreManager.BuyLicense("WizardTools30"))
                             {
-                                RoamingSettings.SetMagicRollsCount(CurrentPlayer, RoamingSettings.GetMagicRollsCount(CurrentPlayer) + 30);
-                                RoamingSettings.SetManualSetsCount(CurrentPlayer, RoamingSettings.GetManualSetsCount(CurrentPlayer) + 30);
-                                RoamingSettings.SetForthRollsCount(CurrentPlayer, RoamingSettings.GetForthRollsCount(CurrentPlayer) + 30);
-                                var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
-                                var res = await ks.AddPlayersMagicsAsync(CurrentPlayer.Name, CurrentPlayer.Password.Encrypt(33), "30".Encrypt(33), "30".Encrypt(33), "30".Encrypt(33));
-                                if (!res.Body.AddPlayersMagicsResult)
+                                if (StoreManager.IsProductAvailable("WizardTools30"))
                                 {
-                                    Utilities.ShowMessage("PurchaseErrorMessage".Localize(), "ErrorLabel".Localize());
-                                    LogManager.Log(LogLevel.Error, "Purchase30", "Can't send info to server for user {0}", CurrentPlayer.Name);
+                                    RoamingSettings.SetMagicRollsCount(CurrentPlayer, RoamingSettings.GetMagicRollsCount(CurrentPlayer) + 30);
+                                    RoamingSettings.SetManualSetsCount(CurrentPlayer, RoamingSettings.GetManualSetsCount(CurrentPlayer) + 30);
+                                    RoamingSettings.SetForthRollsCount(CurrentPlayer, RoamingSettings.GetForthRollsCount(CurrentPlayer) + 30);
+                                    var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+                                    var res = await ks.AddPlayersMagicsAsync(CurrentPlayer.Name, CurrentPlayer.Password.Encrypt(33), "30".Encrypt(33), "30".Encrypt(33), "30".Encrypt(33));
+                                    if (!res.Body.AddPlayersMagicsResult)
+                                    {
+                                        Utilities.ShowMessage("PurchaseErrorMessage".Localize(), "ErrorLabel".Localize());
+                                        LogManager.Log( "Purchase30",new Exception(string.Format("Can't send info to server for user {0}", CurrentPlayer.Name)));
+                                    }
+                                    CurrentPlayer.RefreshArtifactsInfo();
                                 }
-                                CurrentPlayer.RefreshArtifactsInfo();
                             }
+                        }
+                        else
+                        {
+                            Utilities.ShowMessage("OnlyUniqueCanBuyMessage".Localize());
                         }
                         RefreshOffers();
                     }),
@@ -263,22 +270,29 @@ namespace Sanet.Kniffel.ViewModels
                {
                    MenuAction = new Action(async () =>
                    {
-                       if (await StoreManager.BuyLicense("WizardTools50"))
+                       if (CurrentPlayer.CanBuy)
                        {
-                           if (StoreManager.IsProductAvailable("WizardTools50"))
+                           if (await StoreManager.BuyLicense("WizardTools50"))
                            {
-                               RoamingSettings.SetMagicRollsCount(CurrentPlayer, RoamingSettings.GetMagicRollsCount(CurrentPlayer) + 50);
-                               RoamingSettings.SetManualSetsCount(CurrentPlayer, RoamingSettings.GetManualSetsCount(CurrentPlayer) + 50);
-                               RoamingSettings.SetForthRollsCount(CurrentPlayer, RoamingSettings.GetForthRollsCount(CurrentPlayer) + 50);
-                               var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
-                               var res = await ks.AddPlayersMagicsAsync(CurrentPlayer.Name, CurrentPlayer.Password.Encrypt(33), "50".Encrypt(33), "50".Encrypt(33), "50".Encrypt(33));
-                               if (!res.Body.AddPlayersMagicsResult)
+                               if (StoreManager.IsProductAvailable("WizardTools50"))
                                {
-                                   Utilities.ShowMessage("PurchaseErrorMessage".Localize(), "ErrorLabel".Localize());
-                                   LogManager.Log(LogLevel.Error, "Purchase50", "Can't send info to server for user {0}", CurrentPlayer.Name);
+                                   RoamingSettings.SetMagicRollsCount(CurrentPlayer, RoamingSettings.GetMagicRollsCount(CurrentPlayer) + 50);
+                                   RoamingSettings.SetManualSetsCount(CurrentPlayer, RoamingSettings.GetManualSetsCount(CurrentPlayer) + 50);
+                                   RoamingSettings.SetForthRollsCount(CurrentPlayer, RoamingSettings.GetForthRollsCount(CurrentPlayer) + 50);
+                                   var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+                                   var res = await ks.AddPlayersMagicsAsync(CurrentPlayer.Name, CurrentPlayer.Password.Encrypt(33), "50".Encrypt(33), "50".Encrypt(33), "50".Encrypt(33));
+                                   if (!res.Body.AddPlayersMagicsResult)
+                                   {
+                                       Utilities.ShowMessage("PurchaseErrorMessage".Localize(), "ErrorLabel".Localize());
+                                       LogManager.Log("Purchase50",new Exception(string.Format("Can't send info to server for user {0}", CurrentPlayer.Name)));
+                                   }
+                                   CurrentPlayer.RefreshArtifactsInfo();
                                }
-                               CurrentPlayer.RefreshArtifactsInfo();
                            }
+                       }
+                       else
+                       {
+                           Utilities.ShowMessage("OnlyUniqueCanBuyMessage".Localize());
                        }
                        RefreshOffers();
                    }),
@@ -294,6 +308,8 @@ namespace Sanet.Kniffel.ViewModels
                {
                    MenuAction = new Action(async () =>
                    {
+                       if (CurrentPlayer.CanBuy)
+                       {
                        if (await StoreManager.BuyLicense("WizardTools100"))
                        {
                            if (StoreManager.IsProductAvailable("WizardTools100"))
@@ -306,10 +322,15 @@ namespace Sanet.Kniffel.ViewModels
                                if (!res.Body.AddPlayersMagicsResult)
                                {
                                    Utilities.ShowMessage("PurchaseErrorMessage".Localize(), "ErrorLabel".Localize());
-                                   LogManager.Log(LogLevel.Error, "Purchase100", "Can't send info to server for user {0}", CurrentPlayer.Name);
+                                   LogManager.Log("Purchase100", new Exception(string.Format("Can't send info to server for user {0}", CurrentPlayer.Name)));
                                }
                                CurrentPlayer.RefreshArtifactsInfo();
                            }
+                       }
+                       }
+                       else
+                       {
+                           Utilities.ShowMessage("OnlyUniqueCanBuyMessage".Localize());
                        }
                        RefreshOffers();
                    }),

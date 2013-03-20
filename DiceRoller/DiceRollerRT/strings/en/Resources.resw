@@ -663,4 +663,10 @@
   <data name="ShareTitle" xml:space="preserve">
     <value>"Magical Yatzy" for Windows 8 </value>
   </data>
+  <data name="OnlyUniqueCanBuyMessage" xml:space="preserve">
+    <value>Sorry, only players with unique Username and Password can buy artifacts. We need this info to secure your purchase. Please check your data on new game page. Thanks!</value>
+  </data>
+  <data name="PlayerNoPasswordLabel" xml:space="preserve">
+    <value>no password</value>
+  </data>
 </root>

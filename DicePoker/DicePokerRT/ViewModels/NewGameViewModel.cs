@@ -332,18 +332,28 @@ namespace Sanet.Kniffel.ViewModels
             if (InternetCheker.IsInternetAvailable())
             {
                 KniffelServiceSoapClient client = new KniffelServiceSoapClient();
-                int rolls = 0;
-                int manuals = 0;
-                int resets = 0;
-            
-                var result = await client.GetPlayersMagicsAsync(player.Name, player.Password.Encrypt(33), rolls, manuals, resets);
-                player.HadStartupMagic = result.Body.GetPlayersMagicsResult;
-                if (RoamingSettings.GetMagicRollsCount(player) == 0 && result.Body.rolls == 10)
-                    Utilities.ShowToastNotification(string.Format(Messages.PLAYER_ARTIFACTS_BONUS.Localize(), player.Name, 10));
-                RoamingSettings.SetMagicRollsCount(player, result.Body.rolls);
-                RoamingSettings.SetManualSetsCount(player, result.Body.manuals);
-                RoamingSettings.SetForthRollsCount(player, result.Body.resets);
+                try
+                {
+                    
+                    int rolls = 0;
+                    int manuals = 0;
+                    int resets = 0;
+
+                    var result = await client.GetPlayersMagicsAsync(player.Name, player.Password.Encrypt(33), rolls, manuals, resets);
+                    player.HadStartupMagic = result.Body.GetPlayersMagicsResult;
+                    if (RoamingSettings.GetMagicRollsCount(player) == 0 && result.Body.rolls == 10)
+                        Utilities.ShowToastNotification(string.Format(Messages.PLAYER_ARTIFACTS_BONUS.Localize(), player.Name, 10));
+                    RoamingSettings.SetMagicRollsCount(player, result.Body.rolls);
+                    RoamingSettings.SetManualSetsCount(player, result.Body.manuals);
+                    RoamingSettings.SetForthRollsCount(player, result.Body.resets);
+                    
+                }
+                catch (Exception ex)
+                {
+                    LogManager.Log("NGVM.SyncArtifacts", ex);
+                }
                 await client.CloseAsync();
+                
             }
             player.RefreshArtifactsInfo(true);
             

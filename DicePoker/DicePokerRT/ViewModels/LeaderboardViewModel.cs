@@ -417,7 +417,10 @@ namespace Sanet.Kniffel.ViewModels
                     ScoresM.Add(new KniffelScoreWrapper(score));
                 NotifyPropertyChanged("ScoresM");
             }
-            catch { }
+            catch (Exception ex)
+            {
+                LogManager.Log("LBVM.GetScoresM", ex);
+            }
             finally
             {
                 ScoresMLoading = false;
