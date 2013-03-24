@@ -28,11 +28,13 @@ namespace Sanet.Common
                     case KniffelScores.ThreeOfAKind:
                     case KniffelScores.SmallStraight:
                     case KniffelScores.LargeStraight:
-                        return Brushes.SolidBronzeBackColor;
-                    case KniffelScores.Kniffel:
-                        return Brushes.SolidGoldBackColor;
-                    default:
                         return Brushes.SolidSanetBlue;
+                    case KniffelScores.Kniffel:
+                        return Brushes.ViewedBackColor;//.GoldBackColor;
+                    case KniffelScores.Total:
+                        return Brushes.SilverBackColor;
+                    default:
+                        return Brushes.GrayBackColor;
                 }
             }
 

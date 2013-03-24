@@ -346,13 +346,13 @@ namespace Sanet.Kniffel.ViewModels
                     RoamingSettings.SetMagicRollsCount(player, result.Body.rolls);
                     RoamingSettings.SetManualSetsCount(player, result.Body.manuals);
                     RoamingSettings.SetForthRollsCount(player, result.Body.resets);
-                    
+                    await client.CloseAsync();
                 }
                 catch (Exception ex)
                 {
                     LogManager.Log("NGVM.SyncArtifacts", ex);
                 }
-                await client.CloseAsync();
+               
                 
             }
             player.RefreshArtifactsInfo(true);

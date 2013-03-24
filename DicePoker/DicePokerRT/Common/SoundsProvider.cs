@@ -37,7 +37,7 @@ namespace Sanet.Models
         /// <summary>
         /// play sound usng provided mediaelement
         /// </summary>
-        public static void PlaySound(MediaElement player, string filename)
+        public async static void PlaySound(MediaElement player, string filename)
         {
             try
             {
@@ -49,7 +49,15 @@ namespace Sanet.Models
                 if (audioStreams.ContainsKey(filename))
                 {
                     player.Stop();
-                    player.SetSource(audioStreams[filename], "audio/mpeg");
+                    var astream = audioStreams[filename];
+                    if (astream == null)
+                    {
+                        dataFolder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Audio");
+                        var file = await dataFolder.GetFileAsync(filename + ".mp3");
+                        astream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
+                        audioStreams[filename] = astream;
+                    }
+                    player.SetSource(astream, "audio/mpeg");
                 }
             }
             catch (Exception ex)

@@ -79,21 +79,27 @@ namespace Sanet
           }
       }
 
-     public static void ShowToastNotification(string text)
+     public static void ShowToastNotification(string text, string logoimage)
      {
          // The template is set to be a ToastImageAndText01. This tells the toast notification manager what to expect next.
          ToastTemplateType toastTemplate = ToastTemplateType.ToastImageAndText01;
          XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(toastTemplate);
 
          XmlNodeList toastImageElements = toastXml.GetElementsByTagName("image");
-        ((XmlElement)toastImageElements[0]).SetAttribute("src", "ms-appx:///Assets/LogoSquare.png");
-        ((XmlElement)toastImageElements[0]).SetAttribute("alt", "Bible Pronto");
-         
+         ((XmlElement)toastImageElements[0]).SetAttribute("src", "ms-appx:///Assets/" + logoimage);
+         ((XmlElement)toastImageElements[0]).SetAttribute("alt", "");
+
          XmlNodeList toastTextElements = toastXml.GetElementsByTagName("text");
          toastTextElements[0].AppendChild(toastXml.CreateTextNode(text));
 
          ToastNotification toast = new ToastNotification(toastXml);
          ToastNotificationManager.CreateToastNotifier().Show(toast);
+
+     }
+
+     public static void ShowToastNotification(string text)
+     {
+         ShowToastNotification(text, "StoreLogo.scale-180.png");
 
      }
 

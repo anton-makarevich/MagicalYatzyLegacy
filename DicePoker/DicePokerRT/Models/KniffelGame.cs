@@ -12,7 +12,7 @@ namespace Sanet.Kniffel.Models
         //sync object
         object syncRoot = new object();
 
-        int[] lastRollResults = new int[5];
+        int[] lastRollResults;
         List<int> fixedRollResults = new List<int>();
         Queue<int> thisTurnValues = new Queue<int>();
 
@@ -155,6 +155,7 @@ namespace Sanet.Kniffel.Models
         public void DoMove()
         {
             fixedRollResults = new List<int>();
+            
             if (Rules.Rule == Models.Rules.krMagic)
                 RerollMode = false;
             //if we have current player - move is continue, so selecting next
@@ -267,6 +268,7 @@ namespace Sanet.Kniffel.Models
             lock (syncRoot)
             {
                 int j = 0;
+                lastRollResults = new int[5];
                 for (int i = j; i < fixedRollResults.Count; i++)
                 {
                     lastRollResults[i] = fixedRollResults[i];
@@ -275,7 +277,7 @@ namespace Sanet.Kniffel.Models
 
                 for (int i = j; i <= 4; i++)
                 {
-                    int ii = rand.Next(1, 7);//В цикл для нормальной игры, за циклом - только книффеля))
+                    int ii = DiceRandomGenerator.GetNextDiceResult(fixedRollResults.ToArray()/*lastRollResults*/);//rand.Next(1, 7);//В цикл для нормальной игры, за циклом - только книффеля))
 
                     lastRollResults[i] = ii;
                     if (Rules.Rule == Models.Rules.krMagic)

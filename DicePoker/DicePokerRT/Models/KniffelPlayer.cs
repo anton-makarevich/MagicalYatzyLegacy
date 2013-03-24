@@ -46,6 +46,7 @@ namespace Sanet.Kniffel.Models
                 _Name = value;
                 NotifyPropertyChanged("Name");
                 Password = "";
+                ArtifactsInfoMessage = "ChangePasswordLabel".Localize();
                 //RememberPass = false;
                 HadStartupMagic = false;
                 if (!string.IsNullOrEmpty(value))

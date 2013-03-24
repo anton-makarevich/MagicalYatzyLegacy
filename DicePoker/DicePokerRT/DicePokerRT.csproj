@@ -156,6 +156,7 @@
     <Compile Include="DicePanel\DiceSelector.cs" />
     <Compile Include="Models\AboutAppAction.cs" />
     <Compile Include="Models\AdminModule.cs" />
+    <Compile Include="Models\DiceRandomGenerator.cs" />
     <Compile Include="Models\OfferAction.cs" />
     <Compile Include="Models\EncriptionExtensions.cs" />
     <Compile Include="Models\Enums\GameRule.cs" />

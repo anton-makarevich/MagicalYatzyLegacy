@@ -95,11 +95,15 @@ namespace DicePokerRT
             //register for settings charm event
             SettingsPane.GetForCurrentView().CommandsRequested += App_CommandsRequested;
         }
+        object objSync = new object();
         static ILogConsole Logger = new RTLogger();
         void LogManager_MessageLogged(string from, string line, int level)
         {
-            String message = string.Format("{0}: {1}, {2}", DateTime.Now, from, line);
-            Logger.WriteLine(message);
+            lock (objSync)
+            {
+                String message = string.Format("{0}: {1}, {2}", DateTime.Now, from, line);
+                Logger.WriteLine(message);
+            }
         }
 
         /// <summary>
