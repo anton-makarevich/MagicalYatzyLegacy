@@ -865,7 +865,7 @@ namespace Sanet.Kniffel.Models
         #endregion
 
         
-
+#if !SERVER
         #region Commands
         public RelayCommand DeleteCommand { get; set; }
         public RelayCommand MagicCommand { get; set; }
@@ -879,6 +879,6 @@ namespace Sanet.Kniffel.Models
 
 
         #endregion
-
+#endif
     }
 }

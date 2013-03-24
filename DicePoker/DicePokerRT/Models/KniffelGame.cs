@@ -1,13 +1,13 @@
-﻿using Sanet.Kniffel.DicePanel;
-using Sanet.Kniffel.Models.Enums;
+﻿using Sanet.Kniffel.Models.Enums;
 using Sanet.Kniffel.Models.Events;
+using Sanet.Kniffel.Models.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Sanet.Kniffel.Models
 {
-    public class KniffelGame
+    public class KniffelGame : IKniffelGame
     {
         //sync object
         object syncRoot = new object();

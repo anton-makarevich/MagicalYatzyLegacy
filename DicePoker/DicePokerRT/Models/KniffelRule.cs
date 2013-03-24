@@ -6,13 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-#if WinRT
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
-#else
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-#endif
 
 namespace Sanet.Kniffel.Models
 {
@@ -21,8 +14,10 @@ namespace Sanet.Kniffel.Models
         public KniffelRule(Rules rule)
         {
             Rule = rule;
+#if !SERVER
             LoadWeekScores();
             LoadDayScores();
+#endif
         }
 
         #region Properties
@@ -340,6 +335,7 @@ namespace Sanet.Kniffel.Models
         #endregion
 
         #region Methods
+#if !SERVER
         /// <summary>
         /// Get best players for week
         /// </summary>
@@ -484,7 +480,7 @@ namespace Sanet.Kniffel.Models
             BestWeekScorePlayer= BestDayScorePlayer = "";
             BestWeekScoreLabel =BestDayScoreLabel= "BestLocalShort".Localize();
         }
-
+#endif
         public override string ToString()
         {
             switch (Rule)
@@ -500,6 +496,7 @@ namespace Sanet.Kniffel.Models
             }
             return "Scores";
         }
+
         #endregion
     }
 }

@@ -138,6 +138,9 @@
     <Compile Include="..\..\DiceRoller\DiceRollerRT\ViewModels\SettingsViewModel.cs">
       <Link>ViewModels\SettingsViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\CloudServer\Models\Interfaces\IKniffelGame.cs">
+      <Link>Models\Interfaces\IKniffelGame.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,7 @@
     <Compile Include="Controls\PopupPaneBase.cs" />
     <Compile Include="Controls\RotatingPanel.cs" />
     <Compile Include="DicePanel\DiceSelector.cs" />
+    <Compile Include="DicePanel\DieResult.cs" />
     <Compile Include="Models\AboutAppAction.cs" />
     <Compile Include="Models\AdminModule.cs" />
     <Compile Include="Models\DiceRandomGenerator.cs" />

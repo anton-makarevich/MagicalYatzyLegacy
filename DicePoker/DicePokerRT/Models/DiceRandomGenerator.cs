@@ -27,7 +27,7 @@ namespace Sanet.Kniffel.Models
                     var r = rnd.Next(6 + prevValues.Count);//the less number in brackets - the higher probability of same dices
                     if (initValues.Contains(r) && !prevValues.Contains(r))
                     {
-                        LogManager.Log(LogLevel.Message, "", "removing: {0} - {1} ", string.Join(", ", prevValues), r);
+                        //LogManager.Log(LogLevel.Message, "", "removing: {0} - {1} ", string.Join(", ", prevValues), r);
                         initValues.Remove(r);
                     }
                 }
@@ -38,14 +38,14 @@ namespace Sanet.Kniffel.Models
                     var r = rnd.Next(6 + prevValues.Count);//the less number in brackets - the higher probability of same dices
                     if (initValues.Contains(r) && prevValues.Contains(r))
                     {
-                        LogManager.Log(LogLevel.Message, "", "removing: {0} - {1} ", string.Join(", ", prevValues), r);
+                        //LogManager.Log(LogLevel.Message, "", "removing: {0} - {1} ", string.Join(", ", prevValues), r);
                         initValues.Remove(r);
                     }
                 }
             }
 
             var j = rnd.Next(initValues.Count);
-            LogManager.Log(LogLevel.Message, "", "returning: {0} - {1}->{2}", string.Join(", ", initValues), j, initValues[j]);
+            //LogManager.Log(LogLevel.Message, "", "returning: {0} - {1}->{2}", string.Join(", ", initValues), j, initValues[j]);
             return initValues[j];
         }
 
