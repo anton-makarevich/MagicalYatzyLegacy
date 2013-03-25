@@ -2,7 +2,7 @@
 using System;
 namespace Sanet.Kniffel.Models.Interfaces
 {
-    interface IKniffelGame
+    public interface IKniffelGame
     {
         void ApplyScore(RollResult result);
         Player CurrentPlayer { get; set; }

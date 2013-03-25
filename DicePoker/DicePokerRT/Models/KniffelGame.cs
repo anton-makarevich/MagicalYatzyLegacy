@@ -478,6 +478,13 @@ namespace Sanet.Kniffel.Models
         {
             if (Players==null)
                 Players = new List<Player>();
+
+            int seat = 0;
+            while (Players.FirstOrDefault(f => f.SeatNo == seat) != null)
+            {
+                seat++;
+            };
+
             player.SeatNo=Players.Count;
             Players.Add(player);
             player.Game = this;

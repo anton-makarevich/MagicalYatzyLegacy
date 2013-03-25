@@ -111,4 +111,69 @@ namespace Sanet.Kniffel.Models.Events
             _Result=result;
         }
     }
+
+    public class StringEventArgs : EventArgs
+    {
+        private readonly string m_Str;
+        public string Str { get { return m_Str; } }
+
+        public StringEventArgs(string s)
+        {
+            m_Str = s;
+        }
+    }
+
+    /// <summary>
+    /// EventArgs avec un param d'un type quelconque (Key)
+    /// </summary>
+    /// <typeparam name="TKey"></typeparam>
+    public class KeyEventArgs<TKey> : EventArgs
+    {
+        private TKey m_Key;
+        public TKey Key { get { return m_Key; } }
+
+        public KeyEventArgs(TKey key)
+        {
+            m_Key = key;
+        }
+    }
+
+    /// <summary>
+    /// EventArgs avec un param d'un type quelconque (Key) et un autre param d'un type quelconque (Value)
+    /// </summary>
+    /// <typeparam name="TKey"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
+    public class KeyValueEventArgs<TKey, TValue> : EventArgs
+    {
+        private TKey m_Key;
+        private TValue m_Value;
+        public TKey Key { get { return m_Key; } }
+        public TValue Value { get { return m_Value; } }
+
+        public KeyValueEventArgs(TKey key, TValue value)
+        {
+            m_Key = key;
+            m_Value = value;
+        }
+    }
+
+    /// <summary>
+    /// EventArgs avec un param d'un type quelconque (Key) et d'autres params d'un type quelconque (Values)
+    /// </summary>
+    /// <typeparam name="TKey"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
+    public class KeyValuesEventArgs<TKey, TValue> : EventArgs
+    {
+        private TKey m_Key;
+        private TValue[] m_Values;
+        public TKey Key { get { return m_Key; } }
+        public TValue[] Values { get { return m_Values; } }
+
+        public KeyValuesEventArgs(TKey key, params TValue[] values)
+        {
+            m_Key = key;
+            m_Values = values;
+        }
+    }
+    
 }

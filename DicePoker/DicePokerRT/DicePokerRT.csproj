@@ -160,6 +160,7 @@
     <Compile Include="DicePanel\DieResult.cs" />
     <Compile Include="Models\AboutAppAction.cs" />
     <Compile Include="Models\AdminModule.cs" />
+    <Compile Include="Models\KniffelPlayerClient.cs" />
     <Compile Include="Models\DiceRandomGenerator.cs" />
     <Compile Include="Models\OfferAction.cs" />
     <Compile Include="Models\EncriptionExtensions.cs" />
