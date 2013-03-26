@@ -52,7 +52,7 @@ namespace Sanet.Kniffel.Server
                         return;
                     
                 }
-                context.Response.Output.Write("good test (from asp handler)");
+                context.Response.Output.Write("dfq le . cb pbc? fq rfyn fylthcn'yl...  http://sanet.by");
             }
 
         }
