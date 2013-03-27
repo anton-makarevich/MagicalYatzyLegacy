@@ -190,6 +190,7 @@
     </Compile>
     <Compile Include="ViewModels\AboutPageViewModel.cs" />
     <Compile Include="ViewModels\AdBasedViewModel.cs" />
+    <Compile Include="ViewModels\RuleWrapper.cs" />
     <Compile Include="ViewModels\MagicRoomViewModel.cs" />
     <Compile Include="ViewModels\LeaderboardViewModel.cs" />
     <Compile Include="ViewModels\PlayGameViewModel.cs" />

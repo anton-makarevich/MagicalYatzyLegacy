@@ -101,16 +101,16 @@ namespace Sanet.Kniffel.ViewModels
                     Description = "NewLocalGameDescription",
                     Image = new BitmapImage(SanetImageProvider.GetAssetsImage("SanetDice.png")),
                 });
-            //MenuActions.Add(
-            //    new MainMenuAction
-            //    {
-            //        Label = "NewOnlineGameAction",
-            //        MenuAction = new Action(() =>
-            //        {
-            //            Utilities.ShowToastNotification(Messages.NETWORK_GAME_IS_NOT_READY.Localize());
-            //        }),
-            //        Description = "NewOnlineGameDescription"
-            //    });
+            MenuActions.Add(
+                new MainMenuAction
+                {
+                    Label = "NewOnlineGameAction",
+                    MenuAction = new Action(() =>
+                    {
+                        Utilities.ShowToastNotification(Messages.NETWORK_GAME_IS_NOT_READY.Localize());
+                    }),
+                    Description = "NewOnlineGameDescription"
+                });
             MenuActions.Add(
                 new MainMenuAction
                 {

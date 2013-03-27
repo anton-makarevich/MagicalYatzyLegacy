@@ -144,8 +144,8 @@ namespace Sanet.Kniffel.ViewModels
         /// Rules list
         /// </summary>
 
-        private List<KniffelRule> _Rules;
-        public List<KniffelRule> Rules
+        private List<RuleWrapper> _Rules;
+        public List<RuleWrapper> Rules
         {
             get { return _Rules; }
             set
@@ -163,8 +163,8 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// Selected rule for game
         /// </summary>
-        private KniffelRule _SelectedRule;
-        public KniffelRule SelectedRule
+        private RuleWrapper _SelectedRule;
+        public RuleWrapper SelectedRule
         {
             get { return _SelectedRule; }
             set
@@ -285,14 +285,14 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         public void FillRules()
         {
-            Rules = new List<KniffelRule>();
+            Rules = new List<RuleWrapper>();
             //create all possible rules
             foreach (Rules rule in Enum.GetValues(typeof(Rules)))
-                Rules.Add(new KniffelRule(rule));
+                Rules.Add(new RuleWrapper( new KniffelRule(rule)));
             NotifyPropertyChanged("Rules");
             //try to get prev selected from roaming
             var lastRule = RoamingSettings.LastRule;
-            SelectedRule = Rules.FirstOrDefault(f => f.Rule == lastRule);
+            SelectedRule = Rules.FirstOrDefault(f => f.Rule.Rule == lastRule);
             if (SelectedRule == null)
                 SelectedRule = Rules[0];
             
@@ -429,7 +429,7 @@ namespace Sanet.Kniffel.ViewModels
             for(;index<4;index++)
                 RoamingSettings.SaveLastPlayer(null, index);
             if (SelectedRule != null)
-                RoamingSettings.LastRule = SelectedRule.Rule;
+                RoamingSettings.LastRule = SelectedRule.Rule.Rule;
         }
 
         public async void StartGame()
@@ -438,12 +438,12 @@ namespace Sanet.Kniffel.ViewModels
             {
                 var gameModel = ViewModelProvider.GetViewModel<PlayGameViewModel>();
                 gameModel.Game = new KniffelGame();
-                gameModel.Game.Rules = SelectedRule;
+                gameModel.Game.Rules = SelectedRule.Rule;
                 gameModel.RollResults = null;
                 foreach (Player player in Players)
                 {
                     //notify user that he haven't artifacts
-                    if (SelectedRule.Rule == Models.Rules.krMagic)
+                    if (SelectedRule.Rule.Rule == Models.Rules.krMagic)
                     {
                         if (!player.HasArtifacts && player.IsHuman)
                         {
