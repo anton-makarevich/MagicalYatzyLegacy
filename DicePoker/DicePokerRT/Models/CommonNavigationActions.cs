@@ -37,6 +37,20 @@ namespace Sanet.Kniffel.Models
             }
 
         }
+
+        public static Action NavigateToNewOnlineGamePage
+        {
+            get
+            {
+                return new Action(() =>
+                {
+                    SoundsProvider.PlaySound("click");
+                    ((Frame)Window.Current.Content).Navigate(typeof(NewOnlineGamePage));
+                });
+            }
+
+        }
+
         public static Action NavigateToAboutPage
         {
             get

@@ -107,9 +107,10 @@ namespace Sanet.Kniffel.ViewModels
                     Label = "NewOnlineGameAction",
                     MenuAction = new Action(() =>
                     {
-                        Utilities.ShowToastNotification(Messages.NETWORK_GAME_IS_NOT_READY.Localize());
+                        CommonNavigationActions.NavigateToNewOnlineGamePage();
                     }),
-                    Description = "NewOnlineGameDescription"
+                    Description = "NewOnlineGameDescription",
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("OnlineGame.png")),
                 });
             MenuActions.Add(
                 new MainMenuAction
