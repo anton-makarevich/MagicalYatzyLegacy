@@ -55,11 +55,27 @@ namespace Sanet.Kniffel.Models
             }   
         }
 
+        public bool HasPassword
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(Password);
+            }
+        }
        
         /// <summary>
         /// Player ID (GUID?)
         /// </summary>
-        public string ID { get; set; }
+        public string ID 
+        {
+            get
+            {
+                string id = Name.GetHashCode().ToString();
+                if (HasPassword)
+                    id += Password.GetHashCode().ToString();
+                return id;
+            }
+        }
         
         /// <summary>
         /// is this player moves now

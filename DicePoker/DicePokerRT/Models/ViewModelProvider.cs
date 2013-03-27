@@ -20,6 +20,24 @@ namespace Sanet.Models
             }
             return vm;
         }
+        public static T GetNewViewModel<T>() where T : BaseViewModel
+        {
+            T vm = (T)viewModels.Where(f => f is T).FirstOrDefault();
 
+            if (vm != null)
+            {
+                viewModels.Remove(vm);
+                vm = null;
+            }
+            vm = (T)Activator.CreateInstance(typeof(T));
+            viewModels.Add(vm);
+            return vm;
+        }
+
+        public static bool HasViewModel<T>() where T : BaseViewModel
+        {
+            T vm = (T)viewModels.Where(f => f is T).FirstOrDefault();
+            return (vm != null);
+        }
     }
 }

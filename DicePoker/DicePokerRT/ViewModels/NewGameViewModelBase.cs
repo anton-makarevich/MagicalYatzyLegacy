@@ -53,8 +53,24 @@ namespace Sanet.Kniffel.ViewModels
                 return Messages.NEW_GAME_RULES.Localize();
             }
         }
-        
-        
+
+        /// <summary>
+        /// Players list
+        /// </summary>
+        protected ObservableCollection<Player> _Players;
+        public ObservableCollection<Player> Players
+        {
+            get { return _Players; }
+            set
+            {
+                if (_Players != value)
+                {
+                    _Players = value;
+                    NotifyPropertyChanged("Players");
+                }
+            }
+        }
+
         /// <summary>
         /// Selected player, used to delete and maybe other actions
         /// </summary>
@@ -124,6 +140,9 @@ namespace Sanet.Kniffel.ViewModels
             _magic.GetViewModel<MagicRoomViewModel>().CurrentPlayer = (Player)sender;
             _magicPopup.IsOpen = true;
         }
+
+        protected abstract void FillPlayers();
+
         /// <summary>
         /// fills players list
         /// </summary>

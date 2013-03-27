@@ -140,6 +140,9 @@
     <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\Result.cs">
       <Link>Models\Result.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerRT\Common\ServerHttpMessage.cs">
+      <Link>Models\Common\ServerHttpMessage.cs</Link>
+    </Compile>
     <Compile Include="..\DicePokerRT\DicePanel\DieResult.cs">
       <Link>Models\DieResult.cs</Link>
     </Compile>
@@ -170,6 +173,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\InitController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -211,6 +215,8 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <None Include="Properties\PublishProfiles\yatzy - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\yatzy - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\yatzyapp - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\yatzyapp - Web Deploy.pubxml" />
     <Content Include="Web.config" />

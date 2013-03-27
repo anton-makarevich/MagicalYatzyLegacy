@@ -32,11 +32,11 @@ namespace DicePokerRT
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            dpBackground.PanelStyle = GetViewModel<NewGameViewModel>().SettingsPanelStyle;
+            dpBackground.PanelStyle = GetViewModel<NewOnlineGameViewModel>().SettingsPanelStyle;
             dpBackground.TreeDScaleCoef = 0.38;
             dpBackground.NumDice = 5;
-            dpBackground.RollDelay = GetViewModel<NewGameViewModel>().SettingsPanelSpeed;
-            dpBackground.DieAngle = GetViewModel<NewGameViewModel>().SettingsPanelAngle;
+            dpBackground.RollDelay = GetViewModel<NewOnlineGameViewModel>().SettingsPanelSpeed;
+            dpBackground.DieAngle = GetViewModel<NewOnlineGameViewModel>().SettingsPanelAngle;
             dpBackground.MaxRollLoop = 40;
             dpBackground.EndRoll += StartRoll;
             StartRoll();
@@ -54,27 +54,27 @@ namespace DicePokerRT
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            SetViewModel<NewGameViewModel>();
-            GetViewModel<NewGameViewModel>().PropertyChanged += GamePage_PropertyChanged;
-            GetViewModel<NewGameViewModel>().FillRules();
+            SetViewModel<NewOnlineGameViewModel>();
+            GetViewModel<NewOnlineGameViewModel>().PropertyChanged += GamePage_PropertyChanged;
+            GetViewModel<NewOnlineGameViewModel>().FillRules();
         }
         void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "SettingsPanelAngle")
-                dpBackground.DieAngle = GetViewModel<NewGameViewModel>().SettingsPanelAngle;
+                dpBackground.DieAngle = GetViewModel<NewOnlineGameViewModel>().SettingsPanelAngle;
             else if (e.PropertyName == "SettingsPanelSpeed")
-                dpBackground.RollDelay = GetViewModel<NewGameViewModel>().SettingsPanelSpeed;
+                dpBackground.RollDelay = GetViewModel<NewOnlineGameViewModel>().SettingsPanelSpeed;
             else if (e.PropertyName == "SettingsPanelStyle")
-                dpBackground.PanelStyle = GetViewModel<NewGameViewModel>().SettingsPanelStyle;
+                dpBackground.PanelStyle = GetViewModel<NewOnlineGameViewModel>().SettingsPanelStyle;
 
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             dpBackground.EndRoll -= StartRoll;
-            GetViewModel<NewGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
+            GetViewModel<NewOnlineGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
             dpBackground.Dispose();
             dpBackground = null;
-            GetViewModel<NewGameViewModel>().SavePlayers();
+            GetViewModel<NewOnlineGameViewModel>().SavePlayers();
         }
     }
 }

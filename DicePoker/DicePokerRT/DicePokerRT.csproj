@@ -138,8 +138,59 @@
     <Compile Include="..\..\DiceRoller\DiceRollerRT\ViewModels\SettingsViewModel.cs">
       <Link>ViewModels\SettingsViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\CloudServer\Models\Common\BlockingQueue.cs">
+      <Link>Common\BlockingQueue.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Common\StringTokenizer.cs">
+      <Link>Common\StringTokenizer.cs</Link>
+    </Compile>
     <Compile Include="..\CloudServer\Models\Interfaces\IKniffelGame.cs">
       <Link>Models\Interfaces\IKniffelGame.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerChatMessageCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerChatMessageCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerPingCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerPingCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerSitOutChangedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerSitOutChangedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\AbstractLobbyCommand.cs">
+      <Link>Models\Protocol\Commands\Lobby\AbstractLobbyCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\AbstractLobbyResponse.cs">
+      <Link>Models\Protocol\Commands\Lobby\AbstractLobbyResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\GameCommand.cs">
+      <Link>Models\Protocol\Commands\Lobby\GameCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\JoinCommand.cs">
+      <Link>Models\Protocol\Commands\Lobby\JoinCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\JoinResponse.cs">
+      <Link>Models\Protocol\Commands\Lobby\JoinResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\AbstractCommand.cs">
+      <Link>Models\Protocol\Commands\AbstractCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\AbstractCommandResponse.cs">
+      <Link>Models\Protocol\Commands\AbstractCommandResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\CommandEventArgs.cs">
+      <Link>Models\Protocol\Commands\CommandEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\CommandObserver.cs">
+      <Link>Models\Protocol\Commands\CommandObserver.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\CommandQueueCommunicator.cs">
+      <Link>Models\Protocol\Commands\CommandQueueCommunicator.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\DisconnectCommand.cs">
+      <Link>Models\Protocol\Commands\DisconnectCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\QueueCommunicator.cs">
+      <Link>Models\Protocol\QueueCommunicator.cs</Link>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -160,6 +211,8 @@
     <Compile Include="DicePanel\DieResult.cs" />
     <Compile Include="Models\AboutAppAction.cs" />
     <Compile Include="Models\AdminModule.cs" />
+    <Compile Include="Models\Config.cs" />
+    <Compile Include="Models\KniffelGameClient.cs" />
     <Compile Include="Models\KniffelPlayerClient.cs" />
     <Compile Include="Models\DiceRandomGenerator.cs" />
     <Compile Include="Models\OfferAction.cs" />
@@ -176,6 +229,11 @@
     <Compile Include="Models\LocalSettings.cs" />
     <Compile Include="Models\Messages.cs" />
     <Compile Include="Models\PlayerAIExtensions.cs" />
+    <Compile Include="Common\ServerHttpMessage.cs" />
+    <Compile Include="Models\JoinManager.cs" />
+    <Compile Include="Models\Protocol\LobbyTCPClient.cs" />
+    <Compile Include="Models\Protocol\Observer\GameClientCommandObserver.cs" />
+    <Compile Include="Models\Protocol\TCPCommunicatorRT.cs" />
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="Models\ReviewBugger.cs" />
     <Compile Include="Models\RoamingSettings.cs" />
@@ -183,6 +241,8 @@
     <Compile Include="Models\TaskPanePopup.cs" />
     <Compile Include="Models\TileHelper.cs" />
     <Compile Include="Models\ViewModelProvider.cs" />
+    <Compile Include="Models\Protocol\WebApi\AbstractHttpService.cs" />
+    <Compile Include="Models\Protocol\WebApi\InitService.cs" />
     <Compile Include="Service References\KniffelLeaderBoardService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1361,6 +1421,9 @@
     </Reference>
     <Reference Include="MyToolkit">
       <HintPath>packages\MyToolkit.1.9.0\lib\netcore45\MyToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.4.5.11\lib\winrt45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="WinRT.Triggers">
       <HintPath>packages\WinRTTriggers.1.2.0\lib\winrt45\WinRT.Triggers.dll</HintPath>

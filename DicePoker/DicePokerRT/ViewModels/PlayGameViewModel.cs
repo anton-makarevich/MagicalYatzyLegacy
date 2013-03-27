@@ -3,6 +3,7 @@ using Sanet.Kniffel.DicePanel;
 using Sanet.Kniffel.Models;
 using Sanet.Kniffel.Models.Enums;
 using Sanet.Kniffel.Models.Events;
+using Sanet.Kniffel.Models.Interfaces;
 using Sanet.Models;
 using System;
 using System.Collections.Generic;
@@ -197,8 +198,8 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
         
-        private KniffelGame _Game;
-        public KniffelGame Game
+        private IKniffelGame _Game;
+        public IKniffelGame Game
         {
             get { return _Game; }
             set

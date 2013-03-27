@@ -22,7 +22,7 @@ namespace Sanet.Kniffel.ViewModels
         public NewGameViewModel()
         {
             CreateCommands();
-            fillPlayers();
+            FillPlayers();
 
             
         }
@@ -73,23 +73,7 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
-        /// <summary>
-        /// Players list
-        /// </summary>
-        private ObservableCollection<Player> _Players;
-        public ObservableCollection<Player> Players
-        {
-            get { return _Players; }
-            set
-            {
-                if (_Players != value)
-                {
-                    _Players = value;
-                    NotifyPropertyChanged("Players");
-                }
-            }
-        }
-
+        
         /// <summary>
         /// Selected player, used to delete and maybe other actions
         /// </summary>
@@ -175,7 +159,7 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// fills players list
         /// </summary>
-        async void  fillPlayers()
+        protected override async void  FillPlayers()
         {
             Players = new ObservableCollection<Player>();
             //trying toload previous players from roaming

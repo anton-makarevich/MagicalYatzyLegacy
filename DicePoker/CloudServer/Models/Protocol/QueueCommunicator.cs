@@ -53,7 +53,7 @@ namespace Sanet.Network.Protocol
         public void Start()
         {
             m_IsConnected = true;
-#if NETFX_CORE
+#if WinRT
             //TODO: think about this
             Task t =new Task(Run);
             t.Start();

@@ -346,13 +346,7 @@ namespace Sanet.Kniffel.Models
             }
         }
 
-        public bool HasPassword
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(Password);
-            }
-        }
+        
 
         /// <summary>
         /// Returns if player can buy artifacts
