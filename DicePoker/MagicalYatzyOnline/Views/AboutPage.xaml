@@ -1,0 +1,245 @@
+﻿<views:BasePage
+    xmlns:DicePanel="using:Sanet.Kniffel.DicePanel" 
+    xmlns:ad="using:AdDuplex.Controls"
+    x:Class="DicePokerRT.AboutPage"
+    xmlns:views="using:Sanet.Views"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:common="using:Sanet.Common"
+    xmlns:local="using:DicePokerRT"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates"
+    mc:Ignorable="d">
+
+    <views:BasePage.Resources>
+        <common:BooleanToVisibilityConverter x:Key="VisibilityKey"/>
+        <common:ReverseBooleanToVisibilityConverter x:Key="ReversedVisibilityKey"/>
+    </views:BasePage.Resources>
+   
+    <!--<Viewbox
+        StretchDirection="Both"
+        Stretch="Fill">-->
+        <Grid
+            x:Name="LayoutRoot"
+            Background="Transparent"
+              >
+            <DicePanel:DicePanel
+            x:Name="dpBackground"
+            />
+            <Grid
+                x:Name="ControlGrid">
+                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="130"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="130"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="80"/>
+                    </Grid.RowDefinitions>
+                <Button x:Name="backButton" Click="GoBack" 
+                        VerticalAlignment="Center"
+                        IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" 
+                        Style="{StaticResource BackButtonStyle}"/>
+                    
+            <Grid Grid.Column="1"
+                  Grid.ColumnSpan="3"
+                    VerticalAlignment="Center"
+                      x:Name="titleGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource HeaderTextStyle}"
+                   Foreground="{StaticResource SanetBlue}"
+                   x:Name="titleText"
+                           VerticalAlignment="Center"
+                   Text="{Binding Title}"
+                           TextTrimming="WordEllipsis"
+                  />
+                    <ad:AdControl 
+                    Grid.Column="1"
+                    AppId="30603" x:Name="adDuplexAd" Size="500x130" 
+                        Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"/>
+                </Grid>
+                <ScrollViewer
+                     Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="1"
+                    VerticalScrollBarVisibility="Disabled"
+                    HorizontalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
+                       Foreground="{StaticResource SanetBlue}"
+                       Text="{Binding CurrentAppName}"
+                       Grid.Row="0"
+                       VerticalAlignment="Center"/>
+                    <Grid
+                            Grid.Row="1"
+                        Margin="50,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                                
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock
+                            FontSize="20"
+                            Foreground="{StaticResource SanetBlue}"
+                            Text="{Binding VersionLabel}"/>
+                        <ListView
+                                Grid.Row="1"
+                                SelectionMode="None"
+                                ItemsSource="{Binding AboutAppActions}"
+                                ItemClick="itemListView_ItemClick_1"
+                            IsItemClickEnabled="True"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                                ItemTemplate="{StaticResource AboutAppActionTemplate}">
+                                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
+                        <TextBlock
+                            FontSize="20"
+                            Grid.Row="2"
+                            HorizontalAlignment="Left"
+                            TextWrapping="Wrap"
+                            MaxWidth="450"
+                            Foreground="{StaticResource SanetBlue}"
+                            x:Uid="OnlineVersionText"/>
+                    </Grid>
+
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
+                       Foreground="{StaticResource SanetBlue}"
+                       Text="{Binding OtherApps}"
+                       Grid.Row="0"
+                                   Grid.Column="1"
+                       VerticalAlignment="Center"/>
+                    <Grid
+                            Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="50,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <ListView
+                                Grid.Row="1"
+                            
+                                SelectionMode="None"
+                                ItemsSource="{Binding OtherAppActions}"
+                                ItemClick="ListView_ItemClick_1"
+                            IsItemClickEnabled="True"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                                ItemTemplate="{StaticResource OtherAppActionTemplate}">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
+                    </Grid>
+
+                </Grid>
+                </ScrollViewer>
+            <HyperlinkButton
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    Foreground="{StaticResource SanetBlue}"
+                    Grid.Row="2"
+                    Grid.ColumnSpan="3"
+                    Content="{Binding DevelopedByLabel}"
+                    NavigateUri="http://sanet.by"/>
+        </Grid>
+                <Grid
+                x:Name="SnapGrid"
+                Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource HeaderTextStyle}"
+                   Foreground="{StaticResource SanetBlue}"
+                   x:Name="titleSnapText"
+                   Text="Sanet Dice Poker"
+                           FontSize="40"
+                           Margin="10"
+                   VerticalAlignment="Center"/>
+                <Image x:Name="snappedLogo"
+                Grid.Row="1"
+                       Width="300"
+                       Height="300"
+               Source="ms-appx:///Assets/transparentlogo.png"
+               
+               />
+            </Grid>
+
+<VisualStateManager.VisualStateGroups>
+
+            <!-- Visual states reflect the application's view state -->
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="FullScreenLandscape"/>
+                <VisualState x:Name="FullScreenPortrait">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="MinWidth">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="768"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="MinHeight">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="1366"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="titleGrid" Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="648"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Filled">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="MinWidth">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="1024"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="MinWidth">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="320"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlGrid" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SnapGrid" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        </Grid>
+        
+
+    <!--</Viewbox>-->
+</views:BasePage>

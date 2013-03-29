@@ -62,6 +62,10 @@ namespace Sanet.Kniffel.Models
                 return !string.IsNullOrEmpty(Password);
             }
         }
+
+        public ClientType Client { get; set; }
+
+        public string Language { get; set; }
        
         /// <summary>
         /// Player ID (GUID?)

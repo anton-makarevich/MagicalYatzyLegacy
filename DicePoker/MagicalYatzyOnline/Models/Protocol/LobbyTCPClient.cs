@@ -12,6 +12,7 @@ using Sanet.Models.Collections;
 using Sanet.Kniffel.Models.Events;
 using Sanet.Kniffel.Models;
 using Sanet.Kniffel.ViewModels;
+using Sanet.Kniffel.Models.Interfaces;
 
 
 namespace Sanet.Kniffel.Protocol
@@ -125,22 +126,22 @@ namespace Sanet.Kniffel.Protocol
             }
         }
         
-        protected virtual int GetJoinedSeat(ref int p_noPort, string player)
+        protected virtual int GetJoinedSeat(ref int p_noPort, Player player)
         {
-            JoinCommand command = new JoinCommand(p_noPort, player);
+            JoinCommand command = new JoinCommand(p_noPort, player.Name, player.Password, player.Client,player.Language);
             Send(command);
 
             StringTokenizer token2 = ReceiveCommand(JoinResponse.COMMAND_NAME);
             if (!token2.HasMoreTokens())
                 return -1;
             JoinResponse response2 = new JoinResponse(token2);
-            p_noPort = response2.Command.TableID;
+            p_noPort = response2.GameId;
             return response2.NoSeat;
         }
 
-        public KniffelGameClient JoinTable(int p_noPort,  PlayGameViewModel gui)
+        public KniffelGameClient JoinTable(int p_noPort, Rules rule, Player p, IPlayGameView gui)
         {
-            int noSeat = GetJoinedSeat(ref p_noPort, m_PlayerName);
+            int noSeat = GetJoinedSeat(ref p_noPort, p);
             if (noSeat == -1)
             {
                 LogManager.Log(LogLevel.MessageLow, "LobbyTCPClient.JoinTable", "Cannot sit at this table: #{0}", p_noPort);
@@ -153,7 +154,9 @@ namespace Sanet.Kniffel.Protocol
             {
                 gui.Game = client;
             }
-            //client.Start();
+            client.Start();
+            p.Type = PlayerType.Local;
+            client.JoinGame(p);
             m_Client= client;
             return client;
         }
@@ -174,7 +177,6 @@ namespace Sanet.Kniffel.Protocol
             if (commandName == GameCommand.COMMAND_NAME)
             {
                 GameCommand c = new GameCommand(token);
-                int count = 0;
                 m_Client.Incoming(c.Command);
             }
             //else if (commandName.StartsWith(PlayerLeftCommand.COMMAND_NAME) && m_Clients.Count > 0)

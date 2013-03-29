@@ -83,6 +83,8 @@ namespace Sanet.Kniffel.Models
         {
             get
             {
+                if (lastRollResults == null)
+                    return null;
                 return
                     new DieResult() 
                     {
@@ -114,6 +116,8 @@ namespace Sanet.Kniffel.Models
         {
             get
             {
+                if (Players == null)
+                    return 0;
                 return Players.Count;
             }
         }
@@ -433,7 +437,7 @@ namespace Sanet.Kniffel.Models
         {
             
             {
-                if (IsPlaying)
+                if (IsPlaying || Players==null)
                     return;
             }
             bool bAllReady = true;
@@ -477,18 +481,11 @@ namespace Sanet.Kniffel.Models
 
         public void JoinGame(Player player)
         {
-            if (Players==null)
+            if (Players == null)
                 Players = new List<Player>();
-
-            int seat = 0;
-            while (Players.FirstOrDefault(f => f.SeatNo == seat) != null)
-            {
-                seat++;
-            };
-
-            player.SeatNo=Players.Count;
             Players.Add(player);
             player.Game = this;
+
             if (PlayerJoined != null)
                 PlayerJoined(this, new PlayerEventArgs(player));
         }
@@ -510,7 +507,7 @@ namespace Sanet.Kniffel.Models
             //m_CommandObserver.GameEndedCommandReceived += new EventHandler<CommandEventArgs<GameEndedCommand>>(m_CommandObserver_GameEndedCommandReceived);
             //m_CommandObserver.GameStartedCommandReceived += new EventHandler<CommandEventArgs<GameStartedCommand>>(m_CommandObserver_GameStartedCommandReceived);
             //m_CommandObserver.PlayerHoleCardsChangedCommandReceived += new EventHandler<CommandEventArgs<PlayerHoleCardsChangedCommand>>(m_CommandObserver_PlayerHoleCardsChangedCommandReceived);
-            //m_CommandObserver.PlayerJoinedCommandReceived += new EventHandler<CommandEventArgs<PlayerJoinedCommand>>(m_CommandObserver_PlayerJoinedCommandReceived);
+            m_CommandObserver.PlayerJoinedCommandReceived += m_CommandObserver_PlayerJoinedCommandReceived;
             //m_CommandObserver.PlayerLeftCommandReceived += new EventHandler<CommandEventArgs<PlayerLeftCommand>>(m_CommandObserver_PlayerLeftCommandReceived);
             //m_CommandObserver.PlayerMoneyChangedCommandReceived += new EventHandler<CommandEventArgs<PlayerMoneyChangedCommand>>(m_CommandObserver_PlayerMoneyChangedCommandReceived);
             //m_CommandObserver.PlayerTurnBeganCommandReceived += new EventHandler<CommandEventArgs<PlayerTurnBeganCommand>>(m_CommandObserver_PlayerTurnBeganCommandReceived);
@@ -524,6 +521,19 @@ namespace Sanet.Kniffel.Models
             //m_CommandObserver.TipDealerCommandReceived += new EventHandler<CommandEventArgs<TipDealerCommand>>(m_CommandObserver_TipDealerCommandReceived);
             //m_CommandObserver.PlayerNotificationCommandReceived += new EventHandler<CommandEventArgs<PlayerNotificationCommand>>(m_CommandObserver_PlayerNotificationCommandReceived);
             //m_CommandObserver.PlayerBoughtChipsCommandReceived += m_CommandObserver_PlayerBoughtChipsCommandReceived;
+        }
+
+        void m_CommandObserver_PlayerJoinedCommandReceived(object sender, CommandEventArgs<Protocol.Commands.Game.PlayerJoinedCommand> e)
+        {
+            
+
+            var player = new Player();
+
+            player.Name = e.Command.PlayerName;
+            player.SeatNo = e.Command.PlayerPos;
+            player.Client = e.Command.PlayerClient;
+            player.Language = e.Command.PlayerLanguage;
+            player.Type = PlayerType.Network;
         }
 
         void m_CommandObserver_CommandReceived(object sender, StringEventArgs e)

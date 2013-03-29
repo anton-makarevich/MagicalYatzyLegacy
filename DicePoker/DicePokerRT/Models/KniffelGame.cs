@@ -113,6 +113,8 @@ namespace Sanet.Kniffel.Models
         {
             get
             {
+                if (Players == null)
+                    return 0;
                 return Players.Count;
             }
         }

@@ -1,4 +1,7 @@
 ﻿using DicePokerRT;
+#if ONLINE
+using MagicalYatzyOnline;
+#endif
 using Sanet.Models;
 using System;
 using System.Collections.Generic;
@@ -37,7 +40,7 @@ namespace Sanet.Kniffel.Models
             }
 
         }
-
+#if ONLINE
         public static Action NavigateToNewOnlineGamePage
         {
             get
@@ -50,7 +53,7 @@ namespace Sanet.Kniffel.Models
             }
 
         }
-
+#endif
         public static Action NavigateToAboutPage
         {
             get

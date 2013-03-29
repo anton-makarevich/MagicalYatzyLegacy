@@ -167,7 +167,7 @@ namespace Sanet.Network.Protocol
                     }
                     catch (Exception ex)
                     {
-                        //
+                        LogManager.Log("TCPCommunicator.CloseConnections", ex);
                     }
                     finally
                     {
@@ -221,6 +221,7 @@ namespace Sanet.Network.Protocol
             }
             catch(Exception ex)
             {
+                LogManager.Log("TCPCommunicator.Receive", ex);
                 throw;
             }
         }

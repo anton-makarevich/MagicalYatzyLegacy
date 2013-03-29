@@ -121,6 +121,9 @@ namespace Sanet.Kniffel.ViewModels
                 p.RefreshArtifactsInfo();
                 
             }
+            p.Client = Config.GetClientType();
+            var language=Windows.System.UserProfile.GlobalizationPreferences.Languages[0].Split(new string[]{"-"}, StringSplitOptions.RemoveEmptyEntries);
+            p.Language = language[0];
             Players.Add(p);
             SelectedPlayer = p;
             InitOnServer();
@@ -141,12 +144,14 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         public override void SavePlayers()
         {
-            
+            RoamingSettings.SaveLastPlayer(SelectedPlayer, 0);
         }
 
-        public override void StartGame()
+        public async override void StartGame()
         {
-            
+            SavePlayers();
+
+            await JoinManager.JoinTable(-1, SelectedRule.Rule.Rule);
         }
 
         async void InitOnServer()

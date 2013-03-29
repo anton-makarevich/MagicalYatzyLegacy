@@ -11,13 +11,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.System.UserProfile;
-using Windows.UI.ViewManagement;
-using Windows.UI.Xaml;
+
 
 namespace Sanet.Kniffel.ViewModels
 {
-    public class PlayGameViewModel : AdBasedViewModel, IPlayGameView
+    public class ConsoleGame  IPlayGameView
     {
         #region Constructor
         public PlayGameViewModel()

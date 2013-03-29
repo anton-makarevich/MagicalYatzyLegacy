@@ -109,9 +109,9 @@ namespace Sanet
                    }
                }
            }
-           catch
+           catch (Exception ex)
            {
-
+               var t = ex.Message;
            }
        } 
 

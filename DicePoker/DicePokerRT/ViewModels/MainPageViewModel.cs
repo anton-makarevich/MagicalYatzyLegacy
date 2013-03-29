@@ -101,6 +101,7 @@ namespace Sanet.Kniffel.ViewModels
                     Description = "NewLocalGameDescription",
                     Image = new BitmapImage(SanetImageProvider.GetAssetsImage("SanetDice.png")),
                 });
+#if ONLINE
             MenuActions.Add(
                 new MainMenuAction
                 {
@@ -112,6 +113,7 @@ namespace Sanet.Kniffel.ViewModels
                     Description = "NewOnlineGameDescription",
                     Image = new BitmapImage(SanetImageProvider.GetAssetsImage("OnlineGame.png")),
                 });
+#endif
             MenuActions.Add(
                 new MainMenuAction
                 {

@@ -149,6 +149,9 @@
     <Compile Include="..\DicePokerRT\Models\DiceRandomGenerator.cs">
       <Link>Models\DiceRandomGenerator.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerRT\Models\Enums\ClientType.cs">
+      <Link>Models\Enums\ClientType.cs</Link>
+    </Compile>
     <Compile Include="..\DicePokerRT\Models\Enums\GameRule.cs">
       <Link>Models\Enums\GameRule.cs</Link>
     </Compile>
@@ -187,6 +190,7 @@
     <Compile Include="Models\KniffelGameServer.cs" />
     <Compile Include="Models\KniffelPlayerServer.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerChatMessageCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerJoinedCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerPingCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerSitOutChangedCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\AbstractLobbyCommand.cs" />

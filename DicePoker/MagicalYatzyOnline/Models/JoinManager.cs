@@ -22,7 +22,7 @@ namespace Sanet.Kniffel.Models
 
         public static KniffelGameClient CurrentTable;
 
-        public static async Task<bool> JoinTable(KniffelGameClient tbl)
+        public static async Task<bool> JoinTable(int gameid, Rules rule)
         {
 
 
@@ -43,12 +43,13 @@ namespace Sanet.Kniffel.Models
             }
 
             var gui = ViewModelProvider.GetNewViewModel<PlayGameViewModel>();
+            var p = ViewModelProvider.GetViewModel<NewOnlineGameViewModel>().SelectedPlayer;
             
-            KniffelGameClient game = WSServer.JoinTable(tbl.GameId,  gui);
+            KniffelGameClient game = WSServer.JoinTable(gameid,rule,p,gui);
             if (game != null)
             {
-                ((Frame)Window.Current.Content).Navigate(typeof(GamePage), gui);
-                CurrentTable = tbl;
+                ((Frame)Window.Current.Content).Navigate(typeof(GamePage));
+                CurrentTable = game;
                 return true;
             }
             else
@@ -59,7 +60,7 @@ namespace Sanet.Kniffel.Models
             }
         public static async Task<bool> JoinTable()
         {
-            return await JoinTable(CurrentTable);
+            return await JoinTable(CurrentTable.GameId, CurrentTable.Rules.Rule);
         }
            
         }

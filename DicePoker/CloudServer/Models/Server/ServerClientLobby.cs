@@ -20,10 +20,10 @@ namespace Sanet.Kniffel.Server
     /// </summary>
     public class ServerClientLobby : CommandTCPCommunicator<LobbyServerCommandObserver>, IDisposable
     {
-        public static ConcurrentDictionary<Guid, ServerClientLobby> playerToServerClientLobbyMapping = new ConcurrentDictionary<Guid, ServerClientLobby>();
+        public static ConcurrentDictionary<string, ServerClientLobby> playerToServerClientLobbyMapping = new ConcurrentDictionary<string, ServerClientLobby>();
 
         private string m_PlayerName = "?";
-        private Guid _playerId;
+        private string _playerId;
 
         private readonly ServerLobby m_Lobby;
         KniffelGameServer m_Table ;
@@ -37,7 +37,7 @@ namespace Sanet.Kniffel.Server
         }
             
                 
-        public ServerClientLobby(ServerLobby lobby, Guid playerId)
+        public ServerClientLobby(ServerLobby lobby, string playerId)
             : base()
         {
             m_Lobby = lobby;
@@ -91,13 +91,13 @@ namespace Sanet.Kniffel.Server
             //}
         }
 
-
+        /*
         public void ForceJoinTable(int tableid)
         {
             LogManager.Log(LogLevel.Message, "ServerClientLobby.ForceJoinTable", "player:{0},  TableID '{1}'", PlayerName, tableid);
             JoinCommand joincommand = new JoinCommand(tableid, m_PlayerName);
             m_CommandObserver_JoinTableCommandReceived(null, new CommandEventArgs<JoinCommand>(joincommand));
-        }
+        }*/
 
         
         /// <summary>
@@ -133,13 +133,18 @@ namespace Sanet.Kniffel.Server
                     
                 
             //}
-            client.JoinGame(new Player());
+            Player player = new Player();
+            player.Name = e.Command.PlayerName;
+            player.Password = e.Command.PlayerPass;
+            player.Client = e.Command.PlayerClient;
+            
+            client.JoinGame(player);
             //ToDO: check if needed to close previous
             m_Table= client;
 
             client.Start();
             LogManager.Log(LogLevel.Message, "ServerClientLobby.m_CommandObserver_JoinTableCommandReceived", "> Client '{0}' seated ({3}) at table: {2}:{1}", m_PlayerName,client.Game.GameId, e.Command.TableID, client.Player.SeatNo);
-            Send1(e.Command.EncodeResponse(client.Player.SeatNo));
+            Send1(e.Command.EncodeResponse(player.SeatNo,tableID));
                 
         }
         

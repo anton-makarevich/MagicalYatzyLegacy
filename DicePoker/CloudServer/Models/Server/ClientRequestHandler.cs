@@ -87,22 +87,20 @@ namespace Sanet.Kniffel.Server
 
                     if (!string.IsNullOrEmpty(playerId))
                     {//check whether we have current instance of players
-                        Guid playerGuid;
-                        if (Guid.TryParse(playerId, out playerGuid))
+                        
+                        if (reconnect != "1" || !ServerClientLobby.playerToServerClientLobbyMapping.TryGetValue(playerId, out clientLobby))
                         {
-                            if (reconnect != "1" || !ServerClientLobby.playerToServerClientLobbyMapping.TryGetValue(playerGuid, out clientLobby))
-                            {
-                                clientLobby = new ServerClientLobby(ServerLobby, playerGuid);
-                                ServerClientLobby.playerToServerClientLobbyMapping[playerGuid] =  clientLobby;
-                                LogManager.Log("ClientRequestHandler.MyWebSocket", "websocket connect request from {0} ({1}), created new clientLobby", playerId,playerName);
-                            }
-                            else
-                            {
-                                //Anton: not sure wheather commented part with reconnection check is needed after disposing of old GameServer, maybe not
-                                //if (!string.IsNullOrEmpty(isreconnect) && isreconnect == "1")
-                                LogManager.Log("ClientRequestHandler.MyWebSocket", "websocket connect request from {0} ({1}), used reconnect mode and existing clientLobby", playerId, playerName);
-                            }
+                            clientLobby = new ServerClientLobby(ServerLobby, playerId);
+                            ServerClientLobby.playerToServerClientLobbyMapping[playerId] =  clientLobby;
+                            LogManager.Log("ClientRequestHandler.MyWebSocket", "websocket connect request from {0} ({1}), created new clientLobby", playerId,playerName);
                         }
+                        else
+                        {
+                            //Anton: not sure wheather commented part with reconnection check is needed after disposing of old GameServer, maybe not
+                            //if (!string.IsNullOrEmpty(isreconnect) && isreconnect == "1")
+                            LogManager.Log("ClientRequestHandler.MyWebSocket", "websocket connect request from {0} ({1}), used reconnect mode and existing clientLobby", playerId, playerName);
+                        }
+                        
 
                     }
                     else 
@@ -113,7 +111,7 @@ namespace Sanet.Kniffel.Server
                     //this is not adding bots or winform clients to the list
                     if (clientLobby == null)
                     {
-                        clientLobby = new ServerClientLobby(ServerLobby, Guid.Empty);
+                        clientLobby = new ServerClientLobby(ServerLobby, String.Empty);
                     }
 
                     //this will reset websocket

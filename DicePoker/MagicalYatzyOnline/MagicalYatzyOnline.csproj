@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{266AFB18-2A2B-4873-B567-C3501FB1B6E8}</ProjectGuid>
+    <ProjectGuid>{502C6096-E662-42C0-B951-E39DB7DD7F56}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DicePokerRT</RootNamespace>
-    <AssemblyName>DicePokerRT</AssemblyName>
-    <DefaultLanguage>en</DefaultLanguage>
+    <AssemblyName>MagicalYatzyOnline</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>DicePokerRT_StoreKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>D88B3BCE987C048B539A052BBAB66994B539DA00</PackageCertificateThumbprint>
-    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <PackageCertificateKeyFile>MagicalYatzyOnline_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,7 +20,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;WinRT</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -31,14 +29,14 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;WinRT</DefineConstants>
+    <DefineConstants>TRACE;NETFX_CORE; WinRT; ONLINE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\ARM\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;WinRT</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
     <NoWarn>;2008</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>ARM</PlatformTarget>
@@ -48,7 +46,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
     <OutputPath>bin\ARM\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <DefineConstants>TRACE;NETFX_CORE; WinRT; ONLINE</DefineConstants>
     <Optimize>true</Optimize>
     <NoWarn>;2008</NoWarn>
     <DebugType>pdbonly</DebugType>
@@ -60,7 +58,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;WinRT</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
     <NoWarn>;2008</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -70,7 +68,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <DefineConstants>TRACE;NETFX_CORE; WinRT; ONLINE</DefineConstants>
     <Optimize>true</Optimize>
     <NoWarn>;2008</NoWarn>
     <DebugType>pdbonly</DebugType>
@@ -82,7 +80,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;WinRT</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
     <NoWarn>;2008</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
@@ -92,7 +90,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <DefineConstants>TRACE;NETFX_CORE; WinRT; ONLINE</DefineConstants>
     <Optimize>true</Optimize>
     <NoWarn>;2008</NoWarn>
     <DebugType>pdbonly</DebugType>
@@ -103,180 +101,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\..\AllWrite\Sanet.ABCs\Sanet.ABCs.Xaml\Model\ResourceModel.cs">
-      <Link>Models\ResourceModel.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\AllWrite\Sanet.AllWrite.WP\Sanet.AllWrite.WP\Models\Brushes.cs">
-      <Link>Models\Brushes.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Controls\Sanet.Animations\Animations.cs">
-      <Link>Common\Animations.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\SanetWeb\Models\LogManager.cs">
-      <Link>Common\LogManager.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DicePanelWP\Models\DicePanel.cs">
-      <Link>DicePanel\DicePanel.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DiceRoller\DiceRollerRT\Common\BasePage.cs">
-      <Link>Models\BasePage.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\BaseViewModel.cs">
-      <Link>Models\BaseViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\KniffelRulesExtensions.cs">
-      <Link>Models\KniffelRulesExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\Result.cs">
-      <Link>Models\Result.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\SettingsModel.cs">
-      <Link>Models\SettingsModel.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DiceRoller\DiceRollerRT\ViewModels\SettingsViewModel.cs">
-      <Link>ViewModels\SettingsViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\CloudServer\Models\Interfaces\IKniffelGame.cs">
-      <Link>Models\Interfaces\IKniffelGame.cs</Link>
-    </Compile>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Common\BooleanNegationConverter.cs" />
-    <Compile Include="Common\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Common\BooleanToColorConverter.cs" />
-    <Compile Include="Common\Logger.cs" />
-    <Compile Include="Common\InternetCheker.cs" />
-    <Compile Include="Common\PopupHelper.cs" />
-    <Compile Include="Common\ReverseBooleanToVisibilityConverter.cs" />
-    <Compile Include="Common\SanetImageProvider.cs" />
-    <Compile Include="Common\ScoreTypeToColorConverter.cs" />
-    <Compile Include="Common\SoundsProvider.cs" />
-    <Compile Include="Controls\PopupPaneBase.cs" />
-    <Compile Include="Controls\RotatingPanel.cs" />
-    <Compile Include="DicePanel\DiceSelector.cs" />
-    <Compile Include="DicePanel\DieResult.cs" />
-    <Compile Include="Models\AboutAppAction.cs" />
-    <Compile Include="Models\AdminModule.cs" />
-    <Compile Include="Models\Config.cs" />
-    <Compile Include="Models\Enums\ClientType.cs" />
-    <Compile Include="Models\KniffelPlayerClient.cs" />
-    <Compile Include="Models\DiceRandomGenerator.cs" />
-    <Compile Include="Models\OfferAction.cs" />
-    <Compile Include="Models\EncriptionExtensions.cs" />
-    <Compile Include="Models\Enums\GameRule.cs" />
-    <Compile Include="Models\Enums\KniffelScore.cs" />
-    <Compile Include="Models\Enums\PlayerType.cs" />
-    <Compile Include="Models\Events\EventArgs.cs" />
-    <Compile Include="Models\KniffelGame.cs" />
-    <Compile Include="Models\KniffelPlayer.cs" />
-    <Compile Include="Models\KniffelRule.cs" />
-    <Compile Include="Models\KniffelScoreWrapper.cs" />
-    <Compile Include="Models\LocalizerExtensions.cs" />
-    <Compile Include="Models\LocalSettings.cs" />
-    <Compile Include="Models\Messages.cs" />
-    <Compile Include="Models\PlayerAIExtensions.cs" />
-    <Compile Include="Common\ServerHttpMessage.cs" />
-    <Compile Include="Models\RelayCommand.cs" />
-    <Compile Include="Models\ReviewBugger.cs" />
-    <Compile Include="Models\RoamingSettings.cs" />
-    <Compile Include="Models\StoreManager.cs" />
-    <Compile Include="Models\TaskPanePopup.cs" />
-    <Compile Include="Models\TileHelper.cs" />
-    <Compile Include="Models\ViewModelProvider.cs" />
-    <Compile Include="Service References\KniffelLeaderBoardService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\AboutPageViewModel.cs" />
-    <Compile Include="ViewModels\AdBasedViewModel.cs" />
-    <Compile Include="Models\Interfaces\IPlayGameViewModel.cs" />
-    <Compile Include="ViewModels\NewGameViewModelBase.cs" />
-    <Compile Include="ViewModels\RuleWrapper.cs" />
-    <Compile Include="ViewModels\MagicRoomViewModel.cs" />
-    <Compile Include="ViewModels\LeaderboardViewModel.cs" />
-    <Compile Include="ViewModels\PlayGameViewModel.cs" />
-    <Compile Include="ViewModels\NewGameViewModel.cs" />
-    <Compile Include="Views\AboutPage.xaml.cs">
-      <DependentUpon>AboutPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MagicRoomPage.xaml.cs">
-      <DependentUpon>MagicRoomPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\LeaderboardPage.xaml.cs">
-      <DependentUpon>LeaderboardPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\GamePage.xaml.cs">
-      <DependentUpon>GamePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NewGamePage.xaml.cs">
-      <DependentUpon>NewGamePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CommonNavigationActions.cs" />
-    <Compile Include="Models\MenuAction.cs" />
-    <Compile Include="Models\Utilities.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\MainPageViewModel.cs" />
-    <Compile Include="Views\PrivacyPolicyControl.cs" />
-    <Compile Include="Views\SettingsPage.xaml.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
-      <SubType>Designer</SubType>
-    </AppxManifest>
-    <PRIResource Include="Strings\be\Resources.resw" />
-    <PRIResource Include="..\..\DiceRoller\DiceRollerRT\strings\de\Resources.resw">
-      <Link>Strings\de\Resources.resw</Link>
-    </PRIResource>
-    <None Include="packages.config" />
-    <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
-    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.AddPlayersMagicsResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetChempionResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetLastDayChempionResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetLastWeekChempionResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetPlayersMagicsResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetTopPlayersResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicPureNameResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.PutScoreResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\KniffelLeaderBoardService\KniffelService.wsdl" />
-    <PRIResource Include="..\..\DiceRoller\DiceRollerRT\strings\en\Resources.resw">
-      <Link>Strings\en\Resources.resw</Link>
-    </PRIResource>
-    <PRIResource Include="..\..\DiceRoller\DiceRollerRT\strings\ru\Resources.resw">
-      <Link>Strings\ru\Resources.resw</Link>
-    </PRIResource>
-    <None Include="DicePokerRT_StoreKey.pfx" />
-    <None Include="DicePokerRT_TemporaryKey.pfx" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="..\..\slasm\pngs\0\stop.0.png">
       <Link>Images\0\stop.0.png</Link>
     </Content>
@@ -1249,54 +1073,156 @@
     <Content Include="..\..\slasm\pngs\2\yrot.9.png">
       <Link>Images\2\yrot.9.png</Link>
     </Content>
-    <Content Include="Assets\About.png" />
-    <Content Include="Assets\AWLogo.png" />
-    <Content Include="Assets\Baby.png" />
-    <Content Include="Assets\BadgeLogo.scale-140.png" />
-    <Content Include="Assets\BadgeLogo.scale-180.png" />
-    <Content Include="Assets\Children.png" />
-    <Content Include="Assets\Customer.png" />
-    <Content Include="Assets\Desktop.png" />
-    <Content Include="Assets\Discount.png" />
-    <Content Include="Assets\Expert.png" />
-    <Content Include="Assets\Logo.scale-80.png" />
-    <Content Include="Assets\Logo.scale-100.png" />
-    <Content Include="Assets\Logo.scale-140.png" />
-    <Content Include="Assets\Logo.scale-180.png" />
-    <Content Include="Assets\MagicWand.png" />
-    <Content Include="Assets\Mail.png" />
-    <Content Include="Assets\Manual.png" />
-    <Content Include="Assets\NewsLogo.png" />
-    <Content Include="Assets\OnlineGame.png" />
-    <Content Include="Assets\Rate.png" />
-    <Content Include="Assets\ResetRoll.png" />
-    <Content Include="Assets\SanetDice.png" />
-    <Content Include="Assets\Settings.png" />
-    <Content Include="Assets\Share.png" />
-    <Content Include="Assets\SmallLogo.scale-100.png" />
-    <Content Include="Assets\SmallLogo.scale-140.png" />
-    <Content Include="Assets\SmallLogo.scale-180.png" />
-    <Content Include="Assets\SmallLogo.scale-80.png" />
-    <Content Include="Assets\SplashScreen.png" />
-    <Content Include="Assets\StoreLogo.scale-100.png" />
-    <Content Include="Assets\StoreLogo.scale-140.png" />
-    <Content Include="Assets\StoreLogo.scale-180.png" />
-    <Content Include="Assets\transparentlogo.png" />
-    <Content Include="Assets\Unlock.png" />
-    <Content Include="Assets\User.png" />
-    <Content Include="Assets\Victory.png" />
-    <Content Include="Assets\WideLogo.scale-100.png" />
-    <Content Include="Assets\WideLogo.scale-140.png" />
-    <Content Include="Assets\WideLogo.scale-180.png" />
-    <Content Include="Assets\WideLogo.scale-80.png" />
-    <Content Include="Audio\click.mp3" />
-    <Content Include="Audio\dice1.mp3" />
-    <Content Include="Audio\dice2.mp3" />
-    <Content Include="Audio\dice3.mp3" />
-    <Content Include="Audio\fanfare.mp3" />
-    <Content Include="Audio\magic.mp3" />
-    <Content Include="Audio\win.mp3" />
-    <Content Include="Audio\wrong.mp3" />
+    <Content Include="..\DicePokerRT\Assets\About.png">
+      <Link>Assets\About.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\AWLogo.png">
+      <Link>Assets\AWLogo.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Baby.png">
+      <Link>Assets\Baby.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\BadgeLogo.scale-140.png">
+      <Link>Assets\BadgeLogo.scale-140.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\BadgeLogo.scale-180.png">
+      <Link>Assets\BadgeLogo.scale-180.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Children.png">
+      <Link>Assets\Children.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Customer.png">
+      <Link>Assets\Customer.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Desktop.png">
+      <Link>Assets\Desktop.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Dice_for_ad.png">
+      <Link>Assets\Dice_for_ad.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Discount.png">
+      <Link>Assets\Discount.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Expert.png">
+      <Link>Assets\Expert.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Logo.scale-100.png">
+      <Link>Assets\Logo.scale-100.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Logo.scale-140.png">
+      <Link>Assets\Logo.scale-140.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Logo.scale-180.png">
+      <Link>Assets\Logo.scale-180.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Logo.scale-80.png">
+      <Link>Assets\Logo.scale-80.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Magic wand_for_ad.png">
+      <Link>Assets\Magic wand_for_ad.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\MagicWand.png">
+      <Link>Assets\MagicWand.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Mail.png">
+      <Link>Assets\Mail.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Manual.png">
+      <Link>Assets\Manual.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\NewsLogo.png">
+      <Link>Assets\NewsLogo.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\OnlineGame.png">
+      <Link>Assets\OnlineGame.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Rate.png">
+      <Link>Assets\Rate.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\ResetRoll.png">
+      <Link>Assets\ResetRoll.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\SanetDice.png">
+      <Link>Assets\SanetDice.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Settings.png">
+      <Link>Assets\Settings.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Share.png">
+      <Link>Assets\Share.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\SmallLogo.scale-100.png">
+      <Link>Assets\SmallLogo.scale-100.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\SmallLogo.scale-140.png">
+      <Link>Assets\SmallLogo.scale-140.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\SmallLogo.scale-180.png">
+      <Link>Assets\SmallLogo.scale-180.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\SmallLogo.scale-80.png">
+      <Link>Assets\SmallLogo.scale-80.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\SplashScreen.png">
+      <Link>Assets\SplashScreen.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\StoreLogo.scale-100.png">
+      <Link>Assets\StoreLogo.scale-100.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\StoreLogo.scale-140.png">
+      <Link>Assets\StoreLogo.scale-140.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\StoreLogo.scale-180.png">
+      <Link>Assets\StoreLogo.scale-180.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\transparentlogo.png">
+      <Link>Assets\transparentlogo.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Unlock.png">
+      <Link>Assets\Unlock.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\User.png">
+      <Link>Assets\User.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Victory.png">
+      <Link>Assets\Victory.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\WideLogo.scale-100.png">
+      <Link>Assets\WideLogo.scale-100.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\WideLogo.scale-140.png">
+      <Link>Assets\WideLogo.scale-140.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\WideLogo.scale-180.png">
+      <Link>Assets\WideLogo.scale-180.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\WideLogo.scale-80.png">
+      <Link>Assets\WideLogo.scale-80.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Audio\click.mp3">
+      <Link>Audio\click.mp3</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Audio\dice1.mp3">
+      <Link>Audio\dice1.mp3</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Audio\dice2.mp3">
+      <Link>Audio\dice2.mp3</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Audio\dice3.mp3">
+      <Link>Audio\dice3.mp3</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Audio\fanfare.mp3">
+      <Link>Audio\fanfare.mp3</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Audio\magic.mp3">
+      <Link>Audio\magic.mp3</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Audio\win.mp3">
+      <Link>Audio\win.mp3</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Audio\wrong.mp3">
+      <Link>Audio\wrong.mp3</Link>
+    </Content>
     <None Include="Service References\KniffelLeaderBoardService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -1304,14 +1230,373 @@
     <None Include="Service References\KniffelLeaderBoardService\configuration.svcinfo" />
     <None Include="Service References\KniffelLeaderBoardService\configuration91.svcinfo" />
     <None Include="Service References\KniffelLeaderBoardService\KniffelService.disco" />
-    <None Include="Package.StoreAssociation.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\AllWrite\Sanet.ABCs\Sanet.ABCs.Xaml\Model\ResourceModel.cs">
+      <Link>Models\ResourceModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\AllWrite\Sanet.AllWrite.WP\Sanet.AllWrite.WP\Models\Brushes.cs">
+      <Link>Common\Brushes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Controls\Sanet.Animations\Animations.cs">
+      <Link>Common\Animations.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\SanetWeb\Models\LogManager.cs">
+      <Link>Common\LogManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DicePanelWP\Models\DicePanel.cs">
+      <Link>DicePanel\DicePanel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DiceRoller\DiceRollerRT\Common\BasePage.cs">
+      <Link>Controls\BasePage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\BaseViewModel.cs">
+      <Link>ViewModels\BaseViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\KniffelRulesExtensions.cs">
+      <Link>Models\KniffelRulesExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\Result.cs">
+      <Link>Models\Result.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DiceRoller\DiceRollerRT\ViewModels\SettingsViewModel.cs">
+      <Link>ViewModels\SettingsViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Common\BlockingQueue.cs">
+      <Link>Common\BlockingQueue.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Common\StringTokenizer.cs">
+      <Link>Common\StringTokenizer.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Interfaces\IKniffelGame.cs">
+      <Link>Models\Interfaces\IKniffelGame.cs</Link>
+    </Compile>
+    <Compile Include="..\cloudserver\models\kniffelprotocol\commands\game\PlayerChatMessageCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerChatMessageCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\cloudserver\models\kniffelprotocol\commands\game\PlayerJoinedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerJoinedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\cloudserver\models\kniffelprotocol\commands\game\PlayerPingCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerPingCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\cloudserver\models\kniffelprotocol\commands\game\PlayerSitOutChangedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerSitOutChangedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\cloudserver\models\kniffelprotocol\commands\lobby\AbstractLobbyCommand.cs">
+      <Link>Models\Protocol\Commands\Lobby\AbstractLobbyCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\cloudserver\models\kniffelprotocol\commands\lobby\AbstractLobbyResponse.cs">
+      <Link>Models\Protocol\Commands\Lobby\AbstractLobbyResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\cloudserver\models\kniffelprotocol\commands\lobby\GameCommand.cs">
+      <Link>Models\Protocol\Commands\Lobby\GameCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\cloudserver\models\kniffelprotocol\commands\lobby\JoinCommand.cs">
+      <Link>Models\Protocol\Commands\Lobby\JoinCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\cloudserver\models\kniffelprotocol\commands\lobby\JoinResponse.cs">
+      <Link>Models\Protocol\Commands\Lobby\JoinResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\cloudserver\models\protocol\commands\AbstractCommand.cs">
+      <Link>Models\Protocol\Commands\AbstractCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\cloudserver\models\protocol\commands\AbstractCommandResponse.cs">
+      <Link>Models\Protocol\Commands\AbstractCommandResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\cloudserver\models\protocol\commands\CommandEventArgs.cs">
+      <Link>Models\Protocol\Commands\CommandEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\cloudserver\models\protocol\commands\CommandObserver.cs">
+      <Link>Models\Protocol\Commands\CommandObserver.cs</Link>
+    </Compile>
+    <Compile Include="..\cloudserver\models\protocol\commands\CommandQueueCommunicator.cs">
+      <Link>Models\Protocol\Commands\CommandQueueCommunicator.cs</Link>
+    </Compile>
+    <Compile Include="..\cloudserver\models\protocol\commands\DisconnectCommand.cs">
+      <Link>Models\Protocol\Commands\DisconnectCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\cloudserver\models\protocol\QueueCommunicator.cs">
+      <Link>Models\Protocol\QueueCommunicator.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Common\BooleanNegationConverter.cs">
+      <Link>Common\BooleanNegationConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Common\BooleanToColorConverter.cs">
+      <Link>Common\BooleanToColorConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Common\BooleanToVisibilityConverter.cs">
+      <Link>Common\BooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Common\InternetCheker.cs">
+      <Link>Common\InternetCheker.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Common\Logger.cs">
+      <Link>Common\Logger.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Common\PopupHelper.cs">
+      <Link>Common\PopupHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Common\ReverseBooleanToVisibilityConverter.cs">
+      <Link>Common\ReverseBooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Common\SanetImageProvider.cs">
+      <Link>Common\SanetImageProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Common\ScoreTypeToColorConverter.cs">
+      <Link>Common\ScoreTypeToColorConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Common\ServerHttpMessage.cs">
+      <Link>Common\ServerHttpMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Common\SoundsProvider.cs">
+      <Link>Common\SoundsProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Controls\PopupPaneBase.cs">
+      <Link>Controls\PopupPaneBase.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Controls\RotatingPanel.cs">
+      <Link>Controls\RotatingPanel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\DicePanel\DiceSelector.cs">
+      <Link>DicePanel\DiceSelector.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\DicePanel\DieResult.cs">
+      <Link>DicePanel\DieResult.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\AboutAppAction.cs">
+      <Link>Models\AboutAppAction.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\AdminModule.cs">
+      <Link>Models\AdminModule.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\CommonNavigationActions.cs">
+      <Link>Models\CommonNavigationActions.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Config.cs">
+      <Link>Models\Config.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\DiceRandomGenerator.cs">
+      <Link>Models\DiceRandomGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\EncriptionExtensions.cs">
+      <Link>Models\EncriptionExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Enums\ClientType.cs">
+      <Link>Models\Enums\ClientType.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Enums\GameRule.cs">
+      <Link>Models\Enums\GameRule.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Enums\KniffelScore.cs">
+      <Link>Models\Enums\KniffelScore.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Enums\PlayerType.cs">
+      <Link>Models\Enums\PlayerType.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Events\EventArgs.cs">
+      <Link>Models\Events\EventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Interfaces\IPlayGameViewModel.cs">
+      <Link>Models\Interfaces\IPlayGameViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\KniffelGame.cs">
+      <Link>Models\KniffelGame.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\KniffelPlayer.cs">
+      <Link>Models\KniffelPlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\KniffelPlayerClient.cs">
+      <Link>Models\KniffelPlayerClient.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\KniffelRule.cs">
+      <Link>Models\KniffelRule.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\KniffelScoreWrapper.cs">
+      <Link>Models\KniffelScoreWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\LocalizerExtensions.cs">
+      <Link>Common\LocalizerExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\LocalSettings.cs">
+      <Link>Models\LocalSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\MenuAction.cs">
+      <Link>Models\MenuAction.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Messages.cs">
+      <Link>Models\Messages.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\OfferAction.cs">
+      <Link>Models\OfferAction.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\PlayerAIExtensions.cs">
+      <Link>Models\PlayerAIExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\RelayCommand.cs">
+      <Link>Models\RelayCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\ReviewBugger.cs">
+      <Link>Models\ReviewBugger.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\RoamingSettings.cs">
+      <Link>Models\RoamingSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\StoreManager.cs">
+      <Link>Models\StoreManager.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\TaskPanePopup.cs">
+      <Link>Models\TaskPanePopup.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\TileHelper.cs">
+      <Link>Models\TileHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Utilities.cs">
+      <Link>Models\Utilities.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\ViewModelProvider.cs">
+      <Link>Common\ViewModelProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\AboutPageViewModel.cs">
+      <Link>ViewModels\AboutPageViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\AdBasedViewModel.cs">
+      <Link>ViewModels\AdBasedViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\LeaderboardViewModel.cs">
+      <Link>ViewModels\LeaderboardViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\MagicRoomViewModel.cs">
+      <Link>ViewModels\MagicRoomViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\MainPageViewModel.cs">
+      <Link>ViewModels\MainPageViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\NewGameViewModel.cs">
+      <Link>ViewModels\NewGameViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\NewGameViewModelBase.cs">
+      <Link>ViewModels\NewGameViewModelBase.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\PlayGameViewModel.cs">
+      <Link>ViewModels\PlayGameViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\RuleWrapper.cs">
+      <Link>ViewModels\RuleWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Views\PrivacyPolicyControl.cs">
+      <Link>Controls\PrivacyPolicyControl.cs</Link>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JoinManager.cs" />
+    <Compile Include="Models\KniffelGameClient.cs" />
+    <Compile Include="Models\Protocol\LobbyTCPClient.cs" />
+    <Compile Include="Models\Protocol\Observer\GameClientCommandObserver.cs" />
+    <Compile Include="Models\Protocol\TCPCommunicatorRT.cs" />
+    <Compile Include="Models\Protocol\WebApi\AbstractHttpService.cs" />
+    <Compile Include="Models\Protocol\WebApi\InitService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\KniffelLeaderBoardService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\NewOnlineGameViewModel.cs" />
+    <Compile Include="Views\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LeaderboardPage.xaml.cs">
+      <DependentUpon>LeaderboardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MagicRoomPage.xaml.cs">
+      <DependentUpon>MagicRoomPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewGamePage.xaml.cs">
+      <DependentUpon>NewGamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewOnlineGamePage.xaml.cs">
+      <DependentUpon>NewOnlineGamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="packages.config" />
+    <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.AddPlayersMagicsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetChempionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetLastDayChempionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetLastWeekChempionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetPlayersMagicsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.GetTopPlayersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicPureNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.PutScoreIntoTableWithPicResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerRT.KniffelLeaderBoardService.PutScoreResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\KniffelService.wsdl" />
+    <PRIResource Include="..\..\DiceRoller\DiceRollerRT\strings\de\Resources.resw">
+      <Link>Strings\de\Resources.resw</Link>
+    </PRIResource>
+    <PRIResource Include="..\..\DiceRoller\DiceRollerRT\strings\en\Resources.resw">
+      <Link>Strings\en\Resources.resw</Link>
+    </PRIResource>
+    <PRIResource Include="..\..\DiceRoller\DiceRollerRT\strings\ru\Resources.resw">
+      <Link>Strings\ru\Resources.resw</Link>
+    </PRIResource>
+    <None Include="..\DicePokerRT\Assets\OnlineGame.psd">
+      <Link>Assets\OnlineGame.psd</Link>
+    </None>
+    <PRIResource Include="..\DicePokerRT\Strings\be\Resources.resw">
+      <Link>Strings\be\Resources.resw</Link>
+    </PRIResource>
+    <None Include="MagicalYatzyOnline_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Common\StandardStyles.xaml">
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="..\DicePokerRT\Common\StandardStyles.xaml">
+      <Link>Common\StandardStyles.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\DicePokerRT\Views\PrivacyPolicyControl.xaml">
+      <Link>Controls\PrivacyPolicyControl.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1319,7 +1604,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MagicRoomPage.xaml">
+    <Page Include="Views\GamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1327,11 +1612,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\GamePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\NewGamePage.xaml">
+    <Page Include="Views\MagicRoomPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1339,7 +1620,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\PrivacyPolicyControl.xaml">
+    <Page Include="Views\NewGamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewOnlineGamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1350,16 +1635,19 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="AdDuplex.Windows">
-      <HintPath>packages\AdDuplexWindows.8.0.2.0\lib\winrt45\AdDuplex.Windows.dll</HintPath>
+      <HintPath>..\DicePokerRT\packages\AdDuplexWindows.8.0.2.0\lib\winrt45\AdDuplex.Windows.dll</HintPath>
     </Reference>
     <Reference Include="MarkedUp">
-      <HintPath>packages\MarkedUp.0.6.7\lib\winrt45\MarkedUp.winmd</HintPath>
+      <HintPath>..\DicePokerRT\packages\MarkedUp.0.6.7\lib\winrt45\MarkedUp.winmd</HintPath>
     </Reference>
     <Reference Include="MyToolkit">
-      <HintPath>packages\MyToolkit.1.9.0\lib\netcore45\MyToolkit.dll</HintPath>
+      <HintPath>..\DicePokerRT\packages\MyToolkit.1.13.0\lib\netcore45\MyToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\DicePokerRT\packages\Newtonsoft.Json.4.5.11\lib\winrt45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="WinRT.Triggers">
-      <HintPath>packages\WinRTTriggers.1.2.0\lib\winrt45\WinRT.Triggers.dll</HintPath>
+      <HintPath>..\DicePokerRT\packages\WinRTTriggers.1.3.0\lib\winrt45\WinRT.Triggers.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

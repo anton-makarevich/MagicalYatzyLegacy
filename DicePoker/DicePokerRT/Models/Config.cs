@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sanet.Kniffel.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,5 +18,15 @@ namespace Sanet.Kniffel
             return "localhost:57584/";
 #endif
         }
+
+        public static ClientType GetClientType()
+        { 
+#if WinRT
+            return ClientType.WinRT;
+#else
+           return ClientType.WP;
+#endif
+        }
+
     }
 }

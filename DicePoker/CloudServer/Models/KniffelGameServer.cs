@@ -1,6 +1,7 @@
 ﻿using Sanet.Kniffel.Models.Enums;
 using Sanet.Kniffel.Models.Events;
 using Sanet.Kniffel.Models.Interfaces;
+using Sanet.Kniffel.Protocol.Commands.Game;
 using Sanet.Kniffel.Protocol.Observer;
 using Sanet.Network.Protocol.Commands;
 using System;
@@ -27,6 +28,7 @@ namespace Sanet.Kniffel.Models
 
         public void JoinGame(Player player)
         {
+            InitGameObserver();
             _Player = player;
             _Game.JoinGame(player);
         }
@@ -66,42 +68,42 @@ namespace Sanet.Kniffel.Models
         #region GameHandlers
         void _Game_ResultApplied(object sender, ResultEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         void _Game_PlayerJoined(object sender, PlayerEventArgs e)
         {
-            throw new NotImplementedException();
+            Send(new PlayerJoinedCommand(e.Player.SeatNo, e.Player.Name, e.Player.Client, e.Player.Language));
         }
 
         void _Game_MoveChanged(object sender, MoveEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         void _Game_MagicRollUsed(object sender, PlayerEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         void _Game_GameFinished(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         void _Game_DiceRolled(object sender, RollEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         void _Game_DiceFixed(object sender, FixDiceEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         void _Game_DiceChanged(object sender, RollEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         #endregion
