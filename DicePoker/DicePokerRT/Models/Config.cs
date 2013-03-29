@@ -13,7 +13,7 @@ namespace Sanet.Kniffel
         {
 #if !DEBUG
        // http://....
-            return "yatzy.azurewebsites.net/";
+            return "yatzy.cloudapp.net/";
 #else
             return "localhost:57584/";
 #endif

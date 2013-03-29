@@ -126,9 +126,10 @@ namespace Sanet.Kniffel.Protocol
             }
         }
         
-        protected virtual int GetJoinedSeat(ref int p_noPort, Player player)
+        protected virtual int GetJoinedSeat(ref int p_noPort,Rules rule, Player player)
         {
-            JoinCommand command = new JoinCommand(p_noPort, player.Name, player.Password, player.Client,player.Language);
+            var pass = (player.HasPassword) ? player.Password : "na";
+            JoinCommand command = new JoinCommand(p_noPort, player.Name,rule, player.Client,player.Language, pass);
             Send(command);
 
             StringTokenizer token2 = ReceiveCommand(JoinResponse.COMMAND_NAME);
@@ -141,7 +142,7 @@ namespace Sanet.Kniffel.Protocol
 
         public KniffelGameClient JoinTable(int p_noPort, Rules rule, Player p, IPlayGameView gui)
         {
-            int noSeat = GetJoinedSeat(ref p_noPort, p);
+            int noSeat = GetJoinedSeat(ref p_noPort,rule, p);
             if (noSeat == -1)
             {
                 LogManager.Log(LogLevel.MessageLow, "LobbyTCPClient.JoinTable", "Cannot sit at this table: #{0}", p_noPort);
@@ -149,6 +150,7 @@ namespace Sanet.Kniffel.Protocol
             }
 
             KniffelGameClient client = new KniffelGameClient(/*noSeat, m_PlayerName, p_noPort*/);
+            client.Rules = new KniffelRule(rule);
             client.SendedSomething += new EventHandler<KeyEventArgs<string>>(client_SendedSomething);
             if (gui != null)
             {

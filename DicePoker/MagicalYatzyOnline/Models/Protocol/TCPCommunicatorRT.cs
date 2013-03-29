@@ -38,16 +38,16 @@ namespace Sanet.Network.Protocol
             //@"ws://pksvc45.cloudapp.net/
             string fulluri = serveruri + "app.ashx";
             var p = RoamingSettings.GetLastPlayer(0);
-            if (p!=null)
+            if (p != null)
             {
                 fulluri += "?playerId=" + p.ID;
-                fulluri += "&playername=" + p.Name;
+                //fulluri += "&playername=" + p.Name;
             }
-            if (isreconnect)
-                fulluri+="&reconnect=1";
-            else
-                fulluri += "&reconnect=0";
-            //fulluri += "&version=1.1";
+            //if (isreconnect)
+            //    fulluri += "&reconnect=1";
+            //else
+            //    fulluri += "&reconnect=0";
+            
             LogManager.Log(LogLevel.Message, "TCPCommRT.ServerUri", "Server uri is {0}", fulluri);
             return new Uri(fulluri);
         }

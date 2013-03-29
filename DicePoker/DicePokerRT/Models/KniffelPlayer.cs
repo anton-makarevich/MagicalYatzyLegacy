@@ -77,7 +77,7 @@ namespace Sanet.Kniffel.Models
                 string id = Name.GetHashCode().ToString();
                 if (HasPassword)
                     id += Password.GetHashCode().ToString();
-                return id;
+                return id.Replace("-", "m"); 
             }
         }
         

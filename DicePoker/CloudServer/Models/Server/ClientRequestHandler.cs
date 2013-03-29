@@ -69,15 +69,11 @@ namespace Sanet.Kniffel.Server
 
             string playerId = context.QueryString["playerId"];
             string version = context.QueryString["version"];
-            string playerName = context.QueryString["playername"];
             if (playerId == null) playerId = string.Empty;
 
-            if (string.IsNullOrEmpty(playerName))
-            {
-                 playerName="unknown";
-            }
-
+            
             string reconnect = context.QueryString["reconnect"];
+            if (reconnect == null) reconnect = "0";
           
             //tried retry logic but it caused other issues. 
                 try
@@ -92,13 +88,13 @@ namespace Sanet.Kniffel.Server
                         {
                             clientLobby = new ServerClientLobby(ServerLobby, playerId);
                             ServerClientLobby.playerToServerClientLobbyMapping[playerId] =  clientLobby;
-                            LogManager.Log("ClientRequestHandler.MyWebSocket", "websocket connect request from {0} ({1}), created new clientLobby", playerId,playerName);
+                            LogManager.Log("ClientRequestHandler.MyWebSocket", "websocket connect request from {0} ), created new clientLobby", playerId);
                         }
                         else
                         {
                             //Anton: not sure wheather commented part with reconnection check is needed after disposing of old GameServer, maybe not
                             //if (!string.IsNullOrEmpty(isreconnect) && isreconnect == "1")
-                            LogManager.Log("ClientRequestHandler.MyWebSocket", "websocket connect request from {0} ({1}), used reconnect mode and existing clientLobby", playerId, playerName);
+                            LogManager.Log("ClientRequestHandler.MyWebSocket", "websocket connect request from {0}), used reconnect mode and existing clientLobby", playerId);
                         }
                         
 
@@ -123,7 +119,7 @@ namespace Sanet.Kniffel.Server
                 }
                 catch (Exception ex)
                 {
-                    LogManager.Log(LogLevel.ErrorHigh, "ClientRequestHandler.MyWebSocket", "websocket connect request from {0} ({2}) threw exception:{1}", playerId, ex,playerName);
+                    LogManager.Log(LogLevel.ErrorHigh, "ClientRequestHandler.MyWebSocket", "websocket connect request from {0} ) threw exception:{1}", playerId, ex);
                 }
 
 
