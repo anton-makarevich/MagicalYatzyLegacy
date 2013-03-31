@@ -90,6 +90,7 @@ namespace DicePokerRT
                     throw new Exception("Failed to create initial page");
                 }
             }
+            SmartDispatcher.Initialize(rootFrame.Dispatcher);
             // Ensure the current window is active
             Window.Current.Activate();
             //register for settings charm event

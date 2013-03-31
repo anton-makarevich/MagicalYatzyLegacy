@@ -173,6 +173,15 @@
     <Compile Include="..\DicePokerRT\Models\KniffelRule.cs">
       <Link>Models\KniffelRule.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerRT\Models\Messages.cs">
+      <Link>Models\Common\Messages.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IPlayer.cs">
+      <Link>Models\Interfaces\IPlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IRollResult.cs">
+      <Link>Models\Interfaces\IRollResult.cs</Link>
+    </Compile>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -188,11 +197,17 @@
     <Compile Include="Models\Common\StringTokenizer.cs" />
     <Compile Include="Models\Interfaces\IKniffelGame.cs" />
     <Compile Include="Models\KniffelGameServer.cs" />
-    <Compile Include="Models\KniffelPlayerServer.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\ApplyScoreCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\RoundChangedCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\FixDiceCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\RollReportCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerChatMessageCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerJoinedCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerPingCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerSitOutChangedCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\TableInfoCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\TableInfoNeededCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\AbstractLobbyCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\AbstractLobbyResponse.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\GameCommand.cs" />
@@ -202,6 +217,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\KniffelProtocol\Observer\LobbyServerCommandObserver.cs" />
+    <Compile Include="Models\KniffelProtocol\TuplePlayerInfo.cs" />
     <Compile Include="Models\Protocol\Commands\AbstractCommand.cs" />
     <Compile Include="Models\Protocol\Commands\AbstractCommandResponse.cs" />
     <Compile Include="Models\Protocol\Commands\CommandEventArgs.cs" />

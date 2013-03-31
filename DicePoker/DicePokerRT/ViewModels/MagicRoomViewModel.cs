@@ -38,8 +38,8 @@ namespace Sanet.Kniffel.ViewModels
         }
 
         
-        private Player _CurrentPlayer;
-        public Player CurrentPlayer
+        private PlayerWrapper _CurrentPlayer;
+        public PlayerWrapper CurrentPlayer
         {
             get { return _CurrentPlayer; }
             set
@@ -239,9 +239,9 @@ namespace Sanet.Kniffel.ViewModels
                             {
                                 if (StoreManager.IsProductAvailable("WizardTools30"))
                                 {
-                                    RoamingSettings.SetMagicRollsCount(CurrentPlayer, RoamingSettings.GetMagicRollsCount(CurrentPlayer) + 30);
-                                    RoamingSettings.SetManualSetsCount(CurrentPlayer, RoamingSettings.GetManualSetsCount(CurrentPlayer) + 30);
-                                    RoamingSettings.SetForthRollsCount(CurrentPlayer, RoamingSettings.GetForthRollsCount(CurrentPlayer) + 30);
+                                    RoamingSettings.SetMagicRollsCount(CurrentPlayer.Player, RoamingSettings.GetMagicRollsCount(CurrentPlayer.Player) + 30);
+                                    RoamingSettings.SetManualSetsCount(CurrentPlayer.Player, RoamingSettings.GetManualSetsCount(CurrentPlayer.Player) + 30);
+                                    RoamingSettings.SetForthRollsCount(CurrentPlayer.Player, RoamingSettings.GetForthRollsCount(CurrentPlayer.Player) + 30);
                                     var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
                                     var res = await ks.AddPlayersMagicsAsync(CurrentPlayer.Name, CurrentPlayer.Password.Encrypt(33), "30".Encrypt(33), "30".Encrypt(33), "30".Encrypt(33));
                                     if (!res.Body.AddPlayersMagicsResult)
@@ -276,9 +276,9 @@ namespace Sanet.Kniffel.ViewModels
                            {
                                if (StoreManager.IsProductAvailable("WizardTools50"))
                                {
-                                   RoamingSettings.SetMagicRollsCount(CurrentPlayer, RoamingSettings.GetMagicRollsCount(CurrentPlayer) + 50);
-                                   RoamingSettings.SetManualSetsCount(CurrentPlayer, RoamingSettings.GetManualSetsCount(CurrentPlayer) + 50);
-                                   RoamingSettings.SetForthRollsCount(CurrentPlayer, RoamingSettings.GetForthRollsCount(CurrentPlayer) + 50);
+                                   RoamingSettings.SetMagicRollsCount(CurrentPlayer.Player, RoamingSettings.GetMagicRollsCount(CurrentPlayer.Player) + 50);
+                                   RoamingSettings.SetManualSetsCount(CurrentPlayer.Player, RoamingSettings.GetManualSetsCount(CurrentPlayer.Player) + 50);
+                                   RoamingSettings.SetForthRollsCount(CurrentPlayer.Player, RoamingSettings.GetForthRollsCount(CurrentPlayer.Player) + 50);
                                    var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
                                    var res = await ks.AddPlayersMagicsAsync(CurrentPlayer.Name, CurrentPlayer.Password.Encrypt(33), "50".Encrypt(33), "50".Encrypt(33), "50".Encrypt(33));
                                    if (!res.Body.AddPlayersMagicsResult)
@@ -314,9 +314,9 @@ namespace Sanet.Kniffel.ViewModels
                        {
                            if (StoreManager.IsProductAvailable("WizardTools100"))
                            {
-                               RoamingSettings.SetMagicRollsCount(CurrentPlayer, RoamingSettings.GetMagicRollsCount(CurrentPlayer) + 100);
-                               RoamingSettings.SetManualSetsCount(CurrentPlayer, RoamingSettings.GetManualSetsCount(CurrentPlayer) + 100);
-                               RoamingSettings.SetForthRollsCount(CurrentPlayer, RoamingSettings.GetForthRollsCount(CurrentPlayer) + 100);
+                               RoamingSettings.SetMagicRollsCount(CurrentPlayer.Player, RoamingSettings.GetMagicRollsCount(CurrentPlayer.Player) + 100);
+                               RoamingSettings.SetManualSetsCount(CurrentPlayer.Player, RoamingSettings.GetManualSetsCount(CurrentPlayer.Player) + 100);
+                               RoamingSettings.SetForthRollsCount(CurrentPlayer.Player, RoamingSettings.GetForthRollsCount(CurrentPlayer.Player) + 100);
                                var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
                                var res = await ks.AddPlayersMagicsAsync(CurrentPlayer.Name, CurrentPlayer.Password.Encrypt(33), "100".Encrypt(33), "100".Encrypt(33), "100".Encrypt(33));
                                if (!res.Body.AddPlayersMagicsResult)

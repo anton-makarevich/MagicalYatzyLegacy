@@ -141,12 +141,25 @@
     <Compile Include="..\CloudServer\Models\Interfaces\IKniffelGame.cs">
       <Link>Models\Interfaces\IKniffelGame.cs</Link>
     </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IPlayer.cs">
+      <Link>Models\Interfaces\IPlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IRollResult.cs">
+      <Link>Models\Interfaces\IRollResult.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\ViewModels\PlayerWrapper.cs">
+      <Link>ViewModels\PlayerWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\ViewModels\RollResultWrapper.cs">
+      <Link>ViewModels\RollResultWrapper.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\BooleanNegationConverter.cs" />
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="Common\BooleanToColorConverter.cs" />
+    <Compile Include="Common\DispatcherHelper.cs" />
     <Compile Include="Common\Logger.cs" />
     <Compile Include="Common\InternetCheker.cs" />
     <Compile Include="Common\PopupHelper.cs" />
@@ -162,7 +175,6 @@
     <Compile Include="Models\AdminModule.cs" />
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\Enums\ClientType.cs" />
-    <Compile Include="Models\KniffelPlayerClient.cs" />
     <Compile Include="Models\DiceRandomGenerator.cs" />
     <Compile Include="Models\OfferAction.cs" />
     <Compile Include="Models\EncriptionExtensions.cs" />

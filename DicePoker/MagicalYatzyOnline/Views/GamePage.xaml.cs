@@ -81,11 +81,8 @@ namespace DicePokerRT
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             SetViewModel<PlayGameViewModel>();
-            
-            GetViewModel<PlayGameViewModel>().Game.DiceRolled += Game_DiceRolled;
-            GetViewModel<PlayGameViewModel>().Game.MoveChanged += Game_MoveChanged;
-            GetViewModel<PlayGameViewModel>().Game.GameFinished += Game_GameFinished;
-            GetViewModel<PlayGameViewModel>().Game.DiceFixed += Game_DiceFixed;
+
+            AddGameHandlers();
             GetViewModel<PlayGameViewModel>().PropertyChanged += GamePage_PropertyChanged;
             
 
@@ -129,12 +126,21 @@ namespace DicePokerRT
         {
             dpBackground.RollDice(e.Value.ToList());
         }
+
+        void AddGameHandlers()
+        {
+            GetViewModel<PlayGameViewModel>().DiceRolled += Game_DiceRolled;
+            GetViewModel<PlayGameViewModel>().MoveChanged += Game_MoveChanged;
+            GetViewModel<PlayGameViewModel>().Game.GameFinished += Game_GameFinished;
+            GetViewModel<PlayGameViewModel>().DiceFixed += Game_DiceFixed;
+        }
+
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             Window.Current.SizeChanged -= Current_SizeChanged;
             GetViewModel<PlayGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
             GetViewModel<PlayGameViewModel>().Game.DiceRolled -= Game_DiceRolled;
-            GetViewModel<PlayGameViewModel>().Game.MoveChanged -= Game_MoveChanged;
+            GetViewModel<PlayGameViewModel>().MoveChanged -= Game_MoveChanged;
             GetViewModel<PlayGameViewModel>().Game.GameFinished -= Game_GameFinished;
             GetViewModel<PlayGameViewModel>().Game.DiceFixed -= Game_DiceFixed;
             GetViewModel<PlayGameViewModel>().RemoveGameHandlers();
@@ -161,7 +167,7 @@ namespace DicePokerRT
 
         private void GridView_ItemClick_1(object sender, ItemClickEventArgs e)
         {
-            GetViewModel<PlayGameViewModel>().Game.ApplyScore((RollResult)e.ClickedItem);
+            GetViewModel<PlayGameViewModel>().Game.ApplyScore(((RollResultWrapper)e.ClickedItem).Result);
         }
         protected async override void GoBack(object sender, RoutedEventArgs e)
         {

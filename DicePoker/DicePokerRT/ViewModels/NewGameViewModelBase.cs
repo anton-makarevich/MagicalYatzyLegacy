@@ -57,8 +57,8 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// Players list
         /// </summary>
-        protected ObservableCollection<Player> _Players;
-        public ObservableCollection<Player> Players
+        protected ObservableCollection<PlayerWrapper> _Players;
+        public ObservableCollection<PlayerWrapper> Players
         {
             get { return _Players; }
             set
@@ -74,8 +74,8 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// Selected player, used to delete and maybe other actions
         /// </summary>
-        protected Player _SelectedPlayer;
-        abstract public Player SelectedPlayer{get;set;}
+        protected PlayerWrapper _SelectedPlayer;
+        abstract public PlayerWrapper SelectedPlayer { get; set; }
         
         /// <summary>
         /// Do we have selected player?
@@ -137,7 +137,7 @@ namespace Sanet.Kniffel.ViewModels
         
         protected void p_MagicPressed(object sender, EventArgs e)
         {
-            _magic.GetViewModel<MagicRoomViewModel>().CurrentPlayer = (Player)sender;
+            _magic.GetViewModel<MagicRoomViewModel>().CurrentPlayer = (PlayerWrapper)sender;
             _magicPopup.IsOpen = true;
         }
 
@@ -171,7 +171,7 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         protected async void ArtifactsSyncRequest(object sender, EventArgs e)
         {
-            var player = sender as Player;
+            var player = sender as PlayerWrapper;
             if (InternetCheker.IsInternetAvailable())
             {
                 KniffelServiceSoapClient client = new KniffelServiceSoapClient();
@@ -184,11 +184,11 @@ namespace Sanet.Kniffel.ViewModels
 
                     var result = await client.GetPlayersMagicsAsync(player.Name, player.Password.Encrypt(33), rolls, manuals, resets);
                     player.HadStartupMagic = result.Body.GetPlayersMagicsResult;
-                    if (RoamingSettings.GetMagicRollsCount(player) == 0 && result.Body.rolls == 10)
+                    if (RoamingSettings.GetMagicRollsCount(player.Player) == 0 && result.Body.rolls == 10)
                         Utilities.ShowToastNotification(string.Format(Messages.PLAYER_ARTIFACTS_BONUS.Localize(), player.Name, 10));
-                    RoamingSettings.SetMagicRollsCount(player, result.Body.rolls);
-                    RoamingSettings.SetManualSetsCount(player, result.Body.manuals);
-                    RoamingSettings.SetForthRollsCount(player, result.Body.resets);
+                    RoamingSettings.SetMagicRollsCount(player.Player, result.Body.rolls);
+                    RoamingSettings.SetManualSetsCount(player.Player, result.Body.manuals);
+                    RoamingSettings.SetForthRollsCount(player.Player, result.Body.resets);
                     await client.CloseAsync();
                 }
                 catch (Exception ex)

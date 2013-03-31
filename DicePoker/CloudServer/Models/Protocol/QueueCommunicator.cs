@@ -53,20 +53,25 @@ namespace Sanet.Network.Protocol
         public void Start()
         {
             m_IsConnected = true;
-#if WinRT
-            //TODO: think about this
-            Task t =new Task(Run);
-            t.Start();
-            t.AsAsyncAction();
-#else
-            new Thread(new ThreadStart(Run)).Start();
-#endif
+//#if WinRT
+//            //TODO: think about this
+//            Task t =new Task(Run);
+//            t.Start();
+//            t.AsAsyncAction();
+//#else
+//            new Thread(new ThreadStart(Run)).Start();
+//#endif
         }
 
        
         public void Incoming(string message)
         {
-            m_Incoming.Enqueue(message);
+            //m_Incoming.Enqueue(message);
+            
+            if (/*IsConnected &&*/ ReceivedSomething != null)
+            {
+                ReceivedSomething(this, new KeyEventArgs<string>(message));
+            }
         }
 
         public virtual void Dispose()

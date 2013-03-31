@@ -37,7 +37,7 @@ namespace Sanet.Network.Protocol
             string serveruri=@"ws://" + Config.GetHostName();
             //@"ws://pksvc45.cloudapp.net/
             string fulluri = serveruri + "app.ashx";
-            var p = RoamingSettings.GetLastPlayer(0);
+            var p = RoamingSettings.GetLastPlayer(0).Player;
             if (p != null)
             {
                 fulluri += "?playerId=" + p.ID;
@@ -258,7 +258,7 @@ namespace Sanet.Network.Protocol
         {
             //return; //uncomment this to disable reconnection
             WebErrorStatus status = WebSocketError.GetStatus(e.GetBaseException().HResult);
-            LogManager.Log(LogLevel.Error, "TCPCommunicator.ConnectionError", "WebSocketConnection Error: {0}", status);
+            LogManager.Log("TCPCommunicator.ConnectionError", e);
             if (status == WebErrorStatus.CannotConnect
                 || status == WebErrorStatus.ConnectionAborted)//add more reasons
             {

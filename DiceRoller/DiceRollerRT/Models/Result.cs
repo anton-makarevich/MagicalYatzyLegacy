@@ -1,4 +1,5 @@
 ﻿using Sanet.Kniffel.Models.Enums;
+using Sanet.Kniffel.Models.Interfaces;
 using Sanet.Models;
 using System;
 using System.Collections.Generic;
@@ -9,28 +10,9 @@ using System.Threading.Tasks;
 
 namespace Sanet.Kniffel.Models
 {
-    public class RollResult:BaseViewModel
+    public class RollResult:IRollResult
     {
        
-        public string Text
-        {
-            get { return ScoreType.ToString().Localize(); }
-        }
-
-        public string TextShort
-        {
-            get { return (ScoreType.ToString()+"Short").Localize(); }
-        }
-
-        public string AltText
-        {
-            get
-            {
-                if (ScoreType == KniffelScores.Total)
-                    return "Chance".Localize();
-                return ScoreType.ToString().Localize();
-            }
-        }
         //Aplied value
         int _Value;
         public int Value
@@ -40,7 +22,7 @@ namespace Sanet.Kniffel.Models
             {
                 _Value = value;
                 HasValue = true;
-                NotifyPropertyChanged("Value");
+                
             }
         }
 
@@ -104,7 +86,7 @@ namespace Sanet.Kniffel.Models
                 if (_PossibleValue != value)
                 {
                     _PossibleValue = value;
-                    NotifyPropertyChanged("PossibleValue");
+                    
                 }
             }
         }
@@ -121,7 +103,7 @@ namespace Sanet.Kniffel.Models
                 if (_HasValue != value)
                 {
                     _HasValue = value;
-                    NotifyPropertyChanged("HasValue");
+                    
                 }
             }
         }
@@ -138,7 +120,7 @@ namespace Sanet.Kniffel.Models
                 if (_HasBonus != value)
                 {
                     _HasBonus = value;
-                    NotifyPropertyChanged("HasBonus");
+                    
                 }
             }
         }
@@ -178,8 +160,7 @@ namespace Sanet.Kniffel.Models
             set
             {
                 _ScoreType = value;
-                NotifyPropertyChanged("ScoreType");
-                NotifyPropertyChanged("Text");
+                
                 
             }
         }

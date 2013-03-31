@@ -19,6 +19,21 @@ namespace Sanet.Kniffel.ViewModels
 {
     public class PlayGameViewModel : AdBasedViewModel, IPlayGameView
     {
+
+        /// <summary>
+        /// current player rolled dices
+        /// </summary>
+        public event EventHandler<RollEventArgs> DiceRolled;
+        /// <summary>
+        /// Notify that dice was fixed
+        /// </summary>
+        public event EventHandler<FixDiceEventArgs> DiceFixed;
+        /// <summary>
+        /// Notify that move started
+        /// </summary>
+        public event EventHandler<MoveEventArgs> MoveChanged;
+
+
         #region Constructor
         public PlayGameViewModel()
         {
@@ -138,13 +153,16 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// Players list
         /// </summary>
-        public ObservableCollection<Player> Players
+        public ObservableCollection<PlayerWrapper> Players
         {
             get
             {
                 if (Game.Players == null)
                     return null;
-                return new ObservableCollection<Player>(Game.Players);
+                var resList = new List<PlayerWrapper>();
+                foreach (var p in Game.Players)
+                    resList.Add(new PlayerWrapper(p));
+                return new ObservableCollection<PlayerWrapper>(resList);
             }
             
         }
@@ -180,11 +198,13 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// Selected player -actually current player;
         /// </summary>
-        public Player SelectedPlayer
+        public PlayerWrapper SelectedPlayer
         {
             get
             {
-                return Game.CurrentPlayer;
+                if (Game.CurrentPlayer == null)
+                    return null;
+                return Players.FirstOrDefault(f=>f.SeatNo==Game.CurrentPlayer.SeatNo);
             }
         }
         /// <summary>
@@ -194,7 +214,7 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return SelectedPlayer != null;
+                return SelectedPlayer.Player != null;
             }
         }
         
@@ -217,8 +237,8 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// Roll results for user to show
         /// </summary>
-        List<RollResult> _RollResults;
-        public List<RollResult> RollResults
+        List<IRollResult> _RollResults;
+        public List<IRollResult> RollResults
         {
             get
             {
@@ -234,12 +254,17 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// Results list to bind to table side caption
         /// </summary>
-        public List<RollResult> SampleResults
+        public List<IRollResult> SampleResults
         {
             get
             {
                 if (IsPlayerSelected)
-                    return SelectedPlayer.Results;
+                {
+                    var resList = new List<IRollResult>();
+                    foreach (var r in SelectedPlayer.Results)
+                        resList.Add(new RollResultWrapper(r));
+                    return resList;
+                }
                 return null;
             }
             
@@ -450,9 +475,12 @@ namespace Sanet.Kniffel.ViewModels
 
         void Game_DiceChanged(object sender, RollEventArgs e)
         {
-            SelectedPlayer.CheckRollResults();
+            SelectedPlayer.Player.CheckRollResults();
             SelectedPlayer.OnManaulSetUsed();
-            RollResults = SelectedPlayer.Results.Where(f => !f.HasValue && f.ScoreType != KniffelScores.Bonus).ToList();
+            var resList = new List<IRollResult>();
+            foreach (var r in SelectedPlayer.Results.Where(f => !f.HasValue && f.ScoreType != KniffelScores.Bonus).ToList())
+                resList.Add(new RollResultWrapper(r));
+            RollResults = resList;
             IsControlsVisible = true;
             NotifyPlayerChanged();
         }
@@ -464,33 +492,44 @@ namespace Sanet.Kniffel.ViewModels
 
         void Game_ResultApplied(object sender, ResultEventArgs e)
         {
-            if (e.Result.PossibleValue > 0 || e.Result.HasBonus)
-            {
-                if (e.Result.PossibleValue == 50 || e.Result.HasBonus ||e.Result.ScoreType== KniffelScores.Bonus)
-                    SoundsProvider.PlaySound(_player, "fanfare");
-                else
-                    SoundsProvider.PlaySound(_player, "win");
-            }
-            else
-            {
-                SoundsProvider.PlaySound(_player, "wrong");
-            }
-            
-            SelectedPlayer.Results.Find(f => f.ScoreType == e.Result.ScoreType).Value = e.Result.PossibleValue;
-            SelectedPlayer.UpdateTotal();
-            RollResults = null;
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        if (e.Result.PossibleValue > 0 || e.Result.HasBonus)
+                        {
+                            if (e.Result.PossibleValue == 50 || e.Result.HasBonus || e.Result.ScoreType == KniffelScores.Bonus)
+                                SoundsProvider.PlaySound(_player, "fanfare");
+                            else
+                                SoundsProvider.PlaySound(_player, "win");
+                        }
+                        else
+                        {
+                            SoundsProvider.PlaySound(_player, "wrong");
+                        }
+
+                        SelectedPlayer.Results.Find(f => f.ScoreType == e.Result.ScoreType).Value = e.Result.PossibleValue;
+                        SelectedPlayer.UpdateTotal();
+                        RollResults = null;
+                    });
         }
 
         void Game_PlayerJoined(object sender, PlayerEventArgs e)
         {
-            NotifyPropertyChanged("Players");
-            NotifyPropertyChanged("DicePanelRTWidth");
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        NotifyPropertyChanged("Players");
+                        NotifyPropertyChanged("DicePanelRTWidth");
+                    });
         }
 
         void Game_MoveChanged(object sender, MoveEventArgs e)
         {
-            SetCanRoll(true);
-            NotifyPlayerChanged();
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        if (MoveChanged != null)
+                            MoveChanged(this, e);
+                        SetCanRoll(true);
+                        NotifyPlayerChanged();
+                    });
             
         }
 
@@ -509,27 +548,37 @@ namespace Sanet.Kniffel.ViewModels
 
         void Game_DiceRolled(object sender, RollEventArgs e)
         {
-           
-            SelectedPlayer.CheckRollResults();
-            RollResults = null;
-            SetCanRoll ( false);
-            NotifyPlayerChanged();
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        if (DiceRolled != null)
+                            DiceRolled(this, e);
+                        SelectedPlayer.Player.CheckRollResults();
+                        RollResults = null;
+                        SetCanRoll(false);
+                        NotifyPlayerChanged();
+                    });
         }
 
         void Game_DiceFixed(object sender, FixDiceEventArgs e)
         {
-            
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        if (DiceFixed != null)
+                            DiceFixed(this, e);
+                    });
         }
 
         void NotifyPlayerChanged()
         {
             NotifyPropertyChanged("SelectedPlayer");
-            
             NotifyPropertyChanged("RollLabel");
             NotifyPropertyChanged("CanFix");
             NotifyPropertyChanged("SampleResults");
             if (IsPlayerSelected)
-                Title = string.Format("{2} {0}, {1}",Game.Move ,SelectedPlayer.Name,Messages.GAME_MOVE.Localize() );
+            {
+                Title = string.Format("{2} {0}, {1}", Game.Move, SelectedPlayer.Name, Messages.GAME_MOVE.Localize());
+                NotifyPropertyChanged("Players");
+            }
             if (Game.Rules.Rule== Rules.krMagic)
             {
                 NotifyPropertyChanged("IsMagicRollEnabled");
@@ -552,19 +601,23 @@ namespace Sanet.Kniffel.ViewModels
             SetCanRoll(SelectedPlayer.Roll < 3);
             SelectedPlayer.Roll++;
 
-            RollResults = SelectedPlayer.Results.Where(f => !f.HasValue && f.ScoreType != KniffelScores.Bonus).ToList();
+            var resList = new List<IRollResult>();
+            foreach (var r in SelectedPlayer.Results.Where(f => !f.HasValue && f.ScoreType != KniffelScores.Bonus).ToList())
+                resList.Add(new RollResultWrapper(r));
+            RollResults = resList;
+
             NotifyPlayerChanged();
 
             //if bot
             if (SelectedPlayer.IsBot)
             {
-                if ( lastRoll|| !SelectedPlayer.AINeedRoll())
-                    SelectedPlayer.AIDecideFill();
+                if ( lastRoll|| !SelectedPlayer.Player.AINeedRoll())
+                    SelectedPlayer.Player.AIDecideFill();
                 else
                 {
-                    SelectedPlayer.AIFixDices();
+                    SelectedPlayer.Player.AIFixDices();
                     if (Game.FixedDicesCount==5)
-                        SelectedPlayer.AIDecideFill();
+                        SelectedPlayer.Player.AIDecideFill();
                     else
                         Game.ReportRoll();
                 }
@@ -618,7 +671,7 @@ namespace Sanet.Kniffel.ViewModels
                 score = RoamingSettings.LocalSimpleRecord;
                 scores = RoamingSettings.LocalStandardRecord;
                 scorem = RoamingSettings.LocalStandardRecord;
-                foreach (Player p in Players)
+                foreach (var p in Players)
                 {
                     //don't do anything score related for bots
                     if (p.IsBot)
@@ -632,11 +685,11 @@ namespace Sanet.Kniffel.ViewModels
                         int resetsused = (p.IsForthRollAvailable) ? 0 : -1;
 
                         if (rollsused != 0)
-                            RoamingSettings.SetMagicRollsCount(p, RoamingSettings.GetMagicRollsCount(p) + rollsused);
+                            RoamingSettings.SetMagicRollsCount(p.Player, RoamingSettings.GetMagicRollsCount(p.Player) + rollsused);
                         if (rollsused != 0)
-                            RoamingSettings.SetManualSetsCount(p, RoamingSettings.GetManualSetsCount(p) + manualsused);
+                            RoamingSettings.SetManualSetsCount(p.Player, RoamingSettings.GetManualSetsCount(p.Player) + manualsused);
                         if (rollsused != 0)
-                            RoamingSettings.SetForthRollsCount(p, RoamingSettings.GetForthRollsCount(p) + resetsused);
+                            RoamingSettings.SetForthRollsCount(p.Player, RoamingSettings.GetForthRollsCount(p.Player) + resetsused);
 
                         if (ks == null)
                             ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
@@ -654,9 +707,9 @@ namespace Sanet.Kniffel.ViewModels
                             addartifacts = 10;
                         if (addartifacts > 0)
                         {
-                            RoamingSettings.SetMagicRollsCount(p, RoamingSettings.GetMagicRollsCount(p) + addartifacts);
-                            RoamingSettings.SetManualSetsCount(p, RoamingSettings.GetManualSetsCount(p) + addartifacts);
-                            RoamingSettings.SetForthRollsCount(p, RoamingSettings.GetForthRollsCount(p) + addartifacts);
+                            RoamingSettings.SetMagicRollsCount(p.Player, RoamingSettings.GetMagicRollsCount(p.Player) + addartifacts);
+                            RoamingSettings.SetManualSetsCount(p.Player, RoamingSettings.GetManualSetsCount(p.Player) + addartifacts);
+                            RoamingSettings.SetForthRollsCount(p.Player, RoamingSettings.GetForthRollsCount(p.Player) + addartifacts);
                             if (ks == null)
                                 ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
                             var res = await ks.AddPlayersMagicsAsync(p.Name, p.Password.Encrypt(33), addartifacts.ToString().Encrypt(33), addartifacts.ToString().Encrypt(33), addartifacts.ToString().Encrypt(33));
@@ -675,7 +728,7 @@ namespace Sanet.Kniffel.ViewModels
                         bool done = false;
                         do
                         {
-                            var rs = await ks.PutScoreIntoTableWithPicPureNameAsync(p.Name, p.Password.Encrypt(33), p.Total.ToString().Encrypt(33), Game.Rules.ToString().Encrypt(33), p.PicUrl);
+                            var rs = await ks.PutScoreIntoTableWithPicPureNameAsync(p.Name, p.Password.Encrypt(33), p.Total.ToString().Encrypt(33), Game.Rules.ToString().Encrypt(33), p.Player.PicUrl);
                             done = rs.Body.PutScoreIntoTableWithPicPureNameResult;
                             if (attempt == 3)
                                 break;

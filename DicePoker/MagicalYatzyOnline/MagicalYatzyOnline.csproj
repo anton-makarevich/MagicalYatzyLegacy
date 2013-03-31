@@ -1271,8 +1271,17 @@
     <Compile Include="..\CloudServer\Models\Interfaces\IKniffelGame.cs">
       <Link>Models\Interfaces\IKniffelGame.cs</Link>
     </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\ApplyScoreCommand.cs">
+      <Link>Models\Protocol\Commands\Game\ApplyScoreCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\FixDiceCommand.cs">
+      <Link>Models\Protocol\Commands\Game\FixDiceCommand.cs</Link>
+    </Compile>
     <Compile Include="..\cloudserver\models\kniffelprotocol\commands\game\PlayerChatMessageCommand.cs">
       <Link>Models\Protocol\Commands\Game\PlayerChatMessageCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerCommand.cs</Link>
     </Compile>
     <Compile Include="..\cloudserver\models\kniffelprotocol\commands\game\PlayerJoinedCommand.cs">
       <Link>Models\Protocol\Commands\Game\PlayerJoinedCommand.cs</Link>
@@ -1282,6 +1291,18 @@
     </Compile>
     <Compile Include="..\cloudserver\models\kniffelprotocol\commands\game\PlayerSitOutChangedCommand.cs">
       <Link>Models\Protocol\Commands\Game\PlayerSitOutChangedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\RollReportCommand.cs">
+      <Link>Models\Protocol\Commands\Game\RollReportCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\RoundChangedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\RoundChangedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\TableInfoCommand.cs">
+      <Link>Models\Protocol\Commands\Game\TableInfoCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\TableInfoNeededCommand.cs">
+      <Link>Models\Protocol\Commands\Game\TableInfoNeededCommand.cs</Link>
     </Compile>
     <Compile Include="..\cloudserver\models\kniffelprotocol\commands\lobby\AbstractLobbyCommand.cs">
       <Link>Models\Protocol\Commands\Lobby\AbstractLobbyCommand.cs</Link>
@@ -1297,6 +1318,9 @@
     </Compile>
     <Compile Include="..\cloudserver\models\kniffelprotocol\commands\lobby\JoinResponse.cs">
       <Link>Models\Protocol\Commands\Lobby\JoinResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\TuplePlayerInfo.cs">
+      <Link>Models\Protocol\TuplePlayerInfo.cs</Link>
     </Compile>
     <Compile Include="..\cloudserver\models\protocol\commands\AbstractCommand.cs">
       <Link>Models\Protocol\Commands\AbstractCommand.cs</Link>
@@ -1327,6 +1351,9 @@
     </Compile>
     <Compile Include="..\DicePokerRT\Common\BooleanToVisibilityConverter.cs">
       <Link>Common\BooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Common\DispatcherHelper.cs">
+      <Link>Common\DispatcherHelper.cs</Link>
     </Compile>
     <Compile Include="..\DicePokerRT\Common\InternetCheker.cs">
       <Link>Common\InternetCheker.cs</Link>
@@ -1405,9 +1432,6 @@
     </Compile>
     <Compile Include="..\DicePokerRT\Models\KniffelPlayer.cs">
       <Link>Models\KniffelPlayer.cs</Link>
-    </Compile>
-    <Compile Include="..\DicePokerRT\Models\KniffelPlayerClient.cs">
-      <Link>Models\KniffelPlayerClient.cs</Link>
     </Compile>
     <Compile Include="..\DicePokerRT\Models\KniffelRule.cs">
       <Link>Models\KniffelRule.cs</Link>
@@ -1490,6 +1514,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\InstanceKeeper.cs" />
+    <Compile Include="Models\Interfaces\IRollResult.cs" />
+    <Compile Include="Models\Interfaces\IPlayer.cs" />
     <Compile Include="Models\JoinManager.cs" />
     <Compile Include="Models\KniffelGameClient.cs" />
     <Compile Include="Models\Protocol\LobbyTCPClient.cs" />
@@ -1503,7 +1530,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\PlayerWrapper.cs" />
     <Compile Include="ViewModels\NewOnlineGameViewModel.cs" />
+    <Compile Include="ViewModels\RollResultWrapper.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>

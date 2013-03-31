@@ -55,7 +55,7 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// Selected player, used to delete and maybe other actions
         /// </summary>
-        public override Player SelectedPlayer
+        public override PlayerWrapper SelectedPlayer
         {
             get { return _SelectedPlayer; }
             set
@@ -100,7 +100,7 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         protected override async void FillPlayers()
         {
-            Players = new ObservableCollection<Player>();
+            Players = new ObservableCollection<PlayerWrapper>();
             var p = RoamingSettings.GetLastPlayer(0);
             if (p == null)
             {
@@ -111,7 +111,7 @@ namespace Sanet.Kniffel.ViewModels
                 //if no luck - add default name
                 if (string.IsNullOrEmpty(userName))
                     userName = GetNewPlayerName(PlayerType.Local);
-                p = new Player()
+                p = new PlayerWrapper(new Player())
                 {
                     Name = userName,
                     Type = PlayerType.Local
@@ -121,7 +121,7 @@ namespace Sanet.Kniffel.ViewModels
                 p.RefreshArtifactsInfo();
                 
             }
-            p.Client = Config.GetClientType();
+            p.Player.Client = Config.GetClientType();
             var language=Windows.System.UserProfile.GlobalizationPreferences.Languages[0].Split(new string[]{"-"}, StringSplitOptions.RemoveEmptyEntries);
             p.Language = language[0];
             Players.Add(p);
@@ -144,7 +144,7 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         public override void SavePlayers()
         {
-            RoamingSettings.SaveLastPlayer(SelectedPlayer, 0);
+            RoamingSettings.SaveLastPlayer(SelectedPlayer.Player, 0);
         }
 
         public async override void StartGame()
@@ -162,7 +162,7 @@ namespace Sanet.Kniffel.ViewModels
                 return;
             }
             InitService initService = new InitService();
-            var respond = await initService.InitPlayer(SelectedPlayer.ID);
+            var respond = await initService.InitPlayer(SelectedPlayer.Player.ID);
             if (respond != null)
             {
                 Utilities.ShowMessage(respond.Message.Localize(), Messages.APP_NAME.Localize());

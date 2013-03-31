@@ -157,8 +157,8 @@ namespace Sanet.Kniffel.Protocol
                 gui.Game = client;
             }
             client.Start();
-            p.Type = PlayerType.Local;
-            client.JoinGame(p);
+            //p.Type = PlayerType.Local;
+            //client.JoinGame(p);
             m_Client= client;
             return client;
         }

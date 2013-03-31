@@ -9,7 +9,7 @@ using Sanet.Kniffel.Models.Interfaces;
 
 namespace Sanet.Kniffel.Models
 {
-    public partial class Player:BaseViewModel
+    public class Player:IPlayer
     {
         
         #region Prperties
@@ -26,14 +26,7 @@ namespace Sanet.Kniffel.Models
             set
             {
                 _Name = value;
-                NotifyPropertyChanged("Name");
-                Password = "";
-                ArtifactsInfoMessage = "ChangePasswordLabel".Localize();
-                //RememberPass = false;
-                HadStartupMagic = false;
-                if (!string.IsNullOrEmpty(value))
-                    RefreshArtifactsInfo();
-                //NotifyPropertyChanged("HasArtifacts");
+               
             }
         }
         /// <summary>
@@ -49,9 +42,7 @@ namespace Sanet.Kniffel.Models
             set
             {
                 _Password = value;
-                NotifyPropertyChanged("Password");
-                NotifyPropertyChanged("HasPassword");
-                NotifyPropertyChanged("PlayerPasswordLabelLocalized");
+                
             }   
         }
 
@@ -92,19 +83,35 @@ namespace Sanet.Kniffel.Models
             {
                 if (_IsMoving != value)
                 {
-                    _IsMoving = value;
                     Roll = 1;
-                    NotifyPropertyChanged("IsMoving");
+                    _IsMoving = value;
+                    
                 }
             }
         }
 
+        public bool IsForthRolllAvailable{get;set;}
+        public bool IsManualSetlAvailable { get; set; }
+        public bool IsMagicRollAvailable { get; set; }
         
         //Public Property GamePlatform As KniffelGamePlatform
         /// <summary>
         /// Avatar URI
         /// </summary>
-        public string PicUrl { get; set; }
+        string _PicUrl;
+        public string PicUrl 
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_PicUrl))
+                    _PicUrl = "na";
+                return _PicUrl;
+            }
+            set
+            {
+                _PicUrl = value;
+            }
+        }
 
         /// <summary>
         /// Player type (human, network or AI controlled)
@@ -119,9 +126,7 @@ namespace Sanet.Kniffel.Models
                 if (_Type != value)
                 {
                     _Type = value;
-                    NotifyPropertyChanged("Type");
-                    NotifyPropertyChanged("IsBot");
-                    NotifyPropertyChanged("IsHuman");
+                    
                 }
             }
         }
@@ -148,7 +153,7 @@ namespace Sanet.Kniffel.Models
                                                          
                     _Game = value;
                     Init();
-                    NotifyPropertyChanged("Game");
+                    
                 }
             }
         }
@@ -171,7 +176,7 @@ namespace Sanet.Kniffel.Models
                 if (_IsReady != value)
                 {
                     _IsReady = value;
-                    NotifyPropertyChanged("IsReady");
+                    
                 }
             }
         }
@@ -207,11 +212,75 @@ namespace Sanet.Kniffel.Models
                     Type = PlayerType.Local;
                 else
                     Type = PlayerType.AI;
-                NotifyPropertyChanged("IsHuman");
+                
+            }
+        }
+
+
+
+
+        /// <summary>
+        /// If to remember pass (works only for human )
+        /// </summary>
+        private bool _RememberPass;
+        public bool RememberPass
+        {
+            get
+            {
+                if (IsHuman)
+                    return true;//_RememberPass;
+                return false;
+            }
+            set
+            {
+                if (_RememberPass != value && IsHuman)
+                {
+                    _RememberPass = value;
+                }
+                else
+                    _RememberPass = false;
+            }
+        }
+
+
+
+        public bool IsDefaultName
+        {
+            get
+            {
+                var nameparts = Name.Split(' ');
+                if (nameparts.Length == 2 && nameparts[0].ToLower() == Messages.PLAYER_NAME_DEFAULT.Localize().ToLower())
+                {
+                    int n;
+                    if (int.TryParse(nameparts[1], out n))
+                    {
+
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// Returns if player can buy artifacts
+        /// only with unique name and password can buy
+        /// </summary>
+        public bool CanBuy
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Name) || !HasPassword || IsDefaultName)
+                    return false;
+                return true;
             }
         }
 
         
+
+
         private List<RollResult> _Results;
         public List<RollResult> Results
         {
@@ -221,7 +290,7 @@ namespace Sanet.Kniffel.Models
                 if (_Results != value)
                 {
                     _Results = value;
-                    NotifyPropertyChanged("Results");
+                   
                 }
             }
         }
@@ -241,7 +310,7 @@ namespace Sanet.Kniffel.Models
                     if (value < 1)
                         value = 1;
                     _Roll = value;
-                    NotifyPropertyChanged("Roll");
+                    
                 }
             }
         }
@@ -372,25 +441,23 @@ namespace Sanet.Kniffel.Models
                 }
             }
         }
-        /// <summary>
-        /// notifying that total changed
-        /// </summary>
-        public void UpdateTotal()
-        {
-            NotifyPropertyChanged("Total");
-        }
+        
         /// <summary>
         /// before each game start
         /// </summary>
         public void Init()
         {
             Roll = 1;
-            IsMagicRollAvailable = true;
-            IsManualSetlAvailable = true;
-            IsForthRollAvailable = true;
+            IsForthRolllAvailable=true;
+            IsManualSetlAvailable=true;
+            IsMagicRollAvailable =true;
             var results = new List<RollResult>();
             foreach (var score in _Game.Rules.Scores)
-                results.Add(new RollResult { ScoreType = score });
+            {
+                RollResult result = new RollResult();
+                result.ScoreType = score;
+                results.Add(result);
+            }
             IsMoving = false;
             Results = results;
             //NotifyPropertyChanged("HasArtifacts");

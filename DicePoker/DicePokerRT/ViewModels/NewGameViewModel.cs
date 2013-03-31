@@ -77,7 +77,7 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// Selected player, used to delete and maybe other actions
         /// </summary>
-        public override Player SelectedPlayer
+        public override PlayerWrapper SelectedPlayer
         {
             get { return _SelectedPlayer; }
             set
@@ -161,12 +161,12 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         protected override async void  FillPlayers()
         {
-            Players = new ObservableCollection<Player>();
+            Players = new ObservableCollection<PlayerWrapper>();
             //trying toload previous players from roaming
             for (int i = 0; i < 4; i++)
             {
                 var p=RoamingSettings.GetLastPlayer(i);
-                if (p == null)
+                if (p.Player == null)
                     break;
                 p.DeletePressed += p_DeletePressed;
                 p.MagicPressed += p_MagicPressed;
@@ -184,7 +184,7 @@ namespace Sanet.Kniffel.ViewModels
                 //if no luck - add default name
                 if (string.IsNullOrEmpty(userName))
                     userName = GetNewPlayerName(PlayerType.Local);
-                var p = new Player()
+                var p = new PlayerWrapper(new Player())
                     {
                         Name = userName,
                         Type = PlayerType.Local
@@ -209,7 +209,7 @@ namespace Sanet.Kniffel.ViewModels
             if (CanAddPlayer)
             {
                 //get username from system
-                var p=new Player();
+                var p=new PlayerWrapper(new Player());
                 p.DeletePressed += p_DeletePressed;
                 p.MagicPressed += p_MagicPressed;
                 p.ArtifactsSyncRequest += ArtifactsSyncRequest;
@@ -270,7 +270,7 @@ namespace Sanet.Kniffel.ViewModels
         }
         void p_DeletePressed(object sender, EventArgs e)
         {
-            SelectedPlayer = (Player)sender;
+            SelectedPlayer = (PlayerWrapper)sender;
             SelectedPlayer.DeletePressed -= p_DeletePressed;
             DeletePlayer();
             
@@ -282,9 +282,9 @@ namespace Sanet.Kniffel.ViewModels
         {
             int index = 0;
             //save players in list
-            foreach (Player player in Players)
+            foreach (PlayerWrapper player in Players)
             {
-                RoamingSettings.SaveLastPlayer(player, index);
+                RoamingSettings.SaveLastPlayer(player.Player, index);
                 index++;
             }
             //save nulls for players if less then (in case if were deleted)
@@ -302,7 +302,7 @@ namespace Sanet.Kniffel.ViewModels
                 gameModel.Game = new KniffelGame();
                 gameModel.Game.Rules = SelectedRule.Rule;
                 gameModel.RollResults = null;
-                foreach (Player player in Players)
+                foreach (PlayerWrapper player in Players)
                 {
                     //notify user that he haven't artifacts
                     if (SelectedRule.Rule.Rule == Models.Rules.krMagic)
@@ -325,7 +325,7 @@ namespace Sanet.Kniffel.ViewModels
                         }
                     }
                     //player.Roll = 1;
-                    gameModel.Game.JoinGame(player);
+                    gameModel.Game.JoinGame(player.Player);
                 }
 
                 CommonNavigationActions.NavigateToGamePage();

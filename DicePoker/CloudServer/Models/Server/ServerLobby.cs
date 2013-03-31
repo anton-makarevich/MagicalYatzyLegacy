@@ -56,12 +56,12 @@ namespace Sanet.Kniffel.Server
 
         private object usedNameLockObj = new object();
 
-        
-        public int CreateTable()
+
+        public int CreateTable(Rules rule)
         {
             
             KniffelGame game = new KniffelGame();
-
+            game.Rules = new KniffelRule(rule);
             int m_LastUsedID = 0;
             lock (gamesDictLockObj)
             {
@@ -97,17 +97,17 @@ namespace Sanet.Kniffel.Server
         /// <summary>
         /// Method to automatically find a table for the user
         /// </summary>
-        public int FindTableForUser()
-        { 
-            
-            if (m_Games.Count == 0)
+        public int FindTableForUser(Rules rule)
+        {
+            var gamesByRule = m_Games.Values.Where(f => f.Rules.Rule == rule).ToList();
+            if (gamesByRule.Count == 0)
             {
                 LogManager.Log(LogLevel.Message, "ServerLobby.FindTableForUser", "No games To join");
                 return -1;
             }
             
             //so - all tables
-            var game= m_Games.Values.OrderByDescending(f=>f.PlayersNumber).Where(f=>f.PlayersNumber<4).FirstOrDefault();
+            var game = gamesByRule.Where(f => f.PlayersNumber < 4).OrderByDescending(f => f.PlayersNumber).FirstOrDefault();
             if (game != null)
                 return game.GameId;
             else

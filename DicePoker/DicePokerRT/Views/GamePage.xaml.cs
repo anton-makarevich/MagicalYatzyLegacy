@@ -161,7 +161,7 @@ namespace DicePokerRT
 
         private void GridView_ItemClick_1(object sender, ItemClickEventArgs e)
         {
-            GetViewModel<PlayGameViewModel>().Game.ApplyScore((RollResult)e.ClickedItem);
+            GetViewModel<PlayGameViewModel>().Game.ApplyScore(((RollResultWrapper)e.ClickedItem).Result);
         }
         protected async override void GoBack(object sender, RoutedEventArgs e)
         {

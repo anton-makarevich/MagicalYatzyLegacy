@@ -114,9 +114,9 @@ namespace Sanet.Kniffel.Server
             {
                 LogManager.Log(LogLevel.Message, "ServerClientLobby.JoinTable", "{0} - autojoin", e.Command.PlayerName);
 
-                tableID = m_Lobby.FindTableForUser();
+                tableID = m_Lobby.FindTableForUser(e.Command.GameRule);
                 if (tableID == -1)
-                    tableID = m_Lobby.CreateTable();
+                    tableID = m_Lobby.CreateTable(e.Command.GameRule);
             }
             game=m_Lobby.GetGame(tableID);
             
@@ -136,6 +136,7 @@ namespace Sanet.Kniffel.Server
             Player player = new Player();
             player.Name = e.Command.PlayerName;
             player.Password = e.Command.PlayerPass;
+            player.Language = e.Command.PlayerLanguage;
             player.Client = e.Command.PlayerClient;
             
             client.JoinGame(player);
@@ -143,9 +144,12 @@ namespace Sanet.Kniffel.Server
             m_Table= client;
 
             client.Start();
+            
             LogManager.Log(LogLevel.Message, "ServerClientLobby.m_CommandObserver_JoinTableCommandReceived", "> Client '{0}' seated ({3}) at table: {2}:{1}", m_PlayerName,client.Game.GameId, e.Command.TableID, client.Player.SeatNo);
             Send1(e.Command.EncodeResponse(player.SeatNo,tableID));
-                
+            Thread.Sleep(200);
+            client.SendTableInfo();
+            game.StartGame();
         }
         
 
@@ -173,7 +177,7 @@ namespace Sanet.Kniffel.Server
             Send1(new GameCommand(m_Table.Game.GameId, e.Key));
         }
 
-        private System.Timers.Timer removeClientAfterDelayTimer;
+        private System.Timers.Timer removeClientAfterDelayTimer = new System.Timers.Timer() { Interval=100000 };
         private int numberOfTimesFoundClientNotConnectedInaRow = 0; 
 
         void removeClientAfterDelayTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)

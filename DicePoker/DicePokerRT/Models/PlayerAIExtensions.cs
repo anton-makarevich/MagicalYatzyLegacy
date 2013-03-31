@@ -172,7 +172,7 @@ namespace Sanet.Kniffel.Models
                 {
                     for (int i = first; i < first + count; i++)
                     {
-                        if (!player.Game.IsDiceFiexed(i))
+                        if (!player.Game.IsDiceFixed(i))
                             player.Game.FixDice(i, true);
                     }
                     return;

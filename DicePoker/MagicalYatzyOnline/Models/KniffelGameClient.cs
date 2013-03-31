@@ -1,11 +1,13 @@
 ﻿using Sanet.Kniffel.Models.Enums;
 using Sanet.Kniffel.Models.Events;
 using Sanet.Kniffel.Models.Interfaces;
+using Sanet.Kniffel.Protocol.Commands.Game;
 using Sanet.Kniffel.Protocol.Observer;
 using Sanet.Network.Protocol.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Windows.UI.Xaml;
 
 namespace Sanet.Kniffel.Models
 {
@@ -159,25 +161,7 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         public void DoMove()
         {
-            fixedRollResults = new List<int>();
             
-            if (Rules.Rule == Models.Rules.krMagic)
-                RerollMode = false;
-            //if we have current player - move is continue, so selecting next
-            if (CurrentPlayer != null)
-            {
-                CurrentPlayer.IsMoving = false;
-                CurrentPlayer = Players.FirstOrDefault(f => f.SeatNo == CurrentPlayer.SeatNo + 1);
-            }
-            else//else it's new move and we select first player as current
-                CurrentPlayer = Players.FirstOrDefault(f => f.SeatNo == 0);
-            //if current player null then all palyers are done in this move - move next
-            if (CurrentPlayer == null)
-            {
-                NextMove();
-                return;
-            }
-            CurrentPlayer.IsMoving = true;
             //report to all that player changed
             if (MoveChanged != null)
                 MoveChanged(this, new MoveEventArgs(CurrentPlayer, Move));
@@ -213,20 +197,9 @@ namespace Sanet.Kniffel.Models
         {
             lock (syncRoot)
             {
-                if (isfixed)
-                {
-                    int count = LastDiceResult.NumDiceOf(value);
-                    int fixedcount = fixedRollResults.Count(f => f == value);
-                    if (count > fixedcount)
-                        fixedRollResults.Add(value);
-                }
-                else
-                {
-                    if (fixedRollResults.Contains(value))
-                        fixedRollResults.Remove(value);
-                }
-                if (DiceFixed != null)
-                    DiceFixed(this, new FixDiceEventArgs(CurrentPlayer, value, isfixed));
+                Send(new FixDiceCommand(CurrentPlayer.SeatNo,value,isfixed));
+
+                
             }
         }
 
@@ -268,38 +241,12 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         public void ReportRoll()
         {
-            LogManager.Log(LogLevel.Message, "Game.ReportRoll",
-                "reporting roll results for player {0}. we have {1} fixed dices", CurrentPlayer.Name, fixedRollResults.Count);
+            
             lock (syncRoot)
             {
-                int j = 0;
-                lastRollResults = new int[5];
-                for (int i = j; i < fixedRollResults.Count; i++)
-                {
-                    lastRollResults[i] = fixedRollResults[i];
-                }
-                j = fixedRollResults.Count;
+                if (CurrentPlayer!=null)
+                    Send(new RollReportCommand(CurrentPlayer.SeatNo, new List<int>() { 0,0,0,0,0}));
 
-                for (int i = j; i <= 4; i++)
-                {
-                    int ii = DiceRandomGenerator.GetNextDiceResult(fixedRollResults.ToArray()/*lastRollResults*/);//rand.Next(1, 7);//В цикл для нормальной игры, за циклом - только книффеля))
-
-                    lastRollResults[i] = ii;
-                    if (Rules.Rule == Models.Rules.krMagic)
-                    {
-                        if (!RerollMode)
-                            thisTurnValues.Enqueue(ii);
-                        else if (thisTurnValues.Count>0)
-                            lastRollResults[i]=thisTurnValues.Dequeue();
-                        
-                    }
-                }
-                //if (Move>6)
-                //   lastRollResults = new int[] { 3, 3, 3, 3, 3 };//for debugging
-
-
-                if (DiceRolled != null)
-                    DiceRolled(this, new RollEventArgs(CurrentPlayer, lastRollResults));
             }
         }
 
@@ -400,36 +347,10 @@ namespace Sanet.Kniffel.Models
         public void ApplyScore(RollResult result)
         {
             LogManager.Log(LogLevel.Message,"Game.ApplyScore","Applying score {0} of {1} for {2}", result.PossibleValue,result.ScoreType,CurrentPlayer.Name);
-            //check for kniffel bonus
-            if (Rules.HasExtendedBonuses && result.ScoreType != KniffelScores.Kniffel)
-            {
-                //check if already have kniffel
-                var kresult = CurrentPlayer.GetResultForScore( KniffelScores.Kniffel);
-                result.HasBonus = (LastDiceResult.KniffelFiveOfAKindScore() == 50&&kresult.Value==kresult.MaxValue);
-            }
-            //sending result to everyone
-            if (ResultApplied != null)
-                ResultApplied(this, new ResultEventArgs(CurrentPlayer, result));
-            //check for numeric bonus and apply it
-            if (Rules.HasStandardBonus)
-            {
-                if (result.IsNumeric && !CurrentPlayer.Results.FirstOrDefault(f=>f.ScoreType== KniffelScores.Bonus).HasValue)
-                {
-                    if (CurrentPlayer.TotalNumeric>62)
-                        ResultApplied(this, new ResultEventArgs(CurrentPlayer, new RollResult() 
-                        { 
-                            ScoreType= KniffelScores.Bonus,
-                            PossibleValue=35
-                        }));
-                    else if (CurrentPlayer.TotalNumeric+CurrentPlayer.MaxRemainingNumeric <64)
-                        ResultApplied(this, new ResultEventArgs(CurrentPlayer, new RollResult()
-                        {
-                            ScoreType = KniffelScores.Bonus,
-                            PossibleValue = 0
-                        }));
-                }
-            }
-            DoMove();
+            
+            Send(new ApplyScoreCommand(CurrentPlayer.SeatNo,result));         
+            
+            
            
         }
 
@@ -457,7 +378,7 @@ namespace Sanet.Kniffel.Models
             if (bAllReady)
             {
                 Move = 1;
-                DoMove();
+                //DoMove();
             }
         }
 
@@ -481,19 +402,26 @@ namespace Sanet.Kniffel.Models
 
         public void JoinGame(Player player)
         {
-            if (Players == null)
-                Players = new List<Player>();
-            Players.Add(player);
-            player.Game = this;
+            lock (syncRoot)
+            {
+                if (Players == null)
+                    Players = new List<Player>();
+                var explayer = Players.FirstOrDefault(f => f.SeatNo == player.SeatNo);
+                if (explayer == null)
+                    Players.Add(player);
+                else
+                    explayer = player;
+                player.Game = this;
 
-            if (PlayerJoined != null)
-                PlayerJoined(this, new PlayerEventArgs(player));
+                if (PlayerJoined != null)
+                    PlayerJoined(this, new PlayerEventArgs(player));
+            }
         }
 
         /// <summary>
         /// returns wheather we have at least one fixed dice of this value
         /// </summary>
-        public bool IsDiceFiexed(int value)
+        public bool IsDiceFixed(int value)
         {
             return fixedRollResults.Contains(value);
         }
@@ -514,57 +442,153 @@ namespace Sanet.Kniffel.Models
             //m_CommandObserver.PlayerTurnEndedCommandReceived += new EventHandler<CommandEventArgs<PlayerTurnEndedCommand>>(m_CommandObserver_PlayerTurnEndedCommandReceived);
             //m_CommandObserver.PlayerWonPotCommandReceived += new EventHandler<CommandEventArgs<PlayerWonPotCommand>>(m_CommandObserver_PlayerWonPotCommandReceived);
             //m_CommandObserver.TableClosedCommandReceived += new EventHandler<CommandEventArgs<TableClosedCommand>>(m_CommandObserver_TableClosedCommandReceived);
-            //m_CommandObserver.TableInfoCommandReceived += new EventHandler<CommandEventArgs<TableInfoCommand>>(m_CommandObserver_TableInfoCommandReceived);
+            m_CommandObserver.TableInfoCommandReceived += m_CommandObserver_TableInfoCommandReceived;
             //m_CommandObserver.PlayerSitOutChangedCommandReceived += new EventHandler<CommandEventArgs<PlayerSitOutChangedCommand>>(m_CommandObserver_PlayerSitOutChangedCommandReceived);
             //m_CommandObserver.PlayerInfoCommandReceived += new EventHandler<CommandEventArgs<PlayerInfoCommand>>(m_CommandObserver_PlayerInfoCommandReceived);
             //m_CommandObserver.ChatMessageCommandReceived += new EventHandler<CommandEventArgs<PlayerChatMessageCommand>>(m_CommandObserver_ChatMessageCommandReceived);
             //m_CommandObserver.TipDealerCommandReceived += new EventHandler<CommandEventArgs<TipDealerCommand>>(m_CommandObserver_TipDealerCommandReceived);
             //m_CommandObserver.PlayerNotificationCommandReceived += new EventHandler<CommandEventArgs<PlayerNotificationCommand>>(m_CommandObserver_PlayerNotificationCommandReceived);
             //m_CommandObserver.PlayerBoughtChipsCommandReceived += m_CommandObserver_PlayerBoughtChipsCommandReceived;
+            m_CommandObserver.RollReportCommandReceived += m_CommandObserver_RollReportCommandReceived;
+            m_CommandObserver.FixDiceCommandReceived += m_CommandObserver_FixDiceCommandReceived;
+            m_CommandObserver.ApplyScoreCommandReceived += m_CommandObserver_ApplyScoreCommandReceived;
+            m_CommandObserver.RoundChangedCommandReceived += m_CommandObserver_RoundChangedCommandReceived;
+        }
+
+        void m_CommandObserver_RoundChangedCommandReceived(object sender, CommandEventArgs<RoundChangedCommand> e)
+        {
+            lock (syncRoot)
+            {
+                fixedRollResults = new List<int>();
+                if (CurrentPlayer != null)
+                    CurrentPlayer.IsMoving = false;
+
+                CurrentPlayer = Players.Find(f => f.SeatNo == e.Command.PlayerPos);
+                CurrentPlayer.IsMoving = true;
+                CurrentPlayer.Roll = 1;
+                DoMove();
+            }
+        }
+
+        void m_CommandObserver_ApplyScoreCommandReceived(object sender, CommandEventArgs<ApplyScoreCommand> e)
+        {
+            lock (syncRoot)
+            {
+                RollResult result = CurrentPlayer.Results.Find(f => f.ScoreType == e.Command.ScoreType);
+                result.PossibleValue = e.Command.PossibleValue;
+                result.HasBonus = e.Command.HasBonus;
+                //sending result to everyone
+                if (ResultApplied != null)
+                    ResultApplied(this, new ResultEventArgs(CurrentPlayer, result));
+                //check for numeric bonus and apply it
+            }
+            
+        }
+
+        void m_CommandObserver_FixDiceCommandReceived(object sender, CommandEventArgs<FixDiceCommand> e)
+        {
+            if (DiceFixed != null)
+                DiceFixed(this, new FixDiceEventArgs(CurrentPlayer, e.Command.Value, e.Command.IsFixed));
+        }
+
+        void m_CommandObserver_RollReportCommandReceived(object sender, CommandEventArgs<RollReportCommand> e)
+        {
+            lock (syncRoot)
+            {
+                lastRollResults = e.Command.LastResult.ToArray();
+
+                if (DiceRolled != null)
+                    DiceRolled(this, new RollEventArgs(CurrentPlayer, lastRollResults));
+            }
+        }
+
+        void m_CommandObserver_TableInfoCommandReceived(object sender, CommandEventArgs<Protocol.Commands.Game.TableInfoCommand> e)
+        {
+            
+                Move = e.Command.Round;
+                foreach (var seat in e.Command.Seats)
+                {
+                    //await Window.Current.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => { });
+                    var player = new Player();
+
+                    player.Game = this;
+                    
+
+                    player.Client = seat.ClientType;
+                    player.IsMoving = seat.IsPlaying;
+                    player.Language = seat.Language;
+                    player.PicUrl = seat.PhotoUri;
+
+
+                    int resCount = 0;
+                    foreach (var result in player.Results)
+                    {
+                        var value = seat.Results[resCount];
+                        if (value != -1)
+                            result.Value = value;
+                        resCount++;
+                        value = seat.Results[resCount];
+                        if (value != 0)
+                            result.HasBonus = true;
+                        resCount++;
+                    }
+
+                    JoinGame(player);
+                }
+            
         }
 
         void m_CommandObserver_PlayerJoinedCommandReceived(object sender, CommandEventArgs<Protocol.Commands.Game.PlayerJoinedCommand> e)
         {
+
+            lock (syncRoot)
+            {
+                var player = new Player();
+
+                player.Name = e.Command.PlayerName;
+                player.SeatNo = e.Command.PlayerPos;
+                player.Client = e.Command.PlayerClient;
+                player.Language = e.Command.PlayerLanguage;
+                player.Type = PlayerType.Network;
+                JoinGame(player);
+            }
             
-
-            var player = new Player();
-
-            player.Name = e.Command.PlayerName;
-            player.SeatNo = e.Command.PlayerPos;
-            player.Client = e.Command.PlayerClient;
-            player.Language = e.Command.PlayerLanguage;
-            player.Type = PlayerType.Network;
+            
         }
 
         void m_CommandObserver_CommandReceived(object sender, StringEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void Disconnect()
         {
             if (IsConnected)
             {
-                //m_CommandObserver.CommandReceived -= m_CommandObserver_CommandReceived;
+                m_CommandObserver.CommandReceived -= m_CommandObserver_CommandReceived;
                 //m_CommandObserver.BetTurnEndedCommandReceived -= m_CommandObserver_BetTurnEndedCommandReceived;
                 //m_CommandObserver.BetTurnStartedCommandReceived -= m_CommandObserver_BetTurnStartedCommandReceived;
                 //m_CommandObserver.GameEndedCommandReceived -= m_CommandObserver_GameEndedCommandReceived;
                 //m_CommandObserver.GameStartedCommandReceived -= m_CommandObserver_GameStartedCommandReceived;
                 //m_CommandObserver.PlayerHoleCardsChangedCommandReceived -= m_CommandObserver_PlayerHoleCardsChangedCommandReceived;
-                //m_CommandObserver.PlayerJoinedCommandReceived -= m_CommandObserver_PlayerJoinedCommandReceived;
+                m_CommandObserver.PlayerJoinedCommandReceived -= m_CommandObserver_PlayerJoinedCommandReceived;
                 //m_CommandObserver.PlayerLeftCommandReceived -= m_CommandObserver_PlayerLeftCommandReceived;
                 //m_CommandObserver.PlayerMoneyChangedCommandReceived -= m_CommandObserver_PlayerMoneyChangedCommandReceived;
                 //m_CommandObserver.PlayerTurnBeganCommandReceived -= m_CommandObserver_PlayerTurnBeganCommandReceived;
                 //m_CommandObserver.PlayerTurnEndedCommandReceived -= m_CommandObserver_PlayerTurnEndedCommandReceived;
                 //m_CommandObserver.PlayerWonPotCommandReceived -= m_CommandObserver_PlayerWonPotCommandReceived;
                 //m_CommandObserver.TableClosedCommandReceived -= m_CommandObserver_TableClosedCommandReceived;
-                //m_CommandObserver.TableInfoCommandReceived -= m_CommandObserver_TableInfoCommandReceived;
+                m_CommandObserver.TableInfoCommandReceived -= m_CommandObserver_TableInfoCommandReceived;
                 //m_CommandObserver.PlayerSitOutChangedCommandReceived -= m_CommandObserver_PlayerSitOutChangedCommandReceived;
                 //m_CommandObserver.PlayerInfoCommandReceived -= m_CommandObserver_PlayerInfoCommandReceived;
                 //m_CommandObserver.ChatMessageCommandReceived -= m_CommandObserver_ChatMessageCommandReceived;
                 //m_CommandObserver.TipDealerCommandReceived -= m_CommandObserver_TipDealerCommandReceived;
                 //m_CommandObserver.PlayerNotificationCommandReceived -= m_CommandObserver_PlayerNotificationCommandReceived;
                 //m_CommandObserver.PlayerBoughtChipsCommandReceived -= m_CommandObserver_PlayerBoughtChipsCommandReceived;
+                m_CommandObserver.RollReportCommandReceived -= m_CommandObserver_RollReportCommandReceived;
+                m_CommandObserver.FixDiceCommandReceived -= m_CommandObserver_FixDiceCommandReceived;
+                m_CommandObserver.ApplyScoreCommandReceived -= m_CommandObserver_ApplyScoreCommandReceived;
+                m_CommandObserver.RoundChangedCommandReceived -= m_CommandObserver_RoundChangedCommandReceived;
                 Send(new DisconnectCommand());
             }
         }

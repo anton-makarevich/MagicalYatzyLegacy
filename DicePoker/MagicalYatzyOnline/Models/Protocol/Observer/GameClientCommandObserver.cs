@@ -24,6 +24,11 @@ namespace Sanet.Kniffel.Protocol.Observer
         //public event EventHandler<CommandEventArgs<PlayerBoughtChipsCommand>> PlayerBoughtChipsCommandReceived = delegate { };
         public event EventHandler<CommandEventArgs<PlayerSitOutChangedCommand>> PlayerSitOutChangedCommandReceived = delegate { };
         public event EventHandler<CommandEventArgs<PlayerChatMessageCommand>> ChatMessageCommandReceived = delegate { };
+        public event EventHandler<CommandEventArgs<TableInfoCommand>> TableInfoCommandReceived = delegate { };
+        public event EventHandler<CommandEventArgs<RollReportCommand>> RollReportCommandReceived = delegate { };
+        public event EventHandler<CommandEventArgs<FixDiceCommand>> FixDiceCommandReceived = delegate { };
+        public event EventHandler<CommandEventArgs<ApplyScoreCommand>> ApplyScoreCommandReceived = delegate { };
+        public event EventHandler<CommandEventArgs<RoundChangedCommand>> RoundChangedCommandReceived = delegate { };
         
         protected override void receiveSomething(string line)
         {
@@ -35,6 +40,16 @@ namespace Sanet.Kniffel.Protocol.Observer
                 ChatMessageCommandReceived(this, new CommandEventArgs<PlayerChatMessageCommand>(new PlayerChatMessageCommand(token)));
             else if (commandName == PlayerJoinedCommand.COMMAND_NAME)
                 PlayerJoinedCommandReceived(this, new CommandEventArgs<PlayerJoinedCommand>(new PlayerJoinedCommand(token)));
+            else if (commandName == TableInfoCommand.COMMAND_NAME)
+                TableInfoCommandReceived(this, new CommandEventArgs<TableInfoCommand>(new TableInfoCommand(token)));
+            else if (commandName == RollReportCommand.COMMAND_NAME)
+                RollReportCommandReceived(this, new CommandEventArgs<RollReportCommand>(new RollReportCommand(token)));
+            else if (commandName == FixDiceCommand.COMMAND_NAME)
+                FixDiceCommandReceived(this, new CommandEventArgs<FixDiceCommand>(new FixDiceCommand(token)));
+            else if (commandName == ApplyScoreCommand.COMMAND_NAME)
+                ApplyScoreCommandReceived(this, new CommandEventArgs<ApplyScoreCommand>(new ApplyScoreCommand(token)));
+            else if (commandName == RoundChangedCommand.COMMAND_NAME)
+                RoundChangedCommandReceived(this, new CommandEventArgs<RoundChangedCommand>(new RoundChangedCommand(token)));
         }
     }
 }

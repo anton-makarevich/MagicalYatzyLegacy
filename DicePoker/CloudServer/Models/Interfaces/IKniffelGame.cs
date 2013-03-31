@@ -15,7 +15,7 @@ namespace Sanet.Kniffel.Models.Interfaces
         int FixedDicesCount { get; }
         event EventHandler GameFinished;
         int GameId { get; set; }
-        bool IsDiceFiexed(int value);
+        bool IsDiceFixed(int value);
         bool IsPlaying { get; set; }
         void JoinGame(Player player);
         DieResult LastDiceResult { get; }

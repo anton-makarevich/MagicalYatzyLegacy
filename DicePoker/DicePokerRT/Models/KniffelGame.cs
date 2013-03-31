@@ -497,7 +497,7 @@ namespace Sanet.Kniffel.Models
         /// <summary>
         /// returns wheather we have at least one fixed dice of this value
         /// </summary>
-        public bool IsDiceFiexed(int value)
+        public bool IsDiceFixed(int value)
         {
             return fixedRollResults.Contains(value);
         }

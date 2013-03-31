@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Sanet.Models;
+using Sanet.Kniffel.ViewModels;
 
 namespace Sanet.Kniffel.Models
 {
@@ -20,7 +21,7 @@ namespace Sanet.Kniffel.Models
         /// <summary>
         /// Get player info from roaming
         /// </summary>
-        public static Player GetLastPlayer(int index)
+        public static PlayerWrapper GetLastPlayer(int index)
         {
             var valueKey = "LastPlayer" + index.ToString();
             Player player=null;
@@ -37,9 +38,10 @@ namespace Sanet.Kniffel.Models
                 if (value != null && value.ContainsKey("boolPass"))
                     player.RememberPass = (bool)value["boolPass"];
             }
-            return player;
+            return new PlayerWrapper( player);
         }
-         
+
+                 
         /// <summary>
         /// Save player info to roaming
         /// </summary>

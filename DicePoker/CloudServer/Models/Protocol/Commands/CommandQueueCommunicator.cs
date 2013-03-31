@@ -14,7 +14,7 @@ namespace Sanet.Network.Protocol.Commands
         public CommandQueueCommunicator()
         {
             InitializeCommandObserver();
-            base.ReceivedSomething += new EventHandler<KeyEventArgs<string>>(CommandQueueCommunicator_ReceivedSomething);
+            base.ReceivedSomething +=CommandQueueCommunicator_ReceivedSomething;
         }
 
         void CommandQueueCommunicator_ReceivedSomething(object sender, KeyEventArgs<string> e)
