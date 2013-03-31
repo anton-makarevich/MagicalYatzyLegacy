@@ -26,20 +26,7 @@ namespace Sanet.Kniffel.Models
             
         }
 
-        public void JoinGame(Player player)
-        {
-            if (_Player == player)
-                return;
-            InitGameObserver();
-            _Player = player;
-            _Game.JoinGame(player);
-        }
-
-        public void SendTableInfo()
-        {
-            Send(new TableInfoCommand(_Game));
-        }
-        
+       
         #region Events
         
 
@@ -59,6 +46,25 @@ namespace Sanet.Kniffel.Models
 #endregion
 
 #region Methods
+        public void JoinGame(Player player)
+        {
+            if (_Player == player)
+                return;
+            InitGameObserver();
+            _Player = player;
+            _Game.JoinGame(player);
+        }
+
+        public void SendTableInfo()
+        {
+            Send(new TableInfoCommand(_Game));
+        }
+
+        public void LeaveGame()
+        {
+            _Game.LeaveGame(Player);
+        }
+
         void InitGameObserver()
         {
             _Game.DiceChanged += _Game_DiceChanged;
@@ -75,8 +81,8 @@ namespace Sanet.Kniffel.Models
         void _Game_PlayerLeft(object sender, PlayerEventArgs e)
         {
             Send(new PlayerLeftCommand(e.Player.SeatNo));
-            if (Player.ID==e.Player.ID && LeftTable!=null)
-                LeftTable(this,new KeyEventArgs<int>(e.Player.SeatNo));
+            if (Player.ID == e.Player.ID && LeftTable != null)
+                LeftTable(this, new KeyEventArgs<int>(e.Player.SeatNo));
         }
 
 
@@ -134,6 +140,12 @@ namespace Sanet.Kniffel.Models
             m_CommandObserver.RollReportCommandReceived += m_CommandObserver_RollReportCommandReceived;
             m_CommandObserver.FixDiceCommandReceived += m_CommandObserver_FixDiceCommandReceived;
             m_CommandObserver.ApplyScoreCommandReceived += m_CommandObserver_ApplyScoreCommandReceived;
+            m_CommandObserver.PlayerLeftCommandReceived += m_CommandObserver_PlayerLeftCommandReceived;
+        }
+
+        void m_CommandObserver_PlayerLeftCommandReceived(object sender, CommandEventArgs<PlayerLeftCommand> e)
+        {
+            LeaveGame();
         }
 
         void m_CommandObserver_ApplyScoreCommandReceived(object sender, CommandEventArgs<ApplyScoreCommand> e)
@@ -197,6 +209,7 @@ namespace Sanet.Kniffel.Models
             m_CommandObserver.RollReportCommandReceived -= m_CommandObserver_RollReportCommandReceived;
             m_CommandObserver.FixDiceCommandReceived -= m_CommandObserver_FixDiceCommandReceived;
             m_CommandObserver.ApplyScoreCommandReceived -= m_CommandObserver_ApplyScoreCommandReceived;
+            m_CommandObserver.PlayerLeftCommandReceived -= m_CommandObserver_PlayerLeftCommandReceived;
 
             _Game.DiceChanged -= _Game_DiceChanged;
             _Game.DiceFixed -= _Game_DiceFixed;

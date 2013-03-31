@@ -13,6 +13,8 @@ namespace Sanet.Kniffel.Models
 {
     public class KniffelGameClient : CommandQueueCommunicator<GameClientCommandObserver>, IKniffelGame
     {
+        public string MyName { get; set; }
+
         object syncRoot = new object();
 
         int[] lastRollResults;
@@ -415,6 +417,8 @@ namespace Sanet.Kniffel.Models
                     explayer = player;
                 player.Game = this;
 
+                player.Type = (player.Name == MyName) ? PlayerType.Local : PlayerType.Network;
+
                 if (PlayerJoined != null)
                     PlayerJoined(this, new PlayerEventArgs(player));
             }
@@ -466,7 +470,7 @@ namespace Sanet.Kniffel.Models
         {
             lock (syncRoot)
             {
-                
+                LogManager.Log(LogLevel.Message, "GameClient", "Change round received, new player #{0}, new round #{1}", e.Command.PlayerPos, e.Command.Round);
                 fixedRollResults = new List<int>();
                 if (CurrentPlayer != null)
                     CurrentPlayer.IsMoving = false;
@@ -483,12 +487,14 @@ namespace Sanet.Kniffel.Models
         {
             lock (syncRoot)
             {
-                RollResult result = CurrentPlayer.Results.Find(f => f.ScoreType == e.Command.ScoreType);
+                LogManager.Log(LogLevel.Message, "GameClient", "Result {1} applied by player #{0}", e.Command.PlayerPos,e.Command.PlayerPos);
+                var p = Players.Find(f => f.SeatNo == e.Command.PlayerPos);
+                RollResult result = p.Results.Find(f => f.ScoreType == e.Command.ScoreType);
                 result.PossibleValue = e.Command.PossibleValue;
                 result.HasBonus = e.Command.HasBonus;
                 //sending result to everyone
                 if (ResultApplied != null)
-                    ResultApplied(this, new ResultEventArgs(CurrentPlayer, result));
+                    ResultApplied(this, new ResultEventArgs(p, result));
                 //check for numeric bonus and apply it
             }
             

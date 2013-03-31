@@ -1,39 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-
-  <Identity Name="1a54a991-6e98-4d26-b3f5-590343789a17"
-            Publisher="CN=Anton"
-            Version="1.0.0.0" />
-
+  <Identity Name="43862AntonMakarevich.20636FDE9D8C7" Publisher="CN=DC1EF1A2-04E8-4269-B8EE-BF7A3DBF913C" Version="0.9.1.0" />
   <Properties>
-    <DisplayName>MagicalYatzyOnline</DisplayName>
-    <PublisherDisplayName>Anton</PublisherDisplayName>
+    <DisplayName>Magical Yatzy Online</DisplayName>
+    <PublisherDisplayName>Anton Makarevich</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
-
   <Prerequisites>
     <OSMinVersion>6.2.1</OSMinVersion>
     <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
   </Prerequisites>
-
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-        Executable="$targetnametoken$.exe"
-        EntryPoint="MagicalYatzyOnline.App">
-        <VisualElements
-            DisplayName="MagicalYatzyOnline"
-            Logo="Assets\Logo.png"
-            SmallLogo="Assets\SmallLogo.png"
-            Description="MagicalYatzyOnline"
-            ForegroundText="light"
-            BackgroundColor="#464646">
-            <DefaultTile ShowName="allLogos" />
-            <SplashScreen Image="Assets\SplashScreen.png" />
-        </VisualElements>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="MagicalYatzyOnline.App">
+      <VisualElements DisplayName="Magical Yatzy Online" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="MagicalYatzyOnline" ForegroundText="light" BackgroundColor="#464646">
+        <DefaultTile ShowName="allLogos" />
+        <SplashScreen Image="Assets\SplashScreen.png" />
+      </VisualElements>
     </Application>
   </Applications>
   <Capabilities>

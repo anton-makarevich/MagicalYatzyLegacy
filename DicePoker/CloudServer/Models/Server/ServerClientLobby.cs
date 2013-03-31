@@ -177,6 +177,7 @@ namespace Sanet.Kniffel.Server
             //try to dispose gameserver - we don't need it anymore
             m_Table.Dispose();
             m_Table = null;
+            //TODO remove empty table
             
             RemovePlayersSvcLobby();
 
@@ -202,16 +203,7 @@ namespace Sanet.Kniffel.Server
             if (!IsConnected)
             {//it client didnt reconnect in given time...remove player
                 //this should fire up the process
-                if (Interlocked.Increment(ref numberOfTimesFoundClientNotConnectedInaRow) == 2)
-                {
-                    removeClientAfterDelayTimer.Stop();
-                    if (m_Table!=null)
-                    {
-                        m_CommandObserver_GameCommandReceived(null, new CommandEventArgs<GameCommand>(new GameCommand(m_Table.Game.GameId, DisconnectCommand.COMMAND_NAME)));
-                    }
-
-                    CloseAndRemovePlayersSvClLobby();
-                }
+                m_Table.
             }
             else
             {
@@ -295,7 +287,7 @@ namespace Sanet.Kniffel.Server
         }
 
 
-        public void Dispose()
+        async public void Dispose()
         {
             if (removeClientAfterDelayTimer != null)
             {
@@ -309,8 +301,11 @@ namespace Sanet.Kniffel.Server
             m_CommandObserver.DisconnectCommandReceived -= m_CommandObserver_DisconnectCommandReceived;
             m_CommandObserver.JoinTableCommandReceived -= m_CommandObserver_JoinTableCommandReceived;
             m_CommandObserver.GameCommandReceived -= m_CommandObserver_GameCommandReceived;
-
-            
+            try
+            {
+                await Close();
+            }
+            catch { }
         }
     }
 }

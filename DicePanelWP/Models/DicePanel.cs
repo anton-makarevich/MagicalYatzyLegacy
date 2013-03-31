@@ -622,6 +622,7 @@ namespace Sanet.Kniffel.DicePanel
                 if (d.Result == index && !d.Frozen)
                 {
                     d.Frozen = true;
+                    d.DrawDie();
                     return;
                 }
             }

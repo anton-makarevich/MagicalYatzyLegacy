@@ -102,7 +102,7 @@ namespace Sanet.Kniffel.ViewModels
         {
             Players = new ObservableCollection<PlayerWrapper>();
             var p = RoamingSettings.GetLastPlayer(0);
-            if (p == null)
+            if (p.Player == null)
             {
                 //get username from system
                 string userName = await UserInformation.GetDisplayNameAsync();

@@ -528,10 +528,10 @@ namespace Sanet.Kniffel.ViewModels
                         {
                             SoundsProvider.PlaySound(_player, "wrong");
                         }
-
-                        var r = SelectedPlayer.Results.Find(f => f.ScoreType == e.Result.ScoreType);
+                        var p = Players.FirstOrDefault(f => f.SeatNo == e.Player.SeatNo);
+                        var r = p.Results.Find(f => f.ScoreType == e.Result.ScoreType);
                         r.Value = e.Result.PossibleValue;
-                        SelectedPlayer.UpdateTotal();
+                        p.UpdateTotal();
                         RollResults = null;
                     });
         }
@@ -626,10 +626,14 @@ namespace Sanet.Kniffel.ViewModels
             SetCanRoll(SelectedPlayer.Roll < 3);
             SelectedPlayer.Roll++;
 
-            var resList = new List<IRollResult>();
-            foreach (var r in SelectedPlayer.Results.Where(f => !f.HasValue && f.ScoreType != KniffelScores.Bonus).ToList())
-                resList.Add(r);
-            RollResults = resList;
+            if (SelectedPlayer.IsHuman)
+            {
+                var resList = new List<IRollResult>();
+                foreach (var r in SelectedPlayer.Results.Where(f => !f.HasValue && f.ScoreType != KniffelScores.Bonus).ToList())
+                    resList.Add(r);
+
+                RollResults = resList;
+            }
 
             NotifyPlayerChanged();
 
