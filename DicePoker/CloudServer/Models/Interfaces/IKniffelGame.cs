@@ -4,6 +4,7 @@ namespace Sanet.Kniffel.Models.Interfaces
 {
     public interface IKniffelGame
     {
+        event EventHandler<PlayerEventArgs> PlayerLeft;
         void ApplyScore(RollResult result);
         Player CurrentPlayer { get; set; }
         event EventHandler<RollEventArgs> DiceChanged;
@@ -35,5 +36,6 @@ namespace Sanet.Kniffel.Models.Interfaces
         event EventHandler<ResultEventArgs> ResultApplied;
         KniffelRule Rules { get; set; }
         void StartGame();
+        void LeaveGame(Player player);
     }
 }

@@ -121,6 +121,8 @@ namespace Sanet.Kniffel.ViewModels
                 p.RefreshArtifactsInfo();
                 
             }
+            p.IsBotPossible = false;
+            p.IsHuman = true;
             p.Player.Client = Config.GetClientType();
             var language=Windows.System.UserProfile.GlobalizationPreferences.Languages[0].Split(new string[]{"-"}, StringSplitOptions.RemoveEmptyEntries);
             p.Language = language[0];

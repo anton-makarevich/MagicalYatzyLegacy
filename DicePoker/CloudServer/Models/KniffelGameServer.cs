@@ -28,6 +28,8 @@ namespace Sanet.Kniffel.Models
 
         public void JoinGame(Player player)
         {
+            if (_Player == player)
+                return;
             InitGameObserver();
             _Player = player;
             _Game.JoinGame(player);
@@ -67,6 +69,14 @@ namespace Sanet.Kniffel.Models
             _Game.MoveChanged += _Game_MoveChanged;
             _Game.PlayerJoined += _Game_PlayerJoined;
             _Game.ResultApplied += _Game_ResultApplied;
+            _Game.PlayerLeft += _Game_PlayerLeft;
+        }
+
+        void _Game_PlayerLeft(object sender, PlayerEventArgs e)
+        {
+            Send(new PlayerLeftCommand(e.Player.SeatNo));
+            if (Player.ID==e.Player.ID && LeftTable!=null)
+                LeftTable(this,new KeyEventArgs<int>(e.Player.SeatNo));
         }
 
 
@@ -196,6 +206,7 @@ namespace Sanet.Kniffel.Models
             _Game.MoveChanged -= _Game_MoveChanged;
             _Game.PlayerJoined -= _Game_PlayerJoined;
             _Game.ResultApplied -= _Game_ResultApplied;
+            _Game.PlayerLeft -= _Game_PlayerLeft;
 
             _Player = null;
 

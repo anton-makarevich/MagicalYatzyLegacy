@@ -198,6 +198,7 @@
     <Compile Include="Models\Interfaces\IKniffelGame.cs" />
     <Compile Include="Models\KniffelGameServer.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\ApplyScoreCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerLeftCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\RoundChangedCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\FixDiceCommand.cs" />

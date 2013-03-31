@@ -35,7 +35,6 @@ namespace Sanet.Kniffel.Models.Interfaces
         string Password { get; set; }
         
         
-        System.Collections.Generic.List<Sanet.Kniffel.Models.RollResult> Results { get; set; }
         int Roll { get; set; }
         
         int SeatNo { get;  }

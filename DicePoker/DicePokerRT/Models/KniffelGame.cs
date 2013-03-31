@@ -71,6 +71,8 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         public event EventHandler<PlayerEventArgs> MagicRollUsed;
 
+        public event EventHandler<PlayerEventArgs> PlayerLeft;
+
         #endregion
 
         #region Properties
@@ -492,6 +494,15 @@ namespace Sanet.Kniffel.Models
             player.Game = this;
             if (PlayerJoined != null)
                 PlayerJoined(this, new PlayerEventArgs(player));
+        }
+
+        public void LeaveGame(Player player)
+        {
+            if (Players == null)
+                return;
+            Players.Remove(player);
+            if (PlayerLeft != null)
+                PlayerLeft(null, new PlayerEventArgs(player));
         }
 
         /// <summary>

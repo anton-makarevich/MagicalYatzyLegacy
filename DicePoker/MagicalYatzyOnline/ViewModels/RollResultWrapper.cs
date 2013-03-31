@@ -53,6 +53,7 @@ namespace Sanet.Kniffel.ViewModels
             get { return _Result.Value; }
             set
             {
+                HasValue = false;
                 _Result.Value = value;
                 HasValue = true;
                 NotifyPropertyChanged("Value");
@@ -154,6 +155,12 @@ namespace Sanet.Kniffel.ViewModels
 
             }
         }
-        
+
+        public void Refresh()
+        {
+            NotifyPropertyChanged("HasBonus");
+            NotifyPropertyChanged("HasValue");
+            NotifyPropertyChanged("Value");
+        }
     }
 }

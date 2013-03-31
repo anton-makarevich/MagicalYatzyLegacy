@@ -103,8 +103,22 @@ namespace Sanet.Kniffel.ViewModels
                 NotifyPropertyChanged("Game");
             }
         }
+        
+        private bool _IsBotPossible=true;
+        public bool IsBotPossible
+        {
+            get { return _IsBotPossible; }
+            set
+            {
+                if (_IsBotPossible != value)
+                {
+                    _IsBotPossible = value;
+                    NotifyPropertyChanged("IsBotPossible");
+                }
+            }
+        }
 
-
+        
         private bool _HadStartupMagic;
         public bool HadStartupMagic
         {
@@ -258,7 +272,10 @@ namespace Sanet.Kniffel.ViewModels
             }
             set 
             {
-                _Player.IsHuman = true;
+                if (value)
+                    Type = PlayerType.Local;
+                else
+                    Type = PlayerType.AI;
                 NotifyPropertyChanged("IsHuman");
             }
         }
@@ -529,15 +546,27 @@ namespace Sanet.Kniffel.ViewModels
             { _Player.RememberPass = true; }
         }
 
-        public List<RollResult> Results 
+        List<RollResultWrapper> _Results;
+        public List<RollResultWrapper> Results 
         {
             get
             {
-                return _Player.Results;
+                if (_Player.Results==null)
+                    return null;
+                if (_Results == null)
+                {
+                    _Results = new List<RollResultWrapper>();
+                    foreach (var r in _Player.Results)
+                        _Results.Add(new RollResultWrapper(r));
+                }
+                return _Results;
             }
             set
             {
-                _Player.Results = value;
+                if (value==null && _Results!=null)
+                    foreach (var r in _Results)
+                        ((RollResultWrapper)r).Dispose();
+                _Results = value;
                 NotifyPropertyChanged("Results");
             }
         }
@@ -638,6 +667,14 @@ namespace Sanet.Kniffel.ViewModels
         public void UpdateType()
         {
             NotifyPropertyChanged("IsHuman");
+        }
+
+        public void Refresh()
+        {
+            NotifyPropertyChanged("IsMoving");
+            NotifyPropertyChanged("Results");
+            foreach (var r in Results)
+                r.Refresh();
         }
 
         #region Methods

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -102,11 +103,14 @@ namespace DicePokerRT
             dpBackground.Visibility = Visibility.Collapsed;
         }
 
-        void Game_MoveChanged(object sender, Sanet.Kniffel.Models.Events.MoveEventArgs e)
+        async void Game_MoveChanged(object sender, Sanet.Kniffel.Models.Events.MoveEventArgs e)
         {
             dpBackground.ClearFreeze();
             if (GetViewModel<PlayGameViewModel>().SelectedPlayer.IsBot)
+            {
+                await Task.Delay(3000);
                 GetViewModel<PlayGameViewModel>().Game.ReportRoll();
+            }
         }
 
         void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -149,7 +153,7 @@ namespace DicePokerRT
             dpBackground.EndRoll -= dpBackground_EndRoll;
             dpBackground.DieChangedManual -= dpBackground_DieChangedManual;
             dpBackground.Dispose();
-            dpBackground = null;
+            
         }
 
         private void ClearButton_Tapped_1(object sender, TappedRoutedEventArgs e)

@@ -161,6 +161,14 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         protected override async void  FillPlayers()
         {
+            if (Players != null)
+            {
+                foreach (var p in Players)
+                {
+                    p.Dispose();
+                    
+                }
+            }
             Players = new ObservableCollection<PlayerWrapper>();
             //trying toload previous players from roaming
             for (int i = 0; i < 4; i++)

@@ -127,17 +127,33 @@ namespace Sanet.Kniffel.Server
             client.SendedSomething +=client_SendedSomething;
             
 
-            // Verify the player does not already playing on that table.
-            //if (table.ContainsPlayer(e.Command.PlayerName))
-            //{
-                    
-                
-            //}
+            
+
             Player player = new Player();
             player.Name = e.Command.PlayerName;
             player.Password = e.Command.PlayerPass;
             player.Language = e.Command.PlayerLanguage;
             player.Client = e.Command.PlayerClient;
+
+            // Verify the player does not already playing on that table.
+            if (game.Players!=null)
+            {
+                var exPlayer = game.Players.FirstOrDefault(f=>f.Name==e.Command.PlayerName);
+                if (exPlayer!=null)
+                {
+                    if (exPlayer.ID != player.ID)
+                    {
+                        Send1(e.Command.EncodeResponse(-1, -1));
+                        return;
+                    }
+                    else
+                    {
+                        player = exPlayer;
+                        client = m_Table;
+                    }
+
+                }
+            }
             
             client.JoinGame(player);
             //ToDO: check if needed to close previous

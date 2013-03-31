@@ -69,6 +69,8 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         public event EventHandler<PlayerEventArgs> PlayerJoined;
 
+        public event EventHandler<PlayerEventArgs> PlayerLeft;
+
         /// <summary>
         /// current player used Magical Roll
         /// </summary>
@@ -418,6 +420,11 @@ namespace Sanet.Kniffel.Models
             }
         }
 
+        public void LeaveGame(Player player)
+        {
+            
+        }
+
         /// <summary>
         /// returns wheather we have at least one fixed dice of this value
         /// </summary>
@@ -459,10 +466,12 @@ namespace Sanet.Kniffel.Models
         {
             lock (syncRoot)
             {
+                
                 fixedRollResults = new List<int>();
                 if (CurrentPlayer != null)
                     CurrentPlayer.IsMoving = false;
 
+                Move = e.Command.Round;
                 CurrentPlayer = Players.Find(f => f.SeatNo == e.Command.PlayerPos);
                 CurrentPlayer.IsMoving = true;
                 CurrentPlayer.Roll = 1;
@@ -512,8 +521,8 @@ namespace Sanet.Kniffel.Models
                     var player = new Player();
 
                     player.Game = this;
-                    
-
+                    player.SeatNo = seat.SeatNo;
+                    player.Name = seat.Name;
                     player.Client = seat.ClientType;
                     player.IsMoving = seat.IsPlaying;
                     player.Language = seat.Language;

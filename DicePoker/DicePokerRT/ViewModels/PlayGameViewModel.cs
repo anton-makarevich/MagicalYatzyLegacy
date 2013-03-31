@@ -153,16 +153,22 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// Players list
         /// </summary>
+        ObservableCollection<PlayerWrapper> _Players;
         public ObservableCollection<PlayerWrapper> Players
         {
             get
             {
-                if (Game.Players == null)
-                    return null;
-                var resList = new List<PlayerWrapper>();
-                foreach (var p in Game.Players)
-                    resList.Add(new PlayerWrapper(p));
-                return new ObservableCollection<PlayerWrapper>(resList);
+                if (_Players == null || _Players.Count != Game.Players.Count)
+                {
+                    if (Game.Players == null)
+                        return null;
+                    var resList = new List<PlayerWrapper>();
+                    foreach (var p in Game.Players)
+                        resList.Add(new PlayerWrapper(p));
+                    _Players= new ObservableCollection<PlayerWrapper>(resList);
+                }
+                
+                return _Players;
             }
             
         }
@@ -227,6 +233,19 @@ namespace Sanet.Kniffel.ViewModels
                 RemoveGameHandlers();
                 if (_Game != value)
                 {
+                    if(_Players!=null)
+                    foreach (var p in Players)
+                        p.Dispose();
+                    if(_SampleResults!=null)
+                    foreach (var r in SampleResults)
+                        ((RollResultWrapper)r).Dispose();
+
+                    if (_Game != null)
+                        RemoveGameHandlers();
+
+                    _Players = null;
+                    _SampleResults = null;
+
                     _Game = value;
                     AddGameHandlers();
                     NotifyPropertyChanged("Game");
@@ -254,16 +273,20 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// Results list to bind to table side caption
         /// </summary>
+        List<IRollResult> _SampleResults;
         public List<IRollResult> SampleResults
         {
             get
             {
                 if (IsPlayerSelected)
                 {
-                    var resList = new List<IRollResult>();
-                    foreach (var r in SelectedPlayer.Results)
-                        resList.Add(new RollResultWrapper(r));
-                    return resList;
+                    if (_SampleResults == null)
+                    {
+                        _SampleResults = new List<IRollResult>();
+                        foreach (var r in SelectedPlayer.Results)
+                            _SampleResults.Add(r);
+                    }
+                    return _SampleResults;
                 }
                 return null;
             }
@@ -479,7 +502,7 @@ namespace Sanet.Kniffel.ViewModels
             SelectedPlayer.OnManaulSetUsed();
             var resList = new List<IRollResult>();
             foreach (var r in SelectedPlayer.Results.Where(f => !f.HasValue && f.ScoreType != KniffelScores.Bonus).ToList())
-                resList.Add(new RollResultWrapper(r));
+                resList.Add(r);
             RollResults = resList;
             IsControlsVisible = true;
             NotifyPlayerChanged();
@@ -506,7 +529,8 @@ namespace Sanet.Kniffel.ViewModels
                             SoundsProvider.PlaySound(_player, "wrong");
                         }
 
-                        SelectedPlayer.Results.Find(f => f.ScoreType == e.Result.ScoreType).Value = e.Result.PossibleValue;
+                        var r = SelectedPlayer.Results.Find(f => f.ScoreType == e.Result.ScoreType);
+                        r.Value = e.Result.PossibleValue;
                         SelectedPlayer.UpdateTotal();
                         RollResults = null;
                     });
@@ -577,7 +601,8 @@ namespace Sanet.Kniffel.ViewModels
             if (IsPlayerSelected)
             {
                 Title = string.Format("{2} {0}, {1}", Game.Move, SelectedPlayer.Name, Messages.GAME_MOVE.Localize());
-                NotifyPropertyChanged("Players");
+                foreach (var pw in Players)
+                    pw.Refresh();
             }
             if (Game.Rules.Rule== Rules.krMagic)
             {
@@ -603,7 +628,7 @@ namespace Sanet.Kniffel.ViewModels
 
             var resList = new List<IRollResult>();
             foreach (var r in SelectedPlayer.Results.Where(f => !f.HasValue && f.ScoreType != KniffelScores.Bonus).ToList())
-                resList.Add(new RollResultWrapper(r));
+                resList.Add(r);
             RollResults = resList;
 
             NotifyPlayerChanged();
@@ -811,6 +836,14 @@ namespace Sanet.Kniffel.ViewModels
             await SaveResults();
             
             Game.RestartGame();
+            foreach (var p in Players)
+            {
+                p.Results = null;
+                p.Dispose();
+            }
+            _Players = null;
+            _SampleResults = null;
+
             NotifyPropertyChanged("Players");
         }
         /// <summary>

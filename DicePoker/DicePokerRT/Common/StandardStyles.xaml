@@ -2145,6 +2145,7 @@
             </Controls:RotatingPanel>
             
             <Controls:RotatingPanel
+                Visibility="{Binding IsBotPossible, Converter={StaticResource VisibilityKey}}" 
                x:Name="TypePanel" Width="100" Height="100" Background="Blue" Tag="Type"
                                     Grid.Column="1" IsFace="{Binding IsHuman, Mode=TwoWay}" Margin="5,0" ><!---->
                  <Grid Background="{StaticResource SanetBlue}" 
@@ -2281,7 +2282,7 @@
                      VerticalAlignment="Bottom"
                      Grid.Column="4"
                      AutomationProperties.Name="{Binding DeleteLabel}"
-                    IsEnabled="{Binding IsDeleteable}"  
+                    Visibility="{Binding IsDeleteable, Converter={StaticResource VisibilityKey}}"  
                     Style="{StaticResource DeleteAppBarButtonStyle}"
                             Command="{Binding DeleteCommand}"/>
         </Grid>
