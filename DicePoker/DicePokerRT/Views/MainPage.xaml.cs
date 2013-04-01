@@ -86,5 +86,10 @@ namespace DicePokerRT
         {
             ((AboutAppAction)e.ClickedItem).MenuAction();
         }
+
+        private void StackPanel_Tapped_1(object sender, TappedRoutedEventArgs e)
+        {
+            CommonNavigationActions.NavigateYatzyFBPage();
+        }
     }
 }

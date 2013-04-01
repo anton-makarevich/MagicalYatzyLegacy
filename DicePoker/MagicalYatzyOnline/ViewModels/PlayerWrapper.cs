@@ -346,21 +346,27 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return RoamingSettings.GetMagicRollsCount(this.Player);
+                var res=RoamingSettings.GetMagicRollsCount(this.Player);
+                if (res<0) res=0;
+                return res;
             }
         }
         public int ManualSetsCount
         {
             get
             {
-                return RoamingSettings.GetManualSetsCount(this.Player);
+                var res = RoamingSettings.GetManualSetsCount(this.Player);
+                if (res < 0) res = 0;
+                return res;
             }
         }
         public int RollResetsCount
         {
             get
             {
-                return RoamingSettings.GetForthRollsCount(this.Player);
+                var res = RoamingSettings.GetForthRollsCount(this.Player);
+                if (res < 0) res = 0;
+                return res;
             }
         }
 

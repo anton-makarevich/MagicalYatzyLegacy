@@ -175,10 +175,30 @@ namespace Sanet.Kniffel.ViewModels
             _SecondaryMenuActions.Add(
                 new AboutAppAction
                 {
+                    Label = "FBPage",
+                    MenuAction = new Action(() =>
+                    {
+                        CommonNavigationActions.NavigateYatzyFBPage(); 
+                    }),
+                    Image = new BitmapImage(new Uri("ms-appx:///Assets/facebook.png", UriKind.Absolute))
+                });
+            _SecondaryMenuActions.Add(
+                new AboutAppAction
+                {
+                    Label = "FKPage",
+                    MenuAction = new Action(() =>
+                    {
+                        CommonNavigationActions.NavigateYatzyVKPage();
+                    }),
+                    Image = new BitmapImage(new Uri("ms-appx:///Assets/vk.png", UriKind.Absolute))
+                });
+            _SecondaryMenuActions.Add(
+                new AboutAppAction
+                {
                     Label = "ShareApp",
                     MenuAction = new Action(() =>
                     {
-                        DataTransferManager.ShowShareUI(); 
+                        DataTransferManager.ShowShareUI();
                     }),
                     Image = new BitmapImage(new Uri("ms-appx:///Assets/Share.png", UriKind.Absolute))
                 });

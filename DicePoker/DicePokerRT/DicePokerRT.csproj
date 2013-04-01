@@ -1271,6 +1271,7 @@
     <Content Include="Assets\Desktop.png" />
     <Content Include="Assets\Discount.png" />
     <Content Include="Assets\Expert.png" />
+    <Content Include="Assets\Facebook.png" />
     <Content Include="Assets\Logo.scale-80.png" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\Logo.scale-140.png" />
@@ -1297,6 +1298,7 @@
     <Content Include="Assets\Unlock.png" />
     <Content Include="Assets\User.png" />
     <Content Include="Assets\Victory.png" />
+    <Content Include="Assets\vk.png" />
     <Content Include="Assets\WideLogo.scale-100.png" />
     <Content Include="Assets\WideLogo.scale-140.png" />
     <Content Include="Assets\WideLogo.scale-180.png" />

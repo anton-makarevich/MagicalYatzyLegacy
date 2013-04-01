@@ -153,5 +153,27 @@ namespace Sanet.Kniffel.Models
                 });
             }
         }
+        public static Action NavigateYatzyFBPage
+        {
+            get
+            {
+                return new Action(async () =>
+                {
+                    SoundsProvider.PlaySound("click");
+                    await Launcher.LaunchUriAsync(new Uri("http://www.facebook.com/MagicalYatzy"));
+                });
+            }
+        }
+        public static Action NavigateYatzyVKPage
+        {
+            get
+            {
+                return new Action(async () =>
+                {
+                    SoundsProvider.PlaySound("click");
+                    await Launcher.LaunchUriAsync(new Uri("http://www.vk.com/MagicalYatzy"));
+                });
+            }
+        }
     }
 }

@@ -1108,6 +1108,9 @@
     <Content Include="..\DicePokerRT\Assets\Expert.png">
       <Link>Assets\Expert.png</Link>
     </Content>
+    <Content Include="..\DicePokerRT\Assets\Facebook.png">
+      <Link>Assets\Facebook.png</Link>
+    </Content>
     <Content Include="..\DicePokerRT\Assets\Logo.scale-100.png">
       <Link>Assets\Logo.scale-100.png</Link>
     </Content>
@@ -1188,6 +1191,9 @@
     </Content>
     <Content Include="..\DicePokerRT\Assets\Victory.png">
       <Link>Assets\Victory.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\vk.png">
+      <Link>Assets\vk.png</Link>
     </Content>
     <Content Include="..\DicePokerRT\Assets\WideLogo.scale-100.png">
       <Link>Assets\WideLogo.scale-100.png</Link>
