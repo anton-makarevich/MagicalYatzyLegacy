@@ -47,8 +47,8 @@ namespace DicePokerRT
             dpBackground.DieFrozen += dpBackground_DieFrozen;
             dpBackground.EndRoll += dpBackground_EndRoll;
             dpBackground.DieChangedManual += dpBackground_DieChangedManual;
-            
-            GetViewModel<PlayGameViewModel>().Game.StartGame();
+
+            GetViewModel<PlayGameViewModel>().StartGame();
         }
 
         void dpBackground_DieChangedManual(bool isfixed, int oldvalue, int newvalue)
@@ -97,7 +97,7 @@ namespace DicePokerRT
         void Game_DiceFixed(object sender, Sanet.Kniffel.Models.Events.FixDiceEventArgs e)
         {
             if (!GetViewModel<PlayGameViewModel>().SelectedPlayer.IsHuman)
-                dpBackground.FixDice(e.Value);
+                dpBackground.FixDice(e.Value,e.Isfixed);
         }
 
         void Game_GameFinished(object sender, EventArgs e)

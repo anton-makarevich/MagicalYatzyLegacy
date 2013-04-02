@@ -27,8 +27,8 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
             
         }
 
-        public RoundChangedCommand(int pos, int round)
-            :base(pos)
+        public RoundChangedCommand(string name, int round)
+            :base(name)
         {
             Round = round;
         }

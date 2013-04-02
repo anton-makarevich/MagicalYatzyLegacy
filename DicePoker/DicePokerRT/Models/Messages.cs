@@ -23,6 +23,7 @@ namespace Sanet.Kniffel.Models
         public const string GAME_FINISHED = "GameFinishedLabel";
         public const string GAME_WIN = "WinLabel";
         public const string GAME_PLAY_AGAIN = "AgainLabel";
+        public const string GAME_PLAY_READY = "ReadyLabel";
 
         public const string PLAYER_NAME = "PlayerNameLabel";
         public const string PLAYER_PASSWORD = "PlayerPasswordLabel";

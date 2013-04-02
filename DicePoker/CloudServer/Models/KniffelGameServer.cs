@@ -76,11 +76,23 @@ namespace Sanet.Kniffel.Models
             _Game.PlayerJoined += _Game_PlayerJoined;
             _Game.ResultApplied += _Game_ResultApplied;
             _Game.PlayerLeft += _Game_PlayerLeft;
+            _Game.PlayerReady += _Game_PlayerReady;
+            _Game.GameUpdated += _Game_GameUpdated;
+        }
+
+        void _Game_GameUpdated(object sender, EventArgs e)
+        {
+            SendTableInfo();
+        }
+
+        void _Game_PlayerReady(object sender, PlayerEventArgs e)
+        {
+            Send(new PlayerReadyCommand(e.Player.Name,e.Player.IsReady));
         }
 
         void _Game_PlayerLeft(object sender, PlayerEventArgs e)
         {
-            Send(new PlayerLeftCommand(e.Player.SeatNo));
+            Send(new PlayerLeftCommand(e.Player.Name));
             if (Player.ID == e.Player.ID && LeftTable != null)
                 LeftTable(this, new KeyEventArgs<int>(e.Player.SeatNo));
         }
@@ -89,18 +101,18 @@ namespace Sanet.Kniffel.Models
         #region GameHandlers
         void _Game_ResultApplied(object sender, ResultEventArgs e)
         {
-            Send(new ApplyScoreCommand(e.Player.SeatNo,e.Result));
+            Send(new ApplyScoreCommand(e.Player.Name,e.Result));
             
         }
 
         void _Game_PlayerJoined(object sender, PlayerEventArgs e)
         {
-            Send(new PlayerJoinedCommand(e.Player.SeatNo, e.Player.Name, e.Player.Client, e.Player.Language));
+            Send(new PlayerJoinedCommand(e.Player.Name,e.Player.SeatNo, e.Player.Client, e.Player.Language));
         }
 
         void _Game_MoveChanged(object sender, MoveEventArgs e)
         {
-            Send(new RoundChangedCommand(e.Player.SeatNo, e.Move));
+            Send(new RoundChangedCommand(e.Player.Name, e.Move));
         }
 
         void _Game_MagicRollUsed(object sender, PlayerEventArgs e)
@@ -110,17 +122,17 @@ namespace Sanet.Kniffel.Models
 
         void _Game_GameFinished(object sender, EventArgs e)
         {
-            //throw new NotImplementedException();
+            Send(new GameEndedCommand());
         }
 
         void _Game_DiceRolled(object sender, RollEventArgs e)
         {
-            Send(new RollReportCommand(e.Player.SeatNo,e.Value.ToList()));
+            Send(new RollReportCommand(e.Player.Name,e.Value.ToList()));
         }
 
         void _Game_DiceFixed(object sender, FixDiceEventArgs e)
         {
-            Send(new FixDiceCommand(e.Player.SeatNo,e.Value,e.Isfixed));
+            Send(new FixDiceCommand(e.Player.Name,e.Value,e.Isfixed));
         }
 
         void _Game_DiceChanged(object sender, RollEventArgs e)
@@ -133,7 +145,6 @@ namespace Sanet.Kniffel.Models
         {
             m_CommandObserver.CommandReceived += m_CommandObserver_CommandReceived;
             m_CommandObserver.DisconnectCommandReceived += m_CommandObserver_DisconnectCommandReceived;
-            m_CommandObserver.SitOutChangedCommandReceived += m_CommandObserver_SitOutChangedCommandReceived;
             m_CommandObserver.ChatMessageCommandReceived += m_CommandObserver_ChatMessageCommandReceived;
             m_CommandObserver.PlayerPingCommandReceived += m_CommandObserver_PlayerPingCommandReceived;
             m_CommandObserver.TableInfoNeededCommandReceived += m_CommandObserver_TableInfoNeededCommandReceived;
@@ -141,6 +152,12 @@ namespace Sanet.Kniffel.Models
             m_CommandObserver.FixDiceCommandReceived += m_CommandObserver_FixDiceCommandReceived;
             m_CommandObserver.ApplyScoreCommandReceived += m_CommandObserver_ApplyScoreCommandReceived;
             m_CommandObserver.PlayerLeftCommandReceived += m_CommandObserver_PlayerLeftCommandReceived;
+            m_CommandObserver.PlayerReadyCommandReceived += m_CommandObserver_PlayerReadyCommandReceived;
+        }
+
+        void m_CommandObserver_PlayerReadyCommandReceived(object sender, CommandEventArgs<PlayerReadyCommand> e)
+        {
+            Game.SetPlayerReady(Player, e.Command.IsReady);
         }
 
         void m_CommandObserver_PlayerLeftCommandReceived(object sender, CommandEventArgs<PlayerLeftCommand> e)
@@ -181,14 +198,10 @@ namespace Sanet.Kniffel.Models
             //throw new NotImplementedException();
         }
 
-        void m_CommandObserver_SitOutChangedCommandReceived(object sender, CommandEventArgs<Protocol.Commands.Game.PlayerSitOutChangedCommand> e)
-        {
-            //throw new NotImplementedException();
-        }
-
+        
         void m_CommandObserver_DisconnectCommandReceived(object sender, CommandEventArgs<DisconnectCommand> e)
         {
-            //throw new NotImplementedException();
+            LeaveGame();
         }
 
         void m_CommandObserver_CommandReceived(object sender, StringEventArgs e)
@@ -203,13 +216,13 @@ namespace Sanet.Kniffel.Models
         {
             m_CommandObserver.CommandReceived -= m_CommandObserver_CommandReceived;
             m_CommandObserver.DisconnectCommandReceived -= m_CommandObserver_DisconnectCommandReceived;
-            m_CommandObserver.SitOutChangedCommandReceived -= m_CommandObserver_SitOutChangedCommandReceived;
             m_CommandObserver.ChatMessageCommandReceived -= m_CommandObserver_ChatMessageCommandReceived;
             m_CommandObserver.PlayerPingCommandReceived -= m_CommandObserver_PlayerPingCommandReceived;
             m_CommandObserver.RollReportCommandReceived -= m_CommandObserver_RollReportCommandReceived;
             m_CommandObserver.FixDiceCommandReceived -= m_CommandObserver_FixDiceCommandReceived;
             m_CommandObserver.ApplyScoreCommandReceived -= m_CommandObserver_ApplyScoreCommandReceived;
             m_CommandObserver.PlayerLeftCommandReceived -= m_CommandObserver_PlayerLeftCommandReceived;
+            m_CommandObserver.PlayerReadyCommandReceived -= m_CommandObserver_PlayerReadyCommandReceived;
 
             _Game.DiceChanged -= _Game_DiceChanged;
             _Game.DiceFixed -= _Game_DiceFixed;
@@ -220,6 +233,8 @@ namespace Sanet.Kniffel.Models
             _Game.PlayerJoined -= _Game_PlayerJoined;
             _Game.ResultApplied -= _Game_ResultApplied;
             _Game.PlayerLeft -= _Game_PlayerLeft;
+            _Game.PlayerReady -= _Game_PlayerReady;
+            _Game.GameUpdated -= _Game_GameUpdated;
 
             _Player = null;
 

@@ -162,13 +162,12 @@ namespace Sanet.Kniffel.Models
         /// <summary>
         /// If ready to start game, has sense only for network game
         /// </summary>
-        private bool _IsReady;
+        private bool _IsReady=false;
         public bool IsReady
         {
             get
             {
-                if (Type != PlayerType.Network)
-                    return true;
+                
                 return _IsReady; 
             }
             set

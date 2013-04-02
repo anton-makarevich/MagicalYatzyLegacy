@@ -73,6 +73,8 @@ namespace Sanet.Kniffel.Models
 
         public event EventHandler<PlayerEventArgs> PlayerLeft;
 
+        public event EventHandler<PlayerEventArgs> PlayerReady;
+
         /// <summary>
         /// current player used Magical Roll
         /// </summary>
@@ -201,7 +203,7 @@ namespace Sanet.Kniffel.Models
         {
             lock (syncRoot)
             {
-                Send(new FixDiceCommand(CurrentPlayer.SeatNo,value,isfixed));
+                Send(new FixDiceCommand(CurrentPlayer.Name,value,isfixed));
 
                 
             }
@@ -249,7 +251,7 @@ namespace Sanet.Kniffel.Models
             lock (syncRoot)
             {
                 if (CurrentPlayer!=null)
-                    Send(new RollReportCommand(CurrentPlayer.SeatNo, new List<int>() { 0,0,0,0,0}));
+                    Send(new RollReportCommand(CurrentPlayer.Name, new List<int>() { 0,0,0,0,0}));
 
             }
         }
@@ -352,7 +354,7 @@ namespace Sanet.Kniffel.Models
         {
             LogManager.Log(LogLevel.Message,"Game.ApplyScore","Applying score {0} of {1} for {2}", result.PossibleValue,result.ScoreType,CurrentPlayer.Name);
             
-            Send(new ApplyScoreCommand(CurrentPlayer.SeatNo,result));         
+            Send(new ApplyScoreCommand(CurrentPlayer.Name,result));         
             
             
            
@@ -393,15 +395,11 @@ namespace Sanet.Kniffel.Models
         {
             foreach (Player p in Players)
             {
-                p.Roll = 1;
-                p.SeatNo--;
-                if (p.SeatNo < 0)
-                    p.SeatNo = Players.Count - 1;
                 p.Init();
             }
             Players = Players.OrderBy(f => f.SeatNo).ToList();
-            CurrentPlayer = null;
-            StartGame();
+            SetPlayerReady(true);
+            
         }
 
         public void JoinGame(Player player)
@@ -412,7 +410,10 @@ namespace Sanet.Kniffel.Models
                     Players = new List<Player>();
                 var explayer = Players.FirstOrDefault(f => f.SeatNo == player.SeatNo);
                 if (explayer == null)
+                {
                     Players.Add(player);
+                    Players = Players.OrderBy(f => f.SeatNo).ToList();
+                }
                 else
                     explayer = player;
                 player.Game = this;
@@ -435,6 +436,15 @@ namespace Sanet.Kniffel.Models
         public bool IsDiceFixed(int value)
         {
             return fixedRollResults.Contains(value);
+        }
+
+        public void SetPlayerReady(Player player, bool isready)
+        {
+            Send(new PlayerReadyCommand(player.Name,isready));
+        }
+        public void SetPlayerReady(bool isready)
+        {
+            Send(new PlayerReadyCommand(MyName, isready));
         }
 
         protected override void InitializeCommandObserver()
@@ -464,19 +474,48 @@ namespace Sanet.Kniffel.Models
             m_CommandObserver.FixDiceCommandReceived += m_CommandObserver_FixDiceCommandReceived;
             m_CommandObserver.ApplyScoreCommandReceived += m_CommandObserver_ApplyScoreCommandReceived;
             m_CommandObserver.RoundChangedCommandReceived += m_CommandObserver_RoundChangedCommandReceived;
+            m_CommandObserver.PlayerLeftCommandReceived += m_CommandObserver_PlayerLeftCommandReceived;
+            m_CommandObserver.PlayerReadyCommandReceived += m_CommandObserver_PlayerReadyCommandReceived;
+            m_CommandObserver.GameEndedCommandReceived += m_CommandObserver_GameEndedCommandReceived;
+        }
+
+        void m_CommandObserver_GameEndedCommandReceived(object sender, CommandEventArgs<GameEndedCommand> e)
+        {
+            if (GameFinished != null)
+                GameFinished(null, null);
+        }
+
+        void m_CommandObserver_PlayerReadyCommandReceived(object sender, CommandEventArgs<PlayerReadyCommand> e)
+        {
+            var player = Players.Find(f => f.Name == e.Command.Name);
+            player.IsReady = e.Command.IsReady;
+            if (PlayerReady != null)
+                PlayerReady(null, new PlayerEventArgs(player));
+        }
+
+        void m_CommandObserver_PlayerLeftCommandReceived(object sender, CommandEventArgs<PlayerLeftCommand> e)
+        {
+            var p = Players.FirstOrDefault(f => f.Name == e.Command.Name);
+            if (p != null)
+            {
+                Players.Remove(p);
+                if (PlayerLeft!=null)
+                    PlayerLeft(null, new PlayerEventArgs(p));
+                p=null;
+            }
         }
 
         void m_CommandObserver_RoundChangedCommandReceived(object sender, CommandEventArgs<RoundChangedCommand> e)
         {
             lock (syncRoot)
             {
-                LogManager.Log(LogLevel.Message, "GameClient", "Change round received, new player #{0}, new round #{1}", e.Command.PlayerPos, e.Command.Round);
+                LogManager.Log(LogLevel.Message, "GameClient", "Change round received, new player {0}, new round #{1}", e.Command.Name, e.Command.Round);
                 fixedRollResults = new List<int>();
                 if (CurrentPlayer != null)
                     CurrentPlayer.IsMoving = false;
 
                 Move = e.Command.Round;
-                CurrentPlayer = Players.Find(f => f.SeatNo == e.Command.PlayerPos);
+                CurrentPlayer = Players.Find(f => f.Name == e.Command.Name);
                 CurrentPlayer.IsMoving = true;
                 CurrentPlayer.Roll = 1;
                 DoMove();
@@ -487,8 +526,8 @@ namespace Sanet.Kniffel.Models
         {
             lock (syncRoot)
             {
-                LogManager.Log(LogLevel.Message, "GameClient", "Result {1} applied by player #{0}", e.Command.PlayerPos,e.Command.PlayerPos);
-                var p = Players.Find(f => f.SeatNo == e.Command.PlayerPos);
+                LogManager.Log(LogLevel.Message, "GameClient", "Result {1} applied by player {0}", e.Command.Name,e.Command.PossibleValue);
+                var p = Players.Find(f => f.Name == e.Command.Name);
                 RollResult result = p.Results.Find(f => f.ScoreType == e.Command.ScoreType);
                 result.PossibleValue = e.Command.PossibleValue;
                 result.HasBonus = e.Command.HasBonus;
@@ -502,18 +541,20 @@ namespace Sanet.Kniffel.Models
 
         void m_CommandObserver_FixDiceCommandReceived(object sender, CommandEventArgs<FixDiceCommand> e)
         {
+            var p = Players.Find(f => f.Name == e.Command.Name);
             if (DiceFixed != null)
-                DiceFixed(this, new FixDiceEventArgs(CurrentPlayer, e.Command.Value, e.Command.IsFixed));
+                DiceFixed(this, new FixDiceEventArgs(p, e.Command.Value, e.Command.IsFixed));
         }
 
         void m_CommandObserver_RollReportCommandReceived(object sender, CommandEventArgs<RollReportCommand> e)
         {
             lock (syncRoot)
             {
+                var p = Players.Find(f => f.Name == e.Command.Name);
                 lastRollResults = e.Command.LastResult.ToArray();
 
                 if (DiceRolled != null)
-                    DiceRolled(this, new RollEventArgs(CurrentPlayer, lastRollResults));
+                    DiceRolled(this, new RollEventArgs(p, lastRollResults));
             }
         }
 
@@ -560,8 +601,8 @@ namespace Sanet.Kniffel.Models
             {
                 var player = new Player();
 
-                player.Name = e.Command.PlayerName;
-                player.SeatNo = e.Command.PlayerPos;
+                player.Name = e.Command.Name;
+                player.SeatNo = e.Command.SeatNo;
                 player.Client = e.Command.PlayerClient;
                 player.Language = e.Command.PlayerLanguage;
                 player.Type = PlayerType.Network;
@@ -604,6 +645,10 @@ namespace Sanet.Kniffel.Models
                 m_CommandObserver.FixDiceCommandReceived -= m_CommandObserver_FixDiceCommandReceived;
                 m_CommandObserver.ApplyScoreCommandReceived -= m_CommandObserver_ApplyScoreCommandReceived;
                 m_CommandObserver.RoundChangedCommandReceived -= m_CommandObserver_RoundChangedCommandReceived;
+                m_CommandObserver.PlayerLeftCommandReceived -= m_CommandObserver_PlayerLeftCommandReceived;
+                m_CommandObserver.PlayerReadyCommandReceived -= m_CommandObserver_PlayerReadyCommandReceived;
+                m_CommandObserver.GameEndedCommandReceived -= m_CommandObserver_GameEndedCommandReceived;
+
                 Send(new DisconnectCommand());
             }
         }

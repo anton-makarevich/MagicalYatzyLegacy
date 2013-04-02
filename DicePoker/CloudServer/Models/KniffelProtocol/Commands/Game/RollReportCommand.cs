@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Sanet.Kniffel.Protocol.Commands.Game
 {
-    public class RollReportCommand : AbstractCommand
+    public class RollReportCommand :PlayerCommand
     {
         protected override string CommandName
         {
@@ -15,13 +15,7 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
         }
         public static string COMMAND_NAME = "gamePLAYER_ROLL_REPORT";
 
-        private readonly int m_PlayerPos;
         private readonly List<int> m_LastResult;
-
-        public int PlayerPos
-        {
-            get { return m_PlayerPos; }
-        }
 
         public List<int> LastResult
         {
@@ -29,22 +23,22 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
         }
 
         public RollReportCommand(StringTokenizer argsToken)
+            :base(argsToken)
         {
             m_LastResult=new List<int>();
-            m_PlayerPos = int.Parse(argsToken.NextToken());
             for (int i=0;i<5;i++)
                 m_LastResult.Add(int.Parse(argsToken.NextToken()));
         }
 
-        public RollReportCommand(int pos, List<int> results)
+        public RollReportCommand(string name, List<int> results)
+            :base(name)
         {
-            m_PlayerPos = pos;
             m_LastResult = results;
         }
 
         public override void Encode(StringBuilder sb)
         {
-            Append(sb, m_PlayerPos);
+            base.Encode(sb);
             foreach(int r in m_LastResult)
                 Append(sb, r);
         }

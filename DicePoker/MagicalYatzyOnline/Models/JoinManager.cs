@@ -54,15 +54,27 @@ namespace Sanet.Kniffel.Models
             }
             else
             {
-                Utilities.ShowMessage("Sorry, we can't join this table right now. Please try again later.");
+                SmartDispatcher.BeginInvoke(() =>
+                    {
+                        Utilities.ShowMessage("Sorry, we can't join right now. Please try again later.");
+                        
+                    });
                 return false;
             }
-            }
+        }
         public static async Task<bool> JoinTable()
         {
             return await JoinTable(CurrentTable.GameId, CurrentTable.Rules.Rule);
         }
-           
+
+        public static void Disconnect()
+        {
+            if (CurrentTable == null)
+                return;
+            CurrentTable.Disconnect();
+            WSServer.Close();
+        }
+
         }
 }
 

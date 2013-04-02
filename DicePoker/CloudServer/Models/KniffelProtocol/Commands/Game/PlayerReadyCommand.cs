@@ -1,4 +1,6 @@
-﻿using Sanet.Models;
+﻿using Sanet.Kniffel.Models;
+using Sanet.Kniffel.Models.Enums;
+using Sanet.Models;
 using Sanet.Network.Protocol.Commands;
 using System;
 using System.Collections.Generic;
@@ -7,30 +9,34 @@ using System.Text;
 
 namespace Sanet.Kniffel.Protocol.Commands.Game
 {
-    public class PlayerLeftCommand :PlayerCommand
+    public class PlayerReadyCommand :PlayerCommand
     {
         protected override string CommandName
         {
             get { return COMMAND_NAME; }
         }
-        public static string COMMAND_NAME = "gamePLAYER_LEFT_GAME";
+        public static string COMMAND_NAME = "gamePLAYER_READY";
 
-       
-        public PlayerLeftCommand(StringTokenizer argsToken)
+        public bool IsReady { get; set; }
+
+        public PlayerReadyCommand(StringTokenizer argsToken)
             :base(argsToken)
         {
+            IsReady = bool.Parse(argsToken.NextToken());
             
         }
 
-        public PlayerLeftCommand(string name)
+        public PlayerReadyCommand(string name, bool isready)
             :base(name)
         {
+            IsReady = isready;
             
         }
 
         public override void Encode(StringBuilder sb)
         {
             base.Encode(sb);
+            Append(sb, IsReady);
             
         }
                 

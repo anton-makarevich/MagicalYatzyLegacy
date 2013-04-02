@@ -198,6 +198,8 @@
     <Compile Include="Models\Interfaces\IKniffelGame.cs" />
     <Compile Include="Models\KniffelGameServer.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\ApplyScoreCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\GameEndedCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerReadyCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerLeftCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\RoundChangedCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerCommand.cs" />
@@ -206,7 +208,6 @@
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerChatMessageCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerJoinedCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerPingCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerSitOutChangedCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\TableInfoCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\TableInfoNeededCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\AbstractLobbyCommand.cs" />

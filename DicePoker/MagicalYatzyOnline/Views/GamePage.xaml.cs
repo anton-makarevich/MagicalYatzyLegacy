@@ -48,7 +48,7 @@ namespace DicePokerRT
             dpBackground.EndRoll += dpBackground_EndRoll;
             dpBackground.DieChangedManual += dpBackground_DieChangedManual;
             
-            GetViewModel<PlayGameViewModel>().Game.StartGame();
+            GetViewModel<PlayGameViewModel>().StartGame();
         }
 
         void dpBackground_DieChangedManual(bool isfixed, int oldvalue, int newvalue)
@@ -94,7 +94,7 @@ namespace DicePokerRT
         void Game_DiceFixed(object sender, Sanet.Kniffel.Models.Events.FixDiceEventArgs e)
         {
             if (!GetViewModel<PlayGameViewModel>().SelectedPlayer.IsHuman)
-                dpBackground.FixDice(e.Value);
+                dpBackground.FixDice(e.Value,e.Isfixed);
         }
 
         void Game_GameFinished(object sender, EventArgs e)
@@ -135,7 +135,7 @@ namespace DicePokerRT
         {
             GetViewModel<PlayGameViewModel>().DiceRolled += Game_DiceRolled;
             GetViewModel<PlayGameViewModel>().MoveChanged += Game_MoveChanged;
-            GetViewModel<PlayGameViewModel>().Game.GameFinished += Game_GameFinished;
+            GetViewModel<PlayGameViewModel>().GameFinished += Game_GameFinished;
             GetViewModel<PlayGameViewModel>().DiceFixed += Game_DiceFixed;
         }
 
@@ -145,7 +145,7 @@ namespace DicePokerRT
             GetViewModel<PlayGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
             GetViewModel<PlayGameViewModel>().Game.DiceRolled -= Game_DiceRolled;
             GetViewModel<PlayGameViewModel>().MoveChanged -= Game_MoveChanged;
-            GetViewModel<PlayGameViewModel>().Game.GameFinished -= Game_GameFinished;
+            GetViewModel<PlayGameViewModel>().GameFinished -= Game_GameFinished;
             GetViewModel<PlayGameViewModel>().Game.DiceFixed -= Game_DiceFixed;
             GetViewModel<PlayGameViewModel>().RemoveGameHandlers();
 
@@ -153,6 +153,8 @@ namespace DicePokerRT
             dpBackground.EndRoll -= dpBackground_EndRoll;
             dpBackground.DieChangedManual -= dpBackground_DieChangedManual;
             dpBackground.Dispose();
+
+            JoinManager.Disconnect();
             
         }
 
@@ -217,6 +219,11 @@ namespace DicePokerRT
             await StoreManager.RemoveAd();
             ViewModelProvider.GetViewModel<PlayGameViewModel>().NotifyAdChanged();
             
+        }
+
+        private void Button_Tapped_2(object sender, TappedRoutedEventArgs e)
+        {
+            ViewModelProvider.GetViewModel<PlayGameViewModel>().Game.SetPlayerReady( true);
         }
        
     }

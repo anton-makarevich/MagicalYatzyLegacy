@@ -764,4 +764,13 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>kein Passwort</value>
     <comment>kein Passwort</comment>
   </data>
+  <data name="ReadyLabel" xml:space="preserve">
+    <value>Играть!</value>
+  </data>
+  <data name="WaitForGameLabel" xml:space="preserve">
+    <value>Ждем новой игры</value>
+  </data>
+  <data name="WaitForPlayersLabel" xml:space="preserve">
+    <value>Ждем игроков</value>
+  </data>
 </root>

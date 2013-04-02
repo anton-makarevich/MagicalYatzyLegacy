@@ -660,4 +660,13 @@
   <data name="PlayerNoPasswordLabel" xml:space="preserve">
     <value>няма пароля</value>
   </data>
+  <data name="ReadyLabel" xml:space="preserve">
+    <value>Гуляць!</value>
+  </data>
+  <data name="WaitForGameLabel" xml:space="preserve">
+    <value>Чакаем новую гульню</value>
+  </data>
+  <data name="WaitForPlayersLabel" xml:space="preserve">
+    <value>Чакаем гульцоў</value>
+  </data>
 </root>

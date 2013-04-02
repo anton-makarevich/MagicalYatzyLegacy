@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sanet.Kniffel.Protocol.Commands.Game
 {
-    public class PlayerJoinedCommand : AbstractCommand
+    public class PlayerJoinedCommand :PlayerCommand
     {
         protected override string CommandName
         {
@@ -14,21 +14,11 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
         }
         public static string COMMAND_NAME = "gamePLAYER_JOINED";
 
-        private readonly int m_PlayerPos;
-        private readonly string m_PlayerName;
         private readonly ClientType m_PlayerClient;
         private readonly string m_PlayerLanguage;
 
-        public int PlayerPos
-        {
-            get { return m_PlayerPos; }
-        }
+        public int SeatNo { get; set; }
        
-        public string PlayerName
-        {
-            get { return m_PlayerName; }
-        }
-
         public string PlayerLanguage
         {
             get { return m_PlayerLanguage; }
@@ -40,25 +30,25 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
         }
 
         public PlayerJoinedCommand(StringTokenizer argsToken)
+            :base(argsToken)
         {
-            m_PlayerPos = int.Parse(argsToken.NextToken());
-            m_PlayerName = argsToken.NextToken();
+            SeatNo = int.Parse(argsToken.NextToken());
             m_PlayerClient = (ClientType)Enum.Parse(typeof(ClientType), argsToken.NextToken());
             m_PlayerLanguage = argsToken.NextToken();
         }
 
-        public PlayerJoinedCommand(int pos, string name, ClientType client, string language)
+        public PlayerJoinedCommand(string name,int seatno, ClientType client, string language)
+            :base(name)
         {
-            m_PlayerPos = pos;
-            m_PlayerName = name;
+            SeatNo = seatno;
             m_PlayerClient = client;
             m_PlayerLanguage=language;
         }
 
         public override void Encode(StringBuilder sb)
         {
-            Append(sb, m_PlayerPos);
-            Append(sb, m_PlayerName);
+            base.Encode(sb);
+            Append(sb, SeatNo);
             Append(sb, m_PlayerClient);
             Append(sb, m_PlayerLanguage);
         }

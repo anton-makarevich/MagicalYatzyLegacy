@@ -10,6 +10,7 @@ namespace Sanet.Kniffel.Models.Interfaces
         event EventHandler<RollEventArgs> DiceChanged;
         event EventHandler<FixDiceEventArgs> DiceFixed;
         event EventHandler<RollEventArgs> DiceRolled;
+        event EventHandler<PlayerEventArgs> PlayerReady;
         void DoMove();
         void FixAllDices(int value, bool isfixed);
         void FixDice(int value, bool isfixed);
@@ -35,7 +36,9 @@ namespace Sanet.Kniffel.Models.Interfaces
         void RestartGame();
         event EventHandler<ResultEventArgs> ResultApplied;
         KniffelRule Rules { get; set; }
-        void StartGame();
+        
         void LeaveGame(Player player);
+        void SetPlayerReady(Player player, bool isready);
+        void SetPlayerReady(bool isready);
     }
 }

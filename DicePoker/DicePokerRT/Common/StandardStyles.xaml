@@ -1959,8 +1959,13 @@
                                        TextAlignment="Center"
                                        Width="50"
                                      FontSize="12"/>
-            
-                        </Grid>
+                        <Image Source="ms-appx:///Assets/check.png"
+                               Height="16" 
+                               Margin="10,0"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Top"
+                               Visibility="{Binding IsReady,Converter={StaticResource VisibilityKey}}"/>
+                    </Grid>
                     </Border>
             <ListView
                  Width="60"

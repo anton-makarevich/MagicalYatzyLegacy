@@ -258,17 +258,16 @@
             Style="{StaticResource DiceRollAppBarButtonStyle}"
             VerticalAlignment="Bottom"
             HorizontalAlignment="center"
-                    IsEnabled="{Binding CanRoll}"
+                    Visibility="{Binding CanRoll, Converter={StaticResource VisibilityKey}}"
                  AutomationProperties.Name="{Binding RollLabel}"
             Tapped="Button_Tapped_1"/>
-                <!--<Button
-                 x:Name="ClearButton"
-                 IsEnabled="False"
-            Style="{StaticResource ClearSelectionAppBarButtonStyle}"
+                <Button
+                 Style="{StaticResource DiceRollAppBarButtonStyle}"
             VerticalAlignment="Bottom"
             HorizontalAlignment="center"
-                 AutomationProperties.Name="{Binding ClearLabel}"
-            Tapped="ClearButton_Tapped_1"/>-->
+                    Visibility="{Binding CanStart, Converter={StaticResource VisibilityKey}}"
+                 AutomationProperties.Name="{Binding ReadyToPlayLabel}"
+            Tapped="Button_Tapped_2"/>
             </StackPanel>
             <!--tiles with roll result-->
             <GridView

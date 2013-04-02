@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="43862AntonMakarevich.20636FDE9D8C7" Publisher="CN=DC1EF1A2-04E8-4269-B8EE-BF7A3DBF913C" Version="0.9.1.0" />
+  <Identity Name="43862AntonMakarevich.20636FDE9D8C7" Publisher="CN=DC1EF1A2-04E8-4269-B8EE-BF7A3DBF913C" Version="1.9.6.10" />
   <Properties>
     <DisplayName>Magical Yatzy Online</DisplayName>
     <PublisherDisplayName>Anton Makarevich</PublisherDisplayName>

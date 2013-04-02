@@ -615,13 +615,13 @@ namespace Sanet.Kniffel.DicePanel
 
 
         }
-        public void FixDice(int index)
+        public void FixDice(int index, bool isfixed)
         {
             foreach (Die d in aDice)
             {
-                if (d.Result == index && !d.Frozen)
+                if (d.Result == index && d.Frozen==!isfixed)
                 {
-                    d.Frozen = true;
+                    d.Frozen = isfixed;
                     d.DrawDie();
                     return;
                 }

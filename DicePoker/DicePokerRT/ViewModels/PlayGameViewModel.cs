@@ -32,6 +32,10 @@ namespace Sanet.Kniffel.ViewModels
         /// Notify that move started
         /// </summary>
         public event EventHandler<MoveEventArgs> MoveChanged;
+        /// <summary>
+        /// Notify that game ended
+        /// </summary>
+        public event EventHandler GameFinished;
 
 
         #region Constructor
@@ -140,6 +144,17 @@ namespace Sanet.Kniffel.ViewModels
         }
 
         /// <summary>
+        /// Play Again Button label
+        /// </summary>
+        public string ReadyToPlayLabel
+        {
+            get
+            {
+                return Messages.GAME_PLAY_READY.Localize();
+            }
+        }
+
+        /// <summary>
         /// Total for result label
         /// </summary>
         public string TotalLabel
@@ -158,10 +173,11 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                if (_Players == null || _Players.Count != Game.Players.Count)
+                if (_Players == null)
                 {
                     if (Game.Players == null)
                         return null;
+                    
                     var resList = new List<PlayerWrapper>();
                     foreach (var p in Game.Players)
                         resList.Add(new PlayerWrapper(p));
@@ -176,7 +192,7 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// If dices can be rolled
         /// </summary>
-        private bool _CanRoll=true;
+        private bool _CanRoll=false;
         public bool CanRoll
         {
             get { return _CanRoll; }
@@ -184,7 +200,7 @@ namespace Sanet.Kniffel.ViewModels
         }
 
         /// <summary>
-        /// If dices can be rolled
+        /// If dices can be fixed by player
         /// </summary>
         public bool CanFix
         {
@@ -199,6 +215,32 @@ namespace Sanet.Kniffel.ViewModels
                 return true;
             }
 
+        }
+
+        /// <summary>
+        /// if player can press 'ready to play'
+        /// </summary>
+        public bool CanStart
+        {
+            get
+            {
+                
+                if (CanRoll)
+                    return false;
+#if ONLINE
+                var sp = Players.FirstOrDefault(f => f.Name == ((KniffelGameClient)Game).MyName);
+                if (sp == null)
+                    return false;
+                if (Game.Move == 1 && !sp.IsReady && sp.Roll == 1)
+                {
+                    Title = "WaitForPlayersLabel".Localize();
+                    return true;
+                }
+                else
+                    Title = "WaitForGameLabel".Localize();
+#endif
+                return false;
+            }
         }
 
         /// <summary>
@@ -223,6 +265,7 @@ namespace Sanet.Kniffel.ViewModels
                 return SelectedPlayer.Player != null;
             }
         }
+        
         
         private IKniffelGame _Game;
         public IKniffelGame Game
@@ -253,6 +296,20 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
+        public bool IsOnlineGame
+        {
+            get
+            {
+                if (Game==null)
+                    return false;
+#if !ONLINE
+                return false;
+#else
+                return Game is KniffelGameClient;
+#endif
+            }
+        }
+
         /// <summary>
         /// Roll results for user to show
         /// </summary>
@@ -278,17 +335,22 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                if (IsPlayerSelected)
-                {
-                    if (_SampleResults == null)
+                  if (_SampleResults == null)
                     {
                         _SampleResults = new List<IRollResult>();
-                        foreach (var r in SelectedPlayer.Results)
-                            _SampleResults.Add(r);
+
+                        if (Game == null)
+                            return null;
+                        Player sp = new Player();
+                        sp.Game = Game;
+                        {
+                            foreach (var r in sp.Results)
+                                _SampleResults.Add(new RollResultWrapper(r));
+                        }
+                        sp = null;
                     }
                     return _SampleResults;
-                }
-                return null;
+                
             }
             
         }
@@ -470,6 +532,8 @@ namespace Sanet.Kniffel.ViewModels
                     Game.ResultApplied -= Game_ResultApplied;
                     Game.MagicRollUsed -= Game_MagicRollUsed;
                     Game.DiceChanged -= Game_DiceChanged;
+                    Game.PlayerReady -= Game_PlayerReady;
+                    Game.PlayerLeft -= Game_PlayerLeft;
                 }
             }
             catch (Exception ex)
@@ -493,7 +557,38 @@ namespace Sanet.Kniffel.ViewModels
                 Game.ResultApplied += Game_ResultApplied;
                 Game.MagicRollUsed += Game_MagicRollUsed;
                 Game.DiceChanged += Game_DiceChanged;
+                Game.PlayerReady += Game_PlayerReady;
+                Game.PlayerLeft += Game_PlayerLeft;
             }
+        }
+
+        void Game_PlayerLeft(object sender, PlayerEventArgs e)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        var p = _Players.FirstOrDefault(f => f.Name == e.Player.Name);
+                        if (p != null)
+                        {
+                            _Players.Remove(p);
+                            p.Dispose();
+                            p = null;
+                            NotifyPropertyChanged("Players");
+                            
+                        }
+                    });
+        }
+
+        void Game_PlayerReady(object sender, PlayerEventArgs e)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        var p = Players.FirstOrDefault(f => f.Name == e.Player.Name);
+                        p.IsReady = e.Player.IsReady;
+#if ONLINE
+                        if (((KniffelGameClient)Game).MyName==e.Player.Name)
+                            NotifyPropertyChanged("CanStart");
+#endif
+                    });
         }
 
         void Game_DiceChanged(object sender, RollEventArgs e)
@@ -528,7 +623,7 @@ namespace Sanet.Kniffel.ViewModels
                         {
                             SoundsProvider.PlaySound(_player, "wrong");
                         }
-                        var p = Players.FirstOrDefault(f => f.SeatNo == e.Player.SeatNo);
+                        var p = Players.FirstOrDefault(f => f.Name == e.Player.Name);
                         var r = p.Results.Find(f => f.ScoreType == e.Result.ScoreType);
                         r.Value = e.Result.PossibleValue;
                         p.UpdateTotal();
@@ -540,6 +635,12 @@ namespace Sanet.Kniffel.ViewModels
         {
             SmartDispatcher.BeginInvoke(() =>
                     {
+                        if (_Players != null)
+                        {
+                            var p = Players.FirstOrDefault(f => f.Name == e.Player.Name);
+                            if (p==null)
+                            _Players.Add(new PlayerWrapper(e.Player));
+                        }
                         NotifyPropertyChanged("Players");
                         NotifyPropertyChanged("DicePanelRTWidth");
                     });
@@ -559,15 +660,19 @@ namespace Sanet.Kniffel.ViewModels
 
         void Game_GameFinished(object sender, EventArgs e)
         {
-            //Utilities.ShowToastNotification("GAMOVER vsem");
-            SetCanRoll(false);
-            NotifyPlayerChanged();
-            if (IsPlayerSelected)
-            {
-                Title = Messages.GAME_FINISHED.Localize();
-                NotifyPropertyChanged("Players");
-            }
-        
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        //Utilities.ShowToastNotification("GAMOVER vsem");
+                        if (GameFinished != null)
+                            GameFinished(null, e);
+                        SetCanRoll(false);
+                        NotifyPlayerChanged();
+                        if (IsPlayerSelected)
+                        {
+                            Title = Messages.GAME_FINISHED.Localize();
+                            NotifyPropertyChanged("Players");
+                        }
+                    });
         }
 
         void Game_DiceRolled(object sender, RollEventArgs e)
@@ -597,7 +702,8 @@ namespace Sanet.Kniffel.ViewModels
             NotifyPropertyChanged("SelectedPlayer");
             NotifyPropertyChanged("RollLabel");
             NotifyPropertyChanged("CanFix");
-            NotifyPropertyChanged("SampleResults");
+            NotifyPropertyChanged("CanStart");
+            
             if (IsPlayerSelected)
             {
                 Title = string.Format("{2} {0}, {1}", Game.Move, SelectedPlayer.Name, Messages.GAME_MOVE.Localize());
@@ -661,11 +767,12 @@ namespace Sanet.Kniffel.ViewModels
         {
             if (!IsPlayerSelected)
                 _CanRoll = false;
-            else if (!SelectedPlayer.IsHuman)
+            else if (!SelectedPlayer.IsHuman||!SelectedPlayer.IsReady)
                 _CanRoll = false;
             else
                 _CanRoll = value;
             NotifyPropertyChanged("CanRoll");
+            NotifyPropertyChanged("CanStart");
         }
 
         /// <summary>
@@ -703,7 +810,7 @@ namespace Sanet.Kniffel.ViewModels
                 foreach (var p in Players)
                 {
                     //don't do anything score related for bots
-                    if (p.IsBot)
+                    if (!p.IsHuman)
                         continue;
 
                     //decreasing amount of magic artifacts
@@ -829,6 +936,18 @@ namespace Sanet.Kniffel.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        public void StartGame()
+        {
+            
+            foreach (var p in Game.Players)
+            {
+                p.Game = Game;
+                if (!IsOnlineGame)
+                    Game.SetPlayerReady(p, true);
+            }
+            NotifyPropertyChanged("SampleResults");
         }
 
         /// <summary>

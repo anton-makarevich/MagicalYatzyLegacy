@@ -669,4 +669,13 @@
   <data name="PlayerNoPasswordLabel" xml:space="preserve">
     <value>no password</value>
   </data>
+  <data name="ReadyLabel" xml:space="preserve">
+    <value>Play!</value>
+  </data>
+  <data name="WaitForGameLabel" xml:space="preserve">
+    <value>Waiting for new game</value>
+  </data>
+  <data name="WaitForPlayersLabel" xml:space="preserve">
+    <value>Waiting for players</value>
+  </data>
 </root>

@@ -97,17 +97,27 @@ namespace Sanet.Kniffel.Server
         /// <summary>
         /// Method to automatically find a table for the user
         /// </summary>
-        public int FindTableForUser(Rules rule)
+        public int FindTableForUser(Rules rule, string name)
         {
+            KniffelGame game;
+            
+
             var gamesByRule = m_Games.Values.Where(f => f.Rules.Rule == rule).ToList();
             if (gamesByRule.Count == 0)
             {
                 LogManager.Log(LogLevel.Message, "ServerLobby.FindTableForUser", "No games To join");
                 return -1;
             }
+            //first try to find where this player is playing
+            game = gamesByRule.FirstOrDefault(f => f.Players.FirstOrDefault(p => p.Name==name) != null);
+            if (game != null)
+            {
+                return game.GameId;
+                
+            }
             
             //so - all tables
-            var game = gamesByRule.Where(f => f.PlayersNumber < 4).OrderByDescending(f => f.PlayersNumber).FirstOrDefault();
+            game = gamesByRule.Where(f => f.PlayersNumber < 4).OrderByDescending(f => f.PlayersNumber).FirstOrDefault();
             if (game != null)
                 return game.GameId;
             else

@@ -1266,6 +1266,7 @@
     <Content Include="Assets\Baby.png" />
     <Content Include="Assets\BadgeLogo.scale-140.png" />
     <Content Include="Assets\BadgeLogo.scale-180.png" />
+    <Content Include="Assets\check.png" />
     <Content Include="Assets\Children.png" />
     <Content Include="Assets\Customer.png" />
     <Content Include="Assets\Desktop.png" />

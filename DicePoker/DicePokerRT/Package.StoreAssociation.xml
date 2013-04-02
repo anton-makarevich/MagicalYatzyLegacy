@@ -346,6 +346,7 @@
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
+    <MainPackageIdentityName>43862AntonMakarevich.20636FDE9D8C7</MainPackageIdentityName>
     <MainPackageIdentityName>43862AntonMakarevich.SanetAllWrite</MainPackageIdentityName>
     <MainPackageIdentityName>43862AntonMakarevich.SanetDice</MainPackageIdentityName>
     <MainPackageIdentityName>43862AntonMakarevich.SanetNews</MainPackageIdentityName>
@@ -353,7 +354,7 @@
   <PackageInfoList LandingUrl="https://appdev.microsoft.com:443/StorePortals/Developer/Catalog/ReleaseAnchor/5b0f9106-65a8-49ca-b1f0-641c54a7e3ef">
     <PackageInfo>
       <PackageArchitecture>neutral</PackageArchitecture>
-      <PackageMaxArchitectureVersion>1.8.2.5</PackageMaxArchitectureVersion>
+      <PackageMaxArchitectureVersion>1.9.0.9</PackageMaxArchitectureVersion>
     </PackageInfo>
   </PackageInfoList>
 </StoreAssociation>

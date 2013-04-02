@@ -29,8 +29,8 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
             ScoreType=(KniffelScores)Enum.Parse(typeof(KniffelScores),argsToken.NextToken());
         }
 
-        public ApplyScoreCommand(int pos,RollResult result)
-            :base(pos)
+        public ApplyScoreCommand(string name,RollResult result)
+            :base(name)
         {
             PossibleValue = result.PossibleValue;
             HasBonus = result.HasBonus;

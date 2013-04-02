@@ -42,6 +42,11 @@ namespace Sanet.Kniffel.Models
         public event EventHandler GameFinished;
 
         /// <summary>
+        /// Notify that game ended
+        /// </summary>
+        public event EventHandler GameUpdated;
+
+        /// <summary>
         /// Notify that dice was fixed
         /// </summary>
         public event EventHandler<FixDiceEventArgs> DiceFixed;
@@ -73,11 +78,28 @@ namespace Sanet.Kniffel.Models
 
         public event EventHandler<PlayerEventArgs> PlayerLeft;
 
+        public event EventHandler<PlayerEventArgs> PlayerReady;
+
         #endregion
 
         #region Properties
         public int GameId { get; set; }
-        public bool IsPlaying { get; set; }
+        bool _IsPlaying;
+        public bool IsPlaying
+        {
+            get
+            {
+                if (Players == null)
+                    _IsPlaying = false;
+                if (Players.Count(f => f.IsReady) == 0)
+                    _IsPlaying = false;
+                return _IsPlaying;
+            }
+            set
+            {
+                _IsPlaying = value;
+            }
+        }
         public string Password { get; set; }
 
         public DieResult LastDiceResult
@@ -166,7 +188,7 @@ namespace Sanet.Kniffel.Models
             if (CurrentPlayer != null)
             {
                 CurrentPlayer.IsMoving = false;
-                CurrentPlayer = Players.FirstOrDefault(f => f.SeatNo == CurrentPlayer.SeatNo + 1);
+                CurrentPlayer = Players.Where(f=>f.IsReady).FirstOrDefault(f => f.SeatNo == CurrentPlayer.SeatNo + 1);
             }
             else//else it's new move and we select first player as current
                 CurrentPlayer = Players.FirstOrDefault(f => f.SeatNo == 0);
@@ -191,8 +213,16 @@ namespace Sanet.Kniffel.Models
                 {
                     Players=Players.OrderByDescending(f => f.Total).ToList();
                     CurrentPlayer = Players.First();
+                    IsPlaying = false;
+                    foreach (var p in Players)
+                    {
+                        SetPlayerReady(p,false);
+                    }
                     if (GameFinished != null)
                         GameFinished(this, null);
+#if ONLINE
+                    RestartGame();
+#endif
                 }
                 else
                 {
@@ -404,7 +434,7 @@ namespace Sanet.Kniffel.Models
             {
                 //check if already have kniffel
                 var kresult = CurrentPlayer.GetResultForScore( KniffelScores.Kniffel);
-                result.HasBonus = (LastDiceResult.KniffelFiveOfAKindScore() == 50&&kresult.Value==kresult.MaxValue);
+                result.HasBonus = (LastDiceResult.KniffelFiveOfAKindScore() == 50 && kresult.Value==kresult.MaxValue);
             }
             //sending result to everyone
             if (ResultApplied != null)
@@ -432,31 +462,35 @@ namespace Sanet.Kniffel.Models
            
         }
 
-        public void StartGame()
+        void StartGame()
         {
-            
-            {
-                if (IsPlaying)
-                    return;
-            }
-            bool bAllReady = true;
-            //Checking if everyone is ready
             lock (syncRoot)
             {
-                foreach (Player player in Players)
                 {
-                    if (!player.IsReady)
+                    if (IsPlaying)
+                        return;
+                }
+                bool bAllReady = true;
+                //Checking if everyone is ready
+                lock (syncRoot)
+                {
+                    foreach (Player player in Players)
                     {
-                        bAllReady = false;
-                        break;
+                        if (!player.IsReady)
+                        {
+                            bAllReady = false;
+                            break;
+                        }
                     }
                 }
-            }
-            //if yes - starting game
-            if (bAllReady)
-            {
-                Move = 1;
-                DoMove();
+                //if yes - starting game
+                if (bAllReady)
+                {
+                    CurrentPlayer = null;
+                    Move = 1;
+                    IsPlaying = true;
+                    DoMove();
+                }
             }
         }
 
@@ -475,6 +509,8 @@ namespace Sanet.Kniffel.Models
             }
             Players = Players.OrderBy(f => f.SeatNo).ToList();
             CurrentPlayer = null;
+            if (GameUpdated != null)
+                GameUpdated(null,null);
             StartGame();
         }
 
@@ -489,11 +525,12 @@ namespace Sanet.Kniffel.Models
                 seat++;
             };
 
-            player.SeatNo=Players.Count;
+            player.SeatNo=seat;
             Players.Add(player);
             player.Game = this;
             if (PlayerJoined != null)
                 PlayerJoined(this, new PlayerEventArgs(player));
+            
         }
 
         public void LeaveGame(Player player)
@@ -501,8 +538,27 @@ namespace Sanet.Kniffel.Models
             if (Players == null)
                 return;
             Players.Remove(player);
+            if (Players.Count == 0)
+                Move = 1;
             if (PlayerLeft != null)
                 PlayerLeft(null, new PlayerEventArgs(player));
+            StartGame();
+        }
+
+        public void SetPlayerReady(Player player, bool isready)
+        {
+            if (IsPlaying)
+                isready = false;
+            var explayer=Players.Find(f => f.ID == player.ID);
+            explayer.IsReady = isready;
+            if (PlayerReady != null)
+                PlayerReady(null, new PlayerEventArgs(explayer));
+            if (isready)
+                StartGame();
+        }
+        public void SetPlayerReady(bool isready)
+        {
+            
         }
 
         /// <summary>
