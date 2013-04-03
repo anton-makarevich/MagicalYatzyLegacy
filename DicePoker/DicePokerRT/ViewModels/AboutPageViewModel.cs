@@ -1,5 +1,5 @@
 ﻿
-using DicePokerRT.KniffelLeaderBoardService;
+
 using Sanet.Kniffel.Models;
 using Sanet.Models;
 using System;
@@ -8,9 +8,15 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+#if WinRT
 using Windows.ApplicationModel;
 using Windows.System.UserProfile;
 using Windows.UI.Xaml.Media.Imaging;
+using DicePokerRT.KniffelLeaderBoardService;
+#else
+using System.Windows.Media.Imaging;
+#endif
 
 namespace Sanet.Kniffel.ViewModels
 {
@@ -63,10 +69,14 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
+#if WinRT
                 Package package = Package.Current;
                 PackageId packageId = package.Id;
                 PackageVersion version = packageId.Version;
                 return "Version".Localize()+": " + version.Major + "." + version.Minor + "." + version.Build + "." + version.Revision;
+#else
+                return "na";
+#endif
             }
         }
         /// <summary>
@@ -123,7 +133,7 @@ namespace Sanet.Kniffel.ViewModels
                     {
                         CommonNavigationActions.SendFeedback();
                     }),
-                    Image = new BitmapImage(new Uri( "ms-appx:///Assets/Mail.png", UriKind.Absolute))
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("Mail.png"))
                 });
             _AboutAppActions.Add(
                 new AboutAppAction
@@ -133,16 +143,23 @@ namespace Sanet.Kniffel.ViewModels
                     {
                         CommonNavigationActions.RateApp();
                     }),
-                    Image = new BitmapImage(new Uri("ms-appx:///Assets/Rate.png", UriKind.Absolute))
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("Rate.png"))
                 });
             if (StoreManager.IsAdVisible())
             _AboutAppActions.Add(
                 new AboutAppAction
                 {
                     Label = "RemoveAdAction",
-                    MenuAction = new Action(async () =>
+                    MenuAction = new Action(
+#if WinRT
+                        async
+#endif   
+                            () =>
                     {
-                        await StoreManager.RemoveAd();
+#if WinRT
+                        await 
+#endif
+                        StoreManager.RemoveAd();
                         ViewModelProvider.GetViewModel<AboutPageViewModel>().NotifyAdChanged();
                         ViewModelProvider.GetViewModel<AboutPageViewModel>().FillAppActions();
                         ViewModelProvider.GetViewModel<SettingsViewModel>().NotifyAdChanged();
@@ -150,7 +167,7 @@ namespace Sanet.Kniffel.ViewModels
                         ViewModelProvider.GetViewModel<MainPageViewModel>().NotifyAdChanged();
                         ViewModelProvider.GetViewModel<MainPageViewModel>().FillSecondaryActions();
                     }),
-                    Image = new BitmapImage(new Uri("ms-appx:///Assets/Unlock.png", UriKind.Absolute))
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("Unlock.png"))
                 });
             NotifyPropertyChanged("AboutAppActions");
         }
@@ -166,7 +183,7 @@ namespace Sanet.Kniffel.ViewModels
                     {
                         CommonNavigationActions.NavigateToSanetAllWrite();
                     }),
-                    Image = new BitmapImage(new Uri("ms-appx:///Assets/AWLogo.png", UriKind.Absolute)),
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("AWLogo.png")),
                     Description = "AWDescription"
                 });
             _OtherAppActions.Add(
@@ -177,7 +194,7 @@ namespace Sanet.Kniffel.ViewModels
                     {
                         CommonNavigationActions.NavigateToSanetNews();
                     }),
-                    Image = new BitmapImage(new Uri("ms-appx:///Assets/NewsLogo.png", UriKind.Absolute)),
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("NewsLogo.png")),
                     Description="NewsDescription"
                 });
 

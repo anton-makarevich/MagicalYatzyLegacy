@@ -1,17 +1,26 @@
-﻿using MyToolkit.UI;
+﻿using Sanet.Models;
 using Sanet.AllWrite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+#if WinRT
+using MyToolkit.UI;
 using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media;
-using Sanet.Models;
+#else
+using System.Windows.Controls;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Controls.Primitives;
+#endif
+
 
 namespace Sanet.Kniffel.DicePanel
 {
@@ -24,7 +33,7 @@ namespace Sanet.Kniffel.DicePanel
             {
                 if (panel.SelectedItem == null)
                     return null;
-                return aDice.Find(f => f.Result == panel.SelectedIndex + 1);
+                return aDice.FirstOrDefault(f => f.Result == panel.SelectedIndex + 1);
             }
             set 
             {
@@ -33,15 +42,19 @@ namespace Sanet.Kniffel.DicePanel
         }
 
         //Border border = new Border();
+#if WinRT
         GridView panel = new GridView();
+#else
+        ListBox panel = new ListBox();
+#endif
 
         TextBlock caption = new TextBlock();
 
         public DiceValueSelectionPanel()
         {
             //border.Child = panel;
-           
-            panel.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
+
+            panel.HorizontalAlignment = HorizontalAlignment.Center;
             panel.Height = 90;
 
             this.Background = new SolidColorBrush(Colors.Black);
@@ -86,10 +99,14 @@ namespace Sanet.Kniffel.DicePanel
         }
         Rect GetElementRect(FrameworkElement element)
         {
+#if WinRT
             GeneralTransform buttonTransform = element.TransformToVisual(null);
             Windows.Foundation.Point point = buttonTransform.TransformPoint(new Windows.Foundation.Point());
 
             return new Windows.Foundation.Rect(point, new Windows.Foundation.Size(element.ActualWidth, element.ActualHeight));
+#else
+            return new Rect();
+#endif
         }
 
         public void Dispose()

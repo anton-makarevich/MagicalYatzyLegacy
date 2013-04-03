@@ -549,7 +549,7 @@ namespace Sanet.Kniffel.Models
         {
             if (IsPlaying)
                 isready = false;
-            var explayer=Players.Find(f => f.ID == player.ID);
+            var explayer=Players.FirstOrDefault(f => f.ID == player.ID);
             explayer.IsReady = isready;
             if (PlayerReady != null)
                 PlayerReady(null, new PlayerEventArgs(explayer));

@@ -8,7 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
 using System.ComponentModel;
-
+using Sanet.AllWrite;
+using Sanet.Kniffel.Models;
 #if WinRT
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -18,8 +19,7 @@ using Windows.UI.Xaml.Media;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
-using Sanet.AllWrite;
-using Sanet.Kniffel.Models;
+
 
 #else
 using System.Windows.Controls;
@@ -27,6 +27,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows.Resources;
+using System.Windows.Controls.Primitives;
 #endif
 namespace Sanet.Kniffel.DicePanel
 
