@@ -541,7 +541,11 @@ namespace Sanet.Kniffel.Models
 
         void m_CommandObserver_FixDiceCommandReceived(object sender, CommandEventArgs<FixDiceCommand> e)
         {
-            var p = Players.Find(f => f.Name == e.Command.Name);
+            var p = Players.FirstOrDefault(f => f.Name == e.Command.Name);
+            if (p == null)
+                return;
+            if (CurrentPlayer == null)
+                CurrentPlayer = p;
             if (DiceFixed != null)
                 DiceFixed(this, new FixDiceEventArgs(p, e.Command.Value, e.Command.IsFixed));
         }
@@ -550,7 +554,11 @@ namespace Sanet.Kniffel.Models
         {
             lock (syncRoot)
             {
-                var p = Players.Find(f => f.Name == e.Command.Name);
+                var p = Players.FirstOrDefault(f => f.Name == e.Command.Name);
+                if (p == null)
+                    return;
+                if (CurrentPlayer == null)
+                    CurrentPlayer = p;
                 lastRollResults = e.Command.LastResult.ToArray();
 
                 if (DiceRolled != null)

@@ -220,9 +220,9 @@ namespace Sanet.Kniffel.Models
                     }
                     if (GameFinished != null)
                         GameFinished(this, null);
-#if ONLINE
-                    RestartGame();
-#endif
+//#if SERVER
+//                    RestartGame();
+//#endif
                 }
                 else
                 {
@@ -458,6 +458,11 @@ namespace Sanet.Kniffel.Models
                         }));
                 }
             }
+#if SERVER
+            result.Value = result.PossibleValue;
+            var cr =CurrentPlayer.Results.FirstOrDefault(f => f.ScoreType == result.ScoreType);
+            cr=  result;
+#endif
             DoMove();
            
         }
@@ -542,7 +547,10 @@ namespace Sanet.Kniffel.Models
                 Move = 1;
             if (PlayerLeft != null)
                 PlayerLeft(null, new PlayerEventArgs(player));
-            StartGame();
+            if (CurrentPlayer != null && CurrentPlayer.Name == player.Name)
+                DoMove();
+            else
+                StartGame();
         }
 
         public void SetPlayerReady(Player player, bool isready)

@@ -50,7 +50,98 @@ namespace Sanet.Kniffel.ViewModels
                 return Messages.PLAYER_NAME_DEFAULT.Localize();
             }
         }
-        
+
+                
+        private string _ServerLabel;
+        public string ServerLabel
+        {
+            get { return _ServerLabel; }
+            set
+            {
+                if (_ServerLabel != value)
+                {
+                    _ServerLabel = value;
+                    NotifyPropertyChanged("ServerLabel");
+                }
+            }
+        }
+
+
+        private string _ClientLabel;
+        public string ClientLabel
+        {
+            get { return _ClientLabel; }
+            set
+            {
+                if (_ClientLabel != value)
+                {
+                    _ClientLabel = value;
+                    NotifyPropertyChanged("ClientLabel");
+                }
+            }
+        }
+
+
+        private string  _ServerStatusMessage;
+        public string  ServerStatusMessage
+        {
+            get { return _ServerStatusMessage; }
+            set
+            {
+                if (_ServerStatusMessage != value)
+                {
+                    _ServerStatusMessage = value;
+                    NotifyPropertyChanged("ServerStatusMessage");
+                    NotifyPropertyChanged("IsReadyToPlay");
+                }
+            }
+        }
+
+
+        private string _ClientStatusMessage;
+        public string ClientStatusMessage
+        {
+            get { return _ClientStatusMessage; }
+            set
+            {
+                if (_ClientStatusMessage != value)
+                {
+                    _ClientStatusMessage = value;
+                    NotifyPropertyChanged("ClientStatusMessage");
+                }
+            }
+        }
+
+
+        public string ClientServerStausMessage
+        {
+            get { return _ClientServerStausMessage; }
+            set
+            {
+                if (_ClientServerStausMessage != value)
+                {
+                    _ClientServerStausMessage = value;
+                    NotifyPropertyChanged("ClientServerStausMessage");
+                }
+            }
+        }
+
+
+        private bool _BusyWithServer;
+        public bool BusyWithServer
+        {
+            get { return _BusyWithServer; }
+            set
+            {
+                if (_BusyWithServer != value)
+                {
+                    _BusyWithServer = value;
+                    NotifyPropertyChanged("BusyWithServer");
+                }
+            }
+        }
+
+
         
         /// <summary>
         /// Selected player, used to delete and maybe other actions
@@ -86,7 +177,11 @@ namespace Sanet.Kniffel.ViewModels
         {
             get 
             {
-                return true;
+                if (_ServerStatusMessage == Messages.MP_SERVER_ONLINE)
+                        return true;
+                    else
+                        return false;
+
                 
             }
         }
@@ -161,14 +256,17 @@ namespace Sanet.Kniffel.ViewModels
             if (!InternetCheker.IsInternetAvailable())
             {
                 Utilities.ShowMessage("NoInetMessage".Localize(), Messages.APP_NAME.Localize());
+                ServerStatusMessage = Messages.MP_SERVER_OFFLINE.Localize();
                 return;
             }
             InitService initService = new InitService();
             var respond = await initService.InitPlayer(SelectedPlayer.Player.ID);
             if (respond != null)
             {
-                Utilities.ShowMessage(respond.Message.Localize(), Messages.APP_NAME.Localize());
+                ServerStatusMessage = (respond.IsServerOnline) ? Messages.MP_SERVER_ONLINE.Localize() 
+                    : Messages.MP_SERVER_OFFLINE.Localize();
             }
+            else;
         }
 
         #endregion

@@ -6,9 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
+
 #if WinRT
 using Windows.UI.Xaml.Media.Imaging;
+#else
+using System.Windows.Media.Imaging;
 #endif
 
 namespace Sanet.Kniffel.ViewModels

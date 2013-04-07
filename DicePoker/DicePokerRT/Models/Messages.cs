@@ -48,5 +48,15 @@ namespace Sanet.Kniffel.Models
 
         public const string APP_NAME="AppNameLabel";
         public const string APP_NAME_OTHER = "OtherAppsLabel";
+
+        public const string MP_SERVER_OFFLINE = "ServerOfflineLabel";
+        public const string MP_SERVER_ONLINE = "ServerOnlineLabel";
+        public const string MP_SERVER = "ServerLabel";
+        public const string MP_CLIENT = "ClientLabel";
+        public const string MP_CLIENT_UPDATED = "ClientUpdatedLabel";
+        public const string MP_CLIENT_OUTDATED = "ClientOutdatedLabel";
+
+        public const string MP_CLIENT_OUTDATED_STATUS = "ClientOutdatedMessage";
+        public const string MP_SERVERT_OFFLINE_STATUS = "ServerOfflineMessage";
     }
 }

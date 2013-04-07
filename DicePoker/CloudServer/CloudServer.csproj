@@ -182,6 +182,9 @@
     <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IRollResult.cs">
       <Link>Models\Interfaces\IRollResult.cs</Link>
     </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Protocol\WebApi\AbstractHttpService.cs">
+      <Link>Models\WebApi\AbstractHttpService.cs</Link>
+    </Compile>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -232,6 +235,8 @@
     <Compile Include="Models\Server\ClientRequestHandler.cs" />
     <Compile Include="Models\Server\ServerClientLobby.cs" />
     <Compile Include="Models\Server\ServerLobby.cs" />
+    <Compile Include="Models\WebApi\Config.cs" />
+    <Compile Include="Models\WebApi\ServerInitService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -12,6 +12,9 @@ namespace Sanet.Network
         { }
 
         public string Message { get; set; }
+        public bool IsServerOnline { get; set; }
+        public bool IsClientUpdated { get; set; }
+        public DateTime ServerRestartDate { get; set; }
         public int Code { get; set; }
     }
 }
