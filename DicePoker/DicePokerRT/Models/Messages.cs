@@ -24,6 +24,7 @@ namespace Sanet.Kniffel.Models
         public const string GAME_WIN = "WinLabel";
         public const string GAME_PLAY_AGAIN = "AgainLabel";
         public const string GAME_PLAY_READY = "ReadyLabel";
+        public const string GAME_STATUS = "StatusLabel";
 
         public const string PLAYER_NAME = "PlayerNameLabel";
         public const string PLAYER_PASSWORD = "PlayerPasswordLabel";
@@ -57,6 +58,6 @@ namespace Sanet.Kniffel.Models
         public const string MP_CLIENT_OUTDATED = "ClientOutdatedLabel";
 
         public const string MP_CLIENT_OUTDATED_STATUS = "ClientOutdatedMessage";
-        public const string MP_SERVERT_OFFLINE_STATUS = "ServerOfflineMessage";
+        public const string MP_SERVER_OFFLINE_STATUS = "ServerOfflineMessage";
     }
 }

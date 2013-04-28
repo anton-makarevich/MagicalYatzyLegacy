@@ -439,10 +439,10 @@
     <value>RSS reader for news from Belarus. All your news in one place. We already have news from main Belarus sites, and will add more.</value>
   </data>
   <data name="Privacy1.Text" xml:space="preserve">
-    <value>This Privacy Policy covers your use of this application. Sanet Dice Poker does not collect, store, or share any personal information, or anything related to statistics, trends, neither do we track user movements.</value>
+    <value>This Privacy Policy covers your use of this application. Magical Yatzy does not collect, store, or share any personal information, or anything related to statistics, trends, neither do we track user movements.</value>
   </data>
   <data name="Privacy2.Text" xml:space="preserve">
-    <value>This application allows you to store game results on its web server, it also will show them to other users via leaderboard functionality. Sanet Dice Poker allows you to open web URLs from the application. The URLs might be saved by internet browsers on your device. For information regarding the information stored by these applications, please read the privacy policy of the internet browsers of your choice.</value>
+    <value>This application allows you to store game results on its web server, it also will show them to other users via leaderboard functionality. Magical Yatzy allows you to open web URLs from the application. The URLs might be saved by internet browsers on your device. For information regarding the information stored by these applications, please read the privacy policy of the internet browsers of your choice.</value>
   </data>
   <data name="PrivacyLabel.Text" xml:space="preserve">
     <value>Privacy Policy</value>
@@ -463,7 +463,7 @@
     <value>Try our new game-</value>
   </data>
   <data name="DicePokerAdLine3" xml:space="preserve">
-    <value>Sanet Dice Poker:</value>
+    <value>Magical Yatzy:</value>
   </data>
   <data name="DicePokerAdLine4" xml:space="preserve">
     <value>4 sets of rules</value>
@@ -677,5 +677,32 @@
   </data>
   <data name="WaitForPlayersLabel" xml:space="preserve">
     <value>Waiting for players</value>
+  </data>
+  <data name="ClientLabel" xml:space="preserve">
+    <value>Client:</value>
+  </data>
+  <data name="ClientOutdatedLabel" xml:space="preserve">
+    <value>Outdated</value>
+  </data>
+  <data name="ClientOutdatedMessage" xml:space="preserve">
+    <value>Your game version is outdated, please update to play online.</value>
+  </data>
+  <data name="ClientUpdatedLabel" xml:space="preserve">
+    <value>Updated</value>
+  </data>
+  <data name="ServerLabel" xml:space="preserve">
+    <value>Server:</value>
+  </data>
+  <data name="ServerOfflineLabel" xml:space="preserve">
+    <value>Offline</value>
+  </data>
+  <data name="ServerOfflineMessage" xml:space="preserve">
+    <value>Game server is not available. Please try again later.</value>
+  </data>
+  <data name="ServerOnlineLabel" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="StatusLabel" xml:space="preserve">
+    <value>Status</value>
   </data>
 </root>

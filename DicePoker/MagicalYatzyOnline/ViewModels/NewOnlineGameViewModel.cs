@@ -51,37 +51,38 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
-                
-        private string _ServerLabel;
+        /// <summary>
+        /// Label "Status"
+        /// </summary>
+        public string StatusLabel
+        {
+            get
+            {
+                return Messages.GAME_STATUS.Localize();
+            }
+        }
+
+        /// <summary>
+        /// Just label "Server status"
+        /// </summary>
         public string ServerLabel
         {
-            get { return _ServerLabel; }
-            set
-            {
-                if (_ServerLabel != value)
-                {
-                    _ServerLabel = value;
-                    NotifyPropertyChanged("ServerLabel");
-                }
-            }
+            get { return Messages.MP_SERVER.Localize(); }
+            
         }
 
-
-        private string _ClientLabel;
+        /// <summary>
+        /// Just label "Client status"
+        /// </summary>
         public string ClientLabel
         {
-            get { return _ClientLabel; }
-            set
-            {
-                if (_ClientLabel != value)
-                {
-                    _ClientLabel = value;
-                    NotifyPropertyChanged("ClientLabel");
-                }
-            }
+            get { return Messages.MP_CLIENT.Localize(); }
+            
         }
 
-
+        /// <summary>
+        /// Displays if server online
+        /// </summary>
         private string  _ServerStatusMessage;
         public string  ServerStatusMessage
         {
@@ -97,7 +98,9 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
-
+        /// <summary>
+        /// Displays if client version ok
+        /// </summary>
         private string _ClientStatusMessage;
         public string ClientStatusMessage
         {
@@ -112,16 +115,19 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
-
-        public string ClientServerStausMessage
+        /// <summary>
+        /// Display any custom message from server
+        /// </summary>
+        string _ClientServerStatusMessage;
+        public string ClientServerStatusMessage
         {
-            get { return _ClientServerStausMessage; }
+            get { return _ClientServerStatusMessage; }
             set
             {
-                if (_ClientServerStausMessage != value)
+                if (_ClientServerStatusMessage != value)
                 {
-                    _ClientServerStausMessage = value;
-                    NotifyPropertyChanged("ClientServerStausMessage");
+                    _ClientServerStatusMessage = value;
+                    NotifyPropertyChanged("ClientServerStatusMessage");
                 }
             }
         }
@@ -251,6 +257,9 @@ namespace Sanet.Kniffel.ViewModels
             await JoinManager.JoinTable(-1, SelectedRule.Rule.Rule);
         }
 
+        /// <summary>
+        /// When user enters lobby we ask server about its status and display this info for user
+        /// </summary>
         async void InitOnServer()
         {
             if (!InternetCheker.IsInternetAvailable())
@@ -260,13 +269,40 @@ namespace Sanet.Kniffel.ViewModels
                 return;
             }
             InitService initService = new InitService();
+            BusyWithServer = true;
             var respond = await initService.InitPlayer(SelectedPlayer.Player.ID);
+            BusyWithServer = false;
             if (respond != null)
             {
-                ServerStatusMessage = (respond.IsServerOnline) ? Messages.MP_SERVER_ONLINE.Localize() 
-                    : Messages.MP_SERVER_OFFLINE.Localize();
+                if (respond.IsServerOnline)
+                {
+                    ServerStatusMessage =   Messages.MP_SERVER_ONLINE.Localize();
+                    if (respond.IsClientUpdated)
+                    {
+                        ClientStatusMessage = Messages.MP_CLIENT_UPDATED.Localize();
+                    }
+                    else
+                    {
+                        ClientStatusMessage = Messages.MP_CLIENT_OUTDATED.Localize();
+                        ClientServerStatusMessage = Messages.MP_CLIENT_OUTDATED_STATUS.Localize() ;
+                    }
+                    
+                }
+                else
+                {
+                    ServerStatusMessage = Messages.MP_SERVER_OFFLINE.Localize();
+                    ClientStatusMessage = Messages.MP_CLIENT_UPDATED.Localize();
+                    ClientServerStatusMessage = Messages.MP_SERVER_OFFLINE_STATUS.Localize();
+                }
+                
+                
             }
-            else;
+            else
+            {
+                ServerStatusMessage = Messages.MP_SERVER_OFFLINE.Localize();
+                ClientStatusMessage = Messages.MP_CLIENT_UPDATED.Localize();
+                ClientServerStatusMessage = "";
+            }
         }
 
         #endregion

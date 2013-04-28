@@ -91,6 +91,8 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="100"/>
                             <RowDefinition/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         
                         <TextBlock Style="{StaticResource SubheaderTextStyle}"
@@ -120,6 +122,70 @@
                             </Style>
                         </ListView.ItemContainerStyle>
                     </ListView>
+
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
+                   Foreground="{StaticResource SanetBlue}"
+                   Text="{Binding StatusLabel}"
+                   Grid.Row="2"
+                   VerticalAlignment="Center"/>
+                        
+                        <Grid Grid.Row="3"
+                              Margin="20,0,10,20"
+                              Visibility="{Binding BusyWithServer,Converter={StaticResource ReversedVisibilityKey}}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding ServerLabel}" Foreground="White" 
+                                               HorizontalAlignment="Left"
+                                               TextAlignment="Left"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="30" />
+                            <TextBlock Text="{Binding ServerStatusMessage}" Foreground="White" 
+                                       Grid.Column="1"
+                                       FontWeight="Bold"
+                                               HorizontalAlignment="Left"
+                                               TextAlignment="Left"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="30" />
+                            <TextBlock Text="{Binding ClientLabel}" Foreground="White"
+                                       Grid.Column="2"
+                                               HorizontalAlignment="Left"
+                                               TextAlignment="Left"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="30" />
+                            <TextBlock Text="{Binding ClientStatusMessage}" Foreground="White" 
+                                       Grid.Column="3"
+                                       FontWeight="Bold"
+                                               HorizontalAlignment="Left"
+                                               TextAlignment="Left"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="30" />
+                            <TextBlock Text="{Binding ClientServerStatusMessage}" Foreground="White"
+                                       Grid.Row="1"
+                                       MaxWidth="450"
+                                       Grid.ColumnSpan="4"
+                                       Margin="0,10"
+                                               HorizontalAlignment="Left"
+                                       VerticalAlignment="Top"
+                                               TextAlignment="Left"
+                                               TextWrapping="Wrap"
+                                               FontSize="20"  />
+                        </Grid>
+                        <ProgressRing IsActive="{Binding BusyWithServer}"
+                                      Foreground="{StaticResource SanetBlue}"
+                                      Grid.Row="3"/>
                     </Grid>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -152,7 +218,6 @@
                         </ListView>
                     </Grid>
                 </StackPanel>
-                
                 
                 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
@@ -193,7 +258,7 @@
                 <TextBlock Style="{StaticResource HeaderTextStyle}"
                    Foreground="{StaticResource SanetBlue}"
                    x:Name="titleSnapText"
-                   Text="Sanet Dice Poker"
+                   Text="Magical Yatzy"
                            FontSize="40"
                            Margin="10"
                    VerticalAlignment="Center"/>

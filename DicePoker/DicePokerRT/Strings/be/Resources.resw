@@ -463,7 +463,7 @@
     <value>Попробуй нашу новую игру -</value>
   </data>
   <data name="DicePokerAdLine3" xml:space="preserve">
-    <value>Sanet Dice Poker:</value>
+    <value>Magical Yatzy:</value>
   </data>
   <data name="DicePokerAdLine4" xml:space="preserve">
     <value>4 набора правил</value>
@@ -668,5 +668,32 @@
   </data>
   <data name="WaitForPlayersLabel" xml:space="preserve">
     <value>Чакаем гульцоў</value>
+  </data>
+  <data name="ClientLabel" xml:space="preserve">
+    <value>Кліент:</value>
+  </data>
+  <data name="ClientOutdatedLabel" xml:space="preserve">
+    <value>Састарэў</value>
+  </data>
+  <data name="ClientOutdatedMessage" xml:space="preserve">
+    <value>Версія праграмы састарэлаю Для гульні анлайн неабходна абнавіць яе.</value>
+  </data>
+  <data name="ClientUpdatedLabel" xml:space="preserve">
+    <value>Ок</value>
+  </data>
+  <data name="ServerLabel" xml:space="preserve">
+    <value>Сервер:</value>
+  </data>
+  <data name="ServerOfflineLabel" xml:space="preserve">
+    <value>Оффлайн</value>
+  </data>
+  <data name="ServerOfflineMessage" xml:space="preserve">
+    <value>Не атрымалася злучыцца з серверам. Квлі ласка, паспрабуйце крыху пазней.</value>
+  </data>
+  <data name="ServerOnlineLabel" xml:space="preserve">
+    <value>Анлайн</value>
+  </data>
+  <data name="StatusLabel" xml:space="preserve">
+    <value>Статус</value>
   </data>
 </root>

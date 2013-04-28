@@ -423,7 +423,7 @@
   </data>
   <data name="AppNameLabel" xml:space="preserve">
     <value>Magischer Yatzy</value>
-    <comment>Sanet Dice Poker</comment>
+    <comment>Magischer Yatzy</comment>
   </data>
   <data name="OtherAppsLabel" xml:space="preserve">
     <value>Andere Apps</value>
@@ -482,8 +482,8 @@
     <comment>Ja, mit Vergnügen!</comment>
   </data>
   <data name="Privacy1.Text" xml:space="preserve">
-    <value>Sanet Dice Poker sammelt, publiziert, speichert, übergibt keine Iher persönlichen Informationen oder Daten und überwacht keiner Iher Bewegungen.</value>
-    <comment>Sanet Dice Poker sammelt, publiziert, speichert, übergibt keine Iher persönlichen Informationen oder Daten und überwacht keiner Iher Bewegungen.</comment>
+    <value>Magischer Yatzy sammelt, publiziert, speichert, übergibt keine Iher persönlichen Informationen oder Daten und überwacht keiner Iher Bewegungen.</value>
+    <comment>Magischer Yatzy sammelt, publiziert, speichert, übergibt keine Iher persönlichen Informationen oder Daten und überwacht keiner Iher Bewegungen.</comment>
   </data>
   <data name="Privacy2.Text" xml:space="preserve">
     <value>Die Veröffentlichung Ihrer Daten wie Windows-User-Name, Email, Live-Id für Ihre 	
@@ -504,8 +504,8 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <comment>Das lang ersehnte Spiel ist endlich da!</comment>
   </data>
   <data name="DicePokerAdLine3" xml:space="preserve">
-    <value>Sanet Dice Poker:</value>
-    <comment>Sanet Dice Poker:</comment>
+    <value>Magischer Yatzy:</value>
+    <comment>Magischer Yatzy:</comment>
   </data>
   <data name="DicePokerAdLine4" xml:space="preserve">
     <value>4 Regelneinstellungen</value>
@@ -772,5 +772,32 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
   </data>
   <data name="WaitForPlayersLabel" xml:space="preserve">
     <value>Ждем игроков</value>
+  </data>
+  <data name="ClientLabel" xml:space="preserve">
+    <value>Клиент</value>
+  </data>
+  <data name="ClientOutdatedLabel" xml:space="preserve">
+    <value>Устарел</value>
+  </data>
+  <data name="ClientOutdatedMessage" xml:space="preserve">
+    <value>Ваша версия программы устарела, для игры по сети необходимо обновить ее</value>
+  </data>
+  <data name="ClientUpdatedLabel" xml:space="preserve">
+    <value>Обновлен</value>
+  </data>
+  <data name="ServerLabel" xml:space="preserve">
+    <value>Сервер</value>
+  </data>
+  <data name="ServerOfflineLabel" xml:space="preserve">
+    <value>Оффлайн</value>
+  </data>
+  <data name="ServerOfflineMessage" xml:space="preserve">
+    <value>В настоящее время сервер игры не доступен, пожалуйста попробуйте позже</value>
+  </data>
+  <data name="ServerOnlineLabel" xml:space="preserve">
+    <value>Онлайн</value>
+  </data>
+  <data name="StatusLabel" xml:space="preserve">
+    <value>Статус</value>
   </data>
 </root>
