@@ -141,7 +141,14 @@ namespace Sanet.Kniffel.Server
             //}
         }
 
-        
+        public static int ClientsCount
+        {
+            get 
+            {
+                return clientList.Count;
+            }
+
+    }
     }
 }
    

@@ -111,6 +111,7 @@ namespace Sanet.Kniffel.ViewModels
                 {
                     _ClientStatusMessage = value;
                     NotifyPropertyChanged("ClientStatusMessage");
+                    NotifyPropertyChanged("IsReadyToPlay");
                 }
             }
         }
@@ -183,7 +184,9 @@ namespace Sanet.Kniffel.ViewModels
         {
             get 
             {
-                if (_ServerStatusMessage == Messages.MP_SERVER_ONLINE)
+                if (string.IsNullOrEmpty(ServerStatusMessage))
+                    return false;
+                if (ServerStatusMessage.Contains( Messages.MP_SERVER_ONLINE.Localize()) && ClientStatusMessage==Messages.MP_CLIENT_UPDATED.Localize())
                         return true;
                     else
                         return false;
@@ -276,10 +279,14 @@ namespace Sanet.Kniffel.ViewModels
             {
                 if (respond.IsServerOnline)
                 {
-                    ServerStatusMessage =   Messages.MP_SERVER_ONLINE.Localize();
+                    ServerStatusMessage = string.Format("{0} ({1})", Messages.MP_SERVER_ONLINE.Localize(), respond.OnlinePlayersCount);
                     if (respond.IsClientUpdated)
                     {
                         ClientStatusMessage = Messages.MP_CLIENT_UPDATED.Localize();
+                        if (respond.Message==Messages.MP_SERVER_MAINTANANCE)
+                            ClientServerStatusMessage =string.Format( Messages.MP_SERVER_MAINTANANCE.Localize(),respond.ServerRestartDate.ToString());
+                        else
+                            ClientServerStatusMessage = "";
                     }
                     else
                     {

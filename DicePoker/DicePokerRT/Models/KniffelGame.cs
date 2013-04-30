@@ -439,6 +439,12 @@ namespace Sanet.Kniffel.Models
             //sending result to everyone
             if (ResultApplied != null)
                 ResultApplied(this, new ResultEventArgs(CurrentPlayer, result));
+            //update players results on server
+#if SERVER
+            result.Value = result.PossibleValue;
+            var cr =CurrentPlayer.Results.FirstOrDefault(f => f.ScoreType == result.ScoreType);
+            cr=  result;
+#endif
             //check for numeric bonus and apply it
             if (Rules.HasStandardBonus)
             {
@@ -458,11 +464,7 @@ namespace Sanet.Kniffel.Models
                         }));
                 }
             }
-#if SERVER
-            result.Value = result.PossibleValue;
-            var cr =CurrentPlayer.Results.FirstOrDefault(f => f.ScoreType == result.ScoreType);
-            cr=  result;
-#endif
+
             DoMove();
            
         }

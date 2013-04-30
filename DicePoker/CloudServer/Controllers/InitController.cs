@@ -1,4 +1,5 @@
-﻿using Sanet.Kniffel.WebApi;
+﻿using Sanet.Kniffel.Server;
+using Sanet.Kniffel.WebApi;
 using Sanet.Network;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ namespace PokerServerService.Controllers
                 var service = new ServerInitService();
                 var respond = await service.InitPlayer(id, versionStr);
                 respond.IsServerOnline = true;
+                respond.OnlinePlayersCount = ClientRequestHandler.ClientsCount;
                 return respond;
                 
             }

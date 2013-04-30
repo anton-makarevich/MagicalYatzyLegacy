@@ -16,5 +16,6 @@ namespace Sanet.Network
         public bool IsClientUpdated { get; set; }
         public DateTime ServerRestartDate { get; set; }
         public int Code { get; set; }
+        public int OnlinePlayersCount { get; set; }
     }
 }

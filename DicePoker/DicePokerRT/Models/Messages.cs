@@ -59,5 +59,7 @@ namespace Sanet.Kniffel.Models
 
         public const string MP_CLIENT_OUTDATED_STATUS = "ClientOutdatedMessage";
         public const string MP_SERVER_OFFLINE_STATUS = "ServerOfflineMessage";
+        
+        public const string MP_SERVER_MAINTANANCE = "ServerMaintananceMessage";
     }
 }

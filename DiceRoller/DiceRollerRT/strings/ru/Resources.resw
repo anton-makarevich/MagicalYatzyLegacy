@@ -696,4 +696,7 @@
   <data name="StatusLabel" xml:space="preserve">
     <value>Статус</value>
   </data>
+  <data name="ServerMaintananceMessage" xml:space="preserve">
+    <value>ВНИМАНИЕ! {0} (UTC) сервер будет отключен для профилактических работ , сетевая игра не будет доступна некоторое время (обычно несколько минут).</value>
+  </data>
 </root>

@@ -705,4 +705,7 @@
   <data name="StatusLabel" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="ServerMaintananceMessage" xml:space="preserve">
+    <value>ATTENSION! {0} (UTC) server will be shut down for maintanance , network game will not be available at that time (usually just for few mins).</value>
+  </data>
 </root>
