@@ -72,7 +72,7 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
                     results, 
                     player.SeatNo,
                     player.IsMoving,
-                    false,//issitout not implemented yet
+                    player.IsReady,//issitout not implemented yet
                     player.Language,
                     player.PicUrl,
                     player.Client);

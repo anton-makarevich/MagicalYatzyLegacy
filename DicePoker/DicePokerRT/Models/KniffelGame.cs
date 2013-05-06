@@ -100,6 +100,25 @@ namespace Sanet.Kniffel.Models
                 _IsPlaying = value;
             }
         }
+
+        /// <summary>
+        /// roll of the game-
+        /// </summary>
+        public int Roll
+        {
+            get
+            {
+                int _roll = 1;
+                if (Players!=null)
+                    foreach (Player p in Players)
+                    {
+                        if (p.Roll > _roll)
+                            _roll = p.Roll;
+                    }
+                return _roll;
+            }
+        }
+
         public string Password { get; set; }
 
         public DieResult LastDiceResult
@@ -220,9 +239,9 @@ namespace Sanet.Kniffel.Models
                     }
                     if (GameFinished != null)
                         GameFinished(this, null);
-//#if SERVER
-//                    RestartGame();
-//#endif
+#if SERVER
+                    RestartGame();
+#endif
                 }
                 else
                 {
@@ -557,7 +576,8 @@ namespace Sanet.Kniffel.Models
 
         public void SetPlayerReady(Player player, bool isready)
         {
-            if (IsPlaying)
+            //allow to join on virst round
+            if (IsPlaying && Move>1)
                 isready = false;
             var explayer=Players.FirstOrDefault(f => f.ID == player.ID);
             explayer.IsReady = isready;
@@ -570,6 +590,8 @@ namespace Sanet.Kniffel.Models
         {
             
         }
+
+        
 
         /// <summary>
         /// returns wheather we have at least one fixed dice of this value

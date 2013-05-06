@@ -263,52 +263,63 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// When user enters lobby we ask server about its status and display this info for user
         /// </summary>
-        async void InitOnServer()
+        public async void InitOnServer()
         {
+            if (SelectedPlayer == null || BusyWithServer)
+                return;
+
             if (!InternetCheker.IsInternetAvailable())
             {
                 Utilities.ShowMessage("NoInetMessage".Localize(), Messages.APP_NAME.Localize());
                 ServerStatusMessage = Messages.MP_SERVER_OFFLINE.Localize();
                 return;
             }
-            InitService initService = new InitService();
-            BusyWithServer = true;
-            var respond = await initService.InitPlayer(SelectedPlayer.Player.ID);
-            BusyWithServer = false;
-            if (respond != null)
+            try
             {
-                if (respond.IsServerOnline)
+                InitService initService = new InitService();
+                BusyWithServer = true;
+                var respond = await initService.InitPlayer(SelectedPlayer.Player.ID);
+                BusyWithServer = false;
+                if (respond != null)
                 {
-                    ServerStatusMessage = string.Format("{0} ({1})", Messages.MP_SERVER_ONLINE.Localize(), respond.OnlinePlayersCount);
-                    if (respond.IsClientUpdated)
+                    if (respond.IsServerOnline)
                     {
-                        ClientStatusMessage = Messages.MP_CLIENT_UPDATED.Localize();
-                        if (respond.Message==Messages.MP_SERVER_MAINTANANCE)
-                            ClientServerStatusMessage =string.Format( Messages.MP_SERVER_MAINTANANCE.Localize(),respond.ServerRestartDate.ToString());
+                        ServerStatusMessage = string.Format("{0} ({1})", Messages.MP_SERVER_ONLINE.Localize(), respond.OnlinePlayersCount);
+                        if (respond.IsClientUpdated)
+                        {
+                            ClientStatusMessage = Messages.MP_CLIENT_UPDATED.Localize();
+                            if (respond.Message == Messages.MP_SERVER_MAINTANANCE)
+                                ClientServerStatusMessage = string.Format(Messages.MP_SERVER_MAINTANANCE.Localize(), respond.ServerRestartDate.ToString());
+                            else
+                                ClientServerStatusMessage = "";
+                        }
                         else
-                            ClientServerStatusMessage = "";
+                        {
+                            ClientStatusMessage = Messages.MP_CLIENT_OUTDATED.Localize();
+                            ClientServerStatusMessage = Messages.MP_CLIENT_OUTDATED_STATUS.Localize();
+                        }
+
                     }
                     else
                     {
-                        ClientStatusMessage = Messages.MP_CLIENT_OUTDATED.Localize();
-                        ClientServerStatusMessage = Messages.MP_CLIENT_OUTDATED_STATUS.Localize() ;
+                        ServerStatusMessage = Messages.MP_SERVER_OFFLINE.Localize();
+                        ClientStatusMessage = Messages.MP_CLIENT_UPDATED.Localize();
+                        ClientServerStatusMessage = Messages.MP_SERVER_OFFLINE_STATUS.Localize();
                     }
-                    
+
+
                 }
                 else
                 {
                     ServerStatusMessage = Messages.MP_SERVER_OFFLINE.Localize();
                     ClientStatusMessage = Messages.MP_CLIENT_UPDATED.Localize();
-                    ClientServerStatusMessage = Messages.MP_SERVER_OFFLINE_STATUS.Localize();
+                    ClientServerStatusMessage = "";
                 }
-                
-                
             }
-            else
+            catch (Exception ex)
             {
-                ServerStatusMessage = Messages.MP_SERVER_OFFLINE.Localize();
-                ClientStatusMessage = Messages.MP_CLIENT_UPDATED.Localize();
-                ClientServerStatusMessage = "";
+                LogManager.Log("NOGVM.InitOnServer", ex);
+                ClientServerStatusMessage = ex.Message;
             }
         }
 

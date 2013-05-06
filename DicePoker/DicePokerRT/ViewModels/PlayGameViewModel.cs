@@ -228,17 +228,26 @@ namespace Sanet.Kniffel.ViewModels
                 if (CanRoll)
                     return false;
 #if ONLINE
-                var sp = Players.FirstOrDefault(f => f.Name == ((KniffelGameClient)Game).MyName);
-                if (sp == null)
-                    return false;
-                if (Game.Move == 1 && !sp.IsReady && sp.Roll == 1)
+                try
                 {
-                    Title = "WaitForPlayersLabel".Localize();
-                    return true;
+                    var sp = Players.FirstOrDefault(f => f.Name == ((KniffelGameClient)Game).MyName);
+                    if (sp == null)
+                        return false;
+                    if (Game.Move < 2 && !sp.IsReady )//&& Game.Roll == 1
+                    {
+                        Title = "WaitForPlayersLabel".Localize();
+                        return true;
+                    }
+                    else
+                        Title = "WaitForGameLabel".Localize();
                 }
-                else
-                    Title = "WaitForGameLabel".Localize();
+                catch(Exception ex)
+                {
+                    var t = ex.Message;
+                    return false;
+                }
 #endif
+                   
                 return false;
             }
         }
@@ -643,6 +652,7 @@ namespace Sanet.Kniffel.ViewModels
                         }
                         NotifyPropertyChanged("Players");
                         NotifyPropertyChanged("DicePanelRTWidth");
+                        NotifyPropertyChanged("CanStart");
                     });
         }
 
@@ -699,26 +709,29 @@ namespace Sanet.Kniffel.ViewModels
 
         void NotifyPlayerChanged()
         {
-            NotifyPropertyChanged("SelectedPlayer");
-            NotifyPropertyChanged("RollLabel");
-            NotifyPropertyChanged("CanFix");
-            NotifyPropertyChanged("CanStart");
-            
-            if (IsPlayerSelected)
-            {
-                Title = string.Format("{2} {0}, {1}", Game.Move, SelectedPlayer.Name, Messages.GAME_MOVE.Localize());
-                foreach (var pw in Players)
-                    pw.Refresh();
-            }
-            if (Game.Rules.Rule== Rules.krMagic)
-            {
-                NotifyPropertyChanged("IsMagicRollEnabled");
-                NotifyPropertyChanged("IsManualSetEnabled");
-                NotifyPropertyChanged("IsForthRollEnabled");
-                NotifyPropertyChanged("IsMagicRollVisible");
-                NotifyPropertyChanged("IsManualSetVisible");
-                NotifyPropertyChanged("IsForthRollVisible");
-            }
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        NotifyPropertyChanged("SelectedPlayer");
+                        NotifyPropertyChanged("RollLabel");
+                        NotifyPropertyChanged("CanFix");
+                        NotifyPropertyChanged("CanStart");
+
+                        if (IsPlayerSelected)
+                        {
+                            Title = string.Format("{2} {0}, {1}", Game.Move, SelectedPlayer.Name, Messages.GAME_MOVE.Localize());
+                            foreach (var pw in Players)
+                                pw.Refresh();
+                        }
+                        if (Game.Rules.Rule == Rules.krMagic)
+                        {
+                            NotifyPropertyChanged("IsMagicRollEnabled");
+                            NotifyPropertyChanged("IsManualSetEnabled");
+                            NotifyPropertyChanged("IsForthRollEnabled");
+                            NotifyPropertyChanged("IsMagicRollVisible");
+                            NotifyPropertyChanged("IsManualSetVisible");
+                            NotifyPropertyChanged("IsForthRollVisible");
+                        }
+                    });
         }
         bool lastRoll;
         /// <summary>
@@ -765,14 +778,17 @@ namespace Sanet.Kniffel.ViewModels
         /// <param name="value"></param>
         void SetCanRoll(bool value)
         {
-            if (!IsPlayerSelected)
-                _CanRoll = false;
-            else if (!SelectedPlayer.IsHuman||!SelectedPlayer.IsReady)
-                _CanRoll = false;
-            else
-                _CanRoll = value;
-            NotifyPropertyChanged("CanRoll");
-            NotifyPropertyChanged("CanStart");
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        if (!IsPlayerSelected)
+                            _CanRoll = false;
+                        else if (!SelectedPlayer.IsHuman || !SelectedPlayer.IsReady)
+                            _CanRoll = false;
+                        else
+                            _CanRoll = value;
+                        NotifyPropertyChanged("CanRoll");
+                        NotifyPropertyChanged("CanStart");
+                    });
         }
 
         /// <summary>

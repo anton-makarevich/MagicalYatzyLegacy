@@ -582,7 +582,10 @@ namespace Sanet.Kniffel.Models
                     player.IsMoving = seat.IsPlaying;
                     player.Language = seat.Language;
                     player.PicUrl = seat.PhotoUri;
+                    player.IsReady = seat.IsReady;
 
+                    if (PlayerReady != null)
+                        PlayerReady(null, new PlayerEventArgs(player));
 
                     int resCount = 0;
                     foreach (var result in player.Results)

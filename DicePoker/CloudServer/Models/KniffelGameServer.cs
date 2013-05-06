@@ -108,6 +108,13 @@ namespace Sanet.Kniffel.Models
         void _Game_PlayerJoined(object sender, PlayerEventArgs e)
         {
             Send(new PlayerJoinedCommand(e.Player.Name,e.Player.SeatNo, e.Player.Client, e.Player.Language));
+            //if (e.Player.Name == _Player.Name)
+            //{
+            //    foreach (Player p in Game.Players)
+            //    {
+            //        _Game_PlayerReady(null, new PlayerEventArgs(p));
+            //    }
+            //}
         }
 
         void _Game_MoveChanged(object sender, MoveEventArgs e)
