@@ -4,6 +4,7 @@ using Sanet.Kniffel.Models.Interfaces;
 using Sanet.Models;
 using System;
 using System.Collections.Generic;
+using Windows.UI.Xaml;
 namespace Sanet.Kniffel.ViewModels
 {
     public class PlayerWrapper:BaseViewModel,IPlayer
@@ -279,9 +280,7 @@ namespace Sanet.Kniffel.ViewModels
                 NotifyPropertyChanged("IsHuman");
             }
         }
-
         
-
         public bool IsMoving 
         {
             get
@@ -291,6 +290,10 @@ namespace Sanet.Kniffel.ViewModels
             set
             {
                 _Player.IsMoving = value;
+#if ONLINE
+                if (_Player.Game!=null && _Player.Game is KniffelGameClient)
+                    IsMyTurn = IsMoving;
+#endif
                 NotifyPropertyChanged("IsMoving");
             }
         }
@@ -698,6 +701,121 @@ namespace Sanet.Kniffel.ViewModels
                 MagicPressed(this, null);
         }
 
+
+        public override void Dispose()
+        {
+            StopTimer();
+            _timer.Tick-=_timer_Tick;
+            _timer = null;
+            base.Dispose();
+        }
+
+        #endregion
+
+        #region timer
+        //Used to show timer progress until round ends in online game 
+        int _Counter = 60;
+        public int Counter
+        {
+            get
+            {
+                return _Counter;
+            }
+            set
+            {
+                _Counter = value;
+                //Status = "Thinking..."; // +value;
+                NotifyPropertyChanged("Counter");
+            }
+        }
+        DispatcherTimer _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+
+        void _timer_Tick(object sender, object e)
+        {
+            if (Counter == 5 && Player.SeatNo == Game.CurrentPlayer.SeatNo)
+                SoundsProvider.PlaySound(_player, "timeoutwarning");
+            if (Counter == 0)//time off
+            {
+                StopTimer();
+            }
+            else
+            {
+                Counter--;
+            }
+
+        }
+
+
+        public Duration Duration
+        {
+            get
+            {
+                return new Duration(TimeSpan.FromSeconds(Timeout));
+            }
+
+        }
+
+
+        private int _Timeout=60;
+        public int Timeout
+        {
+            get
+            { 
+                return _Timeout; 
+            }
+            set
+            {
+                if (_Timeout != value)
+                {
+                    _Timeout = value;
+                    NotifyPropertyChanged("Timeout");
+                    NotifyPropertyChanged("Duration");
+                }
+            }
+        }
+
+
+        private bool _IsMyTurn=false;
+        public bool IsMyTurn
+        {
+            get
+            { 
+                return _IsMyTurn;
+            }
+            set
+            {
+                if (_IsMyTurn!=value)
+
+                    _IsMyTurn = value;
+                    
+                    if (value)
+                    {
+                        //if (Player.SeatNo == Game.CurrentPlayer.SeatNo)
+                        //    SoundsProvider.PlaySound(_player, "myturn");
+                        StartTimer();
+                    }
+                    else
+                        StopTimer();
+                NotifyPropertyChanged("IsMyTurn");
+            }
+        }
+
+
+        private void StartTimer()
+        {
+            //starting timer
+            Counter = Timeout;
+            _timer.Tick += _timer_Tick;
+            _timer.Start();
+        }
+        public void StopTimer()
+        {
+            if (_timer.IsEnabled)
+            {
+                _timer.Tick -= _timer_Tick;
+                _timer.Stop();
+            }
+        }
 
         #endregion
 

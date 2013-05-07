@@ -1228,6 +1228,12 @@
     <Content Include="..\DicePokerRT\Audio\magic.mp3">
       <Link>Audio\magic.mp3</Link>
     </Content>
+    <Content Include="..\DicePokerRT\Audio\myturn.mp3">
+      <Link>Audio\myturn.mp3</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Audio\timeoutwarning.mp3">
+      <Link>Audio\timeoutwarning.mp3</Link>
+    </Content>
     <Content Include="..\DicePokerRT\Audio\win.mp3">
       <Link>Audio\win.mp3</Link>
     </Content>

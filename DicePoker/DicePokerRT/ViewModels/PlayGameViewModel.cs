@@ -636,6 +636,8 @@ namespace Sanet.Kniffel.ViewModels
                         var r = p.Results.Find(f => f.ScoreType == e.Result.ScoreType);
                         r.Value = e.Result.PossibleValue;
                         p.UpdateTotal();
+                        p.IsMoving = false;
+                        NotifyPlayerChanged();
                         RollResults = null;
                     });
         }
@@ -663,6 +665,9 @@ namespace Sanet.Kniffel.ViewModels
                         if (MoveChanged != null)
                             MoveChanged(this, e);
                         SetCanRoll(true);
+                        var p = Players.FirstOrDefault(f=>f.Name==e.Player.Name);
+                        if (p != null)
+                            p.IsMoving = true;
                         NotifyPlayerChanged();
                     });
             

@@ -322,7 +322,7 @@
                         
                     </Grid>
                 </ScrollViewer>
-                <HyperlinkButton
+                <!--<HyperlinkButton
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontSize="20"
@@ -330,7 +330,7 @@
                     Grid.Row="2"
                     Grid.ColumnSpan="3"
                     Content="{Binding NavigateToLeaderboardLabel}"
-                    NavigateUri="http://sanet.by/Kniffel"/>
+                    NavigateUri="http://sanet.by/Kniffel"/>-->
             </Grid>
                 <Grid
                 x:Name="SnapGrid"

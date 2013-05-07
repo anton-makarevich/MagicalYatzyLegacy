@@ -38,9 +38,9 @@ namespace Sanet.Models
 
         //sound
         protected MediaElement _player = new MediaElement();
-        public void Dispose()
+        public virtual void Dispose()
         {
-            _player = null;
+             _player = null;
         }
     }
 }

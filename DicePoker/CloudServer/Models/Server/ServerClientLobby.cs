@@ -149,12 +149,14 @@ namespace Sanet.Kniffel.Server
                     else
                     {
                         player = exPlayer;
+                        
                         client = m_Table;
                     }
 
                 }
             }
-            
+            player.IsReady = false;
+
             client.JoinGame(player);
             //ToDO: check if needed to close previous
             m_Table= client;

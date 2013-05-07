@@ -427,7 +427,13 @@ namespace Sanet.Kniffel.Models
 
         public void LeaveGame(Player player)
         {
-            
+            if (Players.Contains(player))
+            {
+                Players.Remove(player);
+                if (PlayerLeft != null)
+                    PlayerLeft(null, new PlayerEventArgs(player));
+                player = null;
+            }
         }
 
         /// <summary>
@@ -498,10 +504,7 @@ namespace Sanet.Kniffel.Models
             var p = Players.FirstOrDefault(f => f.Name == e.Command.Name);
             if (p != null)
             {
-                Players.Remove(p);
-                if (PlayerLeft!=null)
-                    PlayerLeft(null, new PlayerEventArgs(p));
-                p=null;
+                LeaveGame(p);
             }
         }
 
@@ -513,6 +516,8 @@ namespace Sanet.Kniffel.Models
                 fixedRollResults = new List<int>();
                 if (CurrentPlayer != null)
                     CurrentPlayer.IsMoving = false;
+                foreach (Player p in Players)
+                    p.IsMoving = false;
 
                 Move = e.Command.Round;
                 CurrentPlayer = Players.Find(f => f.Name == e.Command.Name);
@@ -569,39 +574,52 @@ namespace Sanet.Kniffel.Models
         void m_CommandObserver_TableInfoCommandReceived(object sender, CommandEventArgs<Protocol.Commands.Game.TableInfoCommand> e)
         {
             
-                Move = e.Command.Round;
-                foreach (var seat in e.Command.Seats)
+            Move = e.Command.Round;
+            //remove players 'dead' players from the UI
+            if (Players != null)
+            {
+                foreach (Player exp in Players)
                 {
-                    //await Window.Current.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => { });
-                    var player = new Player();
-
-                    player.Game = this;
-                    player.SeatNo = seat.SeatNo;
-                    player.Name = seat.Name;
-                    player.Client = seat.ClientType;
-                    player.IsMoving = seat.IsPlaying;
-                    player.Language = seat.Language;
-                    player.PicUrl = seat.PhotoUri;
-                    player.IsReady = seat.IsReady;
-
-                    if (PlayerReady != null)
-                        PlayerReady(null, new PlayerEventArgs(player));
-
-                    int resCount = 0;
-                    foreach (var result in player.Results)
-                    {
-                        var value = seat.Results[resCount];
-                        if (value != -1)
-                            result.Value = value;
-                        resCount++;
-                        value = seat.Results[resCount];
-                        if (value != 0)
-                            result.HasBonus = true;
-                        resCount++;
-                    }
-
-                    JoinGame(player);
+                    var s = e.Command.Seats.FirstOrDefault(f => f.Name == exp.Name);
+                    if (s == null)
+                        LeaveGame(exp);
                 }
+            }
+
+            foreach (var seat in e.Command.Seats)
+            {
+                //await Window.Current.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => { });
+                var player = new Player();
+
+                player.Game = this;
+                player.SeatNo = seat.SeatNo;
+                player.Name = seat.Name;
+                player.Client = seat.ClientType;
+                player.IsMoving = seat.IsPlaying;
+                player.Language = seat.Language;
+                player.PicUrl = seat.PhotoUri;
+                player.IsReady = seat.IsReady;
+
+                if (PlayerReady != null)
+                    PlayerReady(null, new PlayerEventArgs(player));
+
+                int resCount = 0;
+                foreach (var result in player.Results)
+                {
+                    var value = seat.Results[resCount];
+                    if (value != -1)
+                        result.Value = value;
+                    resCount++;
+                    value = seat.Results[resCount];
+                    if (value != 0)
+                        result.HasBonus = true;
+                    resCount++;
+                }
+
+                JoinGame(player);
+            }
+            
+            
             
         }
 
