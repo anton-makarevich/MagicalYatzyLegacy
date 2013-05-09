@@ -92,6 +92,9 @@ namespace Sanet.Kniffel.Models
 
         public event EventHandler<PlayerEventArgs> PlayerReady;
 
+        //Chat Message
+        public event EventHandler<ChatMessageEventArgs> OnChatMessage;
+
         #endregion
 
         #region Properties
@@ -537,6 +540,19 @@ namespace Sanet.Kniffel.Models
                 }
             }
         }
+
+
+        /// <summary>
+        /// Server only method to send chat messages
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public void SendChatMessage(ChatMessage message)
+        {
+            if (OnChatMessage!=null)
+                OnChatMessage(this, new ChatMessageEventArgs(message));
+        }
+
 
         /// <summary>
         /// On Play Again

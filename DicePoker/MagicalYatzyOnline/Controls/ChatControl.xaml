@@ -1,0 +1,94 @@
+﻿<local:PopupPaneBase
+    x:Class="Poker8.Controls.ChatControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Poker8.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="768"
+    d:DesignWidth="1366">
+
+    <Viewbox
+        StretchDirection="Both"
+        Stretch="Fill">
+        <Grid
+            MinWidth="1366"
+            MinHeight="768">
+            <Grid Background="#0f6479" Opacity="0.5"
+                  Tapped="Cancel_Tapped"/>
+            <Border Background="Black" Opacity="0.4"
+                  Width="900"
+                  Height="450"
+                  CornerRadius="10">
+                
+            </Border>
+            <Border  Width="875"
+                  Height="425"
+                        CornerRadius="10">
+                <Border.Background>
+                    <ImageBrush ImageSource="ms-appx:///Assets/back_texture.png"/>
+                </Border.Background>
+                <Grid>
+                    <Button
+                        Style="{StaticResource XButton}"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        Margin="-20"
+                        Content="X" Click="Cancel_Click"/>
+                    <Image 
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Left"
+                        Height="400"
+                        Source="ms-appx:///Assets/girl.png"/>
+                    
+                    <!--Outside was general popup look-->
+                    <!--now only specific register content-->
+                    <Grid
+                        HorizontalAlignment="Right"
+                        Width="630"
+                        Margin="10"
+                        >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            Margin="20"
+                            FontSize="25"
+                            Text="CHAT"/>
+
+                        <ListView
+                    Grid.Row="1"
+                    ItemsSource="{Binding Messages}"
+                    ItemTemplate="{StaticResource ChatMessageTemplate}"/>
+                        <Grid 
+                            Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox
+                            Height="40"
+                        Text="{Binding CurrentMessage, Mode=TwoWay}"/>
+                        <Button
+                                    IsEnabled="{Binding HasMoney}"
+                            Style="{StaticResource BButton}"
+                            Content="SEND"
+                            Grid.Column="1"
+                            Margin="10"
+                            HorizontalAlignment="Right"
+                            Width="100"
+                            Height="40" Command="{Binding SendCommand}"/>
+                        </Grid>
+                        
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Viewbox>
+</local:PopupPaneBase>

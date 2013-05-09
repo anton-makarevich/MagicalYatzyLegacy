@@ -138,6 +138,9 @@
     <Compile Include="..\..\DiceRoller\DiceRollerRT\ViewModels\SettingsViewModel.cs">
       <Link>ViewModels\SettingsViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\CloudServer\Models\ChatMessage.cs">
+      <Link>Models\ChatMessage.cs</Link>
+    </Compile>
     <Compile Include="..\CloudServer\Models\Interfaces\IKniffelGame.cs">
       <Link>Models\Interfaces\IKniffelGame.cs</Link>
     </Compile>

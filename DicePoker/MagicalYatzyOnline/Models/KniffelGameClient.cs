@@ -80,6 +80,11 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         public event EventHandler<PlayerEventArgs> MagicRollUsed;
 
+        /// <summary>
+        /// Chat message received
+        /// </summary>
+        public event EventHandler<ChatMessageEventArgs> OnChatMessage;
+
         #endregion
 
         #region Properties
@@ -435,6 +440,9 @@ namespace Sanet.Kniffel.Models
                 player = null;
             }
         }
+
+        public void SendChatMessage(ChatMessage message)
+        { }
 
         /// <summary>
         /// returns wheather we have at least one fixed dice of this value

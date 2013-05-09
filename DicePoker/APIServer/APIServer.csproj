@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0D34D525-77AF-46E5-BF12-62568E47AA44}</ProjectGuid>
+    <ProjectGuid>{A133B0E5-817E-4CE5-80C3-FFC05B2BE764}</ProjectGuid>
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CloudServer</RootNamespace>
-    <AssemblyName>CloudServer</AssemblyName>
+    <RootNamespace>APIServer</RootNamespace>
+    <AssemblyName>APIServer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -26,7 +26,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;SERVER</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -34,28 +34,15 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE;SERVER</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\DicePokerRT\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Diagnostics, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\DicePokerRT\packages\WindowsAzure.Storage.1.7.0.0\lib\net35-full\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -131,122 +118,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\SanetWeb\Models\LogManager.cs">
-      <Link>Models\Common\LogManager.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\KniffelRulesExtensions.cs">
-      <Link>Models\KniffelRulesExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\Result.cs">
-      <Link>Models\Result.cs</Link>
-    </Compile>
     <Compile Include="..\DicePokerRT\Common\ServerHttpMessage.cs">
-      <Link>Models\Common\ServerHttpMessage.cs</Link>
-    </Compile>
-    <Compile Include="..\DicePokerRT\DicePanel\DieResult.cs">
-      <Link>Models\DieResult.cs</Link>
-    </Compile>
-    <Compile Include="..\DicePokerRT\Models\DiceRandomGenerator.cs">
-      <Link>Models\DiceRandomGenerator.cs</Link>
-    </Compile>
-    <Compile Include="..\DicePokerRT\Models\Enums\ClientType.cs">
-      <Link>Models\Enums\ClientType.cs</Link>
-    </Compile>
-    <Compile Include="..\DicePokerRT\Models\Enums\GameRule.cs">
-      <Link>Models\Enums\GameRule.cs</Link>
-    </Compile>
-    <Compile Include="..\DicePokerRT\Models\Enums\KniffelScore.cs">
-      <Link>Models\Enums\KniffelScore.cs</Link>
-    </Compile>
-    <Compile Include="..\DicePokerRT\Models\Enums\PlayerType.cs">
-      <Link>Models\Enums\PlayerType.cs</Link>
-    </Compile>
-    <Compile Include="..\DicePokerRT\Models\Events\EventArgs.cs">
-      <Link>Models\Events\EventArgs.cs</Link>
-    </Compile>
-    <Compile Include="..\DicePokerRT\Models\KniffelGame.cs">
-      <Link>Models\KniffelGame.cs</Link>
-    </Compile>
-    <Compile Include="..\DicePokerRT\Models\KniffelPlayer.cs">
-      <Link>Models\KniffelPlayer.cs</Link>
-    </Compile>
-    <Compile Include="..\DicePokerRT\Models\KniffelRule.cs">
-      <Link>Models\KniffelRule.cs</Link>
-    </Compile>
-    <Compile Include="..\DicePokerRT\Models\Messages.cs">
-      <Link>Models\Common\Messages.cs</Link>
-    </Compile>
-    <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IPlayer.cs">
-      <Link>Models\Interfaces\IPlayer.cs</Link>
-    </Compile>
-    <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IRollResult.cs">
-      <Link>Models\Interfaces\IRollResult.cs</Link>
-    </Compile>
-    <Compile Include="..\MagicalYatzyOnline\Models\Protocol\WebApi\AbstractHttpService.cs">
-      <Link>Models\WebApi\AbstractHttpService.cs</Link>
+      <Link>Models\ServerHttpMessage.cs</Link>
     </Compile>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\InitController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InitController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ChatMessage.cs" />
-    <Compile Include="Models\Common\AsyncLock.cs" />
-    <Compile Include="Models\Common\BaseViewModel.cs" />
-    <Compile Include="Models\Common\BlockingQueue.cs" />
-    <Compile Include="Models\Common\LocalizerExtensions.cs" />
-    <Compile Include="Models\Common\StringTokenizer.cs" />
-    <Compile Include="Models\Interfaces\IKniffelGame.cs" />
-    <Compile Include="Models\KniffelGameServer.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Game\ApplyScoreCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Game\GameEndedCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerReadyCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerLeftCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Game\RoundChangedCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Game\FixDiceCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Game\RollReportCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerChatMessageCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerJoinedCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerPingCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Game\TableInfoCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Game\TableInfoNeededCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Lobby\AbstractLobbyCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Lobby\AbstractLobbyResponse.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Lobby\GameCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Lobby\JoinCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Lobby\JoinResponse.cs" />
-    <Compile Include="Models\KniffelProtocol\Observer\GameServerCommandObserver.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\KniffelProtocol\Observer\LobbyServerCommandObserver.cs" />
-    <Compile Include="Models\KniffelProtocol\TuplePlayerInfo.cs" />
-    <Compile Include="Models\Protocol\Commands\AbstractCommand.cs" />
-    <Compile Include="Models\Protocol\Commands\AbstractCommandResponse.cs" />
-    <Compile Include="Models\Protocol\Commands\CommandEventArgs.cs" />
-    <Compile Include="Models\Protocol\Commands\CommandObserver.cs" />
-    <Compile Include="Models\Protocol\Commands\CommandQueueCommunicator.cs" />
-    <Compile Include="Models\Protocol\Commands\CommandTCPCommunicator.cs" />
-    <Compile Include="Models\Protocol\Commands\DisconnectCommand.cs" />
-    <Compile Include="Models\Protocol\QueueCommunicator.cs" />
-    <Compile Include="Models\Protocol\TCPCommunicator.cs" />
-    <Compile Include="Models\Server\ClientRequestHandler.cs" />
-    <Compile Include="Models\Server\ServerClientLobby.cs" />
-    <Compile Include="Models\Server\ServerLobby.cs" />
-    <Compile Include="Models\WebApi\Config.cs" />
-    <Compile Include="Models\WebApi\ServerInitService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <None Include="Properties\PublishProfiles\yatzy - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\yatzy - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\yatzyapp - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\yatzyapp - Web Deploy.pubxml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -257,9 +144,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\yatzy - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\yatzy - Web Deploy.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -277,11 +172,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>50008</DevelopmentServerPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:57584/</IISUrl>
-          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:57584/</IISAppRootUrl>
+          <IISUrl>http://localhost:49251/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

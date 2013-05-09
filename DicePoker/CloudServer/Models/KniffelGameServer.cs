@@ -78,6 +78,12 @@ namespace Sanet.Kniffel.Models
             _Game.PlayerLeft += _Game_PlayerLeft;
             _Game.PlayerReady += _Game_PlayerReady;
             _Game.GameUpdated += _Game_GameUpdated;
+            _Game.OnChatMessage += _Game_OnChatMessage;
+        }
+
+        void _Game_OnChatMessage(object sender, ChatMessageEventArgs e)
+        {
+            Send(new PlayerChatMessageCommand(e.Message.Sender.Name, e.Message.Message, e.Message.ReceiverName,e.Message.IsPrivate));
         }
 
         void _Game_GameUpdated(object sender, EventArgs e)
@@ -202,7 +208,12 @@ namespace Sanet.Kniffel.Models
 
         void m_CommandObserver_ChatMessageCommandReceived(object sender, CommandEventArgs<Protocol.Commands.Game.PlayerChatMessageCommand> e)
         {
-            //throw new NotImplementedException();
+            var msg = new ChatMessage();
+            msg.Sender = _Player;
+            msg.Message = e.Command.Message;
+            msg.ReceiverName = e.Command.ReceiverName;
+            msg.IsPrivate = e.Command.IsPrivate;
+            _Game.SendChatMessage(msg);
         }
 
         
@@ -242,6 +253,7 @@ namespace Sanet.Kniffel.Models
             _Game.PlayerLeft -= _Game_PlayerLeft;
             _Game.PlayerReady -= _Game_PlayerReady;
             _Game.GameUpdated -= _Game_GameUpdated;
+            _Game.OnChatMessage -= _Game_OnChatMessage;
 
             _Player = null;
 

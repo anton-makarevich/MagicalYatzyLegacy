@@ -26,6 +26,7 @@ namespace Sanet.Kniffel.Models.Interfaces
         void ManualChange(bool isfixed, int oldvalue, int newvalue);
         int Move { get; set; }
         event EventHandler<MoveEventArgs> MoveChanged;
+        event EventHandler<ChatMessageEventArgs> OnChatMessage;
         void NextMove();
         string Password { get; set; }
         event EventHandler<PlayerEventArgs> PlayerJoined;
@@ -41,5 +42,6 @@ namespace Sanet.Kniffel.Models.Interfaces
         void LeaveGame(Player player);
         void SetPlayerReady(Player player, bool isready);
         void SetPlayerReady(bool isready);
+        void SendChatMessage(ChatMessage message);
     }
 }

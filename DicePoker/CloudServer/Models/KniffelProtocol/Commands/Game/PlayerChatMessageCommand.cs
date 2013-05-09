@@ -12,38 +12,41 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
         }
         public static string COMMAND_NAME = "gamePLAYER_CHAT_MESSAGE";
 
-        
-        //public int ReceiverPos
-        //{
-        //    get { return m_ReceiverPos; }
-        //}
-        //public bool IsPrivate
-        //{
-        //    get { return m_IsPrivate; }
-        //}
+
+        public string ReceiverName
+        {
+            get;private set;
+        }
+        public bool IsPrivate
+        {
+            get;private set;
+        }
         public string Message { get; set; }
 
         public PlayerChatMessageCommand(StringTokenizer argsToken)
             :base(argsToken)
         {
-            //m_ReceiverPos = int.Parse(argsToken.NextToken());
-            //m_IsPrivate = bool.Parse(argsToken.NextToken());
             Message=argsToken.NextToken();
+            IsPrivate = bool.Parse(argsToken.NextToken());
+            ReceiverName=argsToken.NextToken();
         }
 
-        public PlayerChatMessageCommand(string sendername,string message)
+        public PlayerChatMessageCommand(string sendername,string message, string receiver, bool isPrivate)
             :base(sendername)
         {
-            //m_ReceiverPos = receiverpos;
-            //m_IsPrivate = isprivate;
+            ReceiverName=receiver;
+            IsPrivate = isPrivate;
             Message = message;
         }
 
         public override void Encode(StringBuilder sb)
         {
-            base.Encode(sb);//Append(sb, m_ReceiverPos);
-            //Append(sb, m_IsPrivate);
+            base.Encode(sb);
             Append(sb, Message);
+            Append(sb, IsPrivate);
+            Append(sb, ReceiverName);
+            
+            
         }
     }
 }

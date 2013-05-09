@@ -69,6 +69,23 @@ namespace Sanet.Kniffel.Models.Events
             _IsFixed = isfixed;
         }
     }
+
+    /// <summary>
+    /// Chat message event args
+    /// </summary>
+    public class ChatMessageEventArgs : EventArgs
+    {
+        private readonly ChatMessage m_Message;
+
+        public ChatMessage Message { get { return m_Message; } }
+
+
+        public ChatMessageEventArgs(ChatMessage message)
+        {
+            m_Message = message;
+        }
+    }
+
     /// <summary>
     /// Event when move changed
     /// </summary>
