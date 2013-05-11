@@ -1,8 +1,4 @@
-﻿using Poker8.Common;
-using Poker8.Services;
-using Poker8.ViewModels;
-using PokerWorld.Chips;
-using PokerWorld.Data;
+﻿using Sanet.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,12 +20,11 @@ using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace Poker8.Controls
+namespace Sanet.Kniffel.Controls
 {
-    public sealed partial class ChatControl :PopupPaneBase
+    public sealed partial class ChatControl :UserControl
     {
-        public event EventHandler ChipsBought;
-
+        
         public ChatControl()
             :base()
         {

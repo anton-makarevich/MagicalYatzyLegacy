@@ -28,6 +28,17 @@ namespace Sanet.Kniffel.ViewModels
        
 
         #region Properties
+            
+        
+        public string SendLabel
+        {
+            get
+            { 
+                return "SendLabel".Localize();
+            }
+            
+        }
+
         
         public ObservableCollection<Player> Players
         {

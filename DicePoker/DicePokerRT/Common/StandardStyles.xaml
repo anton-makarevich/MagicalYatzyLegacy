@@ -2108,7 +2108,7 @@
                   x:Name="backGrid"
               Width="60"
               Margin="0,-2,0,0" HorizontalAlignment="Stretch"
-               Background="{Binding HasValue, Converter={StaticResource ColorKey}}"           >
+               Background="{Binding HasValue, Converter={StaticResource ColorKey}}">
                 <Grid
                     VerticalAlignment="Stretch"
                     HorizontalAlignment="Stretch">
@@ -2131,7 +2131,37 @@
             </Border>
            
         </DataTemplate>
-    
+
+    <!--Player in chat-->
+    <DataTemplate x:Key="ChatPlayerTemplate">
+        <Grid >
+
+            <TextBlock Text="{Binding Name}" Margin="10"/>
+
+
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="ChatMessageTemplate">
+        <Grid >
+            <Border
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2"
+                CornerRadius="10"
+                Background="#510303"
+                Opacity="0.6"
+                BorderBrush="#600b0b"
+                BorderThickness="2"
+                Margin="5"/>
+            <TextBlock TextWrapping="Wrap"
+                       Margin="10"
+                       Foreground="#FFFee5ca">
+                    <Run Text="{Binding Path=Sender.Name}" FontWeight="Bold"/>
+                    <Run Text=": "/>
+                    <Run Text="{Binding Message}"/>
+            </TextBlock>
+        </Grid>
+    </DataTemplate>
+
     <!--Datatablet for cells in table captions (left side scores names)-->
     <DataTemplate x:Key="PlayerTableCaptionTemplate">
         <Border Margin="0,-2,0,-2"

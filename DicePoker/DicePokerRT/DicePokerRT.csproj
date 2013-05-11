@@ -150,6 +150,9 @@
     <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IRollResult.cs">
       <Link>Models\Interfaces\IRollResult.cs</Link>
     </Compile>
+    <Compile Include="..\MagicalYatzyOnline\ViewModels\ChatViewModel.cs">
+      <Link>ViewModels\ChatViewModel.cs</Link>
+    </Compile>
     <Compile Include="..\MagicalYatzyOnline\ViewModels\PlayerWrapper.cs">
       <Link>ViewModels\PlayerWrapper.cs</Link>
     </Compile>

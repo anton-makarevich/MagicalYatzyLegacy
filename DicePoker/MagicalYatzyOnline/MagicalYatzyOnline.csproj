@@ -1542,6 +1542,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ChatControl.xaml.cs">
+      <DependentUpon>ChatControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\InstanceKeeper.cs" />
     <Compile Include="Models\Interfaces\IRollResult.cs" />
     <Compile Include="Models\Interfaces\IPlayer.cs" />
@@ -1655,6 +1658,10 @@
     </Page>
     <Page Include="..\DicePokerRT\Views\PrivacyPolicyControl.xaml">
       <Link>Controls\PrivacyPolicyControl.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ChatControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

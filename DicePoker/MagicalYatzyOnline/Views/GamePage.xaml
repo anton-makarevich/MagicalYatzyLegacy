@@ -6,6 +6,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:DicePokerRT"
     xmlns:common="using:Sanet.Common"
+    xmlns:controls="using:Sanet.Kniffel.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates"
@@ -16,6 +17,12 @@
         <common:BooleanToVisibilityConverter x:Key="VisibilityKey"/>
         <common:ReverseBooleanToVisibilityConverter x:Key="ReversedVisibilityKey"/>
     </views:BasePage.Resources>
+    <views:BasePage.BottomAppBar>
+        <AppBar Height="300">
+            <controls:ChatControl
+                DataContext="{Binding ChatModel}"/>
+        </AppBar>
+    </views:BasePage.BottomAppBar>
     <Grid>
         <Grid
             x:Name="ControlGrid">

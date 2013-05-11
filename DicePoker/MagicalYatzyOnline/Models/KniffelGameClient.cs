@@ -442,7 +442,9 @@ namespace Sanet.Kniffel.Models
         }
 
         public void SendChatMessage(ChatMessage message)
-        { }
+        {
+            Send (new PlayerChatMessageCommand(message.Sender.Name,message.Message,message.ReceiverName,message.IsPrivate));
+        }
 
         /// <summary>
         /// returns wheather we have at least one fixed dice of this value
@@ -480,7 +482,7 @@ namespace Sanet.Kniffel.Models
             m_CommandObserver.TableInfoCommandReceived += m_CommandObserver_TableInfoCommandReceived;
             //m_CommandObserver.PlayerSitOutChangedCommandReceived += new EventHandler<CommandEventArgs<PlayerSitOutChangedCommand>>(m_CommandObserver_PlayerSitOutChangedCommandReceived);
             //m_CommandObserver.PlayerInfoCommandReceived += new EventHandler<CommandEventArgs<PlayerInfoCommand>>(m_CommandObserver_PlayerInfoCommandReceived);
-            //m_CommandObserver.ChatMessageCommandReceived += new EventHandler<CommandEventArgs<PlayerChatMessageCommand>>(m_CommandObserver_ChatMessageCommandReceived);
+            m_CommandObserver.ChatMessageCommandReceived += m_CommandObserver_ChatMessageCommandReceived;
             //m_CommandObserver.TipDealerCommandReceived += new EventHandler<CommandEventArgs<TipDealerCommand>>(m_CommandObserver_TipDealerCommandReceived);
             //m_CommandObserver.PlayerNotificationCommandReceived += new EventHandler<CommandEventArgs<PlayerNotificationCommand>>(m_CommandObserver_PlayerNotificationCommandReceived);
             //m_CommandObserver.PlayerBoughtChipsCommandReceived += m_CommandObserver_PlayerBoughtChipsCommandReceived;
@@ -491,6 +493,18 @@ namespace Sanet.Kniffel.Models
             m_CommandObserver.PlayerLeftCommandReceived += m_CommandObserver_PlayerLeftCommandReceived;
             m_CommandObserver.PlayerReadyCommandReceived += m_CommandObserver_PlayerReadyCommandReceived;
             m_CommandObserver.GameEndedCommandReceived += m_CommandObserver_GameEndedCommandReceived;
+        }
+
+        void m_CommandObserver_ChatMessageCommandReceived(object sender, CommandEventArgs<PlayerChatMessageCommand> e)
+        {
+            if (OnChatMessage!=null)
+            OnChatMessage(null, new ChatMessageEventArgs(new ChatMessage()
+            { 
+                IsPrivate=e.Command.IsPrivate,
+                Message=e.Command.Message,
+                ReceiverName=e.Command.ReceiverName,
+                Sender=Players.FirstOrDefault(f=>f.Name==e.Command.Name)
+            }));
         }
 
         void m_CommandObserver_GameEndedCommandReceived(object sender, CommandEventArgs<GameEndedCommand> e)
@@ -674,7 +688,7 @@ namespace Sanet.Kniffel.Models
                 m_CommandObserver.TableInfoCommandReceived -= m_CommandObserver_TableInfoCommandReceived;
                 //m_CommandObserver.PlayerSitOutChangedCommandReceived -= m_CommandObserver_PlayerSitOutChangedCommandReceived;
                 //m_CommandObserver.PlayerInfoCommandReceived -= m_CommandObserver_PlayerInfoCommandReceived;
-                //m_CommandObserver.ChatMessageCommandReceived -= m_CommandObserver_ChatMessageCommandReceived;
+                m_CommandObserver.ChatMessageCommandReceived -= m_CommandObserver_ChatMessageCommandReceived;
                 //m_CommandObserver.TipDealerCommandReceived -= m_CommandObserver_TipDealerCommandReceived;
                 //m_CommandObserver.PlayerNotificationCommandReceived -= m_CommandObserver_PlayerNotificationCommandReceived;
                 //m_CommandObserver.PlayerBoughtChipsCommandReceived -= m_CommandObserver_PlayerBoughtChipsCommandReceived;

@@ -699,4 +699,7 @@
   <data name="ServerMaintananceMessage" xml:space="preserve">
     <value>ВНИМАНИЕ! {0} (UTC) сервер будет отключен для профилактических работ , сетевая игра не будет доступна некоторое время (обычно несколько минут).</value>
   </data>
+  <data name="SendLabel" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
 </root>

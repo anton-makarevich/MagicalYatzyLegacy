@@ -301,9 +301,28 @@ namespace Sanet.Kniffel.ViewModels
                     _Game = value;
                     AddGameHandlers();
                     NotifyPropertyChanged("Game");
+                    if (IsOnlineGame)
+                        ChatModel = new ChatViewModel(_Game, ((KniffelGameClient)_Game).MyName);
+
                 }
             }
         }
+
+        
+        private ChatViewModel _ChatModel;
+        public ChatViewModel ChatModel
+        {
+            get { return _ChatModel; }
+            set
+            {
+                if (_ChatModel != value)
+                {
+                    _ChatModel = value;
+                    NotifyPropertyChanged("ChatModel");
+                }
+            }
+        }
+
 
         public bool IsOnlineGame
         {
