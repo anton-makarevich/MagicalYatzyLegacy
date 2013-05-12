@@ -13,15 +13,12 @@ namespace Sanet.Kniffel.ViewModels
 {
     public class ChatViewModel:BaseViewModel
     {
-        
-        string _Name;
         IKniffelGame m_Game;
 
-        public ChatViewModel(IKniffelGame game, string name)
+        public ChatViewModel(IKniffelGame game)
         {
             createCommands();
             m_Game = game;
-            _Name = name;
             m_Game.OnChatMessage += m_Game_OnChatMessage;
         }
 
@@ -98,8 +95,8 @@ namespace Sanet.Kniffel.ViewModels
                 if (msg != null)
                 {
                     _Messages.Add(msg);
-                    if (msg.Sender.Name != _Name)
-                        Utilities.ShowToastNotification(string.Format("{0}: {1}",msg.Sender.Name,msg.Message));
+                    if (msg.SenderName != m_Game.MyName)
+                        Utilities.ShowToastNotification(string.Format("{0}: {1}",msg.SenderName,msg.Message));
                     NotifyPropertyChanged("Messages");
                 }
             });
@@ -108,13 +105,18 @@ namespace Sanet.Kniffel.ViewModels
 
         void SendHandler()
         {
-            var msg =new ChatMessage();
-            
-            msg.Message=CurrentMessage;
-            msg.Sender = m_Game.Players.FirstOrDefault(f => f.Name == _Name);
-            m_Game.SendChatMessage(msg);
-            //clear textbox
-            CurrentMessage = string.Empty;
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                if (string.IsNullOrEmpty(CurrentMessage))
+                    return;
+                var msg = new ChatMessage();
+
+                msg.Message = CurrentMessage;
+                msg.SenderName = m_Game.MyName;
+                m_Game.SendChatMessage(msg);
+                //clear textbox
+                CurrentMessage = string.Empty;
+            });
         }
 
         public void Refresh()

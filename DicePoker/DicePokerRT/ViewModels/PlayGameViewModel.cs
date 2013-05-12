@@ -302,7 +302,7 @@ namespace Sanet.Kniffel.ViewModels
                     AddGameHandlers();
                     NotifyPropertyChanged("Game");
                     if (IsOnlineGame)
-                        ChatModel = new ChatViewModel(_Game, ((KniffelGameClient)_Game).MyName);
+                        ChatModel = new ChatViewModel(_Game);
 
                 }
             }
@@ -613,7 +613,7 @@ namespace Sanet.Kniffel.ViewModels
                         var p = Players.FirstOrDefault(f => f.Name == e.Player.Name);
                         p.IsReady = e.Player.IsReady;
 #if ONLINE
-                        if (((KniffelGameClient)Game).MyName==e.Player.Name)
+                        if (Game.MyName==e.Player.Name)
                             NotifyPropertyChanged("CanStart");
 #endif
                     });
@@ -728,6 +728,7 @@ namespace Sanet.Kniffel.ViewModels
                     {
                         if (DiceFixed != null)
                             DiceFixed(this, e);
+                        
                     });
         }
 

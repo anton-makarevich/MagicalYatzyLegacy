@@ -98,6 +98,7 @@ namespace Sanet.Kniffel.Models
         #endregion
 
         #region Properties
+        public string MyName { get; set; }
         public int GameId { get; set; }
         bool _IsPlaying;
         public bool IsPlaying

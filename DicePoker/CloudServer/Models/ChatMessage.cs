@@ -6,7 +6,7 @@ namespace Sanet.Kniffel.Models
 {
     public class ChatMessage
     {
-        public Player Sender { get; set; }
+        public string SenderName { get; set; }
         public string ReceiverName { get; set; }
         public bool IsPrivate { get; set; }
         public string Message { get; set; }

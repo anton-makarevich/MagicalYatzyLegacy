@@ -22,11 +22,13 @@
 
             <!--Players List-->
             <ListView
+                SelectionMode="None"
                     ItemsSource="{Binding Players}"
                     ItemTemplate="{StaticResource ChatPlayerTemplate}"/>
 
             <!--Messages List-->
             <ListView
+                SelectionMode="None"
                     Grid.Column="1"
                     ItemsSource="{Binding Messages}"
                     ItemTemplate="{StaticResource ChatMessageTemplate}"/>

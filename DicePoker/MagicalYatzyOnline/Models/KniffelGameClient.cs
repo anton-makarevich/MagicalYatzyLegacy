@@ -443,7 +443,7 @@ namespace Sanet.Kniffel.Models
 
         public void SendChatMessage(ChatMessage message)
         {
-            Send (new PlayerChatMessageCommand(message.Sender.Name,message.Message,message.ReceiverName,message.IsPrivate));
+            Send (new PlayerChatMessageCommand(message.SenderName,message.Message,message.ReceiverName,message.IsPrivate));
         }
 
         /// <summary>
@@ -503,7 +503,7 @@ namespace Sanet.Kniffel.Models
                 IsPrivate=e.Command.IsPrivate,
                 Message=e.Command.Message,
                 ReceiverName=e.Command.ReceiverName,
-                Sender=Players.FirstOrDefault(f=>f.Name==e.Command.Name)
+                SenderName=e.Command.Name
             }));
         }
 

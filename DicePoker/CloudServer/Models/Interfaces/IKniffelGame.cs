@@ -20,6 +20,7 @@ namespace Sanet.Kniffel.Models.Interfaces
         //int Roll { get; }
         bool IsDiceFixed(int value);
         bool IsPlaying { get; set; }
+        string MyName { get; set; }
         void JoinGame(Player player);
         DieResult LastDiceResult { get; }
         event EventHandler<PlayerEventArgs> MagicRollUsed;

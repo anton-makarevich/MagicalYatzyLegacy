@@ -83,7 +83,7 @@ namespace Sanet.Kniffel.Models
 
         void _Game_OnChatMessage(object sender, ChatMessageEventArgs e)
         {
-            Send(new PlayerChatMessageCommand(e.Message.Sender.Name, e.Message.Message, e.Message.ReceiverName,e.Message.IsPrivate));
+            Send(new PlayerChatMessageCommand(e.Message.SenderName, e.Message.Message, e.Message.ReceiverName,e.Message.IsPrivate));
         }
 
         void _Game_GameUpdated(object sender, EventArgs e)
@@ -209,7 +209,7 @@ namespace Sanet.Kniffel.Models
         void m_CommandObserver_ChatMessageCommandReceived(object sender, CommandEventArgs<Protocol.Commands.Game.PlayerChatMessageCommand> e)
         {
             var msg = new ChatMessage();
-            msg.Sender = _Player;
+            msg.SenderName = _Player.Name;
             msg.Message = e.Command.Message;
             msg.ReceiverName = e.Command.ReceiverName;
             msg.IsPrivate = e.Command.IsPrivate;

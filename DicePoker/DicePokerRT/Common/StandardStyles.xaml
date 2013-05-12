@@ -2136,7 +2136,11 @@
     <DataTemplate x:Key="ChatPlayerTemplate">
         <Grid >
 
-            <TextBlock Text="{Binding Name}" Margin="10"/>
+            <TextBlock Margin="10">
+                <Run Text="{Binding Name}" />
+                <Run Text=" - " />
+                <Run Text="{Binding Language}" />
+            </TextBlock>
 
 
         </Grid>
@@ -2146,16 +2150,15 @@
             <Border
                 Grid.RowSpan="2"
                 Grid.ColumnSpan="2"
-                CornerRadius="10"
-                Background="#510303"
+                Background="{StaticResource SanetBlue}"
                 Opacity="0.6"
-                BorderBrush="#600b0b"
+                BorderBrush="{StaticResource SanetBlue}"
                 BorderThickness="2"
                 Margin="5"/>
             <TextBlock TextWrapping="Wrap"
                        Margin="10"
                        Foreground="#FFFee5ca">
-                    <Run Text="{Binding Path=Sender.Name}" FontWeight="Bold"/>
+                    <Run Text="{Binding Path=SenderName}" FontWeight="Bold"/>
                     <Run Text=": "/>
                     <Run Text="{Binding Message}"/>
             </TextBlock>
