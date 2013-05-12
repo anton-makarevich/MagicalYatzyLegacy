@@ -7,6 +7,7 @@
     xmlns:local="using:DicePokerRT"
     xmlns:common="using:Sanet.Common"
     xmlns:controls="using:Sanet.Kniffel.Controls"
+    xmlns:commoncontrols="using:Sanet.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates"
@@ -18,7 +19,10 @@
         <common:ReverseBooleanToVisibilityConverter x:Key="ReversedVisibilityKey"/>
     </views:BasePage.Resources>
     <views:BasePage.BottomAppBar>
-        <AppBar Height="300">
+        <AppBar Height="300" 
+                IsOpen="{Binding IsChatOpen,Mode=TwoWay}"
+                Closed="AppBar_Closed_1"
+                Opened="AppBar_Opened_1">
             <controls:ChatControl
                 DataContext="{Binding ChatModel}"/>
         </AppBar>
@@ -302,7 +306,24 @@
                 IsActive="{Binding IsBusy}"
                 Width="50"
                 Height="50"/>
+
+            
         </Grid>
+        <commoncontrols:BlurbControl 
+                Width="500"
+                Height="140"
+                Opacity="0"
+                Grid.RowSpan="2"
+                VerticalAlignment="Bottom"
+                Margin="10,0,0,0"
+                HorizontalAlignment="Left"
+                Message="{Binding ChatMessage}"
+            Tapped="BlurbControl_Tapped_1"
+                Grid.Row="0">
+                <commoncontrols:BlurbControl.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </commoncontrols:BlurbControl.RenderTransform>
+            </commoncontrols:BlurbControl>
     <Grid
                 x:Name="SnapGrid"
                 Visibility="Collapsed">

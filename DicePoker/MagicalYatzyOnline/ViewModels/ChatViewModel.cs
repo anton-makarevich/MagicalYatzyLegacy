@@ -15,6 +15,7 @@ namespace Sanet.Kniffel.ViewModels
     {
         IKniffelGame m_Game;
 
+
         public ChatViewModel(IKniffelGame game)
         {
             createCommands();
@@ -57,12 +58,12 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
-        List<ChatMessage> _Messages=new List<ChatMessage>();
+        ObservableCollection<ChatMessage> _Messages =new ObservableCollection<ChatMessage>();
         public ObservableCollection<ChatMessage> Messages
         {
             get
             {
-                return new ObservableCollection<ChatMessage>( _Messages);
+                return  _Messages;
             }
             
         }
@@ -95,15 +96,16 @@ namespace Sanet.Kniffel.ViewModels
                 if (msg != null)
                 {
                     _Messages.Add(msg);
-                    if (msg.SenderName != m_Game.MyName)
-                        Utilities.ShowToastNotification(string.Format("{0}: {1}",msg.SenderName,msg.Message));
+                    //if (msg.SenderName != m_Game.MyName)
+                    //    Utilities.ShowToastNotification(string.Format("{0}: {1}",msg.SenderName,msg.Message));
+
                     NotifyPropertyChanged("Messages");
                 }
             });
         }
 
 
-        void SendHandler()
+        public void SendHandler()
         {
             SmartDispatcher.BeginInvoke(() =>
             {

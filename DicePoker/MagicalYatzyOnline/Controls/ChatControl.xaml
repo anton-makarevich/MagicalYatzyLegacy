@@ -6,9 +6,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="768"
-    d:DesignWidth="1366">
+    d:DesignWidth="1366"
+    KeyUp="Grid_KeyUp_1">
 
-        <Grid>
+        <Grid >
             
                         <Grid.RowDefinitions>
                             <RowDefinition />
@@ -28,6 +29,7 @@
 
             <!--Messages List-->
             <ListView
+                x:Name="messagesList"
                 SelectionMode="None"
                     Grid.Column="1"
                     ItemsSource="{Binding Messages}"
@@ -41,6 +43,7 @@
                                 <ColumnDefinition Width="150"/>
                             </Grid.ColumnDefinitions>
                             <TextBox
+                                KeyUp="Grid_KeyUp_1"
                             Height="40"
                         Text="{Binding CurrentMessage, Mode=TwoWay}"/>
                         <Button

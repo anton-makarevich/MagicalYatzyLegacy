@@ -225,6 +225,21 @@ namespace DicePokerRT
         {
             ViewModelProvider.GetViewModel<PlayGameViewModel>().Game.SetPlayerReady( true);
         }
+
+        private void BlurbControl_Tapped_1(object sender, TappedRoutedEventArgs e)
+        {
+            ViewModelProvider.GetViewModel<PlayGameViewModel>().IsChatOpen = true;
+        }
+
+        private void AppBar_Closed_1(object sender, object e)
+        {
+            ViewModelProvider.GetViewModel<PlayGameViewModel>().IsChatOpen = false;
+        }
+
+        private void AppBar_Opened_1(object sender, object e)
+        {
+            ViewModelProvider.GetViewModel<PlayGameViewModel>().IsChatOpen = true;
+        }
        
     }
 }

@@ -1542,6 +1542,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\VisualTreeHelper.cs" />
+    <Compile Include="Controls\BlurbControl.xaml.cs">
+      <DependentUpon>BlurbControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ChatControl.xaml.cs">
       <DependentUpon>ChatControl.xaml</DependentUpon>
     </Compile>
@@ -1658,6 +1662,10 @@
     </Page>
     <Page Include="..\DicePokerRT\Views\PrivacyPolicyControl.xaml">
       <Link>Controls\PrivacyPolicyControl.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\BlurbControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

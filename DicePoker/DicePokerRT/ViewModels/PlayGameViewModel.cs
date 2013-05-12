@@ -522,6 +522,37 @@ namespace Sanet.Kniffel.ViewModels
                 return "ForthRollLabel".Localize();
             }
         }
+            
+        
+        private string _ChatMessage;
+        public string ChatMessage
+        {
+            get { return _ChatMessage; }
+            set
+            {
+                if (_ChatMessage != value)
+                {
+                    _ChatMessage = value;
+                    NotifyPropertyChanged("ChatMessage");
+                }
+            }
+        }
+            
+        
+        private bool _IsChatOpen;
+        public bool IsChatOpen
+        {
+            get { return _IsChatOpen; }
+            set
+            {
+                //if (_IsChatOpen != value)
+                //{
+                    _IsChatOpen = value;
+                    NotifyPropertyChanged("IsChatOpen");
+                //}
+            }
+        }
+
 
         
         private bool _IsControlsVisible=true;
@@ -587,7 +618,29 @@ namespace Sanet.Kniffel.ViewModels
                 Game.DiceChanged += Game_DiceChanged;
                 Game.PlayerReady += Game_PlayerReady;
                 Game.PlayerLeft += Game_PlayerLeft;
+                Game.OnChatMessage += Game_OnChatMessage;
             }
+        }
+
+        void Game_OnChatMessage(object sender, ChatMessageEventArgs e)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        var msg = e.Message;
+                        if (msg != null)
+                        {
+                            if (msg.SenderName != _Game.MyName && !IsChatOpen)
+                            {
+                                ShowChatMessage(string.Format("{0}: {1}", msg.SenderName, msg.Message));
+                            }
+                        }
+                    });
+        }
+
+        void ShowChatMessage(string message)
+        {
+            ChatMessage = message;
+            ChatMessage = "";
         }
 
         void Game_PlayerLeft(object sender, PlayerEventArgs e)
