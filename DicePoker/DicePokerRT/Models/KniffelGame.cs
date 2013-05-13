@@ -581,7 +581,7 @@ namespace Sanet.Kniffel.Models
                 Players = new List<Player>();
 
             int seat = 0;
-            if (Players.Count == 0)
+            if (Players.Count(f => f.IsReady) == 0)
             {
                 IsPlaying = false;
                 Move = 1;
@@ -607,22 +607,25 @@ namespace Sanet.Kniffel.Models
             if (Players == null)
                 return;
             Players.Remove(player);
-            if (Players.Count == 0)
+            
+            if (PlayerLeft != null)
+                PlayerLeft(null, new PlayerEventArgs(player));
+            if (Players.Count(f=>f.IsReady) == 0)
             {
                 IsPlaying = false;
                 Move = 1;
+                RestartGame();//TODO: incapsulate 2 above lines into this method?
             }
-            if (PlayerLeft != null)
-                PlayerLeft(null, new PlayerEventArgs(player));
-            if (CurrentPlayer != null && CurrentPlayer.Name == player.Name)
+            else if (CurrentPlayer != null && CurrentPlayer.Name == player.Name)
             {
 #if SERVER
                 _roundTimer.Stop();
 #endif
                 DoMove();
             }
-            else
-                StartGame();
+            //Not sure what that was??
+            //else
+            //    StartGame();
         }
 
         public void SetPlayerReady(Player player, bool isready)

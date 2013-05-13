@@ -202,6 +202,7 @@
     <Compile Include="Models\Interfaces\IKniffelGame.cs" />
     <Compile Include="Models\KniffelGameServer.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\ApplyScoreCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\MagicRollRequestCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\GameEndedCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerReadyCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerLeftCommand.cs" />

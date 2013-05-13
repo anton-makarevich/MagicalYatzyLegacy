@@ -686,7 +686,10 @@ namespace Sanet.Kniffel.ViewModels
 
         void Game_MagicRollUsed(object sender, PlayerEventArgs e)
         {
-            SelectedPlayer.OnMagicRollUsed();
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        SelectedPlayer.OnMagicRollUsed();
+                    });
         }
 
         void Game_ResultApplied(object sender, ResultEventArgs e)
@@ -695,7 +698,7 @@ namespace Sanet.Kniffel.ViewModels
                     {
                         if (e.Result.PossibleValue > 0 || e.Result.HasBonus)
                         {
-                            if (e.Result.PossibleValue == 50 || e.Result.HasBonus || e.Result.ScoreType == KniffelScores.Bonus)
+                            if (e.Result.PossibleValue == 50 || e.Result.HasBonus /*|| e.Result.ScoreType == KniffelScores.Bonus*/)
                                 SoundsProvider.PlaySound(_player, "fanfare");
                             else
                                 SoundsProvider.PlaySound(_player, "win");

@@ -79,6 +79,7 @@ namespace Sanet.Kniffel.Models
             _Game.PlayerReady += _Game_PlayerReady;
             _Game.GameUpdated += _Game_GameUpdated;
             _Game.OnChatMessage += _Game_OnChatMessage;
+            
         }
 
         void _Game_OnChatMessage(object sender, ChatMessageEventArgs e)
@@ -130,7 +131,7 @@ namespace Sanet.Kniffel.Models
 
         void _Game_MagicRollUsed(object sender, PlayerEventArgs e)
         {
-            //throw new NotImplementedException();
+            Send(new MagicRollCommand(e.Player.Name));
         }
 
         void _Game_GameFinished(object sender, EventArgs e)
@@ -166,6 +167,12 @@ namespace Sanet.Kniffel.Models
             m_CommandObserver.ApplyScoreCommandReceived += m_CommandObserver_ApplyScoreCommandReceived;
             m_CommandObserver.PlayerLeftCommandReceived += m_CommandObserver_PlayerLeftCommandReceived;
             m_CommandObserver.PlayerReadyCommandReceived += m_CommandObserver_PlayerReadyCommandReceived;
+            m_CommandObserver.MagicRollCommandReceived += m_CommandObserver_MagicRollCommandReceived;
+        }
+
+        void m_CommandObserver_MagicRollCommandReceived(object sender, CommandEventArgs<MagicRollCommand> e)
+        {
+            Game.ReporMagictRoll();
         }
 
         void m_CommandObserver_PlayerReadyCommandReceived(object sender, CommandEventArgs<PlayerReadyCommand> e)
@@ -241,6 +248,7 @@ namespace Sanet.Kniffel.Models
             m_CommandObserver.ApplyScoreCommandReceived -= m_CommandObserver_ApplyScoreCommandReceived;
             m_CommandObserver.PlayerLeftCommandReceived -= m_CommandObserver_PlayerLeftCommandReceived;
             m_CommandObserver.PlayerReadyCommandReceived -= m_CommandObserver_PlayerReadyCommandReceived;
+            m_CommandObserver.MagicRollCommandReceived -= m_CommandObserver_MagicRollCommandReceived;
 
             _Game.DiceChanged -= _Game_DiceChanged;
             _Game.DiceFixed -= _Game_DiceFixed;

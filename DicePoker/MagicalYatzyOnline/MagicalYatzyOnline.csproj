@@ -1302,6 +1302,9 @@
     <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\GameEndedCommand.cs">
       <Link>Models\Protocol\Commands\Game\GameEndedCommand.cs</Link>
     </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\MagicRollRequestCommand.cs">
+      <Link>Models\Protocol\Commands\Game\MagicRollRequestCommand.cs</Link>
+    </Compile>
     <Compile Include="..\cloudserver\models\kniffelprotocol\commands\game\PlayerChatMessageCommand.cs">
       <Link>Models\Protocol\Commands\Game\PlayerChatMessageCommand.cs</Link>
     </Compile>

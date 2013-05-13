@@ -3,6 +3,8 @@ using Sanet.Kniffel.Models.Events;
 using Sanet.Kniffel.Models.Interfaces;
 using Sanet.Kniffel.Protocol.Commands.Game;
 using Sanet.Kniffel.Protocol.Observer;
+using Sanet.Kniffel.ViewModels;
+using Sanet.Models;
 using Sanet.Network.Protocol.Commands;
 using System;
 using System.Collections.Generic;
@@ -255,8 +257,8 @@ namespace Sanet.Kniffel.Models
             
             lock (syncRoot)
             {
-                if (CurrentPlayer!=null)
-                    Send(new RollReportCommand(CurrentPlayer.Name, new List<int>() { 0,0,0,0,0}));
+                //if (CurrentPlayer!=null)
+                    Send(new RollReportCommand(MyName, new List<int>() { 0,0,0,0,0}));
 
             }
         }
@@ -287,73 +289,11 @@ namespace Sanet.Kniffel.Models
         {
             lock (syncRoot)
             {
-                //set magic value
-                //1) check how much free hands we have
-                int freeHandsIndex = 0;
-                Dictionary<int,KniffelScores> freeHands = new Dictionary<int,KniffelScores>();
-                foreach (var score in KniffelRule.PokerHands)
-                {
-                    if (!CurrentPlayer.GetResultForScore(score).HasValue)
-                    {
-                        freeHands.Add(freeHandsIndex, score);
-                        freeHandsIndex++;
-                    }
-                }
-                if (freeHands.Count==0)
-                    ReportRoll();// no available hands - just roll
-                else
-                {
-                    setMagicResults( freeHands[rand.Next(freeHands.Count)]);
-
-                    if (MagicRollUsed != null)
-                        MagicRollUsed(this, new PlayerEventArgs(CurrentPlayer));
-                    //CurrentPlayer.OnMagicRollUsed();
-                    foreach (int result in lastRollResults)
-                        thisTurnValues.Enqueue(result);
-                    //roll report
-                    if (DiceRolled != null)
-                        DiceRolled(this, new RollEventArgs(CurrentPlayer, lastRollResults));
-                }
+                //TODO: check artifacts?
+                Send(new MagicRollCommand(MyName));
             }
         }
-
-        void setMagicResults(KniffelScores hands)
-        {
-            int firstinrow;
-            switch (hands)
-            {
-                case KniffelScores.ThreeOfAKind:
-                    lastRollResults[0] = lastRollResults[1] = lastRollResults[2] = rand.Next(1, 7);
-                    lastRollResults[3]= rand.Next(1, 7);
-                    lastRollResults[4]= rand.Next(1, 7);
-                    break;
-                case KniffelScores.FourOfAKind:
-                    lastRollResults[0] = lastRollResults[1] = lastRollResults[2] = lastRollResults[3] =rand.Next(1, 7);
-                    lastRollResults[4] = rand.Next(1, 7);
-                    break;
-                case KniffelScores.FullHouse:
-                    lastRollResults[0] = lastRollResults[1] = lastRollResults[2] = rand.Next(1, 7);
-                    lastRollResults[3] = lastRollResults[4] = rand.Next(1, 7);
-                    break;
-                case KniffelScores.SmallStraight:
-                    firstinrow = rand.Next(1,4);
-                    for (int i = 0; i < 4; i++)
-                        lastRollResults[i] = firstinrow + i;
-                    lastRollResults[4] = rand.Next(1, 7);
-                    break;
-                case KniffelScores.LargeStraight:
-                    firstinrow = rand.Next(1,3);
-                    for (int i = 0; i < 5; i++)
-                        lastRollResults[i] = firstinrow + i;
-                    break;
-                case KniffelScores.Kniffel:
-                    firstinrow = rand.Next(1, 7);
-                    for (int i = 0; i < 5; i++)
-                        lastRollResults[i] = firstinrow;
-                    break;
-                    
-            }
-        }
+                
 
         public void ApplyScore(RollResult result)
         {
@@ -424,6 +364,9 @@ namespace Sanet.Kniffel.Models
                 player.Game = this;
 
                 player.Type = (player.Name == MyName) ? PlayerType.Local : PlayerType.Network;
+                player.Password = (player.Name == MyName) ? 
+                    ViewModelProvider.GetViewModel<NewOnlineGameViewModel>().SelectedPlayer.Password : 
+                    "";
 
                 if (PlayerJoined != null)
                     PlayerJoined(this, new PlayerEventArgs(player));
@@ -467,25 +410,9 @@ namespace Sanet.Kniffel.Models
         {
             LogManager.Log(LogLevel.Message, "GameClient.InitObserver", "Added handlers at game client");
             m_CommandObserver.CommandReceived += m_CommandObserver_CommandReceived;
-            //m_CommandObserver.BetTurnEndedCommandReceived += new EventHandler<CommandEventArgs<BetTurnEndedCommand>>(m_CommandObserver_BetTurnEndedCommandReceived);
-            //m_CommandObserver.BetTurnStartedCommandReceived += new EventHandler<CommandEventArgs<BetTurnStartedCommand>>(m_CommandObserver_BetTurnStartedCommandReceived);
-            //m_CommandObserver.GameEndedCommandReceived += new EventHandler<CommandEventArgs<GameEndedCommand>>(m_CommandObserver_GameEndedCommandReceived);
-            //m_CommandObserver.GameStartedCommandReceived += new EventHandler<CommandEventArgs<GameStartedCommand>>(m_CommandObserver_GameStartedCommandReceived);
-            //m_CommandObserver.PlayerHoleCardsChangedCommandReceived += new EventHandler<CommandEventArgs<PlayerHoleCardsChangedCommand>>(m_CommandObserver_PlayerHoleCardsChangedCommandReceived);
             m_CommandObserver.PlayerJoinedCommandReceived += m_CommandObserver_PlayerJoinedCommandReceived;
-            //m_CommandObserver.PlayerLeftCommandReceived += new EventHandler<CommandEventArgs<PlayerLeftCommand>>(m_CommandObserver_PlayerLeftCommandReceived);
-            //m_CommandObserver.PlayerMoneyChangedCommandReceived += new EventHandler<CommandEventArgs<PlayerMoneyChangedCommand>>(m_CommandObserver_PlayerMoneyChangedCommandReceived);
-            //m_CommandObserver.PlayerTurnBeganCommandReceived += new EventHandler<CommandEventArgs<PlayerTurnBeganCommand>>(m_CommandObserver_PlayerTurnBeganCommandReceived);
-            //m_CommandObserver.PlayerTurnEndedCommandReceived += new EventHandler<CommandEventArgs<PlayerTurnEndedCommand>>(m_CommandObserver_PlayerTurnEndedCommandReceived);
-            //m_CommandObserver.PlayerWonPotCommandReceived += new EventHandler<CommandEventArgs<PlayerWonPotCommand>>(m_CommandObserver_PlayerWonPotCommandReceived);
-            //m_CommandObserver.TableClosedCommandReceived += new EventHandler<CommandEventArgs<TableClosedCommand>>(m_CommandObserver_TableClosedCommandReceived);
             m_CommandObserver.TableInfoCommandReceived += m_CommandObserver_TableInfoCommandReceived;
-            //m_CommandObserver.PlayerSitOutChangedCommandReceived += new EventHandler<CommandEventArgs<PlayerSitOutChangedCommand>>(m_CommandObserver_PlayerSitOutChangedCommandReceived);
-            //m_CommandObserver.PlayerInfoCommandReceived += new EventHandler<CommandEventArgs<PlayerInfoCommand>>(m_CommandObserver_PlayerInfoCommandReceived);
             m_CommandObserver.ChatMessageCommandReceived += m_CommandObserver_ChatMessageCommandReceived;
-            //m_CommandObserver.TipDealerCommandReceived += new EventHandler<CommandEventArgs<TipDealerCommand>>(m_CommandObserver_TipDealerCommandReceived);
-            //m_CommandObserver.PlayerNotificationCommandReceived += new EventHandler<CommandEventArgs<PlayerNotificationCommand>>(m_CommandObserver_PlayerNotificationCommandReceived);
-            //m_CommandObserver.PlayerBoughtChipsCommandReceived += m_CommandObserver_PlayerBoughtChipsCommandReceived;
             m_CommandObserver.RollReportCommandReceived += m_CommandObserver_RollReportCommandReceived;
             m_CommandObserver.FixDiceCommandReceived += m_CommandObserver_FixDiceCommandReceived;
             m_CommandObserver.ApplyScoreCommandReceived += m_CommandObserver_ApplyScoreCommandReceived;
@@ -493,6 +420,14 @@ namespace Sanet.Kniffel.Models
             m_CommandObserver.PlayerLeftCommandReceived += m_CommandObserver_PlayerLeftCommandReceived;
             m_CommandObserver.PlayerReadyCommandReceived += m_CommandObserver_PlayerReadyCommandReceived;
             m_CommandObserver.GameEndedCommandReceived += m_CommandObserver_GameEndedCommandReceived;
+            m_CommandObserver.MagicRollCommandReceived += m_CommandObserver_MagicRollCommandReceived;
+        }
+
+        void m_CommandObserver_MagicRollCommandReceived(object sender, CommandEventArgs<MagicRollCommand> e)
+        {
+            var player = Players.Find(f => f.Name == e.Command.Name);
+            if (MagicRollUsed != null)
+                MagicRollUsed(null,new PlayerEventArgs(player));
         }
 
         void m_CommandObserver_ChatMessageCommandReceived(object sender, CommandEventArgs<PlayerChatMessageCommand> e)
@@ -673,25 +608,9 @@ namespace Sanet.Kniffel.Models
             if (IsConnected)
             {
                 m_CommandObserver.CommandReceived -= m_CommandObserver_CommandReceived;
-                //m_CommandObserver.BetTurnEndedCommandReceived -= m_CommandObserver_BetTurnEndedCommandReceived;
-                //m_CommandObserver.BetTurnStartedCommandReceived -= m_CommandObserver_BetTurnStartedCommandReceived;
-                //m_CommandObserver.GameEndedCommandReceived -= m_CommandObserver_GameEndedCommandReceived;
-                //m_CommandObserver.GameStartedCommandReceived -= m_CommandObserver_GameStartedCommandReceived;
-                //m_CommandObserver.PlayerHoleCardsChangedCommandReceived -= m_CommandObserver_PlayerHoleCardsChangedCommandReceived;
                 m_CommandObserver.PlayerJoinedCommandReceived -= m_CommandObserver_PlayerJoinedCommandReceived;
-                //m_CommandObserver.PlayerLeftCommandReceived -= m_CommandObserver_PlayerLeftCommandReceived;
-                //m_CommandObserver.PlayerMoneyChangedCommandReceived -= m_CommandObserver_PlayerMoneyChangedCommandReceived;
-                //m_CommandObserver.PlayerTurnBeganCommandReceived -= m_CommandObserver_PlayerTurnBeganCommandReceived;
-                //m_CommandObserver.PlayerTurnEndedCommandReceived -= m_CommandObserver_PlayerTurnEndedCommandReceived;
-                //m_CommandObserver.PlayerWonPotCommandReceived -= m_CommandObserver_PlayerWonPotCommandReceived;
-                //m_CommandObserver.TableClosedCommandReceived -= m_CommandObserver_TableClosedCommandReceived;
                 m_CommandObserver.TableInfoCommandReceived -= m_CommandObserver_TableInfoCommandReceived;
-                //m_CommandObserver.PlayerSitOutChangedCommandReceived -= m_CommandObserver_PlayerSitOutChangedCommandReceived;
-                //m_CommandObserver.PlayerInfoCommandReceived -= m_CommandObserver_PlayerInfoCommandReceived;
                 m_CommandObserver.ChatMessageCommandReceived -= m_CommandObserver_ChatMessageCommandReceived;
-                //m_CommandObserver.TipDealerCommandReceived -= m_CommandObserver_TipDealerCommandReceived;
-                //m_CommandObserver.PlayerNotificationCommandReceived -= m_CommandObserver_PlayerNotificationCommandReceived;
-                //m_CommandObserver.PlayerBoughtChipsCommandReceived -= m_CommandObserver_PlayerBoughtChipsCommandReceived;
                 m_CommandObserver.RollReportCommandReceived -= m_CommandObserver_RollReportCommandReceived;
                 m_CommandObserver.FixDiceCommandReceived -= m_CommandObserver_FixDiceCommandReceived;
                 m_CommandObserver.ApplyScoreCommandReceived -= m_CommandObserver_ApplyScoreCommandReceived;
@@ -699,6 +618,7 @@ namespace Sanet.Kniffel.Models
                 m_CommandObserver.PlayerLeftCommandReceived -= m_CommandObserver_PlayerLeftCommandReceived;
                 m_CommandObserver.PlayerReadyCommandReceived -= m_CommandObserver_PlayerReadyCommandReceived;
                 m_CommandObserver.GameEndedCommandReceived -= m_CommandObserver_GameEndedCommandReceived;
+                m_CommandObserver.MagicRollCommandReceived -= m_CommandObserver_MagicRollCommandReceived;
 
                 Send(new DisconnectCommand());
             }

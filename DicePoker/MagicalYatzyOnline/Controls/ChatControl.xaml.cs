@@ -34,7 +34,7 @@ namespace Sanet.Kniffel.Controls
             this.InitializeComponent();
             playViewModel= ViewModelProvider.GetViewModel<PlayGameViewModel>();
             playViewModel.ChatModel.Messages.CollectionChanged += (s, args) => ScrollToBottom();
-            //playViewModel.PropertyChanged += ChatControl_PropertyChanged;
+            playViewModel.PropertyChanged += ChatControl_PropertyChanged;
         }
 
         void ChatControl_PropertyChanged(object sender, PropertyChangedEventArgs e)

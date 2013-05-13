@@ -11,18 +11,7 @@ namespace Sanet.Kniffel.Protocol.Observer
     public class GameClientCommandObserver : CommandObserver
     {
         public event EventHandler<CommandEventArgs<GameEndedCommand>> GameEndedCommandReceived = delegate { };
-        //public event EventHandler<CommandEventArgs<GameStartedCommand>> GameStartedCommandReceived = delegate { };
         public event EventHandler<CommandEventArgs<PlayerJoinedCommand>> PlayerJoinedCommandReceived = delegate { };
-        //public event EventHandler<CommandEventArgs<PlayerLeftCommand>> PlayerLeftCommandReceived = delegate { };
-        //public event EventHandler<CommandEventArgs<PlayerTurnBeganCommand>> PlayerTurnBeganCommandReceived = delegate { };
-        //public event EventHandler<CommandEventArgs<PlayerTurnEndedCommand>> PlayerTurnEndedCommandReceived = delegate { };
-        //public event EventHandler<CommandEventArgs<PlayerWonPotCommand>> PlayerWonPotCommandReceived = delegate { };
-        //public event EventHandler<CommandEventArgs<TableClosedCommand>> TableClosedCommandReceived = delegate { };
-        //public event EventHandler<CommandEventArgs<TipDealerCommand>> TipDealerCommandReceived = delegate { };
-        //public event EventHandler<CommandEventArgs<PlayerNotificationCommand>> PlayerNotificationCommandReceived = delegate { };
-        //public event EventHandler<CommandEventArgs<PlayerInfoCommand>> PlayerInfoCommandReceived = delegate { };
-        //public event EventHandler<CommandEventArgs<PlayerBoughtChipsCommand>> PlayerBoughtChipsCommandReceived = delegate { };
-        //public event EventHandler<CommandEventArgs<PlayerSitOutChangedCommand>> PlayerSitOutChangedCommandReceived = delegate { };
         public event EventHandler<CommandEventArgs<PlayerChatMessageCommand>> ChatMessageCommandReceived = delegate { };
         public event EventHandler<CommandEventArgs<TableInfoCommand>> TableInfoCommandReceived = delegate { };
         public event EventHandler<CommandEventArgs<RollReportCommand>> RollReportCommandReceived = delegate { };
@@ -31,6 +20,7 @@ namespace Sanet.Kniffel.Protocol.Observer
         public event EventHandler<CommandEventArgs<RoundChangedCommand>> RoundChangedCommandReceived = delegate { };
         public event EventHandler<CommandEventArgs<PlayerLeftCommand>> PlayerLeftCommandReceived = delegate { };
         public event EventHandler<CommandEventArgs<PlayerReadyCommand>> PlayerReadyCommandReceived = delegate { };
+        public event EventHandler<CommandEventArgs<MagicRollCommand>> MagicRollCommandReceived = delegate { };
 
         protected override void receiveSomething(string line)
         {
@@ -56,6 +46,8 @@ namespace Sanet.Kniffel.Protocol.Observer
                 PlayerReadyCommandReceived(this, new CommandEventArgs<PlayerReadyCommand>(new PlayerReadyCommand(token)));
             else if (commandName == GameEndedCommand.COMMAND_NAME)
                 GameEndedCommandReceived(this, new CommandEventArgs<GameEndedCommand>(new GameEndedCommand()));
+            else if (commandName == MagicRollCommand.COMMAND_NAME)
+                MagicRollCommandReceived(this, new CommandEventArgs<MagicRollCommand>(new MagicRollCommand(token)));
         }
     }
 }
