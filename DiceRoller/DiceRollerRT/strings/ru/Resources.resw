@@ -226,16 +226,16 @@
     <value>Извините, сетевая игра еще не готова. </value>
   </data>
   <data name="NewLocalGameAction" xml:space="preserve">
-    <value>Новая игра</value>
+    <value>Локальная игра</value>
   </data>
   <data name="NewLocalGameDescription" xml:space="preserve">
-    <value>Новая игра - в одиночку, с друзьями или с компьютером</value>
+    <value>Новая локальная игра - в одиночку, с друзьями или с компьютером</value>
   </data>
   <data name="NewOnlineGameAction" xml:space="preserve">
     <value>Игра по сети</value>
   </data>
   <data name="NewOnlineGameDescription" xml:space="preserve">
-    <value>Скоро доступно</value>
+    <value>Многопользовательская игра по интернет</value>
   </data>
   <data name="SettingsAction" xml:space="preserve">
     <value>Настройки</value>
@@ -451,7 +451,7 @@
     <value>Вам нравится?</value>
   </data>
   <data name="SendFeedbackAction" xml:space="preserve">
-    <value>Отправить нам отзыв о приложении</value>
+    <value>Сообщить о проблеме</value>
   </data>
   <data name="YesLabel" xml:space="preserve">
     <value>Да, с удовольствием!</value>
@@ -707,5 +707,8 @@
   </data>
   <data name="TablesLabel" xml:space="preserve">
     <value>Столы</value>
+  </data>
+  <data name="AlreadyInGameMessage" xml:space="preserve">
+    <value>Извините, вы не можете поделючиться к выбоанному столу. Игрок с таким именем уже инрает. Попробуйте позже.</value>
   </data>
 </root>

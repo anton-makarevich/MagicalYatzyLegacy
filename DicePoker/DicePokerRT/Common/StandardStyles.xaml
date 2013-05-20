@@ -1963,13 +1963,14 @@
                 ManipulationMode="None"
                 ItemsSource="{Binding Players}"
                 HorizontalAlignment="Left"
+                IsHitTestVisible="False"
                 ScrollViewer.HorizontalScrollMode="Disabled"
                 ScrollViewer.VerticalScrollMode="Disabled"
                 >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding}"
-                                   Height="20" Margin="0"
+                                   Height="25" Margin="0"
                                    TextAlignment="Left"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -1977,7 +1978,7 @@
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                         <Setter Property="Width" Value="100"/>
-                        <Setter Property="Height" Value="25"/>
+                        <Setter Property="Height" Value="26"/>
                         <Setter Property="Margin"  Value="0"/>
                     </Style>
                 </ListView.ItemContainerStyle>

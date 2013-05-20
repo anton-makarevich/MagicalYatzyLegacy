@@ -226,7 +226,7 @@
     <value>Sorry, network game is not ready yet</value>
   </data>
   <data name="NewLocalGameAction" xml:space="preserve">
-    <value>New Game</value>
+    <value>Local Game</value>
   </data>
   <data name="NewLocalGameDescription" xml:space="preserve">
     <value>Start a new local game - alone, with friends or with bots</value>
@@ -235,7 +235,7 @@
     <value>Online game</value>
   </data>
   <data name="NewOnlineGameDescription" xml:space="preserve">
-    <value>Comming soon</value>
+    <value>Multiplayer game through Internet</value>
   </data>
   <data name="SettingsAction" xml:space="preserve">
     <value>Settings</value>
@@ -424,7 +424,7 @@
     <value>Rate this app in the store</value>
   </data>
   <data name="SendFeedbackAction" xml:space="preserve">
-    <value>Send us your feedback</value>
+    <value>Report a bug</value>
   </data>
   <data name="AWDescription" xml:space="preserve">
     <value>Educational app to learn writing. This interactive software develops fine motor skills, memory, teaches how to write Russian (Cyrillic) letters, English ABC's characters, Chinese chars, numbers and various symbols.</value>
@@ -716,5 +716,8 @@
   </data>
   <data name="TablesLabel" xml:space="preserve">
     <value>Tables</value>
+  </data>
+  <data name="AlreadyInGameMessage" xml:space="preserve">
+    <value>Sorry, You can't connect to selected table. There is a player with the same name... Please try later. </value>
   </data>
 </root>

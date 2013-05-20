@@ -704,9 +704,12 @@ namespace Sanet.Kniffel.ViewModels
 
         public override void Dispose()
         {
-            StopTimer();
-            _timer.Tick-=_timer_Tick;
-            _timer = null;
+            if (_timer != null)
+            {
+                StopTimer();
+                _timer.Tick -= _timer_Tick;
+                _timer = null;
+            }
             base.Dispose();
         }
 

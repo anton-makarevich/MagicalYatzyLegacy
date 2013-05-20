@@ -226,16 +226,16 @@
     <value>Извините, сетевая игра еще не готова. </value>
   </data>
   <data name="NewLocalGameAction" xml:space="preserve">
-    <value>Новая гульня</value>
+    <value>Лаальная гульня</value>
   </data>
   <data name="NewLocalGameDescription" xml:space="preserve">
-    <value>Новая гульня - у адзіночку, з сябрамі або з кампутарам</value>
+    <value>Лакальная гульня - у адзіночку, з сябрамі або з кампутарам</value>
   </data>
   <data name="NewOnlineGameAction" xml:space="preserve">
-    <value>Игра по сети</value>
+    <value>Гульня па сеціве</value>
   </data>
   <data name="NewOnlineGameDescription" xml:space="preserve">
-    <value>Скоро доступно</value>
+    <value>Гульня з іншымі людзьмі праз інтэрнэт</value>
   </data>
   <data name="SettingsAction" xml:space="preserve">
     <value>Налады</value>
@@ -451,7 +451,7 @@
     <value>Вам падабаецца?</value>
   </data>
   <data name="SendFeedbackAction" xml:space="preserve">
-    <value>Напішыце нам водгук аб праграме</value>
+    <value>Расказаць аб памылцы</value>
   </data>
   <data name="YesLabel" xml:space="preserve">
     <value>З задавальненнем!</value>
@@ -710,5 +710,8 @@
   </data>
   <data name="TablesLabel" xml:space="preserve">
     <value>Сталы</value>
+  </data>
+  <data name="AlreadyInGameMessage" xml:space="preserve">
+    <value>Прабачце не атрымалася злучыцца са сталом - там ужо ёсць нехта з такім жа нікам... паспрабуйце пазней.</value>
   </data>
 </root>

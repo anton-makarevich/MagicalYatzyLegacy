@@ -338,7 +338,14 @@ namespace Sanet.Kniffel.ViewModels
             SavePlayers();
             var tableId = -1;
             if (SelectedTable != null)
+            {
                 tableId = SelectedTable.Id;
+                if (SelectedTable.Players.Contains(SelectedPlayer.Name))
+                {
+                    Utilities.ShowMessage("AlreadyInGameMessage".Localize(), "AppNameLabel".Localize());
+                    return;
+                }
+            }
             await JoinManager.JoinTable(tableId, SelectedRule.Rule.Rule);
         }
 
@@ -393,7 +400,7 @@ namespace Sanet.Kniffel.ViewModels
                         if (game.Id == -1)
                             game.Name = "RandomLabel".Localize();
                         else
-                            game.Name = new KniffelRule(game.Rule).ToString();
+                            game.Name = game.Rule.ToString().Localize();
 
                     Tables = new ObservableCollection<TupleTableInfo>(respond.Tables);
                     SelectedTable = Tables[0];
