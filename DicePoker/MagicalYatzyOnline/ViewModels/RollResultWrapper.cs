@@ -94,7 +94,10 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         public bool HasValue
         {
-            get { return _Result.HasValue; }
+            get 
+            {
+                return _Result.HasValue;
+            }
             set
             {
                 if (_Result.HasValue != value)
@@ -102,6 +105,8 @@ namespace Sanet.Kniffel.ViewModels
                     _Result.HasValue = value;
                     NotifyPropertyChanged("HasValue");
                 }
+                else if (value)
+                    NotifyPropertyChanged("HasValue");
             }
         }
 
@@ -159,7 +164,8 @@ namespace Sanet.Kniffel.ViewModels
         public void Refresh()
         {
             NotifyPropertyChanged("HasBonus");
-            NotifyPropertyChanged("HasValue");
+            //if (HasValue)
+            //    NotifyPropertyChanged("HasValue");
             NotifyPropertyChanged("Value");
         }
     }

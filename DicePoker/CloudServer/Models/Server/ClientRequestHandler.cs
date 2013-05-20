@@ -29,7 +29,7 @@ namespace Sanet.Kniffel.Server
         /// dummy port
         /// </summary>
         public static ServerLobby ServerLobby = new ServerLobby(1000);
-        private static List<ClientInfo> clientList = new List<ClientInfo>();
+        //private static List<ClientInfo> clientList = new List<ClientInfo>();
 
         public bool IsReusable
         {
@@ -141,7 +141,14 @@ namespace Sanet.Kniffel.Server
             //}
         }
 
-        
+        public static int ClientsCount
+        {
+            get 
+            {
+                return ServerClientLobby.playerToServerClientLobbyMapping.Count;
+            }
+
+    }
     }
 }
    

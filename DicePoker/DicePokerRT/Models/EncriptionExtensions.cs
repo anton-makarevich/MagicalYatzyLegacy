@@ -79,6 +79,8 @@ namespace Sanet.Models
             const int intUpperBounds = 28;
 
             int iPK = 126 - key;
+            if (string.IsNullOrEmpty(StringToEncrypt))
+                return string.Empty;
             try
             {
                 for (dblCountLength = 1; dblCountLength <= StringToEncrypt.Length; dblCountLength++)

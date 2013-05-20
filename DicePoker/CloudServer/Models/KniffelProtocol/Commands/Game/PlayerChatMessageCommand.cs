@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Sanet.Kniffel.Protocol.Commands.Game
 {
-    public class PlayerChatMessageCommand : AbstractCommand
+    public class PlayerChatMessageCommand :PlayerCommand
     {
         protected override string CommandName
         {
@@ -12,50 +12,41 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
         }
         public static string COMMAND_NAME = "gamePLAYER_CHAT_MESSAGE";
 
-        private readonly int m_PlayerPos;
-        //private readonly int m_ReceiverPos;
-        //private readonly bool m_IsPrivate;
-        private readonly string m_Message;
 
-        public int PlayerPos
+        public string ReceiverName
         {
-            get { return m_PlayerPos; }
+            get;private set;
         }
-        //public int ReceiverPos
-        //{
-        //    get { return m_ReceiverPos; }
-        //}
-        //public bool IsPrivate
-        //{
-        //    get { return m_IsPrivate; }
-        //}
-        public string Message
+        public bool IsPrivate
         {
-            get { return m_Message; }
+            get;private set;
         }
+        public string Message { get; set; }
 
         public PlayerChatMessageCommand(StringTokenizer argsToken)
+            :base(argsToken)
         {
-            m_PlayerPos = int.Parse(argsToken.NextToken());
-            //m_ReceiverPos = int.Parse(argsToken.NextToken());
-            //m_IsPrivate = bool.Parse(argsToken.NextToken());
-            m_Message=argsToken.NextToken();
+            Message=argsToken.NextToken();
+            IsPrivate = bool.Parse(argsToken.NextToken());
+            ReceiverName=argsToken.NextToken();
         }
 
-        public PlayerChatMessageCommand(int senderpos,string message)
+        public PlayerChatMessageCommand(string sendername,string message, string receiver, bool isPrivate)
+            :base(sendername)
         {
-            m_PlayerPos = senderpos;
-            //m_ReceiverPos = receiverpos;
-            //m_IsPrivate = isprivate;
-            m_Message = message;
+            ReceiverName=receiver;
+            IsPrivate = isPrivate;
+            Message = message;
         }
 
         public override void Encode(StringBuilder sb)
         {
-            Append(sb, m_PlayerPos);
-            //Append(sb, m_ReceiverPos);
-            //Append(sb, m_IsPrivate);
-            Append(sb, m_Message);
+            base.Encode(sb);
+            Append(sb, Message);
+            Append(sb, IsPrivate);
+            Append(sb, ReceiverName);
+            
+            
         }
     }
 }

@@ -140,6 +140,19 @@ namespace Sanet.Kniffel.Models
             }
         }
 
+        public static bool IsSoundEnabled
+        {
+            get
+            {
+                if (LocalSettings.GetValue("IsSoundEnabled") == null)
+                    LocalSettings.SetValue("IsSoundEnabled", 0);
+                return bool.Parse(LocalSettings.GetValue("IsSoundEnabled"));
+            }
+            set
+            {
+                LocalSettings.SetValue("IsSoundEnabled", value);
+            }
+        }
         #endregion
 
         #region records

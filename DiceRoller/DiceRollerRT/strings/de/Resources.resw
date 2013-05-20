@@ -250,11 +250,11 @@
     <comment>Beste Spieler</comment>
   </data>
   <data name="NetworkGameNotReadyMessage" xml:space="preserve">
-    <value>Sorry, das Networkspiel ist noch nicht vertig</value>
-    <comment>Sorry, das Networkspiel ist noch nicht vertig</comment>
+    <value>Sorry, das Networkspiel ist noch nicht fertig</value>
+    <comment>Sorry, das Networkspiel ist noch nicht fertig</comment>
   </data>
   <data name="NewLocalGameAction" xml:space="preserve">
-    <value>Neues Spiel </value>
+    <value>Локальная Spiel   Lokale Spielversion</value>
     <comment>Neues Spiel</comment>
   </data>
   <data name="NewOnlineGameAction" xml:space="preserve">
@@ -422,8 +422,8 @@
     <comment>Die volle Highscore-Liste im Internet</comment>
   </data>
   <data name="AppNameLabel" xml:space="preserve">
-    <value>Magischer Yatzy</value>
-    <comment>Sanet Dice Poker</comment>
+    <value>Magischer Yatzy Online</value>
+    <comment>Magischer Yatzy</comment>
   </data>
   <data name="OtherAppsLabel" xml:space="preserve">
     <value>Andere Apps</value>
@@ -450,7 +450,7 @@
     <comment>die App in Windows Store bewerten</comment>
   </data>
   <data name="SendFeedbackAction" xml:space="preserve">
-    <value>Die App Bewertung senden</value>
+    <value>Ein Problem melden</value>
     <comment>Die App Bewertung senden</comment>
   </data>
   <data name="AWDescription" xml:space="preserve">
@@ -482,8 +482,8 @@
     <comment>Ja, mit Vergnügen!</comment>
   </data>
   <data name="Privacy1.Text" xml:space="preserve">
-    <value>Sanet Dice Poker sammelt, publiziert, speichert, übergibt keine Iher persönlichen Informationen oder Daten und überwacht keiner Iher Bewegungen.</value>
-    <comment>Sanet Dice Poker sammelt, publiziert, speichert, übergibt keine Iher persönlichen Informationen oder Daten und überwacht keiner Iher Bewegungen.</comment>
+    <value>Magischer Yatzy sammelt, publiziert, speichert, übergibt keine Iher persönlichen Informationen oder Daten und überwacht keiner Iher Bewegungen.</value>
+    <comment>Magischer Yatzy sammelt, publiziert, speichert, übergibt keine Iher persönlichen Informationen oder Daten und überwacht keiner Iher Bewegungen.</comment>
   </data>
   <data name="Privacy2.Text" xml:space="preserve">
     <value>Die Veröffentlichung Ihrer Daten wie Windows-User-Name, Email, Live-Id für Ihre 	
@@ -504,8 +504,8 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <comment>Das lang ersehnte Spiel ist endlich da!</comment>
   </data>
   <data name="DicePokerAdLine3" xml:space="preserve">
-    <value>Sanet Dice Poker:</value>
-    <comment>Sanet Dice Poker:</comment>
+    <value>Magischer Yatzy:</value>
+    <comment>Magischer Yatzy:</comment>
   </data>
   <data name="DicePokerAdLine4" xml:space="preserve">
     <value>4 Regelneinstellungen</value>
@@ -708,7 +708,8 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>überprüfen ...</value>
   </data>
   <data name="NoInternetLabel" xml:space="preserve">
-    <value>kein Internet</value>
+    <value>kein Internetzugang</value>
+    <comment>kein Internetzugang</comment>
   </data>
   <data name="WrongNamePassLabel" xml:space="preserve">
     <value>falscher Name oder Passwort</value>
@@ -754,7 +755,7 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <comment>ein.</comment>
   </data>
   <data name="ShareTitle" xml:space="preserve">
-    <value>"Magischer Yatzy" für Windows 8</value>
+    <value>"Magischer Yatzy Online" für Windows 8</value>
   </data>
   <data name="OnlyUniqueCanBuyMessage" xml:space="preserve">
     <value>Nur der Spieler mit einem einmaligen Usernamen und  einem Passwort kann Artefakte kaufen. Einmaliger Username und ein Passwort sind nötig, damit nur Sie Ihre gekauften Artefakte gebrauchen können.  Prüfen Sie zuerst den Usernamen und das Passwort, dann kaufen Sie die Artefakte.</value>
@@ -763,5 +764,73 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
   <data name="PlayerNoPasswordLabel" xml:space="preserve">
     <value>kein Passwort</value>
     <comment>kein Passwort</comment>
+  </data>
+  <data name="ReadyLabel" xml:space="preserve">
+    <value>Играть!</value>
+    <comment>Spielen!</comment>
+  </data>
+  <data name="WaitForGameLabel" xml:space="preserve">
+    <value>Ждем новой игры</value>
+    <comment>Wir warten auf ein neues Spiel.</comment>
+  </data>
+  <data name="WaitForPlayersLabel" xml:space="preserve">
+    <value>Ждем игроков</value>
+    <comment>Wir warten auf andere Spieler.</comment>
+  </data>
+  <data name="ClientLabel" xml:space="preserve">
+    <value>Клиент</value>
+    <comment>Klient</comment>
+  </data>
+  <data name="ClientOutdatedLabel" xml:space="preserve">
+    <value>Устарел</value>
+    <comment>Ist veraltet</comment>
+  </data>
+  <data name="ClientOutdatedMessage" xml:space="preserve">
+    <value>Ваша версия программы устарела, для игры по сети необходимо обновить ее</value>
+    <comment>Ihre Spielversion ist veraltet. Für das Multiplayer-Online-Spiel ist die Aktualisierung nötig.</comment>
+  </data>
+  <data name="ClientUpdatedLabel" xml:space="preserve">
+    <value>Обновлен</value>
+    <comment>Ist aktualisiert</comment>
+  </data>
+  <data name="ServerLabel" xml:space="preserve">
+    <value>Сервер</value>
+    <comment>Server</comment>
+  </data>
+  <data name="ServerOfflineLabel" xml:space="preserve">
+    <value>Оффлайн</value>
+    <comment>offline</comment>
+  </data>
+  <data name="ServerOfflineMessage" xml:space="preserve">
+    <value>В настоящее время сервер игры не доступен, пожалуйста попробуйте позже</value>
+    <comment>Zurzeit ist der Spiel-Server  nicht erreichbar,  versuchen Sie es später noch einmal.</comment>
+  </data>
+  <data name="ServerOnlineLabel" xml:space="preserve">
+    <value>Онлайн</value>
+    <comment>online</comment>
+  </data>
+  <data name="StatusLabel" xml:space="preserve">
+    <value>Статус</value>
+    <comment>Zustand</comment>
+  </data>
+  <data name="SendLabel" xml:space="preserve">
+    <value>Отправить</value>
+    <comment>Senden</comment>
+  </data>
+  <data name="RandomLabel" xml:space="preserve">
+    <value>Случайно</value>
+    <comment>zufällig</comment>
+  </data>
+  <data name="TablesLabel" xml:space="preserve">
+    <value>Столы</value>
+    <comment>Tische</comment>
+  </data>
+  <data name="AlreadyInGameMessage" xml:space="preserve">
+    <value>Извините, вы не можете подключиться к выбранному столу. Игрок с таким именем уже играет. Попробуйте позже.</value>
+    <comment>Entschuldigung, aber Sie können dem gewählten Tisch nicht beitreten. Ein Spieler mit dem gleichen Namen ist schon im Spiel. Wählen Sie einen anderen Tisch.</comment>
+  </data>
+  <data name="NewOnlineGameDescription" xml:space="preserve">
+    <value>Многопользовательская игра по интернету</value>
+    <comment>das  Multiplayer-Online-Spiel</comment>
   </data>
 </root>

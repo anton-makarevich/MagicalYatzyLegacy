@@ -138,6 +138,9 @@
     <Compile Include="..\..\DiceRoller\DiceRollerRT\ViewModels\SettingsViewModel.cs">
       <Link>ViewModels\SettingsViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\CloudServer\Models\ChatMessage.cs">
+      <Link>Models\ChatMessage.cs</Link>
+    </Compile>
     <Compile Include="..\CloudServer\Models\Interfaces\IKniffelGame.cs">
       <Link>Models\Interfaces\IKniffelGame.cs</Link>
     </Compile>
@@ -146,6 +149,9 @@
     </Compile>
     <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IRollResult.cs">
       <Link>Models\Interfaces\IRollResult.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\ViewModels\ChatViewModel.cs">
+      <Link>ViewModels\ChatViewModel.cs</Link>
     </Compile>
     <Compile Include="..\MagicalYatzyOnline\ViewModels\PlayerWrapper.cs">
       <Link>ViewModels\PlayerWrapper.cs</Link>
@@ -190,7 +196,6 @@
     <Compile Include="Models\LocalSettings.cs" />
     <Compile Include="Models\Messages.cs" />
     <Compile Include="Models\PlayerAIExtensions.cs" />
-    <Compile Include="Common\ServerHttpMessage.cs" />
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="Models\ReviewBugger.cs" />
     <Compile Include="Models\RoamingSettings.cs" />
@@ -1266,6 +1271,7 @@
     <Content Include="Assets\Baby.png" />
     <Content Include="Assets\BadgeLogo.scale-140.png" />
     <Content Include="Assets\BadgeLogo.scale-180.png" />
+    <Content Include="Assets\check.png" />
     <Content Include="Assets\Children.png" />
     <Content Include="Assets\Customer.png" />
     <Content Include="Assets\Desktop.png" />

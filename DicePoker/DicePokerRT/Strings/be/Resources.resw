@@ -226,16 +226,16 @@
     <value>Извините, сетевая игра еще не готова. </value>
   </data>
   <data name="NewLocalGameAction" xml:space="preserve">
-    <value>Новая гульня</value>
+    <value>Лаальная гульня</value>
   </data>
   <data name="NewLocalGameDescription" xml:space="preserve">
-    <value>Новая гульня - у адзіночку, з сябрамі або з кампутарам</value>
+    <value>Лакальная гульня - у адзіночку, з сябрамі або з кампутарам</value>
   </data>
   <data name="NewOnlineGameAction" xml:space="preserve">
-    <value>Игра по сети</value>
+    <value>Гульня па сеціве</value>
   </data>
   <data name="NewOnlineGameDescription" xml:space="preserve">
-    <value>Скоро доступно</value>
+    <value>Гульня з іншымі людзьмі праз інтэрнэт</value>
   </data>
   <data name="SettingsAction" xml:space="preserve">
     <value>Налады</value>
@@ -412,7 +412,7 @@
     <value>Ачкоў</value>
   </data>
   <data name="AppNameLabel" xml:space="preserve">
-    <value>Магічны Yatzy</value>
+    <value>Магічны Yatzy Online</value>
   </data>
   <data name="AWDescription" xml:space="preserve">
     <value>Электронны пропіс, які развівае дробную маторыку, памяць, навучае пісьму (лічбы, кірылічныя, лацінскія літары, кітайскія іерогліфы і розныя знакі), дазваляе ў сучаснай форме авалодаць асновамі графічнага пісьма, надаць дзіцяці цягу да ведаў</value>
@@ -451,7 +451,7 @@
     <value>Вам падабаецца?</value>
   </data>
   <data name="SendFeedbackAction" xml:space="preserve">
-    <value>Напішыце нам водгук аб праграме</value>
+    <value>Расказаць аб памылцы</value>
   </data>
   <data name="YesLabel" xml:space="preserve">
     <value>З задавальненнем!</value>
@@ -463,7 +463,7 @@
     <value>Попробуй нашу новую игру -</value>
   </data>
   <data name="DicePokerAdLine3" xml:space="preserve">
-    <value>Sanet Dice Poker:</value>
+    <value>Magical Yatzy:</value>
   </data>
   <data name="DicePokerAdLine4" xml:space="preserve">
     <value>4 набора правил</value>
@@ -659,5 +659,59 @@
   </data>
   <data name="PlayerNoPasswordLabel" xml:space="preserve">
     <value>няма пароля</value>
+  </data>
+  <data name="ReadyLabel" xml:space="preserve">
+    <value>Гуляць!</value>
+  </data>
+  <data name="WaitForGameLabel" xml:space="preserve">
+    <value>Чакаем новую гульню</value>
+  </data>
+  <data name="WaitForPlayersLabel" xml:space="preserve">
+    <value>Чакаем гульцоў</value>
+  </data>
+  <data name="ClientLabel" xml:space="preserve">
+    <value>Кліент:</value>
+  </data>
+  <data name="ClientOutdatedLabel" xml:space="preserve">
+    <value>Састарэў</value>
+  </data>
+  <data name="ClientOutdatedMessage" xml:space="preserve">
+    <value>Версія праграмы састарэлаю Для гульні анлайн неабходна абнавіць яе.</value>
+  </data>
+  <data name="ClientUpdatedLabel" xml:space="preserve">
+    <value>Ок</value>
+  </data>
+  <data name="ServerLabel" xml:space="preserve">
+    <value>Сервер:</value>
+  </data>
+  <data name="ServerOfflineLabel" xml:space="preserve">
+    <value>Оффлайн</value>
+  </data>
+  <data name="ServerOfflineMessage" xml:space="preserve">
+    <value>Не атрымалася злучыцца з серверам. Квлі ласка, паспрабуйце крыху пазней.</value>
+  </data>
+  <data name="ServerOnlineLabel" xml:space="preserve">
+    <value>Анлайн</value>
+  </data>
+  <data name="StatusLabel" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="ServerMaintananceMessage" xml:space="preserve">
+    <value>УВАГА! {0} (UTC) сервер будзе выключаны для прафілактычных работ. У гэты час гуляць па сеціве будзе нельга (звычайна ўсяго некалькі хвілін).</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SendLabel" xml:space="preserve">
+    <value>Адправіць</value>
+  </data>
+  <data name="RandomLabel" xml:space="preserve">
+    <value>Выпадкова</value>
+  </data>
+  <data name="TablesLabel" xml:space="preserve">
+    <value>Сталы</value>
+  </data>
+  <data name="AlreadyInGameMessage" xml:space="preserve">
+    <value>Прабачце не атрымалася злучыцца са сталом - там ужо ёсць нехта з такім жа нікам... паспрабуйце пазней.</value>
   </data>
 </root>

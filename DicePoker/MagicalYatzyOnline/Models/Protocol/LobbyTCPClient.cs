@@ -146,7 +146,7 @@ namespace Sanet.Kniffel.Protocol
             if (noSeat == -1)
             {
                 LogManager.Log(LogLevel.MessageLow, "LobbyTCPClient.JoinTable", "Cannot sit at this table: #{0}", p_noPort);
-                Utilities.ShowMessage("Sorry, we can't connect with that name.");
+                
                 return null;
             }
 

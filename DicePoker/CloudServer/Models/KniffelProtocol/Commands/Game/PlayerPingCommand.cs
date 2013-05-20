@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sanet.Kniffel.Protocol.Commands.Game
 {
-    public class PlayerPingCommand : AbstractCommand
+    public class PlayerPingCommand :PlayerCommand
     {
         protected override string CommandName
         {
@@ -13,26 +13,23 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
         }
         public static string COMMAND_NAME = "gamePLAYER_PING";
 
-        private readonly int m_PlayerPos;
         
-        public int PlayerPos
-        {
-            get { return m_PlayerPos; }
-        }
         
         public PlayerPingCommand(StringTokenizer argsToken)
+            :base(argsToken)
         {
-            m_PlayerPos = int.Parse(argsToken.NextToken());
+            
         }
 
-        public PlayerPingCommand(int pos)
+        public PlayerPingCommand(string name)
+            :base (name)
         {
-            m_PlayerPos = pos;
+            
         }
 
         public override void Encode(StringBuilder sb)
         {
-            Append(sb, m_PlayerPos);
+            base.Encode(sb);
         }
     }
 }

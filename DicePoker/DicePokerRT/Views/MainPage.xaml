@@ -102,7 +102,7 @@
                 <TextBlock Style="{StaticResource HeaderTextStyle}"
                    Foreground="{StaticResource SanetBlue}"
                    x:Name="titleSnapText"
-                   Text="Sanet Dice Poker"
+                   Text="Magical Yatzy"
                            FontSize="40"
                            Margin="10"
                    VerticalAlignment="Center"/>

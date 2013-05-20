@@ -79,6 +79,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\AllWrite\Sanet.AllWrite.WP\Sanet.AllWrite.WP\Models\Brushes.cs">
+      <Link>Common\Brushes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\SanetWeb\Models\LogManager.cs">
+      <Link>Common\LogManager.cs</Link>
+    </Compile>
     <Compile Include="..\..\DicePanelWP\Models\DicePanel.cs">
       <Link>DicePanel\DicePanel.cs</Link>
     </Compile>
@@ -90,6 +96,27 @@
     </Compile>
     <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\Result.cs">
       <Link>Models\Result.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DiceRoller\DiceRollerRT\ViewModels\SettingsViewModel.cs">
+      <Link>ViewModels\SettingsViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Interfaces\IKniffelGame.cs">
+      <Link>Models\Interfaces\IKniffelGame.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\DicePanel\DiceSelector.cs">
+      <Link>DicePanel\DiceSelector.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\DicePanel\DieResult.cs">
+      <Link>DicePanel\DieResult.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\AboutAppAction.cs">
+      <Link>Models\AboutAppAction.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\DiceRandomGenerator.cs">
+      <Link>Models\DiceRandomGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Enums\ClientType.cs">
+      <Link>Models\enums\ClientType.cs</Link>
     </Compile>
     <Compile Include="..\DicePokerRT\Models\Enums\GameRule.cs">
       <Link>Models\enums\GameRule.cs</Link>
@@ -127,11 +154,20 @@
     <Compile Include="..\DicePokerRT\Models\ViewModelProvider.cs">
       <Link>Common\ViewModelProvider.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\AboutPageViewModel.cs">
+      <Link>ViewModels\AboutPageViewModel.cs</Link>
+    </Compile>
     <Compile Include="..\DicePokerRT\ViewModels\AdBasedViewModel.cs">
       <Link>ViewModels\AdBasedViewModel.cs</Link>
     </Compile>
     <Compile Include="..\DicePokerRT\ViewModels\MainPageViewModel.cs">
       <Link>ViewModels\MainPageViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IPlayer.cs">
+      <Link>Models\Interfaces\IPlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IRollResult.cs">
+      <Link>Models\Interfaces\IRollResult.cs</Link>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -140,6 +176,7 @@
     <Compile Include="Common\LocalSettings.cs" />
     <Compile Include="Common\RoamingSettings.cs" />
     <Compile Include="Common\SanetImageProvider.cs" />
+    <Compile Include="Common\SoundsProvider.cs" />
     <Compile Include="Common\WPBasePageExtensions.cs" />
     <Compile Include="Models\CommonNavigationActions.cs" />
     <Compile Include="Models\ResourceModel.cs" />

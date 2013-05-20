@@ -2,6 +2,7 @@
 using DicePokerRT;
 using DicePokerRT.KniffelLeaderBoardService;
 using Sanet.Kniffel.Models;
+using Sanet.Kniffel.Protocol;
 using Sanet.Kniffel.WebApi;
 using Sanet.Models;
 using System;
@@ -18,7 +19,10 @@ namespace Sanet.Kniffel.ViewModels
 {
     public class NewOnlineGameViewModel : NewGameViewModelBase
     {
-        
+
+        string[] _language = Windows.System.UserProfile.GlobalizationPreferences.Languages[0].Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
+            
+   
         #region Constructor
         public NewOnlineGameViewModel()
             :base()
@@ -51,6 +55,114 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
         
+        /// <summary>
+        /// Tables group label
+        /// </summary>
+        public string TablesLabel
+        {
+            get
+            {
+                return Messages.GAME_TABLES.Localize();
+            }
+        }
+        /// <summary>
+        /// Label "Status"
+        /// </summary>
+        public string StatusLabel
+        {
+            get
+            {
+                return Messages.GAME_STATUS.Localize();
+            }
+        }
+
+        /// <summary>
+        /// Just label "Server status"
+        /// </summary>
+        public string ServerLabel
+        {
+            get { return Messages.MP_SERVER.Localize(); }
+            
+        }
+
+        /// <summary>
+        /// Just label "Client status"
+        /// </summary>
+        public string ClientLabel
+        {
+            get { return Messages.MP_CLIENT.Localize(); }
+            
+        }
+
+        /// <summary>
+        /// Displays if server online
+        /// </summary>
+        private string  _ServerStatusMessage;
+        public string  ServerStatusMessage
+        {
+            get { return _ServerStatusMessage; }
+            set
+            {
+                if (_ServerStatusMessage != value)
+                {
+                    _ServerStatusMessage = value;
+                    NotifyPropertyChanged("ServerStatusMessage");
+                    NotifyPropertyChanged("IsReadyToPlay");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Displays if client version ok
+        /// </summary>
+        private string _ClientStatusMessage;
+        public string ClientStatusMessage
+        {
+            get { return _ClientStatusMessage; }
+            set
+            {
+                if (_ClientStatusMessage != value)
+                {
+                    _ClientStatusMessage = value;
+                    NotifyPropertyChanged("ClientStatusMessage");
+                    NotifyPropertyChanged("IsReadyToPlay");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Display any custom message from server
+        /// </summary>
+        string _ClientServerStatusMessage;
+        public string ClientServerStatusMessage
+        {
+            get { return _ClientServerStatusMessage; }
+            set
+            {
+                if (_ClientServerStatusMessage != value)
+                {
+                    _ClientServerStatusMessage = value;
+                    NotifyPropertyChanged("ClientServerStatusMessage");
+                }
+            }
+        }
+
+
+        private bool _BusyWithServer;
+        public bool BusyWithServer
+        {
+            get { return _BusyWithServer; }
+            set
+            {
+                if (_BusyWithServer != value)
+                {
+                    _BusyWithServer = value;
+                    NotifyPropertyChanged("BusyWithServer");
+                }
+            }
+        }
+
+
         
         /// <summary>
         /// Selected player, used to delete and maybe other actions
@@ -86,10 +198,76 @@ namespace Sanet.Kniffel.ViewModels
         {
             get 
             {
-                return true;
+                if (SelectedPlayer == null || !SelectedPlayer.HasPassword || SelectedPlayer.IsDefaultName)
+                    return false;
+                if (string.IsNullOrEmpty(ServerStatusMessage))
+                    return false;
+                if (ServerStatusMessage.Contains( Messages.MP_SERVER_ONLINE.Localize())
+                    && ClientStatusMessage==Messages.MP_CLIENT_UPDATED.Localize())
+                        return true;
+                    else
+                        return false;
+
                 
             }
         }
+                    
+        private ObservableCollection<TupleTableInfo> _Tables;
+        public ObservableCollection<TupleTableInfo> Tables
+        {
+            get { return _Tables; }
+            set
+            {
+                if (_Tables != value)
+                {
+                    _Tables = value;
+                    NotifyPropertyChanged("Tables");
+                }
+            }
+        }
+
+        
+        private TupleTableInfo _SelectedTable;
+        public TupleTableInfo SelectedTable
+        {
+            get { return _SelectedTable; }
+            set
+            {
+                if (_SelectedTable != value)
+                {
+                    _SelectedTable = value;
+                    if (value.Id != -1)
+                        SelectedRule = Rules.FirstOrDefault(f => f.Rule.Rule == value.Rule);
+                    
+                    NotifyPropertyChanged("SelectedTable");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Selected rule for game
+        /// </summary>
+        public override RuleWrapper SelectedRule
+        {
+            get { return _SelectedRule; }
+            set
+            {
+                if (_SelectedRule != value)
+                {
+                    if (value != null)
+                    {
+                        _SelectedRule = value;
+                        if (SelectedTable!=null && 
+                            SelectedTable.Id != -1 
+                            && SelectedTable.Rule != value.Rule.Rule)
+                            SelectedTable = Tables[0];
+                    }
+                    NotifyPropertyChanged("SelectedRule");
+                    NotifyPropertyChanged("IsReadyToPlay");
+                }
+            }
+        }
+        
 
         #endregion
 
@@ -116,19 +294,25 @@ namespace Sanet.Kniffel.ViewModels
                     Name = userName,
                     Type = PlayerType.Local
                 };
-                p.MagicPressed += p_MagicPressed;
-                p.ArtifactsSyncRequest += ArtifactsSyncRequest;
-                p.RefreshArtifactsInfo();
-                
+               
             }
+            p.RefreshArtifactsInfo();
+            p.MagicPressed += p_MagicPressed;
+            p.ArtifactsSyncRequest += ArtifactsSyncRequest;
+            p.PropertyChanged += p_PropertyChanged;
             p.IsBotPossible = false;
             p.IsHuman = true;
             p.Player.Client = Config.GetClientType();
-            var language=Windows.System.UserProfile.GlobalizationPreferences.Languages[0].Split(new string[]{"-"}, StringSplitOptions.RemoveEmptyEntries);
-            p.Language = language[0];
+            p.Language = _language[0];
             Players.Add(p);
             SelectedPlayer = p;
             InitOnServer();
+        }
+
+        void p_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName=="Password" ||e.PropertyName=="Name")
+                NotifyPropertyChanged("IsReadyToPlay");
         }
                
 
@@ -152,22 +336,86 @@ namespace Sanet.Kniffel.ViewModels
         public async override void StartGame()
         {
             SavePlayers();
-
-            await JoinManager.JoinTable(-1, SelectedRule.Rule.Rule);
+            var tableId = -1;
+            if (SelectedTable != null)
+            {
+                tableId = SelectedTable.Id;
+                if (SelectedTable.Players.Contains(SelectedPlayer.Name))
+                {
+                    Utilities.ShowMessage("AlreadyInGameMessage".Localize(), "AppNameLabel".Localize());
+                    return;
+                }
+            }
+            await JoinManager.JoinTable(tableId, SelectedRule.Rule.Rule);
         }
 
-        async void InitOnServer()
+        /// <summary>
+        /// When user enters lobby we ask server about its status and display this info for user
+        /// </summary>
+        public async void InitOnServer()
         {
+            if (SelectedPlayer == null || BusyWithServer)
+                return;
+
             if (!InternetCheker.IsInternetAvailable())
             {
                 Utilities.ShowMessage("NoInetMessage".Localize(), Messages.APP_NAME.Localize());
+                ServerStatusMessage = Messages.MP_SERVER_OFFLINE.Localize();
                 return;
             }
-            InitService initService = new InitService();
-            var respond = await initService.InitPlayer(SelectedPlayer.Player.ID);
-            if (respond != null)
+            try
             {
-                Utilities.ShowMessage(respond.Message.Localize(), Messages.APP_NAME.Localize());
+                InitService initService = new InitService();
+                BusyWithServer = true;
+                var respond = await initService.InitPlayer(SelectedPlayer.Player.ID,_language[0]);
+                BusyWithServer = false;
+                if (respond != null)
+                {
+                    if (respond.IsServerOnline)
+                    {
+                        ServerStatusMessage = string.Format("{0} ({1})", Messages.MP_SERVER_ONLINE.Localize(), respond.OnlinePlayersCount);
+                        if (respond.IsClientUpdated)
+                        {
+                            ClientStatusMessage = Messages.MP_CLIENT_UPDATED.Localize();
+                            //if (respond.Message == Messages.MP_SERVER_MAINTANANCE)
+                            //    ClientServerStatusMessage = string.Format(Messages.MP_SERVER_MAINTANANCE.Localize(), respond.ServerRestartDate.ToString());
+                            //else
+                            //    ClientServerStatusMessage = "";
+                            ClientServerStatusMessage = respond.Message;
+                        }
+                        else
+                        {
+                            ClientStatusMessage = Messages.MP_CLIENT_OUTDATED.Localize();
+                            ClientServerStatusMessage = Messages.MP_CLIENT_OUTDATED_STATUS.Localize();
+                        }
+
+                    }
+                    else
+                    {
+                        ServerStatusMessage = Messages.MP_SERVER_OFFLINE.Localize();
+                        ClientStatusMessage = Messages.MP_CLIENT_UPDATED.Localize();
+                        ClientServerStatusMessage = Messages.MP_SERVER_OFFLINE_STATUS.Localize();
+                    }
+                    foreach (var game in respond.Tables)
+                        if (game.Id == -1)
+                            game.Name = "RandomLabel".Localize();
+                        else
+                            game.Name = game.Rule.ToString().Localize();
+
+                    Tables = new ObservableCollection<TupleTableInfo>(respond.Tables);
+                    SelectedTable = Tables[0];
+                }
+                else
+                {
+                    ServerStatusMessage = Messages.MP_SERVER_OFFLINE.Localize();
+                    ClientStatusMessage = Messages.MP_CLIENT_UPDATED.Localize();
+                    ClientServerStatusMessage = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                LogManager.Log("NOGVM.InitOnServer", ex);
+                ClientServerStatusMessage = ex.Message;
             }
         }
 

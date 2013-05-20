@@ -25,8 +25,8 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
             IsFixed = bool.Parse(argsToken.NextToken());
         }
 
-        public FixDiceCommand(int pos, int value, bool isfixed)
-            :base(pos)
+        public FixDiceCommand(string name, int value, bool isfixed)
+            :base(name)
         {
             Value = value;
             IsFixed = isfixed;

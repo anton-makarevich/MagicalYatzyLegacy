@@ -6,6 +6,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:DicePokerRT"
     xmlns:common="using:Sanet.Common"
+    xmlns:controls="using:Sanet.Kniffel.Controls"
+    xmlns:commoncontrols="using:Sanet.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates"
@@ -16,6 +18,15 @@
         <common:BooleanToVisibilityConverter x:Key="VisibilityKey"/>
         <common:ReverseBooleanToVisibilityConverter x:Key="ReversedVisibilityKey"/>
     </views:BasePage.Resources>
+    <views:BasePage.BottomAppBar>
+        <AppBar Height="300" 
+                IsOpen="{Binding IsChatOpen,Mode=TwoWay}"
+                Closed="AppBar_Closed_1"
+                Opened="AppBar_Opened_1">
+            <controls:ChatControl
+                DataContext="{Binding ChatModel}"/>
+        </AppBar>
+    </views:BasePage.BottomAppBar>
     <Grid>
         <Grid
             x:Name="ControlGrid">
@@ -258,17 +269,16 @@
             Style="{StaticResource DiceRollAppBarButtonStyle}"
             VerticalAlignment="Bottom"
             HorizontalAlignment="center"
-                    IsEnabled="{Binding CanRoll}"
+                    Visibility="{Binding CanRoll, Converter={StaticResource VisibilityKey}}"
                  AutomationProperties.Name="{Binding RollLabel}"
             Tapped="Button_Tapped_1"/>
-                <!--<Button
-                 x:Name="ClearButton"
-                 IsEnabled="False"
-            Style="{StaticResource ClearSelectionAppBarButtonStyle}"
+                <Button
+                 Style="{StaticResource DiceRollAppBarButtonStyle}"
             VerticalAlignment="Bottom"
             HorizontalAlignment="center"
-                 AutomationProperties.Name="{Binding ClearLabel}"
-            Tapped="ClearButton_Tapped_1"/>-->
+                    Visibility="{Binding CanStart, Converter={StaticResource VisibilityKey}}"
+                 AutomationProperties.Name="{Binding ReadyToPlayLabel}"
+            Tapped="Button_Tapped_2"/>
             </StackPanel>
             <!--tiles with roll result-->
             <GridView
@@ -296,7 +306,25 @@
                 IsActive="{Binding IsBusy}"
                 Width="50"
                 Height="50"/>
+
+            
         </Grid>
+        <commoncontrols:BlurbControl 
+                Width="500"
+                Height="140"
+                Opacity="0"
+                Grid.RowSpan="2"
+                VerticalAlignment="Bottom"
+                Margin="10,0,0,0"
+                HorizontalAlignment="Left"
+                Message="{Binding ChatMessage}"
+            Visibility="Collapsed"
+            Tapped="BlurbControl_Tapped_1"
+                Grid.Row="0">
+                <commoncontrols:BlurbControl.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </commoncontrols:BlurbControl.RenderTransform>
+            </commoncontrols:BlurbControl>
     <Grid
                 x:Name="SnapGrid"
                 Visibility="Collapsed">
@@ -307,7 +335,7 @@
                 <TextBlock Style="{StaticResource HeaderTextStyle}"
                    Foreground="{StaticResource SanetBlue}"
                    x:Name="titleSnapText"
-                   Text="Sanet Dice Poker"
+                   Text="Magical Yatzy"
                            FontSize="40"
                            Margin="10"
                    VerticalAlignment="Center"/>

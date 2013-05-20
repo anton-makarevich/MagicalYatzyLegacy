@@ -1,5 +1,4 @@
-﻿using BibleProntoWP.BibleProntoService;
-using DicePokerWP.KniffelLeaderBoardService;
+﻿using DicePokerWP.KniffelLeaderBoardService;
 using System;
 using System.Collections.Generic;
 using System.Linq;

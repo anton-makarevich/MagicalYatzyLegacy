@@ -4,7 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+#if WinRT
 using Windows.UI.Xaml.Controls;
+#else
+using System.Windows.Controls;
+#endif
 
 namespace Sanet.Models
 {
@@ -34,9 +38,9 @@ namespace Sanet.Models
 
         //sound
         protected MediaElement _player = new MediaElement();
-        public void Dispose()
+        public virtual void Dispose()
         {
-            _player = null;
+             _player = null;
         }
     }
 }

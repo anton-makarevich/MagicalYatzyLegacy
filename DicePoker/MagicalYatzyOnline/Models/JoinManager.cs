@@ -48,21 +48,35 @@ namespace Sanet.Kniffel.Models
             KniffelGameClient game = WSServer.JoinTable(gameid,rule,p.Player,gui);
             if (game != null)
             {
+                game.StartGame();
                 ((Frame)Window.Current.Content).Navigate(typeof(GamePage));
                 CurrentTable = game;
+                //game.JoinGame(p.Player);
                 return true;
             }
             else
             {
-                Utilities.ShowMessage("Sorry, we can't join this table right now. Please try again later.");
+                SmartDispatcher.BeginInvoke(() =>
+                    {
+                        Utilities.ShowMessage("Sorry, we can't join right now. Please try again later.");
+                        
+                    });
                 return false;
             }
-            }
+        }
         public static async Task<bool> JoinTable()
         {
             return await JoinTable(CurrentTable.GameId, CurrentTable.Rules.Rule);
         }
-           
+
+        public static void Disconnect()
+        {
+            if (CurrentTable == null)
+                return;
+            CurrentTable.Disconnect();
+            WSServer.Close();
+        }
+
         }
 }
 

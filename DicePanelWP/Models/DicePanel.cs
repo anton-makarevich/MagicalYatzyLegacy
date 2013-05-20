@@ -8,7 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
 using System.ComponentModel;
-
+using Sanet.AllWrite;
+using Sanet.Kniffel.Models;
 #if WinRT
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -18,8 +19,7 @@ using Windows.UI.Xaml.Media;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
-using Sanet.AllWrite;
-using Sanet.Kniffel.Models;
+
 
 #else
 using System.Windows.Controls;
@@ -27,6 +27,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows.Resources;
+using System.Windows.Controls.Primitives;
 #endif
 namespace Sanet.Kniffel.DicePanel
 
@@ -109,6 +110,15 @@ namespace Sanet.Kniffel.DicePanel
             ManualSetMode = false;
             if (DieChangedManual != null)
                 DieChangedManual(_lastClickedDie.Frozen, oldvalue, _lastClickedDie.Result);
+        }
+
+        public void ChangeDice(int oldValue, int newValue)
+        {
+            var diceToChange = aDice.FirstOrDefault(f => f.Result == oldValue);
+            if (diceToChange == null)
+                return;
+            diceToChange.Result = newValue;
+            diceToChange.DrawDie();
         }
 
         /// <summary>
@@ -615,13 +625,13 @@ namespace Sanet.Kniffel.DicePanel
 
 
         }
-        public void FixDice(int index)
+        public void FixDice(int index, bool isfixed)
         {
             foreach (Die d in aDice)
             {
-                if (d.Result == index && !d.Frozen)
+                if (d.Result == index && d.Frozen==!isfixed)
                 {
-                    d.Frozen = true;
+                    d.Frozen = isfixed;
                     d.DrawDie();
                     return;
                 }
@@ -719,10 +729,19 @@ namespace Sanet.Kniffel.DicePanel
 
         private BitmapSource GetFramePic()
         {
-            //If bA.Length = 0 Then Return Nothing
-            string sPath = StyleString + strrot + Frame.ToString() + ".png";
+            try
+            {
+                //If bA.Length = 0 Then Return Nothing
+                string sPath = StyleString + strrot + Frame.ToString() + ".png";
 
-            return FPanel.DieFrameImages[sPath];
+                return FPanel.DieFrameImages[sPath];
+            }
+            catch (Exception ex)
+            {
+                var t = ex.Message;
+                return null;
+            }
+            
 
         }
         public Die(DicePanel pn)

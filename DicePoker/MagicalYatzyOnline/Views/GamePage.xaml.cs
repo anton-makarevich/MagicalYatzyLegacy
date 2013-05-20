@@ -48,7 +48,7 @@ namespace DicePokerRT
             dpBackground.EndRoll += dpBackground_EndRoll;
             dpBackground.DieChangedManual += dpBackground_DieChangedManual;
             
-            GetViewModel<PlayGameViewModel>().Game.StartGame();
+            GetViewModel<PlayGameViewModel>().StartGame();
         }
 
         void dpBackground_DieChangedManual(bool isfixed, int oldvalue, int newvalue)
@@ -94,7 +94,7 @@ namespace DicePokerRT
         void Game_DiceFixed(object sender, Sanet.Kniffel.Models.Events.FixDiceEventArgs e)
         {
             if (!GetViewModel<PlayGameViewModel>().SelectedPlayer.IsHuman)
-                dpBackground.FixDice(e.Value);
+                dpBackground.FixDice(e.Value,e.Isfixed);
         }
 
         void Game_GameFinished(object sender, EventArgs e)
@@ -135,8 +135,10 @@ namespace DicePokerRT
         {
             GetViewModel<PlayGameViewModel>().DiceRolled += Game_DiceRolled;
             GetViewModel<PlayGameViewModel>().MoveChanged += Game_MoveChanged;
-            GetViewModel<PlayGameViewModel>().Game.GameFinished += Game_GameFinished;
+            GetViewModel<PlayGameViewModel>().GameFinished += Game_GameFinished;
             GetViewModel<PlayGameViewModel>().DiceFixed += Game_DiceFixed;
+            GetViewModel<PlayGameViewModel>().Game.DiceChanged += Game_DiceChanged;
+            GetViewModel<PlayGameViewModel>().Game.PlayerRerolled += Game_PlayerRerolled;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -145,15 +147,72 @@ namespace DicePokerRT
             GetViewModel<PlayGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
             GetViewModel<PlayGameViewModel>().Game.DiceRolled -= Game_DiceRolled;
             GetViewModel<PlayGameViewModel>().MoveChanged -= Game_MoveChanged;
-            GetViewModel<PlayGameViewModel>().Game.GameFinished -= Game_GameFinished;
+            GetViewModel<PlayGameViewModel>().GameFinished -= Game_GameFinished;
             GetViewModel<PlayGameViewModel>().Game.DiceFixed -= Game_DiceFixed;
+            GetViewModel<PlayGameViewModel>().Game.DiceChanged -= Game_DiceChanged;
+            GetViewModel<PlayGameViewModel>().Game.PlayerRerolled -= Game_PlayerRerolled;
             GetViewModel<PlayGameViewModel>().RemoveGameHandlers();
 
             dpBackground.DieFrozen -= dpBackground_DieFrozen;
             dpBackground.EndRoll -= dpBackground_EndRoll;
             dpBackground.DieChangedManual -= dpBackground_DieChangedManual;
             dpBackground.Dispose();
+
+            JoinManager.Disconnect();
             
+        }
+
+        void Game_PlayerRerolled(object sender, Sanet.Kniffel.Models.Events.PlayerEventArgs e)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        dpBackground.ClearFreeze();
+                    });
+        }
+
+        
+
+        
+
+        void Game_DiceChanged(object sender, Sanet.Kniffel.Models.Events.RollEventArgs e)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        //if (!GetViewModel<PlayGameViewModel>().SelectedPlayer.IsHuman)
+                        //{
+                        var oldValues = dpBackground.Result.DiceResults.OrderBy(f => f).ToList();
+                        var newValues = e.Value.ToList().OrderBy(f => f).ToList();
+                        int oldvalue = 0;
+                        int newvalue = 0;
+                        if (oldValues.Count == newValues.Count)
+                        {
+                            for (int i = 0; i < oldValues.Count; i++)
+                            {
+                                var ov = oldValues[i];
+                                if (newValues.Contains(ov) && oldValues.Count(f => f == ov) == newValues.Count(f => f == ov))
+                                    continue;
+                                else if (oldValues.Count(f => f == ov) > newValues.Count(f => f == ov))
+                                {
+                                    oldvalue = ov;
+                                    break;
+                                }
+                            }
+                            for (int i = 0; i < newValues.Count; i++)
+                            {
+                                var ov = newValues[i];
+                                if (oldValues.Contains(ov) && oldValues.Count(f => f == ov) == newValues.Count(f => f == ov))
+                                    continue;
+                                else if (newValues.Count(f => f == ov) > oldValues.Count(f => f == ov))
+                                {
+                                    newvalue = ov;
+                                    break;
+                                }
+                            }
+                            if (oldvalue != 0 && newvalue != 0)
+                                dpBackground.ChangeDice(oldvalue, newvalue);
+                        }
+                    });
+            //}
         }
 
         private void ClearButton_Tapped_1(object sender, TappedRoutedEventArgs e)
@@ -188,28 +247,24 @@ namespace DicePokerRT
 
         private void MagicRoll_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
-            SoundsProvider.PlaySound("magic");
+            
             dpBackground.ClearFreeze();
             GetViewModel<PlayGameViewModel>().Game.ReporMagictRoll();
         }
 
         private void ManualSet_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
-            SoundsProvider.PlaySound("magic");
+            
             dpBackground.ManualSetMode=true;
             GetViewModel<PlayGameViewModel>().IsControlsVisible = false;
         }
 
         private void ForthRoll_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
-            SoundsProvider.PlaySound("magic");
+            
             dpBackground.ClearFreeze();
-            GetViewModel<PlayGameViewModel>().ResetRolls();
-
-            //if (dpBackground.AllDiceFrozen())
-            //    return;
-            //GetViewModel<PlayGameViewModel>().Game.ReportRoll();
-            //GetViewModel<PlayGameViewModel>().SelectedPlayer.OnForthRollUsed();
+            GetViewModel<PlayGameViewModel>().Game.ResetRolls();
+                        
         }
 
         private async void Button_Click_1(object sender, RoutedEventArgs e)
@@ -217,6 +272,26 @@ namespace DicePokerRT
             await StoreManager.RemoveAd();
             ViewModelProvider.GetViewModel<PlayGameViewModel>().NotifyAdChanged();
             
+        }
+
+        private void Button_Tapped_2(object sender, TappedRoutedEventArgs e)
+        {
+            ViewModelProvider.GetViewModel<PlayGameViewModel>().Game.SetPlayerReady( true);
+        }
+
+        private void BlurbControl_Tapped_1(object sender, TappedRoutedEventArgs e)
+        {
+            ViewModelProvider.GetViewModel<PlayGameViewModel>().IsChatOpen = true;
+        }
+
+        private void AppBar_Closed_1(object sender, object e)
+        {
+            ViewModelProvider.GetViewModel<PlayGameViewModel>().IsChatOpen = false;
+        }
+
+        private void AppBar_Opened_1(object sender, object e)
+        {
+            ViewModelProvider.GetViewModel<PlayGameViewModel>().IsChatOpen = true;
         }
        
     }

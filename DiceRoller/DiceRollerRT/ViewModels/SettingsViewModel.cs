@@ -6,7 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+#if WinRT
 using Windows.UI.Xaml.Media.Imaging;
+#else
+using System.Windows.Media.Imaging;
+#endif
 
 namespace Sanet.Kniffel.ViewModels
 {
@@ -376,9 +381,16 @@ namespace Sanet.Kniffel.ViewModels
                     new AboutAppAction
                     {
                         Label = "RemoveAdAction",
-                        MenuAction = new Action(async () =>
+                        MenuAction = new Action(
+#if WinRT
+                            async 
+#endif
+                            () =>
                         {
-                            await StoreManager.RemoveAd();
+#if WinRT
+                            await 
+#endif
+                            StoreManager.RemoveAd();
                             ViewModelProvider.GetViewModel<AboutPageViewModel>().NotifyAdChanged();
                             ViewModelProvider.GetViewModel<AboutPageViewModel>().FillAppActions();
                             ViewModelProvider.GetViewModel<SettingsViewModel>().NotifyAdChanged();
@@ -386,7 +398,7 @@ namespace Sanet.Kniffel.ViewModels
                             ViewModelProvider.GetViewModel<MainPageViewModel>().NotifyAdChanged();
                             ViewModelProvider.GetViewModel<MainPageViewModel>().FillSecondaryActions();
                         }),
-                        Image = new BitmapImage(new Uri("ms-appx:///Assets/Unlock.png", UriKind.Absolute))
+                        Image = new BitmapImage(SanetImageProvider.GetAssetsImage("Unlock.png"))
                     });
             NotifyPropertyChanged("AboutAppActions");
 #endif

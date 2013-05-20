@@ -1090,6 +1090,9 @@
     <Content Include="..\DicePokerRT\Assets\BadgeLogo.scale-180.png">
       <Link>Assets\BadgeLogo.scale-180.png</Link>
     </Content>
+    <Content Include="..\DicePokerRT\Assets\check.png">
+      <Link>Assets\check.png</Link>
+    </Content>
     <Content Include="..\DicePokerRT\Assets\Children.png">
       <Link>Assets\Children.png</Link>
     </Content>
@@ -1225,6 +1228,12 @@
     <Content Include="..\DicePokerRT\Audio\magic.mp3">
       <Link>Audio\magic.mp3</Link>
     </Content>
+    <Content Include="..\DicePokerRT\Audio\myturn.mp3">
+      <Link>Audio\myturn.mp3</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Audio\timeoutwarning.mp3">
+      <Link>Audio\timeoutwarning.mp3</Link>
+    </Content>
     <Content Include="..\DicePokerRT\Audio\win.mp3">
       <Link>Audio\win.mp3</Link>
     </Content>
@@ -1272,8 +1281,14 @@
     <Compile Include="..\..\DiceRoller\DiceRollerRT\ViewModels\SettingsViewModel.cs">
       <Link>ViewModels\SettingsViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\CloudServer\Models\ChatMessage.cs">
+      <Link>Models\ChatMessage.cs</Link>
+    </Compile>
     <Compile Include="..\CloudServer\Models\Common\BlockingQueue.cs">
       <Link>Common\BlockingQueue.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Common\ServerHttpMessage.cs">
+      <Link>Common\ServerHttpMessage.cs</Link>
     </Compile>
     <Compile Include="..\CloudServer\Models\Common\StringTokenizer.cs">
       <Link>Common\StringTokenizer.cs</Link>
@@ -1284,8 +1299,20 @@
     <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\ApplyScoreCommand.cs">
       <Link>Models\Protocol\Commands\Game\ApplyScoreCommand.cs</Link>
     </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\DiceChangedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\DiceChangedCommand.cs</Link>
+    </Compile>
     <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\FixDiceCommand.cs">
       <Link>Models\Protocol\Commands\Game\FixDiceCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\GameEndedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\GameEndedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\MagicRollRequestCommand.cs">
+      <Link>Models\Protocol\Commands\Game\MagicRollRequestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\ManualChangeCommand.cs">
+      <Link>Models\Protocol\Commands\Game\ManualChangeCommand.cs</Link>
     </Compile>
     <Compile Include="..\cloudserver\models\kniffelprotocol\commands\game\PlayerChatMessageCommand.cs">
       <Link>Models\Protocol\Commands\Game\PlayerChatMessageCommand.cs</Link>
@@ -1296,11 +1323,17 @@
     <Compile Include="..\cloudserver\models\kniffelprotocol\commands\game\PlayerJoinedCommand.cs">
       <Link>Models\Protocol\Commands\Game\PlayerJoinedCommand.cs</Link>
     </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerLeftCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerLeftCommand.cs</Link>
+    </Compile>
     <Compile Include="..\cloudserver\models\kniffelprotocol\commands\game\PlayerPingCommand.cs">
       <Link>Models\Protocol\Commands\Game\PlayerPingCommand.cs</Link>
     </Compile>
-    <Compile Include="..\cloudserver\models\kniffelprotocol\commands\game\PlayerSitOutChangedCommand.cs">
-      <Link>Models\Protocol\Commands\Game\PlayerSitOutChangedCommand.cs</Link>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerReadyCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerReadyCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerRerolledCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerRerolledCommand.cs</Link>
     </Compile>
     <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\RollReportCommand.cs">
       <Link>Models\Protocol\Commands\Game\RollReportCommand.cs</Link>
@@ -1331,6 +1364,9 @@
     </Compile>
     <Compile Include="..\CloudServer\Models\KniffelProtocol\TuplePlayerInfo.cs">
       <Link>Models\Protocol\TuplePlayerInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\TupleTableInfo.cs">
+      <Link>Models\Protocol\TupleTableInfo.cs</Link>
     </Compile>
     <Compile Include="..\cloudserver\models\protocol\commands\AbstractCommand.cs">
       <Link>Models\Protocol\Commands\AbstractCommand.cs</Link>
@@ -1382,9 +1418,6 @@
     </Compile>
     <Compile Include="..\DicePokerRT\Common\ScoreTypeToColorConverter.cs">
       <Link>Common\ScoreTypeToColorConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\DicePokerRT\Common\ServerHttpMessage.cs">
-      <Link>Common\ServerHttpMessage.cs</Link>
     </Compile>
     <Compile Include="..\DicePokerRT\Common\SoundsProvider.cs">
       <Link>Common\SoundsProvider.cs</Link>
@@ -1524,6 +1557,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\VisualTreeHelper.cs" />
+    <Compile Include="Controls\BlurbControl.xaml.cs">
+      <DependentUpon>BlurbControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ChatControl.xaml.cs">
+      <DependentUpon>ChatControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\InstanceKeeper.cs" />
     <Compile Include="Models\Interfaces\IRollResult.cs" />
     <Compile Include="Models\Interfaces\IPlayer.cs" />
@@ -1540,6 +1580,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ChatViewModel.cs" />
     <Compile Include="ViewModels\PlayerWrapper.cs" />
     <Compile Include="ViewModels\NewOnlineGameViewModel.cs" />
     <Compile Include="ViewModels\RollResultWrapper.cs" />
@@ -1636,6 +1677,14 @@
     </Page>
     <Page Include="..\DicePokerRT\Views\PrivacyPolicyControl.xaml">
       <Link>Controls\PrivacyPolicyControl.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\BlurbControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ChatControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -226,16 +226,16 @@
     <value>Извините, сетевая игра еще не готова. </value>
   </data>
   <data name="NewLocalGameAction" xml:space="preserve">
-    <value>Новая игра</value>
+    <value>Локальная игра</value>
   </data>
   <data name="NewLocalGameDescription" xml:space="preserve">
-    <value>Новая игра - в одиночку, с друзьями или с компьютером</value>
+    <value>Новая локальная игра - в одиночку, с друзьями или с компьютером</value>
   </data>
   <data name="NewOnlineGameAction" xml:space="preserve">
     <value>Игра по сети</value>
   </data>
   <data name="NewOnlineGameDescription" xml:space="preserve">
-    <value>Скоро доступно</value>
+    <value>Многопользовательская игра по интернет</value>
   </data>
   <data name="SettingsAction" xml:space="preserve">
     <value>Настройки</value>
@@ -412,7 +412,7 @@
     <value>Очков</value>
   </data>
   <data name="AppNameLabel" xml:space="preserve">
-    <value>Магический Yatzy</value>
+    <value>Магический Yatzy Online</value>
   </data>
   <data name="AWDescription" xml:space="preserve">
     <value>Электронная пропись, которая развивает мелкую моторику, память, обучает письму (цифры, русские, английские буквы, китайские иероглифы и различные символы), позволяет в современной форме овладеть основами графического письма, привить ребенку тягу к знаниям</value>
@@ -451,7 +451,7 @@
     <value>Вам нравится?</value>
   </data>
   <data name="SendFeedbackAction" xml:space="preserve">
-    <value>Отправить нам отзыв о приложении</value>
+    <value>Сообщить о проблеме</value>
   </data>
   <data name="YesLabel" xml:space="preserve">
     <value>Да, с удовольствием!</value>
@@ -463,7 +463,7 @@
     <value>Попробуй нашу новую игру -</value>
   </data>
   <data name="DicePokerAdLine3" xml:space="preserve">
-    <value>Sanet Dice Poker:</value>
+    <value>Magical Yatzy:</value>
   </data>
   <data name="DicePokerAdLine4" xml:space="preserve">
     <value>4 набора правил</value>
@@ -659,5 +659,56 @@
   </data>
   <data name="PlayerNoPasswordLabel" xml:space="preserve">
     <value>нет пароля</value>
+  </data>
+  <data name="ReadyLabel" xml:space="preserve">
+    <value>Играть!</value>
+  </data>
+  <data name="WaitForGameLabel" xml:space="preserve">
+    <value>Ждем новой игры</value>
+  </data>
+  <data name="WaitForPlayersLabel" xml:space="preserve">
+    <value>Ждем игроков</value>
+  </data>
+  <data name="ClientLabel" xml:space="preserve">
+    <value>Клиент:</value>
+  </data>
+  <data name="ClientOutdatedLabel" xml:space="preserve">
+    <value>Устарел</value>
+  </data>
+  <data name="ClientOutdatedMessage" xml:space="preserve">
+    <value>Ваша версия программы устарела, для игры по сети необходимо обновить ее</value>
+  </data>
+  <data name="ClientUpdatedLabel" xml:space="preserve">
+    <value>Обновлен</value>
+  </data>
+  <data name="ServerLabel" xml:space="preserve">
+    <value>Сервер:</value>
+  </data>
+  <data name="ServerOfflineLabel" xml:space="preserve">
+    <value>Оффлайн</value>
+  </data>
+  <data name="ServerOfflineMessage" xml:space="preserve">
+    <value>В настоящее время сервер игры не доступен, пожалуйста попробуйте позже</value>
+  </data>
+  <data name="ServerOnlineLabel" xml:space="preserve">
+    <value>Онлайн</value>
+  </data>
+  <data name="StatusLabel" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="ServerMaintananceMessage" xml:space="preserve">
+    <value>ВНИМАНИЕ! {0} (UTC) сервер будет отключен для профилактических работ , сетевая игра не будет доступна некоторое время (обычно несколько минут).</value>
+  </data>
+  <data name="SendLabel" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="RandomLabel" xml:space="preserve">
+    <value>Случайно</value>
+  </data>
+  <data name="TablesLabel" xml:space="preserve">
+    <value>Столы</value>
+  </data>
+  <data name="AlreadyInGameMessage" xml:space="preserve">
+    <value>Извините, вы не можете поделючиться к выбоанному столу. Игрок с таким именем уже инрает. Попробуйте позже.</value>
   </data>
 </root>

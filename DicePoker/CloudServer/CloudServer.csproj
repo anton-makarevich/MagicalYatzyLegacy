@@ -26,7 +26,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SERVER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -140,9 +140,6 @@
     <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\Result.cs">
       <Link>Models\Result.cs</Link>
     </Compile>
-    <Compile Include="..\DicePokerRT\Common\ServerHttpMessage.cs">
-      <Link>Models\Common\ServerHttpMessage.cs</Link>
-    </Compile>
     <Compile Include="..\DicePokerRT\DicePanel\DieResult.cs">
       <Link>Models\DieResult.cs</Link>
     </Compile>
@@ -182,6 +179,9 @@
     <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IRollResult.cs">
       <Link>Models\Interfaces\IRollResult.cs</Link>
     </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Protocol\WebApi\AbstractHttpService.cs">
+      <Link>Models\WebApi\AbstractHttpService.cs</Link>
+    </Compile>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -190,14 +190,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChatMessage.cs" />
     <Compile Include="Models\Common\AsyncLock.cs" />
     <Compile Include="Models\Common\BaseViewModel.cs" />
     <Compile Include="Models\Common\BlockingQueue.cs" />
     <Compile Include="Models\Common\LocalizerExtensions.cs" />
+    <Compile Include="Models\Common\ServerHttpMessage.cs" />
     <Compile Include="Models\Common\StringTokenizer.cs" />
     <Compile Include="Models\Interfaces\IKniffelGame.cs" />
     <Compile Include="Models\KniffelGameServer.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\ApplyScoreCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerRerolledCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\DiceChangedCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\ManualChangeCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\MagicRollRequestCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\GameEndedCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerReadyCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerLeftCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\RoundChangedCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerCommand.cs" />
@@ -206,7 +214,6 @@
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerChatMessageCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerJoinedCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerPingCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerSitOutChangedCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\TableInfoCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\TableInfoNeededCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\AbstractLobbyCommand.cs" />
@@ -214,6 +221,7 @@
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\GameCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\JoinCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\JoinResponse.cs" />
+    <Compile Include="Models\KniffelProtocol\TupleTableInfo.cs" />
     <Compile Include="Models\KniffelProtocol\Observer\GameServerCommandObserver.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -231,6 +239,8 @@
     <Compile Include="Models\Server\ClientRequestHandler.cs" />
     <Compile Include="Models\Server\ServerClientLobby.cs" />
     <Compile Include="Models\Server\ServerLobby.cs" />
+    <Compile Include="Models\WebApi\Config.cs" />
+    <Compile Include="Models\WebApi\ServerInitService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

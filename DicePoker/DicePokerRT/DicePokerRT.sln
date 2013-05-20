@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "..\Console
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicalYatzyOnline", "..\MagicalYatzyOnline\MagicalYatzyOnline.csproj", "{502C6096-E662-42C0-B951-E39DB7DD7F56}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIServer", "..\APIServer\APIServer.csproj", "{A133B0E5-817E-4CE5-80C3-FFC05B2BE764}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -137,6 +139,16 @@ Global
 		{502C6096-E662-42C0-B951-E39DB7DD7F56}.Release|x86.ActiveCfg = Release|x86
 		{502C6096-E662-42C0-B951-E39DB7DD7F56}.Release|x86.Build.0 = Release|x86
 		{502C6096-E662-42C0-B951-E39DB7DD7F56}.Release|x86.Deploy.0 = Release|x86
+		{A133B0E5-817E-4CE5-80C3-FFC05B2BE764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A133B0E5-817E-4CE5-80C3-FFC05B2BE764}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A133B0E5-817E-4CE5-80C3-FFC05B2BE764}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A133B0E5-817E-4CE5-80C3-FFC05B2BE764}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A133B0E5-817E-4CE5-80C3-FFC05B2BE764}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A133B0E5-817E-4CE5-80C3-FFC05B2BE764}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A133B0E5-817E-4CE5-80C3-FFC05B2BE764}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A133B0E5-817E-4CE5-80C3-FFC05B2BE764}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A133B0E5-817E-4CE5-80C3-FFC05B2BE764}.Release|x64.ActiveCfg = Release|Any CPU
+		{A133B0E5-817E-4CE5-80C3-FFC05B2BE764}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

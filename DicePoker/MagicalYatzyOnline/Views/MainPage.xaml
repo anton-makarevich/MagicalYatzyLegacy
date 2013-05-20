@@ -40,18 +40,20 @@
                    Grid.ColumnSpan="3"
                    Margin="120,0"
                    VerticalAlignment="Center"/>
-            <GridView
+                <GridView
                 Grid.Column="1"
-                   Grid.Row="0"
-            Margin="20,0"
+                   Grid.Row="1"
+                Grid.ColumnSpan="2"
+            Margin="20"
+                MaxHeight="100"
                 SelectionMode="None"
                 ItemsSource="{Binding SecondaryMenuActions}"
                 ItemClick="itemGridView_ItemClick_1"
             IsItemClickEnabled="True"
             HorizontalAlignment="Right"
-            VerticalAlignment="Center"
+            VerticalAlignment="Bottom"
                 ItemTemplate="{StaticResource SecondaryMenuTemplate}">
-                    
+
                 </GridView>
                 <ListView
                 Grid.Column="1"
@@ -83,7 +85,7 @@
                 <TextBlock Style="{StaticResource HeaderTextStyle}"
                    Foreground="{StaticResource SanetBlue}"
                    x:Name="titleSnapText"
-                   Text="Sanet Dice Poker"
+                   Text="Magical Yatzy"
                            FontSize="40"
                            Margin="10"
                    VerticalAlignment="Center"/>

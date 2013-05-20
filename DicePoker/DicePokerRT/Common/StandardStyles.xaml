@@ -1942,25 +1942,152 @@
 
         </Grid>
     </DataTemplate>
-    
+
+    <!--Datatemplate for main menu item-->
+    <DataTemplate x:Key="TableTemplate">
+        <Grid Height="110" Width="110"
+              Background="{StaticResource SanetBlue}"
+              Margin="5" HorizontalAlignment="Stretch"
+                          >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding Name}"
+                       Margin="5" HorizontalAlignment="Left"/>
+            <ListView
+                Grid.Row="1"
+                Margin="5,0,0,0"
+                SelectionMode="None"
+                IsItemClickEnabled="False"
+                ManipulationMode="None"
+                ItemsSource="{Binding Players}"
+                HorizontalAlignment="Left"
+                IsHitTestVisible="False"
+                ScrollViewer.HorizontalScrollMode="Disabled"
+                ScrollViewer.VerticalScrollMode="Disabled"
+                >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"
+                                   Height="25" Margin="0"
+                                   TextAlignment="Left"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Width" Value="100"/>
+                        <Setter Property="Height" Value="26"/>
+                        <Setter Property="Margin"  Value="0"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+
+        </Grid>
+    </DataTemplate>
+
     <!--Datatemplate for table results-->
     <DataTemplate x:Key="PlayerTableTemplate">
         <Border BorderThickness="2" BorderBrush="{Binding IsMoving, Converter={StaticResource ColorKey}}">
+            
             <StackPanel>
                 <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource SanetBlue}">
                     <Grid Height="55" 
                               Width="60"
                               Margin="0" HorizontalAlignment="Stretch"
                               Background="{Binding IsMoving, Converter={StaticResource ColorKey}}"            >
-                              <TextBlock Text="{Binding Name}"
+                        <Grid.Resources>
+                            <Storyboard x:Name="FlashNameChanged">
+                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
+                                    <EasingColorKeyFrame KeyTime="0" Value="Yellow"/>
+                                    <EasingColorKeyFrame KeyTime="0:0:2" Value="White"/>
+                                </ColorAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="textBlock">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <BackEase EasingMode="EaseIn"/>
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <ElasticEase/>
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="textBlock">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.45">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <BackEase EasingMode="EaseIn"/>
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:2" Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <ElasticEase/>
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="textBlock">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.65">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <BackEase EasingMode="EaseIn"/>
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:2" Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <ElasticEase/>
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                            <Storyboard x:Name="TurnTimerAnimation">
+                                
+                                <ColorAnimation Duration="{Binding Duration}" To="Yellow" Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="timerShape" d:IsOptimized="True"/>
+                                <DoubleAnimation Duration="{Binding Duration}" From="1" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="timerShape" d:IsOptimized="True"/>
+                            </Storyboard>
+                        </Grid.Resources>
+                        <Triggers:Interactions.Triggers>
+                            <Triggers:PropertySetTrigger Binding="{Binding IsMyTurn}" RequiredValue="True">
+                                <Triggers:ControlStoryboardAction Action="Start" Storyboard="{StaticResource FlashNameChanged}" />
+                            </Triggers:PropertySetTrigger>
+                            <Triggers:PropertySetTrigger Binding="{Binding IsMyTurn}" RequiredValue="True">
+                                <Triggers:ControlStoryboardAction Action="Start" Storyboard="{StaticResource TurnTimerAnimation}" />
+                            </Triggers:PropertySetTrigger>
+
+                        </Triggers:Interactions.Triggers>
+                        
+                        
+                        <TextBlock
+                                  x:Name="textBlock"
+                                  Text="{Binding Name}"
                                      HorizontalAlignment="Left" VerticalAlignment="Center"
                                        TextTrimming="WordEllipsis"
                                        TextWrapping="Wrap"
                                        TextAlignment="Center"
                                        Width="50"
-                                     FontSize="12"/>
-            
-                        </Grid>
+                                     FontSize="12">
+                            <TextBlock.RenderTransform>
+                                <CompositeTransform/>
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                        
+                        <Image Source="ms-appx:///Assets/check.png"
+                               Height="16" 
+                               Margin="10,0"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Top"
+                               Visibility="{Binding IsReady,Converter={StaticResource VisibilityKey}}"/>
+                        <Path x:Name="timerShape" Data="M 0,0 L50,0 L50,5 L0,5z" 
+                              Visibility="{Binding IsMyTurn, Converter={StaticResource VisibilityKey}}"
+                              VerticalAlignment="Bottom"
+                              Fill="YellowGreen"
+                              Height="5" Stretch="Fill" Stroke="White" StrokeThickness="0" 
+                              UseLayoutRounding="False" Width="50" RenderTransformOrigin="0,1">
+                                    <Path.RenderTransform>
+                                        <CompositeTransform/>
+                                    </Path.RenderTransform>
+                                </Path>
+                            </Grid>
                     </Border>
             <ListView
                  Width="60"
@@ -2025,7 +2152,7 @@
                   x:Name="backGrid"
               Width="60"
               Margin="0,-2,0,0" HorizontalAlignment="Stretch"
-               Background="{Binding HasValue, Converter={StaticResource ColorKey}}"           >
+               Background="{Binding HasValue, Converter={StaticResource ColorKey}}">
                 <Grid
                     VerticalAlignment="Stretch"
                     HorizontalAlignment="Stretch">
@@ -2048,6 +2175,40 @@
             </Border>
            
         </DataTemplate>
+
+    <!--Player in chat-->
+    <DataTemplate x:Key="ChatPlayerTemplate">
+        <Grid >
+
+            <TextBlock Margin="10">
+                <Run Text="{Binding Name}" />
+                <Run Text=" - " />
+                <Run Text="{Binding Language}" />
+            </TextBlock>
+
+
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="ChatMessageTemplate">
+        <Grid >
+            <Border
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2"
+                Background="{StaticResource SanetBlue}"
+                Opacity="0.6"
+                BorderBrush="{StaticResource SanetBlue}"
+                BorderThickness="2"
+                Margin="5"/>
+            <TextBlock TextWrapping="Wrap"
+                       Margin="10"
+                       Foreground="#FFFee5ca">
+                    <Run Text="{Binding Path=SenderName}" FontWeight="Bold"/>
+                    <Run Text=": "/>
+                    <Run Text="{Binding Message}"/>
+            </TextBlock>
+        </Grid>
+    </DataTemplate>
+
     <!--Datatablet for cells in table captions (left side scores names)-->
     <DataTemplate x:Key="PlayerTableCaptionTemplate">
         <Border Margin="0,-2,0,-2"
@@ -2287,6 +2448,161 @@
                             Command="{Binding DeleteCommand}"/>
         </Grid>
        
+    </DataTemplate>
+
+    <!--Datatemplate for main menu item-->
+    <DataTemplate x:Key="NewOnlinePlayerTemplate">
+        <Grid Height="120" Margin="5" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="80"/>
+            </Grid.ColumnDefinitions>
+            <Controls:RotatingPanel
+                x:Name="NamePanel" Width="100" Height="100" Background="Blue"
+                                    Margin="5,0">
+                <Grid Background="{StaticResource SanetBlue}" 
+                      Visibility="{Binding IsFace,ElementName=NamePanel,Converter={StaticResource VisibilityKey}}">
+                    <TextBlock VerticalAlignment="Top"
+                                       Margin="2" TextWrapping="Wrap"
+                                       Text="{Binding TapToChangeLabel}"/>
+                    <TextBlock VerticalAlignment="Bottom"
+                                       Margin="2" TextWrapping="Wrap"
+                                       Text="{Binding Text,ElementName=nameText}"/>
+                </Grid>
+
+                <Grid Visibility="{Binding IsFace,ElementName=NamePanel,Converter={StaticResource ReversedVisibilityKey}}"
+                    Background="{StaticResource SanetBlue}">
+                    <TextBlock VerticalAlignment="Top"
+                                       Margin="2" TextWrapping="Wrap"
+                                       Text="{Binding TapToApplyLabel}"/>
+                    <TextBox x:Name="nameText"
+                                     VerticalAlignment="Bottom"
+                                     Margin="2" Text="{Binding Name, Mode=TwoWay}"
+                     Height="30"/>
+                </Grid>
+            </Controls:RotatingPanel>
+            
+            <Controls:RotatingPanel
+                x:Name="PassPanel" Width="100" Height="100" Background="Blue"
+                IsFace="{Binding IsPasswordReady, Mode=TwoWay}"
+                                    Margin="5,0" Grid.Column="1" Visibility="{Binding IsHuman,Converter={StaticResource VisibilityKey}}">
+                <Grid Background="{StaticResource SanetBlue}"
+                      Visibility="{Binding IsFace,ElementName=PassPanel,Converter={StaticResource VisibilityKey}}">
+                    <TextBlock VerticalAlignment="Top"
+                                       Margin="2" TextWrapping="Wrap"
+                                       Text="{Binding TapToChangeLabel}"/>
+                            <TextBlock VerticalAlignment="Bottom"
+                                       Margin="2"
+                                       Text="{Binding PlayerPasswordLabelLocalized}"/>
+                            
+                        </Grid>
+                      <Grid Visibility="{Binding IsFace,ElementName=PassPanel,Converter={StaticResource ReversedVisibilityKey}}"
+                            Background="{StaticResource SanetBlue}">
+                          <TextBlock VerticalAlignment="Top"
+                                       Margin="2" TextWrapping="Wrap"
+                                       Text="{Binding TapToApplyLabel}"/>
+                          <StackPanel VerticalAlignment="Bottom">
+                              <PasswordBox x:Name="passText" Margin="2" Password="{Binding Password, Mode=TwoWay}"
+                     Height="30" IsPasswordRevealButtonEnabled="True"/>
+                          <!--<CheckBox IsChecked="{Binding RememberPass, Mode=TwoWay}"
+                IsEnabled="{Binding IsHuman}"
+                      Content="{Binding PlayerRememberLabelLocalized}"
+                      Grid.Column="2" Grid.Row="1"/>-->
+                </StackPanel>
+
+        </Grid>
+
+        </Controls:RotatingPanel>
+
+        <Button
+            Margin="5,0"
+                 Height="100"
+                 Width="100"
+                Grid.Column="2"
+                 Tapped="Magic_Tap"
+                 Visibility="{Binding IsHuman,Converter={StaticResource VisibilityKey}}"
+            Style="{StaticResource ImageButtonStyle}"
+                HorizontalContentAlignment="Center"
+                VerticalAlignment="Center"
+                Command="{Binding MagicCommand}">
+            <Grid
+                         Height="100"
+                 Width="100"
+                         Background="{StaticResource SanetBlue}">
+                <TextBlock Text="{Binding ArtifactsInfoMessage}"
+                           VerticalAlignment="Top" Margin="2"
+                           Foreground="White" TextWrapping="Wrap"
+                            Visibility="{Binding HasArtifacts,Converter={StaticResource ReversedVisibilityKey}}"
+                           />
+                <Grid
+                     VerticalAlignment="Top" Margin="2"
+                           Visibility="{Binding HasArtifacts,Converter={StaticResource VisibilityKey}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Source="ms-appx:///Assets/MagicWand.png"
+                            Width="32"
+                            VerticalAlignment="Bottom"/>
+                    <Image Source="ms-appx:///Assets/Manual.png"
+                            Grid.Column="1"
+                            Width="32"
+                            VerticalAlignment="Bottom"/>
+                    <Image Source="ms-appx:///Assets/ResetRoll.png"
+                            Width="32"
+                            Grid.Column="2"
+                            VerticalAlignment="Bottom"/>
+                    <TextBlock Text="{Binding MagicRollsCount}"
+                           VerticalAlignment="Bottom" Margin="2"
+                                 HorizontalAlignment="Center"
+                                 TextAlignment="Center"
+                                 Grid.Row="1"
+                                 Grid.Column="0"
+                           Foreground="White" 
+                           />
+                    <TextBlock Text="{Binding ManualSetsCount}"
+                           VerticalAlignment="Bottom" Margin="2"
+                                 HorizontalAlignment="Center"
+                                 TextAlignment="Center"
+                                 Grid.Row="1"
+                                 Grid.Column="1"
+                           Foreground="White" 
+                           />
+                    <TextBlock Text="{Binding RollResetsCount}"
+                           VerticalAlignment="Bottom" Margin="2"
+                                 HorizontalAlignment="Center"
+                                 TextAlignment="Center"
+                                 Grid.Row="1"
+                                 Grid.Column="2"
+                           Foreground="White" 
+                           />
+
+                </Grid>
+
+                <TextBlock Text="{Binding ArtifactsLabelLocalized}"
+                           VerticalAlignment="Bottom" Margin="2"
+                           Foreground="White" TextWrapping="Wrap"
+                           />
+            </Grid>
+
+        </Button>
+
+        <Button  HorizontalAlignment="Left" 
+                     VerticalAlignment="Bottom"
+                     Grid.Column="3"
+                     AutomationProperties.Name="{Binding DeleteLabel}"
+                    Visibility="{Binding IsDeleteable, Converter={StaticResource VisibilityKey}}"  
+                    Style="{StaticResource DeleteAppBarButtonStyle}"
+                            Command="{Binding DeleteCommand}"/>
+        </Grid>
+
     </DataTemplate>
 
     <!--Datatemplate for main menu item-->

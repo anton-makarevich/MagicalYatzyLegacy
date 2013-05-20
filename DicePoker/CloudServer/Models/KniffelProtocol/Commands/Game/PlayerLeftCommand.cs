@@ -22,8 +22,8 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
             
         }
 
-        public PlayerLeftCommand(int pos)
-            :base(pos)
+        public PlayerLeftCommand(string name)
+            :base(name)
         {
             
         }

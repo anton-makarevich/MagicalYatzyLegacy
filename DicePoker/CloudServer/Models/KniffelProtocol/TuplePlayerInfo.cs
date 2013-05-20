@@ -12,14 +12,14 @@ namespace Sanet.Kniffel.Protocol
         public List<int> Results { get; set; }
         public int SeatNo { get; set; }
         public bool IsPlaying { get; set; }
-        public bool IsSitOut { get; set; }
+        public bool IsReady { get; set; }
         public ClientType ClientType { get; set; }
         public string Language { get; set; }
         public string PhotoUri { get; set; }
                 
         public TuplePlayerInfo(string name, List<int> results,
             int seatno,bool isplaying,
-            bool issitout, 
+            bool isready, 
             string lang, 
             string photouri,
             ClientType client)
@@ -28,7 +28,7 @@ namespace Sanet.Kniffel.Protocol
             Results = results;
             SeatNo = seatno;
             IsPlaying = isplaying;
-            IsSitOut = issitout;
+            IsReady = isready;
             Language = lang;
             PhotoUri = photouri;
             ClientType = client;
@@ -41,7 +41,7 @@ namespace Sanet.Kniffel.Protocol
             Name=argsToken.NextToken();
             SeatNo = int.Parse(argsToken.NextToken());
             IsPlaying = bool.Parse(argsToken.NextToken());
-            IsSitOut = bool.Parse(argsToken.NextToken());
+            IsReady = bool.Parse(argsToken.NextToken());
             Language=argsToken.NextToken();
             PhotoUri=argsToken.NextToken();
             ClientType=(ClientType)Enum.Parse(typeof(ClientType),argsToken.NextToken());
@@ -64,7 +64,7 @@ namespace Sanet.Kniffel.Protocol
             sb.Append(IsPlaying);
             sb.Append(p_delimiter);
 
-            sb.Append(IsSitOut);
+            sb.Append(IsReady);
             sb.Append(p_delimiter);
 
             sb.Append(Language);

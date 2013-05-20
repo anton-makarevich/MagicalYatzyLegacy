@@ -21,11 +21,13 @@ namespace Sanet.Kniffel.ViewModels
 #region Constructor
         public MainPageViewModel()
         {
+#if WinRT
             DataTransferManager.GetForCurrentView().DataRequested += MainPageViewModel_DataRequested;
+#endif
             FillMainActions();
             FillSecondaryActions();
         }
-
+#if WinRT
         void MainPageViewModel_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
             DataPackage requestData = args.Request.Data;
@@ -35,7 +37,7 @@ namespace Sanet.Kniffel.ViewModels
             //requestData.SetText("ShareDescription".Localize());
             requestData.SetUri(new Uri("http://apps.microsoft.com/windows/app/sanet-dice-poker/5b0f9106-65a8-49ca-b1f0-641c54a7e3ef"));
         }
-
+#endif
 #endregion
 #region Properties
         /// <summary>
@@ -160,7 +162,7 @@ namespace Sanet.Kniffel.ViewModels
                     {
                         CommonNavigationActions.SendFeedback();
                     }),
-                    Image = new BitmapImage(new Uri("ms-appx:///Assets/Mail.png", UriKind.Absolute))
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("Mail.png"))
                 });
             _SecondaryMenuActions.Add(
                 new AboutAppAction
@@ -170,7 +172,7 @@ namespace Sanet.Kniffel.ViewModels
                     {
                         CommonNavigationActions.RateApp();
                     }),
-                    Image = new BitmapImage(new Uri("ms-appx:///Assets/Rate.png", UriKind.Absolute))
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("Rate.png"))
                 });
             _SecondaryMenuActions.Add(
                 new AboutAppAction
@@ -180,7 +182,7 @@ namespace Sanet.Kniffel.ViewModels
                     {
                         CommonNavigationActions.NavigateYatzyFBPage(); 
                     }),
-                    Image = new BitmapImage(new Uri("ms-appx:///Assets/facebook.png", UriKind.Absolute))
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("facebook.png"))
                 });
             _SecondaryMenuActions.Add(
                 new AboutAppAction
@@ -190,7 +192,7 @@ namespace Sanet.Kniffel.ViewModels
                     {
                         CommonNavigationActions.NavigateYatzyVKPage();
                     }),
-                    Image = new BitmapImage(new Uri("ms-appx:///Assets/vk.png", UriKind.Absolute))
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("vk.png"))
                 });
             _SecondaryMenuActions.Add(
                 new AboutAppAction
@@ -198,18 +200,27 @@ namespace Sanet.Kniffel.ViewModels
                     Label = "ShareApp",
                     MenuAction = new Action(() =>
                     {
+#if WinRT
                         DataTransferManager.ShowShareUI();
+#endif
                     }),
-                    Image = new BitmapImage(new Uri("ms-appx:///Assets/Share.png", UriKind.Absolute))
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("Share.png"))
                 });
             if (StoreManager.IsAdVisible())
                 _SecondaryMenuActions.Add(
                     new AboutAppAction
                     {
                         Label = "RemoveAdAction",
-                        MenuAction = new Action(async () =>
+                        MenuAction = new Action(
+#if WinRT
+                            async
+#endif
+                                () =>
                         {
-                            await StoreManager.RemoveAd();
+#if WinRT
+                            await
+#endif
+                            StoreManager.RemoveAd();
                             ViewModelProvider.GetViewModel<AboutPageViewModel>().NotifyAdChanged();
                             ViewModelProvider.GetViewModel<AboutPageViewModel>().FillAppActions();
                             ViewModelProvider.GetViewModel<SettingsViewModel>().NotifyAdChanged();
@@ -217,7 +228,7 @@ namespace Sanet.Kniffel.ViewModels
                             ViewModelProvider.GetViewModel<MainPageViewModel>().NotifyAdChanged();
                             ViewModelProvider.GetViewModel<MainPageViewModel>().FillSecondaryActions();
                         }),
-                        Image = new BitmapImage(new Uri("ms-appx:///Assets/Unlock.png", UriKind.Absolute))
+                        Image = new BitmapImage(SanetImageProvider.GetAssetsImage("Unlock.png"))
                     });
             NotifyPropertyChanged("SecondaryMenuActions");
         }

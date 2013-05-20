@@ -4,7 +4,11 @@ using System.Linq;
 using System.Text;
 using Sanet.Models;
 using System.Threading.Tasks;
+#if WinRT
 using Windows.UI.Xaml.Media;
+#else
+using System.Windows.Media;
+#endif
 
 namespace Sanet.Kniffel.Models
 {

@@ -1,0 +1,35 @@
+﻿<UserControl
+    x:Class="Sanet.Controls.BlurbControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Poker8.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="768"
+    d:DesignWidth="1366">
+
+    <Canvas Height="140"
+            Width="500"
+        Background="Transparent">
+    	<Path Stroke="White" StrokeThickness="0" UseLayoutRounding="True" 
+              Data="M0,0 L500,0 L500,100 L200,100 L160,140 L170,100 L0,100" 
+              Height="140" Canvas.Left="0" Stretch="Fill" Canvas.Top="0" Width="500" Fill="{StaticResource SanetBlue}">
+    		
+    	</Path>
+        <Grid
+            Height="100"
+            Width="500"
+            >
+            <TextBlock x:Name="MessageText"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Foreground="White"
+                       FontSize="20"
+                       MaxWidth="480"
+                       TextWrapping="Wrap"
+                       TextTrimming="WordEllipsis"
+                       />
+        </Grid>
+    </Canvas>
+</UserControl>
