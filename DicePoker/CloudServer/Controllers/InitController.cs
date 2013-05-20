@@ -25,14 +25,15 @@ namespace PokerServerService.Controllers
         {
             //first check version virst
             var queryArgs = Request.RequestUri.ParseQueryString();
-            if (queryArgs.Count == 1)
+            if (queryArgs.Count == 2)
             {
                 string versionStr = Request.RequestUri.ParseQueryString()[0];
-
+                string language = Request.RequestUri.ParseQueryString()[1];
                 var service = new ServerInitService();
-                var respond = await service.InitPlayer(id, versionStr);
+                var respond = await service.InitPlayer(id, versionStr,language);
                 respond.IsServerOnline = true;
                 respond.OnlinePlayersCount = ClientRequestHandler.ClientsCount;
+                respond.Tables = ClientRequestHandler.ServerLobby.GetTablesList();
                 return respond;
                 
             }

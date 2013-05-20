@@ -11,7 +11,6 @@ namespace Sanet.Kniffel.Protocol.Observer
     public class GameServerCommandObserver : CommandObserver
     {
         public event EventHandler<CommandEventArgs<DisconnectCommand>> DisconnectCommandReceived = delegate { };
-        //public event EventHandler<CommandEventArgs<PlayerSitOutChangedCommand>> SitOutChangedCommandReceived = delegate { };
         public event EventHandler<CommandEventArgs<PlayerChatMessageCommand>> ChatMessageCommandReceived = delegate { };
         public event EventHandler<CommandEventArgs<PlayerPingCommand>> PlayerPingCommandReceived = delegate { };
         public event EventHandler<CommandEventArgs<TableInfoNeededCommand>> TableInfoNeededCommandReceived = delegate { };
@@ -21,6 +20,8 @@ namespace Sanet.Kniffel.Protocol.Observer
         public event EventHandler<CommandEventArgs<PlayerLeftCommand>> PlayerLeftCommandReceived = delegate { };
         public event EventHandler<CommandEventArgs<PlayerReadyCommand>> PlayerReadyCommandReceived = delegate { };
         public event EventHandler<CommandEventArgs<MagicRollCommand>> MagicRollCommandReceived = delegate { };
+        public event EventHandler<CommandEventArgs<ManualChangeCommand>> ManualChangeCommandReceived = delegate { };
+        public event EventHandler<CommandEventArgs<PlayerRerolledCommand>> PlayerRerolledCommandReceived = delegate { };
 
         protected override void receiveSomething(string line)
         {
@@ -48,6 +49,10 @@ namespace Sanet.Kniffel.Protocol.Observer
                 PlayerReadyCommandReceived(this, new CommandEventArgs<PlayerReadyCommand>(new PlayerReadyCommand(token)));
             else if (commandName == MagicRollCommand.COMMAND_NAME)
                 MagicRollCommandReceived(this, new CommandEventArgs<MagicRollCommand>(new MagicRollCommand(token)));
+            else if (commandName == ManualChangeCommand.COMMAND_NAME)
+                ManualChangeCommandReceived(this, new CommandEventArgs<ManualChangeCommand>(new ManualChangeCommand(token)));
+            else if (commandName == PlayerRerolledCommand.COMMAND_NAME)
+                PlayerRerolledCommandReceived(this, new CommandEventArgs<PlayerRerolledCommand>(new PlayerRerolledCommand(token)));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sanet.Kniffel.Protocol;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,5 +18,6 @@ namespace Sanet.Network
         public DateTime ServerRestartDate { get; set; }
         public int Code { get; set; }
         public int OnlinePlayersCount { get; set; }
+        public List<TupleTableInfo> Tables { get; set; }
     }
 }

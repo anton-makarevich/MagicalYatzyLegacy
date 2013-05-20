@@ -198,7 +198,7 @@ namespace DicePokerRT
         {
             SoundsProvider.PlaySound("magic");
             dpBackground.ClearFreeze();
-            GetViewModel<PlayGameViewModel>().ResetRolls();
+            GetViewModel<PlayGameViewModel>().Game.ResetRolls();
 
             //if (dpBackground.AllDiceFrozen())
             //    return;

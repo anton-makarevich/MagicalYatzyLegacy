@@ -422,7 +422,7 @@
     <comment>Die volle Highscore-Liste im Internet</comment>
   </data>
   <data name="AppNameLabel" xml:space="preserve">
-    <value>Magischer Yatzy</value>
+    <value>Magischer Yatzy Online</value>
     <comment>Magischer Yatzy</comment>
   </data>
   <data name="OtherAppsLabel" xml:space="preserve">
@@ -805,5 +805,11 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
   </data>
   <data name="SendLabel" xml:space="preserve">
     <value>Отправить</value>
+  </data>
+  <data name="RandomLabel" xml:space="preserve">
+    <value>Случайно</value>
+  </data>
+  <data name="TablesLabel" xml:space="preserve">
+    <value>Столы</value>
   </data>
 </root>

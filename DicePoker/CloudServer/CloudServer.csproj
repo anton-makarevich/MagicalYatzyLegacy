@@ -140,9 +140,6 @@
     <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\Result.cs">
       <Link>Models\Result.cs</Link>
     </Compile>
-    <Compile Include="..\DicePokerRT\Common\ServerHttpMessage.cs">
-      <Link>Models\Common\ServerHttpMessage.cs</Link>
-    </Compile>
     <Compile Include="..\DicePokerRT\DicePanel\DieResult.cs">
       <Link>Models\DieResult.cs</Link>
     </Compile>
@@ -198,10 +195,14 @@
     <Compile Include="Models\Common\BaseViewModel.cs" />
     <Compile Include="Models\Common\BlockingQueue.cs" />
     <Compile Include="Models\Common\LocalizerExtensions.cs" />
+    <Compile Include="Models\Common\ServerHttpMessage.cs" />
     <Compile Include="Models\Common\StringTokenizer.cs" />
     <Compile Include="Models\Interfaces\IKniffelGame.cs" />
     <Compile Include="Models\KniffelGameServer.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\ApplyScoreCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerRerolledCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\DiceChangedCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\ManualChangeCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\MagicRollRequestCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\GameEndedCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerReadyCommand.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\GameCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\JoinCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\JoinResponse.cs" />
+    <Compile Include="Models\KniffelProtocol\TupleTableInfo.cs" />
     <Compile Include="Models\KniffelProtocol\Observer\GameServerCommandObserver.cs">
       <SubType>Code</SubType>
     </Compile>

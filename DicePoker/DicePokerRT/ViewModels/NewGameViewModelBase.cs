@@ -106,16 +106,19 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// Selected rule for game
         /// </summary>
-        private RuleWrapper _SelectedRule;
-        public RuleWrapper SelectedRule
+        protected RuleWrapper _SelectedRule;
+        public virtual RuleWrapper SelectedRule
         {
             get { return _SelectedRule; }
             set
             {
                 if (_SelectedRule != value)
                 {
-                    if (value!=null)
+                    if (value != null)
+                    {
                         _SelectedRule = value;
+                        
+                    }
                     NotifyPropertyChanged("SelectedRule");
                     NotifyPropertyChanged("IsReadyToPlay");
                 }

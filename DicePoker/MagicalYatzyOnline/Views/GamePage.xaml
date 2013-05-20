@@ -318,6 +318,7 @@
                 Margin="10,0,0,0"
                 HorizontalAlignment="Left"
                 Message="{Binding ChatMessage}"
+            Visibility="Collapsed"
             Tapped="BlurbControl_Tapped_1"
                 Grid.Row="0">
                 <commoncontrols:BlurbControl.RenderTransform>

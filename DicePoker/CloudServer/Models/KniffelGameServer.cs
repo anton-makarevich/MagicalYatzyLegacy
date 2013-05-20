@@ -79,7 +79,12 @@ namespace Sanet.Kniffel.Models
             _Game.PlayerReady += _Game_PlayerReady;
             _Game.GameUpdated += _Game_GameUpdated;
             _Game.OnChatMessage += _Game_OnChatMessage;
-            
+            _Game.PlayerRerolled += _Game_PlayerRerolled;
+        }
+
+        void _Game_PlayerRerolled(object sender, PlayerEventArgs e)
+        {
+            Send(new PlayerRerolledCommand(e.Player.Name));
         }
 
         void _Game_OnChatMessage(object sender, ChatMessageEventArgs e)
@@ -151,7 +156,7 @@ namespace Sanet.Kniffel.Models
 
         void _Game_DiceChanged(object sender, RollEventArgs e)
         {
-            //throw new NotImplementedException();
+            Send(new DiceChangedCommand(e.Player.Name,e.Value.ToList()));
         }
 
         #endregion
@@ -168,6 +173,18 @@ namespace Sanet.Kniffel.Models
             m_CommandObserver.PlayerLeftCommandReceived += m_CommandObserver_PlayerLeftCommandReceived;
             m_CommandObserver.PlayerReadyCommandReceived += m_CommandObserver_PlayerReadyCommandReceived;
             m_CommandObserver.MagicRollCommandReceived += m_CommandObserver_MagicRollCommandReceived;
+            m_CommandObserver.ManualChangeCommandReceived += m_CommandObserver_ManualChangeCommandReceived;
+            m_CommandObserver.PlayerRerolledCommandReceived += m_CommandObserver_PlayerRerolledCommandReceived;
+        }
+
+        void m_CommandObserver_PlayerRerolledCommandReceived(object sender, CommandEventArgs<PlayerRerolledCommand> e)
+        {
+            Game.ResetRolls();
+        }
+
+        void m_CommandObserver_ManualChangeCommandReceived(object sender, CommandEventArgs<ManualChangeCommand> e)
+        {
+            Game.ManualChange(e.Command.IsFixed, e.Command.Value, e.Command.NewValue);
         }
 
         void m_CommandObserver_MagicRollCommandReceived(object sender, CommandEventArgs<MagicRollCommand> e)
@@ -243,12 +260,15 @@ namespace Sanet.Kniffel.Models
             m_CommandObserver.DisconnectCommandReceived -= m_CommandObserver_DisconnectCommandReceived;
             m_CommandObserver.ChatMessageCommandReceived -= m_CommandObserver_ChatMessageCommandReceived;
             m_CommandObserver.PlayerPingCommandReceived -= m_CommandObserver_PlayerPingCommandReceived;
+            m_CommandObserver.TableInfoNeededCommandReceived -= m_CommandObserver_TableInfoNeededCommandReceived;
             m_CommandObserver.RollReportCommandReceived -= m_CommandObserver_RollReportCommandReceived;
             m_CommandObserver.FixDiceCommandReceived -= m_CommandObserver_FixDiceCommandReceived;
             m_CommandObserver.ApplyScoreCommandReceived -= m_CommandObserver_ApplyScoreCommandReceived;
             m_CommandObserver.PlayerLeftCommandReceived -= m_CommandObserver_PlayerLeftCommandReceived;
             m_CommandObserver.PlayerReadyCommandReceived -= m_CommandObserver_PlayerReadyCommandReceived;
             m_CommandObserver.MagicRollCommandReceived -= m_CommandObserver_MagicRollCommandReceived;
+            m_CommandObserver.ManualChangeCommandReceived -= m_CommandObserver_ManualChangeCommandReceived;
+            m_CommandObserver.PlayerRerolledCommandReceived -= m_CommandObserver_PlayerRerolledCommandReceived;
 
             _Game.DiceChanged -= _Game_DiceChanged;
             _Game.DiceFixed -= _Game_DiceFixed;
@@ -262,6 +282,7 @@ namespace Sanet.Kniffel.Models
             _Game.PlayerReady -= _Game_PlayerReady;
             _Game.GameUpdated -= _Game_GameUpdated;
             _Game.OnChatMessage -= _Game_OnChatMessage;
+            _Game.PlayerRerolled -= _Game_PlayerRerolled;
 
             _Player = null;
 

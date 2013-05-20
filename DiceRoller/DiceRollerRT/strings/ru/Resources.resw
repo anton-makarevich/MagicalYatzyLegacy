@@ -412,7 +412,7 @@
     <value>Очков</value>
   </data>
   <data name="AppNameLabel" xml:space="preserve">
-    <value>Магический Yatzy</value>
+    <value>Магический Yatzy Online</value>
   </data>
   <data name="AWDescription" xml:space="preserve">
     <value>Электронная пропись, которая развивает мелкую моторику, память, обучает письму (цифры, русские, английские буквы, китайские иероглифы и различные символы), позволяет в современной форме овладеть основами графического письма, привить ребенку тягу к знаниям</value>
@@ -701,5 +701,11 @@
   </data>
   <data name="SendLabel" xml:space="preserve">
     <value>Отправить</value>
+  </data>
+  <data name="RandomLabel" xml:space="preserve">
+    <value>Случайно</value>
+  </data>
+  <data name="TablesLabel" xml:space="preserve">
+    <value>Столы</value>
   </data>
 </root>

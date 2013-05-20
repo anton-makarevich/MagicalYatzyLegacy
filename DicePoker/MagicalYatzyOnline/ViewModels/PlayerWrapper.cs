@@ -714,7 +714,7 @@ namespace Sanet.Kniffel.ViewModels
 
         #region timer
         //Used to show timer progress until round ends in online game 
-        int _Counter = 60;
+        int _Counter ;
         public int Counter
         {
             get
@@ -756,7 +756,7 @@ namespace Sanet.Kniffel.ViewModels
         }
 
 
-        private int _Timeout=60;
+        private int _Timeout=100;
         public int Timeout
         {
             get
@@ -810,7 +810,7 @@ namespace Sanet.Kniffel.ViewModels
         }
         public void StopTimer()
         {
-            if (_timer.IsEnabled)
+            if (_timer!=null && _timer.IsEnabled)
             {
                 _timer.Tick -= _timer_Tick;
                 _timer.Stop();

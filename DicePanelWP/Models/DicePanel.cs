@@ -112,6 +112,15 @@ namespace Sanet.Kniffel.DicePanel
                 DieChangedManual(_lastClickedDie.Frozen, oldvalue, _lastClickedDie.Result);
         }
 
+        public void ChangeDice(int oldValue, int newValue)
+        {
+            var diceToChange = aDice.FirstOrDefault(f => f.Result == oldValue);
+            if (diceToChange == null)
+                return;
+            diceToChange.Result = newValue;
+            diceToChange.DrawDie();
+        }
+
         /// <summary>
         /// Try to clear everything
         /// </summary>
@@ -720,10 +729,19 @@ namespace Sanet.Kniffel.DicePanel
 
         private BitmapSource GetFramePic()
         {
-            //If bA.Length = 0 Then Return Nothing
-            string sPath = StyleString + strrot + Frame.ToString() + ".png";
+            try
+            {
+                //If bA.Length = 0 Then Return Nothing
+                string sPath = StyleString + strrot + Frame.ToString() + ".png";
 
-            return FPanel.DieFrameImages[sPath];
+                return FPanel.DieFrameImages[sPath];
+            }
+            catch (Exception ex)
+            {
+                var t = ex.Message;
+                return null;
+            }
+            
 
         }
         public Die(DicePanel pn)

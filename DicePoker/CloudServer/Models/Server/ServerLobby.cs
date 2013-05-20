@@ -6,6 +6,7 @@ using System.Threading;
 using System.Net;
 using System.Linq;
 using Sanet.Kniffel.Models;
+using Sanet.Kniffel.Protocol;
 
 
 namespace Sanet.Kniffel.Server
@@ -124,8 +125,20 @@ namespace Sanet.Kniffel.Server
                 return -1;
         }
 
-        
-        /// <summary>
+        public List<TupleTableInfo> GetTablesList()
+        {
+            List<TupleTableInfo> rv = new List<TupleTableInfo>();
+            rv.Add(new TupleTableInfo(-1, new List<string> { "???", "???", "???" }, Rules.krBaby));
+            var games = m_Games.Values.Where(f => f.PlayersNumber > 0 && f.PlayersNumber < 4).ToList();
+            if (games.Count > 3)
+                games = games.Take(3).ToList();
+
+            foreach (var game in games)
+            {
+                rv.Add(new TupleTableInfo(game.GameId, game.Players.Select(p=>p.Name).ToList(), game.Rules.Rule));
+            }
+            return rv;
+        }
         /// methods to check id user is online
         /// </summary>
         public bool IsUserOnline(string name)

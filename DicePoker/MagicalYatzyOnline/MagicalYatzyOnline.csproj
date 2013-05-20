@@ -1287,6 +1287,9 @@
     <Compile Include="..\CloudServer\Models\Common\BlockingQueue.cs">
       <Link>Common\BlockingQueue.cs</Link>
     </Compile>
+    <Compile Include="..\CloudServer\Models\Common\ServerHttpMessage.cs">
+      <Link>Common\ServerHttpMessage.cs</Link>
+    </Compile>
     <Compile Include="..\CloudServer\Models\Common\StringTokenizer.cs">
       <Link>Common\StringTokenizer.cs</Link>
     </Compile>
@@ -1296,6 +1299,9 @@
     <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\ApplyScoreCommand.cs">
       <Link>Models\Protocol\Commands\Game\ApplyScoreCommand.cs</Link>
     </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\DiceChangedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\DiceChangedCommand.cs</Link>
+    </Compile>
     <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\FixDiceCommand.cs">
       <Link>Models\Protocol\Commands\Game\FixDiceCommand.cs</Link>
     </Compile>
@@ -1304,6 +1310,9 @@
     </Compile>
     <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\MagicRollRequestCommand.cs">
       <Link>Models\Protocol\Commands\Game\MagicRollRequestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\ManualChangeCommand.cs">
+      <Link>Models\Protocol\Commands\Game\ManualChangeCommand.cs</Link>
     </Compile>
     <Compile Include="..\cloudserver\models\kniffelprotocol\commands\game\PlayerChatMessageCommand.cs">
       <Link>Models\Protocol\Commands\Game\PlayerChatMessageCommand.cs</Link>
@@ -1322,6 +1331,9 @@
     </Compile>
     <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerReadyCommand.cs">
       <Link>Models\Protocol\Commands\Game\PlayerReadyCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerRerolledCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerRerolledCommand.cs</Link>
     </Compile>
     <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\RollReportCommand.cs">
       <Link>Models\Protocol\Commands\Game\RollReportCommand.cs</Link>
@@ -1352,6 +1364,9 @@
     </Compile>
     <Compile Include="..\CloudServer\Models\KniffelProtocol\TuplePlayerInfo.cs">
       <Link>Models\Protocol\TuplePlayerInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\TupleTableInfo.cs">
+      <Link>Models\Protocol\TupleTableInfo.cs</Link>
     </Compile>
     <Compile Include="..\cloudserver\models\protocol\commands\AbstractCommand.cs">
       <Link>Models\Protocol\Commands\AbstractCommand.cs</Link>
@@ -1403,9 +1418,6 @@
     </Compile>
     <Compile Include="..\DicePokerRT\Common\ScoreTypeToColorConverter.cs">
       <Link>Common\ScoreTypeToColorConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\DicePokerRT\Common\ServerHttpMessage.cs">
-      <Link>Common\ServerHttpMessage.cs</Link>
     </Compile>
     <Compile Include="..\DicePokerRT\Common\SoundsProvider.cs">
       <Link>Common\SoundsProvider.cs</Link>

@@ -1942,7 +1942,50 @@
 
         </Grid>
     </DataTemplate>
-    
+
+    <!--Datatemplate for main menu item-->
+    <DataTemplate x:Key="TableTemplate">
+        <Grid Height="110" Width="110"
+              Background="{StaticResource SanetBlue}"
+              Margin="5" HorizontalAlignment="Stretch"
+                          >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding Name}"
+                       Margin="5" HorizontalAlignment="Left"/>
+            <ListView
+                Grid.Row="1"
+                Margin="5,0,0,0"
+                SelectionMode="None"
+                IsItemClickEnabled="False"
+                ManipulationMode="None"
+                ItemsSource="{Binding Players}"
+                HorizontalAlignment="Left"
+                ScrollViewer.HorizontalScrollMode="Disabled"
+                ScrollViewer.VerticalScrollMode="Disabled"
+                >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"
+                                   Height="20" Margin="0"
+                                   TextAlignment="Left"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Width" Value="100"/>
+                        <Setter Property="Height" Value="25"/>
+                        <Setter Property="Margin"  Value="0"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+
+        </Grid>
+    </DataTemplate>
+
     <!--Datatemplate for table results-->
     <DataTemplate x:Key="PlayerTableTemplate">
         <Border BorderThickness="2" BorderBrush="{Binding IsMoving, Converter={StaticResource ColorKey}}">
@@ -2404,6 +2447,161 @@
                             Command="{Binding DeleteCommand}"/>
         </Grid>
        
+    </DataTemplate>
+
+    <!--Datatemplate for main menu item-->
+    <DataTemplate x:Key="NewOnlinePlayerTemplate">
+        <Grid Height="120" Margin="5" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="80"/>
+            </Grid.ColumnDefinitions>
+            <Controls:RotatingPanel
+                x:Name="NamePanel" Width="100" Height="100" Background="Blue"
+                                    Margin="5,0">
+                <Grid Background="{StaticResource SanetBlue}" 
+                      Visibility="{Binding IsFace,ElementName=NamePanel,Converter={StaticResource VisibilityKey}}">
+                    <TextBlock VerticalAlignment="Top"
+                                       Margin="2" TextWrapping="Wrap"
+                                       Text="{Binding TapToChangeLabel}"/>
+                    <TextBlock VerticalAlignment="Bottom"
+                                       Margin="2" TextWrapping="Wrap"
+                                       Text="{Binding Text,ElementName=nameText}"/>
+                </Grid>
+
+                <Grid Visibility="{Binding IsFace,ElementName=NamePanel,Converter={StaticResource ReversedVisibilityKey}}"
+                    Background="{StaticResource SanetBlue}">
+                    <TextBlock VerticalAlignment="Top"
+                                       Margin="2" TextWrapping="Wrap"
+                                       Text="{Binding TapToApplyLabel}"/>
+                    <TextBox x:Name="nameText"
+                                     VerticalAlignment="Bottom"
+                                     Margin="2" Text="{Binding Name, Mode=TwoWay}"
+                     Height="30"/>
+                </Grid>
+            </Controls:RotatingPanel>
+            
+            <Controls:RotatingPanel
+                x:Name="PassPanel" Width="100" Height="100" Background="Blue"
+                IsFace="{Binding IsPasswordReady, Mode=TwoWay}"
+                                    Margin="5,0" Grid.Column="1" Visibility="{Binding IsHuman,Converter={StaticResource VisibilityKey}}">
+                <Grid Background="{StaticResource SanetBlue}"
+                      Visibility="{Binding IsFace,ElementName=PassPanel,Converter={StaticResource VisibilityKey}}">
+                    <TextBlock VerticalAlignment="Top"
+                                       Margin="2" TextWrapping="Wrap"
+                                       Text="{Binding TapToChangeLabel}"/>
+                            <TextBlock VerticalAlignment="Bottom"
+                                       Margin="2"
+                                       Text="{Binding PlayerPasswordLabelLocalized}"/>
+                            
+                        </Grid>
+                      <Grid Visibility="{Binding IsFace,ElementName=PassPanel,Converter={StaticResource ReversedVisibilityKey}}"
+                            Background="{StaticResource SanetBlue}">
+                          <TextBlock VerticalAlignment="Top"
+                                       Margin="2" TextWrapping="Wrap"
+                                       Text="{Binding TapToApplyLabel}"/>
+                          <StackPanel VerticalAlignment="Bottom">
+                              <PasswordBox x:Name="passText" Margin="2" Password="{Binding Password, Mode=TwoWay}"
+                     Height="30" IsPasswordRevealButtonEnabled="True"/>
+                          <!--<CheckBox IsChecked="{Binding RememberPass, Mode=TwoWay}"
+                IsEnabled="{Binding IsHuman}"
+                      Content="{Binding PlayerRememberLabelLocalized}"
+                      Grid.Column="2" Grid.Row="1"/>-->
+                </StackPanel>
+
+        </Grid>
+
+        </Controls:RotatingPanel>
+
+        <Button
+            Margin="5,0"
+                 Height="100"
+                 Width="100"
+                Grid.Column="2"
+                 Tapped="Magic_Tap"
+                 Visibility="{Binding IsHuman,Converter={StaticResource VisibilityKey}}"
+            Style="{StaticResource ImageButtonStyle}"
+                HorizontalContentAlignment="Center"
+                VerticalAlignment="Center"
+                Command="{Binding MagicCommand}">
+            <Grid
+                         Height="100"
+                 Width="100"
+                         Background="{StaticResource SanetBlue}">
+                <TextBlock Text="{Binding ArtifactsInfoMessage}"
+                           VerticalAlignment="Top" Margin="2"
+                           Foreground="White" TextWrapping="Wrap"
+                            Visibility="{Binding HasArtifacts,Converter={StaticResource ReversedVisibilityKey}}"
+                           />
+                <Grid
+                     VerticalAlignment="Top" Margin="2"
+                           Visibility="{Binding HasArtifacts,Converter={StaticResource VisibilityKey}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Source="ms-appx:///Assets/MagicWand.png"
+                            Width="32"
+                            VerticalAlignment="Bottom"/>
+                    <Image Source="ms-appx:///Assets/Manual.png"
+                            Grid.Column="1"
+                            Width="32"
+                            VerticalAlignment="Bottom"/>
+                    <Image Source="ms-appx:///Assets/ResetRoll.png"
+                            Width="32"
+                            Grid.Column="2"
+                            VerticalAlignment="Bottom"/>
+                    <TextBlock Text="{Binding MagicRollsCount}"
+                           VerticalAlignment="Bottom" Margin="2"
+                                 HorizontalAlignment="Center"
+                                 TextAlignment="Center"
+                                 Grid.Row="1"
+                                 Grid.Column="0"
+                           Foreground="White" 
+                           />
+                    <TextBlock Text="{Binding ManualSetsCount}"
+                           VerticalAlignment="Bottom" Margin="2"
+                                 HorizontalAlignment="Center"
+                                 TextAlignment="Center"
+                                 Grid.Row="1"
+                                 Grid.Column="1"
+                           Foreground="White" 
+                           />
+                    <TextBlock Text="{Binding RollResetsCount}"
+                           VerticalAlignment="Bottom" Margin="2"
+                                 HorizontalAlignment="Center"
+                                 TextAlignment="Center"
+                                 Grid.Row="1"
+                                 Grid.Column="2"
+                           Foreground="White" 
+                           />
+
+                </Grid>
+
+                <TextBlock Text="{Binding ArtifactsLabelLocalized}"
+                           VerticalAlignment="Bottom" Margin="2"
+                           Foreground="White" TextWrapping="Wrap"
+                           />
+            </Grid>
+
+        </Button>
+
+        <Button  HorizontalAlignment="Left" 
+                     VerticalAlignment="Bottom"
+                     Grid.Column="3"
+                     AutomationProperties.Name="{Binding DeleteLabel}"
+                    Visibility="{Binding IsDeleteable, Converter={StaticResource VisibilityKey}}"  
+                    Style="{StaticResource DeleteAppBarButtonStyle}"
+                            Command="{Binding DeleteCommand}"/>
+        </Grid>
+
     </DataTemplate>
 
     <!--Datatemplate for main menu item-->

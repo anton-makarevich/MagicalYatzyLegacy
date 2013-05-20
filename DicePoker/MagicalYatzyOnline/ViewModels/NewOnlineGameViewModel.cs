@@ -2,6 +2,7 @@
 using DicePokerRT;
 using DicePokerRT.KniffelLeaderBoardService;
 using Sanet.Kniffel.Models;
+using Sanet.Kniffel.Protocol;
 using Sanet.Kniffel.WebApi;
 using Sanet.Models;
 using System;
@@ -18,7 +19,10 @@ namespace Sanet.Kniffel.ViewModels
 {
     public class NewOnlineGameViewModel : NewGameViewModelBase
     {
-        
+
+        string[] _language = Windows.System.UserProfile.GlobalizationPreferences.Languages[0].Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
+            
+   
         #region Constructor
         public NewOnlineGameViewModel()
             :base()
@@ -50,7 +54,17 @@ namespace Sanet.Kniffel.ViewModels
                 return Messages.PLAYER_NAME_DEFAULT.Localize();
             }
         }
-
+        
+        /// <summary>
+        /// Tables group label
+        /// </summary>
+        public string TablesLabel
+        {
+            get
+            {
+                return Messages.GAME_TABLES.Localize();
+            }
+        }
         /// <summary>
         /// Label "Status"
         /// </summary>
@@ -184,9 +198,12 @@ namespace Sanet.Kniffel.ViewModels
         {
             get 
             {
+                if (SelectedPlayer == null || !SelectedPlayer.HasPassword || SelectedPlayer.IsDefaultName)
+                    return false;
                 if (string.IsNullOrEmpty(ServerStatusMessage))
                     return false;
-                if (ServerStatusMessage.Contains( Messages.MP_SERVER_ONLINE.Localize()) && ClientStatusMessage==Messages.MP_CLIENT_UPDATED.Localize())
+                if (ServerStatusMessage.Contains( Messages.MP_SERVER_ONLINE.Localize())
+                    && ClientStatusMessage==Messages.MP_CLIENT_UPDATED.Localize())
                         return true;
                     else
                         return false;
@@ -194,6 +211,63 @@ namespace Sanet.Kniffel.ViewModels
                 
             }
         }
+                    
+        private ObservableCollection<TupleTableInfo> _Tables;
+        public ObservableCollection<TupleTableInfo> Tables
+        {
+            get { return _Tables; }
+            set
+            {
+                if (_Tables != value)
+                {
+                    _Tables = value;
+                    NotifyPropertyChanged("Tables");
+                }
+            }
+        }
+
+        
+        private TupleTableInfo _SelectedTable;
+        public TupleTableInfo SelectedTable
+        {
+            get { return _SelectedTable; }
+            set
+            {
+                if (_SelectedTable != value)
+                {
+                    _SelectedTable = value;
+                    if (value.Id != -1)
+                        SelectedRule = Rules.FirstOrDefault(f => f.Rule.Rule == value.Rule);
+                    
+                    NotifyPropertyChanged("SelectedTable");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Selected rule for game
+        /// </summary>
+        public override RuleWrapper SelectedRule
+        {
+            get { return _SelectedRule; }
+            set
+            {
+                if (_SelectedRule != value)
+                {
+                    if (value != null)
+                    {
+                        _SelectedRule = value;
+                        if (SelectedTable!=null && 
+                            SelectedTable.Id != -1 
+                            && SelectedTable.Rule != value.Rule.Rule)
+                            SelectedTable = Tables[0];
+                    }
+                    NotifyPropertyChanged("SelectedRule");
+                    NotifyPropertyChanged("IsReadyToPlay");
+                }
+            }
+        }
+        
 
         #endregion
 
@@ -220,19 +294,25 @@ namespace Sanet.Kniffel.ViewModels
                     Name = userName,
                     Type = PlayerType.Local
                 };
-                p.MagicPressed += p_MagicPressed;
-                p.ArtifactsSyncRequest += ArtifactsSyncRequest;
-                p.RefreshArtifactsInfo();
-                
+               
             }
+            p.RefreshArtifactsInfo();
+            p.MagicPressed += p_MagicPressed;
+            p.ArtifactsSyncRequest += ArtifactsSyncRequest;
+            p.PropertyChanged += p_PropertyChanged;
             p.IsBotPossible = false;
             p.IsHuman = true;
             p.Player.Client = Config.GetClientType();
-            var language=Windows.System.UserProfile.GlobalizationPreferences.Languages[0].Split(new string[]{"-"}, StringSplitOptions.RemoveEmptyEntries);
-            p.Language = language[0];
+            p.Language = _language[0];
             Players.Add(p);
             SelectedPlayer = p;
             InitOnServer();
+        }
+
+        void p_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName=="Password" ||e.PropertyName=="Name")
+                NotifyPropertyChanged("IsReadyToPlay");
         }
                
 
@@ -256,8 +336,10 @@ namespace Sanet.Kniffel.ViewModels
         public async override void StartGame()
         {
             SavePlayers();
-
-            await JoinManager.JoinTable(-1, SelectedRule.Rule.Rule);
+            var tableId = -1;
+            if (SelectedTable != null)
+                tableId = SelectedTable.Id;
+            await JoinManager.JoinTable(tableId, SelectedRule.Rule.Rule);
         }
 
         /// <summary>
@@ -278,7 +360,7 @@ namespace Sanet.Kniffel.ViewModels
             {
                 InitService initService = new InitService();
                 BusyWithServer = true;
-                var respond = await initService.InitPlayer(SelectedPlayer.Player.ID);
+                var respond = await initService.InitPlayer(SelectedPlayer.Player.ID,_language[0]);
                 BusyWithServer = false;
                 if (respond != null)
                 {
@@ -288,10 +370,11 @@ namespace Sanet.Kniffel.ViewModels
                         if (respond.IsClientUpdated)
                         {
                             ClientStatusMessage = Messages.MP_CLIENT_UPDATED.Localize();
-                            if (respond.Message == Messages.MP_SERVER_MAINTANANCE)
-                                ClientServerStatusMessage = string.Format(Messages.MP_SERVER_MAINTANANCE.Localize(), respond.ServerRestartDate.ToString());
-                            else
-                                ClientServerStatusMessage = "";
+                            //if (respond.Message == Messages.MP_SERVER_MAINTANANCE)
+                            //    ClientServerStatusMessage = string.Format(Messages.MP_SERVER_MAINTANANCE.Localize(), respond.ServerRestartDate.ToString());
+                            //else
+                            //    ClientServerStatusMessage = "";
+                            ClientServerStatusMessage = respond.Message;
                         }
                         else
                         {
@@ -306,8 +389,14 @@ namespace Sanet.Kniffel.ViewModels
                         ClientStatusMessage = Messages.MP_CLIENT_UPDATED.Localize();
                         ClientServerStatusMessage = Messages.MP_SERVER_OFFLINE_STATUS.Localize();
                     }
+                    foreach (var game in respond.Tables)
+                        if (game.Id == -1)
+                            game.Name = "RandomLabel".Localize();
+                        else
+                            game.Name = new KniffelRule(game.Rule).ToString();
 
-
+                    Tables = new ObservableCollection<TupleTableInfo>(respond.Tables);
+                    SelectedTable = Tables[0];
                 }
                 else
                 {

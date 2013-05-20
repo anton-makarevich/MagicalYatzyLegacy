@@ -27,10 +27,11 @@ namespace Sanet.Kniffel.WebApi
         /// Player enter lobby - let's server know his info
         /// </summary>
         /// <returns></returns>
-        public async Task<ServerHttpMessage> InitPlayer(string userid , string version)
+        public async Task<ServerHttpMessage> InitPlayer(string userid , string version, string language)
         {
-           
-            var response = await _client.GetAsync(string.Format("{0}/{1}?version={2}", serviceUrl, userid.ToString(),version));
+
+            var response = await _client.GetAsync(string.Format("{0}/{1}?version={2}&lang={3}",
+                serviceUrl, userid.ToString(), version,language));
             var jsonString = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<ServerHttpMessage>(jsonString);
         }

@@ -22,9 +22,12 @@ namespace PokerServerService.Controllers
         {
             //first check version virst
             var queryArgs = Request.RequestUri.ParseQueryString();
-            if (queryArgs.Count == 1)
+            if (queryArgs.Count == 2)
             {
                 string versionStr = Request.RequestUri.ParseQueryString()[0];
+                string language = Request.RequestUri.ParseQueryString()[1];
+                if (string.IsNullOrEmpty(language))
+                    language = "en";
                 float version;
                 if (!string.IsNullOrEmpty(versionStr))
                 {
@@ -36,7 +39,8 @@ namespace PokerServerService.Controllers
                             Code = -2,//we can defined different codes here
                             IsClientUpdated=true,
                             ServerRestartDate=new DateTime(2013,5,1,17,0,0),
-                            Message = "ServerMaintananceMessage" //"App version is outdated, some features may not work. Please upgrade from Windows Store"
+                            Message = GetMessage(language)
+                            //"ServerMaintananceMessage" //"App version is outdated, some features may not work. Please upgrade from Windows Store"
                         };
                     }
                 }
@@ -44,6 +48,20 @@ namespace PokerServerService.Controllers
             return null;
         }
 
+        private string GetMessage(string language)
+        {
+            switch (language)
+            {
+                case "ru":
+                    return "Приветствуем в игре \"Магический Yatzy Online!\"";
+                case "de":
+                    return "Welcome to \"Magical Yatzy Online\" Game!";
+                case "by":
+                    return "Вітаем у гульні \"Магічны Yatzy Online!\"";
+                default:
+                    return "Welcome to \"Magical Yatzy Online\" Game!";
+            }
+        }
         
     }
 

@@ -118,8 +118,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\DicePokerRT\Common\ServerHttpMessage.cs">
+    <Compile Include="..\CloudServer\Models\Common\ServerHttpMessage.cs">
       <Link>Models\ServerHttpMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Common\StringTokenizer.cs">
+      <Link>Models\StringTokenizer.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\TupleTableInfo.cs">
+      <Link>Models\TupleTableInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Enums\GameRule.cs">
+      <Link>Models\GameRule.cs</Link>
     </Compile>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />

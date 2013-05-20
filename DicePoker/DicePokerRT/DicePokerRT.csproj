@@ -196,7 +196,6 @@
     <Compile Include="Models\LocalSettings.cs" />
     <Compile Include="Models\Messages.cs" />
     <Compile Include="Models\PlayerAIExtensions.cs" />
-    <Compile Include="Common\ServerHttpMessage.cs" />
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="Models\ReviewBugger.cs" />
     <Compile Include="Models\RoamingSettings.cs" />

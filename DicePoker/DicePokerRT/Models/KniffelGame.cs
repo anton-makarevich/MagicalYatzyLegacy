@@ -36,7 +36,7 @@ namespace Sanet.Kniffel.Models
             //def rule
             Rules = new KniffelRule(Models.Rules.krExtended );
 #if SERVER
-            _roundTimer = new Timer(60000);
+            _roundTimer = new Timer(100000);
             _roundTimer.Elapsed += _roundTimer_Elapsed;
 #endif
         }
@@ -94,6 +94,11 @@ namespace Sanet.Kniffel.Models
 
         //Chat Message
         public event EventHandler<ChatMessageEventArgs> OnChatMessage;
+
+        /// <summary>
+        /// current player used reset roll
+        /// </summary>
+        public event EventHandler<PlayerEventArgs> PlayerRerolled;
 
         #endregion
 
@@ -372,6 +377,16 @@ namespace Sanet.Kniffel.Models
             }
         }
 
+        /// <summary>
+        /// Pressed 'reroll'
+        /// </summary>
+        public void ResetRolls()
+        {
+            CurrentPlayer.Roll = 1;
+            RerollMode = true;
+            if (PlayerRerolled != null)
+                PlayerRerolled(null, new PlayerEventArgs(CurrentPlayer));
+        }
         /// <summary>
         /// Player changed dice result manually
         /// </summary>

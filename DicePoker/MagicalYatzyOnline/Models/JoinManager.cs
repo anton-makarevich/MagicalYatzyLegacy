@@ -48,8 +48,10 @@ namespace Sanet.Kniffel.Models
             KniffelGameClient game = WSServer.JoinTable(gameid,rule,p.Player,gui);
             if (game != null)
             {
+                game.StartGame();
                 ((Frame)Window.Current.Content).Navigate(typeof(GamePage));
                 CurrentTable = game;
+                //game.JoinGame(p.Player);
                 return true;
             }
             else

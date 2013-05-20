@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="43862AntonMakarevich.20636FDE9D8C7" Publisher="CN=DC1EF1A2-04E8-4269-B8EE-BF7A3DBF913C" Version="1.9.7.7" />
+  <Identity Name="43862AntonMakarevich.SanetDicePoker" Publisher="CN=DC1EF1A2-04E8-4269-B8EE-BF7A3DBF913C" Version="1.9.8.3" />
   <Properties>
-    <DisplayName>Magical Yatzy Online</DisplayName>
+    <DisplayName>ms-resource:AppNameLabel</DisplayName>
     <PublisherDisplayName>Anton Makarevich</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -15,9 +15,9 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="MagicalYatzyOnline.App">
-      <VisualElements DisplayName="Magical Yatzy Online" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="MagicalYatzyOnline" ForegroundText="light" BackgroundColor="#464646">
-        <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="Assets\SplashScreen.png" />
+      <VisualElements DisplayName="ms-resource:AppNameLabel" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="MagicalYatzyOnline" ForegroundText="light" BackgroundColor="#009cd6">
+        <DefaultTile ShowName="allLogos" ShortName="Magical Yatzy" WideLogo="Assets\WideLogo.png" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#009cd6" />
       </VisualElements>
     </Application>
   </Applications>

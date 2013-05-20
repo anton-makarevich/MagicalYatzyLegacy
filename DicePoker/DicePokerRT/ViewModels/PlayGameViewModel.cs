@@ -593,6 +593,12 @@ namespace Sanet.Kniffel.ViewModels
                     Game.DiceChanged -= Game_DiceChanged;
                     Game.PlayerReady -= Game_PlayerReady;
                     Game.PlayerLeft -= Game_PlayerLeft;
+                    Game.OnChatMessage -= Game_OnChatMessage;
+                    Game.PlayerRerolled -= Game_PlayerRerolled;
+                }
+                foreach (PlayerWrapper player in Players)
+                {
+                    player.Dispose();
                 }
             }
             catch (Exception ex)
@@ -619,7 +625,24 @@ namespace Sanet.Kniffel.ViewModels
                 Game.PlayerReady += Game_PlayerReady;
                 Game.PlayerLeft += Game_PlayerLeft;
                 Game.OnChatMessage += Game_OnChatMessage;
+                Game.PlayerRerolled += Game_PlayerRerolled;
             }
+        }
+
+        void Game_PlayerRerolled(object sender, PlayerEventArgs e)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        if (SelectedPlayer.Name == e.Player.Name)
+                        {
+                            SoundsProvider.PlaySound("magic");
+                            SelectedPlayer.Roll = 1;
+                            SelectedPlayer.OnForthRollUsed();
+                            RollResults = null;
+                            SetCanRoll(true);
+                            NotifyPlayerChanged();
+                        }
+                    });
         }
 
         void Game_OnChatMessage(object sender, ChatMessageEventArgs e)
@@ -674,20 +697,28 @@ namespace Sanet.Kniffel.ViewModels
 
         void Game_DiceChanged(object sender, RollEventArgs e)
         {
-            SelectedPlayer.Player.CheckRollResults();
-            SelectedPlayer.OnManaulSetUsed();
-            var resList = new List<IRollResult>();
-            foreach (var r in SelectedPlayer.Results.Where(f => !f.HasValue && f.ScoreType != KniffelScores.Bonus).ToList())
-                resList.Add(r);
-            RollResults = resList;
-            IsControlsVisible = true;
-            NotifyPlayerChanged();
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        SoundsProvider.PlaySound("magic");
+                        SelectedPlayer.Player.CheckRollResults();
+                        SelectedPlayer.OnManaulSetUsed();
+                        var resList = new List<IRollResult>();
+                        foreach (var r in SelectedPlayer.Results.Where(f => !f.HasValue && f.ScoreType != KniffelScores.Bonus).ToList())
+                            resList.Add(r);
+                        if (SelectedPlayer.Name == Game.MyName)
+                        {
+                            RollResults = resList;
+                            IsControlsVisible = true;
+                        }
+                        NotifyPlayerChanged();
+                    });
         }
 
         void Game_MagicRollUsed(object sender, PlayerEventArgs e)
         {
             SmartDispatcher.BeginInvoke(() =>
                     {
+                        SoundsProvider.PlaySound("magic");
                         SelectedPlayer.OnMagicRollUsed();
                     });
         }
@@ -932,11 +963,11 @@ namespace Sanet.Kniffel.ViewModels
                     {
                         int addartifacts = 0;
 
-                        if (p.Total > 600)
+                        if (p.Total > 700)
                             addartifacts = 100;
-                        else if (p.Total > 500)
+                        else if (p.Total > 600)
                             addartifacts = 30;
-                        else if (p.Total > 400)
+                        else if (p.Total > 50)
                             addartifacts = 10;
                         if (addartifacts > 0)
                         {
@@ -1037,12 +1068,14 @@ namespace Sanet.Kniffel.ViewModels
 
         public void StartGame()
         {
-            
-            foreach (var p in Game.Players)
+            if (Game.Players != null)
             {
-                p.Game = Game;
-                if (!IsOnlineGame)
-                    Game.SetPlayerReady(p, true);
+                foreach (var p in Game.Players)
+                {
+                    p.Game = Game;
+                    if (!IsOnlineGame)
+                        Game.SetPlayerReady(p, true);
+                }
             }
             NotifyPropertyChanged("SampleResults");
         }
@@ -1066,18 +1099,7 @@ namespace Sanet.Kniffel.ViewModels
 
             NotifyPropertyChanged("Players");
         }
-        /// <summary>
-        /// Player used "Reset Roll magic"
-        /// </summary>
-        public void ResetRolls()
-        {
-            SelectedPlayer.Roll = 1;
-            SelectedPlayer.OnForthRollUsed();
-            Game.RerollMode = true;
-            RollResults = null;
-            SetCanRoll(true);
-            NotifyPlayerChanged();
-        }
+        
         
         #endregion
 

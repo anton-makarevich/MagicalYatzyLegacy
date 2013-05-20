@@ -165,8 +165,8 @@ namespace Sanet.Kniffel.Server
             
             LogManager.Log(LogLevel.Message, "ServerClientLobby.m_CommandObserver_JoinTableCommandReceived", "> Client '{0}' seated ({3}) at table: {2}:{1}", m_PlayerName,client.Game.GameId, e.Command.TableID, client.Player.SeatNo);
             Send1(e.Command.EncodeResponse(player.SeatNo,tableID));
-            Thread.Sleep(200);
-            client.SendTableInfo();
+            //Thread.Sleep(200);
+            //client.SendTableInfo();
             
         }
         
