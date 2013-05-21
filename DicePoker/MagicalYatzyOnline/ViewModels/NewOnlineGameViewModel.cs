@@ -342,8 +342,9 @@ namespace Sanet.Kniffel.ViewModels
                 tableId = SelectedTable.Id;
                 if (SelectedTable.Players.Contains(SelectedPlayer.Name))
                 {
-                    Utilities.ShowMessage("AlreadyInGameMessage".Localize(), "AppNameLabel".Localize());
-                    return;
+                    //Utilities.ShowMessage("AlreadyInGameMessage".Localize(), "AppNameLabel".Localize());
+                    //return;
+                    tableId = -1;
                 }
             }
             await JoinManager.JoinTable(tableId, SelectedRule.Rule.Rule);

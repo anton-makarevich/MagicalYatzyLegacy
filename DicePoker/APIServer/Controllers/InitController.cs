@@ -31,15 +31,26 @@ namespace PokerServerService.Controllers
                 float version;
                 if (!string.IsNullOrEmpty(versionStr))
                 {
-                    if (float.TryParse(versionStr,NumberStyles.AllowDecimalPoint,CultureInfo.InvariantCulture, out version) && version < 2.0f)
+                    if (float.TryParse(versionStr, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out version) && version >= 2.0f)
                     {
 
                         return new ServerHttpMessage()
                         {
                             Code = -2,//we can defined different codes here
-                            IsClientUpdated=true,
-                            ServerRestartDate=new DateTime(2013,5,1,17,0,0),
+                            IsClientUpdated = true,
+                            ServerRestartDate = new DateTime(2013, 5, 1, 17, 0, 0),
                             Message = GetMessage(language)
+                            //"ServerMaintananceMessage" //"App version is outdated, some features may not work. Please upgrade from Windows Store"
+                        };
+                    }
+                    else
+                    {
+                        return new ServerHttpMessage()
+                        {
+                            Code = -1,//we can defined different codes here
+                            IsClientUpdated =false,
+                            ServerRestartDate = new DateTime(2013, 5, 1, 17, 0, 0),
+                            Message = ""
                             //"ServerMaintananceMessage" //"App version is outdated, some features may not work. Please upgrade from Windows Store"
                         };
                     }
@@ -55,7 +66,7 @@ namespace PokerServerService.Controllers
                 case "ru":
                     return "Приветствуем в игре \"Магический Yatzy Online!\"";
                 case "de":
-                    return "Welcome to \"Magical Yatzy Online\" Game!";
+                    return "Willkommen in \"Magical Yatzy Online\" Game!";
                 case "by":
                     return "Вітаем у гульні \"Магічны Yatzy Online!\"";
                 default:

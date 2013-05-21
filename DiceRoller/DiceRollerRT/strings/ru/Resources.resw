@@ -241,7 +241,7 @@
     <value>Настройки</value>
   </data>
   <data name="SettingsDescription" xml:space="preserve">
-    <value>Измените настройки игры</value>
+    <value>Измените настроек игры</value>
   </data>
   <data name="StartNewGameMessage" xml:space="preserve">
     <value>Начать новую игру</value>

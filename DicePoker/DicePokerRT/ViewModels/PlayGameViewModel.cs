@@ -705,7 +705,7 @@ namespace Sanet.Kniffel.ViewModels
                         var resList = new List<IRollResult>();
                         foreach (var r in SelectedPlayer.Results.Where(f => !f.HasValue && f.ScoreType != KniffelScores.Bonus).ToList())
                             resList.Add(r);
-                        if (SelectedPlayer.Name == Game.MyName)
+                        if (SelectedPlayer.Name == Game.MyName || !IsOnlineGame)
                         {
                             RollResults = resList;
                             IsControlsVisible = true;
