@@ -95,6 +95,7 @@
                                 
                             <RowDefinition/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         
                         <TextBlock
@@ -118,22 +119,32 @@
                             </ListView.ItemContainerStyle>
                         </ListView>
                         <TextBlock
-                            FontSize="20"
+                            FontSize="16"
                             Grid.Row="2"
                             HorizontalAlignment="Left"
                             TextWrapping="Wrap"
                             MaxWidth="450"
                             Foreground="{StaticResource SanetBlue}"
                             x:Uid="OnlineVersionText"/>
+                        <TextBlock
+                            Margin="0,5,0,0"
+                            FontSize="16"
+                            Grid.Row="3"
+                            HorizontalAlignment="Left"
+                            TextWrapping="Wrap"
+                            MaxWidth="450"
+                            Foreground="{StaticResource SanetBlue}"
+                            Text="{Binding MetroStudioText}"/>
                     </Grid>
 
-                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
-                           HorizontalAlignment="Left"
+                    <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                       HorizontalAlignment="Left"
                        Foreground="{StaticResource SanetBlue}"
                        Text="{Binding OtherApps}"
                        Grid.Row="0"
-                                   Grid.Column="1"
+                       Grid.Column="1"
                        VerticalAlignment="Center"/>
+                        
                     <Grid
                             Grid.Row="1"
                         Grid.Column="1"

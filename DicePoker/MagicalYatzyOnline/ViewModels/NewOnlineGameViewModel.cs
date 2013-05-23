@@ -336,6 +336,7 @@ namespace Sanet.Kniffel.ViewModels
         public async override void StartGame()
         {
             SavePlayers();
+            SelectedPlayer.SelectedStyle = RoamingSettings.DiceStyle;
             var tableId = -1;
             if (SelectedTable != null)
             {

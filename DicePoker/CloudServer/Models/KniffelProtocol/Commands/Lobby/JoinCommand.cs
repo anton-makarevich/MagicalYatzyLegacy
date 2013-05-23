@@ -1,4 +1,5 @@
-﻿using Sanet.Kniffel.Models;
+﻿using Sanet.Kniffel.DicePanel;
+using Sanet.Kniffel.Models;
 using Sanet.Kniffel.Models.Enums;
 using Sanet.Models;
 using System;
@@ -53,6 +54,8 @@ namespace Sanet.Kniffel.Protocol.Commands.Lobby
             get { return m_PlayerClient; }
         }
 
+        public DiceStyle SelectedStyle { get;private set; }
+
         public JoinCommand(StringTokenizer argsToken)
         {
             m_TableID = int.Parse(argsToken.NextToken());
@@ -61,9 +64,11 @@ namespace Sanet.Kniffel.Protocol.Commands.Lobby
             m_PlayerClient = (ClientType)Enum.Parse(typeof(ClientType), argsToken.NextToken());
             m_PlayerLanguage = argsToken.NextToken();
             m_PlayerPass = argsToken.NextToken();
+            SelectedStyle = (DiceStyle)Enum.Parse(typeof(DiceStyle), argsToken.NextToken());
         }
 
-        public JoinCommand(int tableid, string name, Rules rule, ClientType client, string language,string pass)
+        public JoinCommand(int tableid, string name, Rules rule, ClientType client,
+            string language,string pass,DiceStyle style)
         {
             m_TableID = tableid;
             m_PlayerName = name;
@@ -71,6 +76,7 @@ namespace Sanet.Kniffel.Protocol.Commands.Lobby
             m_PlayerClient = client;
             m_PlayerLanguage = language;
             m_PlayerPass = pass;
+            SelectedStyle = style;
         }
 
         public override void Encode(StringBuilder sb)
@@ -81,6 +87,7 @@ namespace Sanet.Kniffel.Protocol.Commands.Lobby
             Append(sb, m_PlayerClient);
             Append(sb, m_PlayerLanguage);
             Append(sb, m_PlayerPass);
+            Append(sb, SelectedStyle);
         }
 
         public string EncodeResponse(int seat, int gameid)

@@ -60,7 +60,7 @@ namespace Sanet.Kniffel.ViewModels
 
         }
 
-        public dpStyle SettingsPanelStyle
+        public DiceStyle SettingsPanelStyle
         {
             get
             {

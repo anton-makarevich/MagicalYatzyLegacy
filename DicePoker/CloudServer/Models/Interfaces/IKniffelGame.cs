@@ -1,17 +1,23 @@
-﻿using Sanet.Kniffel.Models.Events;
+﻿using Sanet.Kniffel.DicePanel;
+using Sanet.Kniffel.Models.Events;
 using System;
 namespace Sanet.Kniffel.Models.Interfaces
 {
     public interface IKniffelGame
     {
         event EventHandler<PlayerEventArgs> PlayerLeft;
-        void ApplyScore(RollResult result);
-        Player CurrentPlayer { get; set; }
+        
         event EventHandler<RollEventArgs> DiceChanged;
         event EventHandler<FixDiceEventArgs> DiceFixed;
         event EventHandler<RollEventArgs> DiceRolled;
         event EventHandler<PlayerEventArgs> PlayerReady;
         event EventHandler<PlayerEventArgs> PlayerRerolled;
+        event EventHandler<PlayerEventArgs> MagicRollUsed;
+        event EventHandler<PlayerEventArgs> StyleChanged;
+
+        Player CurrentPlayer { get; set; }
+        void ApplyScore(RollResult result);
+        void ChangeStyle(Player player, DiceStyle style);
         void DoMove();
         void FixAllDices(int value, bool isfixed);
         void FixDice(int value, bool isfixed);
@@ -24,7 +30,7 @@ namespace Sanet.Kniffel.Models.Interfaces
         string MyName { get; set; }
         void JoinGame(Player player);
         DieResult LastDiceResult { get; }
-        event EventHandler<PlayerEventArgs> MagicRollUsed;
+        
         void ManualChange(bool isfixed, int oldvalue, int newvalue);
         int Move { get; set; }
         event EventHandler<MoveEventArgs> MoveChanged;

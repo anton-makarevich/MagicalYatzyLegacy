@@ -106,10 +106,15 @@ namespace DicePokerRT
         async void Game_MoveChanged(object sender, Sanet.Kniffel.Models.Events.MoveEventArgs e)
         {
             dpBackground.ClearFreeze();
+
             if (GetViewModel<PlayGameViewModel>().SelectedPlayer.IsBot)
             {
                 await Task.Delay(3000);
                 GetViewModel<PlayGameViewModel>().Game.ReportRoll();
+            }
+            if (dpBackground.PanelStyle != GetViewModel<PlayGameViewModel>().SelectedPlayer.SelectedStyle)
+            {
+                dpBackground.PanelStyle = GetViewModel<PlayGameViewModel>().SelectedPlayer.SelectedStyle;
             }
         }
 
@@ -122,7 +127,10 @@ namespace DicePokerRT
             else if (e.PropertyName == "SettingsPanelSpeed")
                 dpBackground.RollDelay = GetViewModel<PlayGameViewModel>().SettingsPanelSpeed;
             else if (e.PropertyName == "SettingsPanelStyle")
+            {
                 dpBackground.PanelStyle = GetViewModel<PlayGameViewModel>().SettingsPanelStyle;
+                GetViewModel<PlayGameViewModel>().Game.ChangeStyle(null, dpBackground.PanelStyle);
+            }
             
         }
 

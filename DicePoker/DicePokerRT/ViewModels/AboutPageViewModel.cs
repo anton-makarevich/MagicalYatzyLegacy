@@ -62,6 +62,15 @@ namespace Sanet.Kniffel.ViewModels
                 return Messages.APP_NAME_OTHER.Localize();
             }
         }
+
+        public string MetroStudioText
+        {
+            get
+            {
+                return "MetroStudioText".Localize();
+            }
+        }
+
         /// <summary>
         /// Display current package version
         /// </summary>  

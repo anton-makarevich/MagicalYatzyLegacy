@@ -714,4 +714,7 @@
   <data name="AlreadyInGameMessage" xml:space="preserve">
     <value>Прабачце не атрымалася злучыцца са сталом - там ужо ёсць нехта з такім жа нікам... паспрабуйце пазней.</value>
   </data>
+  <data name="MetroStudioText" xml:space="preserve">
+    <value>Некаторыя іконкі створаны Syncfusion Metro Studio</value>
+  </data>
 </root>

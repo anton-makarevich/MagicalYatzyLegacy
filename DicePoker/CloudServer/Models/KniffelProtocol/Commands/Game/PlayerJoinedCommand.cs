@@ -1,4 +1,5 @@
-﻿using Sanet.Kniffel.Models.Enums;
+﻿using Sanet.Kniffel.DicePanel;
+using Sanet.Kniffel.Models.Enums;
 using Sanet.Models;
 using Sanet.Network.Protocol.Commands;
 using System;
@@ -29,20 +30,25 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
             get { return m_PlayerClient; }
         }
 
+        public DiceStyle SelectedStyle { get; private set; }
+
         public PlayerJoinedCommand(StringTokenizer argsToken)
             :base(argsToken)
         {
             SeatNo = int.Parse(argsToken.NextToken());
             m_PlayerClient = (ClientType)Enum.Parse(typeof(ClientType), argsToken.NextToken());
             m_PlayerLanguage = argsToken.NextToken();
+            SelectedStyle = (DiceStyle)Enum.Parse(typeof(DiceStyle), argsToken.NextToken());
         }
 
-        public PlayerJoinedCommand(string name,int seatno, ClientType client, string language)
+        public PlayerJoinedCommand(string name,int seatno,
+            ClientType client, string language, DiceStyle style)
             :base(name)
         {
             SeatNo = seatno;
             m_PlayerClient = client;
             m_PlayerLanguage=language;
+            SelectedStyle = style;
         }
 
         public override void Encode(StringBuilder sb)
@@ -51,6 +57,7 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
             Append(sb, SeatNo);
             Append(sb, m_PlayerClient);
             Append(sb, m_PlayerLanguage);
+            Append(sb, SelectedStyle);
         }
     }
 }

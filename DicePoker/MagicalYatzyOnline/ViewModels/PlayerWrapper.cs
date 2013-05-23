@@ -1,4 +1,5 @@
-﻿using Sanet.Kniffel.Models;
+﻿using Sanet.Kniffel.DicePanel;
+using Sanet.Kniffel.Models;
 using Sanet.Kniffel.Models.Enums;
 using Sanet.Kniffel.Models.Interfaces;
 using Sanet.Models;
@@ -342,8 +343,16 @@ namespace Sanet.Kniffel.ViewModels
                 _Player.Language = value;
             }
         }
-        
-        
+
+        public DiceStyle SelectedStyle
+        {
+            get
+            { return Player.SelectedStyle; }
+            set
+            {
+                Player.SelectedStyle = value;
+            }
+        }
 
         public int MagicRollsCount
         {
@@ -604,7 +613,7 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                if (!IsHuman)
+                if (!IsHuman || Total==0)
                     return false;
                 return _ShouldSaveResult;
             }
@@ -613,6 +622,16 @@ namespace Sanet.Kniffel.ViewModels
                 _ShouldSaveResult = value;
                 NotifyPropertyChanged("ShouldSaveResult");
             }
+        }
+
+        public bool CanSaveResult
+        {
+            get
+            {
+                return (IsHuman && Total != 0);
+                   
+            }
+            
         }
 
         /// <summary>
@@ -735,7 +754,7 @@ namespace Sanet.Kniffel.ViewModels
 
         void _timer_Tick(object sender, object e)
         {
-            if (Counter == 5 && Player.SeatNo == Game.CurrentPlayer.SeatNo)
+            if (Counter == 5 && Player.Name == Game.CurrentPlayer.Name)
                 SoundsProvider.PlaySound(_player, "timeoutwarning");
             if (Counter == 0)//time off
             {

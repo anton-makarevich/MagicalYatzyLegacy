@@ -306,6 +306,9 @@ namespace Sanet.Kniffel.ViewModels
         {
             if (HasPlayers && SelectedRule != null)
             {
+                foreach (var p in Players)
+                    p.SelectedStyle = RoamingSettings.DiceStyle;
+
                 var gameModel = ViewModelProvider.GetViewModel<PlayGameViewModel>();
                 gameModel.Game = new KniffelGame();
                 gameModel.Game.Rules = SelectedRule.Rule;

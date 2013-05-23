@@ -134,7 +134,7 @@ namespace Sanet.Kniffel.Server
             player.Password = e.Command.PlayerPass;
             player.Language = e.Command.PlayerLanguage;
             player.Client = e.Command.PlayerClient;
-
+            player.SelectedStyle = e.Command.SelectedStyle;
             // Verify the player does not already playing on that table.
             if (game.Players!=null)
             {

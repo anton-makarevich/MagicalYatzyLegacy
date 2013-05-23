@@ -720,4 +720,7 @@
   <data name="AlreadyInGameMessage" xml:space="preserve">
     <value>Sorry, You can't connect to selected table. There is a player with the same name... Please try later. </value>
   </data>
+  <data name="MetroStudioText" xml:space="preserve">
+    <value>Some icons are created in Syncfusion Metro Studio</value>
+  </data>
 </root>

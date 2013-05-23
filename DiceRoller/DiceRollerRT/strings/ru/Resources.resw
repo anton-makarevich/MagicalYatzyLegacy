@@ -711,4 +711,7 @@
   <data name="AlreadyInGameMessage" xml:space="preserve">
     <value>Извините, вы не можете поделючиться к выбоанному столу. Игрок с таким именем уже инрает. Попробуйте позже.</value>
   </data>
+  <data name="MetroStudioText" xml:space="preserve">
+    <value>Некоторые иконки созданы в Syncfusion Metro Studio</value>
+  </data>
 </root>

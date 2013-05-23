@@ -4,8 +4,10 @@ using Sanet.Kniffel.Models.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sanet.Kniffel.DicePanel;
 #if SERVER
 using System.Timers;
+
 #endif
 
 namespace Sanet.Kniffel.Models
@@ -91,6 +93,8 @@ namespace Sanet.Kniffel.Models
         public event EventHandler<PlayerEventArgs> PlayerLeft;
 
         public event EventHandler<PlayerEventArgs> PlayerReady;
+
+        public event EventHandler<PlayerEventArgs> StyleChanged;
 
         //Chat Message
         public event EventHandler<ChatMessageEventArgs> OnChatMessage;
@@ -228,7 +232,13 @@ namespace Sanet.Kniffel.Models
             if (CurrentPlayer != null)
             {
                 CurrentPlayer.IsMoving = false;
-                CurrentPlayer = Players.Where(f=>f.IsReady).FirstOrDefault(f => f.SeatNo == CurrentPlayer.SeatNo + 1);
+                //if player left we can't just take next - need to check to the last possible place
+                for (int i = CurrentPlayer.SeatNo + 1; i < 5; i++)
+                {
+                    CurrentPlayer = Players.Where(f => f.IsReady).FirstOrDefault(f => f.SeatNo == i);
+                    if (CurrentPlayer != null)
+                        break;
+                }
             }
             else//else it's new move and we select first player as current
                 CurrentPlayer = Players.FirstOrDefault(f => f.SeatNo == 0);
@@ -504,20 +514,34 @@ namespace Sanet.Kniffel.Models
             //check for numeric bonus and apply it
             if (Rules.HasStandardBonus)
             {
-                if (result.IsNumeric && !CurrentPlayer.Results.FirstOrDefault(f=>f.ScoreType== KniffelScores.Bonus).HasValue)
+                var bonusResult=CurrentPlayer.Results.FirstOrDefault(f=>f.ScoreType== KniffelScores.Bonus);
+                if (result.IsNumeric && !bonusResult.HasValue)
                 {
-                    if (CurrentPlayer.TotalNumeric>62)
-                        ResultApplied(this, new ResultEventArgs(CurrentPlayer, new RollResult() 
-                        { 
-                            ScoreType= KniffelScores.Bonus,
-                            PossibleValue=35
-                        }));
-                    else if (CurrentPlayer.TotalNumeric+CurrentPlayer.MaxRemainingNumeric <64)
+                    if (CurrentPlayer.TotalNumeric > 62)
+                    {
+                        bonusResult.PossibleValue = 35;
                         ResultApplied(this, new ResultEventArgs(CurrentPlayer, new RollResult()
                         {
                             ScoreType = KniffelScores.Bonus,
-                            PossibleValue = 0
+                            PossibleValue = bonusResult.PossibleValue
                         }));
+#if SERVER
+                        bonusResult.Value = bonusResult.PossibleValue;
+#endif
+                    }
+                    else if (CurrentPlayer.TotalNumeric + CurrentPlayer.MaxRemainingNumeric < 64)
+                    {
+                        bonusResult.PossibleValue = 0;
+                        ResultApplied(this, new ResultEventArgs(CurrentPlayer, new RollResult()
+                        {
+                            ScoreType = KniffelScores.Bonus,
+                            PossibleValue = bonusResult.PossibleValue
+                        }));
+#if SERVER
+                        bonusResult.Value = bonusResult.PossibleValue;
+#endif
+                    }
+                    
                 }
             }
 
@@ -557,6 +581,20 @@ namespace Sanet.Kniffel.Models
             }
         }
 
+        public void ChangeStyle(Player player, DiceStyle style)
+        {
+            if (player==null)
+                return;
+            player = Players.FirstOrDefault(f => f.Name == player.Name);
+            if (player != null)
+            {
+                player.SelectedStyle = style;
+                if (StyleChanged != null)
+                {
+                    StyleChanged(null, new PlayerEventArgs(player));
+                }
+            }
+        }
 
         /// <summary>
         /// Server only method to send chat messages
@@ -575,50 +613,58 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         public void RestartGame()
         {
-            foreach (Player p in Players)
+            lock (syncRoot)
             {
-                p.Roll = 1;
-                p.SeatNo--;
-                if (p.SeatNo < 0)
-                    p.SeatNo = Players.Count - 1;
-                p.Init();
+                for (int i = 0;i<PlayersNumber;i++)
+                {
+                    Player p = Players[i];
+                    p.Roll = 1;
+                    p.SeatNo=i-1;
+                    if (p.SeatNo < 0 )
+                        p.SeatNo = Players.Count - 1;
+                    p.Init();
+                }
+                Players = Players.OrderBy(f => f.SeatNo).ToList();
+                CurrentPlayer = null;
+                if (GameUpdated != null)
+                    GameUpdated(null,null);
+                StartGame();
             }
-            Players = Players.OrderBy(f => f.SeatNo).ToList();
-            CurrentPlayer = null;
-            if (GameUpdated != null)
-                GameUpdated(null,null);
-            StartGame();
         }
 
         public void JoinGame(Player player)
         {
-            if (Players==null)
-                Players = new List<Player>();
-
-            int seat = 0;
-            if (Players.Count(f => f.IsReady) == 0)
+            lock (syncRoot)
             {
-                IsPlaying = false;
-                Move = 1;
+                if (Players == null)
+                    Players = new List<Player>();
+
+                int seat = 0;
+                if (Players.Count(f => f.IsReady) == 0)
+                {
+                    IsPlaying = false;
+                    Move = 1;
 #if SERVER
-                _roundTimer.Stop();
+                    _roundTimer.Stop();
 #endif
-            }
-            while (Players.FirstOrDefault(f => f.SeatNo == seat) != null)
-            {
-                seat++;
-            };
+                }
+                while (Players.FirstOrDefault(f => f.SeatNo == seat) != null)
+                {
+                    seat++;
+                };
 
-            player.SeatNo=seat;
-            Players.Add(player);
-            player.Game = this;
-            if (PlayerJoined != null)
-                PlayerJoined(this, new PlayerEventArgs(player));
+                player.SeatNo = seat;
+                Players.Add(player);
+                player.Game = this;
+                if (PlayerJoined != null)
+                    PlayerJoined(this, new PlayerEventArgs(player));
+            }
             
         }
 
         public void LeaveGame(Player player)
         {
+            player = Players.FirstOrDefault(f => f.Name == player.Name);
             if (Players == null)
                 return;
             Players.Remove(player);

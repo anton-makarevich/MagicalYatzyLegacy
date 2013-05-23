@@ -76,13 +76,13 @@ namespace Sanet.Kniffel.Models
         }
 
         #region setting section
-        public static dpStyle DiceStyle
+        public static DiceStyle DiceStyle
         {
             get
             {
                 if (roamingSettings.Values["DiceStyle"] == null)
-                    roamingSettings.Values["DiceStyle"] = dpStyle.dpsClassic.ToString();
-                return ((dpStyle)Enum.Parse(typeof(dpStyle), (string)roamingSettings.Values["DiceStyle"]));
+                    roamingSettings.Values["DiceStyle"] = DiceStyle.dpsClassic.ToString();
+                return ((DiceStyle)Enum.Parse(typeof(DiceStyle), (string)roamingSettings.Values["DiceStyle"]));
             }
             set 
             {

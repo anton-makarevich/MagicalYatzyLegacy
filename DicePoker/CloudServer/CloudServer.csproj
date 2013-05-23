@@ -173,6 +173,9 @@
     <Compile Include="..\DicePokerRT\Models\Messages.cs">
       <Link>Models\Common\Messages.cs</Link>
     </Compile>
+    <Compile Include="..\MagicalYatzyOnline\DicePanel\DiceStyle.cs">
+      <Link>Models\Enums\DiceStyle.cs</Link>
+    </Compile>
     <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IPlayer.cs">
       <Link>Models\Interfaces\IPlayer.cs</Link>
     </Compile>
@@ -200,11 +203,12 @@
     <Compile Include="Models\Interfaces\IKniffelGame.cs" />
     <Compile Include="Models\KniffelGameServer.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\ApplyScoreCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\ChangeStyleCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerRerolledCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\DiceChangedCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\ManualChangeCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\MagicRollRequestCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Game\GameEndedCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\TableInfoCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerReadyCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerLeftCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\RoundChangedCommand.cs" />
@@ -214,7 +218,7 @@
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerChatMessageCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerJoinedCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerPingCommand.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Game\TableInfoCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\GameEndedCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\TableInfoNeededCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\AbstractLobbyCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\AbstractLobbyResponse.cs" />

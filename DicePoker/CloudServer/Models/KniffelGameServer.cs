@@ -80,6 +80,12 @@ namespace Sanet.Kniffel.Models
             _Game.GameUpdated += _Game_GameUpdated;
             _Game.OnChatMessage += _Game_OnChatMessage;
             _Game.PlayerRerolled += _Game_PlayerRerolled;
+            _Game.StyleChanged += _Game_StyleChanged;
+        }
+
+        void _Game_StyleChanged(object sender, PlayerEventArgs e)
+        {
+            Send(new ChangeStyleCommand(e.Player.Name,e.Player.SelectedStyle));
         }
 
         void _Game_PlayerRerolled(object sender, PlayerEventArgs e)
@@ -105,7 +111,7 @@ namespace Sanet.Kniffel.Models
         void _Game_PlayerLeft(object sender, PlayerEventArgs e)
         {
             Send(new PlayerLeftCommand(e.Player.Name));
-            if (Player.ID == e.Player.ID && LeftTable != null)
+            if (Player.Name == e.Player.Name && LeftTable != null)
                 LeftTable(this, new KeyEventArgs<int>(e.Player.SeatNo));
         }
 
@@ -119,14 +125,9 @@ namespace Sanet.Kniffel.Models
 
         void _Game_PlayerJoined(object sender, PlayerEventArgs e)
         {
-            Send(new PlayerJoinedCommand(e.Player.Name,e.Player.SeatNo, e.Player.Client, e.Player.Language));
-            //if (e.Player.Name == _Player.Name)
-            //{
-            //    foreach (Player p in Game.Players)
-            //    {
-            //        _Game_PlayerReady(null, new PlayerEventArgs(p));
-            //    }
-            //}
+            Send(new PlayerJoinedCommand(e.Player.Name,e.Player.SeatNo,
+                e.Player.Client, e.Player.Language, e.Player.SelectedStyle));
+            
         }
 
         void _Game_MoveChanged(object sender, MoveEventArgs e)
@@ -175,6 +176,12 @@ namespace Sanet.Kniffel.Models
             m_CommandObserver.MagicRollCommandReceived += m_CommandObserver_MagicRollCommandReceived;
             m_CommandObserver.ManualChangeCommandReceived += m_CommandObserver_ManualChangeCommandReceived;
             m_CommandObserver.PlayerRerolledCommandReceived += m_CommandObserver_PlayerRerolledCommandReceived;
+            m_CommandObserver.ChangeStyleCommandReceived += m_CommandObserver_ChangeStyleCommandReceived;
+        }
+
+        void m_CommandObserver_ChangeStyleCommandReceived(object sender, CommandEventArgs<ChangeStyleCommand> e)
+        {
+            Game.ChangeStyle(Player, e.Command.SelectedStyle);
         }
 
         void m_CommandObserver_PlayerRerolledCommandReceived(object sender, CommandEventArgs<PlayerRerolledCommand> e)
@@ -269,6 +276,7 @@ namespace Sanet.Kniffel.Models
             m_CommandObserver.MagicRollCommandReceived -= m_CommandObserver_MagicRollCommandReceived;
             m_CommandObserver.ManualChangeCommandReceived -= m_CommandObserver_ManualChangeCommandReceived;
             m_CommandObserver.PlayerRerolledCommandReceived -= m_CommandObserver_PlayerRerolledCommandReceived;
+            m_CommandObserver.ChangeStyleCommandReceived -= m_CommandObserver_ChangeStyleCommandReceived;
 
             _Game.DiceChanged -= _Game_DiceChanged;
             _Game.DiceFixed -= _Game_DiceFixed;
@@ -283,6 +291,7 @@ namespace Sanet.Kniffel.Models
             _Game.GameUpdated -= _Game_GameUpdated;
             _Game.OnChatMessage -= _Game_OnChatMessage;
             _Game.PlayerRerolled -= _Game_PlayerRerolled;
+            _Game.StyleChanged -= _Game_StyleChanged;
 
             _Player = null;
 

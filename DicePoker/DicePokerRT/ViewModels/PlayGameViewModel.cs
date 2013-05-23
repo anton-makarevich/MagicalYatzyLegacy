@@ -595,6 +595,7 @@ namespace Sanet.Kniffel.ViewModels
                     Game.PlayerLeft -= Game_PlayerLeft;
                     Game.OnChatMessage -= Game_OnChatMessage;
                     Game.PlayerRerolled -= Game_PlayerRerolled;
+                    Game.StyleChanged -= Game_StyleChanged;
                 }
                 foreach (PlayerWrapper player in Players)
                 {
@@ -626,7 +627,15 @@ namespace Sanet.Kniffel.ViewModels
                 Game.PlayerLeft += Game_PlayerLeft;
                 Game.OnChatMessage += Game_OnChatMessage;
                 Game.PlayerRerolled += Game_PlayerRerolled;
+                Game.StyleChanged += Game_StyleChanged;
             }
+        }
+
+        void Game_StyleChanged(object sender, PlayerEventArgs e)
+        {
+            var player = Players.FirstOrDefault(f => f.Name == e.Player.Name);
+            if (player != null)
+                player.SelectedStyle = e.Player.SelectedStyle;
         }
 
         void Game_PlayerRerolled(object sender, PlayerEventArgs e)

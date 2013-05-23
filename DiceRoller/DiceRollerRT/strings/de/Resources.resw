@@ -833,4 +833,8 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>das  Multiplayer-Online-Spiel</value>
     <comment>das  Multiplayer-Online-Spiel</comment>
   </data>
+  <data name="MetroStudioText" xml:space="preserve">
+    <value>Einige der Symbole in Syncfusion Metro Studio erstellt</value>
+    <comment>МАЁ</comment>
+  </data>
 </root>
