@@ -336,14 +336,16 @@ namespace Sanet.Kniffel.ViewModels
         public async override void StartGame()
         {
             SavePlayers();
+            SelectedPlayer.SelectedStyle = RoamingSettings.DiceStyle;
             var tableId = -1;
             if (SelectedTable != null)
             {
                 tableId = SelectedTable.Id;
                 if (SelectedTable.Players.Contains(SelectedPlayer.Name))
                 {
-                    Utilities.ShowMessage("AlreadyInGameMessage".Localize(), "AppNameLabel".Localize());
-                    return;
+                    //Utilities.ShowMessage("AlreadyInGameMessage".Localize(), "AppNameLabel".Localize());
+                    //return;
+                    tableId = -1;
                 }
             }
             await JoinManager.JoinTable(tableId, SelectedRule.Rule.Rule);

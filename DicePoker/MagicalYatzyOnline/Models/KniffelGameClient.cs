@@ -1,4 +1,5 @@
-﻿using Sanet.Kniffel.Models.Enums;
+﻿using Sanet.Kniffel.DicePanel;
+using Sanet.Kniffel.Models.Enums;
 using Sanet.Kniffel.Models.Events;
 using Sanet.Kniffel.Models.Interfaces;
 using Sanet.Kniffel.Protocol.Commands.Game;
@@ -76,6 +77,8 @@ namespace Sanet.Kniffel.Models
         public event EventHandler<PlayerEventArgs> PlayerLeft;
 
         public event EventHandler<PlayerEventArgs> PlayerReady;
+
+        public event EventHandler<PlayerEventArgs> StyleChanged;
 
         /// <summary>
         /// current player used Magical Roll
@@ -205,7 +208,13 @@ namespace Sanet.Kniffel.Models
                 }
             
         }
-        
+
+        public void ChangeStyle(Player player, DiceStyle style)
+        {
+             Send(new ChangeStyleCommand(MyName,style));
+        }
+
+
         /// <summary>
         /// fix singe dice with value
         /// </summary>
@@ -320,7 +329,7 @@ namespace Sanet.Kniffel.Models
             {
                 p.Init();
             }
-            Players = Players.OrderBy(f => f.SeatNo).ToList();
+            //Players = Players.OrderBy(f => f.SeatNo).ToList();
             SetPlayerReady(true);
             
         }
@@ -331,7 +340,7 @@ namespace Sanet.Kniffel.Models
             {
                 if (Players == null)
                     Players = new List<Player>();
-                var explayer = Players.FirstOrDefault(f => f.SeatNo == player.SeatNo);
+                var explayer = Players.FirstOrDefault(f => f.Name == player.Name);
                 if (explayer == null)
                 {
                     Players.Add(player);
@@ -401,8 +410,10 @@ namespace Sanet.Kniffel.Models
             m_CommandObserver.MagicRollCommandReceived += m_CommandObserver_MagicRollCommandReceived;
             m_CommandObserver.DiceChangedCommandReceived += m_CommandObserver_DiceChangedCommandReceived;
             m_CommandObserver.PlayerRerolledCommandReceived += m_CommandObserver_PlayerRerolledCommandReceived;
+            m_CommandObserver.ChangeStyleCommandReceived += m_CommandObserver_ChangeStyleCommandReceived;
         }
 
+        
         public void Disconnect()
         {
             if (IsConnected)
@@ -421,8 +432,19 @@ namespace Sanet.Kniffel.Models
                 m_CommandObserver.MagicRollCommandReceived -= m_CommandObserver_MagicRollCommandReceived;
                 m_CommandObserver.DiceChangedCommandReceived -= m_CommandObserver_DiceChangedCommandReceived;
                 m_CommandObserver.PlayerRerolledCommandReceived -= m_CommandObserver_PlayerRerolledCommandReceived;
-
+                m_CommandObserver.ChangeStyleCommandReceived -= m_CommandObserver_ChangeStyleCommandReceived;
                 Send(new DisconnectCommand());
+            }
+        }
+
+        void m_CommandObserver_ChangeStyleCommandReceived(object sender, CommandEventArgs<ChangeStyleCommand> e)
+        {
+            var player = Players.FirstOrDefault(f => f.Name == e.Command.Name);
+            if (player != null)
+            {
+                player.SelectedStyle = e.Command.SelectedStyle;
+                if (StyleChanged != null)
+                    StyleChanged(null, new PlayerEventArgs(player));
             }
         }
 
@@ -575,6 +597,7 @@ namespace Sanet.Kniffel.Models
                 player.Client = seat.ClientType;
                 player.IsMoving = seat.IsPlaying;
                 player.Language = seat.Language;
+                player.SelectedStyle = seat.SelectedStyle;
                 player.PicUrl = seat.PhotoUri;
                 player.IsReady = seat.IsReady;
 
@@ -612,6 +635,7 @@ namespace Sanet.Kniffel.Models
                 player.SeatNo = e.Command.SeatNo;
                 player.Client = e.Command.PlayerClient;
                 player.Language = e.Command.PlayerLanguage;
+                player.SelectedStyle = e.Command.SelectedStyle;
                 player.Type = PlayerType.Network;
                 JoinGame(player);
             }

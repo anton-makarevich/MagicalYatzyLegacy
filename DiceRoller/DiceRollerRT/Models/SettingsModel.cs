@@ -12,7 +12,7 @@ namespace Sanet.Kniffel.Models
     public class SettingsModel
     {
         public int DiceNumber { get; set; }
-        public dpStyle DiceStyle { get; set; }
+        public DiceStyle DiceStyle { get; set; }
         public int DiceSpeed { get; set; }
         public int DiceAngle { get; set; }
 

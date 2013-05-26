@@ -1,4 +1,5 @@
-﻿using Sanet.Kniffel.Models.Enums;
+﻿using Sanet.Kniffel.DicePanel;
+using Sanet.Kniffel.Models.Enums;
 using Sanet.Models;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,15 @@ namespace Sanet.Kniffel.Protocol
         public ClientType ClientType { get; set; }
         public string Language { get; set; }
         public string PhotoUri { get; set; }
+        public DiceStyle SelectedStyle { get; set; }
                 
         public TuplePlayerInfo(string name, List<int> results,
             int seatno,bool isplaying,
             bool isready, 
             string lang, 
             string photouri,
-            ClientType client)
+            ClientType client,
+            DiceStyle style)
         {
             Name = name;
             Results = results;
@@ -32,6 +35,7 @@ namespace Sanet.Kniffel.Protocol
             Language = lang;
             PhotoUri = photouri;
             ClientType = client;
+            SelectedStyle = style;
         }
                 
 
@@ -45,6 +49,7 @@ namespace Sanet.Kniffel.Protocol
             Language=argsToken.NextToken();
             PhotoUri=argsToken.NextToken();
             ClientType=(ClientType)Enum.Parse(typeof(ClientType),argsToken.NextToken());
+            SelectedStyle = (DiceStyle)Enum.Parse(typeof(DiceStyle), argsToken.NextToken());
             for (int i=0;i<28;i++)
                 Results.Add(int.Parse(argsToken.NextToken()));
                        
@@ -74,6 +79,9 @@ namespace Sanet.Kniffel.Protocol
             sb.Append(p_delimiter);
 
             sb.Append(ClientType);
+            sb.Append(p_delimiter);
+
+            sb.Append(SelectedStyle);
             sb.Append(p_delimiter);
 
             foreach (int i in Results)

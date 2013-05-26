@@ -12,20 +12,93 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Sanet.Models;
 using Sanet.Kniffel.ViewModels;
+using Microsoft.Phone.Shell;
+using Sanet.Kniffel.Models;
 
 namespace DicePokerWP
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        //main appbar buttons
+        ApplicationBarIconButton fbButton;
+        ApplicationBarIconButton rateButton;
+        ApplicationBarIconButton shareButton;
+        ApplicationBarIconButton buyButton;
+
         // Constructor
         public MainPage()
         {
             InitializeComponent();
             this.Loaded += MainPage_Loaded;
+
+            //creating appbar menu elements
+            //AppBar
+            ApplicationBar = new ApplicationBar();
+
+            ApplicationBar.Mode = ApplicationBarMode.Minimized;
+            ApplicationBar.Opacity = 0.85;
+            ApplicationBar.BackgroundColor = Color.FromArgb(255, 0, 156, 214);
+            ApplicationBar.IsVisible = true;
+            ApplicationBar.IsMenuEnabled = false;
+
+            fbButton = new ApplicationBarIconButton();
+            fbButton.IconUri = new Uri("/Assets/Facebook.png", UriKind.Relative);
+            fbButton.Text = "FacebookLabel".Localize();
+            fbButton.Click += fbButton_Click;
+
+
+            rateButton = new ApplicationBarIconButton();
+            rateButton.IconUri = new Uri("/Assets/appRate.png", UriKind.Relative);
+            rateButton.Text = "RateLabel".Localize();
+            rateButton.Click += rateButton_Click;
+
+            shareButton = new ApplicationBarIconButton();
+            shareButton.IconUri = new Uri("/Assets/share.png", UriKind.Relative);
+            shareButton.Text = "ShareLabel".Localize();
+            shareButton.Click += shareButton_Click;
+
+            buyButton = new ApplicationBarIconButton();
+            buyButton.IconUri = new Uri("/Assets/appUnlock.png", UriKind.Relative);
+            buyButton.Text = "BuyLabel".Localize();
+            buyButton.Click += buyButton_Click;
+
+            RebuildAppBarForPage();
         }
 
+        void AttachNavigationEvents()
+        {
+            CommonNavigationActions.OnNavigationToAbout += CommonNavigationActions_OnNavigationToAbout;
+        }
+
+        void CommonNavigationActions_OnNavigationToAbout()
+        {
+            NavigationService.Navigate(new Uri("/Views/AboutPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        void buyButton_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void shareButton_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void rateButton_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void fbButton_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            //dpBackground = new Sanet.Kniffel.DicePanel.DicePanel();
             dpBackground.PanelStyle = GetViewModel<MainPageViewModel>().SettingsPanelStyle;
             dpBackground.TreeDScaleCoef = 0.38;
             dpBackground.NumDice = 5;
@@ -49,10 +122,12 @@ namespace DicePokerWP
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            //dpBackground = new Sanet.Kniffel.DicePanel.DicePanel();
             SetViewModel<MainPageViewModel>();
             GetViewModel<MainPageViewModel>().PropertyChanged += GamePage_PropertyChanged;
             //if (e.NavigationMode == NavigationMode.Back && ReviewBugger.IsTimeForReview())
             //    await ReviewBugger.PromptUser();
+            AttachNavigationEvents();
         }
         void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -68,10 +143,30 @@ namespace DicePokerWP
         {
             dpBackground.EndRoll -= StartRoll;
             GetViewModel<MainPageViewModel>().PropertyChanged -= GamePage_PropertyChanged;
-            dpBackground.Dispose();
-            dpBackground = null;
+            //dpBackground.Dispose();
+            //dpBackground = null;
+            DettachNavigationEvents();
+        }
+        void DettachNavigationEvents()
+        {
+            CommonNavigationActions.OnNavigationToAbout -= CommonNavigationActions_OnNavigationToAbout;
         }
 
+        /// <summary>
+        /// Rebuilding app bar for main page content
+        /// </summary>
+        void RebuildAppBarForPage()
+        {
+            this.ApplicationBar.Buttons.Clear();
+            
+            this.ApplicationBar.Buttons.Add(fbButton);
+            this.ApplicationBar.Buttons.Add(rateButton);
+            this.ApplicationBar.Buttons.Add(buyButton);
+            this.ApplicationBar.Buttons.Add(shareButton);
+
+            this.ApplicationBar.IsMenuEnabled =false;
+            this.ApplicationBar.Mode = ApplicationBarMode.Default;
+        }
 
         #region ViewModel
         public void SetViewModel<T>() where T : BaseViewModel
@@ -82,9 +177,21 @@ namespace DicePokerWP
 
         public T GetViewModel<T>() where T : BaseViewModel
         {
+            if (DataContext == null)
+                SetViewModel<T>();
             return (T)DataContext;
         }
 
         #endregion
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                MainMenuAction item = (MainMenuAction)(e.AddedItems[0]);
+                item.MenuAction();
+                ((ListBox)sender).SelectedItem = null;
+            }
+        }
     }
 }

@@ -254,7 +254,7 @@
     <comment>Sorry, das Networkspiel ist noch nicht fertig</comment>
   </data>
   <data name="NewLocalGameAction" xml:space="preserve">
-    <value>Локальная Spiel   Lokale Spielversion</value>
+    <value>Lokale Spielversion</value>
     <comment>Neues Spiel</comment>
   </data>
   <data name="NewOnlineGameAction" xml:space="preserve">
@@ -766,23 +766,23 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <comment>kein Passwort</comment>
   </data>
   <data name="ReadyLabel" xml:space="preserve">
-    <value>Играть!</value>
+    <value>Spielen!</value>
     <comment>Spielen!</comment>
   </data>
   <data name="WaitForGameLabel" xml:space="preserve">
-    <value>Ждем новой игры</value>
+    <value>Wir warten auf ein neues Spiel.</value>
     <comment>Wir warten auf ein neues Spiel.</comment>
   </data>
   <data name="WaitForPlayersLabel" xml:space="preserve">
-    <value>Ждем игроков</value>
+    <value>Wir warten auf andere Spieler.</value>
     <comment>Wir warten auf andere Spieler.</comment>
   </data>
   <data name="ClientLabel" xml:space="preserve">
-    <value>Клиент</value>
+    <value>Klient</value>
     <comment>Klient</comment>
   </data>
   <data name="ClientOutdatedLabel" xml:space="preserve">
-    <value>Устарел</value>
+    <value>Ist veraltet</value>
     <comment>Ist veraltet</comment>
   </data>
   <data name="ClientOutdatedMessage" xml:space="preserve">
@@ -790,47 +790,72 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <comment>Ihre Spielversion ist veraltet. Für das Multiplayer-Online-Spiel ist die Aktualisierung nötig.</comment>
   </data>
   <data name="ClientUpdatedLabel" xml:space="preserve">
-    <value>Обновлен</value>
+    <value>Ist aktualisiert</value>
     <comment>Ist aktualisiert</comment>
   </data>
   <data name="ServerLabel" xml:space="preserve">
-    <value>Сервер</value>
+    <value>Server</value>
     <comment>Server</comment>
   </data>
   <data name="ServerOfflineLabel" xml:space="preserve">
-    <value>Оффлайн</value>
+    <value>offline</value>
     <comment>offline</comment>
   </data>
   <data name="ServerOfflineMessage" xml:space="preserve">
-    <value>В настоящее время сервер игры не доступен, пожалуйста попробуйте позже</value>
+    <value>Zurzeit ist der Spiel-Server  nicht erreichbar,  versuchen Sie es später noch einmal.</value>
     <comment>Zurzeit ist der Spiel-Server  nicht erreichbar,  versuchen Sie es später noch einmal.</comment>
   </data>
   <data name="ServerOnlineLabel" xml:space="preserve">
-    <value>Онлайн</value>
+    <value>online</value>
     <comment>online</comment>
   </data>
   <data name="StatusLabel" xml:space="preserve">
-    <value>Статус</value>
+    <value>Zustand</value>
     <comment>Zustand</comment>
   </data>
   <data name="SendLabel" xml:space="preserve">
-    <value>Отправить</value>
+    <value>Senden</value>
     <comment>Senden</comment>
   </data>
   <data name="RandomLabel" xml:space="preserve">
-    <value>Случайно</value>
+    <value>zufällig</value>
     <comment>zufällig</comment>
   </data>
   <data name="TablesLabel" xml:space="preserve">
-    <value>Столы</value>
+    <value>Tische</value>
     <comment>Tische</comment>
   </data>
   <data name="AlreadyInGameMessage" xml:space="preserve">
-    <value>Извините, вы не можете подключиться к выбранному столу. Игрок с таким именем уже играет. Попробуйте позже.</value>
+    <value>Entschuldigung, aber Sie können dem gewählten Tisch nicht beitreten. Ein Spieler mit dem gleichen Namen ist schon im Spiel. Wählen Sie einen anderen Tisch.</value>
     <comment>Entschuldigung, aber Sie können dem gewählten Tisch nicht beitreten. Ein Spieler mit dem gleichen Namen ist schon im Spiel. Wählen Sie einen anderen Tisch.</comment>
   </data>
   <data name="NewOnlineGameDescription" xml:space="preserve">
-    <value>Многопользовательская игра по интернету</value>
+    <value>das  Multiplayer-Online-Spiel</value>
     <comment>das  Multiplayer-Online-Spiel</comment>
+  </data>
+  <data name="MetroStudioText" xml:space="preserve">
+    <value>Einige der Symbole in Syncfusion Metro Studio erstellt</value>
+    <comment>МАЁ</comment>
+  </data>
+  <data name="BuyLabel" xml:space="preserve">
+    <value>kaufen</value>
+  </data>
+  <data name="FacebookLabel" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="RateLabel" xml:space="preserve">
+    <value>bewerten</value>
+  </data>
+  <data name="ShareLabel" xml:space="preserve">
+    <value>teilen</value>
+  </data>
+  <data name="ForWin8Label" xml:space="preserve">
+    <value>Magical Yatzy für Windows 8</value>
+  </data>
+  <data name="ForWPLabel" xml:space="preserve">
+    <value>Magical Yatzy für Windows Phone</value>
+  </data>
+  <data name="DiceDescription" xml:space="preserve">
+    <value>Virtuelle Würfel, die immer dabei sind! Sanet Dice ist in dem Lieblingspiel zu gebrauchen, ist auch eine kleine Hilfe bei den zufälligen Entscheidungsschwierigkeiten und Angst vor Entscheidungen.</value>
   </data>
 </root>

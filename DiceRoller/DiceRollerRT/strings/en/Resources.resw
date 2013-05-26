@@ -235,7 +235,7 @@
     <value>Online game</value>
   </data>
   <data name="NewOnlineGameDescription" xml:space="preserve">
-    <value>Multiplayer game through Internet</value>
+    <value>Multiplayer game over Internet</value>
   </data>
   <data name="SettingsAction" xml:space="preserve">
     <value>Settings</value>
@@ -719,5 +719,29 @@
   </data>
   <data name="AlreadyInGameMessage" xml:space="preserve">
     <value>Sorry, You can't connect to selected table. There is a player with the same name... Please try later. </value>
+  </data>
+  <data name="MetroStudioText" xml:space="preserve">
+    <value>Some icons are created in Syncfusion Metro Studio</value>
+  </data>
+  <data name="BuyLabel" xml:space="preserve">
+    <value>buy</value>
+  </data>
+  <data name="FacebookLabel" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="RateLabel" xml:space="preserve">
+    <value>rate</value>
+  </data>
+  <data name="ShareLabel" xml:space="preserve">
+    <value>share</value>
+  </data>
+  <data name="DiceDescription" xml:space="preserve">
+    <value>Virtual dice you always have with you! You can use them in your favorite games, or just when you need to take a random decision</value>
+  </data>
+  <data name="ForWin8Label" xml:space="preserve">
+    <value>Magical Yatzy for Windows 8</value>
+  </data>
+  <data name="ForWPLabel" xml:space="preserve">
+    <value>Magical Yatzy for Windows Phone</value>
   </data>
 </root>

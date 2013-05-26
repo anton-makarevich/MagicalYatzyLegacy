@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using DicePokerRT.KniffelLeaderBoardService;
 #else
 using System.Windows.Media.Imaging;
+using System.Reflection;
 #endif
 
 namespace Sanet.Kniffel.ViewModels
@@ -41,17 +42,7 @@ namespace Sanet.Kniffel.ViewModels
                 return "AboutAction".Localize();
             }
         }
-
-        /// <summary>
-        /// app name label
-        /// </summary>
-        public string CurrentAppName
-        {
-            get
-            {
-                return Messages.APP_NAME.Localize();
-            }
-        }
+                
         /// <summary>
         /// current app label
         /// </summary>
@@ -62,6 +53,31 @@ namespace Sanet.Kniffel.ViewModels
                 return Messages.APP_NAME_OTHER.Localize();
             }
         }
+
+        public string MetroStudioText
+        {
+            get
+            {
+                return "MetroStudioText".Localize();
+            }
+        }
+
+        public string OnlineVersionText
+        {
+            get
+            {
+                return "OnlineVersionText.Text".Localize();
+            }
+        }
+
+        public string ForW8Label
+        {
+            get
+            {
+                return "ForWin8Label".Localize();
+            }
+        }
+
         /// <summary>
         /// Display current package version
         /// </summary>  
@@ -75,7 +91,8 @@ namespace Sanet.Kniffel.ViewModels
                 PackageVersion version = packageId.Version;
                 return "Version".Localize()+": " + version.Major + "." + version.Minor + "." + version.Build + "." + version.Revision;
 #else
-                return "na";
+                var nameHelper = new AssemblyName(Assembly.GetExecutingAssembly().FullName);
+                return  "Version".Localize() + ": " +nameHelper.Version.ToString();
 #endif
             }
         }
@@ -86,7 +103,7 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return "DevelopedBy/Text".Localize()+" Sanet Soft";
+                return "DevelopedBy.Text".Localize()+" Sanet Soft";
             }
         }
         
@@ -175,6 +192,7 @@ namespace Sanet.Kniffel.ViewModels
         private void FillOtherApps()
         {
             OtherAppActions = new List<MainMenuAction>();
+#if WinRT
             _OtherAppActions.Add(
                 new MainMenuAction
                 {
@@ -197,7 +215,30 @@ namespace Sanet.Kniffel.ViewModels
                     Image = new BitmapImage(SanetImageProvider.GetAssetsImage("NewsLogo.png")),
                     Description="NewsDescription"
                 });
-
+#else
+            _OtherAppActions.Add(
+                new MainMenuAction
+                {
+                    Label = "SANET ALLWRITE",
+                    MenuAction = new Action(() =>
+                    {
+                        CommonNavigationActions.NavigateToSanetAllWrite();
+                    }),
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("AWLogo.png")),
+                    Description = "AWDescription"
+                });
+            _OtherAppActions.Add(
+                new MainMenuAction
+                {
+                    Label = "SANET DICE",
+                    MenuAction = new Action(() =>
+                    {
+                        CommonNavigationActions.NavigateToSanetDice();
+                    }),
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("SanetDice.png")),
+                    Description = "DiceDescription"
+                });
+#endif
             NotifyPropertyChanged("OtherAppActions");
         }
 

@@ -12,7 +12,7 @@ namespace Sanet.Kniffel.Models
         
         static bool isProductAvailable(string product)
         {
-            return true;//_adfree;
+            return false;//_adfree;
             //return (licenseInformation.ProductLicenses[product].IsActive);
 
             

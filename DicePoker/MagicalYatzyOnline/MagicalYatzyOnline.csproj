@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DicePokerRT</RootNamespace>
     <AssemblyName>MagicalYatzyOnline</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <DefaultLanguage>en</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>MagicalYatzyOnline_StoreKey.pfx</PackageCertificateKeyFile>
@@ -1299,6 +1299,9 @@
     <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\ApplyScoreCommand.cs">
       <Link>Models\Protocol\Commands\Game\ApplyScoreCommand.cs</Link>
     </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\ChangeStyleCommand.cs">
+      <Link>Models\Protocol\Commands\Game\ChangeStyleCommand.cs</Link>
+    </Compile>
     <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\DiceChangedCommand.cs">
       <Link>Models\Protocol\Commands\Game\DiceChangedCommand.cs</Link>
     </Compile>
@@ -1564,6 +1567,7 @@
     <Compile Include="Controls\ChatControl.xaml.cs">
       <DependentUpon>ChatControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DicePanel\DiceStyle.cs" />
     <Compile Include="Models\InstanceKeeper.cs" />
     <Compile Include="Models\Interfaces\IRollResult.cs" />
     <Compile Include="Models\Interfaces\IPlayer.cs" />

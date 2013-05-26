@@ -10,6 +10,11 @@ namespace Sanet.Kniffel.Models
 {
     public static  class CommonNavigationActions
     {
+        #region events
+        public static event Action OnNavigationToAbout;
+        #endregion
+
+
         public static Action NavigateToMainPage
         {
             get
@@ -32,13 +37,25 @@ namespace Sanet.Kniffel.Models
             }
 
         }
+        public static Action NavigateToNewOnlineGamePage
+        {
+            get
+            {
+                return new Action(() =>
+                {
+                    //((Frame)Window.Current.Content).Navigate(typeof(NewGamePage));
+                });
+            }
+
+        }
         public static Action NavigateToAboutPage
         {
             get
             {
                 return new Action(() =>
                 {
-                    //((Frame)Window.Current.Content).Navigate(typeof(AboutPage));
+                    if (OnNavigationToAbout != null)
+                        OnNavigationToAbout();
                 });
             }
 
@@ -120,7 +137,27 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(() =>
                 {
-                    //await Launcher.LaunchUriAsync(new Uri("http://apps.microsoft.com/windows/app/sanet-allwrite/022fd522-54cf-4acd-9341-eab7c2185218"));
+                    var task = new Microsoft.Phone.Tasks.WebBrowserTask
+                    {
+                        URL = "http://windowsphone.com/s?appid=b588316a-e1a2-4e84-91d5-a773850a915d"
+                    };
+
+                    task.Show();
+                });
+            }
+        }
+        public static Action NavigateToSanetDice
+        {
+            get
+            {
+                return new Action(() =>
+                {
+                    var task = new Microsoft.Phone.Tasks.WebBrowserTask
+                    {
+                        URL = "http://windowsphone.com/s?appid=bc105e9d-f31e-4c1d-89d2-6f5d8bd877e6"
+                    };
+
+                    task.Show();
                 });
             }
         }

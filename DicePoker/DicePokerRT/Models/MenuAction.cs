@@ -25,7 +25,10 @@ namespace Sanet.Kniffel.Models
         private string _Label;
         virtual public string Label
         {
-            get { return _Label; }
+            get
+            { 
+                return _Label;
+            }
             set
             {
                 if (_Label != value)

@@ -23,6 +23,8 @@ namespace Sanet.Kniffel.Protocol.Observer
         public event EventHandler<CommandEventArgs<MagicRollCommand>> MagicRollCommandReceived = delegate { };
         public event EventHandler<CommandEventArgs<DiceChangedCommand>> DiceChangedCommandReceived = delegate { };
         public event EventHandler<CommandEventArgs<PlayerRerolledCommand>> PlayerRerolledCommandReceived = delegate { };
+        public event EventHandler<CommandEventArgs<ChangeStyleCommand>> ChangeStyleCommandReceived = delegate { };
+
 
         protected override void receiveSomething(string line)
         {
@@ -54,6 +56,9 @@ namespace Sanet.Kniffel.Protocol.Observer
                 DiceChangedCommandReceived(this, new CommandEventArgs<DiceChangedCommand>(new DiceChangedCommand(token)));
             else if (commandName == PlayerRerolledCommand.COMMAND_NAME)
                 PlayerRerolledCommandReceived(this, new CommandEventArgs<PlayerRerolledCommand>(new PlayerRerolledCommand(token)));
+            else if (commandName == ChangeStyleCommand.COMMAND_NAME)
+                ChangeStyleCommandReceived(this, new CommandEventArgs<ChangeStyleCommand>(new ChangeStyleCommand(token)));
+
         }
     }
 }

@@ -40,24 +40,7 @@ namespace Sanet.Kniffel.ViewModels
 #endif
 #endregion
 #region Properties
-        /// <summary>
-        /// app name label
-        /// </summary>
-        public string CurrentAppName
-        {
-            get
-            {
-                return Messages.APP_NAME.Localize();
-            }
-        }
-        public string CurrentAppNameUpper
-        {
-            get
-            {
-                return Messages.APP_NAME.Localize().ToUpper();
-            }
-        }
-
+        
         private List<MainMenuAction> _MenuActions;
         public List<MainMenuAction> MenuActions
         {
@@ -85,6 +68,8 @@ namespace Sanet.Kniffel.ViewModels
                 }
             }
         }
+
+        
         
 #endregion
 
@@ -103,7 +88,6 @@ namespace Sanet.Kniffel.ViewModels
                     Description = "NewLocalGameDescription",
                     Image = new BitmapImage(SanetImageProvider.GetAssetsImage("SanetDice.png")),
                 });
-#if ONLINE
             MenuActions.Add(
                 new MainMenuAction
                 {
@@ -115,7 +99,6 @@ namespace Sanet.Kniffel.ViewModels
                     Description = "NewOnlineGameDescription",
                     Image = new BitmapImage(SanetImageProvider.GetAssetsImage("OnlineGame.png")),
                 });
-#endif
             MenuActions.Add(
                 new MainMenuAction
                 {

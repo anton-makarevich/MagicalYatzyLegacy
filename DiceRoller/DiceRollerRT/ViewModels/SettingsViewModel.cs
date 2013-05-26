@@ -76,7 +76,7 @@ namespace Sanet.Kniffel.ViewModels
                 NotifyPropertyChanged("IsSpeedVeryFast");
             }
         }
-        public dpStyle DiceStyle
+        public DiceStyle DiceStyle
         {
             get
             {
@@ -182,13 +182,13 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return DiceStyle == dpStyle.dpsBlue;
+                return DiceStyle == DiceStyle.dpsBlue;
             }
             set
             {
                 if (value)
                 {
-                    DiceStyle = dpStyle.dpsBlue;
+                    DiceStyle = DiceStyle.dpsBlue;
                 }
             }
         }
@@ -196,13 +196,13 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return DiceStyle == dpStyle.dpsBrutalRed;
+                return DiceStyle == DiceStyle.dpsBrutalRed;
             }
             set
             {
                 if (value)
                 {
-                    DiceStyle = dpStyle.dpsBrutalRed;
+                    DiceStyle = DiceStyle.dpsBrutalRed;
                 }
             }
         }
@@ -210,13 +210,13 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return DiceStyle == dpStyle.dpsClassic;
+                return DiceStyle == DiceStyle.dpsClassic;
             }
             set
             {
                 if (value)
                 {
-                    DiceStyle = dpStyle.dpsClassic;
+                    DiceStyle = DiceStyle.dpsClassic;
                 }
             }
         }

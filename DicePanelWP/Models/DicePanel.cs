@@ -32,12 +32,7 @@ using System.Windows.Controls.Primitives;
 namespace Sanet.Kniffel.DicePanel
 
 {
-    public enum dpStyle
-    {
-        dpsClassic = 0,
-        dpsBrutalRed = 1,
-        dpsBlue = 2
-    }
+    
     /// <summary>
     /// Dice Panel Control - where we are rolling dices
     /// </summary>
@@ -59,7 +54,7 @@ namespace Sanet.Kniffel.DicePanel
         public delegate void DieFrozenEventHandler(bool @fixed, int Value);
         public delegate void DieChangedEventHandler(bool isfixed, int oldvalue,int newvalue);
         public event DieChangedEventHandler DieChangedManual;
-        private dpStyle FStyle = dpStyle.dpsClassic;
+        private DiceStyle FStyle = DiceStyle.dpsClassic;
         public List<Die> aDice = new List<Die>();
 
         private Storyboard sbLoop;
@@ -91,7 +86,7 @@ namespace Sanet.Kniffel.DicePanel
             MouseLeftButtonDown += DieClicked;
 #endif
             //InitializeComponent()
-            PanelStyle = dpStyle.dpsBlue;
+            PanelStyle = DiceStyle.dpsBlue;
              _popup.Child = _selectionPanel;
              _selectionPanel.Tag = _popup;
              _popup.Closed += _popup_Closed;
@@ -161,27 +156,26 @@ namespace Sanet.Kniffel.DicePanel
         }
 
         private Color dpBackcolor = Colors.LightGray;
-        public dpStyle PanelStyle
+        public DiceStyle PanelStyle
         {
             get { return FStyle; }
             set
             {
-                //If FStyle = value And DieFrameImages.Values.Count > 0 Then Exit Property
                 FStyle = value;
 
                 switch (FStyle)
                 {
-                    case dpStyle.dpsClassic:
+                    case DiceStyle.dpsClassic:
                         if (DieAngle<2)DieAngle = 0;
                         //dpBackcolor = Colors.Green
                         strStyle = "0/";
                         break;
-                    case dpStyle.dpsBrutalRed:
+                    case DiceStyle.dpsBrutalRed:
                         if (DieAngle < 2) DieAngle = 1;
                         //dpBackcolor = Colors.Black
                         strStyle = "1/";
                         break;
-                    case dpStyle.dpsBlue:
+                    case DiceStyle.dpsBlue:
                         if (DieAngle < 2) DieAngle = 1;
                         //dpBackcolor = Colors.Transparent 'Color.FromArgb(100, )
                         strStyle = "2/";

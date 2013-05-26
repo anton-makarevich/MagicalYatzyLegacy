@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Sanet.Models;
 using Sanet.Kniffel.Models.Enums;
 using Sanet.Kniffel.Models.Interfaces;
+using Sanet.Kniffel.DicePanel;
 
 namespace Sanet.Kniffel.Models
 {
@@ -57,7 +58,9 @@ namespace Sanet.Kniffel.Models
         public ClientType Client { get; set; }
 
         public string Language { get; set; }
-       
+
+        public DiceStyle SelectedStyle { get; set; }
+
         /// <summary>
         /// Player ID (GUID?)
         /// </summary>

@@ -98,7 +98,7 @@ namespace Sanet.Kniffel.Server
         /// <summary>
         /// Method to automatically find a table for the user
         /// </summary>
-        public int FindTableForUser(Rules rule, string name)
+        public int FindTableForUser(Rules rule, Player player)
         {
             KniffelGame game;
             
@@ -110,11 +110,15 @@ namespace Sanet.Kniffel.Server
                 return -1;
             }
             //first try to find where this player is playing
-            game = gamesByRule.FirstOrDefault(f => f.Players.FirstOrDefault(p => p.Name==name) != null);
+
+            game = gamesByRule.FirstOrDefault(f => f.Players.FirstOrDefault(p => p.Name==player.Name) != null);
             if (game != null)
             {
-                return game.GameId;
-                
+                var p = game.Players.FirstOrDefault(f =>f.ID == player.ID);
+                if (p == null)
+                    return game.GameId;
+                else
+                    gamesByRule.Remove(game);
             }
             
             //so - all tables
