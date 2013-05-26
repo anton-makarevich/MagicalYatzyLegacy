@@ -64,17 +64,16 @@ namespace Sanet.Kniffel.Models
                 LocalSettings.SetValue("LastRule", value.ToString());
             }
         }
-
-
+        
 
         #region setting section
-        public static dpStyle DiceStyle
+        public static DiceStyle DiceStyle
         {
             get
             {
                 if (LocalSettings.GetValue("DiceStyle") == null)
-                    LocalSettings.SetValue("DiceStyle",dpStyle.dpsClassic.ToString());
-                return ((dpStyle)Enum.Parse(typeof(dpStyle), LocalSettings.GetValue("DiceStyle"),false));
+                    LocalSettings.SetValue("DiceStyle", DiceStyle.dpsClassic.ToString());
+                return ((DiceStyle)Enum.Parse(typeof(DiceStyle), LocalSettings.GetValue("DiceStyle"), false));
             }
             set 
             {

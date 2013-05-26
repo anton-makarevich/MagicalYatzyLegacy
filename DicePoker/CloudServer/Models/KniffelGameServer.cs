@@ -110,9 +110,18 @@ namespace Sanet.Kniffel.Models
 
         void _Game_PlayerLeft(object sender, PlayerEventArgs e)
         {
-            Send(new PlayerLeftCommand(e.Player.Name));
+            try
+            {
+                Send(new PlayerLeftCommand(e.Player.Name));
+            }
+            catch (Exception ex)
+            {
+                LogManager.Log("GameServer.OnPlayerLeft", ex);
+            }
+            
             if (Player.Name == e.Player.Name && LeftTable != null)
-                LeftTable(this, new KeyEventArgs<int>(e.Player.SeatNo));
+                    LeftTable(this, new KeyEventArgs<int>(e.Player.SeatNo));
+            
         }
 
 
@@ -294,6 +303,7 @@ namespace Sanet.Kniffel.Models
             _Game.StyleChanged -= _Game_StyleChanged;
 
             _Player = null;
+            _Game = null;
 
             base.Dispose();
         }

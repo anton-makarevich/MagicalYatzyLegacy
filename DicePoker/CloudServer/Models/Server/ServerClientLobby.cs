@@ -107,27 +107,7 @@ namespace Sanet.Kniffel.Server
         {
             int tableID=e.Command.TableID;
             KniffelGame game;
-
-            
-            //check no table# in params(-1)- then Autojoin
-            if (tableID==-1)
-            {
-                LogManager.Log(LogLevel.Message, "ServerClientLobby.JoinTable", "{0} - autojoin", e.Command.PlayerName);
-
-                tableID = m_Lobby.FindTableForUser(e.Command.GameRule,e.Command.PlayerName);
-                if (tableID == -1)
-                    tableID = m_Lobby.CreateTable(e.Command.GameRule);
-            }
-            game=m_Lobby.GetGame(tableID);
-            
-            //new instance of servercommunicator for this client
-            KniffelGameServer client = new KniffelGameServer(game);
-                        
-            client.LeftTable +=client_LeftTable;
-            client.SendedSomething +=client_SendedSomething;
-            
-
-            
+          
 
             Player player = new Player();
             player.Name = e.Command.PlayerName;
@@ -136,6 +116,26 @@ namespace Sanet.Kniffel.Server
             player.Client = e.Command.PlayerClient;
             player.SelectedStyle = e.Command.SelectedStyle;
             // Verify the player does not already playing on that table.
+
+            //check no table# in params(-1)- then Autojoin
+            if (tableID == -1)
+            {
+                LogManager.Log(LogLevel.Message, "ServerClientLobby.JoinTable", "{0} - autojoin", e.Command.PlayerName);
+
+                tableID = m_Lobby.FindTableForUser(e.Command.GameRule, player);
+                if (tableID == -1)
+                    tableID = m_Lobby.CreateTable(e.Command.GameRule);
+            }
+            game = m_Lobby.GetGame(tableID);
+
+            
+            //new instance of servercommunicator for this client
+            KniffelGameServer client = new KniffelGameServer(game);
+
+            client.LeftTable += client_LeftTable;
+            client.SendedSomething += client_SendedSomething;
+            
+
             if (game.Players!=null)
             {
                 var exPlayer = game.Players.FirstOrDefault(f=>f.Name==e.Command.PlayerName);
@@ -173,16 +173,21 @@ namespace Sanet.Kniffel.Server
 
         void client_LeftTable(object sender, KeyEventArgs<int> e)
         {
+            try
+            {
+                m_Table.LeftTable -= client_LeftTable;
 
-            m_Table.LeftTable -= client_LeftTable;
-                     
-            //try to dispose gameserver - we don't need it anymore
-            m_Table.Dispose();
-            m_Table = null;
-            //TODO remove empty table
-            
-            RemovePlayersSvcLobby();
+                //try to dispose gameserver - we don't need it anymore
+                m_Table.Dispose();
+                m_Table = null;
+                //TODO remove empty table
 
+                RemovePlayersSvcLobby();
+            }
+            catch (Exception ex)
+            {
+                LogManager.Log("ServerLobby.LeftTable", ex);
+            }
             LogManager.Log(LogLevel.Message, "ServerClientLobby.client_LeftTable", "game server for old instance was disposed, Player:{0}", PlayerName);
         }
 
@@ -201,11 +206,13 @@ namespace Sanet.Kniffel.Server
 
         void removeClientAfterDelayTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
+            removeClientAfterDelayTimer.Stop();
             LogManager.Log(LogLevel.Message, "ServerClientLoby.removeClientAfterDelayTimer_Elapsed", "remove serverclientLobby timer for player:{0}, firedTime:{1}", PlayerName, numberOfTimesFoundClientNotConnectedInaRow); 
             if (!IsConnected)
             {//it client didnt reconnect in given time...remove player
                 //this should fire up the process
                 m_Table.LeaveGame();
+                
             }
             else
             {
@@ -213,6 +220,7 @@ namespace Sanet.Kniffel.Server
           
                 Interlocked.Exchange(ref numberOfTimesFoundClientNotConnectedInaRow, 0);
             }
+            
         }
 
         public override void OnSendCrashed(Exception e)

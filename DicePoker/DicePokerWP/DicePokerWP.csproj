@@ -48,7 +48,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AdDuplex.WindowsPhone">
+      <HintPath>packages\AdDuplexWP7.2.7.0.3\lib\sl4-windowsphone71\AdDuplex.WindowsPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="AdRotator">
+      <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\AdRotator.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.AdMob.Ads.WindowsPhone7">
+      <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\Google.AdMob.Ads.WindowsPhone7.dll</HintPath>
+    </Reference>
+    <Reference Include="Inneractive.Nokia.Ad">
+      <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\Inneractive.Nokia.Ad.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Advertising.Mobile, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\Microsoft.Advertising.Mobile.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Advertising.Mobile.UI, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\Microsoft.Advertising.Mobile.UI.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit">
+      <HintPath>packages\WPtoolkit.4.2012.10.30\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="Microsoft.Threading.Tasks">
       <HintPath>packages\Microsoft.Bcl.Async.1.0.12-beta\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.dll</HintPath>
@@ -58,6 +80,12 @@
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks.Extensions.Phone">
       <HintPath>packages\Microsoft.Bcl.Async.1.0.12-beta\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.Extensions.Phone.dll</HintPath>
+    </Reference>
+    <Reference Include="MobFox.Ads">
+      <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\MobFox.Ads.dll</HintPath>
+    </Reference>
+    <Reference Include="SOMAWP7">
+      <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\SOMAWP7.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime">
       <HintPath>packages\Microsoft.Bcl.1.0.11-beta\lib\sl4-windowsphone71\System.Runtime.dll</HintPath>
@@ -82,6 +110,9 @@
     <Compile Include="..\..\..\AllWrite\Sanet.AllWrite.WP\Sanet.AllWrite.WP\Models\Brushes.cs">
       <Link>Common\Brushes.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\Controls\HyperlinkButton\HyperlinkButton\WPHyperLink.cs">
+      <Link>Controls\WPHyperLink.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\SanetWeb\Models\LogManager.cs">
       <Link>Common\LogManager.cs</Link>
     </Compile>
@@ -99,6 +130,9 @@
     </Compile>
     <Compile Include="..\..\DiceRoller\DiceRollerRT\ViewModels\SettingsViewModel.cs">
       <Link>ViewModels\SettingsViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\ChatMessage.cs">
+      <Link>Models\ChatMessage.cs</Link>
     </Compile>
     <Compile Include="..\CloudServer\Models\Interfaces\IKniffelGame.cs">
       <Link>Models\Interfaces\IKniffelGame.cs</Link>
@@ -163,6 +197,9 @@
     <Compile Include="..\DicePokerRT\ViewModels\MainPageViewModel.cs">
       <Link>ViewModels\MainPageViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\MagicalYatzyOnline\DicePanel\DiceStyle.cs">
+      <Link>DicePanel\DiceStyle.cs</Link>
+    </Compile>
     <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IPlayer.cs">
       <Link>Models\Interfaces\IPlayer.cs</Link>
     </Compile>
@@ -187,6 +224,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Views\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -197,12 +237,36 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Views\AboutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\DicePokerRT\Assets\AWLogo.png">
+      <Link>Assets\AWLogo.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Mail.png">
+      <Link>Assets\Mail.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Rate.png">
+      <Link>Assets\Rate.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Unlock.png">
+      <Link>Assets\Unlock.png</Link>
+    </Content>
+    <Content Include="AdSettings.xml" />
+    <Resource Include="defaultAdSettings.xml" />
+    <None Include="ReadMe-AdRotator-XAML.txt" />
+    <Content Include="README_FIRST.txt" />
+    <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
@@ -231,6 +295,9 @@
     <Content Include="..\DicePokerRT\Assets\About.png">
       <Link>Assets\About.png</Link>
     </Content>
+    <Content Include="..\DicePokerRT\Assets\OnlineGame.png">
+      <Link>Assets\OnlineGame.png</Link>
+    </Content>
     <Content Include="..\DicePokerRT\Assets\SanetDice.png">
       <Link>Assets\SanetDice.png</Link>
     </Content>
@@ -240,6 +307,10 @@
     <Content Include="..\DicePokerRT\Assets\Victory.png">
       <Link>Assets\Victory.png</Link>
     </Content>
+    <Content Include="Assets\Facebook.png" />
+    <Content Include="Assets\appRate.png" />
+    <Content Include="Assets\Share.png" />
+    <Content Include="Assets\appUnlock.png" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>

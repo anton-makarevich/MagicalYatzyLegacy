@@ -117,13 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutAction" xml:space="preserve">
+    <value>About</value>
+    <comment>About</comment>
+  </data>
   <data name="AboutCaption.Text" xml:space="preserve">
     <value>About</value>
     <comment>About</comment>
   </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>Informationen über das Spiel und die Entwickler</value>
+    <comment>Informationen über das Spiel und die Entwickler</comment>
+  </data>
   <data name="AboutText.Text" xml:space="preserve">
     <value>Virtuelle  Würfel in deinem Tablet!</value>
     <comment>Virtuelle  Würfel in deinem Tablet!</comment>
+  </data>
+  <data name="AddBotLabel" xml:space="preserve">
+    <value>den Bot hinzufügen</value>
+    <comment>den Bot hinzufügen</comment>
+  </data>
+  <data name="AddPlayerLabel" xml:space="preserve">
+    <value>den Spieler hinzufügen</value>
+    <comment>den Spieler hinzufügen</comment>
+  </data>
+  <data name="AgainLabel" xml:space="preserve">
+    <value>noch einmal</value>
+    <comment>noch einmal</comment>
+  </data>
+  <data name="AllRecordsLabel" xml:space="preserve">
+    <value>Die volle Highscore-Liste im Internet</value>
+    <comment>Die volle Highscore-Liste im Internet</comment>
+  </data>
+  <data name="AlreadyInGameMessage" xml:space="preserve">
+    <value>Entschuldigung, aber Sie können dem gewählten Tisch nicht beitreten. Ein Spieler mit dem gleichen Namen ist schon im Spiel. Wählen Sie einen anderen Tisch.</value>
+    <comment>Entschuldigung, aber Sie können dem gewählten Tisch nicht beitreten. Ein Spieler mit dem gleichen Namen ist schon im Spiel. Wählen Sie einen anderen Tisch.</comment>
   </data>
   <data name="AngHigh.Text" xml:space="preserve">
     <value>hoch</value>
@@ -137,362 +165,113 @@
     <value>sehr hoch</value>
     <comment>sehr hoch</comment>
   </data>
-  <data name="clear" xml:space="preserve">
-    <value>Löschen</value>
-    <comment>Löschen</comment>
-  </data>
-  <data name="CloseButton.Content" xml:space="preserve">
-    <value>Schließen</value>
-    <comment>Schließen</comment>
-  </data>
-  <data name="DevelopedBy.Text" xml:space="preserve">
-    <value>Entwickelt von:</value>
-    <comment>Entwickelt von:</comment>
-  </data>
-  <data name="FullHouse" xml:space="preserve">
-    <value>Full House</value>
-    <comment>Full House</comment>
-  </data>
-  <data name="LargeStraight" xml:space="preserve">
-    <value>Große Straße</value>
-    <comment>Große Straße</comment>
-  </data>
-  <data name="OfAKind" xml:space="preserve">
-    <value>-ling</value>
-    <comment>-ling</comment>
-  </data>
-  <data name="OnlineLink.Content" xml:space="preserve">
-    <value>About Kniffel online</value>
-    <comment>About Kniffel online</comment>
-  </data>
-  <data name="OnlineVersionText.Text" xml:space="preserve">
-    <value>Die Idee des Controlls und die Darstellung der  ''Roten"  Würfeln gehört Matthew Tagliaferri.</value>
-    <comment>Die Idee des Controlls und die Darstellung der  ''Roten"  Würfeln gehört Matthew Tagliaferri.</comment>
-  </data>
-  <data name="OtherAllWrite.Content" xml:space="preserve">
-    <value>Elektronisches Schreibheft -spannendes Schreiben-Lernen</value>
-    <comment>Elektronisches Schreibheft -spannendes Schreiben-Lernen</comment>
-  </data>
-  <data name="OtherSoft.Text" xml:space="preserve">
-    <value>Versuchen Sie andere Programme</value>
-    <comment>Versuchen Sie andere Programme</comment>
-  </data>
-  <data name="Pairs" xml:space="preserve">
-    <value>Paare</value>
-    <comment>Paare</comment>
-  </data>
-  <data name="RateButton.Content" xml:space="preserve">
-    <value>Bewerten</value>
-    <comment>Bewerten</comment>
-  </data>
-  <data name="roll" xml:space="preserve">
-    <value>würfeln</value>
-    <comment>würfeln</comment>
-  </data>
-  <data name="SettingsAngleCaption.Text" xml:space="preserve">
-    <value>Blickfeld</value>
-    <comment>Blickfeld</comment>
-  </data>
-  <data name="SettingsCaption.Text" xml:space="preserve">
-    <value>Einstellungen</value>
-    <comment>Einstellungen</comment>
-  </data>
-  <data name="SettingsNumbersCaption.Text" xml:space="preserve">
-    <value>Würfelzahl</value>
-    <comment>Würfelzahl</comment>
-  </data>
-  <data name="SettingsSpeedCaption.Text" xml:space="preserve">
-    <value>Wurftempo</value>
-    <comment>Wurftempo</comment>
-  </data>
-  <data name="SettingsStyleCaption.Text" xml:space="preserve">
-    <value>Würfelstil</value>
-    <comment>Würfelstil</comment>
-  </data>
-  <data name="SmallStraight" xml:space="preserve">
-    <value>Kleine Straße</value>
-    <comment>Kleine Straße</comment>
-  </data>
-  <data name="SpeedFast.Text" xml:space="preserve">
-    <value>schnell</value>
-    <comment>schnell</comment>
-  </data>
-  <data name="SpeedSlow.Text" xml:space="preserve">
-    <value>langsam</value>
-    <comment>langsam</comment>
-  </data>
-  <data name="SpeedVeryFast.Text" xml:space="preserve">
-    <value>sehr schnell</value>
-    <comment>sehr schnell</comment>
-  </data>
-  <data name="SpeedVerySlow.Text" xml:space="preserve">
-    <value>sehr langsam</value>
-    <comment>sehr langsam</comment>
-  </data>
-  <data name="Support.Text" xml:space="preserve">
-    <value>Technischer Support:</value>
-    <comment>Technischer Support:</comment>
-  </data>
-  <data name="Total" xml:space="preserve">
-    <value>Summe</value>
-    <comment>insgesamt</comment>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>Version</value>
-    <comment>Version</comment>
-  </data>
-  <data name="AboutAction" xml:space="preserve">
-    <value>About</value>
-    <comment>About</comment>
-  </data>
-  <data name="LeaderboardAction" xml:space="preserve">
-    <value>Beste Spieler</value>
-    <comment>Beste Spieler</comment>
-  </data>
-  <data name="NetworkGameNotReadyMessage" xml:space="preserve">
-    <value>Sorry, das Networkspiel ist noch nicht vertig</value>
-    <comment>Sorry, das Networkspiel ist noch nicht vertig</comment>
-  </data>
-  <data name="NewLocalGameAction" xml:space="preserve">
-    <value>Neues Spiel </value>
-  </data>
-  <data name="NewOnlineGameAction" xml:space="preserve">
-    <value>Online Spiel</value>
-    <comment>Online Spiel</comment>
-  </data>
-  <data name="SettingsAction" xml:space="preserve">
-    <value>Einstellungen</value>
-    <comment>Einstellungen</comment>
-  </data>
-  <data name="StartNewGameMessage" xml:space="preserve">
-    <value>Neues Spiel starten</value>
-    <comment>Neues Spiel starten</comment>
-  </data>
-  <data name="PlayerNameLabel" xml:space="preserve">
-    <value>Name</value>
-    <comment>Name</comment>
-  </data>
-  <data name="PlayerPasswordLabel" xml:space="preserve">
-    <value>Passwort</value>
-    <comment>Passwort</comment>
-  </data>
-  <data name="PlayerTypeLabel" xml:space="preserve">
-    <value>Typ</value>
-    <comment>Typ</comment>
-  </data>
-  <data name="PlayersLabel" xml:space="preserve">
-    <value>Spieler</value>
-    <comment>Spieler</comment>
-  </data>
-  <data name="AddBotLabel" xml:space="preserve">
-    <value>den Bot hinzufügen</value>
-    <comment>den Bot hinzufügen</comment>
-  </data>
-  <data name="AddPlayerLabel" xml:space="preserve">
-    <value>den Spieler hinzufügen</value>
-    <comment>den Spieler hinzufügen</comment>
-  </data>
-  <data name="PlayerNameDefault" xml:space="preserve">
-    <value>Spieler</value>
-    <comment>Spieler</comment>
-  </data>
-  <data name="BotNameDefault" xml:space="preserve">
-    <value>Bot</value>
-    <comment>Bot</comment>
-  </data>
-  <data name="PlayerBotLabelLocalized" xml:space="preserve">
-    <value>Computer</value>
-    <comment>Computer</comment>
-  </data>
-  <data name="PlayerHumanLabelLocalized" xml:space="preserve">
-    <value>Mensch</value>
-    <comment>Mensch</comment>
-  </data>
-  <data name="PlayerRememberLabelLocalized" xml:space="preserve">
-    <value>speichern</value>
-    <comment>speichern</comment>
-  </data>
-  <data name="RulesLabel" xml:space="preserve">
-    <value>Regeln</value>
-    <comment>Regeln</comment>
-  </data>
-  <data name="krBaby" xml:space="preserve">
-    <value>für Kinder</value>
-    <comment> für Kinder</comment>
-  </data>
-  <data name="krExtended" xml:space="preserve">
-    <value>für Experte</value>
-    <comment>für Experte</comment>
-  </data>
-  <data name="krSimple" xml:space="preserve">
-    <value>für Anfänger</value>
-    <comment>für Anfänger</comment>
-  </data>
-  <data name="krStandard" xml:space="preserve">
-    <value>für Klassikschätzer</value>
-    <comment>für Klassikschätzer</comment>
-  </data>
-  <data name="StartGameButton" xml:space="preserve">
-    <value>Spielen!</value>
-    <comment>Spielen!</comment>
-  </data>
-  <data name="Bonus" xml:space="preserve">
-    <value>Bonus</value>
-    <comment>Bonus</comment>
-  </data>
-  <data name="Chance" xml:space="preserve">
-    <value>Glücksfall</value>
-    <comment>Glücksfall</comment>
-  </data>
-  <data name="Fives" xml:space="preserve">
-    <value>Fünfer</value>
-    <comment>Fünfer</comment>
-  </data>
-  <data name="FourOfAKind" xml:space="preserve">
-    <value>Viererpasch</value>
-    <comment>Viererpasch</comment>
-  </data>
-  <data name="Fours" xml:space="preserve">
-    <value>Vierer</value>
-    <comment>Vierer</comment>
-  </data>
-  <data name="Kniffel" xml:space="preserve">
-    <value>Flush!</value>
-    <comment>Flush!</comment>
-  </data>
-  <data name="Ones" xml:space="preserve">
-    <value>Einer</value>
-    <comment>Einer</comment>
-  </data>
-  <data name="Sixs" xml:space="preserve">
-    <value>Sechser</value>
-    <comment>Sechser</comment>
-  </data>
-  <data name="ThreeOfAKind" xml:space="preserve">
-    <value>Dreierpasch</value>
-    <comment>Dreier</comment>
-  </data>
-  <data name="Threes" xml:space="preserve">
-    <value>Dreier</value>
-    <comment>Dreierpasch</comment>
-  </data>
-  <data name="Twos" xml:space="preserve">
-    <value>Zweier</value>
-    <comment>Zweier</comment>
-  </data>
-  <data name="krBabyShort" xml:space="preserve">
-    <value>Nur Kombinationen von Zahlen sammeln (Einer, Zweier etc.), 7 Runden</value>
-    <comment>Nur Kombinationen von Zahlen sammeln (Einer, Zweier etc.), 7 Runden</comment>
-  </data>
-  <data name="krExtendedShort" xml:space="preserve">
-    <value>alle Kombinationen, Bonus  von 35 Punkten für mindestens 63 Punkte  beim Sammeln, Bonus von 100 Punkten für jeden nachfolgenden Flush, Flush-Joker, 13 Runden</value>
-    <comment>alle Kombinationen, Bonus  von 35 Punkten für mindestens 63 Punkte  beim Sammeln, Bonus von 100 Punkten für jeden nachfolgenden Flush, Flush-Joker, 13 Runden</comment>
-  </data>
-  <data name="krSimpleShort" xml:space="preserve">
-    <value>alle Kombinationen, ohne Bonus, 13 Runden</value>
-    <comment>alle Kombinationen, ohne Bonus, 13 Runden</comment>
-  </data>
-  <data name="krStandardShort" xml:space="preserve">
-    <value>alle Kombinationen, Bonus  von 35 Punkten für mindestens 63 Punkte  beim Sammeln,  13 Runden</value>
-    <comment>alle Kombinationen, Bonus  von 35 Punkten für mindestens 63 Punkte  beim Sammeln,  13 Runden</comment>
-  </data>
-  <data name="MoveLabel" xml:space="preserve">
-    <value>Runde</value>
-    <comment>Runde</comment>
-  </data>
-  <data name="AgainLabel" xml:space="preserve">
-    <value>noch einmal</value>
-    <comment>noch einmal</comment>
-  </data>
-  <data name="GameFinishedLabel" xml:space="preserve">
-    <value>Das Spiel ist zu Ende!</value>
-    <comment>Das Spiel ist zu Ende!</comment>
-  </data>
-  <data name="SaveScoreLabel" xml:space="preserve">
-    <value>in die Highscore-Liste</value>
-    <comment>in die Highscore-Liste</comment>
-  </data>
-  <data name="WinLabel" xml:space="preserve">
-    <value>hat gewonnen</value>
-    <comment>hat gewonnen</comment>
-  </data>
-  <data name="AllRecordsLabel" xml:space="preserve">
-    <value>Die volle Highscore-Liste im Internet</value>
-    <comment>Die volle Highscore-Liste im Internet</comment>
-  </data>
   <data name="AppNameLabel" xml:space="preserve">
-    <value>Sanet Dice Poker</value>
-    <comment>Sanet Dice Poker</comment>
+    <value>Magischer Yatzy Online</value>
+    <comment>Magischer Yatzy</comment>
   </data>
-  <data name="OtherAppsLabel" xml:space="preserve">
-    <value>Andere Apps</value>
-    <comment>Andere Applikationen</comment>
+  <data name="ArtifactsBonusMessage" xml:space="preserve">
+    <value>{0}, Herzliche Gratulation!  Sie haben  {1} magische Artefakte als Bonus bekommen.</value>
+    <comment>{0}, Herzliche Gratulation!  Sie haben  {1} magische Artefakte als Bonus bekommen.</comment>
   </data>
-  <data name="PlayerBestScoreLabel" xml:space="preserve">
-    <value>Rekord</value>
-    <comment>Das beste Ergebnis</comment>
+  <data name="ArtifactsForLabel" xml:space="preserve">
+    <value>Artefakte für</value>
+    <comment>Artefakte für</comment>
   </data>
-  <data name="PlayerGamesLabel" xml:space="preserve">
-    <value>Spiele</value>
-    <comment>Spiele</comment>
+  <data name="ArtifactsLabel" xml:space="preserve">
+    <value>Artefakte</value>
+    <comment>Artefakte</comment>
   </data>
-  <data name="PlayerTotalScoreLabel" xml:space="preserve">
-    <value>Punkte</value>
-    <comment>Punkte</comment>
-  </data>
-  <data name="RemoveAdAction" xml:space="preserve">
-    <value>alle Würfel öffnen, Werbung loswerden</value>
-    <comment>alle Würfel öffnen, Werbung loswerden</comment>
-  </data>
-  <data name="ReviewAppAction" xml:space="preserve">
-    <value>die App in Windows store bewerten</value>
-    <comment>die App in Windows store bewerten</comment>
-  </data>
-  <data name="SendFeedbackAction" xml:space="preserve">
-    <value>Die App Bewertung senden</value>
-    <comment>Die App Bewertung senden</comment>
+  <data name="ArtifactsWinBuyMessage" xml:space="preserve">
+    <value>Gewinnen oder kaufen</value>
   </data>
   <data name="AWDescription" xml:space="preserve">
     <value>Sanet Allwrite ist ein elektronisches Schreibheft, das Feinmotorik und Gedächtnis entwickelt. Es bringt Buchstaben, Zahlen und verschiedene Zeichen bei. Mit diesem interaktiven Programm können Sie selber die russische (kyrillische), die englische Schrift und die chinesischen Symbole  lernen. Es fördert  den Wissensdurst und Forscherdrang Ihres Kindes.</value>
     <comment>Sanet Allwrite ist ein elektronisches Schreibheft, das Feinmotorik und Gedächtnis entwickelt. Es bringt Buchstaben, Zahlen und verschiedene Zeichen bei. Mit diesem interaktiven Programm können Sie selber die russische (kyrillische), die englische Schrift und die chinesischen Symbole  lernen. Es fördert  den Wissensdurst und Forscherdrang Ihres Kindes.</comment>
   </data>
-  <data name="NewsDescription" xml:space="preserve">
-    <value>RSS Reader für Nachrichten aus Belarus. Alle Nachrichten an einem Platz. Wir haben führende Nachrichtenseiten von Belarus.  Alles Wichtige aus Politik, Wirtschaft, Sport, Kultur, Wissenschaft, Technik und mehr.</value>
-    <comment>RSS Reader für Nachrichten aus Belarus. Alle Nachrichten an einem Platz. Wir haben führende Nachrichtenseiten von Belarus.  Alles Wichtige aus Politik, Wirtschaft, Sport, Kultur, Wissenschaft, Technik und mehr.</comment>
+  <data name="BestDayLabel" xml:space="preserve">
+    <value>Bester Spieler des Tages</value>
+    <comment>Bester Spieler des Tages</comment>
   </data>
-  <data name="LaterLabel" xml:space="preserve">
-    <value>später</value>
-    <comment>später</comment>
+  <data name="BestLocalLabel" xml:space="preserve">
+    <value>Lokale  Highscore-Liste</value>
+    <comment>Lokale  Highscore-Liste</comment>
   </data>
-  <data name="NeverLabel" xml:space="preserve">
-    <value>Nein, Danke!</value>
-    <comment>Nein, Danke!</comment>
+  <data name="BestLocalShort" xml:space="preserve">
+    <value>Das beste lokale</value>
+    <comment>Das beste lokale Ergebnis</comment>
   </data>
-  <data name="ReviewReminder" xml:space="preserve">
-    <value>Ihre Beurteilung, Ratschläge und Bewertungen helfen uns die App noch besser zu machen. Möchten Sie die App bewerten?</value>
-    <comment>Ihre Beurteilung, Ratschläge und Bewertungen helfen uns die App noch besser zu machen. Möchten Sie die App bewerten?</comment>
+  <data name="BestWeekLabel" xml:space="preserve">
+    <value>Bester Spieler der Woche</value>
+    <comment>Bester Spieler der Woche</comment>
   </data>
-  <data name="ReviewReminderHeader" xml:space="preserve">
-    <value>Gefällt es Ihnen?</value>
-    <comment>Gefällt es Ihnen?</comment>
+  <data name="Bonus" xml:space="preserve">
+    <value>Bonus</value>
+    <comment>Bonus</comment>
   </data>
-  <data name="YesLabel" xml:space="preserve">
-    <value>Ja, mit Vergnügen!</value>
-    <comment>Ja, mit Vergnügen!</comment>
+  <data name="BotNameDefault" xml:space="preserve">
+    <value>Bot</value>
+    <comment>Bot</comment>
   </data>
-  <data name="Privacy1.Text" xml:space="preserve">
-    <value>Sanet Dice Poker sammelt, publiziert, speichert, übergibt keine Iher persönlichen Informationen oder Daten und überwacht keiner Iher Bewegungen.</value>
-    <comment>Sanet Dice Poker sammelt, publiziert, speichert, übergibt keine Iher persönlichen Informationen oder Daten und überwacht keiner Iher Bewegungen.</comment>
+  <data name="BuyLabel" xml:space="preserve">
+    <value>kaufen</value>
   </data>
-  <data name="Privacy2.Text" xml:space="preserve">
-    <value>Die Veröffentlichung Ihrer Daten wie Windows-User-Name, Email, Live-Id für Ihre 	
-Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.</value>
-    <comment>Die Veröffentlichung Ihrer Daten wie Windows-User-Name, Email, Live-Id für Ihre 	
-Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.</comment>
+  <data name="Chance" xml:space="preserve">
+    <value>Glücksfall</value>
+    <comment>Glücksfall</comment>
   </data>
-  <data name="PrivacyLabel.Text" xml:space="preserve">
-    <value>Datenschutzrichtlinien</value>
-    <comment>Datenschutzrichtlinien</comment>
+  <data name="ChangeNameLabel" xml:space="preserve">
+    <value>ändern Sie den Namen</value>
+  </data>
+  <data name="ChangePasswordLabel" xml:space="preserve">
+    <value>geben Sie das Passwort ein</value>
+  </data>
+  <data name="CheckingLabel" xml:space="preserve">
+    <value>überprüfen ...</value>
+  </data>
+  <data name="clear" xml:space="preserve">
+    <value>Löschen</value>
+    <comment>Löschen</comment>
+  </data>
+  <data name="ClientLabel" xml:space="preserve">
+    <value>Klient</value>
+    <comment>Klient</comment>
+  </data>
+  <data name="ClientOutdatedLabel" xml:space="preserve">
+    <value>Ist veraltet</value>
+    <comment>Ist veraltet</comment>
+  </data>
+  <data name="ClientOutdatedMessage" xml:space="preserve">
+    <value>Ваша версия программы устарела, для игры по сети необходимо обновить ее</value>
+    <comment>Ihre Spielversion ist veraltet. Für das Multiplayer-Online-Spiel ist die Aktualisierung nötig.</comment>
+  </data>
+  <data name="ClientUpdatedLabel" xml:space="preserve">
+    <value>Ist aktualisiert</value>
+    <comment>Ist aktualisiert</comment>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>Schließen</value>
+    <comment>Schließen</comment>
+  </data>
+  <data name="ContinueLabel" xml:space="preserve">
+    <value>fortsetzen</value>
+    <comment>fortsetzen</comment>
+  </data>
+  <data name="Cost1Label" xml:space="preserve">
+    <value>€1.19</value>
+  </data>
+  <data name="Cost2Label" xml:space="preserve">
+    <value>€1.59</value>
+  </data>
+  <data name="Cost3Label" xml:space="preserve">
+    <value>€1.99</value>
+  </data>
+  <data name="DeletePlayerLabel" xml:space="preserve">
+    <value>löschen</value>
+    <comment>löschen</comment>
+  </data>
+  <data name="DevelopedBy.Text" xml:space="preserve">
+    <value>Entwickelt von:</value>
+    <comment>Entwickelt von:</comment>
   </data>
   <data name="DicePokerAdLine1" xml:space="preserve">
     <value>Nur würfeln  finden Sie langweilig?</value>
@@ -503,12 +282,12 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <comment>Das lang ersehnte Spiel ist endlich da!</comment>
   </data>
   <data name="DicePokerAdLine3" xml:space="preserve">
-    <value>Sanet Dice Poker:</value>
-    <comment>Sanet Dice Poker:</comment>
+    <value>Magischer Yatzy:</value>
+    <comment>Magischer Yatzy:</comment>
   </data>
   <data name="DicePokerAdLine4" xml:space="preserve">
-    <value>4 Regeleinstellungen</value>
-    <comment>4 Regeleinstellungen</comment>
+    <value>4 Regelneinstellungen</value>
+    <comment>4 Regelneinstellungen</comment>
   </data>
   <data name="DicePokerAdLine5" xml:space="preserve">
     <value>Wettkämpfe gegen Freunde oder Computer</value>
@@ -526,24 +305,557 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>das  Multiplayer-Online-Spiel ist zu erwarten!</value>
     <comment> das  Multiplayer-Online-Spiel ist zu erwarten!</comment>
   </data>
-  <data name="BestLocalLabel" xml:space="preserve">
-    <value>Lokale  Highscore-Liste</value>
-    <comment>Lokale  Highscore-Liste</comment>
+  <data name="ErrorLabel" xml:space="preserve">
+    <value>Fehler</value>
+    <comment>Fehler</comment>
   </data>
-  <data name="AboutDescription" xml:space="preserve">
-    <value>Informationen über das Spiel und die Entwickler</value>
-    <comment>Informationen über das Spiel und die Entwickler</comment>
+  <data name="FacebookLabel" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="FirstTimeBonusDescription" xml:space="preserve">
+    <value>Jeder neue Spieler mit den einmaligen Username und Passwort bekommt Artefakte als Bonus.</value>
+    <comment>Jeder neue Spieler mit den einmaligen Username und Passwort bekommt Artefakte als Bonus.</comment>
+  </data>
+  <data name="FirstTimeBonusLabel" xml:space="preserve">
+    <value>Anfangsbonus</value>
+    <comment>Anfangsbonus</comment>
+  </data>
+  <data name="Fives" xml:space="preserve">
+    <value>Fünfer</value>
+    <comment>Fünfer</comment>
+  </data>
+  <data name="ForthRollLabel" xml:space="preserve">
+    <value>Die Runde zurücksetzen</value>
+    <comment>die Runde zurücksetzen</comment>
+  </data>
+  <data name="FourOfAKind" xml:space="preserve">
+    <value>Viererpasch</value>
+    <comment>Viererpasch</comment>
+  </data>
+  <data name="Fours" xml:space="preserve">
+    <value>Vierer</value>
+    <comment>Vierer</comment>
+  </data>
+  <data name="FullHouse" xml:space="preserve">
+    <value>Full House</value>
+    <comment>Full House</comment>
+  </data>
+  <data name="GameFinishedLabel" xml:space="preserve">
+    <value>Das Spiel ist zu Ende!</value>
+    <comment>Das Spiel ist zu Ende!</comment>
+  </data>
+  <data name="HowGetLabel" xml:space="preserve">
+    <value>Wie bekommt man Artefakte?</value>
+    <comment>Wie bekommt man Artefakte?</comment>
+  </data>
+  <data name="HowToGetDescription" xml:space="preserve">
+    <value>Magische Artefakte – eine wertvolle Ressource, die begrenzt ist. Es gibt folgende Varianten, den Vorrat der Magie aufzufüllen:</value>
+    <comment>Magische Artefakte – eine wertvolle Ressource, die begrenzt ist. Es gibt folgende Varianten, den Vorrat der Magie aufzufüllen:</comment>
+  </data>
+  <data name="Kniffel" xml:space="preserve">
+    <value>Yatzy!</value>
+    <comment>Yatzy!</comment>
+  </data>
+  <data name="krBaby" xml:space="preserve">
+    <value>für Kinder</value>
+    <comment> für Kinder</comment>
+  </data>
+  <data name="krBabyShort" xml:space="preserve">
+    <value>Nur Kombinationen von Zahlen sammeln (Einer, Zweier etc.), 7 Runden</value>
+    <comment>Nur Kombinationen von Zahlen sammeln (Einer, Zweier etc.), 7 Runden</comment>
+  </data>
+  <data name="krExtended" xml:space="preserve">
+    <value>für Experte</value>
+    <comment>für Experte</comment>
+  </data>
+  <data name="krExtendedShort" xml:space="preserve">
+    <value>"für Klassikschätzer" + Bonus von 100 Punkten für jeden nachfolgenden Yatzy, Yatzy-Joker, 13 Runden</value>
+    <comment>alle Kombinationen, Bonus  von 35 Punkten für mindestens 63 Punkte  beim Sammeln, Bonus von 100 Punkten für jeden nachfolgenden Flush, Flush-Joker, 13 Runden</comment>
+  </data>
+  <data name="krMagic" xml:space="preserve">
+    <value>für Magierer</value>
+    <comment>für Magierer</comment>
+  </data>
+  <data name="krMagicShort" xml:space="preserve">
+    <value>"für Experte" + magische Artefakte, 13 Runden</value>
+    <comment>"für Experte" + magische Artefakte, 13 Runden</comment>
+  </data>
+  <data name="krSimple" xml:space="preserve">
+    <value>für Anfänger</value>
+    <comment>für Anfänger</comment>
+  </data>
+  <data name="krSimpleShort" xml:space="preserve">
+    <value>alle Kombinationen, ohne Bonus, 13 Runden</value>
+    <comment>alle Kombinationen, ohne Bonus, 13 Runden</comment>
+  </data>
+  <data name="krStandard" xml:space="preserve">
+    <value>für Klassikschätzer</value>
+    <comment>für Klassikschätzer</comment>
+  </data>
+  <data name="krStandardShort" xml:space="preserve">
+    <value>"für Anfänger" + Bonus  von 35 Punkten für mindestens 63 Punkte  beim Sammeln,  13 Runden</value>
+    <comment>alle Kombinationen, Bonus  von 35 Punkten für mindestens 63 Punkte  beim Sammeln,  13 Runden</comment>
+  </data>
+  <data name="LargeStraight" xml:space="preserve">
+    <value>Große Straße</value>
+    <comment>Große Straße</comment>
+  </data>
+  <data name="LaterLabel" xml:space="preserve">
+    <value>später</value>
+    <comment>später</comment>
+  </data>
+  <data name="LeaderboardAction" xml:space="preserve">
+    <value>Beste Spieler</value>
+    <comment>Beste Spieler</comment>
   </data>
   <data name="LeaderboardDescription" xml:space="preserve">
     <value>Highscore-Liste für alle Spielregeln</value>
     <comment>Highscore-Liste für alle Spielregeln</comment>
   </data>
+  <data name="MagicArtifactsDescription" xml:space="preserve">
+    <value>Magische Artefakte können  Ihre Chancen auf eine gute Pokerkombination  in den Regeln für Magierer erhöhen. Jede Art von Artefakten kann man nur einmal pro Spiel verwenden. Insgesamt gibt es im Spiel drei Arten von Artefakten:</value>
+    <comment>Magische Artefakte können  Ihre Chancen auf eine gute Pokerkombination  in den Regeln für Magierer erhöhen. Jede Art von Artefakten kann man nur einmal pro Spiel verwenden. Insgesamt gibt es im Spiel drei Arten von Artefakten:</comment>
+  </data>
+  <data name="MagicRollDescription" xml:space="preserve">
+    <value> Ermöglicht eine von den noch nicht eingetragenen  Pokerkombinationen - von dem Dreierpasch bis zum Yatzy,  in einer zufälligen Reihenfolge.</value>
+    <comment>Ermöglicht eine von den noch nicht eingetragenen  Pokerkombinationen - von dem Dreierpasch bis zum Flush,  in einer zufälligen Reihenfolge.</comment>
+  </data>
+  <data name="MagicRollLabel" xml:space="preserve">
+    <value>Magischer Wurf</value>
+    <comment>Magischer Wurf</comment>
+  </data>
+  <data name="MagicRoomLabel" xml:space="preserve">
+    <value>Magierzimmer</value>
+    <comment>Magierzimmer</comment>
+  </data>
+  <data name="ManualSetDescription" xml:space="preserve">
+    <value> Ermöglicht die Änderung der Augenzahl nach Ihrem Wunsch.</value>
+    <comment>Ermöglicht die Änderung der Augenzahl nach Ihrem Wunsch.</comment>
+  </data>
+  <data name="ManualSetLabel" xml:space="preserve">
+    <value>Manuell ändern</value>
+    <comment>manuell ändern</comment>
+  </data>
+  <data name="MetroStudioText" xml:space="preserve">
+    <value>Einige der Symbole in Syncfusion Metro Studio erstellt</value>
+    <comment>МАЁ</comment>
+  </data>
+  <data name="MoreLabel" xml:space="preserve">
+    <value>Mehr...</value>
+    <comment>Mehr...</comment>
+  </data>
+  <data name="MoveLabel" xml:space="preserve">
+    <value>Runde</value>
+    <comment>Runde</comment>
+  </data>
+  <data name="NetworkGameNotReadyMessage" xml:space="preserve">
+    <value>Sorry, das Networkspiel ist noch nicht fertig</value>
+    <comment>Sorry, das Networkspiel ist noch nicht fertig</comment>
+  </data>
+  <data name="NeverLabel" xml:space="preserve">
+    <value>Nein, Danke!</value>
+    <comment>Nein, Danke!</comment>
+  </data>
+  <data name="NewLocalGameAction" xml:space="preserve">
+    <value>Lokale Spielversion</value>
+    <comment>Neues Spiel</comment>
+  </data>
   <data name="NewLocalGameDescription" xml:space="preserve">
     <value>Einzelspiel, Wettkämpfe gegen Freunde oder Computer</value>
     <comment>Neues Spiel - Einzelspiel, Wettkämpfe gegen Freunde oder Computer</comment>
   </data>
+  <data name="NewOnlineGameAction" xml:space="preserve">
+    <value>Online Spiel</value>
+    <comment>Online Spiel</comment>
+  </data>
+  <data name="NewOnlineGameDescription" xml:space="preserve">
+    <value>das  Multiplayer-Online-Spiel</value>
+    <comment>das  Multiplayer-Online-Spiel</comment>
+  </data>
+  <data name="NewsDescription" xml:space="preserve">
+    <value>RSS Reader für Nachrichten aus Belarus. Alle Nachrichten an einem Platz. Wir haben führende Nachrichtenseiten von Belarus.  Alles Wichtige aus Politik, Wirtschaft, Sport, Kultur, Wissenschaft, Technik und mehr.</value>
+    <comment>RSS Reader für Nachrichten aus Belarus. Alle Nachrichten an einem Platz. Wir haben führende Nachrichtenseiten von Belarus.  Alles Wichtige aus Politik, Wirtschaft, Sport, Kultur, Wissenschaft, Technik und mehr.</comment>
+  </data>
+  <data name="NoArtifactsLabel" xml:space="preserve">
+    <value>Keine magischen Artefakte</value>
+    <comment>Keine magischen Artefakte</comment>
+  </data>
+  <data name="NoArtifactsMessage" xml:space="preserve">
+    <value>Der Spieler {0} hat keine magischen Artefakte. Sie brauchen den Vorrat an magischen Artefakten aufzufüllen, um die Vorteile des Spiels für Magierer auszunutzen.</value>
+    <comment>Der Spieler {0} hat keine magischen Artefakte. Sie brauchen den Vorrat an magischen Artefakten aufzufüllen, um die Vorteile des Spiels für Magierer auszunutzen.</comment>
+  </data>
+  <data name="NoInetMessage" xml:space="preserve">
+    <value>Kein Internetzugang. Prüfen Sie die Verbindung und versuchen Sie es noch einmal.</value>
+    <comment>Kein Internetzugang. Prüfen Sie die Verbindung und versuchen Sie es noch einmal.</comment>
+  </data>
+  <data name="NoInternetLabel" xml:space="preserve">
+    <value>kein Internetzugang</value>
+    <comment>kein Internetzugang</comment>
+  </data>
+  <data name="OfAKind" xml:space="preserve">
+    <value>-ling</value>
+    <comment>-ling</comment>
+  </data>
+  <data name="OffContent" xml:space="preserve">
+    <value>Off</value>
+    <comment>aus.</comment>
+  </data>
+  <data name="Offer1Description" xml:space="preserve">
+    <value>Basisangebot zum Preis €0.014 für den Artefakt.</value>
+    <comment>Basisangebot zum Preis €0.014 für den Artefakt.</comment>
+  </data>
+  <data name="Offer2Description" xml:space="preserve">
+    <value>Profitangebot zum Preis €0.01 für den Artefakt. Ihr Rabatt ist 20%!</value>
+    <comment>Profitangebot zum Preis €0.01 für den Artefakt. Ihr Rabatt ist 20%!</comment>
+  </data>
+  <data name="Offer3Description" xml:space="preserve">
+    <value>Magisches Angebot  zum Preis €0.007 für den Artefakt. Kaufen Sie es zweimal günstiger!</value>
+    <comment>Magisches Angebot  zum Preis €0.007 für den Artefakt. Kaufen Sie es zweimal günstiger!</comment>
+  </data>
+  <data name="OnContent" xml:space="preserve">
+    <value>On</value>
+    <comment>ein.</comment>
+  </data>
+  <data name="Ones" xml:space="preserve">
+    <value>Einer</value>
+    <comment>Einer</comment>
+  </data>
+  <data name="OnlineLink.Content" xml:space="preserve">
+    <value>About Kniffel online</value>
+    <comment>About Kniffel online</comment>
+  </data>
+  <data name="OnlineVersionText.Text" xml:space="preserve">
+    <value>Die Idee des Controlls und die Darstellung der  ''Roten"  Würfeln gehört Matthew Tagliaferri.</value>
+    <comment>Die Idee des Controlls und die Darstellung der  ''Roten"  Würfeln gehört Matthew Tagliaferri.</comment>
+  </data>
+  <data name="OnlyUniqueCanBuyMessage" xml:space="preserve">
+    <value>Nur der Spieler mit einem einmaligen Usernamen und  einem Passwort kann Artefakte kaufen. Einmaliger Username und ein Passwort sind nötig, damit nur Sie Ihre gekauften Artefakte gebrauchen können.  Prüfen Sie zuerst den Usernamen und das Passwort, dann kaufen Sie die Artefakte.</value>
+    <comment>Nur der Spieler mit einem einmaligen Usernamen und  einem Passwort kann Artefakte kaufen. Einmaliger Username und ein Passwort sind nötig, damit nur Sie Ihre gekauften Artefakte gebrauchen können.  Prüfen Sie zuerst den Usernamen und das Passwort, dann kaufen Sie die Artefakte.</comment>
+  </data>
+  <data name="OtherAllWrite.Content" xml:space="preserve">
+    <value>Elektronisches Schreibheft -spannendes Schreiben-Lernen</value>
+    <comment>Elektronisches Schreibheft -spannendes Schreiben-Lernen</comment>
+  </data>
+  <data name="OtherAppsLabel" xml:space="preserve">
+    <value>Andere Apps</value>
+    <comment>Andere Applikationen</comment>
+  </data>
+  <data name="OtherSoft.Text" xml:space="preserve">
+    <value>Versuchen Sie andere Programme</value>
+    <comment>Versuchen Sie andere Programme</comment>
+  </data>
+  <data name="Pairs" xml:space="preserve">
+    <value>Paare</value>
+    <comment>Paare</comment>
+  </data>
+  <data name="PlayerBestScoreLabel" xml:space="preserve">
+    <value>Rekord</value>
+    <comment>Das beste Ergebnis</comment>
+  </data>
+  <data name="PlayerBotLabelLocalized" xml:space="preserve">
+    <value>Computer</value>
+    <comment>Computer</comment>
+  </data>
+  <data name="PlayerGamesLabel" xml:space="preserve">
+    <value>Spiele</value>
+    <comment>Spiele</comment>
+  </data>
+  <data name="PlayerHumanLabelLocalized" xml:space="preserve">
+    <value>Mensch</value>
+    <comment>Mensch</comment>
+  </data>
+  <data name="PlayerNameDefault" xml:space="preserve">
+    <value>Spieler</value>
+    <comment>Spieler</comment>
+  </data>
+  <data name="PlayerNameLabel" xml:space="preserve">
+    <value>Name</value>
+    <comment>Name</comment>
+  </data>
+  <data name="PlayerNoPasswordLabel" xml:space="preserve">
+    <value>kein Passwort</value>
+    <comment>kein Passwort</comment>
+  </data>
+  <data name="PlayerPasswordLabel" xml:space="preserve">
+    <value>Passwort</value>
+    <comment>Passwort</comment>
+  </data>
+  <data name="PlayerRememberLabelLocalized" xml:space="preserve">
+    <value>speichern</value>
+    <comment>speichern</comment>
+  </data>
+  <data name="PlayersLabel" xml:space="preserve">
+    <value>Spieler</value>
+    <comment>Spieler</comment>
+  </data>
+  <data name="PlayerTotalScoreLabel" xml:space="preserve">
+    <value>Punkte</value>
+    <comment>Punkte</comment>
+  </data>
+  <data name="PlayerTypeLabel" xml:space="preserve">
+    <value>Typ</value>
+    <comment>Typ</comment>
+  </data>
+  <data name="Privacy1.Text" xml:space="preserve">
+    <value>Magischer Yatzy sammelt, publiziert, speichert, übergibt keine Iher persönlichen Informationen oder Daten und überwacht keiner Iher Bewegungen.</value>
+    <comment>Magischer Yatzy sammelt, publiziert, speichert, übergibt keine Iher persönlichen Informationen oder Daten und überwacht keiner Iher Bewegungen.</comment>
+  </data>
+  <data name="Privacy2.Text" xml:space="preserve">
+    <value>Die Veröffentlichung Ihrer Daten wie Windows-User-Name, Email, Live-Id für Ihre 	
+Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.</value>
+    <comment>Die Veröffentlichung Ihrer Daten wie Windows-User-Name, Email, Live-Id für Ihre 	
+Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.</comment>
+  </data>
+  <data name="PrivacyLabel.Text" xml:space="preserve">
+    <value>Datenschutzrichtlinien</value>
+    <comment>Datenschutzrichtlinien</comment>
+  </data>
+  <data name="PurchaseDescription" xml:space="preserve">
+    <value>Sie können den Vorrat von den magischen Artefakten auffüllen: wählen Sie aus den folgenden Angeboten. Man kann nur ein Angebot pro 24 Stunden wählen.</value>
+    <comment>Sie können den Vorrat von den magischen Artefakten auffüllen: wählen Sie aus den folgenden Angeboten. Man kann nur ein Angebot pro 24 Stunden wählen.</comment>
+  </data>
+  <data name="PurchaseErrorMessage" xml:space="preserve">
+    <value>Entschuldigung, es ist ein Fehler aufgetreten.  Kontaktieren Sie den Technischen Support.</value>
+    <comment>Entschuldigung, es ist ein Fehler aufgetreten.  Kontaktieren Sie den Technischen Support.</comment>
+  </data>
+  <data name="PurchaseLabel" xml:space="preserve">
+    <value>Magische Angebote</value>
+  </data>
+  <data name="PurchaseMiniDescription" xml:space="preserve">
+    <value>Die magischen Artefakte kann man im Windows Store kaufen. Günstige Angebote sind verfügbar!</value>
+    <comment>Die magischen Artefakte kann man im Windows Store kaufen. Günstige Angebote sind verfügbar!</comment>
+  </data>
+  <data name="PurchaseMiniLabel" xml:space="preserve">
+    <value>Kaufen.</value>
+    <comment>Kaufen.</comment>
+  </data>
+  <data name="RandomLabel" xml:space="preserve">
+    <value>zufällig</value>
+    <comment>zufällig</comment>
+  </data>
+  <data name="RateButton.Content" xml:space="preserve">
+    <value>Bewerten</value>
+    <comment>Bewerten</comment>
+  </data>
+  <data name="RateLabel" xml:space="preserve">
+    <value>bewerten</value>
+  </data>
+  <data name="ReadyLabel" xml:space="preserve">
+    <value>Spielen!</value>
+    <comment>Spielen!</comment>
+  </data>
+  <data name="RemoveAdAction" xml:space="preserve">
+    <value>alle Würfel öffnen, Werbung loswerden</value>
+    <comment>alle Würfel öffnen, Werbung loswerden</comment>
+  </data>
+  <data name="RemoveAdLabel" xml:space="preserve">
+    <value>Werbung loswerden</value>
+    <comment>Werbung loswerden</comment>
+  </data>
+  <data name="RerollDescription" xml:space="preserve">
+    <value> Ermöglicht die laufende Runde zurückzusetzen (alle drei Wurfe), dabei wird Ihnen  die künftige Reihenfolge der Würfel  bekannt.</value>
+    <comment>Ermöglicht die laufende Runde zurückzusetzen (alle drei Wurfe), dabei wird Ihnen  die künftige Reihenfolge der Würfel  bekannt.</comment>
+  </data>
+  <data name="ResultBonusDescription" xml:space="preserve">
+    <value> Gewinnen Sie  die Artefakte für die gute Leistung im Spiel für Experte. Je besser sie spielen, desto mehr Artefakte können Sie geschenkt bekommen.</value>
+    <comment>Gewinnen Sie  die Artefakte für die gute Leistung im Spiel für Experte. Je besser sie spielen, desto mehr Artefakte können Sie geschenkt bekommen.</comment>
+  </data>
+  <data name="ResultBonusLabel" xml:space="preserve">
+    <value>Bonus für die Leistung</value>
+    <comment>Bonus für die Leistung</comment>
+  </data>
+  <data name="ReviewAppAction" xml:space="preserve">
+    <value>die App in Windows Store bewerten</value>
+    <comment>die App in Windows Store bewerten</comment>
+  </data>
+  <data name="ReviewReminder" xml:space="preserve">
+    <value>Ihre Beurteilung, Ratschläge und Bewertungen helfen uns die App noch besser zu machen. Möchten Sie die App bewerten?</value>
+    <comment>Ihre Beurteilung, Ratschläge und Bewertungen helfen uns die App noch besser zu machen. Möchten Sie die App bewerten?</comment>
+  </data>
+  <data name="ReviewReminderHeader" xml:space="preserve">
+    <value>Gefällt es Ihnen?</value>
+    <comment>Gefällt es Ihnen?</comment>
+  </data>
+  <data name="roll" xml:space="preserve">
+    <value>würfeln</value>
+    <comment>würfeln</comment>
+  </data>
+  <data name="RulesLabel" xml:space="preserve">
+    <value>Regeln</value>
+    <comment>Regeln</comment>
+  </data>
+  <data name="SaveScoreLabel" xml:space="preserve">
+    <value>in die Highscore-Liste</value>
+    <comment>in die Highscore-Liste</comment>
+  </data>
+  <data name="SelectDiceToChangeMessage" xml:space="preserve">
+    <value>Wählen Sie den Würfel, um den Wert zu ändern</value>
+    <comment>Wählen Sie den Würfel, um die Augenzahl zu ändern</comment>
+  </data>
+  <data name="SelectNewDiceValueMessage" xml:space="preserve">
+    <value>Setzen Sie den neuen Wert des Würfels</value>
+    <comment>Wählen Sie eine andere Augenzahl </comment>
+  </data>
+  <data name="SendFeedbackAction" xml:space="preserve">
+    <value>Ein Problem melden</value>
+    <comment>Die App Bewertung senden</comment>
+  </data>
+  <data name="SendLabel" xml:space="preserve">
+    <value>Senden</value>
+    <comment>Senden</comment>
+  </data>
+  <data name="ServerLabel" xml:space="preserve">
+    <value>Server</value>
+    <comment>Server</comment>
+  </data>
+  <data name="ServerOfflineLabel" xml:space="preserve">
+    <value>offline</value>
+    <comment>offline</comment>
+  </data>
+  <data name="ServerOfflineMessage" xml:space="preserve">
+    <value>Zurzeit ist der Spiel-Server  nicht erreichbar,  versuchen Sie es später noch einmal.</value>
+    <comment>Zurzeit ist der Spiel-Server  nicht erreichbar,  versuchen Sie es später noch einmal.</comment>
+  </data>
+  <data name="ServerOnlineLabel" xml:space="preserve">
+    <value>online</value>
+    <comment>online</comment>
+  </data>
+  <data name="SettingsAction" xml:space="preserve">
+    <value>Einstellungen</value>
+    <comment>Einstellungen</comment>
+  </data>
+  <data name="SettingsAngleCaption.Text" xml:space="preserve">
+    <value>Blickfeld</value>
+    <comment>Blickfeld</comment>
+  </data>
+  <data name="SettingsCaption.Text" xml:space="preserve">
+    <value>Einstellungen</value>
+    <comment>Einstellungen</comment>
+  </data>
   <data name="SettingsDescription" xml:space="preserve">
     <value>Die Spieleinstellungen ändern</value>
     <comment>Die Spieleinstellungen ändern</comment>
+  </data>
+  <data name="SettingsNumbersCaption.Text" xml:space="preserve">
+    <value>Würfelzahl</value>
+    <comment>Würfelzahl</comment>
+  </data>
+  <data name="SettingsSpeedCaption.Text" xml:space="preserve">
+    <value>Wurftempo</value>
+    <comment>Wurftempo</comment>
+  </data>
+  <data name="SettingsStyleCaption.Text" xml:space="preserve">
+    <value>Würfelstil</value>
+    <comment>Würfelstil</comment>
+  </data>
+  <data name="ShareLabel" xml:space="preserve">
+    <value>teilen</value>
+  </data>
+  <data name="ShareTitle" xml:space="preserve">
+    <value>"Magischer Yatzy Online" für Windows 8</value>
+  </data>
+  <data name="Sixs" xml:space="preserve">
+    <value>Sechser</value>
+    <comment>Sechser</comment>
+  </data>
+  <data name="SmallStraight" xml:space="preserve">
+    <value>Kleine Straße</value>
+    <comment>Kleine Straße</comment>
+  </data>
+  <data name="SoundLabel" xml:space="preserve">
+    <value>Töne</value>
+    <comment>Töne</comment>
+  </data>
+  <data name="SpeedFast.Text" xml:space="preserve">
+    <value>schnell</value>
+    <comment>schnell</comment>
+  </data>
+  <data name="SpeedSlow.Text" xml:space="preserve">
+    <value>langsam</value>
+    <comment>langsam</comment>
+  </data>
+  <data name="SpeedVeryFast.Text" xml:space="preserve">
+    <value>sehr schnell</value>
+    <comment>sehr schnell</comment>
+  </data>
+  <data name="SpeedVerySlow.Text" xml:space="preserve">
+    <value>sehr langsam</value>
+    <comment>sehr langsam</comment>
+  </data>
+  <data name="StartGameButton" xml:space="preserve">
+    <value>Spielen!</value>
+    <comment>Spielen!</comment>
+  </data>
+  <data name="StartNewGameMessage" xml:space="preserve">
+    <value>Neues Spiel starten</value>
+    <comment>Neues Spiel starten</comment>
+  </data>
+  <data name="StatusLabel" xml:space="preserve">
+    <value>Zustand</value>
+    <comment>Zustand</comment>
+  </data>
+  <data name="Support.Text" xml:space="preserve">
+    <value>Technischer Support:</value>
+    <comment>Technischer Support:</comment>
+  </data>
+  <data name="TablesLabel" xml:space="preserve">
+    <value>Tische</value>
+    <comment>Tische</comment>
+  </data>
+  <data name="TapToApplyLabel" xml:space="preserve">
+    <value>Klicken, um anzuwenden</value>
+    <comment>Klicken Sie, um anzuwenden</comment>
+  </data>
+  <data name="TapToChangeLabel" xml:space="preserve">
+    <value>Klicken, um zu verändern</value>
+    <comment>Klicken Sie, um zu verändern</comment>
+  </data>
+  <data name="ThreeOfAKind" xml:space="preserve">
+    <value>Dreierpasch</value>
+    <comment>Dreier</comment>
+  </data>
+  <data name="Threes" xml:space="preserve">
+    <value>Dreier</value>
+    <comment>Dreierpasch</comment>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Summe</value>
+    <comment>insgesamt</comment>
+  </data>
+  <data name="Twos" xml:space="preserve">
+    <value>Zweier</value>
+    <comment>Zweier</comment>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+    <comment>Version</comment>
+  </data>
+  <data name="WaitForGameLabel" xml:space="preserve">
+    <value>Wir warten auf ein neues Spiel.</value>
+    <comment>Wir warten auf ein neues Spiel.</comment>
+  </data>
+  <data name="WaitForPlayersLabel" xml:space="preserve">
+    <value>Wir warten auf andere Spieler.</value>
+    <comment>Wir warten auf andere Spieler.</comment>
+  </data>
+  <data name="WinLabel" xml:space="preserve">
+    <value>hat gewonnen</value>
+    <comment>hat gewonnen</comment>
+  </data>
+  <data name="WrongNamePassLabel" xml:space="preserve">
+    <value>falscher Name oder Passwort</value>
+  </data>
+  <data name="YesLabel" xml:space="preserve">
+    <value>Ja, mit Vergnügen!</value>
+    <comment>Ja, mit Vergnügen!</comment>
+  </data>
+  <data name="DiceDescription" xml:space="preserve">
+    <value>Virtuelle Würfel, die immer dabei sind! Sanet Dice ist in dem Lieblingspiel zu gebrauchen, ist auch eine kleine Hilfe bei den zufälligen Entscheidungsschwierigkeiten und Angst vor Entscheidungen.</value>
+  </data>
+  <data name="ForWin8Label" xml:space="preserve">
+    <value>Magical Yatzy für Windows 8</value>
+  </data>
+  <data name="ForWPLabel" xml:space="preserve">
+    <value>Magical Yatzy für Windows Phone</value>
   </data>
 </root>

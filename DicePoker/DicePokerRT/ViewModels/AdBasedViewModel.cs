@@ -23,6 +23,24 @@ namespace Sanet.Kniffel.ViewModels
     {
         #region Properties
 
+        /// <summary>
+        /// app name label
+        /// </summary>
+        public string CurrentAppName
+        {
+            get
+            {
+                return Messages.APP_NAME.Localize();
+            }
+        }
+        public string CurrentAppNameUpper
+        {
+            get
+            {
+                return Messages.APP_NAME.Localize().ToUpper();
+            }
+        }
+
         public bool IsAdVisible
         {
             get

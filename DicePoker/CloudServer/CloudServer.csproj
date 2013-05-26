@@ -57,6 +57,8 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -246,6 +248,11 @@
     <Compile Include="Models\WebApi\Config.cs" />
     <Compile Include="Models\WebApi\ServerInitService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\KniffelService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -254,6 +261,49 @@
     <None Include="Properties\PublishProfiles\yatzy - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\yatzyapp - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\yatzyapp - Web Deploy.pubxml" />
+    <Content Include="Service References\KniffelService\CloudServer.KniffelService.AddPlayersMagicsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\KniffelService\CloudServer.KniffelService.GetChempionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\KniffelService\CloudServer.KniffelService.GetLastDayChempionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\KniffelService\CloudServer.KniffelService.GetLastWeekChempionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\KniffelService\CloudServer.KniffelService.GetPlayersMagicsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\KniffelService\CloudServer.KniffelService.GetTopPlayersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\KniffelService\CloudServer.KniffelService.KniffelScore.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\KniffelService\CloudServer.KniffelService.PutScoreIntoTableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\KniffelService\CloudServer.KniffelService.PutScoreIntoTableWithPicPureNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\KniffelService\CloudServer.KniffelService.PutScoreIntoTableWithPicResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\KniffelService\CloudServer.KniffelService.PutScoreResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\KniffelService\CloudServer.KniffelService.PutOnlineServerLogResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\KniffelService\KniffelService.disco" />
+    <None Include="Service References\KniffelService\configuration91.svcinfo" />
+    <None Include="Service References\KniffelService\configuration.svcinfo" />
+    <None Include="Service References\KniffelService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -261,12 +311,19 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <None Include="Service References\KniffelService\KniffelService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\KniffelService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

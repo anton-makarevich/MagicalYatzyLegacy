@@ -553,23 +553,23 @@ namespace Sanet.Kniffel.Models
         {
             lock (syncRoot)
             {
+                LogManager.Log(LogLevel.Message, "Game.StartGame",
+                "Starting game, isplaying: {0}, totalplayers: {1}", IsPlaying,Players.Count);
                 {
                     if (IsPlaying)
                         return;
                 }
                 bool bAllReady = true;
                 //Checking if everyone is ready
-                lock (syncRoot)
+                foreach (Player player in Players)
                 {
-                    foreach (Player player in Players)
+                    if (!player.IsReady)
                     {
-                        if (!player.IsReady)
-                        {
-                            bAllReady = false;
-                            break;
-                        }
+                        bAllReady = false;
+                        break;
                     }
                 }
+                
                 //if yes - starting game
                 if (bAllReady)
                 {
@@ -615,6 +615,9 @@ namespace Sanet.Kniffel.Models
         {
             lock (syncRoot)
             {
+                IsPlaying = false;
+                Move = 1;
+
                 for (int i = 0;i<PlayersNumber;i++)
                 {
                     Player p = Players[i];
@@ -665,28 +668,37 @@ namespace Sanet.Kniffel.Models
         public void LeaveGame(Player player)
         {
             player = Players.FirstOrDefault(f => f.Name == player.Name);
-            if (Players == null)
+            if (player == null)
                 return;
+
+            LogManager.Log(LogLevel.Message, "Game.LeaveGame",
+                "{0} to leave game, IsPlaying: {1}, total players: {2}",
+                player.Name, IsPlaying, Players.Count);
+
             Players.Remove(player);
+
+            ReorderSeats();
             
             if (PlayerLeft != null)
                 PlayerLeft(null, new PlayerEventArgs(player));
-            if (Players.Count(f=>f.IsReady) == 0)
+            if (Players.Count(f => f.IsReady) == 0 && IsPlaying)
             {
-                IsPlaying = false;
-                Move = 1;
+                LogManager.Log(LogLevel.Message, "Game.LeaveGame",
+                "trying to restart, total players: {0}", Players.Count);
                 RestartGame();//TODO: incapsulate 2 above lines into this method?
             }
-            else if (CurrentPlayer != null && CurrentPlayer.Name == player.Name)
+            else if (CurrentPlayer != null && CurrentPlayer.Name == player.Name && IsPlaying)
             {
+                LogManager.Log(LogLevel.Message, "Game.LeaveGame",
+                "next player to move");
 #if SERVER
                 _roundTimer.Stop();
 #endif
                 DoMove();
+                return;
             }
-            //Not sure what that was??
-            //else
-            //    StartGame();
+            StartGame();
+            
         }
 
         public void SetPlayerReady(Player player, bool isready)
@@ -694,7 +706,7 @@ namespace Sanet.Kniffel.Models
             //allow to join on virst round
             if (IsPlaying && Move>1)
                 isready = false;
-            var explayer=Players.FirstOrDefault(f => f.ID == player.ID);
+            var explayer=Players.FirstOrDefault(f => f.Name== player.Name);
             explayer.IsReady = isready;
             if (PlayerReady != null)
                 PlayerReady(null, new PlayerEventArgs(explayer));
@@ -704,6 +716,19 @@ namespace Sanet.Kniffel.Models
         public void SetPlayerReady(bool isready)
         {
             
+        }
+
+        /// <summary>
+        /// in some cases when player leave it may be gap in seats
+        /// </summary>
+        void ReorderSeats()
+        {
+            int seat = 0;
+            foreach (var player in Players.OrderBy(f => f.SeatNo))
+            {
+                player.SeatNo = seat;
+                seat++;
+            }
         }
 
 #if SERVER

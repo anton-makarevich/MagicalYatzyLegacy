@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sanet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,7 @@ namespace CloudServer
 
     public class WebApiApplication : System.Web.HttpApplication
     {
+        KniffelService.KniffelServiceSoapClient ks;
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -22,6 +24,13 @@ namespace CloudServer
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
            // BundleConfig.RegisterBundles(BundleTable.Bundles);
+            LogManager.MessageLogged += LogManager_MessageLogged;
+            ks=new KniffelService.KniffelServiceSoapClient();
+        }
+
+        void LogManager_MessageLogged(string from, string message, int level)
+        {
+            ks.PutOnlineServerLog(from, message);
         }
     }
 }

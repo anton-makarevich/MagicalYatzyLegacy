@@ -837,4 +837,25 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>Einige der Symbole in Syncfusion Metro Studio erstellt</value>
     <comment>МАЁ</comment>
   </data>
+  <data name="BuyLabel" xml:space="preserve">
+    <value>kaufen</value>
+  </data>
+  <data name="FacebookLabel" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="RateLabel" xml:space="preserve">
+    <value>bewerten</value>
+  </data>
+  <data name="ShareLabel" xml:space="preserve">
+    <value>teilen</value>
+  </data>
+  <data name="ForWin8Label" xml:space="preserve">
+    <value>Magical Yatzy für Windows 8</value>
+  </data>
+  <data name="ForWPLabel" xml:space="preserve">
+    <value>Magical Yatzy für Windows Phone</value>
+  </data>
+  <data name="DiceDescription" xml:space="preserve">
+    <value>Virtuelle Würfel, die immer dabei sind! Sanet Dice ist in dem Lieblingspiel zu gebrauchen, ist auch eine kleine Hilfe bei den zufälligen Entscheidungsschwierigkeiten und Angst vor Entscheidungen.</value>
+  </data>
 </root>

@@ -20,6 +20,7 @@
     </views:BasePage.Resources>
     <views:BasePage.BottomAppBar>
         <AppBar Height="300" 
+                Visibility="{Binding IsOnlineGame,Converter={StaticResource VisibilityKey}}"
                 IsOpen="{Binding IsChatOpen,Mode=TwoWay}"
                 Closed="AppBar_Closed_1"
                 Opened="AppBar_Opened_1">

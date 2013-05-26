@@ -714,4 +714,25 @@
   <data name="MetroStudioText" xml:space="preserve">
     <value>Некоторые иконки созданы в Syncfusion Metro Studio</value>
   </data>
+  <data name="BuyLabel" xml:space="preserve">
+    <value>купить</value>
+  </data>
+  <data name="FacebookLabel" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="RateLabel" xml:space="preserve">
+    <value>оценить</value>
+  </data>
+  <data name="ShareLabel" xml:space="preserve">
+    <value>поделиться</value>
+  </data>
+  <data name="ForWin8Label" xml:space="preserve">
+    <value>Магический Yatzy для Windows 8</value>
+  </data>
+  <data name="ForWPLabel" xml:space="preserve">
+    <value>Магический Yatzy для Windows Phone</value>
+  </data>
+  <data name="DiceDescription" xml:space="preserve">
+    <value>Виртуальные кости в твоем телефоне! Их можно использовать в любимых настольных играх или просто когда нужно принять случайное решение</value>
+  </data>
 </root>
