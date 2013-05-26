@@ -4,11 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:common="clr-namespace:Sanet.Common">
 
     <!--Application Resources-->
     <Application.Resources>
         <SolidColorBrush x:Key="SanetBlue" Color="#009cd6"/>
+        
+        <!--Converters-->
+        <common:BooleanToVisibilityConverter x:Key="VisibilityKey"/>
 
         <Style x:Key="SubheaderTextStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="30"/>
@@ -71,7 +75,7 @@
                            TextAlignment="Left"
                            TextWrapping="Wrap"
                            TextTrimming="WordEllipsis"
-                           FontSize="25" MaxHeight="65" />
+                           FontSize="25" MaxHeight="70" />
 
             </Grid>
         </DataTemplate>
@@ -120,7 +124,74 @@
 
             </Grid>
         </DataTemplate>
-        
+
+        <!--Datatemplate for main menu item-->
+        <DataTemplate x:Key="TopPlayersTemplate">
+            <Grid Height="50" Margin="0,0,0,0" HorizontalAlignment="Stretch"
+                          >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0"/>
+                    <ColumnDefinition Width="185"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+
+                </Grid.ColumnDefinitions>
+                
+                <Border Grid.Column="1"
+                    BorderBrush="{StaticResource SanetBlue}"
+                BorderThickness="0,0,1,0">
+
+                    <TextBlock Text="{Binding Name}" Foreground="White" 
+                           HorizontalAlignment="Left"
+                           Margin="5,0,0,0"
+                           TextAlignment="Left"
+                           TextWrapping="NoWrap"
+                           TextTrimming="WordEllipsis"
+                           FontSize="18" Height="25" />
+                </Border>
+                <Border Grid.Column="2"
+                    BorderBrush="{StaticResource SanetBlue}"
+                BorderThickness="0,0,1,0">
+
+                    <TextBlock Text="{Binding Games}" Foreground="White" 
+                           HorizontalAlignment="Left"
+                           TextAlignment="Left"
+                           Margin="5,0,0,0"
+                           TextWrapping="NoWrap"
+                           TextTrimming="WordEllipsis"
+                           FontSize="18" Height="25" />
+                </Border>
+                <Border Grid.Column="3"
+                    BorderBrush="{StaticResource SanetBlue}"
+                BorderThickness="0,0,1,0">
+
+                    <TextBlock Text="{Binding Total}" Foreground="White" 
+                           HorizontalAlignment="Left"
+                           TextAlignment="Left"
+                           Margin="5,0,0,0"
+                           TextWrapping="NoWrap"
+                           TextTrimming="WordEllipsis"
+                           FontSize="18" Height="25" />
+                </Border>
+                <Border Grid.Column="4"
+                    BorderBrush="{StaticResource SanetBlue}"
+                BorderThickness="0,0,0,0">
+
+                    <TextBlock Text="{Binding Score}" Foreground="White" 
+                           HorizontalAlignment="Left"
+                           Margin="5,0,0,0"
+                           TextAlignment="Left"
+                           TextWrapping="NoWrap"
+                           TextTrimming="WordEllipsis"
+                           FontSize="18" Height="25" />
+                </Border>
+
+
+
+            </Grid>
+        </DataTemplate>
+
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

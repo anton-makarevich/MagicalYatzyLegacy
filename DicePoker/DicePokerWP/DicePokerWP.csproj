@@ -173,6 +173,9 @@
     <Compile Include="..\DicePokerRT\Models\KniffelRule.cs">
       <Link>Models\KniffelRule.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerRT\Models\KniffelScoreWrapper.cs">
+      <Link>Models\KniffelScoreWrapper.cs</Link>
+    </Compile>
     <Compile Include="..\DicePokerRT\Models\LocalizerExtensions.cs">
       <Link>Common\LocalizerExtensions.cs</Link>
     </Compile>
@@ -193,6 +196,9 @@
     </Compile>
     <Compile Include="..\DicePokerRT\ViewModels\AdBasedViewModel.cs">
       <Link>ViewModels\AdBasedViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\LeaderboardViewModel.cs">
+      <Link>ViewModels\LeaderboardViewModel.cs</Link>
     </Compile>
     <Compile Include="..\DicePokerRT\ViewModels\MainPageViewModel.cs">
       <Link>ViewModels\MainPageViewModel.cs</Link>
@@ -215,10 +221,12 @@
     <Compile Include="Common\SanetImageProvider.cs" />
     <Compile Include="Common\SoundsProvider.cs" />
     <Compile Include="Common\WPBasePageExtensions.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Models\CommonNavigationActions.cs" />
     <Compile Include="Models\ResourceModel.cs" />
     <Compile Include="Models\ServiceAsyncExtensions.cs" />
     <Compile Include="Models\StoreManager.cs" />
+    <Compile Include="Models\Utilities.cs" />
     <Compile Include="Service References\KniffelLeaderBoardService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -226,6 +234,9 @@
     </Compile>
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LeaderboardPage.xaml.cs">
+      <DependentUpon>LeaderboardPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -238,6 +249,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="Views\AboutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LeaderboardPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

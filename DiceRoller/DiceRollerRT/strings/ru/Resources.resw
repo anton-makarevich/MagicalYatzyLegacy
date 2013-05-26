@@ -735,4 +735,7 @@
   <data name="DiceDescription" xml:space="preserve">
     <value>Виртуальные кости в твоем телефоне! Их можно использовать в любимых настольных играх или просто когда нужно принять случайное решение</value>
   </data>
+  <data name="ShareMessage" xml:space="preserve">
+    <value>Присоединяйся ко мне в этой онлайн игре!</value>
+  </data>
 </root>

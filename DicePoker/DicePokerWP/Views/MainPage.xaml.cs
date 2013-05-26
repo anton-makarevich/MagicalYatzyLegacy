@@ -62,12 +62,24 @@ namespace DicePokerWP
             buyButton.Text = "BuyLabel".Localize();
             buyButton.Click += buyButton_Click;
 
-            RebuildAppBarForPage();
+            
         }
 
         void AttachNavigationEvents()
         {
             CommonNavigationActions.OnNavigationToAbout += CommonNavigationActions_OnNavigationToAbout;
+            CommonNavigationActions.OnNavigationToLeaderboard += CommonNavigationActions_OnNavigationToLeaderboard;
+        }
+        void DettachNavigationEvents()
+        {
+            CommonNavigationActions.OnNavigationToAbout -= CommonNavigationActions_OnNavigationToAbout;
+            CommonNavigationActions.OnNavigationToLeaderboard -= CommonNavigationActions_OnNavigationToLeaderboard;
+        }
+
+
+        void CommonNavigationActions_OnNavigationToLeaderboard()
+        {
+            NavigationService.Navigate(new Uri("/Views/LeaderboardPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
         void CommonNavigationActions_OnNavigationToAbout()
@@ -77,22 +89,22 @@ namespace DicePokerWP
 
         void buyButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            StoreManager.RemoveAd();
         }
 
         void shareButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            CommonNavigationActions.ShareApp();
         }
 
         void rateButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            CommonNavigationActions.RateApp();
         }
 
         void fbButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            CommonNavigationActions.NavigateYatzyFBPage();
         }
 
         
@@ -122,11 +134,16 @@ namespace DicePokerWP
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+#if DEBUG
+            StoreManager.CheckTrialDebug();
+#endif
             //dpBackground = new Sanet.Kniffel.DicePanel.DicePanel();
             SetViewModel<MainPageViewModel>();
             GetViewModel<MainPageViewModel>().PropertyChanged += GamePage_PropertyChanged;
+            
             //if (e.NavigationMode == NavigationMode.Back && ReviewBugger.IsTimeForReview())
             //    await ReviewBugger.PromptUser();
+            RebuildAppBarForPage();
             AttachNavigationEvents();
         }
         void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -141,17 +158,13 @@ namespace DicePokerWP
         }
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
-            dpBackground.EndRoll -= StartRoll;
+            //dpBackground.EndRoll -= StartRoll;
             GetViewModel<MainPageViewModel>().PropertyChanged -= GamePage_PropertyChanged;
             //dpBackground.Dispose();
             //dpBackground = null;
             DettachNavigationEvents();
         }
-        void DettachNavigationEvents()
-        {
-            CommonNavigationActions.OnNavigationToAbout -= CommonNavigationActions_OnNavigationToAbout;
-        }
-
+        
         /// <summary>
         /// Rebuilding app bar for main page content
         /// </summary>
@@ -161,7 +174,8 @@ namespace DicePokerWP
             
             this.ApplicationBar.Buttons.Add(fbButton);
             this.ApplicationBar.Buttons.Add(rateButton);
-            this.ApplicationBar.Buttons.Add(buyButton);
+            if (StoreManager.IsTrial)
+                this.ApplicationBar.Buttons.Add(buyButton);
             this.ApplicationBar.Buttons.Add(shareButton);
 
             this.ApplicationBar.IsMenuEnabled =false;

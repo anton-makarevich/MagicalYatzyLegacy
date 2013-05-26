@@ -858,4 +858,7 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
   <data name="DiceDescription" xml:space="preserve">
     <value>Virtuelle Würfel, die immer dabei sind! Sanet Dice ist in dem Lieblingspiel zu gebrauchen, ist auch eine kleine Hilfe bei den zufälligen Entscheidungsschwierigkeiten und Angst vor Entscheidungen.</value>
   </data>
+  <data name="ShareMessage" xml:space="preserve">
+    <value>Присоединяйся ко мне в этой онлайн игре!</value>
+  </data>
 </root>

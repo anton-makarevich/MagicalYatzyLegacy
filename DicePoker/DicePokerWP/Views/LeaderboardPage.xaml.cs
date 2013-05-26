@@ -17,25 +17,25 @@ using Sanet.Kniffel.Models;
 
 namespace DicePokerWP
 {
-    public partial class AboutPage : PhoneApplicationPage
+    public partial class LeaderboardPage : PhoneApplicationPage
     {
         // Constructor
-        public AboutPage()
+        public LeaderboardPage()
         {
             InitializeComponent();
             this.Loaded += MainPage_Loaded;
         }
 
-                
+        
         
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            
-            dpBackground.PanelStyle = GetViewModel<AboutPageViewModel>().SettingsPanelStyle;
+
+            dpBackground.PanelStyle = GetViewModel<LeaderboardViewModel>().SettingsPanelStyle;
             dpBackground.TreeDScaleCoef = 0.38;
             dpBackground.NumDice = 5;
-            dpBackground.RollDelay = GetViewModel<AboutPageViewModel>().SettingsPanelSpeed;
-            dpBackground.DieAngle = GetViewModel<AboutPageViewModel>().SettingsPanelAngle;
+            dpBackground.RollDelay = GetViewModel<LeaderboardViewModel>().SettingsPanelSpeed;
+            dpBackground.DieAngle = GetViewModel<LeaderboardViewModel>().SettingsPanelAngle;
             dpBackground.MaxRollLoop = 40;
             dpBackground.EndRoll += StartRoll;
             StartRoll();
@@ -64,8 +64,9 @@ namespace DicePokerWP
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            SetViewModel<AboutPageViewModel>();
-            GetViewModel<AboutPageViewModel>().PropertyChanged += GamePage_PropertyChanged;
+            SetViewModel<LeaderboardViewModel>();
+            GetViewModel<LeaderboardViewModel>().PropertyChanged += GamePage_PropertyChanged;
+            GetViewModel<LeaderboardViewModel>().RefreshScores();
             
             //if (e.NavigationMode == NavigationMode.Back && ReviewBugger.IsTimeForReview())
             //    await ReviewBugger.PromptUser();
@@ -73,21 +74,20 @@ namespace DicePokerWP
         void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "SettingsPanelAngle")
-                dpBackground.DieAngle = GetViewModel<AboutPageViewModel>().SettingsPanelAngle;
+                dpBackground.DieAngle = GetViewModel<LeaderboardViewModel>().SettingsPanelAngle;
             else if (e.PropertyName == "SettingsPanelSpeed")
-                dpBackground.RollDelay = GetViewModel<AboutPageViewModel>().SettingsPanelSpeed;
+                dpBackground.RollDelay = GetViewModel<LeaderboardViewModel>().SettingsPanelSpeed;
             else if (e.PropertyName == "SettingsPanelStyle")
-                dpBackground.PanelStyle = GetViewModel<AboutPageViewModel>().SettingsPanelStyle;
+                dpBackground.PanelStyle = GetViewModel<LeaderboardViewModel>().SettingsPanelStyle;
 
         }
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
-            GetViewModel<AboutPageViewModel>().PropertyChanged -= GamePage_PropertyChanged;
+            GetViewModel<LeaderboardViewModel>().PropertyChanged -= GamePage_PropertyChanged;
             //dpBackground.Dispose();
             //dpBackground = null;
         }
-
-        
+                
         #region ViewModel
         public void SetViewModel<T>() where T : BaseViewModel
         {
@@ -101,24 +101,6 @@ namespace DicePokerWP
         }
 
         #endregion
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (e.AddedItems.Count > 0)
-            {
-                MainMenuAction item = (MainMenuAction)(e.AddedItems[0]);
-                item.MenuAction();
-                ((ListBox)sender).SelectedItem = null;
-            }
-        }
-        private void ListBox2_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (e.AddedItems.Count > 0)
-            {
-                AboutAppAction item = (AboutAppAction)(e.AddedItems[0]);
-                item.MenuAction();
-                ((ListBox)sender).SelectedItem = null;
-            }
-        }
+                
     }
 }

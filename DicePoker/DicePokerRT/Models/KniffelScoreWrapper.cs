@@ -1,11 +1,21 @@
-﻿using DicePokerRT.KniffelLeaderBoardService;
+﻿#if WinRT
+using DicePokerRT.KniffelLeaderBoardService;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
+#endif
+#if WINDOWS_PHONE
+using DicePokerWP.KniffelLeaderBoardService;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+#endif
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
+
+
+
 
 namespace Sanet.Kniffel.Models
 {

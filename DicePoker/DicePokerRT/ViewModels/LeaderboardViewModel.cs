@@ -1,5 +1,10 @@
-﻿
+﻿#if WinRT
 using DicePokerRT.KniffelLeaderBoardService;
+using Windows.System.UserProfile;
+#endif
+#if WINDOWS_PHONE
+using DicePokerWP.KniffelLeaderBoardService;
+#endif
 using Sanet.Kniffel.Models;
 using Sanet.Models;
 using System;
@@ -8,7 +13,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.System.UserProfile;
+
 
 namespace Sanet.Kniffel.ViewModels
 {
@@ -323,11 +328,16 @@ namespace Sanet.Kniffel.ViewModels
         private async void GetScores()
         {
             Scores = new ObservableCollection<KniffelScoreWrapper>();
-            var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+            var ks = new KniffelServiceSoapClient();
             ScoresLoading = true;
             try
             {
-                var res =await ks.GetTopPlayersAsync("simple", null);
+                GetTopPlayersResponse res=null;
+#if WinRT
+                res =await ks.GetTopPlayersAsync("simple", null);
+#else
+                res = await ks.GetTopPlayersTaskAsync("simple");
+#endif
                 foreach (KniffelScore score in res.Body.Players)
                     Scores.Add(new KniffelScoreWrapper(score));
                 NotifyPropertyChanged("Scores");
@@ -344,11 +354,16 @@ namespace Sanet.Kniffel.ViewModels
         private async void GetScoresB()
         {
             ScoresB = new ObservableCollection<KniffelScoreWrapper>();
-            var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+            var ks = new KniffelServiceSoapClient();
             ScoresBLoading = true;
             try
             {
-                var res = await ks.GetTopPlayersAsync("baby", null);
+                GetTopPlayersResponse res = null;
+#if WinRT
+                res =await ks.GetTopPlayersAsync("baby", null);
+#else
+                res = await ks.GetTopPlayersTaskAsync("baby");
+#endif
                 foreach (KniffelScore score in res.Body.Players)
                     ScoresB.Add(new KniffelScoreWrapper(score));
                 NotifyPropertyChanged("ScoresB");
@@ -366,11 +381,16 @@ namespace Sanet.Kniffel.ViewModels
         private async void GetScoresS()
         {
             ScoresS = new ObservableCollection<KniffelScoreWrapper>();
-            var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+            var ks = new KniffelServiceSoapClient();
             ScoresSLoading = true;
             try
             {
-                var res = await ks.GetTopPlayersAsync("standard", null);
+                GetTopPlayersResponse res = null;
+#if WinRT
+                res =await ks.GetTopPlayersAsync("standard", null);
+#else
+                res = await ks.GetTopPlayersTaskAsync("standard");
+#endif
                 foreach (KniffelScore score in res.Body.Players)
                     ScoresS.Add(new KniffelScoreWrapper(score));
                 NotifyPropertyChanged("ScoresS");
@@ -387,11 +407,16 @@ namespace Sanet.Kniffel.ViewModels
         private async void GetScoresE()
         {
             ScoresE = new ObservableCollection<KniffelScoreWrapper>();
-            var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+            var ks = new KniffelServiceSoapClient();
             ScoresELoading = true;
             try
             {
-                var res = await ks.GetTopPlayersAsync("full", null);
+                GetTopPlayersResponse res = null;
+#if WinRT
+                res =await ks.GetTopPlayersAsync("full", null);
+#else
+                res = await ks.GetTopPlayersTaskAsync("full");
+#endif
                 foreach (KniffelScore score in res.Body.Players)
                     ScoresE.Add(new KniffelScoreWrapper(score));
                 NotifyPropertyChanged("ScoresE");
@@ -408,11 +433,16 @@ namespace Sanet.Kniffel.ViewModels
         private async void GetScoresM()
         {
             ScoresM = new ObservableCollection<KniffelScoreWrapper>();
-            var ks = new DicePokerRT.KniffelLeaderBoardService.KniffelServiceSoapClient();
+            var ks = new KniffelServiceSoapClient();
             ScoresMLoading = true;
             try
             {
-                var res = await ks.GetTopPlayersAsync("magic", null);
+                GetTopPlayersResponse res = null;
+#if WinRT
+                res =await ks.GetTopPlayersAsync("magic", null);
+#else
+                res = await ks.GetTopPlayersTaskAsync("magic");
+#endif
                 foreach (KniffelScore score in res.Body.Players)
                     ScoresM.Add(new KniffelScoreWrapper(score));
                 NotifyPropertyChanged("ScoresM");

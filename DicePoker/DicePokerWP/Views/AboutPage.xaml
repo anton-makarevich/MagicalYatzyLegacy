@@ -27,7 +27,8 @@
 
         <adRotator:AdRotatorControl
             Grid.Row="1"
-            x:Name="AdRotatorControl" 
+            x:Name="AdRotatorControl"
+            Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"
             xmlns:adRotator="clr-namespace:AdRotator;assembly=AdRotator"
             Width="480" Height="80"
                 SettingsUrl="http://sanet.by/AdSettings.xml"
@@ -82,7 +83,7 @@
                         <ListBox
                                 Grid.Row="1"
                                 ItemsSource="{Binding AboutAppActions}"
-                                
+                                SelectionChanged="ListBox2_SelectionChanged"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                                 ItemTemplate="{StaticResource AboutAppActionTemplate}">
@@ -143,7 +144,7 @@
                         <ListBox
                                 Grid.Row="0"
                                 ItemsSource="{Binding OtherAppActions}"
-                                
+                               SelectionChanged="ListBox_SelectionChanged"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                                 ItemTemplate="{StaticResource OtherAppActionTemplate}">

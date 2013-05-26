@@ -1,4 +1,5 @@
-﻿using Sanet.Models;
+﻿using Microsoft.Phone.Tasks;
+using Sanet.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace Sanet.Kniffel.Models
     {
         #region events
         public static event Action OnNavigationToAbout;
+        public static event Action OnNavigationToLeaderboard;
         #endregion
 
 
@@ -60,13 +62,29 @@ namespace Sanet.Kniffel.Models
             }
 
         }
+        public static Action ShareApp
+        {
+            get
+            {
+                return new Action(() =>
+                {
+                    ShareLinkTask shareStatusTask = new ShareLinkTask();
+                    shareStatusTask.LinkUri = new Uri("http://windowsphone.com/s?appid=f2993622-c41f-4cd5-8188-403a3efe6383");
+                    shareStatusTask.Title = "AppNameLabel".Localize();
+                    shareStatusTask.Message = "ShareMessage".Localize();
+                    shareStatusTask.Show();
+                });
+            }
+
+        }
         public static Action NavigateToLeaderboardPage
         {
             get
             {
                 return new Action(() =>
                 {
-                    //((Frame)Window.Current.Content).Navigate(typeof(LeaderboardPage));
+                    if (OnNavigationToLeaderboard != null)
+                        OnNavigationToLeaderboard();
                 });
             }
 
@@ -104,7 +122,12 @@ namespace Sanet.Kniffel.Models
             {
                 return new  Action(() =>
                 {
-                    //await Launcher.LaunchUriAsync(new Uri("mailto:support@sanet.by"));
+                    EmailComposeTask emailComposeTask = new EmailComposeTask();
+
+                    emailComposeTask.Subject = "Magical Yatzy WP7";
+                    emailComposeTask.To = "support@sanet.by";
+                    
+                    emailComposeTask.Show();
                 });
             }
 
@@ -115,7 +138,8 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action( () =>
                 {
-                    //await Launcher.LaunchUriAsync(new Uri("ms-windows-store:REVIEW?PFN=43862AntonMakarevich.SanetDicePoker_2wtrjzrdj31kc"));
+                    MarketplaceReviewTask _marketPlaceReviewTask = new MarketplaceReviewTask();
+                    _marketPlaceReviewTask.Show();
                 });
             }
 
@@ -139,7 +163,7 @@ namespace Sanet.Kniffel.Models
                 {
                     var task = new Microsoft.Phone.Tasks.WebBrowserTask
                     {
-                        URL = "http://windowsphone.com/s?appid=b588316a-e1a2-4e84-91d5-a773850a915d"
+                        Uri = new Uri("http://windowsphone.com/s?appid=b588316a-e1a2-4e84-91d5-a773850a915d")
                     };
 
                     task.Show();
@@ -154,7 +178,7 @@ namespace Sanet.Kniffel.Models
                 {
                     var task = new Microsoft.Phone.Tasks.WebBrowserTask
                     {
-                        URL = "http://windowsphone.com/s?appid=bc105e9d-f31e-4c1d-89d2-6f5d8bd877e6"
+                        Uri = new Uri("http://windowsphone.com/s?appid=bc105e9d-f31e-4c1d-89d2-6f5d8bd877e6")
                     };
 
                     task.Show();
@@ -168,7 +192,13 @@ namespace Sanet.Kniffel.Models
                 return new Action( () =>
                 {
                     SoundsProvider.PlaySound("click");
-                    //await Launcher.LaunchUriAsync(new Uri("http://www.facebook.com/MagicalYatzy"));
+                    var task = new Microsoft.Phone.Tasks.WebBrowserTask
+                    {
+                        Uri = new Uri("http://www.facebook.com/MagicalYatzy")
+                    };
+
+                    task.Show();
+                    
                 });
             }
         }

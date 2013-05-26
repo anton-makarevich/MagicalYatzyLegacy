@@ -744,4 +744,7 @@
   <data name="ForWPLabel" xml:space="preserve">
     <value>Magical Yatzy for Windows Phone</value>
   </data>
+  <data name="ShareMessage" xml:space="preserve">
+    <value>Join me in this exciting multiplayer game!</value>
+  </data>
 </root>
