@@ -131,7 +131,6 @@ namespace DicePokerWP
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.  The Parameter
         /// property is typically used to configure the page.</param>
-
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
 #if DEBUG
@@ -140,9 +139,9 @@ namespace DicePokerWP
             //dpBackground = new Sanet.Kniffel.DicePanel.DicePanel();
             SetViewModel<MainPageViewModel>();
             GetViewModel<MainPageViewModel>().PropertyChanged += GamePage_PropertyChanged;
-            
-            //if (e.NavigationMode == NavigationMode.Back && ReviewBugger.IsTimeForReview())
-            //    await ReviewBugger.PromptUser();
+
+            if (e.IsNavigationInitiator && ReviewBugger.IsTimeForReview())
+                ReviewBugger.PromptUser();
             RebuildAppBarForPage();
             AttachNavigationEvents();
         }

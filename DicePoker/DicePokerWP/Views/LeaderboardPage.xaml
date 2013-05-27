@@ -16,7 +16,10 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     toolkit:TiltEffect.IsTiltEnabled="True"
     shell:SystemTray.IsVisible="True">
-
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="True" 
+                                 IsVisible="{Binding ScoresLoading}" />
+    </shell:SystemTray.ProgressIndicator>
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
@@ -78,7 +81,7 @@
                             <Border Grid.Column="1"
                                 BorderBrush="{StaticResource SanetBlue}"
                                 BorderThickness="0,0,1,2">
-                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                                HorizontalAlignment="Left"
                                                TextAlignment="Left"
                                                TextWrapping="NoWrap"
@@ -89,7 +92,7 @@
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,1,2">
 
-                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                                HorizontalAlignment="Left"
                                                TextAlignment="Left"
                                                Margin="5,0,0,0"
@@ -101,7 +104,7 @@
                                     BorderBrush="{StaticResource SanetBlue}"
                                 BorderThickness="0,0,1,2">
 
-                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                            HorizontalAlignment="Left"
                                            TextAlignment="Left"
                                            Margin="5,0,0,0"
@@ -113,7 +116,7 @@
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,0,2">
 
-                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                                HorizontalAlignment="Left"
                                                Margin="5,0,0,0"
                                                TextAlignment="Left"
@@ -165,7 +168,7 @@
                             <Border Grid.Column="1"
                                 BorderBrush="{StaticResource SanetBlue}"
                                 BorderThickness="0,0,1,2">
-                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                                HorizontalAlignment="Left"
                                                TextAlignment="Left"
                                                TextWrapping="NoWrap"
@@ -176,7 +179,7 @@
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,1,2">
 
-                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                                HorizontalAlignment="Left"
                                                TextAlignment="Left"
                                                Margin="5,0,0,0"
@@ -188,7 +191,7 @@
                                     BorderBrush="{StaticResource SanetBlue}"
                                 BorderThickness="0,0,1,2">
 
-                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                            HorizontalAlignment="Left"
                                            TextAlignment="Left"
                                            Margin="5,0,0,0"
@@ -200,7 +203,7 @@
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,0,2">
 
-                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                                HorizontalAlignment="Left"
                                                Margin="5,0,0,0"
                                                TextAlignment="Left"
@@ -252,7 +255,7 @@
                             <Border Grid.Column="1"
                                 BorderBrush="{StaticResource SanetBlue}"
                                 BorderThickness="0,0,1,2">
-                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                                HorizontalAlignment="Left"
                                                TextAlignment="Left"
                                                TextWrapping="NoWrap"
@@ -263,7 +266,7 @@
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,1,2">
 
-                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                                HorizontalAlignment="Left"
                                                TextAlignment="Left"
                                                Margin="5,0,0,0"
@@ -275,7 +278,7 @@
                                     BorderBrush="{StaticResource SanetBlue}"
                                 BorderThickness="0,0,1,2">
 
-                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                            HorizontalAlignment="Left"
                                            TextAlignment="Left"
                                            Margin="5,0,0,0"
@@ -287,7 +290,7 @@
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,0,2">
 
-                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                                HorizontalAlignment="Left"
                                                Margin="5,0,0,0"
                                                TextAlignment="Left"
@@ -339,7 +342,7 @@
                             <Border Grid.Column="1"
                                 BorderBrush="{StaticResource SanetBlue}"
                                 BorderThickness="0,0,1,2">
-                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                                HorizontalAlignment="Left"
                                                TextAlignment="Left"
                                                TextWrapping="NoWrap"
@@ -350,7 +353,7 @@
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,1,2">
 
-                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                                HorizontalAlignment="Left"
                                                TextAlignment="Left"
                                                Margin="5,0,0,0"
@@ -362,7 +365,7 @@
                                     BorderBrush="{StaticResource SanetBlue}"
                                 BorderThickness="0,0,1,2">
 
-                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                            HorizontalAlignment="Left"
                                            TextAlignment="Left"
                                            Margin="5,0,0,0"
@@ -374,7 +377,7 @@
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,0,2">
 
-                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                                HorizontalAlignment="Left"
                                                Margin="5,0,0,0"
                                                TextAlignment="Left"
@@ -426,7 +429,7 @@
                             <Border Grid.Column="1"
                                 BorderBrush="{StaticResource SanetBlue}"
                                 BorderThickness="0,0,1,2">
-                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                                HorizontalAlignment="Left"
                                                TextAlignment="Left"
                                                TextWrapping="NoWrap"
@@ -437,7 +440,7 @@
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,1,2">
 
-                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                                HorizontalAlignment="Left"
                                                TextAlignment="Left"
                                                Margin="5,0,0,0"
@@ -449,7 +452,7 @@
                                     BorderBrush="{StaticResource SanetBlue}"
                                 BorderThickness="0,0,1,2">
 
-                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                            HorizontalAlignment="Left"
                                            TextAlignment="Left"
                                            Margin="5,0,0,0"
@@ -461,7 +464,7 @@
                                         BorderBrush="{StaticResource SanetBlue}"
                                     BorderThickness="0,0,0,2">
 
-                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="White" 
+                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
                                                HorizontalAlignment="Left"
                                                Margin="5,0,0,0"
                                                TextAlignment="Left"

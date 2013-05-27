@@ -142,7 +142,7 @@
                     BorderBrush="{StaticResource SanetBlue}"
                 BorderThickness="0,0,1,0">
 
-                    <TextBlock Text="{Binding Name}" Foreground="White" 
+                    <TextBlock Text="{Binding Name}" Foreground="{StaticResource PhoneForegroundBrush}" 
                            HorizontalAlignment="Left"
                            Margin="5,0,0,0"
                            TextAlignment="Left"
@@ -154,7 +154,7 @@
                     BorderBrush="{StaticResource SanetBlue}"
                 BorderThickness="0,0,1,0">
 
-                    <TextBlock Text="{Binding Games}" Foreground="White" 
+                    <TextBlock Text="{Binding Games}" Foreground="{StaticResource PhoneForegroundBrush}" 
                            HorizontalAlignment="Left"
                            TextAlignment="Left"
                            Margin="5,0,0,0"
@@ -166,7 +166,7 @@
                     BorderBrush="{StaticResource SanetBlue}"
                 BorderThickness="0,0,1,0">
 
-                    <TextBlock Text="{Binding Total}" Foreground="White" 
+                    <TextBlock Text="{Binding Total}" Foreground="{StaticResource PhoneForegroundBrush}" 
                            HorizontalAlignment="Left"
                            TextAlignment="Left"
                            Margin="5,0,0,0"
@@ -178,7 +178,7 @@
                     BorderBrush="{StaticResource SanetBlue}"
                 BorderThickness="0,0,0,0">
 
-                    <TextBlock Text="{Binding Score}" Foreground="White" 
+                    <TextBlock Text="{Binding Score}" Foreground="{StaticResource PhoneForegroundBrush}" 
                            HorizontalAlignment="Left"
                            Margin="5,0,0,0"
                            TextAlignment="Left"

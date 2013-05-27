@@ -16,8 +16,7 @@
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>
-    </SupportedCultures>
+    <SupportedCultures>be%3ben%3bde%3bru</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>DicePokerWP.xap</XapFilename>
@@ -53,6 +52,9 @@
     </Reference>
     <Reference Include="AdRotator">
       <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\AdRotator.dll</HintPath>
+    </Reference>
+    <Reference Include="Coding4Fun.Phone.Controls">
+      <HintPath>..\..\..\BiblePronto\BibleProntoWP7\BibleProntoWP\Bin\Release\Coding4Fun.Phone.Controls.dll</HintPath>
     </Reference>
     <Reference Include="Google.AdMob.Ads.WindowsPhone7">
       <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\Google.AdMob.Ads.WindowsPhone7.dll</HintPath>
@@ -217,6 +219,7 @@
     </Compile>
     <Compile Include="Common\InternetCheker.cs" />
     <Compile Include="Common\LocalSettings.cs" />
+    <Compile Include="Models\ReviewBugger.cs" />
     <Compile Include="Common\RoamingSettings.cs" />
     <Compile Include="Common\SanetImageProvider.cs" />
     <Compile Include="Common\SoundsProvider.cs" />
@@ -235,6 +238,9 @@
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LeaderboardPage.xaml.cs">
       <DependentUpon>LeaderboardPage.xaml</DependentUpon>
     </Compile>
@@ -249,6 +255,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="Views\AboutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -276,7 +286,19 @@
     </Content>
     <Content Include="AdSettings.xml" />
     <Resource Include="defaultAdSettings.xml" />
+    <Content Include="AppResLib.dll.0407.mui">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AppResLib.dll.0419.mui">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AppResLib.dll.0423.mui">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="ReadMe-AdRotator-XAML.txt" />
+    <Content Include="AppResLib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
