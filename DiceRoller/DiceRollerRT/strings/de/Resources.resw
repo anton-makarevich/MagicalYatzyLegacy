@@ -145,7 +145,7 @@
     <value>Schließen</value>
     <comment>Schließen</comment>
   </data>
-  <data name="DevelopedBy.Text" xml:space="preserve">
+  <data name="DevelopedByText" xml:space="preserve">
     <value>Entwickelt von:</value>
     <comment>Entwickelt von:</comment>
   </data>
@@ -165,7 +165,7 @@
     <value>About Kniffel online</value>
     <comment>About Kniffel online</comment>
   </data>
-  <data name="OnlineVersionText.Text" xml:space="preserve">
+  <data name="OnlineVersionText" xml:space="preserve">
     <value>Die Idee des Controlls und die Darstellung der  ''Roten"  Würfeln gehört Matthew Tagliaferri.</value>
     <comment>Die Idee des Controlls und die Darstellung der  ''Roten"  Würfeln gehört Matthew Tagliaferri.</comment>
   </data>
@@ -189,23 +189,23 @@
     <value>würfeln</value>
     <comment>würfeln</comment>
   </data>
-  <data name="SettingsAngleCaption.Text" xml:space="preserve">
+  <data name="SettingsAngleCaptionText" xml:space="preserve">
     <value>Blickfeld</value>
     <comment>Blickfeld</comment>
   </data>
-  <data name="SettingsCaption.Text" xml:space="preserve">
+  <data name="SettingsCaptionText" xml:space="preserve">
     <value>Einstellungen</value>
     <comment>Einstellungen</comment>
   </data>
-  <data name="SettingsNumbersCaption.Text" xml:space="preserve">
+  <data name="SettingsNumbersCaptionText" xml:space="preserve">
     <value>Würfelzahl</value>
     <comment>Würfelzahl</comment>
   </data>
-  <data name="SettingsSpeedCaption.Text" xml:space="preserve">
+  <data name="SettingsSpeedCaptionText" xml:space="preserve">
     <value>Wurftempo</value>
     <comment>Wurftempo</comment>
   </data>
-  <data name="SettingsStyleCaption.Text" xml:space="preserve">
+  <data name="SettingsStyleCaptionText" xml:space="preserve">
     <value>Würfelstil</value>
     <comment>Würfelstil</comment>
   </data>
@@ -213,19 +213,19 @@
     <value>Kleine Straße</value>
     <comment>Kleine Straße</comment>
   </data>
-  <data name="SpeedFast.Text" xml:space="preserve">
+  <data name="SpeedFastText" xml:space="preserve">
     <value>schnell</value>
     <comment>schnell</comment>
   </data>
-  <data name="SpeedSlow.Text" xml:space="preserve">
+  <data name="SpeedSlowText" xml:space="preserve">
     <value>langsam</value>
     <comment>langsam</comment>
   </data>
-  <data name="SpeedVeryFast.Text" xml:space="preserve">
+  <data name="SpeedVeryFastText" xml:space="preserve">
     <value>sehr schnell</value>
     <comment>sehr schnell</comment>
   </data>
-  <data name="SpeedVerySlow.Text" xml:space="preserve">
+  <data name="SpeedVerySlowText" xml:space="preserve">
     <value>sehr langsam</value>
     <comment>sehr langsam</comment>
   </data>

@@ -66,7 +66,7 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return "OnlineVersionText.Text".Localize();
+                return "OnlineVersionText".Localize();
             }
         }
 
@@ -103,7 +103,7 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return "DevelopedBy.Text".Localize()+" Sanet Soft";
+                return "DevelopedByText".Localize()+" Sanet Soft";
             }
         }
         

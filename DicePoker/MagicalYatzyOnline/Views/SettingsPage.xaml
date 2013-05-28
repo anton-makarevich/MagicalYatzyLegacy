@@ -83,7 +83,7 @@
                     <TextBlock Style="{StaticResource SubheaderTextStyle}"
                            HorizontalAlignment="Left"
                        Foreground="{StaticResource SanetBlue}"
-                       x:Uid="SettingsStyleCaption"
+                       Text="{Binding SettingsStyleCaption}"
                        Grid.Row="0"
                        VerticalAlignment="Center"/>
                     <StackPanel

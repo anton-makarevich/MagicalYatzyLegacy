@@ -23,6 +23,15 @@ namespace Sanet.Kniffel.ViewModels
         }
 
         #region bind props
+        public string SettingsStyleCaption
+        {
+            get
+            {
+                return "SettingsStyleCaptionText".Localize();
+            }
+        }
+
+
         //main props from model
         public int DiceNumber
         {

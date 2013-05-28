@@ -132,10 +132,10 @@
   <data name="CloseButton.Content" xml:space="preserve">
     <value>Close</value>
   </data>
-  <data name="DevelopedBy.Text" xml:space="preserve">
+  <data name="DevelopedByText" xml:space="preserve">
     <value>Developed by:</value>
   </data>
-  <data name="SpeedFast.Text" xml:space="preserve">
+  <data name="SpeedFastText" xml:space="preserve">
     <value>fast</value>
   </data>
   <data name="FullHouse" xml:space="preserve">
@@ -153,7 +153,7 @@
   <data name="OfAKind" xml:space="preserve">
     <value>of a kind</value>
   </data>
-  <data name="OnlineVersionText.Text" xml:space="preserve">
+  <data name="OnlineVersionText" xml:space="preserve">
     <value>Dice Panel idea and "red dice" style belong to Matthew Tagliaferri.</value>
   </data>
   <data name="Pairs" xml:space="preserve">
@@ -165,7 +165,7 @@
   <data name="roll" xml:space="preserve">
     <value>roll</value>
   </data>
-  <data name="SpeedSlow.Text" xml:space="preserve">
+  <data name="SpeedSlowText" xml:space="preserve">
     <value>slow</value>
   </data>
   <data name="SmallStraight" xml:space="preserve">
@@ -177,28 +177,28 @@
   <data name="Version" xml:space="preserve">
     <value>Version</value>
   </data>
-  <data name="SpeedVeryFast.Text" xml:space="preserve">
+  <data name="SpeedVeryFastText" xml:space="preserve">
     <value>very fast</value>
   </data>
   <data name="AngVeryHigh.Text" xml:space="preserve">
     <value>very high</value>
   </data>
-  <data name="SpeedVerySlow.Text" xml:space="preserve">
+  <data name="SpeedVerySlowText" xml:space="preserve">
     <value>very slow</value>
   </data>
-  <data name="SettingsAngleCaption.Text" xml:space="preserve">
+  <data name="SettingsAngleCaptionText" xml:space="preserve">
     <value>View Angle</value>
   </data>
-  <data name="SettingsCaption.Text" xml:space="preserve">
+  <data name="SettingsCaptionText" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="SettingsNumbersCaption.Text" xml:space="preserve">
+  <data name="SettingsNumbersCaptionText" xml:space="preserve">
     <value>Dice number</value>
   </data>
-  <data name="SettingsSpeedCaption.Text" xml:space="preserve">
+  <data name="SettingsSpeedCaptionText" xml:space="preserve">
     <value>Rotation speed</value>
   </data>
-  <data name="SettingsStyleCaption.Text" xml:space="preserve">
+  <data name="SettingsStyleCaptionText" xml:space="preserve">
     <value>Dice style</value>
   </data>
   <data name="OtherAllWrite.Content" xml:space="preserve">

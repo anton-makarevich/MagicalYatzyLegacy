@@ -132,10 +132,10 @@
   <data name="CloseButton.Content" xml:space="preserve">
     <value>Закрыть</value>
   </data>
-  <data name="DevelopedBy.Text" xml:space="preserve">
+  <data name="DevelopedByText" xml:space="preserve">
     <value>Разработано:</value>
   </data>
-  <data name="SpeedFast.Text" xml:space="preserve">
+  <data name="SpeedFastText" xml:space="preserve">
     <value>быстро</value>
   </data>
   <data name="FullHouse" xml:space="preserve">
@@ -153,7 +153,7 @@
   <data name="OfAKind" xml:space="preserve">
     <value>одинаковые</value>
   </data>
-  <data name="OnlineVersionText.Text" xml:space="preserve">
+  <data name="OnlineVersionText" xml:space="preserve">
     <value>Идея контрола DicePanel и 'красные' кости принадлежат  Matthew Tagliaferri</value>
   </data>
   <data name="Pairs" xml:space="preserve">
@@ -165,7 +165,7 @@
   <data name="roll" xml:space="preserve">
     <value>бросок</value>
   </data>
-  <data name="SpeedSlow.Text" xml:space="preserve">
+  <data name="SpeedSlowText" xml:space="preserve">
     <value>медленно</value>
   </data>
   <data name="SmallStraight" xml:space="preserve">
@@ -177,28 +177,28 @@
   <data name="Version" xml:space="preserve">
     <value>Версия</value>
   </data>
-  <data name="SpeedVeryFast.Text" xml:space="preserve">
+  <data name="SpeedVeryFastText" xml:space="preserve">
     <value>очень быстро</value>
   </data>
   <data name="AngVeryHigh.Text" xml:space="preserve">
     <value>очень высоко</value>
   </data>
-  <data name="SpeedVerySlow.Text" xml:space="preserve">
+  <data name="SpeedVerySlowText" xml:space="preserve">
     <value>очень медленно</value>
   </data>
-  <data name="SettingsAngleCaption.Text" xml:space="preserve">
+  <data name="SettingsAngleCaptionText" xml:space="preserve">
     <value>Угол обзора</value>
   </data>
-  <data name="SettingsCaption.Text" xml:space="preserve">
+  <data name="SettingsCaptionText" xml:space="preserve">
     <value>Настройки</value>
   </data>
-  <data name="SettingsNumbersCaption.Text" xml:space="preserve">
+  <data name="SettingsNumbersCaptionText" xml:space="preserve">
     <value>Число костей</value>
   </data>
-  <data name="SettingsSpeedCaption.Text" xml:space="preserve">
+  <data name="SettingsSpeedCaptionText" xml:space="preserve">
     <value>Скорость броска</value>
   </data>
-  <data name="SettingsStyleCaption.Text" xml:space="preserve">
+  <data name="SettingsStyleCaptionText" xml:space="preserve">
     <value>Стиль костей</value>
   </data>
   <data name="OtherAllWrite.Content" xml:space="preserve">
