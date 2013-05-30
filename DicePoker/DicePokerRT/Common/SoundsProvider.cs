@@ -62,7 +62,7 @@ namespace Sanet.Models
             }
             catch (Exception ex)
             {
-                LogManager.Log("PVM.PlaySound", ex);
+                LogManager.Log("PVM.PlaySound", ex, MarkedUpExceptionType.Information);
             }
         }
         /// <summary>

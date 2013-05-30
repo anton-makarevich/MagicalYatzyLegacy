@@ -31,6 +31,70 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
+        public string AngLowText
+        {
+            get
+            {
+                return "AngLowText".Localize();
+            }
+        }
+        public string AngHighText
+        {
+            get
+            {
+                return "AngHighText".Localize();
+            }
+        }
+        public string AngVeryHighText
+        {
+            get
+            {
+                return "AngVeryHighText".Localize();
+            }
+        }
+        public string SettingsAngleCaption
+        {
+            get
+            {
+                return "SettingsAngleCaptionText".Localize();
+            }
+        }
+
+        public string SpeedSlow
+        {
+            get
+            {
+                return "SpeedSlowText".Localize();
+            }
+        }
+        public string SpeedVerySlow
+        {
+            get
+            {
+                return "SpeedVerySlowText".Localize();
+            }
+        }
+        public string SpeedFast
+        {
+            get
+            {
+                return "SpeedFastText".Localize();
+            }
+        }
+        public string SpeedVeryFast
+        {
+            get
+            {
+                return "SpeedVeryFastText".Localize();
+            }
+        }
+        public string SettingsSpeedCaption
+        {
+            get
+            {
+                return "SettingsSpeedCaptionText".Localize();
+            }
+        }
 
         //main props from model
         public int DiceNumber

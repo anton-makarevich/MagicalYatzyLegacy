@@ -25,6 +25,7 @@
                 Closed="AppBar_Closed_1"
                 Opened="AppBar_Opened_1">
             <controls:ChatControl
+                x:Name="chatPanel"
                 DataContext="{Binding ChatModel}"/>
         </AppBar>
     </views:BasePage.BottomAppBar>

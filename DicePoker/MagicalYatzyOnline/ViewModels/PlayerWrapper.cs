@@ -399,6 +399,7 @@ namespace Sanet.Kniffel.ViewModels
                 _Player.Name = value;
                 Password = "";
                 NotifyPropertyChanged("Name");
+                NotifyPropertyChanged("IsDefaultName");
                 ArtifactsInfoMessage = "ChangePasswordLabel".Localize();
                 //RememberPass = false;
                 HadStartupMagic = false;

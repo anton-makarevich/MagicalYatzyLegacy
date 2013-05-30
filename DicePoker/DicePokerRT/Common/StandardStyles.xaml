@@ -2464,6 +2464,11 @@
                                     Margin="5,0">
                 <Grid Background="{StaticResource SanetBlue}" 
                       Visibility="{Binding IsFace,ElementName=NamePanel,Converter={StaticResource VisibilityKey}}">
+                    <Border 
+                        Background="Red"
+                        Opacity="0.8"
+                        Visibility="{Binding IsDefaultName,Converter={StaticResource VisibilityKey}}"
+                        BorderThickness="2"/>
                     <TextBlock VerticalAlignment="Top"
                                        Margin="2" TextWrapping="Wrap"
                                        Text="{Binding TapToChangeLabel}"/>
@@ -2474,6 +2479,7 @@
 
                 <Grid Visibility="{Binding IsFace,ElementName=NamePanel,Converter={StaticResource ReversedVisibilityKey}}"
                     Background="{StaticResource SanetBlue}">
+                    
                     <TextBlock VerticalAlignment="Top"
                                        Margin="2" TextWrapping="Wrap"
                                        Text="{Binding TapToApplyLabel}"/>
@@ -2490,6 +2496,11 @@
                                     Margin="5,0" Grid.Column="1" Visibility="{Binding IsHuman,Converter={StaticResource VisibilityKey}}">
                 <Grid Background="{StaticResource SanetBlue}"
                       Visibility="{Binding IsFace,ElementName=PassPanel,Converter={StaticResource VisibilityKey}}">
+                    <Border 
+                        Background="Red"
+                        Opacity="0.8"
+                        Visibility="{Binding HasPassword,Converter={StaticResource ReversedVisibilityKey}}"
+                        BorderThickness="2"/>
                     <TextBlock VerticalAlignment="Top"
                                        Margin="2" TextWrapping="Wrap"
                                        Text="{Binding TapToChangeLabel}"/>

@@ -57,7 +57,7 @@ namespace DicePokerRT
             SetViewModel<NewOnlineGameViewModel>();
             GetViewModel<NewOnlineGameViewModel>().PropertyChanged += GamePage_PropertyChanged;
             GetViewModel<NewOnlineGameViewModel>().FillRules();
-            GetViewModel<NewOnlineGameViewModel>().InitOnServer();
+            GetViewModel<NewOnlineGameViewModel>().InitOnServer(true);
         }
         void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {

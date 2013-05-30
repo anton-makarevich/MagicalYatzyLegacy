@@ -125,15 +125,15 @@
     <value>Virtuelle  Würfel in deinem Tablet!</value>
     <comment>Virtuelle  Würfel in deinem Tablet!</comment>
   </data>
-  <data name="AngHigh.Text" xml:space="preserve">
+  <data name="AngHighText" xml:space="preserve">
     <value>hoch</value>
     <comment>hoch</comment>
   </data>
-  <data name="AngLow.Text" xml:space="preserve">
+  <data name="AngLowText" xml:space="preserve">
     <value>niedrig</value>
     <comment>niedrig</comment>
   </data>
-  <data name="AngVeryHigh.Text" xml:space="preserve">
+  <data name="AngVeryHighText" xml:space="preserve">
     <value>sehr hoch</value>
     <comment>sehr hoch</comment>
   </data>

@@ -195,16 +195,31 @@ namespace Sanet.Kniffel.Models
 
         void m_CommandObserver_PlayerRerolledCommandReceived(object sender, CommandEventArgs<PlayerRerolledCommand> e)
         {
+            if (e.Command.Name != _Game.CurrentPlayer.Name)
+            {
+                LogManager.Log(LogLevel.Error, "GameServer.CommandReceived", "Player {0} want to act, but its {1}'s turn", e.Command.Name, _Game.CurrentPlayer.Name);
+                return;
+            }
             Game.ResetRolls();
         }
 
         void m_CommandObserver_ManualChangeCommandReceived(object sender, CommandEventArgs<ManualChangeCommand> e)
         {
+            if (e.Command.Name != _Game.CurrentPlayer.Name)
+            {
+                LogManager.Log(LogLevel.Error, "GameServer.CommandReceived", "Player {0} want to act, but its {1}'s turn", e.Command.Name, _Game.CurrentPlayer.Name);
+                return;
+            }
             Game.ManualChange(e.Command.IsFixed, e.Command.Value, e.Command.NewValue);
         }
 
         void m_CommandObserver_MagicRollCommandReceived(object sender, CommandEventArgs<MagicRollCommand> e)
         {
+            if (e.Command.Name != _Game.CurrentPlayer.Name)
+            {
+                LogManager.Log(LogLevel.Error, "GameServer.CommandReceived", "Player {0} want to act, but its {1}'s turn", e.Command.Name, _Game.CurrentPlayer.Name);
+                return;
+            }
             Game.ReporMagictRoll();
         }
 
@@ -220,6 +235,11 @@ namespace Sanet.Kniffel.Models
 
         void m_CommandObserver_ApplyScoreCommandReceived(object sender, CommandEventArgs<ApplyScoreCommand> e)
         {
+            if (e.Command.Name != _Game.CurrentPlayer.Name)
+            {
+                LogManager.Log(LogLevel.Error, "GameServer.CommandReceived", "Player {0} want to act, but its {1}'s turn", e.Command.Name, _Game.CurrentPlayer.Name);
+                return;
+            }
             var result = Player.Results.Find(f => f.ScoreType == e.Command.ScoreType);
             result.PossibleValue = e.Command.PossibleValue;
             result.HasBonus = e.Command.HasBonus;
@@ -228,11 +248,21 @@ namespace Sanet.Kniffel.Models
 
         void m_CommandObserver_FixDiceCommandReceived(object sender, CommandEventArgs<FixDiceCommand> e)
         {
+            if (e.Command.Name != _Game.CurrentPlayer.Name)
+            {
+                LogManager.Log(LogLevel.Error, "GameServer.CommandReceived", "Player {0} want to act, but its {1}'s turn", e.Command.Name, _Game.CurrentPlayer.Name);
+                return;
+            }
             _Game.FixDice(e.Command.Value, e.Command.IsFixed);
         }
 
         void m_CommandObserver_RollReportCommandReceived(object sender, CommandEventArgs<RollReportCommand> e)
         {
+            if (e.Command.Name != _Game.CurrentPlayer.Name)
+            {
+                LogManager.Log(LogLevel.Error, "GameServer.CommandReceived", "Player {0} want to act, but its {1}'s turn", e.Command.Name, _Game.CurrentPlayer.Name);
+                return;
+            }
             _Game.ReportRoll();
         }
 

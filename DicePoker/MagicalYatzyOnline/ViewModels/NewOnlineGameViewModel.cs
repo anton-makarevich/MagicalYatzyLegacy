@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.System.UserProfile;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 
 namespace Sanet.Kniffel.ViewModels
@@ -21,15 +22,22 @@ namespace Sanet.Kniffel.ViewModels
     {
 
         string[] _language = Windows.System.UserProfile.GlobalizationPreferences.Languages[0].Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
-            
+
+        DispatcherTimer _updateTimer = new DispatcherTimer() 
+        {
+            Interval=TimeSpan.FromSeconds(40)
+        };
    
         #region Constructor
         public NewOnlineGameViewModel()
             :base()
         {
+            _updateTimer.Tick += _updateTimer_Tick;
             CreateCommands();
             FillPlayers();
         }
+
+        
         #endregion
 
         #region Properties
@@ -306,7 +314,7 @@ namespace Sanet.Kniffel.ViewModels
             p.Language = _language[0];
             Players.Add(p);
             SelectedPlayer = p;
-            InitOnServer();
+            
         }
 
         void p_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -314,7 +322,17 @@ namespace Sanet.Kniffel.ViewModels
             if (e.PropertyName=="Password" ||e.PropertyName=="Name")
                 NotifyPropertyChanged("IsReadyToPlay");
         }
-               
+
+        void _updateTimer_Tick(object sender, object e)
+        {
+            StopUpdating();
+            InitOnServer(false);
+        }
+
+        public void StopUpdating()
+        {
+            _updateTimer.Stop();
+        }
 
         protected override string GetNewPlayerName(PlayerType type)
         {return string.Format("{0} 1",PlayersLabel); }
@@ -330,11 +348,13 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         public override void SavePlayers()
         {
+            StopUpdating();
             RoamingSettings.SaveLastPlayer(SelectedPlayer.Player, 0);
         }
 
         public async override void StartGame()
         {
+            
             SavePlayers();
             SelectedPlayer.SelectedStyle = RoamingSettings.DiceStyle;
             var tableId = -1;
@@ -354,7 +374,7 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// When user enters lobby we ask server about its status and display this info for user
         /// </summary>
-        public async void InitOnServer()
+        public async void InitOnServer(bool showWait)
         {
             if (SelectedPlayer == null || BusyWithServer)
                 return;
@@ -368,14 +388,15 @@ namespace Sanet.Kniffel.ViewModels
             try
             {
                 InitService initService = new InitService();
-                BusyWithServer = true;
+                BusyWithServer = showWait;
                 var respond = await initService.InitPlayer(SelectedPlayer.Player.ID,_language[0]);
                 BusyWithServer = false;
+                
                 if (respond != null)
                 {
                     if (respond.IsServerOnline)
                     {
-                        ServerStatusMessage = string.Format("{0} ({1})", Messages.MP_SERVER_ONLINE.Localize(), respond.OnlinePlayersCount);
+                        ServerStatusMessage = string.Format("{0}", Messages.MP_SERVER_ONLINE.Localize());//, respond.OnlinePlayersCount
                         if (respond.IsClientUpdated)
                         {
                             ClientStatusMessage = Messages.MP_CLIENT_UPDATED.Localize();
@@ -419,6 +440,7 @@ namespace Sanet.Kniffel.ViewModels
                 LogManager.Log("NOGVM.InitOnServer", ex);
                 ClientServerStatusMessage = ex.Message;
             }
+            _updateTimer.Start();
         }
 
         #endregion

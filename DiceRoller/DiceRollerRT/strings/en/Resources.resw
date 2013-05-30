@@ -141,13 +141,13 @@
   <data name="FullHouse" xml:space="preserve">
     <value>Full House</value>
   </data>
-  <data name="AngHigh.Text" xml:space="preserve">
+  <data name="AngHighText" xml:space="preserve">
     <value>high</value>
   </data>
   <data name="LargeStraight" xml:space="preserve">
     <value>Large Straight</value>
   </data>
-  <data name="AngLow.Text" xml:space="preserve">
+  <data name="AngLowText" xml:space="preserve">
     <value>low</value>
   </data>
   <data name="OfAKind" xml:space="preserve">
@@ -180,7 +180,7 @@
   <data name="SpeedVeryFastText" xml:space="preserve">
     <value>very fast</value>
   </data>
-  <data name="AngVeryHigh.Text" xml:space="preserve">
+  <data name="AngVeryHighText" xml:space="preserve">
     <value>very high</value>
   </data>
   <data name="SpeedVerySlowText" xml:space="preserve">

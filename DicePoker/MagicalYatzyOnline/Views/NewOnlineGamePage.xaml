@@ -129,10 +129,10 @@
                            HorizontalAlignment="Left"
                    Foreground="{StaticResource SanetBlue}"
                    Text="{Binding StatusLabel}"
-                   Grid.Row="2"
+                   Grid.Row="4"
                    VerticalAlignment="Center"/>
                         
-                        <Grid Grid.Row="3"
+                        <Grid Grid.Row="5"
                               Margin="20,0,10,10"
                               Visibility="{Binding BusyWithServer,Converter={StaticResource ReversedVisibilityKey}}">
                             <Grid.RowDefinitions>
@@ -187,17 +187,17 @@
                         </Grid>
                         <ProgressRing IsActive="{Binding BusyWithServer}"
                                       Foreground="{StaticResource SanetBlue}"
-                                      Grid.Row="3"/>
+                                      Grid.Row="5"/>
 
                         <TextBlock Style="{StaticResource SubheaderTextStyle}"
                            HorizontalAlignment="Left"
                    Foreground="{StaticResource SanetBlue}"
                    Text="{Binding TablesLabel}"
-                   Grid.Row="4"
+                   Grid.Row="2"
                    VerticalAlignment="Center"/>
 
                         <GridView
-                            Grid.Row="5"
+                            Grid.Row="3"
                             Margin="20,0,10,10"
                             SelectionMode="Single"
                             IsItemClickEnabled="False"

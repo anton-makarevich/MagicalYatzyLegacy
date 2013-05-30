@@ -38,6 +38,16 @@ namespace Sanet.Kniffel.Controls
                 playViewModel.ChatModel.Messages.CollectionChanged += (s, args) => ScrollToBottom();
                 playViewModel.PropertyChanged += ChatControl_PropertyChanged;
             }
+            _scrollTimer.Tick += _scrollTimer_Tick;
+            
+        }
+
+        
+        void _scrollTimer_Tick(object sender, object e)
+        {
+            _scrollTimer.Stop();
+            var scrollViewer = messagesList.GetFirstDescendantOfType<ScrollViewer>();
+            scrollViewer.ScrollToVerticalOffset(scrollViewer.ScrollableHeight);
         }
 
         void ChatControl_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -45,21 +55,29 @@ namespace Sanet.Kniffel.Controls
             if (e.PropertyName=="ChatModel")
                 playViewModel.ChatModel.Messages.CollectionChanged += (s, args) => ScrollToBottom();
         }
-        
+
+        DispatcherTimer _scrollTimer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(500) };
         
         private void ScrollToBottom()
         {
-            var scrollViewer = messagesList.GetFirstDescendantOfType<ScrollViewer>();
-            scrollViewer.ScrollToVerticalOffset(scrollViewer.ScrollableHeight);
+            _scrollTimer.Start();
         }
 
         private void Grid_KeyUp_1(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == Windows.System.VirtualKey.Enter)
             {
+                playViewModel.ChatModel.CurrentMessage = chatTextField.Text;
                 playViewModel.ChatModel.SendHandler();
                 e.Handled = true;
             }
         }
+
+        private void UserControl_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (chatTextField.FocusState == Windows.UI.Xaml.FocusState.Unfocused)
+                chatTextField.Focus(Windows.UI.Xaml.FocusState.Programmatic);
+        }
+                
     }
 }

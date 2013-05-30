@@ -35,15 +35,17 @@ namespace Sanet.Kniffel.Models
                 vm = null;
                 
             }
+            
+            var gui = ViewModelProvider.GetNewViewModel<PlayGameViewModel>();
+            var p = ViewModelProvider.GetViewModel<NewOnlineGameViewModel>().SelectedPlayer;
 
             if (!WSServer.IsConnected)
             {
-                await WSServer.ConnectAsync();
+                await WSServer.ConnectAsync(p.Player.ID);
                 //WSServer.RefreshUserInfo(dataProvider.CurrentUserInfo.DisplayName);
             }
 
-            var gui = ViewModelProvider.GetNewViewModel<PlayGameViewModel>();
-            var p = ViewModelProvider.GetViewModel<NewOnlineGameViewModel>().SelectedPlayer;
+            
             
             KniffelGameClient game = WSServer.JoinTable(gameid,rule,p.Player,gui);
             if (game != null)

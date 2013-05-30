@@ -128,7 +128,7 @@
                     <TextBlock Style="{StaticResource SubheaderTextStyle}"
                                HorizontalAlignment="Left"
                            Foreground="{StaticResource SanetBlue}"
-                           x:Uid="SettingsSpeedCaption"
+                           Text="{Binding SettingsSpeedCaption}"
                            Grid.Row="0"
                                Grid.Column="1"
                            VerticalAlignment="Center"/>
@@ -140,7 +140,7 @@
                     IsChecked="{Binding IsSpeedVerySlow,Mode=TwoWay}">
                                 <TextBlock
                         Style="{StaticResource SettingsTextStyle}"
-                        x:Uid="SpeedVerySlow"
+                        Text="{Binding SpeedVerySlow}"
                         />
                     </ToggleButton>
                     <ToggleButton
@@ -148,7 +148,7 @@
             IsChecked="{Binding IsSpeedSlow,Mode=TwoWay}">
                         <TextBlock
                 Style="{StaticResource SettingsTextStyle}"
-                x:Uid="SpeedSlow"
+                Text="{Binding SpeedSlow}"
                 />
                     </ToggleButton>
                     <ToggleButton
@@ -156,7 +156,7 @@
             IsChecked="{Binding IsSpeedFast,Mode=TwoWay}">
                         <TextBlock
                 Style="{StaticResource SettingsTextStyle}"
-                x:Uid="SpeedFast"
+                Text="{Binding SpeedFast}"
             />
                     </ToggleButton>
                     <ToggleButton
@@ -165,7 +165,7 @@
             IsChecked="{Binding IsSpeedVeryFast,Mode=TwoWay}">
                         <TextBlock
                 Style="{StaticResource SettingsTextStyle}"
-               x:Uid="SpeedVeryFast"
+               Text="{Binding SpeedVeryFast}"
             />
                     </ToggleButton>
 
@@ -174,7 +174,7 @@
                 <TextBlock Style="{StaticResource SubheaderTextStyle}"
                                HorizontalAlignment="Left"
                            Foreground="{StaticResource SanetBlue}"
-                           x:Uid="SettingsAngleCaption"
+                           Text="{Binding SettingsAngleCaption}"
                            Grid.Row="0"
                                Grid.Column="2"
                            VerticalAlignment="Center"/>
@@ -186,7 +186,7 @@
                         IsChecked="{Binding IsAngLow,Mode=TwoWay}">
                                     <TextBlock
                             Style="{StaticResource SettingsTextStyle}"
-                            x:Uid="AngLow"
+                            Text="{Binding AngLowText}"
                             />
                     </ToggleButton>
                     <ToggleButton
@@ -194,7 +194,7 @@
                         IsChecked="{Binding IsAngHigh,Mode=TwoWay}">
                                     <TextBlock
                             Style="{StaticResource SettingsTextStyle}"
-                            x:Uid="AngHigh"
+                            Text="{Binding AngHighText}"
                             />
                     </ToggleButton>
                     <ToggleButton
@@ -202,7 +202,7 @@
                         IsChecked="{Binding IsAngVeryHigh,Mode=TwoWay}">
                                     <TextBlock
                             Style="{StaticResource SettingsTextStyle}"
-                            x:Uid="AngVeryHigh"
+                            Text="{Binding AngVeryHighText}"
                         />
                     </ToggleButton>
                     <StackPanel

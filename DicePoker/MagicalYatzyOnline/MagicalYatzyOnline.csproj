@@ -1729,8 +1729,9 @@
     <Reference Include="AdDuplex.Windows">
       <HintPath>..\DicePokerRT\packages\AdDuplexWindows.8.0.2.0\lib\winrt45\AdDuplex.Windows.dll</HintPath>
     </Reference>
-    <Reference Include="MarkedUp">
-      <HintPath>..\DicePokerRT\packages\MarkedUp.0.6.7\lib\winrt45\MarkedUp.winmd</HintPath>
+    <Reference Include="MarkedUp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DicePokerRT\packages\MarkedUp.1.0.0\lib\NetCore45\MarkedUp.winmd</HintPath>
     </Reference>
     <Reference Include="MyToolkit">
       <HintPath>..\DicePokerRT\packages\MyToolkit.1.13.0\lib\netcore45\MyToolkit.dll</HintPath>

@@ -81,6 +81,9 @@ namespace MagicalYatzyOnline
                 Window.Current.Content = rootFrame;
             }
 
+            //starting navigation tracking in MarkedUp
+            MarkedUp.AnalyticClient.RegisterNavigationFrame(rootFrame);
+
             if (rootFrame.Content == null)
             {
                 // When the navigation stack isn't restored navigate to the first page,

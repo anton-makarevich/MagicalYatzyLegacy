@@ -31,22 +31,19 @@ namespace Sanet.Network.Protocol
 
         protected bool m_IsConnected;
 
-        Uri ServerUri(bool isreconnect)
+        Uri ServerUri(string id,bool isreconnect)
         {
            
             string serveruri=@"ws://" + Config.GetHostName();
             //@"ws://pksvc45.cloudapp.net/
             string fulluri = serveruri + "app.ashx";
-            var p = RoamingSettings.GetLastPlayer(0).Player;
-            if (p != null)
-            {
-                fulluri += "?playerId=" + p.ID;
-                //fulluri += "&playername=" + p.Name;
-            }
-            //if (isreconnect)
-            //    fulluri += "&reconnect=1";
-            //else
-            //    fulluri += "&reconnect=0";
+            //var p = RoamingSettings.GetLastPlayer(0).Player;
+            fulluri += "?playerId=" + id;
+
+            if (isreconnect)
+                fulluri += "&reconnect=1";
+            else
+                fulluri += "&reconnect=0";
             
             LogManager.Log(LogLevel.Message, "TCPCommRT.ServerUri", "Server uri is {0}", fulluri);
             return new Uri(fulluri);
@@ -74,8 +71,8 @@ namespace Sanet.Network.Protocol
             // if( m_Socket != null )
             //   m_IsConnected = true;
         }
-
-        public async Task<bool> ConnectAsync(bool isreconnect = false)
+        string _lastId= string.Empty;
+        public async Task<bool> ConnectAsync(string id, bool isreconnect = false)
         {
             //await Window.Current.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
             //{
@@ -88,7 +85,8 @@ namespace Sanet.Network.Protocol
                     // Have we connected yet?
                     if (!IsConnected)
                     {
-                        var uri = ServerUri(isreconnect);
+                        _lastId = id;
+                        var uri = ServerUri(id,isreconnect);
                         webSocket = new MessageWebSocket();
                         webSocket.Control.MessageType = SocketMessageType.Utf8;
                         // Set up callbacks
@@ -173,7 +171,7 @@ namespace Sanet.Network.Protocol
 
             try
             {
-                Task t = ConnectAsync();
+                Task t = ConnectAsync(_lastId);
                 t.Wait();
 
                 return true;
@@ -264,11 +262,6 @@ namespace Sanet.Network.Protocol
             {
                 Close();
 
-                
-
-                //according to this work item
-                //"can we show pop, "connection to server lost" and auto move to main page"
-                //stop reconnection if 3 times failed
                 int reconnectionCounter = 0;
 
                 int waitTime = 1 * 1000;
@@ -284,7 +277,7 @@ namespace Sanet.Network.Protocol
                     {
                         LogManager.Log("TCPRT.waitInReconnect", ex);
                     }
-                    await ConnectAsync(true);
+                    await ConnectAsync(_lastId, true);
                     reconnectionCounter++;
                     if (reconnectionCounter > 3)
                     {

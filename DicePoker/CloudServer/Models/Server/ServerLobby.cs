@@ -132,7 +132,7 @@ namespace Sanet.Kniffel.Server
         public List<TupleTableInfo> GetTablesList()
         {
             List<TupleTableInfo> rv = new List<TupleTableInfo>();
-            rv.Add(new TupleTableInfo(-1, new List<string> { "???", "???", "???" }, Rules.krBaby));
+            rv.Add(new TupleTableInfo(-1, new List<string> { " ", " ", " " }, Rules.krBaby));
             var games = m_Games.Values.Where(f => f.PlayersNumber > 0 && f.PlayersNumber < 4).ToList();
             if (games.Count > 3)
                 games = games.Take(3).ToList();

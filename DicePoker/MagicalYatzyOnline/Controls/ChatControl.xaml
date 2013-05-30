@@ -7,9 +7,11 @@
     mc:Ignorable="d"
     d:DesignHeight="768"
     d:DesignWidth="1366"
-    KeyUp="Grid_KeyUp_1">
+    KeyUp="Grid_KeyUp_1"
+    >
 
-        <Grid >
+        <Grid 
+            >
             
                         <Grid.RowDefinitions>
                             <RowDefinition />
@@ -20,10 +22,15 @@
             <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="70*"/>
         </Grid.ColumnDefinitions>
-
-            <!--Players List-->
+        <Border
+            Grid.ColumnSpan="2"
+            BorderBrush="{StaticResource SanetBlue}"
+            BorderThickness="0,2,0,0"
+            />
+        <!--Players List-->
             <ListView
                 SelectionMode="None"
+                IsHitTestVisible="False"
                     ItemsSource="{Binding Players}"
                     ItemTemplate="{StaticResource ChatPlayerTemplate}"/>
 
@@ -37,17 +44,20 @@
             <!--Chat Input Panel-->
             <Grid 
                             Grid.Row="1"
-                Grid.ColumnSpan="2">
+                Grid.ColumnSpan="2"
+                KeyDown="UserControl_KeyDown">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="150"/>
                             </Grid.ColumnDefinitions>
                             <TextBox
+                                x:Name="chatTextField"
+                                AcceptsReturn="False"
                                 KeyUp="Grid_KeyUp_1"
-                            Height="40"
+                                 Height="40"
                         Text="{Binding CurrentMessage, Mode=TwoWay}"/>
                         <Button
-                                    IsEnabled="{Binding HasMoney}"
+                                                                IsEnabled="{Binding HasMoney}"
                             Content="{Binding SendLabel}"
                             Grid.Column="1"
                             Margin="10"

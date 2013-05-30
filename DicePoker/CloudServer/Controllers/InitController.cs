@@ -1,4 +1,5 @@
-﻿using Sanet.Kniffel.Server;
+﻿using Sanet;
+using Sanet.Kniffel.Server;
 using Sanet.Kniffel.WebApi;
 using Sanet.Network;
 using System;
@@ -24,6 +25,8 @@ namespace PokerServerService.Controllers
         public async Task<ServerHttpMessage> Get(string id)
         {
             //first check version virst
+            LogManager.Log(LogLevel.Message, "InitController", "Player {0} requested server status", id);
+
             var queryArgs = Request.RequestUri.ParseQueryString();
             if (queryArgs.Count == 2)
             {
@@ -37,6 +40,7 @@ namespace PokerServerService.Controllers
                 return respond;
                 
             }
+            
             return null;
         }
 

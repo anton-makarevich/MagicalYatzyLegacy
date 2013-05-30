@@ -21,9 +21,10 @@ namespace Sanet.Kniffel.ViewModels
             createCommands();
             m_Game = game;
             m_Game.OnChatMessage += m_Game_OnChatMessage;
+            m_Game.PlayerLeft+=m_Game_PlayerLeft;
         }
 
-       
+      
 
         #region Properties
             
@@ -100,10 +101,15 @@ namespace Sanet.Kniffel.ViewModels
                     //    Utilities.ShowToastNotification(string.Format("{0}: {1}",msg.SenderName,msg.Message));
 
                     NotifyPropertyChanged("Messages");
+                    NotifyPropertyChanged("Players");
                 }
             });
         }
 
+        void m_Game_PlayerLeft(object sender, PlayerEventArgs e)
+        {
+            NotifyPropertyChanged("Players");
+        }
 
         public void SendHandler()
         {

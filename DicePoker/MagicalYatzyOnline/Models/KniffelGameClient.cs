@@ -636,7 +636,7 @@ namespace Sanet.Kniffel.Models
                 player.Client = e.Command.PlayerClient;
                 player.Language = e.Command.PlayerLanguage;
                 player.SelectedStyle = e.Command.SelectedStyle;
-                player.Type = PlayerType.Network;
+                
                 JoinGame(player);
             }
             

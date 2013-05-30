@@ -19,7 +19,7 @@ namespace Sanet.Kniffel.ViewModels
 {
     public class PlayGameViewModel : AdBasedViewModel, IPlayGameView
     {
-
+        bool _isFirstGame = true;
         /// <summary>
         /// current player rolled dices
         /// </summary>
@@ -225,25 +225,25 @@ namespace Sanet.Kniffel.ViewModels
             get
             {
                 
-                if (CanRoll)
+                if (CanRoll || !IsOnlineGame)
                     return false;
 #if ONLINE
                 try
                 {
-                    var sp = Players.FirstOrDefault(f => f.Name == ((KniffelGameClient)Game).MyName);
+                    var sp = Players.FirstOrDefault(f => f.Name == Game.MyName);
                     if (sp == null)
                         return false;
-                    if (Game.Move < 2 && !sp.IsReady )//&& Game.Roll == 1
+                    if (Game.Move < 2 && !sp.IsReady && sp.Total==0 && _isFirstGame )//&& Game.Roll == 1
                     {
                         Title = "WaitForPlayersLabel".Localize();
                         return true;
                     }
-                    else
+                    else if (!sp.IsReady)
                         Title = "WaitForGameLabel".Localize();
                 }
                 catch(Exception ex)
                 {
-                    var t = ex.Message;
+                    LogManager.Log("PGVM.CanStart",ex);
                     return false;
                 }
 #endif
@@ -261,7 +261,7 @@ namespace Sanet.Kniffel.ViewModels
             {
                 if (Game.CurrentPlayer == null)
                     return null;
-                return Players.FirstOrDefault(f=>f.SeatNo==Game.CurrentPlayer.SeatNo);
+                return Players.FirstOrDefault(f=>f.Name==Game.CurrentPlayer.Name);
             }
         }
         /// <summary>
@@ -597,10 +597,11 @@ namespace Sanet.Kniffel.ViewModels
                     Game.PlayerRerolled -= Game_PlayerRerolled;
                     Game.StyleChanged -= Game_StyleChanged;
                 }
-                foreach (PlayerWrapper player in Players)
-                {
-                    player.Dispose();
-                }
+                if (Players!=null)
+                    foreach (PlayerWrapper player in Players)
+                    {
+                        player.Dispose();
+                    }
             }
             catch (Exception ex)
             {
@@ -792,6 +793,7 @@ namespace Sanet.Kniffel.ViewModels
         {
             SmartDispatcher.BeginInvoke(() =>
                     {
+                        _isFirstGame = false;
                         //Utilities.ShowToastNotification("GAMOVER vsem");
                         if (GameFinished != null)
                             GameFinished(null, e);
@@ -901,7 +903,10 @@ namespace Sanet.Kniffel.ViewModels
         {
             SmartDispatcher.BeginInvoke(() =>
                     {
+
                         if (!IsPlayerSelected)
+                            _CanRoll = false;
+                        else if (IsOnlineGame && SelectedPlayer.Name != Game.MyName)
                             _CanRoll = false;
                         else if (!SelectedPlayer.IsHuman || !SelectedPlayer.IsReady)
                             _CanRoll = false;
@@ -976,7 +981,7 @@ namespace Sanet.Kniffel.ViewModels
                             addartifacts = 100;
                         else if (p.Total > 600)
                             addartifacts = 30;
-                        else if (p.Total > 50)
+                        else if (p.Total > 500)
                             addartifacts = 10;
                         if (addartifacts > 0)
                         {

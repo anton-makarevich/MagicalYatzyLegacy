@@ -141,13 +141,13 @@
   <data name="FullHouse" xml:space="preserve">
     <value>Фулл Хаус</value>
   </data>
-  <data name="AngHigh.Text" xml:space="preserve">
+  <data name="AngHighText" xml:space="preserve">
     <value>высоко</value>
   </data>
   <data name="LargeStraight" xml:space="preserve">
     <value>Ладж Стрит</value>
   </data>
-  <data name="AngLow.Text" xml:space="preserve">
+  <data name="AngLowText" xml:space="preserve">
     <value>низко</value>
   </data>
   <data name="OfAKind" xml:space="preserve">
@@ -180,7 +180,7 @@
   <data name="SpeedVeryFastText" xml:space="preserve">
     <value>очень быстро</value>
   </data>
-  <data name="AngVeryHigh.Text" xml:space="preserve">
+  <data name="AngVeryHighText" xml:space="preserve">
     <value>очень высоко</value>
   </data>
   <data name="SpeedVerySlowText" xml:space="preserve">
