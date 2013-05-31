@@ -687,7 +687,8 @@ namespace Sanet.Kniffel.ViewModels
                             p.Dispose();
                             p = null;
                             NotifyPropertyChanged("Players");
-                            
+                            NotifyPropertyChanged("DicePanelRTWidth");
+                            //?NotifyPropertyChanged("CanStart");
                         }
                     });
         }

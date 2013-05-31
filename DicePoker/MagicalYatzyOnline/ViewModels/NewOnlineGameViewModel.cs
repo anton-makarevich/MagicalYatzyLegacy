@@ -284,23 +284,19 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// fills players list
         /// </summary>
-        protected override async void FillPlayers()
+        protected override void FillPlayers()
         {
             Players = new ObservableCollection<PlayerWrapper>();
-            var p = RoamingSettings.GetLastPlayer(0);
+            var p = RoamingSettings.GetLastPlayer(5);
             if (p.Player == null)
             {
-                //get username from system
-                string userName = await UserInformation.GetDisplayNameAsync();
-                if (string.IsNullOrEmpty(userName))
-                    userName = await UserInformation.GetFirstNameAsync() + await UserInformation.GetFirstNameAsync();
-                //if no luck - add default name
-                if (string.IsNullOrEmpty(userName))
-                    userName = GetNewPlayerName(PlayerType.Local);
+                
+                var    userName = GetNewPlayerName(PlayerType.Local);
                 p = new PlayerWrapper(new Player())
                 {
-                    Name = userName,
-                    Type = PlayerType.Local
+                    Type = PlayerType.Local,
+                    Profile = ProfileType.Facebook,
+                    Name=userName
                 };
                
             }
@@ -308,6 +304,7 @@ namespace Sanet.Kniffel.ViewModels
             p.MagicPressed += p_MagicPressed;
             p.ArtifactsSyncRequest += ArtifactsSyncRequest;
             p.PropertyChanged += p_PropertyChanged;
+            p.FacebookClicked += p_FacebookClicked;
             p.IsBotPossible = false;
             p.IsHuman = true;
             p.Player.Client = Config.GetClientType();
@@ -315,6 +312,11 @@ namespace Sanet.Kniffel.ViewModels
             Players.Add(p);
             SelectedPlayer = p;
             
+        }
+
+        void p_FacebookClicked(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         void p_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -335,7 +337,11 @@ namespace Sanet.Kniffel.ViewModels
         }
 
         protected override string GetNewPlayerName(PlayerType type)
-        {return string.Format("{0} 1",PlayersLabel); }
+        {
+            return Player.GetDeafaultPlayerName(); 
+
+        }
+
 
         protected override void NotifyPlayersChanged()
         {
@@ -349,7 +355,9 @@ namespace Sanet.Kniffel.ViewModels
         public override void SavePlayers()
         {
             StopUpdating();
-            RoamingSettings.SaveLastPlayer(SelectedPlayer.Player, 0);
+            RoamingSettings.SaveLastPlayer(SelectedPlayer.Player, 5);
+            if (SelectedRule != null)
+                RoamingSettings.LastRule = SelectedRule.Rule.Rule;
         }
 
         public async override void StartGame()

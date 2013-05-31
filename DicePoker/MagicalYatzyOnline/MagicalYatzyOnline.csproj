@@ -1240,6 +1240,7 @@
     <Content Include="..\DicePokerRT\Audio\wrong.mp3">
       <Link>Audio\wrong.mp3</Link>
     </Content>
+    <Content Include="Assets\Facebook_tile.png" />
     <None Include="MagicalYatzyOnline_StoreKey.pfx" />
     <None Include="Package.StoreAssociation.xml" />
     <None Include="Service References\KniffelLeaderBoardService\Reference.svcmap">
@@ -1568,6 +1569,10 @@
       <DependentUpon>ChatControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DicePanel\DiceStyle.cs" />
+    <Compile Include="Common\Facebook\FacebookFriendship.cs" />
+    <Compile Include="Common\Facebook\FacebookInfo.cs" />
+    <Compile Include="Common\Facebook\FacebookUserInfo.cs" />
+    <Compile Include="Models\Enums\ProfileType.cs" />
     <Compile Include="Models\InstanceKeeper.cs" />
     <Compile Include="Models\Interfaces\IRollResult.cs" />
     <Compile Include="Models\Interfaces\IPlayer.cs" />
@@ -1585,11 +1590,15 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ChatViewModel.cs" />
+    <Compile Include="ViewModels\FacebookViewModel.cs" />
     <Compile Include="ViewModels\PlayerWrapper.cs" />
     <Compile Include="ViewModels\NewOnlineGameViewModel.cs" />
     <Compile Include="ViewModels\RollResultWrapper.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FacebookPage.xaml.cs">
+      <DependentUpon>FacebookPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
@@ -1696,6 +1705,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\FacebookPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\GamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1728,6 +1741,12 @@
   <ItemGroup>
     <Reference Include="AdDuplex.Windows">
       <HintPath>..\DicePokerRT\packages\AdDuplexWindows.8.0.2.0\lib\winrt45\AdDuplex.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook">
+      <HintPath>..\DicePokerRT\packages\Facebook.6.3.2\lib\win8\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook.Client">
+      <HintPath>..\DicePokerRT\packages\Facebook.Client.0.5.0-alpha\lib\win8\Facebook.Client.dll</HintPath>
     </Reference>
     <Reference Include="MarkedUp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

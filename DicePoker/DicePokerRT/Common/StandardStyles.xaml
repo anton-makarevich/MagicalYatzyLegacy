@@ -2457,9 +2457,37 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
                 <ColumnDefinition Width="80"/>
             </Grid.ColumnDefinitions>
             <Controls:RotatingPanel
+                              x:Name="ProfilePanel" Width="100" Height="100" Background="Blue" Tag="Type"
+                                    Grid.Column="0" IsFace="{Binding IsLocalProfile, Mode=TwoWay}" Margin="5,0" >
+                <!---->
+                 <Grid Background="{StaticResource SanetBlue}" 
+                      Visibility="{Binding IsFace,ElementName=ProfilePanel,Converter={StaticResource ReversedVisibilityKey}}" >
+                            <Image Source="ms-appx:///Assets/facebook_tile.png"
+                                   Opacity="0.9"/>
+                           <TextBlock VerticalAlignment="Bottom"
+                                       Margin="2"
+                                       Text="Facebook"/>
+                        </Grid>
+                    
+                <Grid Visibility="{Binding IsFace,ElementName=ProfilePanel,Converter={StaticResource VisibilityKey}}"
+                            Background="{StaticResource SanetBlue}">
+                             <Image Source="ms-appx:///Assets/Desktop.png"
+                                    Opacity="0.9"/>
+                             <TextBlock VerticalAlignment="Bottom"
+                                       Margin="2"
+                                       Text="{Binding LocalProfileLabel}"/>
+                            
+                        </Grid>
+                               
+            </Controls:RotatingPanel>
+            
+            <Controls:RotatingPanel
+                Visibility="{Binding IsLocalProfile,Converter={StaticResource VisibilityKey}}"
+                Grid.Column="1"
                 x:Name="NamePanel" Width="100" Height="100" Background="Blue"
                                     Margin="5,0">
                 <Grid Background="{StaticResource SanetBlue}" 
@@ -2489,11 +2517,41 @@
                      Height="30"/>
                 </Grid>
             </Controls:RotatingPanel>
+            <Button
+            Margin="5,0"
+                 Height="100"
+                 Width="100"
+                Grid.Column="1"
+                Visibility="{Binding IsFacebookProfile,Converter={StaticResource VisibilityKey}}"
+            Style="{StaticResource ImageButtonStyle}"
+                HorizontalContentAlignment="Center"
+                VerticalAlignment="Center"
+                
+                ><!--Command="{Binding FacebookCommand}"-->
+            <Grid
+                         Height="100"
+                 Width="100"
+                         Background="{StaticResource SanetBlue}">
+                    <TextBlock Text="{Binding FacebookLoginLabel}"
+                           VerticalAlignment="Top" Margin="2"
+                           Foreground="White" TextWrapping="Wrap"
+                           />
+                
+
+                <TextBlock Text="{Binding FacebookName}"
+                           VerticalAlignment="Bottom" Margin="2"
+                           Foreground="White" TextWrapping="Wrap"
+                           />
+            </Grid>
+
+        </Button>
             
             <Controls:RotatingPanel
+                Visibility="{Binding IsLocalProfile,Converter={StaticResource VisibilityKey}}"
                 x:Name="PassPanel" Width="100" Height="100" Background="Blue"
                 IsFace="{Binding IsPasswordReady, Mode=TwoWay}"
-                                    Margin="5,0" Grid.Column="1" Visibility="{Binding IsHuman,Converter={StaticResource VisibilityKey}}">
+                                    Margin="5,0" 
+                Grid.Column="2">
                 <Grid Background="{StaticResource SanetBlue}"
                       Visibility="{Binding IsFace,ElementName=PassPanel,Converter={StaticResource VisibilityKey}}">
                     <Border 
@@ -2531,7 +2589,7 @@
             Margin="5,0"
                  Height="100"
                  Width="100"
-                Grid.Column="2"
+                Grid.Column="3"
                  Tapped="Magic_Tap"
                  Visibility="{Binding IsHuman,Converter={StaticResource VisibilityKey}}"
             Style="{StaticResource ImageButtonStyle}"
@@ -2600,18 +2658,13 @@
                 <TextBlock Text="{Binding ArtifactsLabelLocalized}"
                            VerticalAlignment="Bottom" Margin="2"
                            Foreground="White" TextWrapping="Wrap"
+                           Visibility="{Binding HasArtifacts,Converter={StaticResource VisibilityKey}}"
                            />
             </Grid>
 
         </Button>
 
-        <Button  HorizontalAlignment="Left" 
-                     VerticalAlignment="Bottom"
-                     Grid.Column="3"
-                     AutomationProperties.Name="{Binding DeleteLabel}"
-                    Visibility="{Binding IsDeleteable, Converter={StaticResource VisibilityKey}}"  
-                    Style="{StaticResource DeleteAppBarButtonStyle}"
-                            Command="{Binding DeleteCommand}"/>
+        
         </Grid>
 
     </DataTemplate>

@@ -35,6 +35,8 @@ namespace Sanet.Kniffel.Models
                     player.Password = (string)value["strPass"];
                 if (value != null && value.ContainsKey("strType"))
                     player.Type = (PlayerType)Enum.Parse(typeof(PlayerType), (string)value["strType"]);
+                if (value != null && value.ContainsKey("strProfile"))
+                    player.Profile = (ProfileType)Enum.Parse(typeof(ProfileType), (string)value["strProfile"]);
                 if (value != null && value.ContainsKey("boolPass"))
                     player.RememberPass = (bool)value["boolPass"];
             }
@@ -54,7 +56,9 @@ namespace Sanet.Kniffel.Models
                 value["strName"] = player.Name;
                 value["strPass"] = player.Password;
                 value["strType"] = player.Type.ToString();
+                value["strProfile"] = player.Profile.ToString();
                 value["boolPass"] = player.RememberPass;
+
                 roamingSettings.Values[valueKey] = value;
             }
             else

@@ -738,4 +738,19 @@
   <data name="ShareMessage" xml:space="preserve">
     <value>Присоединяйся ко мне в этой онлайн игре!</value>
   </data>
+  <data name="LocalLabel" xml:space="preserve">
+    <value>Локальный</value>
+  </data>
+  <data name="ProfileLabel" xml:space="preserve">
+    <value>Профиль</value>
+  </data>
+  <data name="LoginLabel" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="LogoutLabel" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="LoginToFBLabel" xml:space="preserve">
+    <value>Войдите в Facebook</value>
+  </data>
 </root>

@@ -23,6 +23,7 @@ namespace Sanet.Kniffel.ViewModels
         public event EventHandler MagicPressed;
         public event EventHandler ArtifactsSyncRequest;
         public event EventHandler DeletePressed;
+        public event EventHandler FacebookClicked;
         
 
         public PlayerWrapper(Player player)
@@ -436,6 +437,27 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
+        public string FacebookLoginLabel
+        {
+            get
+            {
+                return (IsDefaultName) ?
+                    "LoginLabel".Localize() :
+                    "LogoutLabel".Localize();
+
+            }
+        }
+
+        public string FacebookName
+        {
+            get
+            {
+                return
+                    (IsDefaultName) ? "" :
+                    Name;
+            }
+        }
+
         /// <summary>
         /// Label for 'Human'
         /// </summary>
@@ -514,6 +536,14 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
         
+        public string ChangeNameLabel
+        {
+            get
+            {
+                return (IsLocalProfile) ? "ChangeNameLabel".Localize() :
+                    "LoginToFBLabel".Localize();
+            }
+        }
 
         public void RefreshArtifactsInfo(bool aftersync = false, bool forcesync = false)
         {
@@ -532,7 +562,7 @@ namespace Sanet.Kniffel.ViewModels
 
                     if (IsDefaultName)
                     {
-                        ArtifactsInfoMessage = "ChangeNameLabel".Localize();
+                        ArtifactsInfoMessage = ChangeNameLabel;
                         return;
                     }
                     if (string.IsNullOrEmpty(Password))
@@ -663,9 +693,72 @@ namespace Sanet.Kniffel.ViewModels
                 return Messages.PLAYER_SAVE_SCORE.Localize();
             }
         }
+                
+        public ProfileType Profile
+        {
+            get { return _Player.Profile; }
+            set
+            {
+                if (_Player.Profile != value)
+                {
+                    _Player.Profile = value;
+                    NotifyPropertyChanged("Profile");
+                    NotifyPropertyChanged("IsLocalProfile");
+                    NotifyPropertyChanged("IsFacebookProfile");
+                    NotifyPropertyChanged("Name");
+                    NotifyPropertyChanged("Password");
+                    NotifyPropertyChanged("FacebookName");
+                    NotifyPropertyChanged("FacebookLoginLabel");
+                    NotifyPropertyChanged("HasArtifacts");
+                    
+                }
+            }
+        }
 
+        public bool IsLocalProfile
+        {
+            get
+            {
+                return Profile == ProfileType.Local;
+            }
+            set
+            {
+                if (value)
+                    Profile = ProfileType.Local;
+                else
+                    Profile = ProfileType.Facebook;
+            }
+        }
+        public bool IsFacebookProfile
+        {
+            get
+            {
+                return Profile == ProfileType.Facebook;
+            }
+            set
+            {
+                if (value)
+                    Profile = ProfileType.Facebook;
+                else
+                    Profile = ProfileType.Local;
+            }
+        }
 
+        public string LocalProfileLabel
+        {
+            get
+            {
+                return "LocalLabel".Localize();
+            }
+        }
 
+        public string ProfileLabel
+        {
+            get
+            {
+                return "ProfileLabel".Localize();
+            }
+        }
 
         public int Total { get { return _Player.Total; } }
         public int TotalNumeric { get {return _Player.TotalNumeric; } }
@@ -840,17 +933,25 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
+        private void OnFBTapped()
+        {
+            if (FacebookClicked != null)
+                FacebookClicked(this,null);
+        }
+
         #endregion
 
 
         #region Commands
         public RelayCommand DeleteCommand { get; set; }
         public RelayCommand MagicCommand { get; set; }
+        public RelayCommand FBCommand { get; set; }
 
         protected void CreateCommands()
         {
             DeleteCommand = new RelayCommand(o => Delete(), () => true);
             MagicCommand = new RelayCommand(o => OnMagicPressed(), () => true);
+            FBCommand = new RelayCommand(o => OnFBTapped(), () => true);
         }
 
 

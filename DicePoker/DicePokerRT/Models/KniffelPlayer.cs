@@ -18,31 +18,41 @@ namespace Sanet.Kniffel.Models
         /// Player display name
         /// </summary>
         string _Name;
+        string _FBName;
         public string Name
         {
             get
             {
-                return _Name;
+                var name=(Profile== ProfileType.Local)? _Name:_FBName;
+                if (string.IsNullOrEmpty(name))
+                    name = GetDeafaultPlayerName();
+                return name;
             }
             set
             {
-                _Name = value;
-               
+                if (Profile == ProfileType.Local)
+                    _Name = value;
+                else
+                    _FBName = value;
             }
         }
         /// <summary>
         /// Player Password
         /// </summary>
         string _Password;
+        string _FBPassword;
         public string Password 
         {
             get
             {
-                return _Password;
+                return (Profile== ProfileType.Local)?_Password:_FBPassword;
             }
             set
             {
-                _Password = value;
+                if (Profile== ProfileType.Local)
+                    _Password = value;
+                else
+                   _FBPassword=value;
                 
             }   
         }
@@ -61,6 +71,8 @@ namespace Sanet.Kniffel.Models
 
         public DiceStyle SelectedStyle { get; set; }
 
+        public ProfileType Profile{get;set;}
+        
         /// <summary>
         /// Player ID (GUID?)
         /// </summary>
@@ -250,6 +262,8 @@ namespace Sanet.Kniffel.Models
         {
             get
             {
+                if (string.IsNullOrEmpty(Name))
+                    return true;
                 var nameparts = Name.Split(' ');
                 if (nameparts.Length == 2 && nameparts[0].ToLower() == Messages.PLAYER_NAME_DEFAULT.Localize().ToLower())
                 {
@@ -366,6 +380,14 @@ namespace Sanet.Kniffel.Models
         
 
         #endregion
+
+        #region Static Methods
+        public static string GetDeafaultPlayerName()
+        { 
+            return string.Format("{0} 1",Messages.PLAYER_NAME_DEFAULT.Localize());
+        }
+#endregion
+
 
         #region Methods
         /// <summary>
