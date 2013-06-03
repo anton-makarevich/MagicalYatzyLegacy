@@ -20,6 +20,7 @@ namespace Sanet.Kniffel.ViewModels
         protected Popup _magicPopup = new Popup();
         protected MagicRoomPage _magic = new MagicRoomPage();
 
+        
         #region Constructor
         public NewGameViewModelBase()
         {

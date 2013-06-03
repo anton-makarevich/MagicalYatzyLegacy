@@ -20,6 +20,11 @@ namespace Sanet.Kniffel.ViewModels
 {
     public class NewOnlineGameViewModel : NewGameViewModelBase
     {
+        Popup _facebookPopup = new Popup();
+        FacebookPage _facebook = new FacebookPage();
+
+        public event EventHandler PasswordTapped;
+        public event EventHandler NameTapped;
 
         string[] _language = Windows.System.UserProfile.GlobalizationPreferences.Languages[0].Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -33,10 +38,16 @@ namespace Sanet.Kniffel.ViewModels
             :base()
         {
             _updateTimer.Tick += _updateTimer_Tick;
+
+            _facebookPopup.Child = _facebook;
+            _facebook.Tag = _facebookPopup;
+            _facebookPopup.Closed += _facebookPopup_Closed;
+
             CreateCommands();
             FillPlayers();
         }
 
+        
         
         #endregion
 
@@ -316,13 +327,51 @@ namespace Sanet.Kniffel.ViewModels
 
         void p_FacebookClicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            _facebookPopup.IsOpen = true;
+            _facebook.IsOk = false;
+            if (SelectedPlayer.IsDefaultName)
+                _facebook.LogIn();
+            else
+                _facebook.LogOut();
+            
         }
+
+        void _facebookPopup_Closed(object sender, object e)
+        {
+            if (SelectedPlayer.IsLocalProfile)
+                return;
+            if (_facebook.IsOk)
+            {
+                SelectedPlayer.Name = ViewModelProvider.GetViewModel<FacebookViewModel>().Name;
+                SelectedPlayer.Password = Player.FB_PREFIX+ ViewModelProvider.GetViewModel<FacebookViewModel>().FacebookId;
+                
+            }
+            else
+            {
+                SelectedPlayer.Name = "";
+                SelectedPlayer.Password = "";
+                
+            }
+            SelectedPlayer.RefreshArtifactsInfo();
+            SavePlayers();
+        }
+
+        
 
         void p_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName=="Password" ||e.PropertyName=="Name")
                 NotifyPropertyChanged("IsReadyToPlay");
+            if (e.PropertyName == "IsPasswordReady")
+            {
+                if (PasswordTapped != null)
+                    PasswordTapped(sender, null);
+            }
+            if (e.PropertyName == "IsNameOpened")
+            {
+                if (NameTapped != null)
+                    NameTapped(sender, null);
+            }
         }
 
         void _updateTimer_Tick(object sender, object e)
@@ -386,6 +435,8 @@ namespace Sanet.Kniffel.ViewModels
         {
             if (SelectedPlayer == null || BusyWithServer)
                 return;
+
+            SelectedPlayer.RefreshArtifactsInfo();
 
             if (!InternetCheker.IsInternetAvailable())
             {

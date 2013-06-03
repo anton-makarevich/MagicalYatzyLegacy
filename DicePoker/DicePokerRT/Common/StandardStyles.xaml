@@ -133,6 +133,11 @@
         <Setter Property="FontWeight" Value="Normal"/>
     </Style>
 
+    <Style x:Key="PlayerTitleTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BaselineTextStyle}">
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+
     <Style x:Key="ItemTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BaselineTextStyle}"/>
 
     <Style x:Key="BodyTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BaselineTextStyle}">
@@ -2055,7 +2060,7 @@
                             </Triggers:PropertySetTrigger>
 
                         </Triggers:Interactions.Triggers>
-                        
+                        <Image Source="{Binding ProfilePhoto}"/>
                         
                         <TextBlock
                                   x:Name="textBlock"
@@ -2526,12 +2531,13 @@
             Style="{StaticResource ImageButtonStyle}"
                 HorizontalContentAlignment="Center"
                 VerticalAlignment="Center"
-                
-                ><!--Command="{Binding FacebookCommand}"-->
+                Command="{Binding FBCommand}"
+                ><!---->
             <Grid
                          Height="100"
                  Width="100"
                          Background="{StaticResource SanetBlue}">
+                    <Image Source="{Binding ProfilePhoto}"/>
                     <TextBlock Text="{Binding FacebookLoginLabel}"
                            VerticalAlignment="Top" Margin="2"
                            Foreground="White" TextWrapping="Wrap"

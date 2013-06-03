@@ -6,6 +6,8 @@ using Sanet.Models;
 using System;
 using System.Collections.Generic;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 namespace Sanet.Kniffel.ViewModels
 {
     public class PlayerWrapper:BaseViewModel,IPlayer
@@ -319,6 +321,25 @@ namespace Sanet.Kniffel.ViewModels
             }
         }
 
+        /// <summary>
+        /// Fake property to check if rotating panel is opened
+        /// </summary>
+        private bool _IsNameOpened;
+        public bool IsNameOpened
+        {
+            get { return _IsNameOpened; }
+            set
+            {
+                if (_IsNameOpened != value)
+                {
+                    _IsNameOpened = value;
+                    NotifyPropertyChanged("IsNameOpened");
+                }
+            }
+        }
+
+
+
         public bool IsReady
         {
             get
@@ -359,6 +380,8 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
+                if (this.Player == null || string.IsNullOrEmpty(this.Player.Password))
+                    return 0;
                 var res=RoamingSettings.GetMagicRollsCount(this.Player);
                 if (res<0) res=0;
                 return res;
@@ -368,6 +391,8 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
+                if (this.Player == null || string.IsNullOrEmpty(this.Player.Password))
+                    return 0;
                 var res = RoamingSettings.GetManualSetsCount(this.Player);
                 if (res < 0) res = 0;
                 return res;
@@ -377,6 +402,8 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
+                if (this.Player == null || string.IsNullOrEmpty(this.Player.Password))
+                    return 0;
                 var res = RoamingSettings.GetForthRollsCount(this.Player);
                 if (res < 0) res = 0;
                 return res;
@@ -399,8 +426,13 @@ namespace Sanet.Kniffel.ViewModels
             {
                 _Player.Name = value;
                 Password = "";
+                _Player.PicUrl = "";
+                _ProfilePhoto = null;
                 NotifyPropertyChanged("Name");
                 NotifyPropertyChanged("IsDefaultName");
+                NotifyPropertyChanged("FacebookName");
+                NotifyPropertyChanged("ProfilePhoto");
+                NotifyPropertyChanged("FacebookLoginLabel"); 
                 ArtifactsInfoMessage = "ChangePasswordLabel".Localize();
                 //RememberPass = false;
                 HadStartupMagic = false;
@@ -434,6 +466,7 @@ namespace Sanet.Kniffel.ViewModels
                 NotifyPropertyChanged("Password");
                 NotifyPropertyChanged("HasPassword");
                 NotifyPropertyChanged("PlayerPasswordLabelLocalized");
+                NotifyPropertyChanged("ProfilePhoto");
             }
         }
 
@@ -705,6 +738,8 @@ namespace Sanet.Kniffel.ViewModels
                     NotifyPropertyChanged("Profile");
                     NotifyPropertyChanged("IsLocalProfile");
                     NotifyPropertyChanged("IsFacebookProfile");
+                    NotifyPropertyChanged("HasPassword");
+                    NotifyPropertyChanged("IsDefaultName");
                     NotifyPropertyChanged("Name");
                     NotifyPropertyChanged("Password");
                     NotifyPropertyChanged("FacebookName");
@@ -776,6 +811,19 @@ namespace Sanet.Kniffel.ViewModels
                 NotifyPropertyChanged("IsBot");
                 NotifyPropertyChanged("IsHuman");
             }
+        }
+
+        ImageSource _ProfilePhoto;
+        public ImageSource ProfilePhoto
+        {
+            get
+            {
+                if (Player.PicUrl!="na" )
+                    _ProfilePhoto = new BitmapImage(new Uri(Player.PicUrl));
+                
+                return _ProfilePhoto;
+            }
+
         }
 
         /// <summary>

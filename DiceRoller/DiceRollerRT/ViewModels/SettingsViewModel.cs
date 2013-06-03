@@ -23,6 +23,17 @@ namespace Sanet.Kniffel.ViewModels
         }
 
         #region bind props
+        /// <summary>
+        /// Page title
+        /// </summary>
+        public string Title
+        {
+            get
+            {
+                return "SettingsCaptionText".Localize();
+            }
+        }
+
         public string SettingsStyleCaption
         {
             get

@@ -745,10 +745,10 @@
     <value>Профиль</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
-    <value>Войти</value>
+    <value>Нажмите, чтобы войти</value>
   </data>
   <data name="LogoutLabel" xml:space="preserve">
-    <value>Выйти</value>
+    <value>Нажмите, чтобы выйти</value>
   </data>
   <data name="LoginToFBLabel" xml:space="preserve">
     <value>Войдите в Facebook</value>

@@ -56,7 +56,7 @@
                    Foreground="{StaticResource SanetBlue}"
                    x:Name="titleText"
                            VerticalAlignment="Center"
-                   x:Uid="SettingsCaption"
+                   Text="{Binding Title}"
                            TextTrimming="WordEllipsis"
                   />
                 <ad:AdControl 

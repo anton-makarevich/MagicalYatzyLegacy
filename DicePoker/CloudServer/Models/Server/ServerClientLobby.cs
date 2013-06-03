@@ -112,6 +112,8 @@ namespace Sanet.Kniffel.Server
             Player player = new Player();
             player.Name = e.Command.PlayerName;
             player.Password = e.Command.PlayerPass;
+            if (player.Password.StartsWith(Player.FB_PREFIX))
+                player.PicUrl = string.Format("https://graph.facebook.com/{0}/picture", player.Password.Replace(Player.FB_PREFIX, ""));
             player.Language = e.Command.PlayerLanguage;
             player.Client = e.Command.PlayerClient;
             player.SelectedStyle = e.Command.SelectedStyle;

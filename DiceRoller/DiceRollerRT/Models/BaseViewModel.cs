@@ -40,6 +40,7 @@ namespace Sanet.Models
         protected MediaElement _player = new MediaElement();
         public virtual void Dispose()
         {
+            if (_player!=null)
              _player = null;
         }
     }

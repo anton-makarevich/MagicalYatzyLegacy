@@ -29,14 +29,16 @@ namespace Sanet.Kniffel.Models
             {
                 ApplicationDataCompositeValue value = (ApplicationDataCompositeValue)roamingSettings.Values[valueKey];
                 player = new Player();
+                if (value != null && value.ContainsKey("strProfile"))
+                    player.Profile = (ProfileType)Enum.Parse(typeof(ProfileType), (string)value["strProfile"]);
                 if (value != null && value.ContainsKey("strName"))
                     player.Name=  (string)value["strName"];
                 if (value != null && value.ContainsKey("strPass"))
                     player.Password = (string)value["strPass"];
+                if (value != null && value.ContainsKey("strPicUrl"))
+                    player.PicUrl = (string)value["strPicUrl"];
                 if (value != null && value.ContainsKey("strType"))
                     player.Type = (PlayerType)Enum.Parse(typeof(PlayerType), (string)value["strType"]);
-                if (value != null && value.ContainsKey("strProfile"))
-                    player.Profile = (ProfileType)Enum.Parse(typeof(ProfileType), (string)value["strProfile"]);
                 if (value != null && value.ContainsKey("boolPass"))
                     player.RememberPass = (bool)value["boolPass"];
             }
@@ -55,6 +57,7 @@ namespace Sanet.Kniffel.Models
                 ApplicationDataCompositeValue value = new ApplicationDataCompositeValue();
                 value["strName"] = player.Name;
                 value["strPass"] = player.Password;
+                value["strPicUrl"] = player.PicUrl;
                 value["strType"] = player.Type.ToString();
                 value["strProfile"] = player.Profile.ToString();
                 value["boolPass"] = player.RememberPass;

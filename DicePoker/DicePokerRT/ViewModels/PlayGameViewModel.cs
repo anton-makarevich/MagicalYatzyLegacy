@@ -175,6 +175,8 @@ namespace Sanet.Kniffel.ViewModels
             {
                 if (_Players == null)
                 {
+                    if (Game == null)
+                        return null;
                     if (Game.Players == null)
                         return null;
                     
@@ -224,10 +226,15 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                
+                if (Game == null)
+                    return false;
+                if (string.IsNullOrEmpty(Game.MyName))
+                    return false;
                 if (CanRoll || !IsOnlineGame)
                     return false;
-#if ONLINE
+                if (Players == null || Players.Count == 0)
+                    return false;
+
                 try
                 {
                     var sp = Players.FirstOrDefault(f => f.Name == Game.MyName);
@@ -246,8 +253,7 @@ namespace Sanet.Kniffel.ViewModels
                     LogManager.Log("PGVM.CanStart",ex);
                     return false;
                 }
-#endif
-                   
+ 
                 return false;
             }
         }

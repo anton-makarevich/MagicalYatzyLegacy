@@ -31,7 +31,7 @@ namespace PokerServerService.Controllers
                 float version;
                 if (!string.IsNullOrEmpty(versionStr))
                 {
-                    if (float.TryParse(versionStr, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out version) && version >= 2.0f)
+                    if (float.TryParse(versionStr, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out version) && version >= 2.02f)
                     {
 
                         return new ServerHttpMessage()
@@ -71,22 +71,22 @@ namespace PokerServerService.Controllers
                 //    return "Вітаем у гульні \"Магічны Yatzy Online!\". Анлайн гульня пакуль у бэце. Калі ласка паведамляйце аб любых праблемах. Длякуй!";
                 //default:
                 //    return "Welcome to \"Magical Yatzy Online\" Game! Warning! Current version has a serious bug. Patch is ready and in certification now!";
-                //case "ru":
-                //    return "Приветствуем в игре \"Магический Yatzy Online!\". Сетевая игра пока еще в бета стадии. Мы будем признательны за информацию о любых ошибках. Спасибо!";
-                //case "de":
-                //    return "Willkommen in \"Magical Yatzy Online\"! Das Multiplayer-Online-Spiel ist im Beta. Leider können noch Fehler auftreten. Wir sind dankbar für jede Information darüber. Danke!";
-                //case "by":
-                //    return "Вітаем у гульні \"Магічны Yatzy Online!\". Анлайн гульня пакуль у бэце. Калі ласка паведамляйце аб любых праблемах. Длякуй!";
-                //default:
-                //    return "Welcome to \"Magical Yatzy Online\" Game! Multiplayer game is still in beta. We appriciate your help in reporting any issues with the game. Thank you!";
                 case "ru":
-                    return "Приветствуем в игре \"Магический Yatzy Online!\"";
+                    return "Приветствуем в игре \"Магический Yatzy Online!\". Сетевая игра пока еще в бета стадии. Мы будем признательны за информацию о любых ошибках. Спасибо!";
                 case "de":
-                    return "Willkommen in \"Magical Yatzy Online\" Game!";
+                    return "Willkommen in \"Magical Yatzy Online\"! Das Multiplayer-Online-Spiel ist im Beta. Leider können noch Fehler auftreten. Wir sind dankbar für jede Information darüber. Danke!";
                 case "by":
-                    return "Вітаем у гульні \"Магічны Yatzy Online!\"";
+                    return "Вітаем у гульні \"Магічны Yatzy Online!\". Анлайн гульня пакуль у бэце. Калі ласка паведамляйце аб любых праблемах. Длякуй!";
                 default:
-                    return "Welcome to \"Magical Yatzy Online\" Game!";
+                    return "Welcome to \"Magical Yatzy Online\" Game! Multiplayer game is still in beta. We appriciate your help in reporting any issues with the game. Thank you!";
+                //case "ru":
+                //    return "Приветствуем в игре \"Магический Yatzy Online!\"";
+                //case "de":
+                //    return "Willkommen in \"Magical Yatzy Online\" Game!";
+                //case "by":
+                //    return "Вітаем у гульні \"Магічны Yatzy Online!\"";
+                //default:
+                //    return "Welcome to \"Magical Yatzy Online\" Game!";
             }
         }
         

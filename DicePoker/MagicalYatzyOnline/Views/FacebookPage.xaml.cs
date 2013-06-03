@@ -1,4 +1,5 @@
-﻿using Sanet.Controls;
+﻿using MagicalYatzyOnline;
+using Sanet.Controls;
 using Sanet.Kniffel.Models;
 using Sanet.Kniffel.ViewModels;
 using Sanet.Views;
@@ -28,9 +29,108 @@ namespace DicePokerRT
         public FacebookPage()
         {
             this.InitializeComponent();
-            SetViewModel<MagicRoomViewModel>();
+            SetViewModel<FacebookViewModel>();
+            GetViewModel<FacebookViewModel>().Done += FacebookPage_Done;
         }
 
+        void FacebookPage_Done()
+        {
+            IsOk = true;
+            parentPopup.IsOpen = false;
+        }
+
+       
+
+        #region Facebook specific things
+
+        /// <summary>
+        /// FaceBook login uri
+        /// </summary>
+        Uri _FBLoginUri;
+        public Uri FBLoginUri
+        {
+            get
+            {
+                return _FBLoginUri;//
+            }
+            set
+            {
+                _FBLoginUri = value;
+                NavigateToFB();
+            }
+        }
+
+        /// <summary>
+        /// FaceBook logouturi
+        /// </summary>
+        Uri _FBLogoutUri;
+        public Uri FBLogoutUri
+        {
+            get
+            {
+                return _FBLogoutUri;//
+            }
+            set
+            {
+                _FBLogoutUri = value;
+                NavigateOutOfFB();
+            }
+        }
+
+        void FBLoginView_LoadCompleted(object sender, NavigationEventArgs e)
+        {
+            GetViewModel<FacebookViewModel>().FBLoginLoaded(e.Uri);
+
+        }
+
+        //Facebook
+
         
+
+        void NavigateOutOfFB()
+        {
+            FBLoginView.LoadCompleted += (s, e) =>
+            {
+                parentPopup.IsOpen = false;
+            };
+            var loginUrl = FBLogoutUri;
+            if (loginUrl == null)
+            {
+                parentPopup.IsOpen = false;
+                return;
+            }
+            FBLoginView.Navigate(loginUrl);
+        }
+
+        void NavigateToFB()
+        {
+            FBLoginView.LoadCompleted += FBLoginView_LoadCompleted;
+            var loginUrl = FBLoginUri;
+            if (loginUrl == null)
+            {
+                parentPopup.IsOpen = false;
+                return;
+            }
+            FBLoginView.Navigate(loginUrl);
+        }
+
+        public void LogIn()
+        {
+            FBLoginUri = App.FBInfo.GetFacebookLoginUrl();
+        }
+
+        public void LogOut()
+        {
+            var uri = App.FBInfo.GetFaceBookLogoutUrl();
+            if (uri == null)
+            {
+                parentPopup.IsOpen = false;
+                return;
+            }
+            FBLogoutUri = uri;
+        }
+
+
+        #endregion
     }
 }

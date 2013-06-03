@@ -25,8 +25,43 @@
             />
             <Grid
                 x:Name="ControlGrid">
-                     
-            </Grid>
+                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="130"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="130"/>
+                        
+                        <RowDefinition/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+                <Button x:Name="backButton" Click="Cancel_Click" 
+                        VerticalAlignment="Center"
+                        IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" 
+                        Style="{StaticResource BackButtonStyle}"/>
+                    
+            <Grid Grid.Column="1"
+                  Grid.ColumnSpan="3"
+                    VerticalAlignment="Center"
+                      x:Name="titleGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource HeaderTextStyle}"
+                   Foreground="{StaticResource SanetBlue}"
+                   x:Name="titleText"
+                           VerticalAlignment="Center"
+                   Text="{Binding Title}"
+                           TextTrimming="WordEllipsis"
+                  />
+                    
+                </Grid>
+            <WebView Name="FBLoginView"
+                     Grid.Column="1"
+                     Grid.Row="1"/>
+        </Grid>
                 <Grid
                 x:Name="SnapGrid"
                 Visibility="Collapsed">

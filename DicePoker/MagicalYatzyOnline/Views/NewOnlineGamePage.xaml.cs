@@ -24,6 +24,9 @@ namespace DicePokerRT
     /// </summary>
     public sealed partial class NewOnlineGamePage : BasePage
     {
+        DispatcherTimer passRotTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(1) };
+        DispatcherTimer nameRotTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(1) };
+
         public NewOnlineGamePage()
         {
             this.InitializeComponent();
@@ -40,8 +43,49 @@ namespace DicePokerRT
             dpBackground.MaxRollLoop = 40;
             dpBackground.EndRoll += StartRoll;
             StartRoll();
+
+            
         }
 
+        void NewOnlineGamePage_PasswordTapped(object sender, EventArgs e)
+        {
+            if (!PassPanel.IsFace)
+                passRotTimer.Start();
+            else
+            {
+                passRotTimer.Stop();
+                startButton.Focus(Windows.UI.Xaml.FocusState.Programmatic);
+            }
+        }
+
+
+        void NewOnlineGamePage_NameTapped(object sender, EventArgs e)
+        {
+            if (!NamePanel.IsFace)
+                nameRotTimer.Start();
+            else
+            {
+                nameRotTimer.Stop();
+                startButton.Focus(Windows.UI.Xaml.FocusState.Programmatic);
+            }
+        }
+
+        
+
+        void passRotTimer_Tick(object sender, object e)
+        {
+            passRotTimer.Stop();
+            passText.Visibility = Visibility.Visible;
+            passText.Focus(Windows.UI.Xaml.FocusState.Programmatic);
+        }
+
+        void nameRotTimer_Tick(object sender, object e)
+        {
+            nameRotTimer.Stop();
+            nameText.Visibility = Visibility.Visible;
+            nameText.Focus(Windows.UI.Xaml.FocusState.Programmatic);
+        }
+        
         void StartRoll()
         {
             dpBackground.RollDice(null);
@@ -56,9 +100,14 @@ namespace DicePokerRT
         {
             SetViewModel<NewOnlineGameViewModel>();
             GetViewModel<NewOnlineGameViewModel>().PropertyChanged += GamePage_PropertyChanged;
+            passRotTimer.Tick += passRotTimer_Tick;
+            nameRotTimer.Tick += nameRotTimer_Tick;
+            GetViewModel<NewOnlineGameViewModel>().NameTapped += NewOnlineGamePage_NameTapped;
+            GetViewModel<NewOnlineGameViewModel>().PasswordTapped += NewOnlineGamePage_PasswordTapped;
             GetViewModel<NewOnlineGameViewModel>().FillRules();
             GetViewModel<NewOnlineGameViewModel>().InitOnServer(true);
         }
+
         void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "SettingsPanelAngle")
@@ -73,9 +122,19 @@ namespace DicePokerRT
         {
             dpBackground.EndRoll -= StartRoll;
             GetViewModel<NewOnlineGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
+            passRotTimer.Tick -= passRotTimer_Tick;
+            nameRotTimer.Tick -= nameRotTimer_Tick;
+            GetViewModel<NewOnlineGameViewModel>().NameTapped -= NewOnlineGamePage_NameTapped;
+            GetViewModel<NewOnlineGameViewModel>().PasswordTapped -= NewOnlineGamePage_PasswordTapped;
             dpBackground.Dispose();
             dpBackground = null;
             GetViewModel<NewOnlineGameViewModel>().SavePlayers();
+        }
+
+        
+        private void Like_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            CommonNavigationActions.NavigateYatzyFBPage();
         }
     }
 }

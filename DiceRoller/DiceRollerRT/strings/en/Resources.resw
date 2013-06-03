@@ -754,10 +754,10 @@
     <value>Profile</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
-    <value>Log In</value>
+    <value>Tap to log in</value>
   </data>
   <data name="LogoutLabel" xml:space="preserve">
-    <value>Log out</value>
+    <value>Tap to log out</value>
   </data>
   <data name="LoginToFBLabel" xml:space="preserve">
     <value>Login to Facebook</value>

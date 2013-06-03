@@ -5,6 +5,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:DicePokerRT"
+    xmlns:ad="using:AdDuplex.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates"
@@ -23,7 +24,7 @@
         <Grid
             x:Name="ControlGrid">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="160"/>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="130"/>
             </Grid.ColumnDefinitions>
@@ -73,7 +74,11 @@
                     </Style>
                 </ListView.ItemContainerStyle>
         </ListView>
-                
+                <ad:AdControl 
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    AppId="30603" x:Name="adDuplexAd" Size="160x600" 
+                         Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"/>
             </Grid>
             <Grid
                 x:Name="SnapGrid"

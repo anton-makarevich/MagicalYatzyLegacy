@@ -12,7 +12,8 @@ namespace Sanet.Kniffel.Models
 {
     public class Player:IPlayer
     {
-        
+        public const string FB_PREFIX = "fb_";
+
         #region Prperties
         /// <summary>
         /// Player display name
@@ -118,7 +119,9 @@ namespace Sanet.Kniffel.Models
         {
             get
             {
-                if (string.IsNullOrEmpty(_PicUrl))
+                if (HasPassword && Profile== ProfileType.Facebook)
+                    _PicUrl = string.Format("https://graph.facebook.com/{0}/picture?type=large",Password.Replace(FB_PREFIX,""));
+                else if (string.IsNullOrEmpty(_PicUrl))
                     _PicUrl = "na";
                 return _PicUrl;
             }
@@ -127,6 +130,7 @@ namespace Sanet.Kniffel.Models
                 _PicUrl = value;
             }
         }
+
 
         /// <summary>
         /// Player type (human, network or AI controlled)

@@ -1,5 +1,6 @@
 ﻿using DicePokerRT;
 using Sanet;
+using Sanet.Common;
 using Sanet.Kniffel.ViewModels;
 using Sanet.Models;
 using System;
@@ -28,6 +29,8 @@ namespace MagicalYatzyOnline
     /// </summary>
     sealed partial class App : Application
     {
+
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -100,6 +103,18 @@ namespace MagicalYatzyOnline
             //register for settings charm event
             SettingsPane.GetForCurrentView().CommandsRequested += App_CommandsRequested;
         }
+
+        //facebook info
+        static FacebookInfo _fbInfo = new FacebookInfo();
+        public static FacebookInfo FBInfo
+        {
+            get
+            {
+                return _fbInfo;
+            }
+        }
+
+
         object objSync = new object();
         static ILogConsole Logger = new RTLogger();
         void LogManager_MessageLogged(string from, string line, int level)
@@ -142,7 +157,7 @@ namespace MagicalYatzyOnline
             });
             args.Request.ApplicationCommands.Add(cmd);
             //options
-            SettingsCommand cmd2 = new SettingsCommand("Options", LocalizerExtensions.RModel.GetString("SettingsCaption/Text"), (command) =>
+            SettingsCommand cmd2 = new SettingsCommand("Options", LocalizerExtensions.RModel.GetString("SettingsCaptionText"), (command) =>
             {
                 if (Settings == null)
                 {

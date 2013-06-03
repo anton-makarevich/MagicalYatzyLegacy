@@ -676,7 +676,7 @@
     <value>Састарэў</value>
   </data>
   <data name="ClientOutdatedMessage" xml:space="preserve">
-    <value>Версія праграмы састарэлаю Для гульні анлайн неабходна абнавіць яе.</value>
+    <value>Версія праграмы састарэла. Для гульні анлайн неабходна абнавіць яе.</value>
   </data>
   <data name="ClientUpdatedLabel" xml:space="preserve">
     <value>Ок</value>
@@ -745,10 +745,10 @@
     <value>Лакальны</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
-    <value>Увайсці</value>
+    <value>Націсніце, каб увайсці</value>
   </data>
   <data name="LogoutLabel" xml:space="preserve">
-    <value>Выйсці</value>
+    <value>Націсніце, каб выйсці</value>
   </data>
   <data name="ProfileLabel" xml:space="preserve">
     <value>Профіль</value>

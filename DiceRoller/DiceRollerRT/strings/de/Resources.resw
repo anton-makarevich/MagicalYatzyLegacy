@@ -786,7 +786,7 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <comment>Ist veraltet</comment>
   </data>
   <data name="ClientOutdatedMessage" xml:space="preserve">
-    <value>Ваша версия программы устарела, для игры по сети необходимо обновить ее</value>
+    <value>Ihre Spielversion ist veraltet. Für das Multiplayer-Online-Spiel ist die Aktualisierung nötig.</value>
     <comment>Ihre Spielversion ist veraltet. Für das Multiplayer-Online-Spiel ist die Aktualisierung nötig.</comment>
   </data>
   <data name="ClientUpdatedLabel" xml:space="preserve">
@@ -865,11 +865,11 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>Локальный</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
-    <value>Log In</value>
+    <value>Klicken, um Log In</value>
     <comment>eng!</comment>
   </data>
   <data name="LogoutLabel" xml:space="preserve">
-    <value>Log out</value>
+    <value>Klicken, um Log out</value>
     <comment>eng!</comment>
   </data>
   <data name="ProfileLabel" xml:space="preserve">
