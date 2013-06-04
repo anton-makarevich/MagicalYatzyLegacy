@@ -11,7 +11,7 @@ namespace Sanet.Kniffel.Protocol.Observer
     public class GameClientCommandObserver : CommandObserver
     {
         public event EventHandler<CommandEventArgs<GameEndedCommand>> GameEndedCommandReceived = delegate { };
-        public event EventHandler<CommandEventArgs<PlayerJoinedCommand>> PlayerJoinedCommandReceived = delegate { };
+        public event EventHandler<CommandEventArgs<PlayerJoinedCommandV2>> PlayerJoinedCommandReceived = delegate { };
         public event EventHandler<CommandEventArgs<PlayerChatMessageCommand>> ChatMessageCommandReceived = delegate { };
         public event EventHandler<CommandEventArgs<TableInfoCommand>> TableInfoCommandReceived = delegate { };
         public event EventHandler<CommandEventArgs<RollReportCommand>> RollReportCommandReceived = delegate { };
@@ -32,8 +32,8 @@ namespace Sanet.Kniffel.Protocol.Observer
             string commandName = token.NextToken();
             if (commandName == PlayerChatMessageCommand.COMMAND_NAME)
                 ChatMessageCommandReceived(this, new CommandEventArgs<PlayerChatMessageCommand>(new PlayerChatMessageCommand(token)));
-            else if (commandName == PlayerJoinedCommand.COMMAND_NAME)
-                PlayerJoinedCommandReceived(this, new CommandEventArgs<PlayerJoinedCommand>(new PlayerJoinedCommand(token)));
+            else if (commandName == PlayerJoinedCommandV2.COMMAND_NAME)
+                PlayerJoinedCommandReceived(this, new CommandEventArgs<PlayerJoinedCommandV2>(new PlayerJoinedCommandV2(token)));
             else if (commandName == TableInfoCommand.COMMAND_NAME)
                 TableInfoCommandReceived(this, new CommandEventArgs<TableInfoCommand>(new TableInfoCommand(token)));
             else if (commandName == RollReportCommand.COMMAND_NAME)

@@ -774,6 +774,7 @@ namespace Sanet.Kniffel.ViewModels
                             var p = Players.FirstOrDefault(f => f.Name == e.Player.Name);
                             if (p==null)
                             _Players.Add(new PlayerWrapper(e.Player));
+                            //_Players = new ObservableCollection<PlayerWrapper>(_Players.OrderBy(f => f.SeatNo));
                         }
                         NotifyPropertyChanged("Players");
                         NotifyPropertyChanged("DicePanelRTWidth");
@@ -971,9 +972,9 @@ namespace Sanet.Kniffel.ViewModels
 
                         if (rollsused != 0)
                             RoamingSettings.SetMagicRollsCount(p.Player, RoamingSettings.GetMagicRollsCount(p.Player) + rollsused);
-                        if (rollsused != 0)
+                        if (manualsused != 0)
                             RoamingSettings.SetManualSetsCount(p.Player, RoamingSettings.GetManualSetsCount(p.Player) + manualsused);
-                        if (rollsused != 0)
+                        if (manualsused != 0)
                             RoamingSettings.SetForthRollsCount(p.Player, RoamingSettings.GetForthRollsCount(p.Player) + resetsused);
 
                         if (ks == null)

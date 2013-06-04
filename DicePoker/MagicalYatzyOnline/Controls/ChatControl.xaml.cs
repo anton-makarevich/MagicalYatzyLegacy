@@ -26,6 +26,7 @@ namespace Sanet.Kniffel.Controls
 {
     public sealed partial class ChatControl :UserControl
     {
+        DispatcherTimer _scrollTimer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(500) };
         PlayGameViewModel playViewModel;
 
         public ChatControl()
@@ -45,9 +46,19 @@ namespace Sanet.Kniffel.Controls
         
         void _scrollTimer_Tick(object sender, object e)
         {
-            _scrollTimer.Stop();
-            var scrollViewer = messagesList.GetFirstDescendantOfType<ScrollViewer>();
-            scrollViewer.ScrollToVerticalOffset(scrollViewer.ScrollableHeight);
+            try
+            {
+                _scrollTimer.Stop();
+                if (ViewModelProvider.GetViewModel<PlayGameViewModel>().IsChatOpen)
+                {
+                    var scrollViewer = messagesList.GetFirstDescendantOfType<ScrollViewer>();
+                    scrollViewer.ScrollToVerticalOffset(scrollViewer.ScrollableHeight);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogManager.Log("ChatControl.OnTimer", ex);
+            }
         }
 
         void ChatControl_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -56,11 +67,19 @@ namespace Sanet.Kniffel.Controls
                 playViewModel.ChatModel.Messages.CollectionChanged += (s, args) => ScrollToBottom();
         }
 
-        DispatcherTimer _scrollTimer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(500) };
+        
         
         private void ScrollToBottom()
         {
-            _scrollTimer.Start();
+            try
+            {
+                if (ViewModelProvider.GetViewModel<PlayGameViewModel>().IsChatOpen)
+                    _scrollTimer.Start();
+            }
+            catch (Exception ex)
+            {
+                LogManager.Log("ChatControl.ScrollToBottom", ex);
+            }
         }
 
         private void Grid_KeyUp_1(object sender, KeyRoutedEventArgs e)

@@ -16,6 +16,7 @@ namespace Sanet.Kniffel.Models
     public static class RoamingSettings
     {
         static Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+        static Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
 #if !ROLLER
         /// <summary>
@@ -314,6 +315,22 @@ namespace Sanet.Kniffel.Models
 
         }
 
+        #endregion
+
+        #region Facebook
+        public static string AccessToken
+        {
+            get
+            {
+                if (localSettings.Values["AccessToken"] == null)
+                    localSettings.Values["AccessToken"] = "";
+                return (string)localSettings.Values["AccessToken"];
+            }
+            set
+            {
+                localSettings.Values["AccessToken"] = value;
+            }
+        }
         #endregion
     }
 

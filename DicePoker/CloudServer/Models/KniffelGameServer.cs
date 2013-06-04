@@ -95,7 +95,7 @@ namespace Sanet.Kniffel.Models
 
         void _Game_OnChatMessage(object sender, ChatMessageEventArgs e)
         {
-            Send(new PlayerChatMessageCommand(e.Message.SenderName, e.Message.Message, e.Message.ReceiverName,e.Message.IsPrivate));
+            //Send(new PlayerChatMessageCommand(e.Message.SenderName, e.Message.Message, e.Message.ReceiverName,e.Message.IsPrivate));
         }
 
         void _Game_GameUpdated(object sender, EventArgs e)
@@ -136,7 +136,8 @@ namespace Sanet.Kniffel.Models
         {
             Send(new PlayerJoinedCommand(e.Player.Name,e.Player.SeatNo,
                 e.Player.Client, e.Player.Language, e.Player.SelectedStyle));
-            
+            Send(new PlayerJoinedCommandV2(e.Player.Name, e.Player.SeatNo,
+                e.Player.Client, e.Player.Language, e.Player.SelectedStyle,e.Player.PicUrl));
         }
 
         void _Game_MoveChanged(object sender, MoveEventArgs e)
@@ -281,8 +282,8 @@ namespace Sanet.Kniffel.Models
             var msg = new ChatMessage();
             msg.SenderName = _Player.Name;
             msg.Message = e.Command.Message;
-            msg.ReceiverName = e.Command.ReceiverName;
-            msg.IsPrivate = e.Command.IsPrivate;
+            msg.ReceiverName = "na";
+            msg.IsPrivate = false;
             _Game.SendChatMessage(msg);
         }
 

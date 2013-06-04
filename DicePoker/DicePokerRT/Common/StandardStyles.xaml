@@ -2060,16 +2060,28 @@
                             </Triggers:PropertySetTrigger>
 
                         </Triggers:Interactions.Triggers>
-                        <Image Source="{Binding ProfilePhoto}"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Image
+                            Margin="-5,0,0,0"
+                            VerticalAlignment="top"
+                            HorizontalAlignment="Left"
+                            MaxHeight="35"
+                            Source="{Binding ProfilePhoto}"/>
                         
                         <TextBlock
+                            Grid.Row="1"
                                   x:Name="textBlock"
                                   Text="{Binding Name}"
-                                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                                     HorizontalAlignment="Left" VerticalAlignment="Bottom"
                                        TextTrimming="WordEllipsis"
                                        TextWrapping="Wrap"
                                        TextAlignment="Center"
-                                       Width="50"
+                            Margin="-5,0"
+                            LineHeight="12"
+                                       Width="60"
                                      FontSize="12">
                             <TextBlock.RenderTransform>
                                 <CompositeTransform/>
@@ -2079,6 +2091,7 @@
                         <Image Source="ms-appx:///Assets/check.png"
                                Height="16" 
                                Margin="10,0"
+                               Grid.RowSpan="2"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Top"
                                Visibility="{Binding IsReady,Converter={StaticResource VisibilityKey}}"/>
@@ -2086,6 +2099,7 @@
                               Visibility="{Binding IsMyTurn, Converter={StaticResource VisibilityKey}}"
                               VerticalAlignment="Bottom"
                               Fill="YellowGreen"
+                              Margin="-10,5,0,-5"
                               Height="5" Stretch="Fill" Stroke="White" StrokeThickness="0" 
                               UseLayoutRounding="False" Width="50" RenderTransformOrigin="0,1">
                                     <Path.RenderTransform>

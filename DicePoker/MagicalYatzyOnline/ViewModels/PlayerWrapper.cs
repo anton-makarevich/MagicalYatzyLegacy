@@ -742,10 +742,11 @@ namespace Sanet.Kniffel.ViewModels
                     NotifyPropertyChanged("IsDefaultName");
                     NotifyPropertyChanged("Name");
                     NotifyPropertyChanged("Password");
+                    NotifyPropertyChanged("PlayerPasswordLabelLocalized");
                     NotifyPropertyChanged("FacebookName");
                     NotifyPropertyChanged("FacebookLoginLabel");
-                    NotifyPropertyChanged("HasArtifacts");
-                    
+                    //NotifyPropertyChanged("HasArtifacts");
+                    RefreshArtifactsInfo();
                 }
             }
         }

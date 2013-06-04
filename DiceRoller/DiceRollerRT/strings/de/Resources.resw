@@ -422,7 +422,7 @@
     <comment>Die volle Highscore-Liste im Internet</comment>
   </data>
   <data name="AppNameLabel" xml:space="preserve">
-    <value>Magischer Yatzy Online</value>
+    <value>Magischer Yatzy</value>
     <comment>Magischer Yatzy</comment>
   </data>
   <data name="OtherAppsLabel" xml:space="preserve">
@@ -862,20 +862,22 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>Присоединяйся ко мне в этой онлайн игре!</value>
   </data>
   <data name="LocalLabel" xml:space="preserve">
-    <value>Локальный</value>
+    <value>Lokales Profil</value>
+    <comment>Lokales Profil</comment>
   </data>
   <data name="LoginLabel" xml:space="preserve">
-    <value>Klicken, um Log In</value>
-    <comment>eng!</comment>
+    <value>Klicken Sie hier, um sich einzuloggen</value>
+    <comment>Klicken Sie hier, um sich einzuloggen</comment>
   </data>
   <data name="LogoutLabel" xml:space="preserve">
-    <value>Klicken, um Log out</value>
-    <comment>eng!</comment>
+    <value>Klicken Sie hier, um sich auszuloggen</value>
+    <comment>Klicken Sie hier, um sich auszuloggen</comment>
   </data>
   <data name="ProfileLabel" xml:space="preserve">
     <value>Профиль</value>
   </data>
   <data name="LoginToFBLabel" xml:space="preserve">
-    <value>Войдите в Facebook</value>
+    <value>Sich anhand Facebook-Profil einzuloggen</value>
+    <comment> Sich anhand Facebook-Profil einzuloggen</comment>
   </data>
 </root>

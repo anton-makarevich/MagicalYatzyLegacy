@@ -1,4 +1,5 @@
 ﻿using Facebook;
+using Sanet.Kniffel.Models;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -22,6 +23,21 @@ namespace Sanet.Common
         private const string _ExtendedPermissions = "user_about_me,email,read_stream,publish_stream";
 
         private readonly FacebookClient _FBClient = new FacebookClient();
+
+        public string AccessToken
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_FBClient.AccessToken))
+                    _FBClient.AccessToken = RoamingSettings.AccessToken;
+                return _FBClient.AccessToken;
+            }
+            set
+            {
+                _FBClient.AccessToken = value;
+                RoamingSettings.AccessToken = value;
+            }
+        }
 
         FacebookUserInfo userData;
         List<FacebookUserInfo> friendsData;
@@ -66,17 +82,17 @@ namespace Sanet.Common
 
         public Uri GetFaceBookLogoutUrl()
         {
-            if (_FBClient == null || string.IsNullOrEmpty(_FBClient.AccessToken))
+            if (_FBClient == null || string.IsNullOrEmpty(AccessToken))
             {
                 return null;
             }
-            string logoutUri = string.Format("https://www.facebook.com/logout.php?next={0}&access_token={1}", "http://m.facebook.com", _FBClient.AccessToken);
+            string logoutUri = string.Format("https://www.facebook.com/logout.php?next={0}&access_token={1}", "https://www.facebook.com/connect/login_success.html", AccessToken);
             return new Uri(logoutUri);
         }
 
         private async Task LoginSucceded(string accessToken)
         {
-            _FBClient.AccessToken = accessToken;
+            AccessToken = accessToken;
             dynamic result = await _FBClient.GetTaskAsync("me");
 
             userData = new FacebookUserInfo();
@@ -99,9 +115,16 @@ namespace Sanet.Common
             
         }
 
+        public void LogoutSucceded()
+        {
+            AccessToken = "";
+            userData = null;
+
+        }
+
         public async void PublishOnWall(string facebookid, string message)
         {
-            if (_FBClient == null || string.IsNullOrEmpty(_FBClient.AccessToken))
+            if (_FBClient == null || string.IsNullOrEmpty(AccessToken))
             {
                 //TODO redirect to fbconnect??
                 throw new Exception("Not connected to facebook");

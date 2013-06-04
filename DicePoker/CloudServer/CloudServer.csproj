@@ -209,6 +209,7 @@
     <Compile Include="Models\KniffelGameServer.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\ApplyScoreCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\ChangeStyleCommand.cs" />
+    <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerJoinedCommandV2.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\PlayerRerolledCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\DiceChangedCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Game\ManualChangeCommand.cs" />

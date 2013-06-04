@@ -89,10 +89,7 @@ namespace DicePokerRT
 
         void NavigateOutOfFB()
         {
-            FBLoginView.LoadCompleted += (s, e) =>
-            {
-                parentPopup.IsOpen = false;
-            };
+            FBLoginView.LoadCompleted += CloseFB;
             var loginUrl = FBLogoutUri;
             if (loginUrl == null)
             {
@@ -101,6 +98,15 @@ namespace DicePokerRT
             }
             FBLoginView.Navigate(loginUrl);
         }
+
+        void CloseFB(object sender, NavigationEventArgs e)
+        {
+            FBLoginView.LoadCompleted -= CloseFB;
+            parentPopup.IsOpen = false;
+            App.FBInfo.LogoutSucceded();
+        }
+
+
 
         void NavigateToFB()
         {

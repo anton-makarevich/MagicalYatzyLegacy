@@ -242,8 +242,11 @@ namespace DicePokerRT
         }
         protected async override void GoBack(object sender, RoutedEventArgs e)
         {
-            if (gridResults.Visibility==Visibility.Visible)
+            if (gridResults.Visibility == Visibility.Visible)
+            {
+                gridResults.Visibility = Visibility.Collapsed;
                 await GetViewModel<PlayGameViewModel>().SaveResults();
+            }
             base.GoBack(sender, e);
         }
         private void AgainButton_Tapped_1(object sender, TappedRoutedEventArgs e)

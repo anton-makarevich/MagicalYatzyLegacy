@@ -352,7 +352,7 @@ namespace Sanet.Kniffel.ViewModels
                 SelectedPlayer.Password = "";
                 
             }
-            SelectedPlayer.RefreshArtifactsInfo();
+            SelectedPlayer.RefreshArtifactsInfo(false, true);
             SavePlayers();
         }
 
