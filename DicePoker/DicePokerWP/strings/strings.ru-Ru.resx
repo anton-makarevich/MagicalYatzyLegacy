@@ -144,17 +144,17 @@
   <data name="AlreadyInGameMessage" xml:space="preserve">
     <value>Извините, вы не можете поделючиться к выбоанному столу. Игрок с таким именем уже инрает. Попробуйте позже.</value>
   </data>
-  <data name="AngHigh.Text" xml:space="preserve">
+  <data name="AngHighText" xml:space="preserve">
     <value>высоко</value>
   </data>
-  <data name="AngLow.Text" xml:space="preserve">
+  <data name="AngLowText" xml:space="preserve">
     <value>низко</value>
   </data>
-  <data name="AngVeryHigh.Text" xml:space="preserve">
+  <data name="AngVeryHighText" xml:space="preserve">
     <value>очень высоко</value>
   </data>
   <data name="AppNameLabel" xml:space="preserve">
-    <value>Магический Yatzy Online</value>
+    <value>Магический Yatzy</value>
   </data>
   <data name="ArtifactsBonusMessage" xml:space="preserve">
     <value>{0}, Поздравляем! Вы получили бонусные магические артефакты!</value>
@@ -243,8 +243,11 @@
   <data name="DeletePlayerLabel" xml:space="preserve">
     <value>Удалить </value>
   </data>
-  <data name="DevelopedBy.Text" xml:space="preserve">
+  <data name="DevelopedByText" xml:space="preserve">
     <value>Разработано:</value>
+  </data>
+  <data name="DiceDescription" xml:space="preserve">
+    <value>Виртуальные кости в твоем телефоне! Их можно использовать в любимых настольных играх или просто когда нужно принять случайное решение</value>
   </data>
   <data name="DicePokerAdLine1" xml:space="preserve">
     <value>Надоело просто бросать кости?</value>
@@ -290,6 +293,12 @@
   </data>
   <data name="ForthRollLabel" xml:space="preserve">
     <value>Повтор хода</value>
+  </data>
+  <data name="ForWin8Label" xml:space="preserve">
+    <value>Магический Yatzy для Windows 8</value>
+  </data>
+  <data name="ForWPLabel" xml:space="preserve">
+    <value>Магический Yatzy для Windows Phone</value>
   </data>
   <data name="FourOfAKind" xml:space="preserve">
     <value>Четыре одинаковые</value>
@@ -368,6 +377,18 @@
   </data>
   <data name="LeaderboardDescription" xml:space="preserve">
     <value>Лучшие результаты игр по каждым правилам</value>
+  </data>
+  <data name="LocalLabel" xml:space="preserve">
+    <value>Локальный</value>
+  </data>
+  <data name="LoginLabel" xml:space="preserve">
+    <value>Нажмите, чтобы войти</value>
+  </data>
+  <data name="LoginToFBLabel" xml:space="preserve">
+    <value>Войдите в Facebook</value>
+  </data>
+  <data name="LogoutLabel" xml:space="preserve">
+    <value>Нажмите, чтобы выйти</value>
   </data>
   <data name="MagicArtifactsDescription" xml:space="preserve">
     <value>Магические артефакты могут повысить ваши шансы на хорошую комбинацию в магических правилах. Каждый вид артефактов можно использовать только один раз за игру. Всего в игре 3 вида артефактов:</value>
@@ -456,7 +477,7 @@
   <data name="OnlineLink.Content" xml:space="preserve">
     <value>О Kniffel Online</value>
   </data>
-  <data name="OnlineVersionText.Text" xml:space="preserve">
+  <data name="OnlineVersionText" xml:space="preserve">
     <value>Идея контрола DicePanel и 'красные' кости принадлежат  Matthew Tagliaferri</value>
   </data>
   <data name="OnlyUniqueCanBuyMessage" xml:space="preserve">
@@ -519,6 +540,9 @@
   <data name="PrivacyLabel.Text" xml:space="preserve">
     <value>Конфиденциальность</value>
   </data>
+  <data name="ProfileLabel" xml:space="preserve">
+    <value>Профиль</value>
+  </data>
   <data name="PurchaseDescription" xml:space="preserve">
     <value>Вы можете пополнить запас магических артефактов, воспользовавшись одним из следующих предложений. Воспользоваться каждым предложением можно не чаще, чем один раз в сутки.</value>
   </data>
@@ -544,7 +568,7 @@
     <value>оценить</value>
   </data>
   <data name="ReadyLabel" xml:space="preserve">
-    <value>Играть!</value>
+    <value>Готов играть!</value>
   </data>
   <data name="RemoveAdAction" xml:space="preserve">
     <value>Открыть все кости, убрать рекламу</value>
@@ -609,22 +633,22 @@
   <data name="SettingsAction" xml:space="preserve">
     <value>Настройки</value>
   </data>
-  <data name="SettingsAngleCaption.Text" xml:space="preserve">
+  <data name="SettingsAngleCaptionText" xml:space="preserve">
     <value>Угол обзора</value>
   </data>
-  <data name="SettingsCaption.Text" xml:space="preserve">
+  <data name="SettingsCaptionText" xml:space="preserve">
     <value>Настройки</value>
   </data>
   <data name="SettingsDescription" xml:space="preserve">
     <value>Измените настроек игры</value>
   </data>
-  <data name="SettingsNumbersCaption.Text" xml:space="preserve">
+  <data name="SettingsNumbersCaptionText" xml:space="preserve">
     <value>Число костей</value>
   </data>
-  <data name="SettingsSpeedCaption.Text" xml:space="preserve">
+  <data name="SettingsSpeedCaptionText" xml:space="preserve">
     <value>Скорость броска</value>
   </data>
-  <data name="SettingsStyleCaption.Text" xml:space="preserve">
+  <data name="SettingsStyleCaptionText" xml:space="preserve">
     <value>Стиль костей</value>
   </data>
   <data name="ShareDescription" xml:space="preserve">
@@ -632,6 +656,9 @@
   </data>
   <data name="ShareLabel" xml:space="preserve">
     <value>поделиться</value>
+  </data>
+  <data name="ShareMessage" xml:space="preserve">
+    <value>Присоединяйся ко мне в этой онлайн игре!</value>
   </data>
   <data name="ShareTitle" xml:space="preserve">
     <value>"Магия Yatzy" для Windows 8 </value>
@@ -651,16 +678,16 @@
   <data name="SoundLabel" xml:space="preserve">
     <value>Звуки</value>
   </data>
-  <data name="SpeedFast.Text" xml:space="preserve">
+  <data name="SpeedFastText" xml:space="preserve">
     <value>быстро</value>
   </data>
-  <data name="SpeedSlow.Text" xml:space="preserve">
+  <data name="SpeedSlowText" xml:space="preserve">
     <value>медленно</value>
   </data>
-  <data name="SpeedVeryFast.Text" xml:space="preserve">
+  <data name="SpeedVeryFastText" xml:space="preserve">
     <value>очень быстро</value>
   </data>
-  <data name="SpeedVerySlow.Text" xml:space="preserve">
+  <data name="SpeedVerySlowText" xml:space="preserve">
     <value>очень медленно</value>
   </data>
   <data name="StartGameButton" xml:space="preserve">
@@ -725,17 +752,5 @@
   </data>
   <data name="YesLabel" xml:space="preserve">
     <value>Да, с удовольствием!</value>
-  </data>
-  <data name="DiceDescription" xml:space="preserve">
-    <value>Виртуальные кости в твоем телефоне! Их можно использовать в любимых настольных играх или просто когда нужно принять случайное решение</value>
-  </data>
-  <data name="ForWin8Label" xml:space="preserve">
-    <value>Магический Yatzy для Windows 8</value>
-  </data>
-  <data name="ForWPLabel" xml:space="preserve">
-    <value>Магический Yatzy для Windows Phone</value>
-  </data>
-  <data name="ShareMessage" xml:space="preserve">
-    <value>Присоединяйся ко мне в этой онлайн игре!</value>
   </data>
 </root>

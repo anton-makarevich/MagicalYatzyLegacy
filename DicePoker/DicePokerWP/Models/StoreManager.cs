@@ -32,7 +32,7 @@ namespace Sanet.Kniffel.Models
 
         static public bool IsStylesAvailable()
         {
-             return isProductAvailable("AdFree");
+             return !isProductAvailable("AdFree");
         }
 
         static public void RemoveAd()

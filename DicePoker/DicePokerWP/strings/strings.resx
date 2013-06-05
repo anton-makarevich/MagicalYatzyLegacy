@@ -144,17 +144,17 @@
   <data name="AlreadyInGameMessage" xml:space="preserve">
     <value>Sorry, You can't connect to selected table. There is a player with the same name... Please try later. </value>
   </data>
-  <data name="AngHigh.Text" xml:space="preserve">
+  <data name="AngHighText" xml:space="preserve">
     <value>high</value>
   </data>
-  <data name="AngLow.Text" xml:space="preserve">
+  <data name="AngLowText" xml:space="preserve">
     <value>low</value>
   </data>
-  <data name="AngVeryHigh.Text" xml:space="preserve">
+  <data name="AngVeryHighText" xml:space="preserve">
     <value>very high</value>
   </data>
   <data name="AppNameLabel" xml:space="preserve">
-    <value>Magical Yatzy Online</value>
+    <value>Magical Yatzy</value>
   </data>
   <data name="ArtifactsBonusMessage" xml:space="preserve">
     <value>{0}, Congratulations! You got {1} Magical Artifacts as a bonus!</value>
@@ -240,8 +240,11 @@
   <data name="DeletePlayerLabel" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="DevelopedBy.Text" xml:space="preserve">
+  <data name="DevelopedByText" xml:space="preserve">
     <value>Developed by:</value>
+  </data>
+  <data name="DiceDescription" xml:space="preserve">
+    <value>Virtual dice you always have with you! You can use them in your favorite games, or just when you need to take a random decision</value>
   </data>
   <data name="DicePokerAdLine1" xml:space="preserve">
     <value>Boring of just rolling dices?</value>
@@ -288,6 +291,12 @@
   </data>
   <data name="ForthRollLabel" xml:space="preserve">
     <value>Reset round</value>
+  </data>
+  <data name="ForWin8Label" xml:space="preserve">
+    <value>Magical Yatzy for Windows 8</value>
+  </data>
+  <data name="ForWPLabel" xml:space="preserve">
+    <value>Magical Yatzy for Windows Phone</value>
   </data>
   <data name="FourOfAKind" xml:space="preserve">
     <value>Four Of A Kind</value>
@@ -367,6 +376,18 @@
   </data>
   <data name="LeaderboardDescription" xml:space="preserve">
     <value>See best results in every rules</value>
+  </data>
+  <data name="LocalLabel" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="LoginLabel" xml:space="preserve">
+    <value>Tap to log in</value>
+  </data>
+  <data name="LoginToFBLabel" xml:space="preserve">
+    <value>Login to Facebook</value>
+  </data>
+  <data name="LogoutLabel" xml:space="preserve">
+    <value>Tap to log out</value>
   </data>
   <data name="MagicArtifactsDescription" xml:space="preserve">
     <value>Magical artifacts raise your chances to get better hand in Magical rules. Each type of artifacts can be used only once per game. There are 3 types of artifacts:</value>
@@ -458,7 +479,7 @@
   <data name="OnlineLink.Content" xml:space="preserve">
     <value>About Kniffel Online</value>
   </data>
-  <data name="OnlineVersionText.Text" xml:space="preserve">
+  <data name="OnlineVersionText" xml:space="preserve">
     <value>Dice Panel idea and "red dice" style belong to Matthew Tagliaferri.</value>
   </data>
   <data name="OnlyUniqueCanBuyMessage" xml:space="preserve">
@@ -521,6 +542,9 @@
   <data name="PrivacyLabel.Text" xml:space="preserve">
     <value>Privacy Policy</value>
   </data>
+  <data name="ProfileLabel" xml:space="preserve">
+    <value>Profile</value>
+  </data>
   <data name="PurchaseDescription" xml:space="preserve">
     <value>Buy more artifacts using one of the following offers. Each offer can be used only once a day.</value>
     <comment>You buy more artifacts using one of the following offers. Each offer can be used only once a day.</comment>
@@ -550,7 +574,7 @@
     <value>rate</value>
   </data>
   <data name="ReadyLabel" xml:space="preserve">
-    <value>Play!</value>
+    <value>Ready to Play!</value>
   </data>
   <data name="RemoveAdAction" xml:space="preserve">
     <value>Unlock all dice styles, remove ads</value>
@@ -618,22 +642,22 @@
   <data name="SettingsAction" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="SettingsAngleCaption.Text" xml:space="preserve">
+  <data name="SettingsAngleCaptionText" xml:space="preserve">
     <value>View Angle</value>
   </data>
-  <data name="SettingsCaption.Text" xml:space="preserve">
+  <data name="SettingsCaptionText" xml:space="preserve">
     <value>Settings</value>
   </data>
   <data name="SettingsDescription" xml:space="preserve">
     <value>Change game settings</value>
   </data>
-  <data name="SettingsNumbersCaption.Text" xml:space="preserve">
+  <data name="SettingsNumbersCaptionText" xml:space="preserve">
     <value>Dice number</value>
   </data>
-  <data name="SettingsSpeedCaption.Text" xml:space="preserve">
+  <data name="SettingsSpeedCaptionText" xml:space="preserve">
     <value>Rotation speed</value>
   </data>
-  <data name="SettingsStyleCaption.Text" xml:space="preserve">
+  <data name="SettingsStyleCaptionText" xml:space="preserve">
     <value>Dice style</value>
   </data>
   <data name="ShareDescription" xml:space="preserve">
@@ -641,6 +665,9 @@
   </data>
   <data name="ShareLabel" xml:space="preserve">
     <value>share</value>
+  </data>
+  <data name="ShareMessage" xml:space="preserve">
+    <value>Join me in this exciting multiplayer game!</value>
   </data>
   <data name="ShareTitle" xml:space="preserve">
     <value>"Magical Yatzy" for Windows 8 </value>
@@ -660,16 +687,16 @@
   <data name="SoundLabel" xml:space="preserve">
     <value>Sound</value>
   </data>
-  <data name="SpeedFast.Text" xml:space="preserve">
+  <data name="SpeedFastText" xml:space="preserve">
     <value>fast</value>
   </data>
-  <data name="SpeedSlow.Text" xml:space="preserve">
+  <data name="SpeedSlowText" xml:space="preserve">
     <value>slow</value>
   </data>
-  <data name="SpeedVeryFast.Text" xml:space="preserve">
+  <data name="SpeedVeryFastText" xml:space="preserve">
     <value>very fast</value>
   </data>
-  <data name="SpeedVerySlow.Text" xml:space="preserve">
+  <data name="SpeedVerySlowText" xml:space="preserve">
     <value>very slow</value>
   </data>
   <data name="StartGameButton" xml:space="preserve">
@@ -734,17 +761,5 @@
   </data>
   <data name="YesLabel" xml:space="preserve">
     <value>Yes, sure!</value>
-  </data>
-  <data name="DiceDescription" xml:space="preserve">
-    <value>Virtual dice you always have with you! You can use them in your favorite games, or just when you need to take a random decision</value>
-  </data>
-  <data name="ForWin8Label" xml:space="preserve">
-    <value>Magical Yatzy for Windows 8</value>
-  </data>
-  <data name="ForWPLabel" xml:space="preserve">
-    <value>Magical Yatzy for Windows Phone</value>
-  </data>
-  <data name="ShareMessage" xml:space="preserve">
-    <value>Join me in this exciting multiplayer game!</value>
   </data>
 </root>
