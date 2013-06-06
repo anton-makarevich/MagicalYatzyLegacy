@@ -5,6 +5,8 @@ using Windows.System.UserProfile;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
+using MagicalYatzyOnline;
+
 #endif
 using Sanet.Kniffel.Models;
 using Sanet.Kniffel.Protocol;
@@ -16,12 +18,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MagicalYatzyOnline;
+
 using Sanet.Common;
 
 #if WINDOWS_PHONE
 using System.Windows.Controls.Primitives;
 using System.Windows.Threading;
+using DicePokerWP;
 #endif
 
 namespace Sanet.Kniffel.ViewModels
@@ -358,7 +361,7 @@ namespace Sanet.Kniffel.ViewModels
                 SelectedPlayer.Name = "";
                 SelectedPlayer.Password = "";
             }
-            SelectedPlayer.RefreshArtifactsInfo();
+            SelectedPlayer.RefreshArtifactsInfo(false,true);
             SavePlayers();
         }
 
@@ -430,7 +433,9 @@ namespace Sanet.Kniffel.ViewModels
                     tableId = -1;
                 }
             }
+#if WinRT
             await JoinManager.JoinTable(tableId, SelectedRule.Rule.Rule);
+#endif
         }
 
         /// <summary>

@@ -209,6 +209,8 @@ namespace Sanet.Kniffel.ViewModels
                 //if no game - no sense
                 if (Game == null || Player == null)
                     return false;
+                if (!HasPassword || IsDefaultName)
+                    return false;
                 //if Rules are different from magic
                 if (Game.Rules.Rule != Rules.krMagic)
                     return false;
@@ -235,6 +237,8 @@ namespace Sanet.Kniffel.ViewModels
                 //if no game - no sense
                 if (Game == null || Player == null)
                     return false;
+                if (!HasPassword || IsDefaultName)
+                    return false;
                 //if Rules are different from magic
                 if (Game.Rules.Rule != Rules.krMagic)
                     return false;
@@ -259,6 +263,8 @@ namespace Sanet.Kniffel.ViewModels
             {
                 //if no game - no sense
                 if (Game == null||Player==null)
+                    return false;
+                if (!HasPassword || IsDefaultName)
                     return false;
                 //if Rules are different from magic
                 if (Game.Rules.Rule != Rules.krMagic)

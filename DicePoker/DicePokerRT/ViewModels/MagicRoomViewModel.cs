@@ -252,7 +252,12 @@ namespace Sanet.Kniffel.ViewModels
                                     RoamingSettings.SetManualSetsCount(CurrentPlayer.Player, RoamingSettings.GetManualSetsCount(CurrentPlayer.Player) + 30);
                                     RoamingSettings.SetForthRollsCount(CurrentPlayer.Player, RoamingSettings.GetForthRollsCount(CurrentPlayer.Player) + 30);
                                     var ks = new KniffelServiceSoapClient();
+#if WinRT
                                     var res = await ks.AddPlayersMagicsAsync(CurrentPlayer.Name, CurrentPlayer.Password.Encrypt(33), "30".Encrypt(33), "30".Encrypt(33), "30".Encrypt(33));
+#endif
+#if WINDOWS_PHONE
+                                    var res = await ks.AddPlayersMagicsTaskAsync(CurrentPlayer.Name, CurrentPlayer.Password.Encrypt(33), "30".Encrypt(33), "30".Encrypt(33), "30".Encrypt(33));
+#endif
                                     if (!res.Body.AddPlayersMagicsResult)
                                     {
                                         Utilities.ShowMessage("PurchaseErrorMessage".Localize(), "ErrorLabel".Localize());
@@ -293,7 +298,12 @@ StoreManager.BuyLicense("WizardTools50"))
                                    RoamingSettings.SetManualSetsCount(CurrentPlayer.Player, RoamingSettings.GetManualSetsCount(CurrentPlayer.Player) + 50);
                                    RoamingSettings.SetForthRollsCount(CurrentPlayer.Player, RoamingSettings.GetForthRollsCount(CurrentPlayer.Player) + 50);
                                    var ks = new KniffelServiceSoapClient();
-                                   var res = await ks.AddPlayersMagicsAsync(CurrentPlayer.Name, CurrentPlayer.Password.Encrypt(33), "50".Encrypt(33), "50".Encrypt(33), "50".Encrypt(33));
+#if WinRT
+                                    var res = await ks.AddPlayersMagicsAsync(CurrentPlayer.Name, CurrentPlayer.Password.Encrypt(33), "50".Encrypt(33), "50".Encrypt(33), "50".Encrypt(33));
+#endif
+#if WINDOWS_PHONE
+                                   var res = await ks.AddPlayersMagicsTaskAsync(CurrentPlayer.Name, CurrentPlayer.Password.Encrypt(33), "50".Encrypt(33), "50".Encrypt(33), "50".Encrypt(33));
+#endif
                                    if (!res.Body.AddPlayersMagicsResult)
                                    {
                                        Utilities.ShowMessage("PurchaseErrorMessage".Localize(), "ErrorLabel".Localize());
@@ -335,7 +345,12 @@ StoreManager.BuyLicense("WizardTools100"))
                                RoamingSettings.SetManualSetsCount(CurrentPlayer.Player, RoamingSettings.GetManualSetsCount(CurrentPlayer.Player) + 100);
                                RoamingSettings.SetForthRollsCount(CurrentPlayer.Player, RoamingSettings.GetForthRollsCount(CurrentPlayer.Player) + 100);
                                var ks = new KniffelServiceSoapClient();
-                               var res = await ks.AddPlayersMagicsAsync(CurrentPlayer.Name, CurrentPlayer.Password.Encrypt(33), "100".Encrypt(33), "100".Encrypt(33), "100".Encrypt(33));
+#if WinRT
+                                    var res = await ks.AddPlayersMagicsAsync(CurrentPlayer.Name, CurrentPlayer.Password.Encrypt(33), "100".Encrypt(33), "100".Encrypt(33), "100".Encrypt(33));
+#endif
+#if WINDOWS_PHONE
+                               var res = await ks.AddPlayersMagicsTaskAsync(CurrentPlayer.Name, CurrentPlayer.Password.Encrypt(33), "100".Encrypt(33), "100".Encrypt(33), "100".Encrypt(33));
+#endif
                                if (!res.Body.AddPlayersMagicsResult)
                                {
                                    Utilities.ShowMessage("PurchaseErrorMessage".Localize(), "ErrorLabel".Localize());

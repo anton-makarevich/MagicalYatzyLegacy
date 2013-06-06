@@ -48,8 +48,16 @@ namespace Sanet.Kniffel.Protocol
             IsReady = bool.Parse(argsToken.NextToken());
             Language=argsToken.NextToken();
             PhotoUri=argsToken.NextToken();
-            ClientType=(ClientType)Enum.Parse(typeof(ClientType),argsToken.NextToken());
-            SelectedStyle = (DiceStyle)Enum.Parse(typeof(DiceStyle), argsToken.NextToken());
+            ClientType=(ClientType)Enum.Parse(typeof(ClientType),argsToken.NextToken()
+#if WINDOWS_PHONE
+, false
+#endif
+                );
+            SelectedStyle = (DiceStyle)Enum.Parse(typeof(DiceStyle), argsToken.NextToken()
+#if WINDOWS_PHONE
+, false
+#endif
+                );
             for (int i=0;i<28;i++)
                 Results.Add(int.Parse(argsToken.NextToken()));
                        

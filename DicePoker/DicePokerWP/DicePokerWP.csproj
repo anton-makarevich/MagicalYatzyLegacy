@@ -92,6 +92,9 @@
     <Reference Include="MobFox.Ads">
       <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\MobFox.Ads.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.5.0.6\lib\portable-net40+sl4+wp7+win8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="SOMAWP7">
       <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\SOMAWP7.dll</HintPath>
     </Reference>
@@ -141,6 +144,12 @@
     </Compile>
     <Compile Include="..\CloudServer\Models\ChatMessage.cs">
       <Link>Models\ChatMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Common\ServerHttpMessage.cs">
+      <Link>Common\ServerHttpMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Common\StringTokenizer.cs">
+      <Link>Common\StringTokenizer.cs</Link>
     </Compile>
     <Compile Include="..\CloudServer\Models\Interfaces\IKniffelGame.cs">
       <Link>Models\Interfaces\IKniffelGame.cs</Link>
@@ -214,6 +223,9 @@
     <Compile Include="..\DicePokerRT\Models\OfferAction.cs">
       <Link>Models\OfferAction.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerRT\Models\PlayerAIExtensions.cs">
+      <Link>Models\PlayerAIExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\DicePokerRT\Models\RelayCommand.cs">
       <Link>Common\RelayCommand.cs</Link>
     </Compile>
@@ -271,9 +283,6 @@
     <Compile Include="..\MagicalYatzyOnline\ViewModels\ChatViewModel.cs">
       <Link>ViewModels\ChatViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\MagicalYatzyOnline\ViewModels\FacebookViewModel.cs">
-      <Link>ViewModels\FacebookViewModel.cs</Link>
-    </Compile>
     <Compile Include="..\MagicalYatzyOnline\ViewModels\NewOnlineGameViewModel.cs">
       <Link>ViewModels\NewOnlineGameViewModel.cs</Link>
     </Compile>
@@ -286,10 +295,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\DispatcherHelper.cs" />
     <Compile Include="Common\EnumCompactExtension.cs" />
     <Compile Include="Common\InternetCheker.cs" />
     <Compile Include="Common\LocalSettings.cs" />
+    <Compile Include="Common\WPIdentifyHelpercs.cs" />
     <Compile Include="Converters\ReverseBooleanToVisibilityConverter.cs" />
+    <Compile Include="Models\Protocol\WebAPI\AbstractHttpService.cs" />
+    <Compile Include="Models\Protocol\WebAPI\InitService.cs" />
     <Compile Include="Models\ReviewBugger.cs" />
     <Compile Include="Common\RoamingSettings.cs" />
     <Compile Include="Common\SanetImageProvider.cs" />
@@ -300,6 +313,7 @@
     <Compile Include="Models\ResourceModel.cs" />
     <Compile Include="Models\ServiceAsyncExtensions.cs" />
     <Compile Include="Models\StoreManager.cs" />
+    <Compile Include="Models\TileHelper.cs" />
     <Compile Include="Models\Utilities.cs" />
     <Compile Include="Service References\KniffelLeaderBoardService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -382,16 +396,31 @@
     <EmbeddedResource Include="strings\strings.resx" />
     <EmbeddedResource Include="strings\strings.ru-Ru.resx" />
     <EmbeddedResource Include="strings\strings.de-DE.resx" />
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerWP.KniffelLeaderBoardService.AddPlayersMagicsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\KniffelLeaderBoardService\DicePokerWP.KniffelLeaderBoardService.GetChempionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerWP.KniffelLeaderBoardService.GetLastDayChempionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\KniffelLeaderBoardService\DicePokerWP.KniffelLeaderBoardService.GetLastWeekChempionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerWP.KniffelLeaderBoardService.GetPlayersMagicsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\KniffelLeaderBoardService\DicePokerWP.KniffelLeaderBoardService.GetTopPlayersResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerWP.KniffelLeaderBoardService.PutOnlineServerLogResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\KniffelLeaderBoardService\DicePokerWP.KniffelLeaderBoardService.PutScoreIntoTableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\DicePokerWP.KniffelLeaderBoardService.PutScoreIntoTableWithPicPureNameResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\KniffelLeaderBoardService\DicePokerWP.KniffelLeaderBoardService.PutScoreIntoTableWithPicResponse.datasource">

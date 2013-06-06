@@ -250,10 +250,10 @@ namespace Sanet.Kniffel.Models
                     var res = (await ks.GetLastWeekChempionTaskAsync(this.ToString())).ToList();
                     if (!string.IsNullOrEmpty(res[1]))
                     {
-                        BestScore = res[1];
-                        BestScorePlayer = res[0];
-                        IsScoreLoading = false;
-                        BestScoreLabel = "BestWeekLabel".Localize();
+                        BestWeekScore = res[1];
+                        BestWeekScorePlayer = res[0];
+                        IsWeekScoreLoading = false;
+                        BestWeekScoreLabel = "BestWeekLabel".Localize();
                     }
                     else
                         LoadLocalScores();
@@ -305,19 +305,20 @@ namespace Sanet.Kniffel.Models
                     }
                     else
                         LoadLocalScores();
+                    await
 #else
                     var res = (await ks.GetLastWeekChempionTaskAsync(this.ToString())).ToList();
                     if (!string.IsNullOrEmpty(res[1]))
                     {
-                        BestScore = res[1];
-                        BestScorePlayer = res[0];
-                        IsScoreLoading = false;
-                        BestScoreLabel = "BestWeekLabel".Localize();
+                        BestDayScore = res[1];
+                        BestDayScorePlayer = res[0];
+                        IsDayScoreLoading = false;
+                        BestDayScoreLabel = "BestWeekLabel".Localize();
                     }
                     else
                         LoadLocalScores();
 #endif
-                    await ks.CloseAsync();
+                     ks.CloseAsync();
                 }
                 catch (Exception ex)
                 {

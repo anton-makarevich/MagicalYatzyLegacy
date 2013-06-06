@@ -2,16 +2,19 @@
 using Sanet.Kniffel.Models;
 using System;
 using System.Collections.Generic;
-
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
+using Facebook.Client;
 #if WinRT
 using System.Dynamic;
-using Facebook.Client;
-#endif
 
+#endif
+#if WINDOWS_PHONE
+using System.Windows.Threading;
+#endif
 namespace Sanet.Common
 {
     public class FacebookInfo
@@ -41,7 +44,7 @@ namespace Sanet.Common
             AccessToken = _session.AccessToken;
             FacebookId = _session.FacebookId;
             _FBClient = new FacebookClient(_session.AccessToken);
-
+#if WinRT
             dynamic result = await _FBClient.GetTaskAsync("me");
 
             userData = new FacebookUserInfo();
@@ -50,6 +53,22 @@ namespace Sanet.Common
             userData.LastName = result.last_name;
             userData.Email = result.email;
             userData.Gender = result.gender;
+#endif
+#if WINDOWS_PHONE
+            _FBClient.GetCompleted+= (o, e) =>
+            {
+                
+                var result = (IDictionary<string, object>)e.GetResultData();
+                userData = new FacebookUserInfo();
+                userData.Id = result["id"].ToString();
+                userData.FirstName = result["first_name"].ToString();
+                userData.LastName = result["last_name"].ToString();
+                userData.Email = result["email"].ToString();
+                userData.Gender = result["gender"].ToString();
+                
+            };
+            _FBClient.GetAsync("me");
+#endif
 
             //get friends data
             /*result = await _FBClient.GetTaskAsync("me/friends");
@@ -72,6 +91,7 @@ namespace Sanet.Common
                       
         public async void PublishOnWall(string facebookid, string message)
         {
+            /*
             if (_FBClient == null || string.IsNullOrEmpty(AccessToken))
             {
                 //TODO redirect to fbconnect??
@@ -84,7 +104,7 @@ namespace Sanet.Common
             //parameters.place = "123";
             //parameters.name = "Test";
             //var res = await _FBClient.PostTaskAsync(string.Format("{0}/feed",facebookid), parameters);
-            var res = await _FBClient.PostTaskAsync(string.Format("me/feed"), parameters);
+            var res = await _FBClient.PostTaskAsync(string.Format("me/feed"), parameters);*/
             
         }
         #endregion

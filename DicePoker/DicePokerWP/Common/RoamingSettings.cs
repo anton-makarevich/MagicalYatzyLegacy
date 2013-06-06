@@ -295,6 +295,19 @@ namespace Sanet.Kniffel.Models
                 LocalSettings.SetValue("LocalExtendedRecord", value);
             }
         }
+        public static int LocalMagicRecord
+        {
+            get
+            {
+                if (LocalSettings.GetValue("LocalMagicRecord") == null)
+                    LocalSettings.SetValue("LocalMagicRecord", 0);
+                return int.Parse(LocalSettings.GetValue("LocalMagicRecord"));
+            }
+            set
+            {
+                LocalSettings.SetValue("LocalMagicRecord", value);
+            }
+        }
         #endregion
 
         public static string AccessToken
@@ -307,7 +320,7 @@ namespace Sanet.Kniffel.Models
             }
             set
             {
-                LocalSettings.SetValue(AccessToken", value);
+                LocalSettings.SetValue("AccessToken", value);
             }
         }
     }
