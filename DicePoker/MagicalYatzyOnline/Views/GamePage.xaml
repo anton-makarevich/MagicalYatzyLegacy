@@ -70,8 +70,7 @@
                     <Button  HorizontalAlignment="Left" 
                      VerticalAlignment="Top"
                      AutomationProperties.Name="{Binding RemoveAdLabel}"
-                    IsEnabled="{Binding IsDeleteable}"  
-                             Margin="0,20,15,0"
+                       Margin="0,20,15,0"
                     Style="{StaticResource DeleteAppBarButtonStyle}"
                             Click="Button_Click_1"/>
                 </StackPanel>

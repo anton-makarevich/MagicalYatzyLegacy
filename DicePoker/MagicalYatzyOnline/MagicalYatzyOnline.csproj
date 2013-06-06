@@ -1328,6 +1328,9 @@
     <Compile Include="..\cloudserver\models\kniffelprotocol\commands\game\PlayerJoinedCommand.cs">
       <Link>Models\Protocol\Commands\Game\PlayerJoinedCommand.cs</Link>
     </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerJoinedCommandV2.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerJoinedCommandV2.cs</Link>
+    </Compile>
     <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerLeftCommand.cs">
       <Link>Models\Protocol\Commands\Game\PlayerLeftCommand.cs</Link>
     </Compile>
@@ -1594,15 +1597,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ChatViewModel.cs" />
-    <Compile Include="ViewModels\FacebookViewModel.cs" />
     <Compile Include="ViewModels\PlayerWrapper.cs" />
     <Compile Include="ViewModels\NewOnlineGameViewModel.cs" />
     <Compile Include="ViewModels\RollResultWrapper.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\FacebookPage.xaml.cs">
-      <DependentUpon>FacebookPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
@@ -1706,10 +1705,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\AboutPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\FacebookPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

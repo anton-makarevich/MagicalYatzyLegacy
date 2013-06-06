@@ -44,6 +44,54 @@ namespace Sanet.Kniffel.Models
             client.GetTopPlayersAsync(rules, null);
             return tcs.Task;
         }
+        /// <summary>
+        /// Task wrapper for GetArtifactsAsync() method
+        /// </summary>
+        public static Task<GetPlayersMagicsResponse> GetPlayersMagicsTaskAsync(this KniffelServiceSoapClient client,
+            string username, string pass, int rolls, int manuals, int resets)
+        {
+            var tcs = new TaskCompletionSource<GetPlayersMagicsResponse>();
+            client.GetPlayersMagicsCompleted += (s, e) =>
+            {
+                if (e.Error != null) tcs.SetException(e.Error);
+                else if (e.Cancelled) tcs.SetCanceled();
+                else tcs.SetResult(new GetPlayersMagicsResponse(new GetPlayersMagicsResponseBody(e.Result,e.rolls,e.manuals,e.resets)));
+            };
+            client.GetPlayersMagicsAsync(username, pass, rolls, manuals, resets);
+            return tcs.Task;
+        }
+        /// <summary>
+        /// Task wrapper for AddArtifactsAsync() method
+        /// </summary>
+        public static Task<AddPlayersMagicsResponse> AddPlayersMagicsTaskAsync(this KniffelServiceSoapClient client,
+            string username, string pass, string rolls, string manuals, string resets)
+        {
+            var tcs = new TaskCompletionSource<AddPlayersMagicsResponse>();
+            client.AddPlayersMagicsCompleted += (s, e) =>
+            {
+                if (e.Error != null) tcs.SetException(e.Error);
+                else if (e.Cancelled) tcs.SetCanceled();
+                else tcs.SetResult(new AddPlayersMagicsResponse(new AddPlayersMagicsResponseBody(e.Result)));
+            };
+            client.AddPlayersMagicsAsync(username, pass, rolls, manuals, resets);
+            return tcs.Task;
+        }
 
+        /// <summary>
+        /// Task wrapper for PutScoreAsync() method
+        /// </summary>
+        public static Task<PutScoreIntoTableWithPicPureNameResponse> PutScoreIntoTableWithPicPureNameTaskAsync(this KniffelServiceSoapClient client,
+            string username, string pass, string score, string table, string picurl)
+        {
+            var tcs = new TaskCompletionSource<PutScoreIntoTableWithPicPureNameResponse>();
+            client.AddPlayersMagicsCompleted += (s, e) =>
+            {
+                if (e.Error != null) tcs.SetException(e.Error);
+                else if (e.Cancelled) tcs.SetCanceled();
+                else tcs.SetResult(new PutScoreIntoTableWithPicPureNameResponse(new PutScoreIntoTableWithPicPureNameResponseBody(e.Result)));
+            };
+            client.PutScoreIntoTableWithPicPureNameAsync(username, pass, score, table, picurl);
+            return tcs.Task;
+        }
     }
 }

@@ -14,6 +14,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Sanet.Models;
 using Sanet.Kniffel.Models;
+using Sanet.Common;
 
 namespace DicePokerWP
 {
@@ -25,6 +26,16 @@ namespace DicePokerWP
         /// </summary>
         /// <returns>The root frame of the Phone Application.</returns>
         public PhoneApplicationFrame RootFrame { get; private set; }
+
+        //facebook info
+        static FacebookInfo _fbInfo = new FacebookInfo();
+        public static FacebookInfo FBInfo
+        {
+            get
+            {
+                return _fbInfo;
+            }
+        }
 
         /// <summary>
         /// Constructor for the Application object.

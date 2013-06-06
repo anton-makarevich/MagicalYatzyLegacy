@@ -1,17 +1,30 @@
 ﻿using Facebook;
+using Sanet.Kniffel.Models;
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
+using Facebook.Client;
+#if WinRT
+using System.Dynamic;
+
+#endif
+#if WINDOWS_PHONE
+using System.Windows.Threading;
+#endif
 namespace Sanet.Common
 {
     public class FacebookInfo
     {
         private const string _AppId = "438894422873149";
 
+                
+        private FacebookSessionClient FacebookSessionClient = new FacebookSessionClient(_AppId);
+        private FacebookClient _FBClient;
+        private FacebookSession _session;
         /// <summary>
         /// Extended permissions is a comma separated list of permissions to ask the user.
         /// </summary>
@@ -20,74 +33,45 @@ namespace Sanet.Common
         /// https://developers.facebook.com/docs/reference/api/permissions/
         /// </remarks>
         private const string _ExtendedPermissions = "user_about_me,email,read_stream,publish_stream";
-
-        private readonly FacebookClient _FBClient = new FacebookClient();
-
         FacebookUserInfo userData;
         List<FacebookUserInfo> friendsData;
-        
-        public async Task<bool> CheckFBLogin (Uri resultingUri)
+
+
+        #region Methods
+        public async Task<bool> Login()
         {
-            FacebookOAuthResult oauthResult;
-            if (!_FBClient.TryParseOAuthCallbackUrl(resultingUri, out oauthResult))
-            {
-                return false;
-            }
-
-            if (oauthResult.IsSuccess)
-            {
-                var accessToken = oauthResult.AccessToken;
-                await LoginSucceded(accessToken);
-                return true;
-            }
-            else
-            {
-                // user cancelled
-                return false;
-            }
-        }
-        public Uri GetFacebookLoginUrl()
-        {
-            dynamic parameters = new ExpandoObject();
-            parameters.client_id = _AppId;
-            parameters.redirect_uri = "https://www.facebook.com/connect/login_success.html";
-            parameters.response_type = "token";
-            parameters.display = "popup";
-
-            // add the 'scope' parameter only if we have extendedPermissions.
-            if (!string.IsNullOrWhiteSpace(_ExtendedPermissions))
-            {
-                // A comma-delimited list of permissions
-                parameters.scope = _ExtendedPermissions;
-            }
-
-            return _FBClient.GetLoginUrl(parameters);
-        }
-
-        public Uri GetFaceBookLogoutUrl()
-        {
-            if (_FBClient == null || string.IsNullOrEmpty(_FBClient.AccessToken))
-            {
-                return null;
-            }
-            string logoutUri = string.Format("https://www.facebook.com/logout.php?next={0}&access_token={1}", "http://m.facebook.com", _FBClient.AccessToken);
-            return new Uri(logoutUri);
-        }
-
-        private async Task LoginSucceded(string accessToken)
-        {
-            _FBClient.AccessToken = accessToken;
+            _session =await FacebookSessionClient.LoginAsync(_ExtendedPermissions);
+            AccessToken = _session.AccessToken;
+            FacebookId = _session.FacebookId;
+            _FBClient = new FacebookClient(_session.AccessToken);
+#if WinRT
             dynamic result = await _FBClient.GetTaskAsync("me");
 
             userData = new FacebookUserInfo();
-            userData.Id=result.id;
-            userData.FirstName=result.first_name;
+            userData.Id = result.id;
+            userData.FirstName = result.first_name;
             userData.LastName = result.last_name;
             userData.Email = result.email;
             userData.Gender = result.gender;
+#endif
+#if WINDOWS_PHONE
+            _FBClient.GetCompleted+= (o, e) =>
+            {
+                
+                var result = (IDictionary<string, object>)e.GetResultData();
+                userData = new FacebookUserInfo();
+                userData.Id = result["id"].ToString();
+                userData.FirstName = result["first_name"].ToString();
+                userData.LastName = result["last_name"].ToString();
+                userData.Email = result["email"].ToString();
+                userData.Gender = result["gender"].ToString();
+                
+            };
+            _FBClient.GetAsync("me");
+#endif
 
             //get friends data
-            result =await _FBClient.GetTaskAsync("me/friends");
+            /*result = await _FBClient.GetTaskAsync("me/friends");
             friendsData = new List<FacebookUserInfo>();
             foreach (dynamic friend in result.data)
             {
@@ -95,13 +79,20 @@ namespace Sanet.Common
                 friendData.Id = friend.id;
                 friendData.FirstName = friend.name;
                 friendsData.Add(friendData);
-            }
-            
+            }*/
+
+                return true;
         }
 
+        public void Logout()
+        {
+            FacebookSessionClient.Logout();
+        }
+                      
         public async void PublishOnWall(string facebookid, string message)
         {
-            if (_FBClient == null || string.IsNullOrEmpty(_FBClient.AccessToken))
+            /*
+            if (_FBClient == null || string.IsNullOrEmpty(AccessToken))
             {
                 //TODO redirect to fbconnect??
                 throw new Exception("Not connected to facebook");
@@ -113,11 +104,36 @@ namespace Sanet.Common
             //parameters.place = "123";
             //parameters.name = "Test";
             //var res = await _FBClient.PostTaskAsync(string.Format("{0}/feed",facebookid), parameters);
-            var res = await _FBClient.PostTaskAsync(string.Format("me/feed"), parameters);
+            var res = await _FBClient.PostTaskAsync(string.Format("me/feed"), parameters);*/
             
         }
-       
-#region properties
+        #endregion
+
+        #region properties
+
+        public string FacebookId { get; set; }
+
+        public string AccessToken
+        {
+            get
+            {
+                return RoamingSettings.AccessToken;
+            }
+            set
+            {
+                RoamingSettings.AccessToken = value;
+            }
+        }
+        public string UserName
+        {
+            get
+            {
+                if (userData != null)
+                    return string.Format("{0} {1}", userData.FirstName, userData.LastName);
+                return string.Empty;
+            }
+        }
+
         public bool IsLogged
         {
             get

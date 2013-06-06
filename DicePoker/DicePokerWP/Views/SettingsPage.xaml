@@ -60,21 +60,148 @@
                         <TextBlock Style="{StaticResource SubheaderTextStyle}"
                            HorizontalAlignment="Left"
                        Foreground="{StaticResource SanetBlue}"
-                       Text="{Binding RulesBLabel}"
+                       Text="{Binding SettingsStyleCaption}"
                        VerticalAlignment="Center"/>
                         
                     </Controls:PivotItem.Header>
-                    
+                    <StackPanel>
+                        <RadioButton
+                            Style="{StaticResource SettingsRBStyle}"
+                            IsChecked="{Binding IsStyleWhite,Mode=TwoWay}">
+                            <Image Source="../Images/0/xrot.10.png"
+                                   Width="72"
+                                   Margin="40,0"/>
+                        </RadioButton>
+                        <RadioButton
+                            Style="{StaticResource SettingsRBStyle}"
+                        IsEnabled="{Binding IsStylesAvailable}"
+                        IsChecked="{Binding IsStyleBlue,Mode=TwoWay}">
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="40,0">
+                                <Image Source="../Images/2/xrot.26.png" Width="72"/>
+                                <Image Source="/Assets/Lock.png" 
+                                       Width="48"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Left"
+                                       Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"/>
+                            </StackPanel>
+                        </RadioButton>
+                        <RadioButton
+                            Style="{StaticResource SettingsRBStyle}"
+                        IsEnabled="{Binding IsStylesAvailable}"
+                        IsChecked="{Binding IsStyleRed,Mode=TwoWay}">
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="40,0">
+                                <Image Source="../Images/1/xrot.27.png" Width="72"/>
+                                <Image Source="/Assets/Lock.png" 
+                                       Width="48"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Left"
+                                       Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"/>
+                            </StackPanel>
+                        </RadioButton>
+                        <ListBox
+                                ItemsSource="{Binding AboutAppActions}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                ItemTemplate="{StaticResource AboutAppActionTemplate}">
+                            
+                        </ListBox>
+
+                    </StackPanel>
                 </Controls:PivotItem>
-                
+                <Controls:PivotItem >
+                    <Controls:PivotItem.Header>
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
+                       Foreground="{StaticResource SanetBlue}"
+                       Text="{Binding SettingsSpeedCaption}"
+                       VerticalAlignment="Center"/>
+
+                    </Controls:PivotItem.Header>
+                    <StackPanel
+                    Grid.Row="1"
+                    Grid.Column="1">
+                        <RadioButton
+                            Style="{StaticResource SettingsRBStyle}"
+                            IsChecked="{Binding IsSpeedVerySlow,Mode=TwoWay}">
+                            <TextBlock
+                        Style="{StaticResource SettingsTextStyle}"
+                        Text="{Binding SpeedVerySlow}"
+                        />
+                        </RadioButton>
+                            <RadioButton
+                            Style="{StaticResource SettingsRBStyle}"
+                            IsChecked="{Binding IsSpeedSlow,Mode=TwoWay}">
+                            <TextBlock
+                Style="{StaticResource SettingsTextStyle}"
+                Text="{Binding SpeedSlow}"
+                />
+                            </RadioButton>
+                                <RadioButton
+                            Style="{StaticResource SettingsRBStyle}"
+                            IsChecked="{Binding IsSpeedFast,Mode=TwoWay}">
+                            <TextBlock
+                Style="{StaticResource SettingsTextStyle}"
+                Text="{Binding SpeedFast}"
+            />
+                                </RadioButton>
+                                    <RadioButton
+                            Style="{StaticResource SettingsRBStyle}"
+                            IsChecked="{Binding IsSpeedVeryFast,Mode=TwoWay}">
+                            <TextBlock
+                Style="{StaticResource SettingsTextStyle}"
+               Text="{Binding SpeedVeryFast}"
+            />
+                        </RadioButton>
+
+                    </StackPanel>
+                </Controls:PivotItem>
+                <Controls:PivotItem >
+                    <Controls:PivotItem.Header>
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
+                       Foreground="{StaticResource SanetBlue}"
+                       Text="{Binding SettingsAngleCaption}"
+                       VerticalAlignment="Center"/>
+
+                    </Controls:PivotItem.Header>
+                    <StackPanel
+                    Grid.Row="1"
+                    Grid.Column="2">
+                        <RadioButton
+                            Style="{StaticResource SettingsRBStyle}"
+                            IsChecked="{Binding IsAngLow,Mode=TwoWay}">
+                            <TextBlock
+                            Style="{StaticResource SettingsTextStyle}"
+                            Text="{Binding AngLowText}"
+                            />
+                        </RadioButton>
+                            <RadioButton
+                            Style="{StaticResource SettingsRBStyle}"
+                            IsChecked="{Binding IsAngHigh,Mode=TwoWay}">
+                            <TextBlock
+                            Style="{StaticResource SettingsTextStyle}"
+                            Text="{Binding AngHighText}"
+                            />
+                            </RadioButton>
+                                <RadioButton
+                            Style="{StaticResource SettingsRBStyle}"
+                            IsChecked="{Binding IsAngVeryHigh,Mode=TwoWay}">
+                            <TextBlock
+                            Style="{StaticResource SettingsTextStyle}"
+                            Text="{Binding AngVeryHighText}"
+                        />
+                                </RadioButton>
+                        
+                    </StackPanel>
+                </Controls:PivotItem>
             </Controls:Pivot>
-            <my:PhoneHyperlinkButton 
-                Foreground="{StaticResource SanetBlue}"
-                Grid.Row="1"
-                Tag="http://sanet.by/kniffel" 
-                Content="{Binding NavigateToLeaderboardLabel}" 
-                HorizontalAlignment="Center" />
-            
+            <toolkit:ToggleSwitch Grid.Row="1"
+                                  Foreground="{StaticResource SanetBlue}"
+                                  Content="{Binding SoundLabel}"
+                                  IsChecked="{Binding IsSoundEnabled,Mode=TwoWay}"/>
+                                  
         </Grid>
     </Grid>
  

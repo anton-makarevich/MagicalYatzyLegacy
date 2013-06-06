@@ -224,7 +224,7 @@ namespace Sanet.Kniffel.Models
         {
             lock (syncRoot)
             {
-                Send(new FixDiceCommand(CurrentPlayer.Name,value,isfixed));
+                Send(new FixDiceCommand(MyName,value,isfixed));
 
                 
             }
@@ -308,7 +308,7 @@ namespace Sanet.Kniffel.Models
         {
             LogManager.Log(LogLevel.Message,"Game.ApplyScore","Applying score {0} of {1} for {2}", result.PossibleValue,result.ScoreType,CurrentPlayer.Name);
             
-            Send(new ApplyScoreCommand(CurrentPlayer.Name,result));         
+            Send(new ApplyScoreCommand(MyName,result));         
             
             
            
@@ -373,7 +373,7 @@ namespace Sanet.Kniffel.Models
 
         public void SendChatMessage(ChatMessage message)
         {
-            Send (new PlayerChatMessageCommand(message.SenderName,message.Message,message.ReceiverName,message.IsPrivate));
+            Send (new PlayerChatMessageCommand(MyName,message.Message,message.ReceiverName,false));
         }
 
         /// <summary>
@@ -624,7 +624,7 @@ namespace Sanet.Kniffel.Models
             
         }
 
-        void m_CommandObserver_PlayerJoinedCommandReceived(object sender, CommandEventArgs<Protocol.Commands.Game.PlayerJoinedCommand> e)
+        void m_CommandObserver_PlayerJoinedCommandReceived(object sender, CommandEventArgs<Protocol.Commands.Game.PlayerJoinedCommandV2> e)
         {
 
             lock (syncRoot)
@@ -636,7 +636,7 @@ namespace Sanet.Kniffel.Models
                 player.Client = e.Command.PlayerClient;
                 player.Language = e.Command.PlayerLanguage;
                 player.SelectedStyle = e.Command.SelectedStyle;
-                
+                player.PicUrl = e.Command.PicUrl;
                 JoinGame(player);
             }
             

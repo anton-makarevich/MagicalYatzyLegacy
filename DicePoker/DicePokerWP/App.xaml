@@ -13,6 +13,7 @@
         
         <!--Converters-->
         <common:BooleanToVisibilityConverter x:Key="VisibilityKey"/>
+        <!--<common: x:Key="VisibilityKey"/>-->
 
         <Style x:Key="SubheaderTextStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="30"/>
@@ -24,7 +25,17 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
+        <Style x:Key="SettingsRBStyle" TargetType="RadioButton">
+            <Setter Property="Margin" Value="10,0"/>
+        </Style>
 
+        <Style x:Key="SettingsTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="10,20"/>
+        </Style>
+        
         <DataTemplate
             toolkit:TiltEffect.SuppressTilt="True"
             x:Key="MainMenuTemplate">

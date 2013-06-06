@@ -27,7 +27,11 @@ namespace Sanet.Kniffel.Protocol
         {
             Players = new List<string>();
             Id = int.Parse(argsToken.NextToken());
-            Rule=(Rules)Enum.Parse(typeof(Rules),argsToken.NextToken());
+            Rule=(Rules)Enum.Parse(typeof(Rules),argsToken.NextToken()
+#if WINDOWS_PHONE
+                ,false
+#endif
+                );
             for (int i=0;i<4;i++)
                 if (argsToken.HasMoreTokens())
                     Players.Add(argsToken.NextToken());

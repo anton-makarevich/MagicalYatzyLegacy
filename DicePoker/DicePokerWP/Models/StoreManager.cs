@@ -12,27 +12,27 @@ namespace Sanet.Kniffel.Models
     public static class StoreManager
     {
         
-        static bool isProductAvailable(string product)
+        public static bool IsProductAvailable(string product)
         {
             return _isTrial;
         }
-        static void BuyLicense(string product)
+        public static bool BuyLicense(string product)
         {
             MarketplaceDetailTask task = new MarketplaceDetailTask();
             //task.ContentType = MarketplaceContentType.Applications;
             task.Show();
             CheckTrial();
-                        
+            return true;          
         }
 
         static public bool IsAdVisible()
         {
-            return isProductAvailable("AdFree");
+            return IsProductAvailable("AdFree");
         }
 
         static public bool IsStylesAvailable()
         {
-             return isProductAvailable("AdFree");
+             return !IsProductAvailable("AdFree");
         }
 
         static public void RemoveAd()

@@ -69,11 +69,15 @@ namespace DicePokerWP
         {
             CommonNavigationActions.OnNavigationToAbout += CommonNavigationActions_OnNavigationToAbout;
             CommonNavigationActions.OnNavigationToLeaderboard += CommonNavigationActions_OnNavigationToLeaderboard;
+            CommonNavigationActions.OnNavigationToSettings += CommonNavigationActions_OnNavigationToSettings;
         }
+
+        
         void DettachNavigationEvents()
         {
             CommonNavigationActions.OnNavigationToAbout -= CommonNavigationActions_OnNavigationToAbout;
             CommonNavigationActions.OnNavigationToLeaderboard -= CommonNavigationActions_OnNavigationToLeaderboard;
+            CommonNavigationActions.OnNavigationToSettings -= CommonNavigationActions_OnNavigationToSettings;
         }
 
 
@@ -85,6 +89,11 @@ namespace DicePokerWP
         void CommonNavigationActions_OnNavigationToAbout()
         {
             NavigationService.Navigate(new Uri("/Views/AboutPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        void CommonNavigationActions_OnNavigationToSettings()
+        {
+            NavigationService.Navigate(new Uri("/Views/SettingsPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
         void buyButton_Click(object sender, EventArgs e)

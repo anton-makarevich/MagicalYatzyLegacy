@@ -108,7 +108,7 @@ namespace Sanet.Models
                     {
                         int powermod = (int)Math.Pow(iPK, intCountPower);
                         int charcode = (dblWithRandom / powermod) + key;
-                        dynamic tchar = System.Convert.ToChar(charcode);
+                        char tchar = System.Convert.ToChar(charcode);
                         sbEncr.Append(tchar);
 
                         dblWithRandom = dblWithRandom - ((charcode - key) * powermod);

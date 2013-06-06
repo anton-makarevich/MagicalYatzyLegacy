@@ -69,26 +69,14 @@ namespace Sanet
           {
               return false;
           }
-      }
+      }*/
 
-     public static void ShowToastNotification(string text, string logoimage)
+     public static void ShowToastNotification(string text)
      {
-         // The template is set to be a ToastImageAndText01. This tells the toast notification manager what to expect next.
-         ToastTemplateType toastTemplate = ToastTemplateType.ToastImageAndText01;
-         XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(toastTemplate);
-
-         XmlNodeList toastImageElements = toastXml.GetElementsByTagName("image");
-         ((XmlElement)toastImageElements[0]).SetAttribute("src", "ms-appx:///Assets/" + logoimage);
-         ((XmlElement)toastImageElements[0]).SetAttribute("alt", "");
-
-         XmlNodeList toastTextElements = toastXml.GetElementsByTagName("text");
-         toastTextElements[0].AppendChild(toastXml.CreateTextNode(text));
-
-         ToastNotification toast = new ToastNotification(toastXml);
-         ToastNotificationManager.CreateToastNotifier().Show(toast);
-
+         //TODO there is a toastmessage control in Code4Fun toolkit. they promised to release WP8 version till end of the year 2012  
+         ShowMessage(text);
      }
-
+/*
      public static void ShowToastNotification(string text)
      {
          ShowToastNotification(text, "StoreLogo.scale-180.png");

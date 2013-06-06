@@ -136,7 +136,7 @@ namespace Sanet.Kniffel.ViewModels
             set
             {
                 RoamingSettings.DiceAngle = value;
-                //RoamingSettings.Save();
+                NotifyPropertyChanged("SettingsPanelAngle");
                 NotifyPropertyChanged("DiceAngle");
                 NotifyPropertyChanged("IsAngLow");
                 NotifyPropertyChanged("IsAngHigh");
@@ -152,7 +152,7 @@ namespace Sanet.Kniffel.ViewModels
             set
             {
                 RoamingSettings.DiceSpeed = value;
-                //Settings.Save();
+                NotifyPropertyChanged("SettingsPanelSpeed");
                 NotifyPropertyChanged("DiceSpeed");
                 NotifyPropertyChanged("IsSpeedVerySlow");
                 NotifyPropertyChanged("IsSpeedSlow");
@@ -169,7 +169,7 @@ namespace Sanet.Kniffel.ViewModels
             set
             {
                 RoamingSettings.DiceStyle = value;
-                //Settings.Save();
+                NotifyPropertyChanged("SettingsPanelStyle");
                 NotifyPropertyChanged("DiceStyle");
                 NotifyPropertyChanged("IsStyleBlue");
                 NotifyPropertyChanged("IsStyleRed");

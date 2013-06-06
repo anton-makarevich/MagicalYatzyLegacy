@@ -14,6 +14,7 @@ namespace Sanet.Kniffel.Models
         #region events
         public static event Action OnNavigationToAbout;
         public static event Action OnNavigationToLeaderboard;
+        public static event Action OnNavigationToSettings;
         #endregion
 
 
@@ -106,12 +107,8 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(() =>
                 {
-                    //if (App.Settings == null)
-                    //{
-
-                    //    App.Settings = new TaskPanePopup(new SettingsPage());
-                    //}
-                    //App.Settings.Show();
+                    if (OnNavigationToSettings != null)
+                        OnNavigationToSettings();
                 });
             }
 

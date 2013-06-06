@@ -1,6 +1,15 @@
-﻿
+﻿#if WinRT
 using DicePokerRT;
 using DicePokerRT.KniffelLeaderBoardService;
+using Windows.System.UserProfile;
+using Windows.UI.Popups;
+using Windows.UI.Xaml.Controls.Primitives;
+#endif
+#if WINDOWS_PHONE
+using System.Windows.Controls.Primitives;
+using DicePokerWP.KniffelLeaderBoardService;
+#endif
+using Sanet.Common;
 using Sanet.Kniffel.Models;
 using Sanet.Models;
 using System;
@@ -9,25 +18,27 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.System.UserProfile;
-using Windows.UI.Popups;
-using Windows.UI.Xaml.Controls.Primitives;
+
+
+
 
 namespace Sanet.Kniffel.ViewModels
 {
     public abstract class NewGameViewModelBase : AdBasedViewModel
     {
+#if WinRT
         protected Popup _magicPopup = new Popup();
         protected MagicRoomPage _magic = new MagicRoomPage();
-
+#endif
         
         #region Constructor
         public NewGameViewModelBase()
         {
-            
+#if WinRT
             _magicPopup.Child = _magic;
             _magic.Tag = _magicPopup;
             //fillRules();
+#endif
         }
         #endregion
 
@@ -141,8 +152,10 @@ namespace Sanet.Kniffel.ViewModels
         
         protected void p_MagicPressed(object sender, EventArgs e)
         {
+#if WinRT
             _magic.GetViewModel<MagicRoomViewModel>().CurrentPlayer = (PlayerWrapper)sender;
             _magicPopup.IsOpen = true;
+#endif
         }
 
         protected abstract void FillPlayers();
@@ -154,7 +167,13 @@ namespace Sanet.Kniffel.ViewModels
         {
             Rules = new List<RuleWrapper>();
             //create all possible rules
-            foreach (Rules rule in Enum.GetValues(typeof(Rules)))
+#if WinRT
+            var rulesList = Enum.GetValues(typeof(Rules));
+#endif
+#if WINDOWS_PHONE
+            var rulesList = EnumCompactExtension.GetValues<Rules>().ToList();
+#endif
+            foreach (Rules rule in rulesList)
                 Rules.Add(new RuleWrapper( new KniffelRule(rule)));
             NotifyPropertyChanged("Rules");
             //try to get prev selected from roaming
@@ -163,10 +182,6 @@ namespace Sanet.Kniffel.ViewModels
             if (SelectedRule == null)
                 SelectedRule = Rules[0];
             
-                
-
-
-
         }
                
 
@@ -185,15 +200,23 @@ namespace Sanet.Kniffel.ViewModels
                     int rolls = 0;
                     int manuals = 0;
                     int resets = 0;
-
-                    var result = await client.GetPlayersMagicsAsync(player.Name, player.Password.Encrypt(33), rolls, manuals, resets);
+#if WinRT
+                    GetPlayersMagicsResponse result = await client.GetPlayersMagicsAsync(player.Name, player.Password.Encrypt(33), rolls, manuals, resets);
+#endif
+#if WINDOWS_PHONE
+                    GetPlayersMagicsResponse result = await client.GetPlayersMagicsTaskAsync(player.Name, player.Password.Encrypt(33), rolls, manuals, resets);
+#endif
                     player.HadStartupMagic = result.Body.GetPlayersMagicsResult;
                     if (RoamingSettings.GetMagicRollsCount(player.Player) == 0 && result.Body.rolls == 10)
                         Utilities.ShowToastNotification(string.Format(Messages.PLAYER_ARTIFACTS_BONUS.Localize(), player.Name, 10));
                     RoamingSettings.SetMagicRollsCount(player.Player, result.Body.rolls);
                     RoamingSettings.SetManualSetsCount(player.Player, result.Body.manuals);
                     RoamingSettings.SetForthRollsCount(player.Player, result.Body.resets);
-                    await client.CloseAsync();
+#if WinRT
+                    await 
+#endif
+                    client.CloseAsync();
+
                 }
                 catch (Exception ex)
                 {
