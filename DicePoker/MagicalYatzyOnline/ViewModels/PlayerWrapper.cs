@@ -5,9 +5,18 @@ using Sanet.Kniffel.Models.Interfaces;
 using Sanet.Models;
 using System;
 using System.Collections.Generic;
+
+#if WinRT
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
+#endif
+#if WINDOWS_PHONE
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Threading;
+#endif
 namespace Sanet.Kniffel.ViewModels
 {
     public class PlayerWrapper:BaseViewModel,IPlayer

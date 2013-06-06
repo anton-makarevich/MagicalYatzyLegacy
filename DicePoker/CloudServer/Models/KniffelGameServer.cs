@@ -95,7 +95,7 @@ namespace Sanet.Kniffel.Models
 
         void _Game_OnChatMessage(object sender, ChatMessageEventArgs e)
         {
-            //Send(new PlayerChatMessageCommand(e.Message.SenderName, e.Message.Message, e.Message.ReceiverName,e.Message.IsPrivate));
+            Send(new PlayerChatMessageCommand(e.Message.SenderName, e.Message.Message, e.Message.ReceiverName,e.Message.IsPrivate));
         }
 
         void _Game_GameUpdated(object sender, EventArgs e)

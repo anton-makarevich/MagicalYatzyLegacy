@@ -1,6 +1,14 @@
-﻿
+﻿#if WinRT
 using DicePokerRT;
 using DicePokerRT.KniffelLeaderBoardService;
+using Windows.System.UserProfile;
+using Windows.UI.Popups;
+using Windows.UI.Xaml.Controls.Primitives;
+#endif
+#if WINDOWS_PHONE
+using System.Windows.Controls.Primitives;
+#endif
+using Sanet.Common;
 using Sanet.Kniffel.Models;
 using Sanet.Models;
 using System;
@@ -9,9 +17,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.System.UserProfile;
-using Windows.UI.Popups;
-using Windows.UI.Xaml.Controls.Primitives;
+
+
 
 namespace Sanet.Kniffel.ViewModels
 {
@@ -154,7 +161,13 @@ namespace Sanet.Kniffel.ViewModels
         {
             Rules = new List<RuleWrapper>();
             //create all possible rules
-            foreach (Rules rule in Enum.GetValues(typeof(Rules)))
+#if WinRT
+            var rulesList = Enum.GetValues(typeof(Rules));
+#endif
+#if WINDOWS_PHONE
+            var rulesList = EnumCompactExtension.GetValues<Rules>().ToList();
+#endif
+            foreach (Rules rule in rulesList)
                 Rules.Add(new RuleWrapper( new KniffelRule(rule)));
             NotifyPropertyChanged("Rules");
             //try to get prev selected from roaming

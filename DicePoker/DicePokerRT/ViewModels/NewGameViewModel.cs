@@ -1,6 +1,11 @@
-﻿
+﻿#if WinRT
 using DicePokerRT;
 using DicePokerRT.KniffelLeaderBoardService;
+using Windows.System.UserProfile;
+using Windows.UI.Popups;
+using Windows.UI.Xaml.Controls.Primitives;
+#endif
+
 using Sanet.Kniffel.Models;
 using Sanet.Models;
 using System;
@@ -9,9 +14,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.System.UserProfile;
-using Windows.UI.Popups;
-using Windows.UI.Xaml.Controls.Primitives;
+
 
 namespace Sanet.Kniffel.ViewModels
 {
@@ -320,6 +323,7 @@ namespace Sanet.Kniffel.ViewModels
                     {
                         if (!player.HasArtifacts && player.IsHuman)
                         {
+#if WinRT
                             var msg = new MessageDialog(string.Format("NoArtifactsMessage".Localize(),player.Name), "NoArtifactsLabel".Localize());
 
                             // Add buttons and set their command handlers
@@ -333,6 +337,7 @@ namespace Sanet.Kniffel.ViewModels
                                 p_MagicPressed(player, null);
                                 return;
                             }
+#endif
                         }
                     }
                     //player.Roll = 1;

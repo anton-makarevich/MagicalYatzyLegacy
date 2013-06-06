@@ -56,6 +56,12 @@
     <Reference Include="Coding4Fun.Phone.Controls">
       <HintPath>..\..\..\BiblePronto\BibleProntoWP7\BibleProntoWP\Bin\Release\Coding4Fun.Phone.Controls.dll</HintPath>
     </Reference>
+    <Reference Include="Facebook">
+      <HintPath>packages\Facebook.6.4.2\lib\wp71\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook.Client">
+      <HintPath>packages\Facebook.Client.0.7.0-alpha\lib\wp71\Facebook.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Google.AdMob.Ads.WindowsPhone7">
       <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\Google.AdMob.Ads.WindowsPhone7.dll</HintPath>
     </Reference>
@@ -139,6 +145,12 @@
     <Compile Include="..\CloudServer\Models\Interfaces\IKniffelGame.cs">
       <Link>Models\Interfaces\IKniffelGame.cs</Link>
     </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\TuplePlayerInfo.cs">
+      <Link>Models\Protocol\TuplePlayerInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\TupleTableInfo.cs">
+      <Link>Models\Protocol\TupleTableInfo.cs</Link>
+    </Compile>
     <Compile Include="..\DicePokerRT\DicePanel\DiceSelector.cs">
       <Link>DicePanel\DiceSelector.cs</Link>
     </Compile>
@@ -148,8 +160,17 @@
     <Compile Include="..\DicePokerRT\Models\AboutAppAction.cs">
       <Link>Models\AboutAppAction.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerRT\Models\AdminModule.cs">
+      <Link>Models\AdminModule.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Config.cs">
+      <Link>Models\Config.cs</Link>
+    </Compile>
     <Compile Include="..\DicePokerRT\Models\DiceRandomGenerator.cs">
       <Link>Models\DiceRandomGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\EncriptionExtensions.cs">
+      <Link>Models\EncriptionExtensions.cs</Link>
     </Compile>
     <Compile Include="..\DicePokerRT\Models\Enums\ClientType.cs">
       <Link>Models\enums\ClientType.cs</Link>
@@ -165,6 +186,9 @@
     </Compile>
     <Compile Include="..\DicePokerRT\Models\Events\EventArgs.cs">
       <Link>Models\events\EventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Interfaces\IPlayGameViewModel.cs">
+      <Link>Models\Interfaces\IPlayGameViewModel.cs</Link>
     </Compile>
     <Compile Include="..\DicePokerRT\Models\KniffelGame.cs">
       <Link>Models\KniffelGame.cs</Link>
@@ -187,6 +211,9 @@
     <Compile Include="..\DicePokerRT\Models\Messages.cs">
       <Link>Models\Messages.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerRT\Models\OfferAction.cs">
+      <Link>Models\OfferAction.cs</Link>
+    </Compile>
     <Compile Include="..\DicePokerRT\Models\RelayCommand.cs">
       <Link>Common\RelayCommand.cs</Link>
     </Compile>
@@ -202,8 +229,32 @@
     <Compile Include="..\DicePokerRT\ViewModels\LeaderboardViewModel.cs">
       <Link>ViewModels\LeaderboardViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\MagicRoomViewModel.cs">
+      <Link>ViewModels\MagicRoomViewModel.cs</Link>
+    </Compile>
     <Compile Include="..\DicePokerRT\ViewModels\MainPageViewModel.cs">
       <Link>ViewModels\MainPageViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\NewGameViewModel.cs">
+      <Link>ViewModels\NewGameViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\NewGameViewModelBase.cs">
+      <Link>ViewModels\NewGameViewModelBase.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\PlayGameViewModel.cs">
+      <Link>ViewModels\PlayGameViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\RuleWrapper.cs">
+      <Link>ViewModels\RuleWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Common\Facebook\FacebookFriendship.cs">
+      <Link>Common\Facebook\FacebookFriendship.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Common\Facebook\FacebookInfo.cs">
+      <Link>Common\Facebook\FacebookInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Common\Facebook\FacebookUserInfo.cs">
+      <Link>Common\Facebook\FacebookUserInfo.cs</Link>
     </Compile>
     <Compile Include="..\MagicalYatzyOnline\DicePanel\DiceStyle.cs">
       <Link>DicePanel\DiceStyle.cs</Link>
@@ -217,9 +268,25 @@
     <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IRollResult.cs">
       <Link>Models\Interfaces\IRollResult.cs</Link>
     </Compile>
+    <Compile Include="..\MagicalYatzyOnline\ViewModels\ChatViewModel.cs">
+      <Link>ViewModels\ChatViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\ViewModels\FacebookViewModel.cs">
+      <Link>ViewModels\FacebookViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\ViewModels\NewOnlineGameViewModel.cs">
+      <Link>ViewModels\NewOnlineGameViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\ViewModels\PlayerWrapper.cs">
+      <Link>ViewModels\PlayerWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\ViewModels\RollResultWrapper.cs">
+      <Link>ViewModels\RollResultWrapper.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\EnumCompactExtension.cs" />
     <Compile Include="Common\InternetCheker.cs" />
     <Compile Include="Common\LocalSettings.cs" />
     <Compile Include="Converters\ReverseBooleanToVisibilityConverter.cs" />

@@ -1,6 +1,11 @@
-﻿
+﻿#if WinRT
 using DicePokerRT;
 using DicePokerRT.KniffelLeaderBoardService;
+using Windows.System.UserProfile;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls.Primitives;
+#endif
 using Sanet.Kniffel.Models;
 using Sanet.Kniffel.Protocol;
 using Sanet.Kniffel.WebApi;
@@ -11,23 +16,27 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.System.UserProfile;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls.Primitives;
+using MagicalYatzyOnline;
+using Sanet.Common;
+
+#if WINDOWS_PHONE
+using System.Windows.Controls.Primitives;
+using System.Windows.Threading;
+#endif
 
 namespace Sanet.Kniffel.ViewModels
 {
     public class NewOnlineGameViewModel : NewGameViewModelBase
     {
-        Popup _facebookPopup = new Popup();
-        FacebookPage _facebook = new FacebookPage();
-
+        
         public event EventHandler PasswordTapped;
         public event EventHandler NameTapped;
-
+#if WinRT
         string[] _language = Windows.System.UserProfile.GlobalizationPreferences.Languages[0].Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
-
+#endif
+#if WINDOWS_PHONE
+        string[] _language = new string[] { System.Threading.Thread.CurrentThread.CurrentCulture.Name };
+#endif
         DispatcherTimer _updateTimer = new DispatcherTimer() 
         {
             Interval=TimeSpan.FromSeconds(40)
@@ -39,9 +48,9 @@ namespace Sanet.Kniffel.ViewModels
         {
             _updateTimer.Tick += _updateTimer_Tick;
 
-            _facebookPopup.Child = _facebook;
-            _facebook.Tag = _facebookPopup;
-            _facebookPopup.Closed += _facebookPopup_Closed;
+            //_facebookPopup.Child = _facebook;
+            //_facebook.Tag = _facebookPopup;
+            //_facebookPopup.Closed += _facebookPopup_Closed;
 
             CreateCommands();
             FillPlayers();
@@ -325,39 +334,35 @@ namespace Sanet.Kniffel.ViewModels
             
         }
 
-        void p_FacebookClicked(object sender, EventArgs e)
+        async void p_FacebookClicked(object sender, EventArgs e)
         {
-            _facebookPopup.IsOpen = true;
-            _facebook.IsOk = false;
-            if (SelectedPlayer.IsDefaultName)
-                _facebook.LogIn();
-            else
-                _facebook.LogOut();
-            
-        }
 
-        void _facebookPopup_Closed(object sender, object e)
-        {
-            if (SelectedPlayer.IsLocalProfile)
-                return;
-            if (_facebook.IsOk)
+            if (SelectedPlayer.IsDefaultName)
             {
-                SelectedPlayer.Name = ViewModelProvider.GetViewModel<FacebookViewModel>().Name;
-                SelectedPlayer.Password = Player.FB_PREFIX+ ViewModelProvider.GetViewModel<FacebookViewModel>().FacebookId;
-                
+                try
+                {
+                    await App.FBInfo.Login();
+                    SelectedPlayer.Name = App.FBInfo.UserName;
+                    SelectedPlayer.Password = Player.FB_PREFIX + App.FBInfo.FacebookId;
+                }
+                catch (Exception ex)
+                {
+                    LogManager.Log("NOGVM.FacebookLogin", ex);
+                    SelectedPlayer.Name = "";
+                    SelectedPlayer.Password = "";
+                }
             }
             else
             {
+                App.FBInfo.Logout();
                 SelectedPlayer.Name = "";
                 SelectedPlayer.Password = "";
-                
             }
-            SelectedPlayer.RefreshArtifactsInfo(false, true);
+            SelectedPlayer.RefreshArtifactsInfo();
             SavePlayers();
         }
 
-        
-
+       
         void p_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName=="Password" ||e.PropertyName=="Name")

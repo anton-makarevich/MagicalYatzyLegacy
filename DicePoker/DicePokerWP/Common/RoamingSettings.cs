@@ -1,5 +1,6 @@
 ﻿using Sanet.Kniffel.DicePanel;
 using Sanet.Kniffel.Models;
+using Sanet.Kniffel.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,22 +17,31 @@ namespace Sanet.Kniffel.Models
         /// <summary>
         /// Get player info from roaming
         /// </summary>
-        public static Player GetLastPlayer(int index)
+        public static PlayerWrapper GetLastPlayer(int index)
         {
             var valueKey = "LastPlayer" + index.ToString();
             Player player=new Player();
+            if (!string.IsNullOrEmpty(LocalSettings.GetValue(valueKey +"_strProfile")))
+                player.Profile = (ProfileType)Enum.Parse(typeof(ProfileType), LocalSettings.GetValue(valueKey + "_strProfile"),false);
+            
             if (string.IsNullOrEmpty(LocalSettings.GetValue(valueKey + "_strName")))
                 return null;
             else
-                    player.Name=  LocalSettings.GetValue(valueKey + "_strName");
-                if (!string.IsNullOrEmpty(LocalSettings.GetValue(valueKey + "_strPass")))
-                    player.Password = LocalSettings.GetValue(valueKey + "_strPass");
-                if (!string.IsNullOrEmpty(LocalSettings.GetValue(valueKey + "_strType")))
-                    player.Type = (PlayerType)Enum.Parse(typeof(PlayerType), LocalSettings.GetValue(valueKey + "_strType"),false);
-                if (!string.IsNullOrEmpty(LocalSettings.GetValue(valueKey + "_boolPass")))
-                    player.RememberPass = System.Convert.ToBoolean( LocalSettings.GetValue(valueKey + "_boolPass"));
+               player.Name=  LocalSettings.GetValue(valueKey + "_strName");
+
+            if (!string.IsNullOrEmpty(LocalSettings.GetValue(valueKey + "_strPass")))
+                player.Password = LocalSettings.GetValue(valueKey + "_strPass");
             
-            return player;
+            if (!string.IsNullOrEmpty(LocalSettings.GetValue(valueKey + "_strPicUrl")))
+                player.PicUrl = LocalSettings.GetValue(valueKey + "_strPicUrl");
+            
+            if (!string.IsNullOrEmpty(LocalSettings.GetValue(valueKey + "_strType")))
+                player.Type = (PlayerType)Enum.Parse(typeof(PlayerType), LocalSettings.GetValue(valueKey + "_strType"),false);
+            
+            if (!string.IsNullOrEmpty(LocalSettings.GetValue(valueKey + "_boolPass")))
+                player.RememberPass = System.Convert.ToBoolean( LocalSettings.GetValue(valueKey + "_boolPass"));
+            
+            return new PlayerWrapper(player);
         }
          
         /// <summary>
@@ -46,6 +56,8 @@ namespace Sanet.Kniffel.Models
                 LocalSettings.SetValue(valueKey+"_strPass",  player.Password);
                 LocalSettings.SetValue(valueKey+"_strType", player.Type.ToString());
                 LocalSettings.SetValue(valueKey+"_boolPass",  player.RememberPass);
+                LocalSettings.SetValue(valueKey + "_strProfile", player.Profile.ToString());
+                LocalSettings.SetValue(valueKey + "_strPicUrl", player.PicUrl);
             }
             else
                 LocalSettings.SetValue(valueKey+"_strName", "");
@@ -64,7 +76,83 @@ namespace Sanet.Kniffel.Models
                 LocalSettings.SetValue("LastRule", value.ToString());
             }
         }
-        
+
+        #region Magic artifacts
+        /// <summary>
+        /// Returns count of magic rolls for current player
+        /// </summary>
+        public static int GetMagicRollsCount(Player player)
+        {
+            if (AdminModule.IsAdmin(player))
+                return 1;
+            int res = 0;
+            var valueKey = string.Format("MR_{0}_{1}", player.Name, player.Password);
+
+            if (!string.IsNullOrEmpty(LocalSettings.GetValue(valueKey)))
+                res = System.Convert.ToInt32(LocalSettings.GetValue(valueKey));
+            
+            return res;
+        }
+
+        /// <summary>
+        /// Returns count of manual sets for current player
+        /// </summary>
+        public static int GetManualSetsCount(Player player)
+        {
+            if (AdminModule.IsAdmin(player))
+                return 1;
+            int res = 0;
+            var valueKey = string.Format("MS_{0}_{1}", player.Name, player.Password);
+
+            if (!string.IsNullOrEmpty(LocalSettings.GetValue(valueKey)))
+                res = System.Convert.ToInt32(LocalSettings.GetValue(valueKey));
+            return res;
+        }
+
+        /// <summary>
+        /// Returns count of manual sets for current player
+        /// </summary>
+        public static int GetForthRollsCount(Player player)
+        {
+            if (AdminModule.IsAdmin(player))
+                return 1;
+            int res = 0;
+            var valueKey = string.Format("FR_{0}_{1}", player.Name, player.Password);
+
+            if (!string.IsNullOrEmpty(LocalSettings.GetValue(valueKey)))
+                res = System.Convert.ToInt32(LocalSettings.GetValue(valueKey));
+            return res;
+        }
+
+        /// <summary>
+        /// Sets count of magic rolls for current player
+        /// </summary>
+        public static void SetMagicRollsCount(Player player, int count)
+        {
+            var valueKey = string.Format("MR_{0}_{1}", player.Name, player.Password);
+            LocalSettings.SetValue(valueKey , count);
+
+        }
+        /// <summary>
+        /// Sets count of manual sets for current player
+        /// </summary>
+        public static void SetManualSetsCount(Player player, int count)
+        {
+            var valueKey = string.Format("MS_{0}_{1}", player.Name, player.Password);
+            LocalSettings.SetValue(valueKey, count);
+
+        }
+        /// <summary>
+        /// Sets count of forth rolls for current player
+        /// </summary>
+        public static void SetForthRollsCount(Player player, int count)
+        {
+            var valueKey = string.Format("FR_{0}_{1}", player.Name, player.Password);
+            LocalSettings.SetValue(valueKey, count);
+
+        }
+
+        #endregion
 
         #region setting section
         public static DiceStyle DiceStyle
@@ -208,6 +296,20 @@ namespace Sanet.Kniffel.Models
             }
         }
         #endregion
+
+        public static string AccessToken
+        {
+            get
+            {
+                if (LocalSettings.GetValue("AccessToken") == null)
+                    LocalSettings.SetValue("AccessToken", 5);
+                return LocalSettings.GetValue("AccessToken");
+            }
+            set
+            {
+                LocalSettings.SetValue(AccessToken", value);
+            }
+        }
     }
 
 }

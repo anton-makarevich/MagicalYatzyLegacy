@@ -2087,14 +2087,6 @@
                                 <CompositeTransform/>
                             </TextBlock.RenderTransform>
                         </TextBlock>
-                        
-                        <Image Source="ms-appx:///Assets/check.png"
-                               Height="16" 
-                               Margin="10,0"
-                               Grid.RowSpan="2"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Top"
-                               Visibility="{Binding IsReady,Converter={StaticResource VisibilityKey}}"/>
                         <Path x:Name="timerShape" Data="M 0,0 L50,0 L50,5 L0,5z" 
                               Visibility="{Binding IsMyTurn, Converter={StaticResource VisibilityKey}}"
                               VerticalAlignment="Bottom"
@@ -2106,6 +2098,14 @@
                                         <CompositeTransform/>
                                     </Path.RenderTransform>
                                 </Path>
+                        <Image Source="ms-appx:///Assets/check.png"
+                               Height="16" 
+                               Margin="10,0"
+                               Grid.RowSpan="2"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Top"
+                               Visibility="{Binding IsReady,Converter={StaticResource VisibilityKey}}"/>
+                        
                             </Grid>
                     </Border>
             <ListView
