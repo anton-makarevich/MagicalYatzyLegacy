@@ -2470,7 +2470,7 @@
     </DataTemplate>
 
     <!--Datatemplate for main menu item-->
-    <DataTemplate x:Key="NewOnlinePlayerTemplate">
+    <!--<DataTemplate x:Key="NewOnlinePlayerTemplate">
         <Grid Height="120" Margin="5" HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -2482,8 +2482,7 @@
             <Controls:RotatingPanel
                               x:Name="ProfilePanel" Width="100" Height="100" Background="Blue" Tag="Type"
                                     Grid.Column="0" IsFace="{Binding IsLocalProfile, Mode=TwoWay}" Margin="5,0" >
-                <!---->
-                 <Grid Background="{StaticResource SanetBlue}" 
+                  <Grid Background="{StaticResource SanetBlue}" 
                       Visibility="{Binding IsFace,ElementName=ProfilePanel,Converter={StaticResource ReversedVisibilityKey}}" >
                             <Image Source="ms-appx:///Assets/facebook_tile.png"
                                    Opacity="0.9"/>
@@ -2546,7 +2545,7 @@
                 HorizontalContentAlignment="Center"
                 VerticalAlignment="Center"
                 Command="{Binding FBCommand}"
-                ><!---->
+                >
             <Grid
                          Height="100"
                  Width="100"
@@ -2595,10 +2594,7 @@
                           <StackPanel VerticalAlignment="Bottom">
                               <PasswordBox x:Name="passText" Margin="2" Password="{Binding Password, Mode=TwoWay}"
                      Height="30" IsPasswordRevealButtonEnabled="True"/>
-                          <!--<CheckBox IsChecked="{Binding RememberPass, Mode=TwoWay}"
-                IsEnabled="{Binding IsHuman}"
-                      Content="{Binding PlayerRememberLabelLocalized}"
-                      Grid.Column="2" Grid.Row="1"/>-->
+                          
                 </StackPanel>
 
         </Grid>
@@ -2687,7 +2683,7 @@
         
         </Grid>
 
-    </DataTemplate>
+    </DataTemplate>-->
 
     <!--Datatemplate for main menu item-->
     <DataTemplate x:Key="TopPlayersTemplate">

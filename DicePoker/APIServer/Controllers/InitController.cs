@@ -31,7 +31,7 @@ namespace PokerServerService.Controllers
                 float version;
                 if (!string.IsNullOrEmpty(versionStr))
                 {
-                    if (float.TryParse(versionStr, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out version) && version >= 2.02f)
+                    if (float.TryParse(versionStr, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out version) && version >= 2.1f)
                     {
 
                         return new ServerHttpMessage()

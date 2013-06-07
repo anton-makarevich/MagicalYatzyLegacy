@@ -2,6 +2,7 @@
     x:Class="DicePokerWP.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Sanet.Controls" 
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
@@ -13,7 +14,7 @@
         
         <!--Converters-->
         <common:BooleanToVisibilityConverter x:Key="VisibilityKey"/>
-        <!--<common: x:Key="VisibilityKey"/>-->
+        <common:ReverseBooleanToVisibilityConverter x:Key="ReversedVisibilityKey"/>
 
         <Style x:Key="SubheaderTextStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="30"/>
@@ -25,17 +26,101 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
         
         <Style x:Key="SettingsRBStyle" TargetType="RadioButton">
             <Setter Property="Margin" Value="10,0"/>
         </Style>
+
+
+
+        <Style x:Key="ContentButton" TargetType="Button">
+
+            <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True"/>
+
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+
+            <Setter Property="Background" Value="Transparent"/>
+
+            <Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}"/>
+
+            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
+
+            <Setter Property="BorderThickness" Value="0"/>
+
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}"/>
+
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}"/>
+
+            <Setter Property="Margin" Value="0" />
+
+            <Setter Property="Padding" Value="0" />
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="ButtonBase">
+
+                        <Grid Background="Transparent">
+
+                            <VisualStateManager.VisualStateGroups>
+
+                                <VisualStateGroup x:Name="CommonStates">
+
+                                    <VisualState x:Name="Normal"/>
+
+                                    <VisualState x:Name="MouseOver"/>
+
+                                    <VisualState x:Name="Pressed"/>
+
+                                    <VisualState x:Name="Disabled">
+
+                                        <Storyboard>
+
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer" Storyboard.TargetProperty="Opacity">
+
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="0.5" />
+
+                                            </ObjectAnimationUsingKeyFrames>
+
+                                        </Storyboard>
+
+                                    </VisualState>
+
+                                </VisualStateGroup>
+
+                            </VisualStateManager.VisualStateGroups>
+
+                            <Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0" Background="{TemplateBinding Background}" Margin="0" >
+
+                                <ContentControl x:Name="ContentContainer" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Padding="{TemplateBinding Padding}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+
+                            </Border>
+
+                        </Grid>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+
 
         <Style x:Key="SettingsTextStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="25"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="Margin" Value="10,20"/>
         </Style>
-        
+
+        <Style x:Key="PlayerTileTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+
         <DataTemplate
             toolkit:TiltEffect.SuppressTilt="True"
             x:Key="MainMenuTemplate">
@@ -61,7 +146,178 @@
 
             </Grid>
         </DataTemplate>
-        
+
+        <!--Datatemplate for main menu item-->
+        <DataTemplate x:Key="NewPlayerTemplate">
+            <Grid Height="120" Margin="-5,0" Width="456" HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    
+                </Grid.ColumnDefinitions>
+                
+
+                <Controls:RotatingPanel
+                Visibility="{Binding IsBotPossible, Converter={StaticResource VisibilityKey}}" 
+               x:Name="TypePanel" Width="100" Height="100" Background="Blue" Tag="Type"
+                                    Grid.Column="0" IsFace="{Binding IsHuman, Mode=TwoWay}" Margin="2,0" >
+                    <!---->
+                 <Grid Background="{StaticResource SanetBlue}" 
+                      Visibility="{Binding IsFace,ElementName=TypePanel,Converter={StaticResource VisibilityKey}}" >
+                            <Image Source="/Assets/User.png"
+                                   />
+                           <TextBlock VerticalAlignment="Bottom"
+                                       Style="{StaticResource PlayerTileTextStyle}"
+                                       Text="{Binding PlayerHumanLabelLocalized}"/>
+                        </Grid>
+                    
+                <Grid Visibility="{Binding IsFace,ElementName=TypePanel,Converter={StaticResource ReversedVisibilityKey}}"
+                            Background="{StaticResource SanetBlue}">
+                             <Image Source="/Assets/Desktop.png"
+                                    />
+                             <TextBlock VerticalAlignment="Bottom"
+                                       Style="{StaticResource PlayerTileTextStyle}"
+                                       Text="{Binding PlayerBotLabelLocalized}"/>
+                            
+                        </Grid>
+                               
+            </Controls:RotatingPanel>
+                
+                <Button
+             Style="{StaticResource ContentButton}"
+                    HorizontalAlignment="Center"
+                Margin="2,0"
+                Height="100"
+                 Width="100"
+                    Grid.Column="1"
+                    Command="{Binding NameChangeCommand}">
+                    <Grid Background="{StaticResource SanetBlue}" 
+                          Width="100" Height="100"
+                      Visibility="{Binding IsFace,ElementName=NamePanel,Converter={StaticResource VisibilityKey}}">
+                        <TextBlock VerticalAlignment="Top"
+                                       Style="{StaticResource PlayerTileTextStyle}"
+                                       Text="{Binding TapToChangeLabel}"/>
+                        <TextBlock VerticalAlignment="Bottom"
+                                       Style="{StaticResource PlayerTileTextStyle}"
+                                       Text="{Binding Name}"/>
+                    </Grid>
+
+                   
+                </Button>
+                
+            <Button
+             Style="{StaticResource ContentButton}"
+                    HorizontalAlignment="Center"
+                Margin="2,0"
+                Height="100"
+                 Width="100"
+                   Command="{Binding PassChangeCommand}" Grid.Column="2" Visibility="{Binding IsHuman,Converter={StaticResource VisibilityKey}}">
+                <Grid Background="{StaticResource SanetBlue}"
+                      Height="100"
+                 Width="100"
+                      Visibility="{Binding IsFace,ElementName=PassPanel,Converter={StaticResource VisibilityKey}}">
+                    <TextBlock VerticalAlignment="Top"
+                                       Style="{StaticResource PlayerTileTextStyle}"
+                                       Text="{Binding TapToChangeLabel}"/>
+                            <TextBlock VerticalAlignment="Bottom"
+                                       Style="{StaticResource PlayerTileTextStyle}"
+                                       Text="{Binding PlayerPasswordLabelLocalized}"/>
+                            
+                        </Grid>
+                      
+            </Button>
+
+            <Button
+             Style="{StaticResource ContentButton}"
+                Margin="2,0"
+                Height="100"
+                 Width="100"
+                Grid.Column="3"
+                 Visibility="{Binding IsHuman,Converter={StaticResource VisibilityKey}}"
+                 HorizontalContentAlignment="Center"
+                VerticalAlignment="Center"
+                Command="{Binding MagicCommand}">
+                <Grid
+                         Height="100"
+                 Width="100"
+                         Background="{StaticResource SanetBlue}">
+                    <TextBlock Text="{Binding ArtifactsInfoMessage}"
+                           VerticalAlignment="Top" 
+                           Foreground="White" 
+                               Style="{StaticResource PlayerTileTextStyle}"
+                            Visibility="{Binding HasArtifacts,Converter={StaticResource ReversedVisibilityKey}}"
+                           />
+                    <Grid
+                     VerticalAlignment="Top" Margin="2"
+                           Visibility="{Binding HasArtifacts,Converter={StaticResource VisibilityKey}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Image Source="/Assets/MagicWand.png"
+                            Width="32"
+                            VerticalAlignment="Bottom"/>
+                        <Image Source="/Assets/Manual.png"
+                            Grid.Column="1"
+                            Width="32"
+                            VerticalAlignment="Bottom"/>
+                        <Image Source="/Assets/ResetRoll.png"
+                            Width="32"
+                            Grid.Column="2"
+                            VerticalAlignment="Bottom"/>
+                        <TextBlock Text="{Binding MagicRollsCount}"
+                           VerticalAlignment="Bottom" Margin="2"
+                                 HorizontalAlignment="Center"
+                                 TextAlignment="Center"
+                                 Grid.Row="1"
+                                 Grid.Column="0"
+                           Foreground="White" 
+                           />
+                        <TextBlock Text="{Binding ManualSetsCount}"
+                           VerticalAlignment="Bottom" Margin="2"
+                                 HorizontalAlignment="Center"
+                                 TextAlignment="Center"
+                                 Grid.Row="1"
+                                 Grid.Column="1"
+                           Foreground="White" 
+                           />
+                        <TextBlock Text="{Binding RollResetsCount}"
+                           VerticalAlignment="Bottom" Margin="2"
+                                 HorizontalAlignment="Center"
+                                 TextAlignment="Center"
+                                 Grid.Row="1"
+                                 Grid.Column="2"
+                           Foreground="White" 
+                           />
+
+                    </Grid>
+
+                    <TextBlock Text="{Binding ArtifactsLabelLocalized}"
+                           VerticalAlignment="Bottom" 
+                           Foreground="White" Style="{StaticResource PlayerTileTextStyle}"
+                           />
+                </Grid>
+
+            </Button>
+
+            <!--<Button  HorizontalAlignment="Left" 
+                     VerticalAlignment="Bottom"
+                     Grid.Column="4"
+                     AutomationProperties.Name="{Binding DeleteLabel}"
+                    Visibility="{Binding IsDeleteable, Converter={StaticResource VisibilityKey}}"  
+                    Style="{StaticResource DeleteAppBarButtonStyle}"
+                            Command="{Binding DeleteCommand}"/>-->
+            </Grid>
+
+        </DataTemplate>
+
         <!--Datatemplate for app action in about page-->
         <DataTemplate x:Key="AboutAppActionTemplate">
             <Grid Height="70" Margin="0,15" HorizontalAlignment="Stretch"

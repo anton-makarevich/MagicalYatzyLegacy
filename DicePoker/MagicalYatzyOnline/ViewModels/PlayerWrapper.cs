@@ -35,7 +35,8 @@ namespace Sanet.Kniffel.ViewModels
         public event EventHandler ArtifactsSyncRequest;
         public event EventHandler DeletePressed;
         public event EventHandler FacebookClicked;
-        
+        public event EventHandler NameClicked;
+        public event EventHandler PassClicked;
 
         public PlayerWrapper(Player player)
         {
@@ -1003,19 +1004,33 @@ namespace Sanet.Kniffel.ViewModels
                 FacebookClicked(this,null);
         }
 
+        private void OnNameChanged()
+        {
+             if (NameClicked != null)
+                NameClicked(this, null);
+        }
+        private void OnPassChanged()
+        {
+            if (PassClicked != null)
+                PassClicked(this, null);
+        }
         #endregion
 
 
         #region Commands
-        public RelayCommand DeleteCommand { get; set; }
-        public RelayCommand MagicCommand { get; set; }
-        public RelayCommand FBCommand { get; set; }
+        public ActionCommand DeleteCommand { get; set; }
+        public ActionCommand MagicCommand { get; set; }
+        public ActionCommand FBCommand { get; set; }
+        public ActionCommand NameChangeCommand { get; set; }
+        public ActionCommand PassChangeCommand { get; set; }
 
         protected void CreateCommands()
         {
-            DeleteCommand = new RelayCommand(o => Delete(), () => true);
-            MagicCommand = new RelayCommand(o => OnMagicPressed(), () => true);
-            FBCommand = new RelayCommand(o => OnFBTapped(), () => true);
+            DeleteCommand = new ActionCommand(Delete);
+            MagicCommand = new ActionCommand(OnMagicPressed);
+            FBCommand = new ActionCommand(OnFBTapped);
+            NameChangeCommand = new ActionCommand(OnNameChanged);
+            PassChangeCommand = new ActionCommand(OnPassChanged);
         }
 
 
