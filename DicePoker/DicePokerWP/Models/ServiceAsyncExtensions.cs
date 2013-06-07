@@ -32,6 +32,22 @@ namespace Sanet.Kniffel.Models
         /// <summary>
         /// Task wrapper for GetLastWeekChempionAsync() method
         /// </summary>
+        public static Task<IEnumerable<string>> GetLastDayChempionTaskAsync(this KniffelServiceSoapClient client, string rules)
+        {
+            var tcs = new TaskCompletionSource<IEnumerable<string>>();
+            client.GetLastDayChempionCompleted += (s, e) =>
+            {
+                if (e.Error != null) tcs.SetException(e.Error);
+                else if (e.Cancelled) tcs.SetCanceled();
+                else tcs.SetResult(new List<string>() { e.Name, e.Score });
+            };
+            client.GetLastDayChempionAsync(rules, "", "");
+            return tcs.Task;
+        }
+
+        /// <summary>
+        /// Task wrapper for GetLastWeekChempionAsync() method
+        /// </summary>
         public static Task<GetTopPlayersResponse> GetTopPlayersTaskAsync(this KniffelServiceSoapClient client, string rules)
         {
             var tcs = new TaskCompletionSource<GetTopPlayersResponse>();

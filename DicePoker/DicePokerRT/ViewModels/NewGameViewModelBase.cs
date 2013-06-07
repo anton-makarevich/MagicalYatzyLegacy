@@ -128,8 +128,10 @@ namespace Sanet.Kniffel.ViewModels
                 {
                     if (value != null)
                     {
+                        if (_SelectedRule != null)
+                            _SelectedRule.IsSelected = false;
                         _SelectedRule = value;
-                        
+                        _SelectedRule.IsSelected = true;
                     }
                     NotifyPropertyChanged("SelectedRule");
                     NotifyPropertyChanged("IsReadyToPlay");

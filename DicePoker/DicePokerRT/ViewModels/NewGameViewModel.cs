@@ -231,7 +231,6 @@ namespace Sanet.Kniffel.ViewModels
             var p = (PlayerWrapper)sender;
             PasswordInputPrompt input = new PasswordInputPrompt
             {
-                Title = "ChangePassLabel".Localize(),
                 Background = Brushes.SolidSanetBlue,
                 Value = p.Password
             };
@@ -239,6 +238,7 @@ namespace Sanet.Kniffel.ViewModels
             input.Completed += (s, e1) =>
             {
                 p.Password = input.Value;
+                p.RefreshArtifactsInfo();
             };
 
             input.Show();
@@ -270,7 +270,7 @@ namespace Sanet.Kniffel.ViewModels
         /// Add new player or bot
         /// </summary>
         /// <param name="type"></param>
-        void AddPlayer(PlayerType type)
+        public void AddPlayer(PlayerType type)
         {
             if (CanAddPlayer)
             {
@@ -283,7 +283,9 @@ namespace Sanet.Kniffel.ViewModels
                 NotifyPlayersChanged();
                 p.Name = GetNewPlayerName(type);
                 p.Type = type;
-            } 
+                SelectedPlayer = p;
+            }
+            NotifyPropertyChanged("CanAddPlayer");
             
         }
 
@@ -325,14 +327,15 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// Delete selected player from list
         /// </summary>
-        void DeletePlayer()
+        public void DeletePlayer()
         {
-            if (IsPlayerSelected)
+            if (IsPlayerSelected && CanDeletePlayer)
             {
                 Players.Remove(SelectedPlayer);
-                SelectedPlayer = null;
+                SelectedPlayer =Players.Last();
                 NotifyPlayersChanged();
             }
+            NotifyPropertyChanged("CanDeletePlayer");
         }
         void p_DeletePressed(object sender, EventArgs e)
         {

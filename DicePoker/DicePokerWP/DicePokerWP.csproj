@@ -373,6 +373,9 @@
     <Content Include="..\DicePokerRT\Assets\AWLogo.png">
       <Link>Assets\AWLogo.png</Link>
     </Content>
+    <Content Include="..\DicePokerRT\Assets\check.png">
+      <Link>Assets\check.png</Link>
+    </Content>
     <Content Include="..\DicePokerRT\Assets\Desktop.png">
       <Link>Assets\Desktop.png</Link>
     </Content>
@@ -412,7 +415,11 @@
     <Content Include="AppResLib.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\delete.png" />
+    <Content Include="Assets\Dice.png" />
+    <Content Include="Assets\Laptop.png" />
     <Content Include="Assets\Lock.png" />
+    <Content Include="Assets\User-Add.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
