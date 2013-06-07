@@ -1,21 +1,33 @@
-Dice Poker - exciting dice game based on the worldwide popular Kniffel (Yatzy) game. The goal is to get as many points as possible by collecting different poker hands of five dices. Possibility to use "magical artifacts" to improve your score makes this game more fun.
-Dice Poker - this is a great opportunity to test your luck and have fun.
-Five sets of rules are implemented in the Dice Poker game, which makes it accessible for players with different levels, including children.
+Magical Yatzy Online - exciting multiplayer dice game based on the worldwide popular Yatzy game. The goal is to get as many points as possible by collecting different poker hands of five dices. Possibility to use "magical artifacts" to improve your score makes this game more fun.
+Magical Yatzy - this is a great opportunity to test your luck and have fun.
+Five sets of rules are implemented in the Magical Yatzy game, which makes it accessible for players with different levels, including children.
 
-five sets of rules
-unique "magical" rules
-single game
-game with friends (up to 4 people)
-playing with a computer
-several visual styles and dice settings
-storing results in web-based records books
-nice pseudo-3D graphics and animation
-clear UI in Windows 8 style and optimized for tablets
+•five sets of rules
+•unique "magical" rules
+•game with friends on the same PC or over internet
+•playing with bots locally
+•several visual styles and dice settings
+•storing results in web-based records books
+•nice pseudo-3D graphics and roll animation
+•clear UI in Windows 8 style and optimized for tablets
+•Login with Facebook account
 
-dice
-knifel
-yatzi
-kniffel
-game
-poker
-yahtzee
+
+dice; yatzee; yahtzy; poker; yatzee; yahtzee; kniffel 
+
+remove ads, unlock all dice styles 
+90 magical artifacts 
+150 magical artifacts 
+300 magical artifacts 
+
+
+
+start new online game
+main menu
+start new game screen
+game - roll result
+game - rolling dices
+game results
+Leaderboard screen
+settings screen
+Magic room
