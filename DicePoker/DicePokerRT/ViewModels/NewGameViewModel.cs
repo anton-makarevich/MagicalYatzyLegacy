@@ -5,7 +5,10 @@ using Windows.System.UserProfile;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls.Primitives;
 #endif
-
+#if SILVERLIGHT
+using Coding4Fun.Phone.Controls;
+#endif
+using Sanet.AllWrite;
 using Sanet.Common;
 using Sanet.Kniffel.Models;
 using Sanet.Models;
@@ -178,10 +181,12 @@ namespace Sanet.Kniffel.ViewModels
             for (int i = 0; i < 4; i++)
             {
                 var p=RoamingSettings.GetLastPlayer(i);
-                if (p.Player == null)
+                if (p==null||p.Player == null)
                     break;
                 p.DeletePressed += p_DeletePressed;
                 p.MagicPressed += p_MagicPressed;
+                p.NameClicked += p_NameClicked;
+                p.PassClicked += p_PassClicked;
                 p.ArtifactsSyncRequest+=ArtifactsSyncRequest;
                 p.RefreshArtifactsInfo(false,true);
                 Players.Add(p);
@@ -210,12 +215,54 @@ namespace Sanet.Kniffel.ViewModels
                     };
                 p.DeletePressed += p_DeletePressed;
                 p.MagicPressed += p_MagicPressed;
+                p.NameClicked += p_NameClicked;
+                p.PassClicked += p_PassClicked;
                 p.ArtifactsSyncRequest += ArtifactsSyncRequest;
                 p.RefreshArtifactsInfo();
                 Players.Add(p);
             }
             NotifyPlayersChanged();
             
+        }
+
+        void p_PassClicked(object sender, EventArgs e)
+        {
+#if SILVERLIGHT
+            var p = (PlayerWrapper)sender;
+            PasswordInputPrompt input = new PasswordInputPrompt
+            {
+                Title = "ChangePassLabel".Localize(),
+                Background = Brushes.SolidSanetBlue,
+                Value = p.Password
+            };
+
+            input.Completed += (s, e1) =>
+            {
+                p.Password = input.Value;
+            };
+
+            input.Show();
+#endif
+        }
+
+        void p_NameClicked(object sender, EventArgs e)
+        {
+#if SILVERLIGHT
+            var p= (PlayerWrapper)sender;
+            InputPrompt input = new InputPrompt
+            {
+                Title = "ChangeNameLabel".Localize(),
+                Background = Brushes.SolidSanetBlue,
+                Value=p.Name
+            };
+
+            input.Completed += (s,e1) =>
+            {
+                p.Name = input.Value;
+            };
+            
+            input.Show();
+#endif
         }
                
 

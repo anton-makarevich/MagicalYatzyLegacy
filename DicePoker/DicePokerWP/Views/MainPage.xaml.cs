@@ -70,16 +70,21 @@ namespace DicePokerWP
             CommonNavigationActions.OnNavigationToAbout += CommonNavigationActions_OnNavigationToAbout;
             CommonNavigationActions.OnNavigationToLeaderboard += CommonNavigationActions_OnNavigationToLeaderboard;
             CommonNavigationActions.OnNavigationToSettings += CommonNavigationActions_OnNavigationToSettings;
+            CommonNavigationActions.OnNavigationToNewGame += CommonNavigationActions_OnNavigationToNewGame;
         }
 
-        
         void DettachNavigationEvents()
         {
             CommonNavigationActions.OnNavigationToAbout -= CommonNavigationActions_OnNavigationToAbout;
             CommonNavigationActions.OnNavigationToLeaderboard -= CommonNavigationActions_OnNavigationToLeaderboard;
             CommonNavigationActions.OnNavigationToSettings -= CommonNavigationActions_OnNavigationToSettings;
+            CommonNavigationActions.OnNavigationToNewGame -= CommonNavigationActions_OnNavigationToNewGame;
         }
 
+        void CommonNavigationActions_OnNavigationToNewGame()
+        {
+            NavigationService.Navigate(new Uri("/Views/NewGamePage.xaml", UriKind.RelativeOrAbsolute));
+        }
 
         void CommonNavigationActions_OnNavigationToLeaderboard()
         {

@@ -124,6 +124,9 @@
     <Compile Include="..\..\..\Controls\HyperlinkButton\HyperlinkButton\WPHyperLink.cs">
       <Link>Controls\WPHyperLink.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\Controls\Sanet.Animations\Animations.cs">
+      <Link>Common\Animations.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\SanetWeb\Models\LogManager.cs">
       <Link>Common\LogManager.cs</Link>
     </Compile>
@@ -159,6 +162,9 @@
     </Compile>
     <Compile Include="..\CloudServer\Models\KniffelProtocol\TupleTableInfo.cs">
       <Link>Models\Protocol\TupleTableInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Controls\RotatingPanel.cs">
+      <Link>Controls\RotatingPanel.cs</Link>
     </Compile>
     <Compile Include="..\DicePokerRT\DicePanel\DiceSelector.cs">
       <Link>DicePanel\DiceSelector.cs</Link>
@@ -323,6 +329,9 @@
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NewGamePage.xaml.cs">
+      <DependentUpon>NewGamePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
@@ -343,6 +352,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\NewGamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -360,14 +373,29 @@
     <Content Include="..\DicePokerRT\Assets\AWLogo.png">
       <Link>Assets\AWLogo.png</Link>
     </Content>
+    <Content Include="..\DicePokerRT\Assets\Desktop.png">
+      <Link>Assets\Desktop.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\MagicWand.png">
+      <Link>Assets\MagicWand.png</Link>
+    </Content>
     <Content Include="..\DicePokerRT\Assets\Mail.png">
       <Link>Assets\Mail.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Manual.png">
+      <Link>Assets\Manual.png</Link>
     </Content>
     <Content Include="..\DicePokerRT\Assets\Rate.png">
       <Link>Assets\Rate.png</Link>
     </Content>
+    <Content Include="..\DicePokerRT\Assets\ResetRoll.png">
+      <Link>Assets\ResetRoll.png</Link>
+    </Content>
     <Content Include="..\DicePokerRT\Assets\Unlock.png">
       <Link>Assets\Unlock.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\User.png">
+      <Link>Assets\User.png</Link>
     </Content>
     <Content Include="AdSettings.xml" />
     <Resource Include="defaultAdSettings.xml" />

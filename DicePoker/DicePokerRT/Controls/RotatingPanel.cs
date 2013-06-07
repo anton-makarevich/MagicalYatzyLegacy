@@ -3,9 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+#if WinRT
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+#endif
+#if SILVERLIGHT
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Threading;
+using System.Windows.Controls;
+
+#endif
 
 namespace Sanet.Controls
 {
@@ -26,12 +36,18 @@ namespace Sanet.Controls
         public RotatingPanel()
         {
             this.Projection = Rotator;
+#if WinRT
             this.Tapped += RotatingPanel_Tapped;
-
             workAroundTimer.Tick += workAroundTimer_Tick;
             workAroundTimer.Start();
+#endif
+#if SILVERLIGHT
+            this.MouseLeftButtonDown += RotatingPanel_MouseLeftButtonDown;
+#endif
+            
             
         }
+
 
         void workAroundTimer_Tick(object sender, object e)
         {
@@ -81,11 +97,17 @@ namespace Sanet.Controls
         /// <summary>
         /// Start control rotating on tap
         /// </summary>
+#if WinRT
         void RotatingPanel_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+#endif
+#if SILVERLIGHT
+        void RotatingPanel_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+#endif
         {
             e.Handled = true;
             Animations.RotateProjection(Rotator, RotationAxis.X, 0, 90, 0.35, EndRotationStep);
         }
+
 
         void EndRotationStep()
         {

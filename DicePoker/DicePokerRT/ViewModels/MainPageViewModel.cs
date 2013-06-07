@@ -77,17 +77,7 @@ namespace Sanet.Kniffel.ViewModels
         public void FillMainActions()
         {
             MenuActions = new List<MainMenuAction>();
-            MenuActions.Add(
-                new MainMenuAction
-                {
-                    Label = "NewLocalGameAction",
-                    MenuAction = new Action(() =>
-                    {
-                        CommonNavigationActions.NavigateToNewGamePage();
-                    }),
-                    Description = "NewLocalGameDescription",
-                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("SanetDice.png")),
-                });
+            
             MenuActions.Add(
                 new MainMenuAction
                 {
@@ -98,6 +88,17 @@ namespace Sanet.Kniffel.ViewModels
                     }),
                     Description = "NewOnlineGameDescription",
                     Image = new BitmapImage(SanetImageProvider.GetAssetsImage("OnlineGame.png")),
+                });
+            MenuActions.Add(
+                new MainMenuAction
+                {
+                    Label = "NewLocalGameAction",
+                    MenuAction = new Action(() =>
+                    {
+                        CommonNavigationActions.NavigateToNewGamePage();
+                    }),
+                    Description = "NewLocalGameDescription",
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("SanetDice.png")),
                 });
             MenuActions.Add(
                 new MainMenuAction
