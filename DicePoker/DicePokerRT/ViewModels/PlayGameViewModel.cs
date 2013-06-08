@@ -70,6 +70,22 @@ namespace Sanet.Kniffel.ViewModels
                 }
             }
         }
+
+        public string TableLabel
+        {
+            get
+            {
+                return "Table";
+            }
+        }
+
+        public string BoardLabel
+        {
+            get
+            {
+                return "Board";
+            }
+        }
         
         /// <summary>
         /// Players group label

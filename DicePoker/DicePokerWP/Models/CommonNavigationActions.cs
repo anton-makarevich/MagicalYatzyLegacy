@@ -16,6 +16,7 @@ namespace Sanet.Kniffel.Models
         public static event Action OnNavigationToLeaderboard;
         public static event Action OnNavigationToSettings;
         public static event Action OnNavigationToNewGame;
+        public static event Action OnNavigationToGame;
         #endregion
 
 
@@ -98,7 +99,8 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(() =>
                 {
-                    //((Frame)Window.Current.Content).Navigate(typeof(GamePage));
+                    if (OnNavigationToGame != null)
+                        OnNavigationToGame();
                 });
             }
 

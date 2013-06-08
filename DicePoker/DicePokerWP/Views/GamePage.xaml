@@ -1,0 +1,144 @@
+﻿<phone:PhoneApplicationPage xmlns:Controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"  xmlns:DicePanel="clr-namespace:Sanet.Kniffel.DicePanel"  
+    x:Class="DicePokerWP.GamePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="clr-namespace:Microsoft.Phone.Controls.Unofficial"
+                            xmlns:adRotator="clr-namespace:AdRotator;assembly=AdRotator"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    toolkit:TiltEffect.IsTiltEnabled="True"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <adRotator:AdRotatorControl
+            Grid.Row="1"
+            x:Name="AdRotatorControl"
+            Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"
+            xmlns:adRotator="clr-namespace:AdRotator;assembly=AdRotator"
+            Width="480" Height="80"
+                SettingsUrl="http://sanet.by/AdSettings.xml"
+                DefaultAdType="AdDuplex"
+                DefaultSettingsFileUri="/AppAssemblyName;component/AdSettings.xml"
+                AdDuplexAppId="41731"
+                InneractiveAppId="AntonMakarevich_MagicalYatzyOnline_WP"/>
+        
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,2">
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding CurrentAppNameUpper}"
+                       Style="{StaticResource PhoneTextNormalStyle}"
+                       Foreground="{StaticResource SanetBlue}"/>
+            
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12,0,12,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            
+            <Controls:Pivot >
+                <Controls:PivotItem >
+                    <Controls:PivotItem.Header>
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
+                       Foreground="{StaticResource SanetBlue}"
+                       Text="{Binding TableLabel}"
+                       Grid.Row="0"
+                       VerticalAlignment="Center"/>
+                        
+                    </Controls:PivotItem.Header>
+                    <Grid
+                        Margin="12,0,12,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            FontSize="20"
+                            Foreground="{StaticResource SanetBlue}"
+                            Text="{Binding VersionLabel}"/>
+                        <ListBox
+                                Grid.Row="1"
+                                ItemsSource="{Binding AboutAppActions}"
+                                SelectionChanged="ListBox2_SelectionChanged"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                                ItemTemplate="{StaticResource AboutAppActionTemplate}">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+                        <TextBlock
+                            FontSize="20"
+                            Grid.Row="3"
+                            HorizontalAlignment="Left"
+                            TextWrapping="Wrap"
+                            MaxWidth="450"
+                            Foreground="{StaticResource SanetBlue}"
+                            Text="{Binding OnlineVersionText}"/>
+                        <TextBlock
+                            Margin="0,5,0,0"
+                            FontSize="20"
+                            Grid.Row="4"
+                            HorizontalAlignment="Left"
+                            TextWrapping="Wrap"
+                            MaxWidth="450"
+                            Foreground="{StaticResource SanetBlue}"
+                            Text="{Binding MetroStudioText}"/>
+
+                        <my:PhoneHyperlinkButton 
+                            Foreground="{StaticResource SanetBlue}"
+                            Grid.Row="2"
+                            Margin="0,5"
+                            Tag="http://apps.microsoft.com/windows/app/sanet-dice-poker/5b0f9106-65a8-49ca-b1f0-641c54a7e3ef" 
+                            Content="{Binding ForW8Label}" 
+                            HorizontalAlignment="Left"/>
+                    </Grid>
+                </Controls:PivotItem>
+                <Controls:PivotItem >
+                    <Controls:PivotItem.Header>
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
+                       Foreground="{StaticResource SanetBlue}"
+                       Text="{Binding BoardLabel}"
+                       Grid.Row="0"
+                       VerticalAlignment="Center"/>
+
+                    </Controls:PivotItem.Header>
+                    <DicePanel:DicePanel 
+                        HorizontalAlignment="Right"
+                        MinHeight="500"
+                        MinWidth="300"
+                               x:Name="dpBackground"/>
+                </Controls:PivotItem>
+            </Controls:Pivot>
+            
+            
+        </Grid>
+    </Grid>
+ 
+</phone:PhoneApplicationPage>

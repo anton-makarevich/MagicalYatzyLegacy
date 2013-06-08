@@ -66,7 +66,7 @@ namespace DicePokerWP
 
         void startButton_Click(object sender, EventArgs e)
         {
-            
+            GetViewModel<NewGameViewModel>().StartGame();
         }
 
         void deleteButton_Click(object sender, EventArgs e)
@@ -84,7 +84,22 @@ namespace DicePokerWP
             GetViewModel<NewGameViewModel>().AddPlayer(PlayerType.Local);
         }
 
-                
+        void AttachNavigationEvents()
+        {
+            CommonNavigationActions.OnNavigationToGame += CommonNavigationActions_OnNavigationToGame;
+            
+        }
+               
+
+        void DettachNavigationEvents()
+        {
+            CommonNavigationActions.OnNavigationToGame -= CommonNavigationActions_OnNavigationToGame;
+        }
+        
+        void CommonNavigationActions_OnNavigationToGame()
+        {
+            NavigationService.Navigate(new Uri("/Views/GamePage.xaml", UriKind.RelativeOrAbsolute));
+        }
         
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
@@ -126,6 +141,7 @@ namespace DicePokerWP
             GetViewModel<NewGameViewModel>().PropertyChanged += GamePage_PropertyChanged;
             GetViewModel<NewGameViewModel>().FillRules();
             RebuildAppBarForPlayers();
+            AttachNavigationEvents();
         }
         void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -163,9 +179,13 @@ namespace DicePokerWP
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
             GetViewModel<NewGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
-            GetViewModel<NewGameViewModel>().SavePlayers();
-            //dpBackground.Dispose();
-            //dpBackground = null;
+            try
+            {
+                GetViewModel<NewGameViewModel>().SavePlayers();
+            }
+            catch (Exception ex)
+            { }
+            DettachNavigationEvents();
         }
 
         void RebuildAppBarForPlayers()
