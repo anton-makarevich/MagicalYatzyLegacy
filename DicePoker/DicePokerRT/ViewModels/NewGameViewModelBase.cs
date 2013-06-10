@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 #if WINDOWS_PHONE
 using System.Windows.Controls.Primitives;
 using DicePokerWP.KniffelLeaderBoardService;
+using DicePokerWP;
 #endif
 using Sanet.Common;
 using Sanet.Kniffel.Models;
@@ -20,25 +21,24 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-
-
 namespace Sanet.Kniffel.ViewModels
 {
     public abstract class NewGameViewModelBase : AdBasedViewModel
     {
-#if WinRT
+
         protected Popup _magicPopup = new Popup();
         protected MagicRoomPage _magic = new MagicRoomPage();
-#endif
+
+        public event EventHandler MagicPageOpened;
+
         
         #region Constructor
         public NewGameViewModelBase()
         {
-#if WinRT
+
             _magicPopup.Child = _magic;
             _magic.Tag = _magicPopup;
-            //fillRules();
-#endif
+
         }
         #endregion
 
@@ -154,11 +154,18 @@ namespace Sanet.Kniffel.ViewModels
         
         protected void p_MagicPressed(object sender, EventArgs e)
         {
-#if WinRT
+
             _magic.GetViewModel<MagicRoomViewModel>().CurrentPlayer = (PlayerWrapper)sender;
             _magicPopup.IsOpen = true;
-#endif
+            if (MagicPageOpened != null)
+                MagicPageOpened(null, null);
         }
+
+        public void CloseMagicPage()
+        {
+            _magicPopup.IsOpen = false;
+        }
+
 
         protected abstract void FillPlayers();
 

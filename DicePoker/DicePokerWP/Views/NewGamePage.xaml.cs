@@ -144,9 +144,11 @@ namespace DicePokerWP
             startPivot.SelectionChanged += Pivot_SelectionChanged;
             SetViewModel<NewGameViewModel>();
             GetViewModel<NewGameViewModel>().PropertyChanged += GamePage_PropertyChanged;
+            GetViewModel<NewGameViewModel>().MagicPageOpened += NewGamePage_MagicPageOpened;
             GetViewModel<NewGameViewModel>().FillRules();
             AttachNavigationEvents();
         }
+
         void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "SettingsPanelAngle")
@@ -184,6 +186,7 @@ namespace DicePokerWP
         {
             dpBackground.EndRoll -= StartRoll;
             startPivot.SelectionChanged -= Pivot_SelectionChanged;
+            GetViewModel<NewGameViewModel>().MagicPageOpened-= NewGamePage_MagicPageOpened;
             GetViewModel<NewGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
             try
             {
@@ -194,33 +197,56 @@ namespace DicePokerWP
             DettachNavigationEvents();
         }
 
+
+        void NewGamePage_MagicPageOpened(object sender, EventArgs e)
+        {
+            ApplicationBar.IsVisible = false;
+        }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (!ApplicationBar.IsVisible)
+            {
+                e.Cancel = true;
+                GetViewModel<NewGameViewModel>().CloseMagicPage();
+                ApplicationBar.IsVisible = true;
+            }
+        }
+
         void RebuildAppBarForPlayers()
         {
-            this.ApplicationBar.Buttons.Clear();
-
-            this.ApplicationBar.Buttons.Add(addPlayerButton);
-            this.ApplicationBar.Buttons.Add(addBotButton);
-            this.ApplicationBar.Buttons.Add(deleteButton);
-
-            this.ApplicationBar.IsMenuEnabled = false;
-            this.ApplicationBar.Mode = ApplicationBarMode.Default;
-
-            if (GetViewModel<NewGameViewModel>().CanAddPlayer)
+            try
             {
-                addPlayerButton.IsEnabled = true;
-                addBotButton.IsEnabled = true;
+                this.ApplicationBar.Buttons.Clear();
+
+                this.ApplicationBar.Buttons.Add(addPlayerButton);
+                this.ApplicationBar.Buttons.Add(addBotButton);
+                this.ApplicationBar.Buttons.Add(deleteButton);
+
+                this.ApplicationBar.IsMenuEnabled = false;
+                this.ApplicationBar.Mode = ApplicationBarMode.Default;
+
+                if (GetViewModel<NewGameViewModel>().CanAddPlayer)
+                {
+                    addPlayerButton.IsEnabled = true;
+                    addBotButton.IsEnabled = true;
+                }
+                else
+                {
+                    addPlayerButton.IsEnabled = false;
+                    addBotButton.IsEnabled = false;
+                }
+
+
+                if (GetViewModel<NewGameViewModel>().CanDeletePlayer)
+                    deleteButton.IsEnabled = true;
+                else
+                    deleteButton.IsEnabled = false;
             }
-            else
+            catch (Exception ex)
             {
-                addPlayerButton.IsEnabled = false;
-                addBotButton.IsEnabled = false;
+                var t = ex.Message;
             }
-            
-           
-            if (GetViewModel<NewGameViewModel>().CanDeletePlayer)
-                deleteButton.IsEnabled = true;
-            else
-                deleteButton.IsEnabled = false;
         }
 
         void RebuildAppBarForRules()
@@ -255,10 +281,11 @@ namespace DicePokerWP
 
         private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (startPivot.SelectedIndex == 0)
-                RebuildAppBarForPlayers();
-            else
-                RebuildAppBarForRules();
+            if (ViewModelProvider.HasViewModel<NewGameViewModel>())
+                if (startPivot.SelectedIndex == 0)
+                    RebuildAppBarForPlayers();
+                else
+                    RebuildAppBarForRules();
         }
                 
     }
