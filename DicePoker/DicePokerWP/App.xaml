@@ -124,6 +124,57 @@
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="Margin" Value="2"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <!--Style to have selectable items in -->
+        <Style x:Key="SelectableItemsStyle" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="LayoutRoot" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+                                Background="{TemplateBinding Background}" 
+                                HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+
+                                    </VisualState>
+                                    <VisualState x:Name="MouseOver"/>
+
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualState x:Name="Unselected"/>
+
+                                    <VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" 
+                                                            To="Blue" 
+                                                            Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" 
+                                                            Storyboard.TargetName="LayoutRoot" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="SelectedUnfocused">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" 
+                                                            To="Blue" 
+                                                            Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" 
+                                                            Storyboard.TargetName="LayoutRoot"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentControl x:Name="ContentContainer"
+                                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                                            Content="{TemplateBinding Content}"  
+                                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            Margin="{TemplateBinding Padding}" 
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                            />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <!--Game result table template-->
@@ -550,7 +601,7 @@
                     Command="{Binding NameChangeCommand}">
                     <Grid Background="{StaticResource SanetBlue}" 
                           Width="100" Height="100"
-                      Visibility="{Binding IsFace,ElementName=NamePanel,Converter={StaticResource VisibilityKey}}">
+                     >
                         <TextBlock VerticalAlignment="Top"
                                        Style="{StaticResource PlayerTileTextStyle}"
                                        Text="{Binding TapToChangeLabel}"/>
@@ -572,7 +623,7 @@
                 <Grid Background="{StaticResource SanetBlue}"
                       Height="100"
                  Width="100"
-                      Visibility="{Binding IsFace,ElementName=PassPanel,Converter={StaticResource VisibilityKey}}">
+                      >
                     <TextBlock VerticalAlignment="Top"
                                        Style="{StaticResource PlayerTileTextStyle}"
                                        Text="{Binding TapToChangeLabel}"/>
@@ -675,6 +726,54 @@
                             Command="{Binding DeleteCommand}"/>-->
             </Grid>
 
+        </DataTemplate>
+
+        <!--Datatemplate for main menu item-->
+        <DataTemplate x:Key="TableTemplate">
+            <Grid Height="100" Width="100"
+              Background="{StaticResource SanetBlue}"
+              Margin="5" HorizontalAlignment="Stretch"
+                          >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding Name}"
+                      Style="{StaticResource PlayerTileTextStyle}"
+                      HorizontalAlignment="Left"/>
+                <ListBox
+                    IsHitTestVisible="False"
+                Grid.Row="1"
+                Margin="5,0,0,0"
+                ItemsSource="{Binding Players}"
+                HorizontalAlignment="Left"
+                >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"
+                                   Height="25" Style="{StaticResource PlayerTileTextStyle}"
+                                   TextAlignment="Left"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="Width" Value="100"/>
+                            <Setter Property="Height" Value="26"/>
+                            <Setter Property="Margin"  Value="0"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+
+                <Image 
+                    Grid.RowSpan="2"
+                    Height="24"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Source="/Assets/check.png"
+                    Visibility="{Binding IsSelected,Converter={StaticResource VisibilityKey}}"/>
+
+            </Grid>
         </DataTemplate>
 
         <!--Datatemplate for app action in about page-->

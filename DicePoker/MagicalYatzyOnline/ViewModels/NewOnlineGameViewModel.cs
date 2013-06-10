@@ -56,7 +56,9 @@ namespace Sanet.Kniffel.ViewModels
             //_facebookPopup.Closed += _facebookPopup_Closed;
 
             CreateCommands();
+
             FillPlayers();
+
         }
 
         
@@ -242,9 +244,9 @@ namespace Sanet.Kniffel.ViewModels
                 
             }
         }
-                    
-        private ObservableCollection<TupleTableInfo> _Tables;
-        public ObservableCollection<TupleTableInfo> Tables
+
+        private ObservableCollection<TableWrapper> _Tables;
+        public ObservableCollection<TableWrapper> Tables
         {
             get { return _Tables; }
             set
@@ -258,15 +260,18 @@ namespace Sanet.Kniffel.ViewModels
         }
 
         
-        private TupleTableInfo _SelectedTable;
-        public TupleTableInfo SelectedTable
+        private TableWrapper _SelectedTable;
+        public TableWrapper SelectedTable
         {
             get { return _SelectedTable; }
             set
             {
                 if (_SelectedTable != value)
                 {
+                    if (_SelectedTable != null)
+                        _SelectedTable.IsSelected = false;
                     _SelectedTable = value;
+                    _SelectedTable.IsSelected = true;
                     if (value.Id != -1)
                         SelectedRule = Rules.FirstOrDefault(f => f.Rule.Rule == value.Rule);
                     
@@ -287,7 +292,11 @@ namespace Sanet.Kniffel.ViewModels
                 {
                     if (value != null)
                     {
+                        if (_SelectedRule != null)
+                             _SelectedRule.IsSelected = false;
                         _SelectedRule = value;
+                        _SelectedRule.IsSelected = true;
+                       
                         if (SelectedTable!=null && 
                             SelectedTable.Id != -1 
                             && SelectedTable.Rule != value.Rule.Rule)
@@ -311,7 +320,7 @@ namespace Sanet.Kniffel.ViewModels
         {
             Players = new ObservableCollection<PlayerWrapper>();
             var p = RoamingSettings.GetLastPlayer(5);
-            if (p.Player == null)
+            if (p==null||p.Player == null)
             {
                 
                 var    userName = GetNewPlayerName(PlayerType.Local);
@@ -326,6 +335,8 @@ namespace Sanet.Kniffel.ViewModels
             p.RefreshArtifactsInfo();
             p.MagicPressed += p_MagicPressed;
             p.ArtifactsSyncRequest += ArtifactsSyncRequest;
+            p.NameClicked += p_NameClicked;
+            p.PassClicked += p_PassClicked;
             p.PropertyChanged += p_PropertyChanged;
             p.FacebookClicked += p_FacebookClicked;
             p.IsBotPossible = false;
@@ -374,12 +385,26 @@ namespace Sanet.Kniffel.ViewModels
             {
                 if (PasswordTapped != null)
                     PasswordTapped(sender, null);
+                
             }
             if (e.PropertyName == "IsNameOpened")
             {
                 if (NameTapped != null)
                     NameTapped(sender, null);
+                
             }
+        }
+
+        void p_PassClicked(object sender, EventArgs e)
+        {
+            var p = (PlayerWrapper)sender;
+            ChangeUserPass(p);
+        }
+
+        void p_NameClicked(object sender, EventArgs e)
+        {
+            var p = (PlayerWrapper)sender;
+            ChangeUserName(p);
         }
 
         void _updateTimer_Tick(object sender, object e)
@@ -494,7 +519,11 @@ namespace Sanet.Kniffel.ViewModels
                         else
                             game.Name = game.Rule.ToString().Localize();
 
-                    Tables = new ObservableCollection<TupleTableInfo>(respond.Tables);
+                    Tables = new ObservableCollection<TableWrapper>();
+                    foreach (var t in respond.Tables)
+                    {
+                        Tables.Add(new TableWrapper(t));
+                    }
                     SelectedTable = Tables[0];
                 }
                 else

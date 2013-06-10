@@ -486,15 +486,6 @@
                 </StackPanel>
                 
                 
-                <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
-                           Grid.Column="1"
-                   Grid.Row="1"
-                            Margin="10"
-                            Visibility="{Binding CanAddPlayer, Converter={StaticResource VisibilityKey}}"
-                            VerticalAlignment="Bottom">
-
-                                  
-                </StackPanel>-->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
                            Grid.Column="1"
                    Grid.Row="1"

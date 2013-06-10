@@ -330,8 +330,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\TableWrapper.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewOnlineGamePage.xaml.cs">
+      <DependentUpon>NewOnlineGamePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MagicRoomPage.xaml.cs">
       <DependentUpon>MagicRoomPage.xaml</DependentUpon>
@@ -359,6 +363,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="Views\AboutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewOnlineGamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -417,6 +425,12 @@
     </Content>
     <Content Include="..\DicePokerRT\Assets\User.png">
       <Link>Assets\User.png</Link>
+    </Content>
+    <Content Include="..\MagicalYatzyOnline\Assets\Facebook_like.png">
+      <Link>Assets\Facebook_like.png</Link>
+    </Content>
+    <Content Include="..\MagicalYatzyOnline\Assets\Facebook_tile.png">
+      <Link>Assets\Facebook_tile.png</Link>
     </Content>
     <Content Include="AdSettings.xml" />
     <Resource Include="defaultAdSettings.xml" />

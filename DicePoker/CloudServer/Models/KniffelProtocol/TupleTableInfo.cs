@@ -12,7 +12,7 @@ namespace Sanet.Kniffel.Protocol
         public List<string> Players { get; set; }
         public Rules Rule { get; set; }
         public string Name { get; set; }
-
+        
         public TupleTableInfo() { }    
     
         public TupleTableInfo(int id, List<string> players,Rules rule)

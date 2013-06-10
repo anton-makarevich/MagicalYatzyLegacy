@@ -5,9 +5,7 @@ using Windows.System.UserProfile;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls.Primitives;
 #endif
-#if SILVERLIGHT
-using Coding4Fun.Phone.Controls;
-#endif
+
 using Sanet.AllWrite;
 using Sanet.Common;
 using Sanet.Kniffel.Models;
@@ -227,43 +225,14 @@ namespace Sanet.Kniffel.ViewModels
 
         void p_PassClicked(object sender, EventArgs e)
         {
-#if SILVERLIGHT
             var p = (PlayerWrapper)sender;
-            PasswordInputPrompt input = new PasswordInputPrompt
-            {
-                Background = Brushes.SolidSanetBlue,
-                Value = p.Password
-            };
-
-            input.Completed += (s, e1) =>
-            {
-                p.Password = input.Value;
-                p.RefreshArtifactsInfo();
-            };
-
-            input.Show();
-#endif
+            ChangeUserPass(p);
         }
 
         void p_NameClicked(object sender, EventArgs e)
         {
-#if SILVERLIGHT
-            var p= (PlayerWrapper)sender;
-            InputPrompt input = new InputPrompt
-            {
-                Title = "ChangeNameLabel".Localize(),
-                Background = Brushes.SolidSanetBlue,
-                Value=p.Name
-            };
-
-            input.Completed += (s,e1) =>
-            {
-                if (p.Name!=input.Value)
-                    p.Name = input.Value;
-            };
-            
-            input.Show();
-#endif
+            var p = (PlayerWrapper)sender;
+            ChangeUserName(p);
         }
                
 

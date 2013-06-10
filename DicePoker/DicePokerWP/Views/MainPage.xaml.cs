@@ -65,22 +65,29 @@ namespace DicePokerWP
             
         }
 
-        void AttachNavigationEvents()
-        {
-            CommonNavigationActions.OnNavigationToAbout += CommonNavigationActions_OnNavigationToAbout;
-            CommonNavigationActions.OnNavigationToLeaderboard += CommonNavigationActions_OnNavigationToLeaderboard;
-            CommonNavigationActions.OnNavigationToSettings += CommonNavigationActions_OnNavigationToSettings;
-            CommonNavigationActions.OnNavigationToNewGame += CommonNavigationActions_OnNavigationToNewGame;
-        }
-
         void DettachNavigationEvents()
         {
             CommonNavigationActions.OnNavigationToAbout -= CommonNavigationActions_OnNavigationToAbout;
             CommonNavigationActions.OnNavigationToLeaderboard -= CommonNavigationActions_OnNavigationToLeaderboard;
             CommonNavigationActions.OnNavigationToSettings -= CommonNavigationActions_OnNavigationToSettings;
             CommonNavigationActions.OnNavigationToNewGame -= CommonNavigationActions_OnNavigationToNewGame;
+            CommonNavigationActions.OnNavigationToOnlineGame -= CommonNavigationActions_OnNavigationToOnlineGame;
         }
 
+        void AttachNavigationEvents()
+        {
+            CommonNavigationActions.OnNavigationToAbout += CommonNavigationActions_OnNavigationToAbout;
+            CommonNavigationActions.OnNavigationToLeaderboard += CommonNavigationActions_OnNavigationToLeaderboard;
+            CommonNavigationActions.OnNavigationToSettings += CommonNavigationActions_OnNavigationToSettings;
+            CommonNavigationActions.OnNavigationToNewGame += CommonNavigationActions_OnNavigationToNewGame;
+            CommonNavigationActions.OnNavigationToOnlineGame += CommonNavigationActions_OnNavigationToOnlineGame;
+        }
+
+        void CommonNavigationActions_OnNavigationToOnlineGame()
+        {
+            NavigationService.Navigate(new Uri("/Views/NewOnlineGamePage.xaml", UriKind.RelativeOrAbsolute));
+        }
+        
         void CommonNavigationActions_OnNavigationToNewGame()
         {
             NavigationService.Navigate(new Uri("/Views/NewGamePage.xaml", UriKind.RelativeOrAbsolute));
