@@ -23,6 +23,11 @@ namespace DicePokerWP
     {
         ApplicationBarIconButton rollButton;
         ApplicationBarIconButton againButton;
+
+        ApplicationBarIconButton magicRollButton;
+        ApplicationBarIconButton manualSetButton;
+        ApplicationBarIconButton resetRollButton;
+
         // Constructor
         public GamePage()
         {
@@ -48,9 +53,42 @@ namespace DicePokerWP
             againButton.IconUri = new Uri("/Assets/redo.png", UriKind.Relative);
             againButton.Text = Messages.GAME_PLAY_AGAIN.Localize();
             againButton.Click += againButton_Click;
+
+            magicRollButton = new ApplicationBarIconButton();
+            magicRollButton.IconUri = new Uri("/Assets/magic_icon.png", UriKind.Relative);
+            magicRollButton.Text = "MagicRollLabel".Localize();
+            magicRollButton.Click += magicRollButton_Click;
+
+            manualSetButton = new ApplicationBarIconButton();
+            manualSetButton.IconUri = new Uri("/Assets/manual_icon.png", UriKind.Relative);
+            manualSetButton.Text = "ManualSetLabel".Localize();
+            manualSetButton.Click += manualSetButton_Click;
+
+            resetRollButton = new ApplicationBarIconButton();
+            resetRollButton.IconUri = new Uri("/Assets/reset_icon.png", UriKind.Relative);
+            resetRollButton.Text = "ForthRollLabel".Localize();
+            resetRollButton.Click += resetRollButton_Click;
         }
 
-        async void againButton_Click(object sender, EventArgs e)
+        void resetRollButton_Click(object sender, EventArgs e)
+        {
+            dpBackground.ClearFreeze();
+            GetViewModel<PlayGameViewModel>().Game.ResetRolls();
+        }
+
+        void manualSetButton_Click(object sender, EventArgs e)
+        {
+            dpBackground.ManualSetMode = true;
+            GetViewModel<PlayGameViewModel>().IsControlsVisible = false;
+        }
+
+        void magicRollButton_Click(object sender, EventArgs e)
+        {
+            dpBackground.ClearFreeze();
+            GetViewModel<PlayGameViewModel>().Game.ReporMagictRoll();
+        }
+
+        void againButton_Click(object sender, EventArgs e)
         {
             GetViewModel<PlayGameViewModel>().PlayAgain();
             gridResults.Visibility = Visibility.Collapsed;
@@ -155,6 +193,19 @@ namespace DicePokerWP
             }
             else if (e.PropertyName == "RollLabel")
                 rollButton.Text = GetViewModel<PlayGameViewModel>().RollLabel;
+            else if (e.PropertyName == "IsControlsVisible")
+                ApplicationBar.IsVisible = GetViewModel<PlayGameViewModel>().IsControlsVisible;
+            else if (e.PropertyName == "IsMagicRollEnabled")
+                magicRollButton.IsEnabled = GetViewModel<PlayGameViewModel>().IsMagicRollEnabled;
+            else if (e.PropertyName == "IsManualSetEnabled")
+                manualSetButton.IsEnabled = GetViewModel<PlayGameViewModel>().IsManualSetEnabled;
+            else if (e.PropertyName == "IsForthRollEnabled")
+                resetRollButton.IsEnabled = GetViewModel<PlayGameViewModel>().IsForthRollEnabled;
+            else if ((e.PropertyName == "IsForthRollVisible" || 
+                e.PropertyName == "IsMagicRollVisible" || 
+                e.PropertyName == "IsManualSetVisible") &&
+                rollPivot.Visibility==Visibility.Visible)
+                RebuildAppBarForRoll();
         }
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
@@ -294,6 +345,18 @@ namespace DicePokerWP
         {
             this.ApplicationBar.Buttons.Clear();
 
+            
+
+            if (GetViewModel<PlayGameViewModel>().Game.Rules.Rule == Rules.krMagic)
+            {
+                if (GetViewModel<PlayGameViewModel>().IsMagicRollVisible)
+                    this.ApplicationBar.Buttons.Add(magicRollButton);
+                if (GetViewModel<PlayGameViewModel>().IsManualSetVisible)
+                    this.ApplicationBar.Buttons.Add(manualSetButton);
+                if (GetViewModel<PlayGameViewModel>().IsForthRollVisible)
+                    this.ApplicationBar.Buttons.Add(resetRollButton);
+            }
+
             this.ApplicationBar.Buttons.Add(rollButton);
 
             this.ApplicationBar.IsMenuEnabled = false;
@@ -307,7 +370,7 @@ namespace DicePokerWP
 
             this.ApplicationBar.Buttons.Add(againButton);
 
-            this.ApplicationBar.IsMenuEnabled = true;
+            this.ApplicationBar.IsMenuEnabled = false;
             this.ApplicationBar.Mode = ApplicationBarMode.Default;
 
 

@@ -290,9 +290,17 @@ namespace Sanet.Kniffel.DicePanel
 
             //prepare caption
             caption.Foreground = Brushes.SolidSanetBlue;
+#if WinRT
             caption.FontSize = 28;
             caption.SetValue(Canvas.LeftProperty, Convert.ToDouble(15));
             caption.SetValue(Canvas.TopProperty, Convert.ToDouble(15));
+#endif
+#if WINDOWS_PHONE
+            caption.FontSize = 20;
+            caption.SetValue(Canvas.LeftProperty, Convert.ToDouble(5));
+            caption.SetValue(Canvas.TopProperty, Convert.ToDouble(0));
+#endif
+
 
             aDice = new List<Die>();
             this.Children.Clear();

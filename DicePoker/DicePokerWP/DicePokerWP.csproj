@@ -430,7 +430,10 @@
     <Content Include="Assets\Dice.png" />
     <Content Include="Assets\Laptop.png" />
     <Content Include="Assets\Lock.png" />
+    <Content Include="Assets\Magic_icon.png" />
+    <Content Include="Assets\manual_icon.png" />
     <Content Include="Assets\redo.png" />
+    <Content Include="Assets\reset_icon.png" />
     <Content Include="Assets\User-Add.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
