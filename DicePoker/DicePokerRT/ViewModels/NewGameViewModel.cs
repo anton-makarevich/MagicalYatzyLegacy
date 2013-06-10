@@ -258,7 +258,8 @@ namespace Sanet.Kniffel.ViewModels
 
             input.Completed += (s,e1) =>
             {
-                p.Name = input.Value;
+                if (p.Name!=input.Value)
+                    p.Name = input.Value;
             };
             
             input.Show();
@@ -278,6 +279,8 @@ namespace Sanet.Kniffel.ViewModels
                 var p=new PlayerWrapper(new Player());
                 p.DeletePressed += p_DeletePressed;
                 p.MagicPressed += p_MagicPressed;
+                p.NameClicked += p_NameClicked;
+                p.PassClicked += p_PassClicked;
                 p.ArtifactsSyncRequest += ArtifactsSyncRequest;
                 Players.Add(p);
                 NotifyPlayersChanged();
@@ -399,6 +402,7 @@ namespace Sanet.Kniffel.ViewModels
                         }
                     }
                     //player.Roll = 1;
+                    player.IsReady = true;
                     gameModel.Game.JoinGame(player.Player);
                 }
 

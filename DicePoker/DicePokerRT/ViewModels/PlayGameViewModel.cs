@@ -297,6 +297,8 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
+                if (SelectedPlayer == null)
+                    return false;
                 return SelectedPlayer.Player != null;
             }
         }
@@ -1147,10 +1149,9 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         public async void PlayAgain()
         {
-            
             await SaveResults();
             
-            Game.RestartGame();
+            
             foreach (var p in Players)
             {
                 p.Results = null;
@@ -1159,7 +1160,10 @@ namespace Sanet.Kniffel.ViewModels
             _Players = null;
             _SampleResults = null;
 
+            Game.RestartGame();
+            
             NotifyPropertyChanged("Players");
+            SetCanRoll(true);
         }
         
         

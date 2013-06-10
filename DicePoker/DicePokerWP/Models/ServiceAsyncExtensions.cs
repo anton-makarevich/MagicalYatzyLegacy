@@ -100,7 +100,7 @@ namespace Sanet.Kniffel.Models
             string username, string pass, string score, string table, string picurl)
         {
             var tcs = new TaskCompletionSource<PutScoreIntoTableWithPicPureNameResponse>();
-            client.AddPlayersMagicsCompleted += (s, e) =>
+            client.PutScoreIntoTableWithPicPureNameCompleted += (s, e) =>
             {
                 if (e.Error != null) tcs.SetException(e.Error);
                 else if (e.Cancelled) tcs.SetCanceled();

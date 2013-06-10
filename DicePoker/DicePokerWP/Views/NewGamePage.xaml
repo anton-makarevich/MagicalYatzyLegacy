@@ -56,7 +56,7 @@
                 x:Name="dpBackground"/>
             <Controls:Pivot 
                 x:Name="startPivot"
-                SelectionChanged="Pivot_SelectionChanged">
+                >
                 <Controls:PivotItem >
                     <Controls:PivotItem.Header>
                         <TextBlock Style="{StaticResource SubheaderTextStyle}"
@@ -99,12 +99,6 @@
 
                 </Controls:PivotItem>
             </Controls:Pivot>
-            <my:PhoneHyperlinkButton 
-                Foreground="{StaticResource SanetBlue}"
-                Grid.Row="1"
-                Tag="http://sanet.by" 
-                Content="{Binding DevelopedByLabel}" 
-                HorizontalAlignment="Center" />
             
         </Grid>
     </Grid>

@@ -110,7 +110,7 @@ namespace DicePokerWP
             dpBackground.RollDelay = GetViewModel<NewGameViewModel>().SettingsPanelSpeed;
             dpBackground.DieAngle = GetViewModel<NewGameViewModel>().SettingsPanelAngle;
             dpBackground.MaxRollLoop = 40;
-            dpBackground.EndRoll += StartRoll;
+            
             StartRoll();
             try
             {
@@ -121,7 +121,10 @@ namespace DicePokerWP
             {
                 var t = ex.Message;
             }
-            
+            if (startPivot.SelectedIndex == 0)
+                RebuildAppBarForPlayers();
+            else
+                RebuildAppBarForRules();
         }
 
         void StartRoll()
@@ -137,10 +140,11 @@ namespace DicePokerWP
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            dpBackground.EndRoll += StartRoll;
+            startPivot.SelectionChanged += Pivot_SelectionChanged;
             SetViewModel<NewGameViewModel>();
             GetViewModel<NewGameViewModel>().PropertyChanged += GamePage_PropertyChanged;
             GetViewModel<NewGameViewModel>().FillRules();
-            RebuildAppBarForPlayers();
             AttachNavigationEvents();
         }
         void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -178,6 +182,8 @@ namespace DicePokerWP
         }
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
+            dpBackground.EndRoll -= StartRoll;
+            startPivot.SelectionChanged -= Pivot_SelectionChanged;
             GetViewModel<NewGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
             try
             {

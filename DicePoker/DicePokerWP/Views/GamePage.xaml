@@ -17,6 +17,11 @@
     toolkit:TiltEffect.IsTiltEnabled="True"
     shell:SystemTray.IsVisible="True">
 
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="True" 
+                                 IsVisible="{Binding IsBusy}" />
+    </shell:SystemTray.ProgressIndicator>
+    
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
@@ -39,7 +44,7 @@
         
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,2">
-            <TextBlock x:Name="ApplicationTitle" Text="{Binding CurrentAppNameUpper}"
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Title}"
                        Style="{StaticResource PhoneTextNormalStyle}"
                        Foreground="{StaticResource SanetBlue}"/>
             
@@ -49,10 +54,11 @@
         <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12,0,12,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="90"/>
             </Grid.ColumnDefinitions>
             
-            <Controls:Pivot >
+            <Controls:Pivot 
+                x:Name="rollPivot">
                 <Controls:PivotItem >
                     <Controls:PivotItem.Header>
                         <TextBlock Style="{StaticResource SubheaderTextStyle}"
@@ -63,60 +69,90 @@
                        VerticalAlignment="Center"/>
                         
                     </Controls:PivotItem.Header>
+                    <!--Results table-->
                     <Grid
-                        Margin="12,0,12,0">
+                        VerticalAlignment="Top">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
-
-                            <RowDefinition/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderThickness="0,0,1,0" BorderBrush="{StaticResource SanetBlue}">
+                            <StackPanel Margin="-5,6,0,6">
+                                <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource SanetBlue}">
+                                    <Grid Height="55" 
+                                  Width="100"
+                                  Margin="0,0" HorizontalAlignment="Stretch"
+                                   >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="{Binding RulesLabel}"
+                                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       TextAlignment="Center"
+                                       FontSize="12"/>
+                                        <TextBlock Text="{Binding RulesNameLabel}"
+                                               Grid.Row="1"
+                                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       TextAlignment="Center"
+                                       FontSize="12"/>
+                                    </Grid>
 
-                        <TextBlock
-                            FontSize="20"
-                            Foreground="{StaticResource SanetBlue}"
-                            Text="{Binding VersionLabel}"/>
+                                </Border>
+                                <ListBox
+                                 Width="100"
+                                Margin="-5,0" HorizontalAlignment="Stretch"
+                                    ItemsSource="{Binding SampleResults}"
+                                    ItemTemplate="{StaticResource PlayerTableCaptionTemplate}"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                    >
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                            <Setter Property="Width" Value="100"/>
+                                            <Setter Property="Height" Value="33"/>
+                                            <Setter Property="Margin" Value="0,0,0,-2"/>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+
+                                </ListBox>
+                                <Grid Height="40" 
+                              Margin="0" HorizontalAlignment="Stretch"
+                              >
+                                    <TextBlock Text="{Binding TotalLabel}"
+                                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       TextTrimming="WordEllipsis"
+                                       TextWrapping="Wrap"
+                                                           Margin="5,0"
+                                       TextAlignment="Center"
+                                       FontSize="20"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
                         <ListBox
-                                Grid.Row="1"
-                                ItemsSource="{Binding AboutAppActions}"
-                                SelectionChanged="ListBox2_SelectionChanged"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                                ItemTemplate="{StaticResource AboutAppActionTemplate}">
+                            Grid.Column="1"
+                        ItemsSource="{Binding Players}"
+                        ItemTemplate="{StaticResource PlayerTableTemplate}"
+                        >
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-
+                                    <Setter Property="Width" Value="60"/>
+                                    <Setter Property="Margin" Value="0,0,0,-8"/>
                                 </Style>
                             </ListBox.ItemContainerStyle>
-                        </ListBox>
-                        <TextBlock
-                            FontSize="20"
-                            Grid.Row="3"
-                            HorizontalAlignment="Left"
-                            TextWrapping="Wrap"
-                            MaxWidth="450"
-                            Foreground="{StaticResource SanetBlue}"
-                            Text="{Binding OnlineVersionText}"/>
-                        <TextBlock
-                            Margin="0,5,0,0"
-                            FontSize="20"
-                            Grid.Row="4"
-                            HorizontalAlignment="Left"
-                            TextWrapping="Wrap"
-                            MaxWidth="450"
-                            Foreground="{StaticResource SanetBlue}"
-                            Text="{Binding MetroStudioText}"/>
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
 
-                        <my:PhoneHyperlinkButton 
-                            Foreground="{StaticResource SanetBlue}"
-                            Grid.Row="2"
-                            Margin="0,5"
-                            Tag="http://apps.microsoft.com/windows/app/sanet-dice-poker/5b0f9106-65a8-49ca-b1f0-641c54a7e3ef" 
-                            Content="{Binding ForW8Label}" 
-                            HorizontalAlignment="Left"/>
+                        </ListBox>
+
                     </Grid>
                 </Controls:PivotItem>
                 <Controls:PivotItem >
@@ -130,14 +166,51 @@
 
                     </Controls:PivotItem.Header>
                     <DicePanel:DicePanel 
+                        Margin="0,0,0,60"
                         HorizontalAlignment="Right"
                         MinHeight="500"
                         MinWidth="300"
                                x:Name="dpBackground"/>
                 </Controls:PivotItem>
             </Controls:Pivot>
-            
-            
+
+            <ListBox
+                Margin="0,0,0,60"
+                x:Name="RollResults"
+            Grid.Column="1"
+            ItemTemplate="{StaticResource ResultItemTemplate}"
+            ItemsSource="{Binding RollResults}"
+                SelectionChanged="ListBox_SelectionChanged"
+                VerticalAlignment="Center"
+               />
+
+            <!--Panel to show results-->
+            <Grid Grid.Column="0"
+                  Visibility="Collapsed"
+                  Grid.ColumnSpan="2"
+                      x:Name="gridResults"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ListBox
+                                 Margin="0" HorizontalAlignment="Stretch"
+                                    ItemsSource="{Binding Players}"
+                                    ItemTemplate="{StaticResource GameResultsTemplate}"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                    >
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+
+                </ListBox>
+                
+            </Grid>
         </Grid>
     </Grid>
  
