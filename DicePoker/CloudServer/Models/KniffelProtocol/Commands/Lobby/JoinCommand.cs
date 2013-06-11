@@ -60,11 +60,23 @@ namespace Sanet.Kniffel.Protocol.Commands.Lobby
         {
             m_TableID = int.Parse(argsToken.NextToken());
             m_PlayerName = argsToken.NextToken();
-            m_GameRule = (Rules)Enum.Parse(typeof(Rules), argsToken.NextToken());
-            m_PlayerClient = (ClientType)Enum.Parse(typeof(ClientType), argsToken.NextToken());
+            m_GameRule = (Rules)Enum.Parse(typeof(Rules), argsToken.NextToken()
+#if WINDOWS_PHONE
+, false
+#endif
+                );
+            m_PlayerClient = (ClientType)Enum.Parse(typeof(ClientType), argsToken.NextToken()
+#if WINDOWS_PHONE
+, false
+#endif
+                );
             m_PlayerLanguage = argsToken.NextToken();
             m_PlayerPass = argsToken.NextToken();
-            SelectedStyle = (DiceStyle)Enum.Parse(typeof(DiceStyle), argsToken.NextToken());
+            SelectedStyle = (DiceStyle)Enum.Parse(typeof(DiceStyle), argsToken.NextToken()
+#if WINDOWS_PHONE
+, false
+#endif
+                );
         }
 
         public JoinCommand(int tableid, string name, Rules rule, ClientType client,

@@ -70,6 +70,30 @@ namespace Sanet.Kniffel.ViewModels
                 }
             }
         }
+
+        public string TableLabel
+        {
+            get
+            {
+                return "Table";
+            }
+        }
+
+        public string BoardLabel
+        {
+            get
+            {
+                return "Board";
+            }
+        }
+
+        public string ChatLabel
+        {
+            get
+            {
+                return "Chat";
+            }
+        }
         
         /// <summary>
         /// Players group label
@@ -281,6 +305,8 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
+                if (SelectedPlayer == null)
+                    return false;
                 return SelectedPlayer.Player != null;
             }
         }
@@ -340,11 +366,10 @@ namespace Sanet.Kniffel.ViewModels
             {
                 if (Game==null)
                     return false;
-#if !ONLINE
-                return false;
-#else
+
+
                 return Game is KniffelGameClient;
-#endif
+
             }
         }
 
@@ -710,11 +735,13 @@ namespace Sanet.Kniffel.ViewModels
             SmartDispatcher.BeginInvoke(() =>
                     {
                         var p = Players.FirstOrDefault(f => f.Name == e.Player.Name);
+                        if (p!=null)
                         p.IsReady = e.Player.IsReady;
-#if ONLINE
-                        if (Game.MyName==e.Player.Name)
-                            NotifyPropertyChanged("CanStart");
-#endif
+                        if (IsOnlineGame)
+                        {
+                            if (Game.MyName == e.Player.Name)
+                                NotifyPropertyChanged("CanStart");
+                        }
                     });
         }
 
@@ -1131,10 +1158,9 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         public async void PlayAgain()
         {
-            
             await SaveResults();
             
-            Game.RestartGame();
+            
             foreach (var p in Players)
             {
                 p.Results = null;
@@ -1143,7 +1169,10 @@ namespace Sanet.Kniffel.ViewModels
             _Players = null;
             _SampleResults = null;
 
+            Game.RestartGame();
+            
             NotifyPropertyChanged("Players");
+            SetCanRoll(true);
         }
         
         

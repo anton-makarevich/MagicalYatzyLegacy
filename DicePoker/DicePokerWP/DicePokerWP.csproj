@@ -53,13 +53,19 @@
     <Reference Include="AdRotator">
       <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\AdRotator.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.WP71\Bin\Debug\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="Coding4Fun.Phone.Controls">
       <HintPath>..\..\..\BiblePronto\BibleProntoWP7\BibleProntoWP\Bin\Release\Coding4Fun.Phone.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="Facebook">
+    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\Facebook.6.4.2\lib\wp71\Facebook.dll</HintPath>
     </Reference>
-    <Reference Include="Facebook.Client">
+    <Reference Include="Facebook.Client, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\Facebook.Client.0.7.0-alpha\lib\wp71\Facebook.Client.dll</HintPath>
     </Reference>
     <Reference Include="Google.AdMob.Ads.WindowsPhone7">
@@ -74,20 +80,24 @@
     <Reference Include="Microsoft.Advertising.Mobile.UI, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\Microsoft.Advertising.Mobile.UI.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>packages\WPtoolkit.4.2012.10.30\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
-    <Reference Include="Microsoft.Threading.Tasks">
-      <HintPath>packages\Microsoft.Bcl.Async.1.0.12-beta\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.dll</HintPath>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Microsoft.Bcl.Async.1.0.16\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Threading.Tasks.Extensions">
-      <HintPath>packages\Microsoft.Bcl.Async.1.0.12-beta\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Microsoft.Bcl.Async.1.0.16\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Threading.Tasks.Extensions.Phone">
-      <HintPath>packages\Microsoft.Bcl.Async.1.0.12-beta\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.Extensions.Phone.dll</HintPath>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Phone, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Microsoft.Bcl.Async.1.0.16\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.Extensions.Phone.dll</HintPath>
     </Reference>
     <Reference Include="MobFox.Ads">
       <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\MobFox.Ads.dll</HintPath>
@@ -98,23 +108,39 @@
     <Reference Include="SOMAWP7">
       <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\SOMAWP7.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime">
-      <HintPath>packages\Microsoft.Bcl.1.0.11-beta\lib\sl4-windowsphone71\System.Runtime.dll</HintPath>
+    <Reference Include="SuperSocket.ClientEngine.Common, Version=0.3.0.0, Culture=neutral, PublicKeyToken=ee9af13f57f00acc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.WP71\Bin\Debug\SuperSocket.ClientEngine.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine.Core, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.WP71\Bin\Debug\SuperSocket.ClientEngine.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine.Protocol, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.WP71\Bin\Debug\SuperSocket.ClientEngine.Protocol.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=1.5.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Microsoft.Bcl.1.0.19\lib\sl4-windowsphone71\System.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Threading.Tasks">
-      <HintPath>packages\Microsoft.Bcl.1.0.11-beta\lib\sl4-windowsphone71\System.Threading.Tasks.dll</HintPath>
+    <Reference Include="System.Threading.Tasks, Version=1.5.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Microsoft.Bcl.1.0.19\lib\sl4-windowsphone71\System.Threading.Tasks.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Interactivity, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="WebSocket4Net">
-      <HintPath>packages\WebSocket4Net.0.8\lib\sl40-windowsphone71\WebSocket4Net.dll</HintPath>
+    <Reference Include="WebSocket4Net, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.WP71\Bin\Debug\WebSocket4Net.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +174,9 @@
     <Compile Include="..\CloudServer\Models\ChatMessage.cs">
       <Link>Models\ChatMessage.cs</Link>
     </Compile>
+    <Compile Include="..\CloudServer\Models\Common\BlockingQueue.cs">
+      <Link>Common\BlockingQueue.cs</Link>
+    </Compile>
     <Compile Include="..\CloudServer\Models\Common\ServerHttpMessage.cs">
       <Link>Common\ServerHttpMessage.cs</Link>
     </Compile>
@@ -157,11 +186,107 @@
     <Compile Include="..\CloudServer\Models\Interfaces\IKniffelGame.cs">
       <Link>Models\Interfaces\IKniffelGame.cs</Link>
     </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\ApplyScoreCommand.cs">
+      <Link>Models\Protocol\Commands\Game\ApplyScoreCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\ChangeStyleCommand.cs">
+      <Link>Models\Protocol\Commands\Game\ChangeStyleCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\DiceChangedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\DiceChangedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\FixDiceCommand.cs">
+      <Link>Models\Protocol\Commands\Game\FixDiceCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\GameEndedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\GameEndedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\MagicRollRequestCommand.cs">
+      <Link>Models\Protocol\Commands\Game\MagicRollRequestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\ManualChangeCommand.cs">
+      <Link>Models\Protocol\Commands\Game\ManualChangeCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerChatMessageCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerChatMessageCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerJoinedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerJoinedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerJoinedCommandV2.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerJoinedCommandV2.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerLeftCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerLeftCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerPingCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerPingCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerReadyCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerReadyCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerRerolledCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerRerolledCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\RollReportCommand.cs">
+      <Link>Models\Protocol\Commands\Game\RollReportCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\RoundChangedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\RoundChangedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\TableInfoCommand.cs">
+      <Link>Models\Protocol\Commands\Game\TableInfoCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\TableInfoNeededCommand.cs">
+      <Link>Models\Protocol\Commands\Game\TableInfoNeededCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\AbstractLobbyCommand.cs">
+      <Link>Models\Protocol\Commands\Lobby\AbstractLobbyCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\AbstractLobbyResponse.cs">
+      <Link>Models\Protocol\Commands\Lobby\AbstractLobbyResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\GameCommand.cs">
+      <Link>Models\Protocol\Commands\Lobby\GameCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\JoinCommand.cs">
+      <Link>Models\Protocol\Commands\Lobby\JoinCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\JoinCommandV2.cs">
+      <Link>Models\Protocol\Commands\Lobby\JoinCommandV2.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\JoinResponse.cs">
+      <Link>Models\Protocol\Commands\Lobby\JoinResponse.cs</Link>
+    </Compile>
     <Compile Include="..\CloudServer\Models\KniffelProtocol\TuplePlayerInfo.cs">
       <Link>Models\Protocol\TuplePlayerInfo.cs</Link>
     </Compile>
     <Compile Include="..\CloudServer\Models\KniffelProtocol\TupleTableInfo.cs">
       <Link>Models\Protocol\TupleTableInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\AbstractCommand.cs">
+      <Link>Models\Protocol\Commands\AbstractCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\AbstractCommandResponse.cs">
+      <Link>Models\Protocol\Commands\AbstractCommandResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\CommandEventArgs.cs">
+      <Link>Models\Protocol\Commands\CommandEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\CommandObserver.cs">
+      <Link>Models\Protocol\Commands\CommandObserver.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\CommandQueueCommunicator.cs">
+      <Link>Models\Protocol\Commands\CommandQueueCommunicator.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\DisconnectCommand.cs">
+      <Link>Models\Protocol\Commands\DisconnectCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\QueueCommunicator.cs">
+      <Link>Models\Protocol\QueueCommunicator.cs</Link>
     </Compile>
     <Compile Include="..\DicePokerRT\Controls\RotatingPanel.cs">
       <Link>Controls\RotatingPanel.cs</Link>
@@ -286,6 +411,18 @@
     <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IRollResult.cs">
       <Link>Models\Interfaces\IRollResult.cs</Link>
     </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\JoinManager.cs">
+      <Link>Models\JoinManager.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\KniffelGameClient.cs">
+      <Link>Models\KniffelGameClient.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Protocol\LobbyTCPClient.cs">
+      <Link>Models\Protocol\LobbyTCPClient.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Protocol\Observer\GameClientCommandObserver.cs">
+      <Link>Models\Protocol\Observer\GameClientCommandObserver.cs</Link>
+    </Compile>
     <Compile Include="..\MagicalYatzyOnline\ViewModels\ChatViewModel.cs">
       <Link>ViewModels\ChatViewModel.cs</Link>
     </Compile>
@@ -306,7 +443,11 @@
     <Compile Include="Common\InternetCheker.cs" />
     <Compile Include="Common\LocalSettings.cs" />
     <Compile Include="Common\WPIdentifyHelpercs.cs" />
+    <Compile Include="Controls\PivotWithHiding.cs" />
+    <Compile Include="Converters\BooleanToColorConverter.cs" />
     <Compile Include="Converters\ReverseBooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\ScoreTypeToColorConverter.cs" />
+    <Compile Include="Models\Protocol\TCPCommunicatorWP.cs" />
     <Compile Include="Models\Protocol\WebAPI\AbstractHttpService.cs" />
     <Compile Include="Models\Protocol\WebAPI\InitService.cs" />
     <Compile Include="Models\ReviewBugger.cs" />
@@ -326,8 +467,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\TableWrapper.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewOnlineGamePage.xaml.cs">
+      <DependentUpon>NewOnlineGamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MagicRoomPage.xaml.cs">
+      <DependentUpon>MagicRoomPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewGamePage.xaml.cs">
       <DependentUpon>NewGamePage.xaml</DependentUpon>
@@ -352,6 +503,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\NewOnlineGamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MagicRoomPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\GamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\NewGamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -372,6 +535,9 @@
   <ItemGroup>
     <Content Include="..\DicePokerRT\Assets\AWLogo.png">
       <Link>Assets\AWLogo.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\check.png">
+      <Link>Assets\check.png</Link>
     </Content>
     <Content Include="..\DicePokerRT\Assets\Desktop.png">
       <Link>Assets\Desktop.png</Link>
@@ -397,6 +563,12 @@
     <Content Include="..\DicePokerRT\Assets\User.png">
       <Link>Assets\User.png</Link>
     </Content>
+    <Content Include="..\MagicalYatzyOnline\Assets\Facebook_like.png">
+      <Link>Assets\Facebook_like.png</Link>
+    </Content>
+    <Content Include="..\MagicalYatzyOnline\Assets\Facebook_tile.png">
+      <Link>Assets\Facebook_tile.png</Link>
+    </Content>
     <Content Include="AdSettings.xml" />
     <Resource Include="defaultAdSettings.xml" />
     <Content Include="AppResLib.dll.0407.mui">
@@ -412,7 +584,17 @@
     <Content Include="AppResLib.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\delete.png" />
+    <Content Include="Assets\Dice.png" />
+    <Content Include="Assets\Laptop.png" />
     <Content Include="Assets\Lock.png" />
+    <Content Include="Assets\Magic_icon.png" />
+    <Content Include="Assets\manual_icon.png" />
+    <Content Include="Assets\ready.png" />
+    <Content Include="Assets\redo.png" />
+    <Content Include="Assets\reset_icon.png" />
+    <Content Include="Assets\Send.png" />
+    <Content Include="Assets\User-Add.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
@@ -1797,6 +1979,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\KniffelLeaderBoardService\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -1807,4 +1990,5 @@
   </Target>
   -->
   <ProjectExtensions />
+  <Import Project="packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets" />
 </Project>

@@ -211,7 +211,23 @@ namespace Sanet.Kniffel.Models
                 }
             }
         }
+            
+        
+        private bool _IsSelected;
+        public bool IsSelected
+        {
+            get { return _IsSelected; }
+            set
+            {
+                if (_IsSelected != value)
+                {
+                    _IsSelected = value;
+                    NotifyPropertyChanged("IsSelected");
+                }
+            }
+        }
 
+        
         
         #endregion
 
@@ -247,7 +263,7 @@ namespace Sanet.Kniffel.Models
                     else
                         LoadLocalScores();
 #else
-                    var res = (await ks.GetLastWeekChempionTaskAsync(this.ToString())).ToList();
+                    var res = (await ks.GetLastWeekChempionTaskAsync(_rule.ToString())).ToList();
                     if (!string.IsNullOrEmpty(res[1]))
                     {
                         BestWeekScore = res[1];
@@ -307,13 +323,13 @@ namespace Sanet.Kniffel.Models
                         LoadLocalScores();
                     await
 #else
-                    var res = (await ks.GetLastWeekChempionTaskAsync(this.ToString())).ToList();
+                    var res = (await ks.GetLastDayChempionTaskAsync(_rule.ToString())).ToList();
                     if (!string.IsNullOrEmpty(res[1]))
                     {
                         BestDayScore = res[1];
                         BestDayScorePlayer = res[0];
                         IsDayScoreLoading = false;
-                        BestDayScoreLabel = "BestWeekLabel".Localize();
+                        BestDayScoreLabel = "BestDayLabel".Localize();
                     }
                     else
                         LoadLocalScores();

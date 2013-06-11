@@ -626,11 +626,15 @@ namespace Sanet.Kniffel.Models
                     if (p.SeatNo < 0 )
                         p.SeatNo = Players.Count - 1;
                     p.Init();
+#if !SERVER
+                    p.IsReady = true;
+#endif
                 }
                 Players = Players.OrderBy(f => f.SeatNo).ToList();
                 CurrentPlayer = null;
                 if (GameUpdated != null)
                     GameUpdated(null,null);
+
                 StartGame();
             }
         }

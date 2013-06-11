@@ -36,9 +36,17 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
             :base(argsToken)
         {
             SeatNo = int.Parse(argsToken.NextToken());
-            m_PlayerClient = (ClientType)Enum.Parse(typeof(ClientType), argsToken.NextToken());
+            m_PlayerClient = (ClientType)Enum.Parse(typeof(ClientType), argsToken.NextToken()
+#if WINDOWS_PHONE
+, false
+#endif
+                );
             m_PlayerLanguage = argsToken.NextToken();
-            SelectedStyle = (DiceStyle)Enum.Parse(typeof(DiceStyle), argsToken.NextToken());
+            SelectedStyle = (DiceStyle)Enum.Parse(typeof(DiceStyle), argsToken.NextToken()
+#if WINDOWS_PHONE
+, false
+#endif
+                );
         }
 
         public PlayerJoinedCommand(string name,int seatno,

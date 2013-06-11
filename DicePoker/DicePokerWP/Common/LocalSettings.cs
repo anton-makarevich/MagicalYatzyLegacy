@@ -22,6 +22,7 @@ namespace Sanet.Kniffel.Models
         {
             lock (lockObj)
             {
+                key = CheckKey(key);
                 if (values.ContainsKey(key))
                     return values[key];
                 return null;
@@ -31,6 +32,7 @@ namespace Sanet.Kniffel.Models
         {
             lock (lockObj)
             {
+                key = CheckKey(key);
                 if (values.ContainsKey(key))
                     values[key] = value.ToString();
                 else
@@ -39,6 +41,12 @@ namespace Sanet.Kniffel.Models
                 SaveProgress();
             }
             
+        }
+
+        static string CheckKey(string key)
+        {
+            key.Replace(" ", "_");
+            return key;
         }
 
         public static void  InitLocalSettings()
@@ -85,16 +93,23 @@ namespace Sanet.Kniffel.Models
             
             foreach (string key in values.Keys)
             {
-                var pr = xmlProgress.Descendants(key).FirstOrDefault();
-                var value=values[key];
-                if (pr == null)
+                try
                 {
-                    pr = new XElement(key, value);
-                    xmlProgress.Element("Settings").Add(pr);
+                    var pr = xmlProgress.Descendants(key).FirstOrDefault();
+                    var value = values[key];
+                    if (pr == null)
+                    {
+                        pr = new XElement(key, value);
+                        xmlProgress.Element("Settings").Add(pr);
+                    }
+                    else
+                    {
+                        pr.Value = value;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    pr.Value = value;
+                    LogManager.Log("LocalSettings.SaveProgress", ex);
                 }
             }
 

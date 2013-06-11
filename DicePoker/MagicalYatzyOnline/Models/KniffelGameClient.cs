@@ -10,7 +10,9 @@ using Sanet.Network.Protocol.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+#if WinRT
 using Windows.UI.Xaml;
+#endif
 
 namespace Sanet.Kniffel.Models
 {
@@ -450,7 +452,7 @@ namespace Sanet.Kniffel.Models
 
         void m_CommandObserver_PlayerRerolledCommandReceived(object sender, CommandEventArgs<PlayerRerolledCommand> e)
         {
-            var player = Players.Find(f => f.Name == e.Command.Name);
+            var player = Players.FirstOrDefault(f => f.Name == e.Command.Name);
             if (PlayerRerolled != null)
                 PlayerRerolled(null, new PlayerEventArgs(player));
         }
@@ -459,7 +461,7 @@ namespace Sanet.Kniffel.Models
         void m_CommandObserver_DiceChangedCommandReceived(object sender, CommandEventArgs<DiceChangedCommand> e)
         {
             lastRollResults = e.Command.LastResult.ToArray();
-            var player = Players.Find(f => f.Name == e.Command.Name);
+            var player = Players.FirstOrDefault(f => f.Name == e.Command.Name);
             if (player.Name==MyName)
                 player.CheckRollResults();
             if (DiceChanged != null)
@@ -468,7 +470,7 @@ namespace Sanet.Kniffel.Models
 
         void m_CommandObserver_MagicRollCommandReceived(object sender, CommandEventArgs<MagicRollCommand> e)
         {
-            var player = Players.Find(f => f.Name == e.Command.Name);
+            var player = Players.FirstOrDefault(f => f.Name == e.Command.Name);
             if (MagicRollUsed != null)
                 MagicRollUsed(null,new PlayerEventArgs(player));
         }
@@ -493,7 +495,7 @@ namespace Sanet.Kniffel.Models
 
         void m_CommandObserver_PlayerReadyCommandReceived(object sender, CommandEventArgs<PlayerReadyCommand> e)
         {
-            var player = Players.Find(f => f.Name == e.Command.Name);
+            var player = Players.FirstOrDefault(f => f.Name == e.Command.Name);
             player.IsReady = e.Command.IsReady;
             if (PlayerReady != null)
                 PlayerReady(null, new PlayerEventArgs(player));
@@ -520,7 +522,7 @@ namespace Sanet.Kniffel.Models
                     p.IsMoving = false;
 
                 Move = e.Command.Round;
-                CurrentPlayer = Players.Find(f => f.Name == e.Command.Name);
+                CurrentPlayer = Players.FirstOrDefault(f => f.Name == e.Command.Name);
                 CurrentPlayer.IsMoving = true;
                 CurrentPlayer.Roll = 1;
                 DoMove();
@@ -532,8 +534,8 @@ namespace Sanet.Kniffel.Models
             lock (syncRoot)
             {
                 LogManager.Log(LogLevel.Message, "GameClient", "Result {1} applied by player {0}", e.Command.Name,e.Command.PossibleValue);
-                var p = Players.Find(f => f.Name == e.Command.Name);
-                RollResult result = p.Results.Find(f => f.ScoreType == e.Command.ScoreType);
+                var p = Players.FirstOrDefault(f => f.Name == e.Command.Name);
+                RollResult result = p.Results.FirstOrDefault(f => f.ScoreType == e.Command.ScoreType);
                 result.PossibleValue = e.Command.PossibleValue;
                 result.HasBonus = e.Command.HasBonus;
                 //sending result to everyone

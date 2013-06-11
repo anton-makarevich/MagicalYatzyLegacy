@@ -5,9 +5,7 @@ using Windows.System.UserProfile;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls.Primitives;
 #endif
-#if SILVERLIGHT
-using Coding4Fun.Phone.Controls;
-#endif
+
 using Sanet.AllWrite;
 using Sanet.Common;
 using Sanet.Kniffel.Models;
@@ -221,48 +219,21 @@ namespace Sanet.Kniffel.ViewModels
                 p.RefreshArtifactsInfo();
                 Players.Add(p);
             }
+            SelectedPlayer = Players.Last();
             NotifyPlayersChanged();
             
         }
 
         void p_PassClicked(object sender, EventArgs e)
         {
-#if SILVERLIGHT
             var p = (PlayerWrapper)sender;
-            PasswordInputPrompt input = new PasswordInputPrompt
-            {
-                Title = "ChangePassLabel".Localize(),
-                Background = Brushes.SolidSanetBlue,
-                Value = p.Password
-            };
-
-            input.Completed += (s, e1) =>
-            {
-                p.Password = input.Value;
-            };
-
-            input.Show();
-#endif
+            ChangeUserPass(p);
         }
 
         void p_NameClicked(object sender, EventArgs e)
         {
-#if SILVERLIGHT
-            var p= (PlayerWrapper)sender;
-            InputPrompt input = new InputPrompt
-            {
-                Title = "ChangeNameLabel".Localize(),
-                Background = Brushes.SolidSanetBlue,
-                Value=p.Name
-            };
-
-            input.Completed += (s,e1) =>
-            {
-                p.Name = input.Value;
-            };
-            
-            input.Show();
-#endif
+            var p = (PlayerWrapper)sender;
+            ChangeUserName(p);
         }
                
 
@@ -270,7 +241,7 @@ namespace Sanet.Kniffel.ViewModels
         /// Add new player or bot
         /// </summary>
         /// <param name="type"></param>
-        void AddPlayer(PlayerType type)
+        public void AddPlayer(PlayerType type)
         {
             if (CanAddPlayer)
             {
@@ -278,12 +249,16 @@ namespace Sanet.Kniffel.ViewModels
                 var p=new PlayerWrapper(new Player());
                 p.DeletePressed += p_DeletePressed;
                 p.MagicPressed += p_MagicPressed;
+                p.NameClicked += p_NameClicked;
+                p.PassClicked += p_PassClicked;
                 p.ArtifactsSyncRequest += ArtifactsSyncRequest;
                 Players.Add(p);
                 NotifyPlayersChanged();
                 p.Name = GetNewPlayerName(type);
                 p.Type = type;
-            } 
+                SelectedPlayer = p;
+            }
+            NotifyPropertyChanged("CanAddPlayer");
             
         }
 
@@ -325,14 +300,15 @@ namespace Sanet.Kniffel.ViewModels
         /// <summary>
         /// Delete selected player from list
         /// </summary>
-        void DeletePlayer()
+        public void DeletePlayer()
         {
-            if (IsPlayerSelected)
+            if (IsPlayerSelected && CanDeletePlayer)
             {
                 Players.Remove(SelectedPlayer);
-                SelectedPlayer = null;
+                SelectedPlayer =Players.Last();
                 NotifyPlayersChanged();
             }
+            NotifyPropertyChanged("CanDeletePlayer");
         }
         void p_DeletePressed(object sender, EventArgs e)
         {
@@ -396,6 +372,7 @@ namespace Sanet.Kniffel.ViewModels
                         }
                     }
                     //player.Roll = 1;
+                    player.IsReady = true;
                     gameModel.Game.JoinGame(player.Player);
                 }
 

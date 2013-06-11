@@ -8,6 +8,8 @@ using Windows.UI.Xaml.Controls.Primitives;
 #if WINDOWS_PHONE
 using System.Windows.Controls.Primitives;
 using DicePokerWP.KniffelLeaderBoardService;
+using DicePokerWP;
+using Coding4Fun.Phone.Controls;
 #endif
 using Sanet.Common;
 using Sanet.Kniffel.Models;
@@ -18,27 +20,27 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-
+using Sanet.AllWrite;
 
 
 namespace Sanet.Kniffel.ViewModels
 {
     public abstract class NewGameViewModelBase : AdBasedViewModel
     {
-#if WinRT
+
         protected Popup _magicPopup = new Popup();
         protected MagicRoomPage _magic = new MagicRoomPage();
-#endif
+
+        public event EventHandler MagicPageOpened;
+
         
         #region Constructor
         public NewGameViewModelBase()
         {
-#if WinRT
+
             _magicPopup.Child = _magic;
             _magic.Tag = _magicPopup;
-            //fillRules();
-#endif
+
         }
         #endregion
 
@@ -99,8 +101,8 @@ namespace Sanet.Kniffel.ViewModels
         /// Rules list
         /// </summary>
 
-        private List<RuleWrapper> _Rules;
-        public List<RuleWrapper> Rules
+        private ObservableCollection<RuleWrapper> _Rules;
+        public ObservableCollection<RuleWrapper> Rules
         {
             get { return _Rules; }
             set
@@ -121,15 +123,20 @@ namespace Sanet.Kniffel.ViewModels
         protected RuleWrapper _SelectedRule;
         public virtual RuleWrapper SelectedRule
         {
-            get { return _SelectedRule; }
+            get 
+            {
+                return _SelectedRule;
+            }
             set
             {
                 if (_SelectedRule != value)
                 {
                     if (value != null)
                     {
+                        if (_SelectedRule != null)
+                            _SelectedRule.IsSelected = false;
                         _SelectedRule = value;
-                        
+                        _SelectedRule.IsSelected = true;
                     }
                     NotifyPropertyChanged("SelectedRule");
                     NotifyPropertyChanged("IsReadyToPlay");
@@ -149,14 +156,59 @@ namespace Sanet.Kniffel.ViewModels
         #endregion
 
         #region Methods
-        
-        protected void p_MagicPressed(object sender, EventArgs e)
+        protected void ChangeUserPass(PlayerWrapper p)
         {
-#if WinRT
-            _magic.GetViewModel<MagicRoomViewModel>().CurrentPlayer = (PlayerWrapper)sender;
-            _magicPopup.IsOpen = true;
+#if SILVERLIGHT
+            PasswordInputPrompt input = new PasswordInputPrompt
+            {
+                Background = Brushes.SolidSanetBlue,
+                Value = p.Password
+            };
+
+            input.Completed += (s, e1) =>
+            {
+                p.Password = input.Value;
+                p.RefreshArtifactsInfo();
+            };
+
+            input.Show();
 #endif
         }
+
+        protected void ChangeUserName(PlayerWrapper p)
+        {
+#if SILVERLIGHT
+            InputPrompt input = new InputPrompt
+            {
+                Title = "ChangeNameLabel".Localize(),
+                Background = Brushes.SolidSanetBlue,
+                Value = p.Name
+            };
+
+            input.Completed += (s, e1) =>
+            {
+                if (p.Name != input.Value)
+                    p.Name = input.Value;
+            };
+
+            input.Show();
+#endif
+        }
+
+        protected void p_MagicPressed(object sender, EventArgs e)
+        {
+
+            _magic.GetViewModel<MagicRoomViewModel>().CurrentPlayer = (PlayerWrapper)sender;
+            _magicPopup.IsOpen = true;
+            if (MagicPageOpened != null)
+                MagicPageOpened(null, null);
+        }
+
+        public void CloseMagicPage()
+        {
+            _magicPopup.IsOpen = false;
+        }
+
 
         protected abstract void FillPlayers();
 
@@ -165,7 +217,7 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         public void FillRules()
         {
-            Rules = new List<RuleWrapper>();
+            Rules = new ObservableCollection<RuleWrapper>();
             //create all possible rules
 #if WinRT
             var rulesList = Enum.GetValues(typeof(Rules));

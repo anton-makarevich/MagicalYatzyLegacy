@@ -91,6 +91,62 @@ namespace DicePokerRT
             dpBackground.Visibility = Visibility.Visible;
         }
 
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            Window.Current.SizeChanged -= Current_SizeChanged;
+            GetViewModel<PlayGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
+
+            RemoveGameHandlers();
+
+            dpBackground.DieFrozen -= dpBackground_DieFrozen;
+            dpBackground.EndRoll -= dpBackground_EndRoll;
+            dpBackground.DieChangedManual -= dpBackground_DieChangedManual;
+            dpBackground.Dispose();
+
+            JoinManager.Disconnect();
+
+        }
+
+        void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "CanFix")
+                dpBackground.ClickToFreeze = GetViewModel<PlayGameViewModel>().CanFix;
+            else if (e.PropertyName == "SettingsPanelAngle")
+                dpBackground.DieAngle = GetViewModel<PlayGameViewModel>().SettingsPanelAngle;
+            else if (e.PropertyName == "SettingsPanelSpeed")
+                dpBackground.RollDelay = GetViewModel<PlayGameViewModel>().SettingsPanelSpeed;
+            else if (e.PropertyName == "SettingsPanelStyle")
+            {
+                dpBackground.PanelStyle = GetViewModel<PlayGameViewModel>().SettingsPanelStyle;
+                GetViewModel<PlayGameViewModel>().Game.ChangeStyle(null, dpBackground.PanelStyle);
+            }
+
+        }
+
+        void RemoveGameHandlers()
+        {
+            
+            GetViewModel<PlayGameViewModel>().Game.DiceRolled -= Game_DiceRolled;
+            GetViewModel<PlayGameViewModel>().MoveChanged -= Game_MoveChanged;
+            GetViewModel<PlayGameViewModel>().GameFinished -= Game_GameFinished;
+            GetViewModel<PlayGameViewModel>().DiceFixed -= Game_DiceFixed;
+            GetViewModel<PlayGameViewModel>().Game.DiceChanged -= Game_DiceChanged;
+            GetViewModel<PlayGameViewModel>().Game.PlayerRerolled -= Game_PlayerRerolled;
+            GetViewModel<PlayGameViewModel>().RemoveGameHandlers();
+        }
+
+        void AddGameHandlers()
+        {
+            GetViewModel<PlayGameViewModel>().DiceRolled += Game_DiceRolled;
+            GetViewModel<PlayGameViewModel>().MoveChanged += Game_MoveChanged;
+            GetViewModel<PlayGameViewModel>().GameFinished += Game_GameFinished;
+            GetViewModel<PlayGameViewModel>().DiceFixed += Game_DiceFixed;
+            GetViewModel<PlayGameViewModel>().Game.DiceChanged += Game_DiceChanged;
+            GetViewModel<PlayGameViewModel>().Game.PlayerRerolled += Game_PlayerRerolled;
+        }
+
+        
+
         void Game_DiceFixed(object sender, Sanet.Kniffel.Models.Events.FixDiceEventArgs e)
         {
             if (!GetViewModel<PlayGameViewModel>().SelectedPlayer.IsHuman)
@@ -118,57 +174,12 @@ namespace DicePokerRT
             }
         }
 
-        void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "CanFix")
-                dpBackground.ClickToFreeze = GetViewModel<PlayGameViewModel>().CanFix;
-            else if (e.PropertyName == "SettingsPanelAngle")
-                dpBackground.DieAngle = GetViewModel<PlayGameViewModel>().SettingsPanelAngle;
-            else if (e.PropertyName == "SettingsPanelSpeed")
-                dpBackground.RollDelay = GetViewModel<PlayGameViewModel>().SettingsPanelSpeed;
-            else if (e.PropertyName == "SettingsPanelStyle")
-            {
-                dpBackground.PanelStyle = GetViewModel<PlayGameViewModel>().SettingsPanelStyle;
-                GetViewModel<PlayGameViewModel>().Game.ChangeStyle(null, dpBackground.PanelStyle);
-            }
-            
-        }
-
         void Game_DiceRolled(object sender, Sanet.Kniffel.Models.Events.RollEventArgs e)
         {
             dpBackground.RollDice(e.Value.ToList());
         }
 
-        void AddGameHandlers()
-        {
-            GetViewModel<PlayGameViewModel>().DiceRolled += Game_DiceRolled;
-            GetViewModel<PlayGameViewModel>().MoveChanged += Game_MoveChanged;
-            GetViewModel<PlayGameViewModel>().GameFinished += Game_GameFinished;
-            GetViewModel<PlayGameViewModel>().DiceFixed += Game_DiceFixed;
-            GetViewModel<PlayGameViewModel>().Game.DiceChanged += Game_DiceChanged;
-            GetViewModel<PlayGameViewModel>().Game.PlayerRerolled += Game_PlayerRerolled;
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            Window.Current.SizeChanged -= Current_SizeChanged;
-            GetViewModel<PlayGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
-            GetViewModel<PlayGameViewModel>().Game.DiceRolled -= Game_DiceRolled;
-            GetViewModel<PlayGameViewModel>().MoveChanged -= Game_MoveChanged;
-            GetViewModel<PlayGameViewModel>().GameFinished -= Game_GameFinished;
-            GetViewModel<PlayGameViewModel>().Game.DiceFixed -= Game_DiceFixed;
-            GetViewModel<PlayGameViewModel>().Game.DiceChanged -= Game_DiceChanged;
-            GetViewModel<PlayGameViewModel>().Game.PlayerRerolled -= Game_PlayerRerolled;
-            GetViewModel<PlayGameViewModel>().RemoveGameHandlers();
-
-            dpBackground.DieFrozen -= dpBackground_DieFrozen;
-            dpBackground.EndRoll -= dpBackground_EndRoll;
-            dpBackground.DieChangedManual -= dpBackground_DieChangedManual;
-            dpBackground.Dispose();
-
-            JoinManager.Disconnect();
-            
-        }
+        
 
         void Game_PlayerRerolled(object sender, Sanet.Kniffel.Models.Events.PlayerEventArgs e)
         {
@@ -223,11 +234,7 @@ namespace DicePokerRT
             //}
         }
 
-        private void ClearButton_Tapped_1(object sender, TappedRoutedEventArgs e)
-        {
-
-        }
-
+        
         private void Button_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
             if (dpBackground.AllDiceFrozen())

@@ -86,7 +86,7 @@ namespace Sanet.Kniffel.Models
             if (AdminModule.IsAdmin(player))
                 return 1;
             int res = 0;
-            var valueKey = string.Format("MR_{0}_{1}", player.Name, player.Password);
+            var valueKey = string.Format("MR_{0}", player.ID);
 
             if (!string.IsNullOrEmpty(LocalSettings.GetValue(valueKey)))
                 res = System.Convert.ToInt32(LocalSettings.GetValue(valueKey));
@@ -102,7 +102,7 @@ namespace Sanet.Kniffel.Models
             if (AdminModule.IsAdmin(player))
                 return 1;
             int res = 0;
-            var valueKey = string.Format("MS_{0}_{1}", player.Name, player.Password);
+            var valueKey = string.Format("MS_{0}", player.ID);
 
             if (!string.IsNullOrEmpty(LocalSettings.GetValue(valueKey)))
                 res = System.Convert.ToInt32(LocalSettings.GetValue(valueKey));
@@ -117,7 +117,7 @@ namespace Sanet.Kniffel.Models
             if (AdminModule.IsAdmin(player))
                 return 1;
             int res = 0;
-            var valueKey = string.Format("FR_{0}_{1}", player.Name, player.Password);
+            var valueKey = string.Format("FR_{0}", player.ID);
 
             if (!string.IsNullOrEmpty(LocalSettings.GetValue(valueKey)))
                 res = System.Convert.ToInt32(LocalSettings.GetValue(valueKey));
@@ -129,7 +129,7 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         public static void SetMagicRollsCount(Player player, int count)
         {
-            var valueKey = string.Format("MR_{0}_{1}", player.Name, player.Password);
+            var valueKey = string.Format("MR_{0}", player.ID);
             LocalSettings.SetValue(valueKey , count);
 
         }
@@ -138,7 +138,7 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         public static void SetManualSetsCount(Player player, int count)
         {
-            var valueKey = string.Format("MS_{0}_{1}", player.Name, player.Password);
+            var valueKey = string.Format("MS_{0}", player.ID);
             LocalSettings.SetValue(valueKey, count);
 
         }
@@ -147,7 +147,7 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         public static void SetForthRollsCount(Player player, int count)
         {
-            var valueKey = string.Format("FR_{0}_{1}", player.Name, player.Password);
+            var valueKey = string.Format("FR_{0}", player.ID);
             LocalSettings.SetValue(valueKey, count);
 
         }

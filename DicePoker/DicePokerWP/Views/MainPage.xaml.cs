@@ -65,22 +65,29 @@ namespace DicePokerWP
             
         }
 
-        void AttachNavigationEvents()
-        {
-            CommonNavigationActions.OnNavigationToAbout += CommonNavigationActions_OnNavigationToAbout;
-            CommonNavigationActions.OnNavigationToLeaderboard += CommonNavigationActions_OnNavigationToLeaderboard;
-            CommonNavigationActions.OnNavigationToSettings += CommonNavigationActions_OnNavigationToSettings;
-            CommonNavigationActions.OnNavigationToNewGame += CommonNavigationActions_OnNavigationToNewGame;
-        }
-
         void DettachNavigationEvents()
         {
             CommonNavigationActions.OnNavigationToAbout -= CommonNavigationActions_OnNavigationToAbout;
             CommonNavigationActions.OnNavigationToLeaderboard -= CommonNavigationActions_OnNavigationToLeaderboard;
             CommonNavigationActions.OnNavigationToSettings -= CommonNavigationActions_OnNavigationToSettings;
             CommonNavigationActions.OnNavigationToNewGame -= CommonNavigationActions_OnNavigationToNewGame;
+            CommonNavigationActions.OnNavigationToOnlineGame -= CommonNavigationActions_OnNavigationToOnlineGame;
         }
 
+        void AttachNavigationEvents()
+        {
+            CommonNavigationActions.OnNavigationToAbout += CommonNavigationActions_OnNavigationToAbout;
+            CommonNavigationActions.OnNavigationToLeaderboard += CommonNavigationActions_OnNavigationToLeaderboard;
+            CommonNavigationActions.OnNavigationToSettings += CommonNavigationActions_OnNavigationToSettings;
+            CommonNavigationActions.OnNavigationToNewGame += CommonNavigationActions_OnNavigationToNewGame;
+            CommonNavigationActions.OnNavigationToOnlineGame += CommonNavigationActions_OnNavigationToOnlineGame;
+        }
+
+        void CommonNavigationActions_OnNavigationToOnlineGame()
+        {
+            NavigationService.Navigate(new Uri("/Views/NewOnlineGamePage.xaml", UriKind.RelativeOrAbsolute));
+        }
+        
         void CommonNavigationActions_OnNavigationToNewGame()
         {
             NavigationService.Navigate(new Uri("/Views/NewGamePage.xaml", UriKind.RelativeOrAbsolute));
@@ -124,6 +131,8 @@ namespace DicePokerWP
         
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            //Init smartdispatcher
+            SmartDispatcher.Initialize(this.Dispatcher);
             //dpBackground = new Sanet.Kniffel.DicePanel.DicePanel();
             dpBackground.PanelStyle = GetViewModel<MainPageViewModel>().SettingsPanelStyle;
             dpBackground.TreeDScaleCoef = 0.38;
@@ -131,7 +140,7 @@ namespace DicePokerWP
             dpBackground.RollDelay = GetViewModel<MainPageViewModel>().SettingsPanelSpeed;
             dpBackground.DieAngle = GetViewModel<MainPageViewModel>().SettingsPanelAngle;
             dpBackground.MaxRollLoop = 40;
-            dpBackground.EndRoll += StartRoll;
+            
             StartRoll();
         }
 
@@ -151,6 +160,11 @@ namespace DicePokerWP
             StoreManager.CheckTrialDebug();
 #endif
             //dpBackground = new Sanet.Kniffel.DicePanel.DicePanel();
+            if (ViewModelProvider.HasViewModel<MainPageViewModel>())
+            {
+                //StartRoll();
+            }
+            dpBackground.EndRoll += StartRoll;
             SetViewModel<MainPageViewModel>();
             GetViewModel<MainPageViewModel>().PropertyChanged += GamePage_PropertyChanged;
 
@@ -171,7 +185,7 @@ namespace DicePokerWP
         }
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
-            //dpBackground.EndRoll -= StartRoll;
+            dpBackground.EndRoll -= StartRoll;
             GetViewModel<MainPageViewModel>().PropertyChanged -= GamePage_PropertyChanged;
             //dpBackground.Dispose();
             //dpBackground = null;

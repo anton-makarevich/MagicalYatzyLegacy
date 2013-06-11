@@ -39,9 +39,7 @@
         
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,2">
-            <TextBlock x:Name="ApplicationTitle" Text="{Binding CurrentAppNameUpper}"
-                       Style="{StaticResource PhoneTextNormalStyle}"
-                       Foreground="{StaticResource SanetBlue}"/>
+            
             
         </StackPanel>
 
@@ -54,7 +52,13 @@
             <DicePanel:DicePanel 
                 Grid.RowSpan="2"
                 x:Name="dpBackground"/>
-            <Controls:Pivot >
+            <Controls:Pivot 
+                x:Name="startPivot"
+                >
+                <Controls:Pivot.Title>
+                    <TextBlock x:Name="ApplicationTitle" Text="{Binding Title}"
+                       Style="{StaticResource PivotTitleStyle}"/>
+                </Controls:Pivot.Title>
                 <Controls:PivotItem >
                     <Controls:PivotItem.Header>
                         <TextBlock Style="{StaticResource SubheaderTextStyle}"
@@ -67,10 +71,11 @@
                     </Controls:PivotItem.Header>
                     <ListBox
                         Grid.Row="1"
-                        Margin="0"
+                        Margin="-5"
                         ItemsSource="{Binding Players}"
                         HorizontalAlignment="Center"
                         ItemTemplate="{StaticResource NewPlayerTemplate}"
+                        SelectedItem="{Binding SelectedPlayer, Mode=TwoWay}"
                 >
                         
                     </ListBox>
@@ -80,20 +85,22 @@
                         <TextBlock Style="{StaticResource SubheaderTextStyle}"
                            HorizontalAlignment="Left"
                        Foreground="{StaticResource SanetBlue}"
-                       Text="{Binding OtherApps}"
+                       Text="{Binding RulesLabel}"
                        Grid.Row="0"
                        VerticalAlignment="Center"/>
 
                     </Controls:PivotItem.Header>
-                    
+                    <ListBox
+                  Margin="0"
+                SelectionMode="Single"
+                ItemsSource="{Binding Rules}"
+                HorizontalAlignment="Center"
+                    SelectedItem="{Binding SelectedRule, Mode=TwoWay}"
+            ItemTemplate="{StaticResource RuleTemplate}"
+                  />
+
                 </Controls:PivotItem>
             </Controls:Pivot>
-            <my:PhoneHyperlinkButton 
-                Foreground="{StaticResource SanetBlue}"
-                Grid.Row="1"
-                Tag="http://sanet.by" 
-                Content="{Binding DevelopedByLabel}" 
-                HorizontalAlignment="Center" />
             
         </Grid>
     </Grid>

@@ -55,7 +55,7 @@ namespace Sanet.Kniffel.DicePanel
             //border.Child = panel;
 
             panel.HorizontalAlignment = HorizontalAlignment.Center;
-            panel.Height = 90;
+           
 
             this.Background = new SolidColorBrush(Colors.Black);
 
@@ -64,7 +64,15 @@ namespace Sanet.Kniffel.DicePanel
             //Add cption
             caption.Foreground = Brushes.SolidSanetBlue;
             caption.Margin = new Thickness(15);
+#if WinRT
+             panel.Height = 90;
             caption.FontSize = 28;
+#endif
+#if WINDOWS_PHONE
+            panel.Width = 80;
+            panel.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+            caption.FontSize = 20;
+#endif
             this.Children.Add(caption);
             this.Children.Add(panel);
         }
@@ -105,7 +113,7 @@ namespace Sanet.Kniffel.DicePanel
 
             return new Windows.Foundation.Rect(point, new Windows.Foundation.Size(element.ActualWidth, element.ActualHeight));
 #else
-            return new Rect();
+            return new Rect(0, 100, 480, 700);
 #endif
         }
 

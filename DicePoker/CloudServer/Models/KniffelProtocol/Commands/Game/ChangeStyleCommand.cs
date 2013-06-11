@@ -21,7 +21,11 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
         public ChangeStyleCommand(StringTokenizer argsToken)
             :base(argsToken)
         {
-            SelectedStyle=(DiceStyle)Enum.Parse(typeof(DiceStyle),argsToken.NextToken());
+            SelectedStyle=(DiceStyle)Enum.Parse(typeof(DiceStyle),argsToken.NextToken()
+#if WINDOWS_PHONE
+                ,false
+#endif
+                );
         }
 
         public ChangeStyleCommand(string name, DiceStyle style)

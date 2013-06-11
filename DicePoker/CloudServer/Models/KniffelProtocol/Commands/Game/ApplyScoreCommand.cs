@@ -26,7 +26,11 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
         {
             PossibleValue = int.Parse(argsToken.NextToken());
             HasBonus = bool.Parse(argsToken.NextToken());
-            ScoreType=(KniffelScores)Enum.Parse(typeof(KniffelScores),argsToken.NextToken());
+            ScoreType=(KniffelScores)Enum.Parse(typeof(KniffelScores),argsToken.NextToken()
+#if WINDOWS_PHONE
+, false
+#endif
+                );
         }
 
         public ApplyScoreCommand(string name,RollResult result)

@@ -1,5 +1,8 @@
-﻿
+﻿#if WinRT
 using DicePokerRT;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+#endif
 using Sanet.Kniffel.Protocol;
 using Sanet.Kniffel.ViewModels;
 using Sanet.Models;
@@ -8,8 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+
 
 namespace Sanet.Kniffel.Models
 {
@@ -51,7 +53,9 @@ namespace Sanet.Kniffel.Models
             if (game != null)
             {
                 game.StartGame();
-                ((Frame)Window.Current.Content).Navigate(typeof(GamePage));
+
+                CommonNavigationActions.NavigateToGamePage();
+
                 CurrentTable = game;
                 //game.JoinGame(p.Player);
                 return true;

@@ -37,7 +37,7 @@ namespace DicePokerWP
             dpBackground.RollDelay = GetViewModel<SettingsViewModel>().SettingsPanelSpeed;
             dpBackground.DieAngle = GetViewModel<SettingsViewModel>().SettingsPanelAngle;
             dpBackground.MaxRollLoop = 40;
-            dpBackground.EndRoll += StartRoll;
+            
             StartRoll();
             try
             {
@@ -64,6 +64,7 @@ namespace DicePokerWP
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            dpBackground.EndRoll += StartRoll;
             SetViewModel<SettingsViewModel>();
             GetViewModel<SettingsViewModel>().PropertyChanged += GamePage_PropertyChanged;
             
@@ -80,6 +81,7 @@ namespace DicePokerWP
         }
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
+            dpBackground.EndRoll -= StartRoll;
             GetViewModel<SettingsViewModel>().PropertyChanged -= GamePage_PropertyChanged;
             //dpBackground.Dispose();
             //dpBackground = null;

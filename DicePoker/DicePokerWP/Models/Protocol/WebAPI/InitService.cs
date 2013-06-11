@@ -38,7 +38,8 @@ namespace Sanet.Kniffel.WebApi
             //    serviceUrl, userid.ToString(),versionString,language));
             var jsonString = await _client.DownloadStringTaskAsync(string.Format("{0}/{1}?version={2}&lang={3}",
                 serviceUrl, userid.ToString(),versionString,language)); // response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<ServerHttpMessage>(jsonString);
+            ServerHttpMessage message=JsonConvert.DeserializeObject<ServerHttpMessage>(jsonString);
+            return message;
         }
         
     }
