@@ -86,6 +86,14 @@ namespace Sanet.Kniffel.ViewModels
                 return "Board";
             }
         }
+
+        public string ChatLabel
+        {
+            get
+            {
+                return "Chat";
+            }
+        }
         
         /// <summary>
         /// Players group label
@@ -358,11 +366,10 @@ namespace Sanet.Kniffel.ViewModels
             {
                 if (Game==null)
                     return false;
-#if !ONLINE
-                return false;
-#else
+
+
                 return Game is KniffelGameClient;
-#endif
+
             }
         }
 
@@ -728,11 +735,13 @@ namespace Sanet.Kniffel.ViewModels
             SmartDispatcher.BeginInvoke(() =>
                     {
                         var p = Players.FirstOrDefault(f => f.Name == e.Player.Name);
+                        if (p!=null)
                         p.IsReady = e.Player.IsReady;
-#if ONLINE
-                        if (Game.MyName==e.Player.Name)
-                            NotifyPropertyChanged("CanStart");
-#endif
+                        if (IsOnlineGame)
+                        {
+                            if (Game.MyName == e.Player.Name)
+                                NotifyPropertyChanged("CanStart");
+                        }
                     });
         }
 

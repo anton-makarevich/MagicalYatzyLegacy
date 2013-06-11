@@ -67,10 +67,17 @@ namespace Sanet.Network.Protocol
         public void Incoming(string message)
         {
             //m_Incoming.Enqueue(message);
-            
-            if (/*IsConnected &&*/ ReceivedSomething != null)
+
+            try
             {
-                ReceivedSomething(this, new KeyEventArgs<string>(message));
+                if (/*IsConnected &&*/ ReceivedSomething != null)
+                {
+                    ReceivedSomething(this, new KeyEventArgs<string>(message));
+                }
+            }
+            catch (Exception ex)
+            {
+                var t = ex.Message;
             }
         }
 

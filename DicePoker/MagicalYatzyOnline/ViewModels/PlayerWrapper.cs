@@ -310,10 +310,10 @@ namespace Sanet.Kniffel.ViewModels
             set
             {
                 _Player.IsMoving = value;
-#if ONLINE
+
                 if (_Player.Game!=null && _Player.Game is KniffelGameClient)
                     IsMyTurn = IsMoving;
-#endif
+
                 NotifyPropertyChanged("IsMoving");
             }
         }

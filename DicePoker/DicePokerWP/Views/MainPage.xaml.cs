@@ -131,6 +131,8 @@ namespace DicePokerWP
         
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            //Init smartdispatcher
+            SmartDispatcher.Initialize(this.Dispatcher);
             //dpBackground = new Sanet.Kniffel.DicePanel.DicePanel();
             dpBackground.PanelStyle = GetViewModel<MainPageViewModel>().SettingsPanelStyle;
             dpBackground.TreeDScaleCoef = 0.38;

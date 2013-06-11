@@ -1,5 +1,7 @@
-﻿<phone:PhoneApplicationPage xmlns:Controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"  xmlns:DicePanel="clr-namespace:Sanet.Kniffel.DicePanel"  
+﻿<phone:PhoneApplicationPage 
+    xmlns:Controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"  xmlns:DicePanel="clr-namespace:Sanet.Kniffel.DicePanel"  
     x:Class="DicePokerWP.GamePage"
+    xmlns:sanet="clr-namespace:Sanet.Controls"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -42,13 +44,7 @@
                 AdDuplexAppId="41731"
                 InneractiveAppId="AntonMakarevich_MagicalYatzyOnline_WP"/>
         
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,2">
-            <TextBlock x:Name="ApplicationTitle" Text="{Binding Title}"
-                       Style="{StaticResource PhoneTextNormalStyle}"
-                       Foreground="{StaticResource SanetBlue}"/>
-            
-        </StackPanel>
+        
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12,0,12,0">
@@ -57,9 +53,14 @@
                 <ColumnDefinition Width="90"/>
             </Grid.ColumnDefinitions>
             
-            <Controls:Pivot 
+            <sanet:PivotWithHiding 
                 x:Name="rollPivot">
-                <Controls:PivotItem >
+                <sanet:PivotWithHiding.Title>
+                    <TextBlock x:Name="ApplicationTitle" Text="{Binding Title}"
+                       Style="{StaticResource PivotTitleStyle}"/>
+                </sanet:PivotWithHiding.Title>
+                <Controls:PivotItem
+                    x:Name="tablePivotItem">
                     <Controls:PivotItem.Header>
                         <TextBlock Style="{StaticResource SubheaderTextStyle}"
                            HorizontalAlignment="Left"
@@ -155,7 +156,8 @@
 
                     </Grid>
                 </Controls:PivotItem>
-                <Controls:PivotItem >
+                <Controls:PivotItem 
+                    x:Name="boardPivotItem">
                     <Controls:PivotItem.Header>
                         <TextBlock Style="{StaticResource SubheaderTextStyle}"
                            HorizontalAlignment="Left"
@@ -172,7 +174,65 @@
                         MinWidth="300"
                                x:Name="dpBackground"/>
                 </Controls:PivotItem>
-            </Controls:Pivot>
+                <Controls:PivotItem
+                x:Name="chatPivotItem"
+                    >
+                    <Controls:PivotItem.Header>
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                               x:Name="chatHeader"
+                           HorizontalAlignment="Left"
+                       Foreground="{StaticResource SanetBlue}"
+                       Text="{Binding ChatLabel}"
+                       VerticalAlignment="Center"/>
+
+                    </Controls:PivotItem.Header>
+                    <Grid DataContext="{Binding ChatModel}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="60"/>
+                        </Grid.RowDefinitions>
+                        <!--Players List-->
+                        <Border
+                        BorderBrush="{StaticResource SanetBlue}"
+                        BorderThickness="0,0,0,2">
+                            <ListBox
+                            IsHitTestVisible="False"
+                            ItemsSource="{Binding Players}"
+                            ItemTemplate="{StaticResource ChatPlayerTemplate}"/>
+                        </Border>
+
+
+                        <!--Messages List-->
+                        <ListBox
+                            x:Name="messagesList"
+                            Grid.Row="1"
+                            ItemsSource="{Binding Messages}"
+                            ItemTemplate="{StaticResource ChatMessageTemplate}"/>
+                        <!--Chat Input Panel-->
+                        <Grid 
+                            Grid.Row="2"
+                            >
+
+                            <TextBox
+                                x:Name="chatTextField"
+                                AcceptsReturn="False"
+                                Height="80"
+                                Text="{Binding CurrentMessage, Mode=TwoWay}"/>
+                            <!--<Button
+                                IsEnabled="{Binding HasMoney}"
+                                Content="{Binding SendLabel}"
+                                Grid.Column="1"
+                                Margin="5,0"
+                                HorizontalAlignment="Right"
+                                Height="60" Command="{Binding SendCommand}"/>-->
+                        </Grid>
+
+                    </Grid>
+
+                </Controls:PivotItem>
+            </sanet:PivotWithHiding>
 
             <ListBox
                 Margin="0,0,0,60"
@@ -211,6 +271,7 @@
                 </ListBox>
                 
             </Grid>
+            
         </Grid>
     </Grid>
  

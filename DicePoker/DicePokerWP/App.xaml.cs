@@ -77,6 +77,7 @@ namespace DicePokerWP
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            
             //check if trial version
             StoreManager.CheckTrial();
             //init localizer

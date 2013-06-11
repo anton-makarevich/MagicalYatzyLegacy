@@ -14,6 +14,7 @@ using Sanet.Models;
 using Sanet.Kniffel.ViewModels;
 using Microsoft.Phone.Shell;
 using Sanet.Kniffel.Models;
+using Sanet;
 
 namespace DicePokerWP
 {
@@ -194,6 +195,30 @@ namespace DicePokerWP
         private void Like_Tapped(object sender, System.Windows.Input.GestureEventArgs e)
         {
             CommonNavigationActions.NavigateYatzyFBPage();
+        }
+
+        async private void Button_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            bool isLoaded = false;
+            if (GetViewModel<NewOnlineGameViewModel>().SelectedPlayer.IsDefaultName)
+            {
+                try
+                {
+                    isLoaded = await App.FBInfo.Login();
+
+                }
+                catch (Exception ex)
+                {
+                    LogManager.Log("NOGVM.FacebookLogin", ex);
+
+                }
+            }
+            else
+            {
+                App.FBInfo.Logout();
+
+            }
+            GetViewModel<NewOnlineGameViewModel>().LoadFacebookData(isLoaded);
         }
 
             

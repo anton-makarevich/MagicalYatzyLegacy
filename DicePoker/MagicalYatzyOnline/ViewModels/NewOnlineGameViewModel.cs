@@ -38,7 +38,7 @@ namespace Sanet.Kniffel.ViewModels
         string[] _language = Windows.System.UserProfile.GlobalizationPreferences.Languages[0].Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
 #endif
 #if WINDOWS_PHONE
-        string[] _language = new string[] { System.Threading.Thread.CurrentThread.CurrentCulture.Name };
+        string[] _language = new string[] { System.Threading.Thread.CurrentThread.CurrentCulture.Name.Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries)[0] };
 #endif
         DispatcherTimer _updateTimer = new DispatcherTimer() 
         {
@@ -51,10 +51,7 @@ namespace Sanet.Kniffel.ViewModels
         {
             _updateTimer.Tick += _updateTimer_Tick;
 
-            //_facebookPopup.Child = _facebook;
-            //_facebook.Tag = _facebookPopup;
-            //_facebookPopup.Closed += _facebookPopup_Closed;
-
+            
             CreateCommands();
 
             FillPlayers();
@@ -271,6 +268,7 @@ namespace Sanet.Kniffel.ViewModels
                     if (_SelectedTable != null)
                         _SelectedTable.IsSelected = false;
                     _SelectedTable = value;
+                    if (_SelectedTable != null)
                     _SelectedTable.IsSelected = true;
                     if (value.Id != -1)
                         SelectedRule = Rules.FirstOrDefault(f => f.Rule.Rule == value.Rule);
@@ -350,25 +348,37 @@ namespace Sanet.Kniffel.ViewModels
 
         async void p_FacebookClicked(object sender, EventArgs e)
         {
-
+            bool isLoaded = false;
             if (SelectedPlayer.IsDefaultName)
             {
                 try
                 {
-                    await App.FBInfo.Login();
-                    SelectedPlayer.Name = App.FBInfo.UserName;
-                    SelectedPlayer.Password = Player.FB_PREFIX + App.FBInfo.FacebookId;
+                    isLoaded = await App.FBInfo.Login();
+                    
                 }
                 catch (Exception ex)
                 {
                     LogManager.Log("NOGVM.FacebookLogin", ex);
-                    SelectedPlayer.Name = "";
-                    SelectedPlayer.Password = "";
+                    
                 }
             }
             else
             {
                 App.FBInfo.Logout();
+                
+            }
+            LoadFacebookData(isLoaded);
+        }
+
+        public void LoadFacebookData(bool hasValue)
+        {
+            if (hasValue)
+            {
+                SelectedPlayer.Name = App.FBInfo.UserName;
+                SelectedPlayer.Password = Player.FB_PREFIX + App.FBInfo.FacebookId;
+            }
+            else
+            {
                 SelectedPlayer.Name = "";
                 SelectedPlayer.Password = "";
             }
@@ -376,6 +386,7 @@ namespace Sanet.Kniffel.ViewModels
             SavePlayers();
         }
 
+       
        
         void p_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -458,9 +469,9 @@ namespace Sanet.Kniffel.ViewModels
                     tableId = -1;
                 }
             }
-#if WinRT
+
             await JoinManager.JoinTable(tableId, SelectedRule.Rule.Rule);
-#endif
+
         }
 
         /// <summary>

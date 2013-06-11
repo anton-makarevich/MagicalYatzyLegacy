@@ -28,6 +28,9 @@ namespace DicePokerWP
         ApplicationBarIconButton manualSetButton;
         ApplicationBarIconButton resetRollButton;
 
+        ApplicationBarIconButton readyButton;
+
+        ApplicationBarIconButton sendButton;
         // Constructor
         public GamePage()
         {
@@ -68,6 +71,26 @@ namespace DicePokerWP
             resetRollButton.IconUri = new Uri("/Assets/reset_icon.png", UriKind.Relative);
             resetRollButton.Text = "ForthRollLabel".Localize();
             resetRollButton.Click += resetRollButton_Click;
+
+            readyButton = new ApplicationBarIconButton();
+            readyButton.IconUri = new Uri("/Assets/ready.png", UriKind.Relative);
+            readyButton.Text = Messages.GAME_PLAY_READY.Localize();
+            readyButton.Click += readyButton_Click;
+
+            sendButton = new ApplicationBarIconButton();
+            sendButton.IconUri = new Uri("/Assets/Send.png", UriKind.Relative);
+            sendButton.Text = "SendLabel".Localize();
+            sendButton.Click += sendButton_Click;
+        }
+
+        void sendButton_Click(object sender, EventArgs e)
+        {
+            //throw new NotImplementedException();
+        }
+
+        void readyButton_Click(object sender, EventArgs e)
+        {
+            ViewModelProvider.GetViewModel<PlayGameViewModel>().Game.SetPlayerReady(true);
         }
 
         void resetRollButton_Click(object sender, EventArgs e)
@@ -131,6 +154,25 @@ namespace DicePokerWP
             dpBackground.DieChangedManual += dpBackground_DieChangedManual;
 
             GetViewModel<PlayGameViewModel>().StartGame();
+
+            //check chat pivot
+            try
+            {
+                
+                if (!GetViewModel<PlayGameViewModel>().IsOnlineGame)
+                {
+                    if (!rollPivot.IsPivotItemHidden(chatPivotItem))
+                    {
+                       rollPivot.HidePivotItem(chatPivotItem);
+                       
+                    }
+                }
+                rollPivot.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                var t = ex.Message;
+            }
             
         }
 
@@ -168,9 +210,27 @@ namespace DicePokerWP
         {
             SetViewModel<PlayGameViewModel>();
             GetViewModel<PlayGameViewModel>().PropertyChanged += GamePage_PropertyChanged;
+            rollPivot.SelectionChanged += rollPivot_SelectionChanged;
 
             AddGameHandlers();
             RebuildAppBarForRoll();
+        }
+
+        void rollPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ViewModelProvider.HasViewModel<PlayGameViewModel>())
+                if (rollPivot.SelectedIndex == 2)
+                    RebuildAppBarForChat();
+                else
+                {
+                    if (currentAppBarState == appBarState.chat)
+                    {
+                        if (prevAppBarState== appBarState.ready)
+                            RebuildAppBarForReady();
+                        else
+                            RebuildAppBarForRoll();
+                    }
+                }
         }
         void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -206,6 +266,14 @@ namespace DicePokerWP
                 e.PropertyName == "IsManualSetVisible") &&
                 rollPivot.Visibility==Visibility.Visible)
                 RebuildAppBarForRoll();
+            else if ((e.PropertyName == "CanStart") &&
+                rollPivot.Visibility == Visibility.Visible)
+            {
+                if (GetViewModel<PlayGameViewModel>().CanStart)
+                    RebuildAppBarForReady();
+                else
+                    RebuildAppBarForRoll();
+            }
         }
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
@@ -217,6 +285,8 @@ namespace DicePokerWP
             dpBackground.DieFrozen -= dpBackground_DieFrozen;
             dpBackground.EndRoll -= dpBackground_EndRoll;
             dpBackground.DieChangedManual -= dpBackground_DieChangedManual;
+
+            JoinManager.Disconnect();
         }
 
         void RemoveGameHandlers()
@@ -245,7 +315,10 @@ namespace DicePokerWP
 
         void Game_ResultApplied(object sender, Sanet.Kniffel.Models.Events.ResultEventArgs e)
         {
-            rollPivot.SelectedIndex = 0;
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                rollPivot.SelectedIndex = 0;
+            });
         }
 
 
@@ -340,7 +413,9 @@ namespace DicePokerWP
             //}
         }
 
-        
+        appBarState prevAppBarState = appBarState.roll;
+        appBarState currentAppBarState = appBarState.roll;
+
         void RebuildAppBarForRoll()
         {
             this.ApplicationBar.Buttons.Clear();
@@ -362,8 +437,12 @@ namespace DicePokerWP
             this.ApplicationBar.IsMenuEnabled = false;
             this.ApplicationBar.Mode = ApplicationBarMode.Default;
 
-            
+            prevAppBarState=currentAppBarState  ;
+            currentAppBarState = appBarState.roll;
         }
+
+
+
         void RebuildAppBarForEnd()
         {
             this.ApplicationBar.Buttons.Clear();
@@ -374,6 +453,32 @@ namespace DicePokerWP
             this.ApplicationBar.Mode = ApplicationBarMode.Default;
 
 
+        }
+        
+        void RebuildAppBarForReady()
+        {
+            this.ApplicationBar.Buttons.Clear();
+
+            this.ApplicationBar.Buttons.Add(readyButton);
+
+            this.ApplicationBar.IsMenuEnabled = false;
+            this.ApplicationBar.Mode = ApplicationBarMode.Default;
+
+            prevAppBarState = currentAppBarState;
+            currentAppBarState = appBarState.ready;
+        }
+
+        void RebuildAppBarForChat()
+        {
+            this.ApplicationBar.Buttons.Clear();
+
+            this.ApplicationBar.Buttons.Add(sendButton);
+
+            this.ApplicationBar.IsMenuEnabled = false;
+            this.ApplicationBar.Mode = ApplicationBarMode.Default;
+
+            prevAppBarState = currentAppBarState;
+            currentAppBarState = appBarState.chat;
         }
 
         #region ViewModel
@@ -396,6 +501,13 @@ namespace DicePokerWP
                 return;
             GetViewModel<PlayGameViewModel>().Game.ApplyScore(((RollResultWrapper)(RollResults.SelectedItem)).Result);
             
+        }
+
+        enum appBarState
+        {
+            roll,
+            ready,
+            chat
         }
                 
     }

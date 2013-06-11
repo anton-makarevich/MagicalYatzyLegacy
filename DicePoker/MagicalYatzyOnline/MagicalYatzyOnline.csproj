@@ -1565,6 +1565,9 @@
     <Compile Include="..\DicePokerRT\Views\PrivacyPolicyControl.cs">
       <Link>Controls\PrivacyPolicyControl.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerWP\ViewModels\TableWrapper.cs">
+      <Link>ViewModels\TableWrapper.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>

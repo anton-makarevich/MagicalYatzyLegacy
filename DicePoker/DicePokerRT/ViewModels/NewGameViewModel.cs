@@ -219,6 +219,7 @@ namespace Sanet.Kniffel.ViewModels
                 p.RefreshArtifactsInfo();
                 Players.Add(p);
             }
+            SelectedPlayer = Players.Last();
             NotifyPlayersChanged();
             
         }
