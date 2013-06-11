@@ -1,0 +1,36 @@
+﻿La versiуn de prueba es completamente funcional, pero muestra publicidad.
+
+Yatzy Mбgico en lнnea - emocionante juego de dados multijugador basado en el popular juego en todo el mundo conocido como Yatzy. El objetivo es conseguir tantos puntos como sea posible al recolectar diferentes manos de pуker de cinco dados. La posibilidad de usar ''artefactos mбgicos'' para mejorar tu puntuaciуn hace que este juego sea mбs divertido.
+Yatzy Mбgico - esta es una gran oportunidad para probar tu suerte y divertirte. Hay cinco conjuntos de reglas implementadas en el juego Yatzy Mбgico, lo cual lo hace accesible para jugadores con diferentes niveles, incluyendo niсos.
+
+•Cinco conjuntos de reglas
+•Reglas ''mбgicas'' ъnicas
+•Juega con amigos en la misma PC o en la internet
+•Varios estilos visuales y ajustes en los dados
+•Se guardan los resultados en libros de rйcords basados en la web
+•Buenos grбficos pseudo-3D y animaciуn de tiro.
+•Interfaz de usuario limpia en estilo de Windows 8 y optimizado para tablets
+•Ingresa con tu cuenta de Facebook
+
+
+
+
+
+dados; yatzee; yahtzy; pуker; yatzee; yahtzee; kniffel 
+
+remover publicidad, desbloquear todos los estilos de dados 
+90 artefactos mбgicos 
+150 artefactos mбgicos
+300 artefactos mбgicos 
+
+
+
+empezar nuevo juego en lнnea
+menъ principal
+empezar nueva pantalla de juego
+juego - resultado de tiro
+juego - tirando los dados
+resultados del juego
+pantalla de clasificaciуn
+pantalla de ajustes
+habitaciуn mбgica
