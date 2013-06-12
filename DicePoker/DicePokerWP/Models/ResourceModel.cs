@@ -29,8 +29,36 @@ namespace Sanet.Models
         private static CultureInfo uiCulture = Thread.CurrentThread.CurrentUICulture;
         public static CultureInfo UiCulture
         {
-            get { return uiCulture; }
-            set { uiCulture = value;}
+            get
+            {
+                return uiCulture; 
+            }
+            set
+            {
+                string lang = value.Name.Split('-')[0];
+                CultureInfo culture;
+                switch (lang)
+                {
+                    case "ru":
+                        culture = new CultureInfo("ru-RU");
+                        break;
+                    case "de":
+                        culture = new CultureInfo("de-DE");
+                        break;
+                    case "be":
+                        culture = new CultureInfo("be-BY");
+                        break;
+                    case "es":
+                        culture = new CultureInfo("es-ES");
+                        break;
+                    default:
+                        culture = new CultureInfo("en-US");
+                        break;
+                }
+                uiCulture = culture;
+                Thread.CurrentThread.CurrentUICulture = culture;
+                Thread.CurrentThread.CurrentCulture = culture;
+            }
         }
 
         /// <summary>
@@ -64,7 +92,7 @@ namespace Sanet.Models
     {
         public ResourceModel()
         {
-            ApplicationResources.UiCulture = CultureInfo.CurrentUICulture;//new CultureInfo("ru-RU");
+            ApplicationResources.UiCulture = CultureInfo.CurrentUICulture;//new CultureInfo("de");
         }
 
         public string GetString(string resource)
@@ -72,8 +100,10 @@ namespace Sanet.Models
             try
             {
 
-                return App.ResourceProvider.Get(resource);
-
+                var t =App.ResourceProvider.Get(resource);
+                if (string.IsNullOrEmpty(t))
+                    t=resource;
+                return t;
             }
             catch (Exception)
             {

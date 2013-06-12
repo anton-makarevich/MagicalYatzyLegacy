@@ -153,20 +153,20 @@
     <value>Entschuldigung, aber Sie können dem gewählten Tisch nicht beitreten. Ein Spieler mit dem gleichen Namen ist schon im Spiel. Wählen Sie einen anderen Tisch.</value>
     <comment>Entschuldigung, aber Sie können dem gewählten Tisch nicht beitreten. Ein Spieler mit dem gleichen Namen ist schon im Spiel. Wählen Sie einen anderen Tisch.</comment>
   </data>
-  <data name="AngHigh.Text" xml:space="preserve">
+  <data name="AngHighText" xml:space="preserve">
     <value>hoch</value>
     <comment>hoch</comment>
   </data>
-  <data name="AngLow.Text" xml:space="preserve">
+  <data name="AngLowText" xml:space="preserve">
     <value>niedrig</value>
     <comment>niedrig</comment>
   </data>
-  <data name="AngVeryHigh.Text" xml:space="preserve">
+  <data name="AngVeryHighText" xml:space="preserve">
     <value>sehr hoch</value>
     <comment>sehr hoch</comment>
   </data>
   <data name="AppNameLabel" xml:space="preserve">
-    <value>Magischer Yatzy Online</value>
+    <value>Magischer Yatzy</value>
     <comment>Magischer Yatzy</comment>
   </data>
   <data name="ArtifactsBonusMessage" xml:space="preserve">
@@ -225,6 +225,9 @@
   <data name="ChangePasswordLabel" xml:space="preserve">
     <value>geben Sie das Passwort ein</value>
   </data>
+  <data name="ChatPanelLabel" xml:space="preserve">
+    <value>Чат</value>
+  </data>
   <data name="CheckingLabel" xml:space="preserve">
     <value>überprüfen ...</value>
   </data>
@@ -241,7 +244,7 @@
     <comment>Ist veraltet</comment>
   </data>
   <data name="ClientOutdatedMessage" xml:space="preserve">
-    <value>Ваша версия программы устарела, для игры по сети необходимо обновить ее</value>
+    <value>Ihre Spielversion ist veraltet. Für das Multiplayer-Online-Spiel ist die Aktualisierung nötig.</value>
     <comment>Ihre Spielversion ist veraltet. Für das Multiplayer-Online-Spiel ist die Aktualisierung nötig.</comment>
   </data>
   <data name="ClientUpdatedLabel" xml:space="preserve">
@@ -269,9 +272,15 @@
     <value>löschen</value>
     <comment>löschen</comment>
   </data>
-  <data name="DevelopedBy.Text" xml:space="preserve">
+  <data name="DevelopedByText" xml:space="preserve">
     <value>Entwickelt von:</value>
     <comment>Entwickelt von:</comment>
+  </data>
+  <data name="DiceBoardLabel" xml:space="preserve">
+    <value>Кости</value>
+  </data>
+  <data name="DiceDescription" xml:space="preserve">
+    <value>Virtuelle Würfel, die immer dabei sind! Sanet Dice ist in dem Lieblingspiel zu gebrauchen, ist auch eine kleine Hilfe bei den zufälligen Entscheidungsschwierigkeiten und Angst vor Entscheidungen.</value>
   </data>
   <data name="DicePokerAdLine1" xml:space="preserve">
     <value>Nur würfeln  finden Sie langweilig?</value>
@@ -327,6 +336,12 @@
   <data name="ForthRollLabel" xml:space="preserve">
     <value>Die Runde zurücksetzen</value>
     <comment>die Runde zurücksetzen</comment>
+  </data>
+  <data name="ForWin8Label" xml:space="preserve">
+    <value>Magical Yatzy für Windows 8</value>
+  </data>
+  <data name="ForWPLabel" xml:space="preserve">
+    <value>Magical Yatzy für Windows Phone</value>
   </data>
   <data name="FourOfAKind" xml:space="preserve">
     <value>Viererpasch</value>
@@ -412,6 +427,22 @@
     <value>Highscore-Liste für alle Spielregeln</value>
     <comment>Highscore-Liste für alle Spielregeln</comment>
   </data>
+  <data name="LocalLabel" xml:space="preserve">
+    <value>Lokales Profil</value>
+    <comment>Lokales Profil</comment>
+  </data>
+  <data name="LoginLabel" xml:space="preserve">
+    <value>Klicken Sie hier, um sich einzuloggen</value>
+    <comment>Klicken Sie hier, um sich einzuloggen</comment>
+  </data>
+  <data name="LoginToFBLabel" xml:space="preserve">
+    <value>Sich anhand Facebook-Profil einzuloggen</value>
+    <comment> Sich anhand Facebook-Profil einzuloggen</comment>
+  </data>
+  <data name="LogoutLabel" xml:space="preserve">
+    <value>Klicken Sie hier, um sich auszuloggen</value>
+    <comment>Klicken Sie hier, um sich auszuloggen</comment>
+  </data>
   <data name="MagicArtifactsDescription" xml:space="preserve">
     <value>Magische Artefakte können  Ihre Chancen auf eine gute Pokerkombination  in den Regeln für Magierer erhöhen. Jede Art von Artefakten kann man nur einmal pro Spiel verwenden. Insgesamt gibt es im Spiel drei Arten von Artefakten:</value>
     <comment>Magische Artefakte können  Ihre Chancen auf eine gute Pokerkombination  in den Regeln für Magierer erhöhen. Jede Art von Artefakten kann man nur einmal pro Spiel verwenden. Insgesamt gibt es im Spiel drei Arten von Artefakten:</comment>
@@ -492,6 +523,9 @@
     <value>kein Internetzugang</value>
     <comment>kein Internetzugang</comment>
   </data>
+  <data name="NoPurchasesMessage" xml:space="preserve">
+    <value>Извините, в данной версии программы для телефона покупки не возможны. Вы можете воспользоваться программой для Windows 8. При использовании одинакового имени пользователя и пароля (или аккаунта Facebook) ваши артефакты будут доступны во всех версиях программы.</value>
+  </data>
   <data name="OfAKind" xml:space="preserve">
     <value>-ling</value>
     <comment>-ling</comment>
@@ -524,7 +558,7 @@
     <value>About Kniffel online</value>
     <comment>About Kniffel online</comment>
   </data>
-  <data name="OnlineVersionText.Text" xml:space="preserve">
+  <data name="OnlineVersionText" xml:space="preserve">
     <value>Die Idee des Controlls und die Darstellung der  ''Roten"  Würfeln gehört Matthew Tagliaferri.</value>
     <comment>Die Idee des Controlls und die Darstellung der  ''Roten"  Würfeln gehört Matthew Tagliaferri.</comment>
   </data>
@@ -610,6 +644,9 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>Datenschutzrichtlinien</value>
     <comment>Datenschutzrichtlinien</comment>
   </data>
+  <data name="ProfileLabel" xml:space="preserve">
+    <value>Профиль</value>
+  </data>
   <data name="PurchaseDescription" xml:space="preserve">
     <value>Sie können den Vorrat von den magischen Artefakten auffüllen: wählen Sie aus den folgenden Angeboten. Man kann nur ein Angebot pro 24 Stunden wählen.</value>
     <comment>Sie können den Vorrat von den magischen Artefakten auffüllen: wählen Sie aus den folgenden Angeboten. Man kann nur ein Angebot pro 24 Stunden wählen.</comment>
@@ -663,6 +700,9 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
   <data name="ResultBonusLabel" xml:space="preserve">
     <value>Bonus für die Leistung</value>
     <comment>Bonus für die Leistung</comment>
+  </data>
+  <data name="ResultsTableLabel" xml:space="preserve">
+    <value>Таблица</value>
   </data>
   <data name="ReviewAppAction" xml:space="preserve">
     <value>die App in Windows Store bewerten</value>
@@ -724,11 +764,11 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>Einstellungen</value>
     <comment>Einstellungen</comment>
   </data>
-  <data name="SettingsAngleCaption.Text" xml:space="preserve">
+  <data name="SettingsAngleCaptionText" xml:space="preserve">
     <value>Blickfeld</value>
     <comment>Blickfeld</comment>
   </data>
-  <data name="SettingsCaption.Text" xml:space="preserve">
+  <data name="SettingsCaptionText" xml:space="preserve">
     <value>Einstellungen</value>
     <comment>Einstellungen</comment>
   </data>
@@ -736,20 +776,23 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>Die Spieleinstellungen ändern</value>
     <comment>Die Spieleinstellungen ändern</comment>
   </data>
-  <data name="SettingsNumbersCaption.Text" xml:space="preserve">
+  <data name="SettingsNumbersCaptionText" xml:space="preserve">
     <value>Würfelzahl</value>
     <comment>Würfelzahl</comment>
   </data>
-  <data name="SettingsSpeedCaption.Text" xml:space="preserve">
+  <data name="SettingsSpeedCaptionText" xml:space="preserve">
     <value>Wurftempo</value>
     <comment>Wurftempo</comment>
   </data>
-  <data name="SettingsStyleCaption.Text" xml:space="preserve">
+  <data name="SettingsStyleCaptionText" xml:space="preserve">
     <value>Würfelstil</value>
     <comment>Würfelstil</comment>
   </data>
   <data name="ShareLabel" xml:space="preserve">
     <value>teilen</value>
+  </data>
+  <data name="ShareMessage" xml:space="preserve">
+    <value>Присоединяйся ко мне в этой онлайн игре!</value>
   </data>
   <data name="ShareTitle" xml:space="preserve">
     <value>"Magischer Yatzy Online" für Windows 8</value>
@@ -766,19 +809,19 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>Töne</value>
     <comment>Töne</comment>
   </data>
-  <data name="SpeedFast.Text" xml:space="preserve">
+  <data name="SpeedFastText" xml:space="preserve">
     <value>schnell</value>
     <comment>schnell</comment>
   </data>
-  <data name="SpeedSlow.Text" xml:space="preserve">
+  <data name="SpeedSlowText" xml:space="preserve">
     <value>langsam</value>
     <comment>langsam</comment>
   </data>
-  <data name="SpeedVeryFast.Text" xml:space="preserve">
+  <data name="SpeedVeryFastText" xml:space="preserve">
     <value>sehr schnell</value>
     <comment>sehr schnell</comment>
   </data>
-  <data name="SpeedVerySlow.Text" xml:space="preserve">
+  <data name="SpeedVerySlowText" xml:space="preserve">
     <value>sehr langsam</value>
     <comment>sehr langsam</comment>
   </data>
@@ -848,14 +891,5 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
   <data name="YesLabel" xml:space="preserve">
     <value>Ja, mit Vergnügen!</value>
     <comment>Ja, mit Vergnügen!</comment>
-  </data>
-  <data name="DiceDescription" xml:space="preserve">
-    <value>Virtuelle Würfel, die immer dabei sind! Sanet Dice ist in dem Lieblingspiel zu gebrauchen, ist auch eine kleine Hilfe bei den zufälligen Entscheidungsschwierigkeiten und Angst vor Entscheidungen.</value>
-  </data>
-  <data name="ForWin8Label" xml:space="preserve">
-    <value>Magical Yatzy für Windows 8</value>
-  </data>
-  <data name="ForWPLabel" xml:space="preserve">
-    <value>Magical Yatzy für Windows Phone</value>
   </data>
 </root>

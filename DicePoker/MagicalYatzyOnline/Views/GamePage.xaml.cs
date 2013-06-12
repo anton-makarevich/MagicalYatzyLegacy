@@ -91,10 +91,16 @@ namespace DicePokerRT
             dpBackground.Visibility = Visibility.Visible;
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        protected async override void OnNavigatedFrom(NavigationEventArgs e)
         {
             Window.Current.SizeChanged -= Current_SizeChanged;
             GetViewModel<PlayGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
+
+            if (gridResults.Visibility == Visibility.Visible)
+            {
+                gridResults.Visibility = Visibility.Collapsed;
+                await GetViewModel<PlayGameViewModel>().SaveResults();
+            }
 
             RemoveGameHandlers();
 
@@ -249,11 +255,7 @@ namespace DicePokerRT
         }
         protected async override void GoBack(object sender, RoutedEventArgs e)
         {
-            if (gridResults.Visibility == Visibility.Visible)
-            {
-                gridResults.Visibility = Visibility.Collapsed;
-                await GetViewModel<PlayGameViewModel>().SaveResults();
-            }
+            
             base.GoBack(sender, e);
         }
         private void AgainButton_Tapped_1(object sender, TappedRoutedEventArgs e)

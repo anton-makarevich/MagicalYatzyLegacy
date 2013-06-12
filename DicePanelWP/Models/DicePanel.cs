@@ -762,6 +762,9 @@ namespace Sanet.Kniffel.DicePanel
                 return;
             if (mSound == null)
                 mSound = new MediaElement();
+#if SILVERLIGHT
+            mSound.AutoPlay = true;
+#endif
             int index = FPanel.FRand.Next(1, 4);
             SoundsProvider.PlaySound(mSound, "dice"+index.ToString());
         }

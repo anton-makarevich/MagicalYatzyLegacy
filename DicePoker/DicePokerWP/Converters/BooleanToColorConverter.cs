@@ -20,6 +20,30 @@ namespace Sanet.Common
             {
 
                 if (System.Convert.ToBoolean(value.ToString()))
+                    return Brushes.SolidSanetBlue.Color;
+
+            }
+
+            catch { }
+
+            return Colors.Transparent;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class BooleanToSolidBrushConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo language)
+        {
+            try
+            {
+
+                if (System.Convert.ToBoolean(value.ToString()))
                     return Brushes.SolidSanetBlue;
 
             }
@@ -35,4 +59,5 @@ namespace Sanet.Common
         }
     }
 
+    
 }

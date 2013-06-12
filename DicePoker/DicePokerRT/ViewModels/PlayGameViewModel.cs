@@ -75,7 +75,8 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return "Table";
+                return "ResultsTableLabel".Localize();
+                
             }
         }
 
@@ -83,7 +84,8 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return "Board";
+                return "DiceBoardLabel".Localize();
+                
             }
         }
 
@@ -91,7 +93,7 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return "Chat";
+                return "ChatPanelLabel".Localize();
             }
         }
         

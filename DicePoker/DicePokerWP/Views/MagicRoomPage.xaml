@@ -273,16 +273,20 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
+                        
                         <TextBlock
+                                Width="360"
                                 TextWrapping="Wrap"
                             FontSize="20" 
                             Foreground="{StaticResource SanetBlue}"
                             Text="{Binding NoPurchaseDescription}"/>
-
-
-                        
-
-
+                        <my:PhoneHyperlinkButton 
+                            Foreground="{StaticResource SanetBlue}"
+                            Grid.Row="1"
+                            Margin="0,5"
+                            Tag="http://apps.microsoft.com/windows/app/sanet-dice-poker/5b0f9106-65a8-49ca-b1f0-641c54a7e3ef" 
+                            Content="{Binding ForW8Label}" 
+                            HorizontalAlignment="Left"/>
                     </Grid>
                 </Controls:PivotItem>
             </Controls:Pivot>

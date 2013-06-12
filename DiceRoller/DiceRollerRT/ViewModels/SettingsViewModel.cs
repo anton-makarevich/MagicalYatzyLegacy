@@ -409,7 +409,8 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return RoamingSettings.IsSoundEnabled;
+                var rv= RoamingSettings.IsSoundEnabled;
+                return rv;
             }
             set
             {

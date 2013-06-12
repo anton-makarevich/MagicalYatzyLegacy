@@ -39,7 +39,7 @@ namespace DicePokerWP
             ApplicationBar.IsMenuEnabled = false;
                         
             startButton = new ApplicationBarIconButton();
-            startButton.IconUri = new Uri("/Assets/dice.png", UriKind.Relative);
+            startButton.IconUri = new Uri("/Assets/Media-Play.png", UriKind.Relative);
             startButton.Text = Messages.NEW_GAME_START_GAME.Localize();
             startButton.Click += startButton_Click;
 

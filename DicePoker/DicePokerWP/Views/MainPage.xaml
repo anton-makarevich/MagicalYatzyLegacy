@@ -29,7 +29,7 @@
                        Foreground="{StaticResource SanetBlue}"/>
             
         </StackPanel>
-
+        <MediaElement x:Name="defME" AutoPlay="True" MediaFailed="defME_MediaFailed" Visibility="Visible"/>
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <DicePanel:DicePanel 

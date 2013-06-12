@@ -85,7 +85,9 @@ namespace DicePokerWP
 
         void sendButton_Click(object sender, EventArgs e)
         {
-            //throw new NotImplementedException();
+            ViewModelProvider.GetViewModel<PlayGameViewModel>().ChatModel.CurrentMessage = chatTextField.Text;
+            unFocusButton.Focus();
+            ViewModelProvider.GetViewModel<PlayGameViewModel>().ChatModel.SendHandler();
         }
 
         void readyButton_Click(object sender, EventArgs e)
@@ -138,6 +140,7 @@ namespace DicePokerWP
             dpBackground.RollDelay = GetViewModel<PlayGameViewModel>().SettingsPanelSpeed;
             dpBackground.DieAngle = GetViewModel<PlayGameViewModel>().SettingsPanelAngle;
             dpBackground.MaxRollLoop = 40;
+            dpBackground.WithSound = true;
             dpBackground.ClickToFreeze = false;
             try
             {
@@ -167,7 +170,8 @@ namespace DicePokerWP
                        
                     }
                 }
-                rollPivot.SelectedIndex = 0;
+                if (rollPivot.SelectedIndex != 2)
+                    rollPivot.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -276,7 +280,7 @@ namespace DicePokerWP
             }
         }
 
-        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        protected async override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
             GetViewModel<PlayGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
 
@@ -285,6 +289,12 @@ namespace DicePokerWP
             dpBackground.DieFrozen -= dpBackground_DieFrozen;
             dpBackground.EndRoll -= dpBackground_EndRoll;
             dpBackground.DieChangedManual -= dpBackground_DieChangedManual;
+
+            if (gridResults.Visibility == Visibility.Visible)
+            {
+                gridResults.Visibility = Visibility.Collapsed;
+                await GetViewModel<PlayGameViewModel>().SaveResults();
+            }
 
             JoinManager.Disconnect();
         }
@@ -299,6 +309,7 @@ namespace DicePokerWP
             GetViewModel<PlayGameViewModel>().Game.DiceChanged -= Game_DiceChanged;
             GetViewModel<PlayGameViewModel>().Game.PlayerRerolled -= Game_PlayerRerolled;
             GetViewModel<PlayGameViewModel>().Game.ResultApplied -= Game_ResultApplied;
+            GetViewModel<PlayGameViewModel>().Game.OnChatMessage -= Game_OnChatMessage;
             GetViewModel<PlayGameViewModel>().RemoveGameHandlers();
         }
 
@@ -311,13 +322,23 @@ namespace DicePokerWP
             GetViewModel<PlayGameViewModel>().Game.DiceChanged += Game_DiceChanged;
             GetViewModel<PlayGameViewModel>().Game.PlayerRerolled += Game_PlayerRerolled;
             GetViewModel<PlayGameViewModel>().Game.ResultApplied += Game_ResultApplied;
+            GetViewModel<PlayGameViewModel>().Game.OnChatMessage += Game_OnChatMessage;
+        }
+
+        void Game_OnChatMessage(object sender, Sanet.Kniffel.Models.Events.ChatMessageEventArgs e)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                rollPivot.SelectedIndex = 2;
+            });
         }
 
         void Game_ResultApplied(object sender, Sanet.Kniffel.Models.Events.ResultEventArgs e)
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                rollPivot.SelectedIndex = 0;
+                if (rollPivot.SelectedIndex != 2)
+                    rollPivot.SelectedIndex = 0;
             });
         }
 
@@ -353,8 +374,8 @@ namespace DicePokerWP
 
         void Game_DiceRolled(object sender, Sanet.Kniffel.Models.Events.RollEventArgs e)
         {
-            
-            rollPivot.SelectedIndex = 1;
+            if (rollPivot.SelectedIndex != 2)
+                rollPivot.SelectedIndex = 1;
             dpBackground.RollDice(e.Value.ToList());
         }
 
@@ -418,6 +439,8 @@ namespace DicePokerWP
 
         void RebuildAppBarForRoll()
         {
+            if (rollPivot.SelectedIndex == 2)
+                return;
             this.ApplicationBar.Buttons.Clear();
 
             
@@ -431,7 +454,7 @@ namespace DicePokerWP
                 if (GetViewModel<PlayGameViewModel>().IsForthRollVisible)
                     this.ApplicationBar.Buttons.Add(resetRollButton);
             }
-
+            rollButton.IsEnabled = GetViewModel<PlayGameViewModel>().CanRoll;
             this.ApplicationBar.Buttons.Add(rollButton);
 
             this.ApplicationBar.IsMenuEnabled = false;
@@ -457,6 +480,8 @@ namespace DicePokerWP
         
         void RebuildAppBarForReady()
         {
+            if (rollPivot.SelectedIndex == 2)
+                return;
             this.ApplicationBar.Buttons.Clear();
 
             this.ApplicationBar.Buttons.Add(readyButton);

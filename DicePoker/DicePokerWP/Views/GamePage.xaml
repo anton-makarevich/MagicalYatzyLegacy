@@ -25,15 +25,15 @@
     </shell:SystemTray.ProgressIndicator>
     
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot"
+          Width="480" Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <adRotator:AdRotatorControl
-            Grid.Row="1"
+            Grid.Row="0"
             x:Name="AdRotatorControl"
             Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"
             xmlns:adRotator="clr-namespace:AdRotator;assembly=AdRotator"
@@ -47,7 +47,7 @@
         
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="90"/>
@@ -115,7 +115,7 @@
                                         <Style TargetType="ListBoxItem">
                                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                                             <Setter Property="Width" Value="100"/>
-                                            <Setter Property="Height" Value="33"/>
+                                            <Setter Property="Height" Value="34"/>
                                             <Setter Property="Margin" Value="0,0,0,-2"/>
                                         </Style>
                                     </ListBox.ItemContainerStyle>
@@ -214,19 +214,18 @@
                         <Grid 
                             Grid.Row="2"
                             >
-
+                        <Button
+                            x:Name="unFocusButton"
+                                Visibility="Visible"
+                                Opacity="0"
+                                />
                             <TextBox
+                                BorderBrush="{StaticResource SanetBlue}"
                                 x:Name="chatTextField"
                                 AcceptsReturn="False"
-                                Height="80"
+                                Height="80" Margin="-12,0"
                                 Text="{Binding CurrentMessage, Mode=TwoWay}"/>
-                            <!--<Button
-                                IsEnabled="{Binding HasMoney}"
-                                Content="{Binding SendLabel}"
-                                Grid.Column="1"
-                                Margin="5,0"
-                                HorizontalAlignment="Right"
-                                Height="60" Command="{Binding SendCommand}"/>-->
+                            
                         </Grid>
 
                     </Grid>
@@ -253,9 +252,15 @@
                       VerticalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
+                <Grid 
+                    Margin="12">
+                    <TextBlock Text="{Binding Title}"
+                       Style="{StaticResource PivotTitleStyle}"/>
+                </Grid>
                 <ListBox
+                    Grid.Row="1"
                                  Margin="0" HorizontalAlignment="Stretch"
                                     ItemsSource="{Binding Players}"
                                     ItemTemplate="{StaticResource GameResultsTemplate}"

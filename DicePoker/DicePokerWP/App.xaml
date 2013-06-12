@@ -19,6 +19,7 @@
         <common:BooleanToVisibilityConverter x:Key="VisibilityKey"/>
         <common:ReverseBooleanToVisibilityConverter x:Key="ReversedVisibilityKey"/>
         <common:BooleanToColorConverter x:Key="ColorKey"/>
+        <common:BooleanToSolidBrushConverter x:Key="BrushKey"/>
         <common:ScoreTypeToColorConverter x:Key="ScoreKey"/>
 
         <Style x:Key="SubheaderTextStyle" TargetType="TextBlock">
@@ -201,7 +202,7 @@
                 
                 <TextBlock Text="{Binding Name}" TextAlignment="Left"
                            TextTrimming="WordEllipsis"
-                           HorizontalAlignment="Left" VerticalAlignment="Center"
+                           HorizontalAlignment="Right" VerticalAlignment="Center"
                      FontSize="26"
                            />
                 <TextBlock Text="{Binding Total}" TextAlignment="Center"
@@ -239,14 +240,14 @@
 
         <!--Datatemplate for table results-->
         <DataTemplate x:Key="PlayerTableTemplate">
-            <Border BorderThickness="2" BorderBrush="{Binding IsMoving, Converter={StaticResource ColorKey}}">
+            <Border BorderThickness="2" BorderBrush="{Binding IsMoving, Converter={StaticResource BrushKey}}">
 
                 <StackPanel>
                     <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource SanetBlue}">
                         <Grid Height="59" 
                               Width="60"
                               Margin="0" HorizontalAlignment="Stretch"
-                              Background="{Binding IsMoving, Converter={StaticResource ColorKey}}"            >
+                              Background="{Binding IsMoving, Converter={StaticResource BrushKey}}"            >
                             <Grid.Resources>
                                 <Storyboard x:Name="FlashNameChanged">
                                     <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
@@ -322,10 +323,9 @@
                                   x:Name="textBlock"
                                   Text="{Binding Name}"
                                      HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                                       TextTrimming="WordEllipsis"
+                                       
                                        TextWrapping="Wrap"
                                        TextAlignment="Center"
-                                       LineHeight="12"
                                        Width="60"
                                      FontSize="12">
                                 <TextBlock.RenderTransform>
@@ -364,7 +364,7 @@
                             <Style TargetType="ListBoxItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                                 <Setter Property="Width" Value="60"/>
-                                <Setter Property="Height" Value="33"/>
+                                <Setter Property="Height" Value="34"/>
                                 <Setter Property="Margin" Value="0,0,0,-2"/>
                             </Style>
                         </ListBox.ItemContainerStyle>
@@ -391,7 +391,7 @@
 
         <!--Datatemplate for table results cell-->
         <DataTemplate x:Key="PlayerTableItemTemplate">
-            <Border Margin="-5,-2,0,-2"
+            <Border Margin="-5,0,0,-2"
                 BorderThickness="0,0,0,1" BorderBrush="{StaticResource SanetBlue}">
                 <Border.Resources>
                     <!--Storyboards-->
@@ -411,11 +411,15 @@
                     
                 </i:Interaction.Triggers>
                 
-                <Grid Height="30"
+                <Grid Height="34"
                   x:Name="backGrid"
-              Width="60"
-              Margin="0,-2,0,0" HorizontalAlignment="Stretch"
-               Background="{Binding HasValue, Converter={StaticResource ColorKey}}">
+                    Width="60"
+                    Margin="0,-2,0,-2" HorizontalAlignment="Stretch"
+                    >
+                    <Grid.Background>
+                        <SolidColorBrush
+                            Color="{Binding HasValue, Converter={StaticResource ColorKey}}"/>
+                    </Grid.Background>
                     <Grid
                     VerticalAlignment="Stretch"
                     HorizontalAlignment="Stretch">
@@ -444,7 +448,7 @@
             <Border Margin="0,-2,0,-2"
                 BorderThickness="0,0,0,1" BorderBrush="{StaticResource SanetBlue}">
                 <Grid Height="30" 
-                     Margin="0,-2,0,0" HorizontalAlignment="Stretch"
+                     Margin="0,-2,0,4" HorizontalAlignment="Stretch"
                 >
                     <TextBlock Text="{Binding AltText}" TextAlignment="Left"
                            Margin="2,0,0,0" TextTrimming="WordEllipsis"
@@ -858,7 +862,7 @@
 
         <!--Datatemplate for main menu item-->
         <DataTemplate x:Key="TopPlayersTemplate">
-            <Grid Height="50" Margin="0,0,0,0" HorizontalAlignment="Stretch"
+            <Grid Height="53" Margin="0,0,0,0" HorizontalAlignment="Stretch"
                           >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0"/>

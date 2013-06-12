@@ -666,4 +666,7 @@
   <data name="NoPurchasesMessage" xml:space="preserve">
     <value>Lo sentimos, no puedes comprar artefactos usando esta versión de teléfono. Por favor prueba una versión para Windows 8.</value>
   </data>
+  <data name="ChatPanelLabel" xml:space="preserve">
+    <value>Charlar</value>
+  </data>
 </root>

@@ -140,7 +140,8 @@ namespace DicePokerWP
             dpBackground.RollDelay = GetViewModel<MainPageViewModel>().SettingsPanelSpeed;
             dpBackground.DieAngle = GetViewModel<MainPageViewModel>().SettingsPanelAngle;
             dpBackground.MaxRollLoop = 40;
-            
+
+                        
             StartRoll();
         }
 
@@ -233,6 +234,11 @@ namespace DicePokerWP
                 item.MenuAction();
                 ((ListBox)sender).SelectedItem = null;
             }
+        }
+
+        private void defME_MediaFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            var t = e.ErrorException.Message;
         }
     }
 }

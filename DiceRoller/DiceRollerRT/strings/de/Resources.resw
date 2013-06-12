@@ -880,4 +880,16 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
     <value>Sich anhand Facebook-Profil einzuloggen</value>
     <comment> Sich anhand Facebook-Profil einzuloggen</comment>
   </data>
+  <data name="ChatPanelLabel" xml:space="preserve">
+    <value>Чат</value>
+  </data>
+  <data name="DiceBoardLabel" xml:space="preserve">
+    <value>Кости</value>
+  </data>
+  <data name="NoPurchasesMessage" xml:space="preserve">
+    <value>Извините, в данной версии программы для телефона покупки не возможны. Вы можете воспользоваться программой для Windows 8. При использовании одинакового имени пользователя и пароля (или аккаунта Facebook) ваши артефакты будут доступны во всех версиях программы.</value>
+  </data>
+  <data name="ResultsTableLabel" xml:space="preserve">
+    <value>Таблица</value>
+  </data>
 </root>

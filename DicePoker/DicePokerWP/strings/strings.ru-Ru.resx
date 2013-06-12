@@ -207,6 +207,9 @@
   <data name="ChangePasswordLabel" xml:space="preserve">
     <value>нужен пароль</value>
   </data>
+  <data name="ChatPanelLabel" xml:space="preserve">
+    <value>Чат</value>
+  </data>
   <data name="CheckingLabel" xml:space="preserve">
     <value>проверяем...</value>
   </data>
@@ -245,6 +248,9 @@
   </data>
   <data name="DevelopedByText" xml:space="preserve">
     <value>Разработано:</value>
+  </data>
+  <data name="DiceBoardLabel" xml:space="preserve">
+    <value>Кости</value>
   </data>
   <data name="DiceDescription" xml:space="preserve">
     <value>Виртуальные кости в твоем телефоне! Их можно использовать в любимых настольных играх или просто когда нужно принять случайное решение</value>
@@ -433,7 +439,7 @@
     <value>Игра по сети</value>
   </data>
   <data name="NewOnlineGameDescription" xml:space="preserve">
-    <value>Многопользовательская игра по интернет</value>
+    <value>Приглашайте друзей и играйте с ними через интернет</value>
   </data>
   <data name="NewsDescription" xml:space="preserve">
     <value>Читалка RSS лент для новостей из Беларуси. Все ваши новости собраны в одном месте. У нас новости с основных новостных сайтов Беларуси, а скоро их будет еще больше.</value>
@@ -449,6 +455,9 @@
   </data>
   <data name="NoInternetLabel" xml:space="preserve">
     <value>нет интернета</value>
+  </data>
+  <data name="NoPurchasesMessage" xml:space="preserve">
+    <value>Извините, в данной версии программы для телефона покупки не возможны. Вы можете воспользоваться программой для Windows 8. При использовании одинакового имени пользователя и пароля (или аккаунта Facebook) ваши артефакты будут доступны во всех версиях программы.</value>
   </data>
   <data name="OfAKind" xml:space="preserve">
     <value>одинаковые</value>
@@ -584,6 +593,9 @@
   </data>
   <data name="ResultBonusLabel" xml:space="preserve">
     <value>Бонус за результат</value>
+  </data>
+  <data name="ResultsTableLabel" xml:space="preserve">
+    <value>Таблица</value>
   </data>
   <data name="ReviewAppAction" xml:space="preserve">
     <value>Оценить приложение в магазине</value>

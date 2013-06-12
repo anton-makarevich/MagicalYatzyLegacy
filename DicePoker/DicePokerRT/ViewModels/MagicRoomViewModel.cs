@@ -78,6 +78,22 @@ namespace Sanet.Kniffel.ViewModels
 
             }
         }
+        public string NoPurchaseDescription
+        {
+            get
+            {
+                return "NoPurchasesMessage".Localize();
+                
+            }
+        }
+
+        public string ForW8Label
+        {
+            get
+            {
+                return "ForWin8Label".Localize();
+            }
+        }
 
         public string PurchaseLabel
         {

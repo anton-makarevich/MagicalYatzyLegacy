@@ -762,4 +762,16 @@
   <data name="LoginToFBLabel" xml:space="preserve">
     <value>Login to Facebook</value>
   </data>
+  <data name="ChatPanelLabel" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="DiceBoardLabel" xml:space="preserve">
+    <value>Dice</value>
+  </data>
+  <data name="NoPurchasesMessage" xml:space="preserve">
+    <value>Sorry, you can’t purchase artifacts using this version for phone. Please try version for Windows 8.</value>
+  </data>
+  <data name="ResultsTableLabel" xml:space="preserve">
+    <value>Results</value>
+  </data>
 </root>
