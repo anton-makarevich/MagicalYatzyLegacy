@@ -98,13 +98,31 @@
                         IsEnabled="{Binding IsStylesAvailable}"
                         Style="{StaticResource SettingsToggleStyle}"
                         IsChecked="{Binding IsStyleBlue,Mode=TwoWay}">
-                        <Image Source="../Images/2/xrot.26.png" />
+                        <Grid>
+                            <Image Source="../Images/2/xrot.26.png" />
+                            <Image Source="ms-appx:///Assets/Lock.png" 
+                                       Width="48"
+                                   Margin="50,0,-50,0"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"/>
+                        </Grid>
+                        
                     </ToggleButton>
                     <ToggleButton
                         IsEnabled="{Binding IsStylesAvailable}"
                         Style="{StaticResource SettingsToggleStyle}"
                         IsChecked="{Binding IsStyleRed,Mode=TwoWay}">
-                        <Image Source="../Images/1/xrot.28.png" />
+                        <Grid>
+                            <Image Source="../Images/1/xrot.28.png" />
+                            <Image Source="ms-appx:///Assets/Lock.png" 
+                                       Width="48"
+                                   Margin="50,0,-50,0"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"/>
+                        </Grid>
+                        
                     </ToggleButton>
                     <ListView
                                 Grid.Row="1"

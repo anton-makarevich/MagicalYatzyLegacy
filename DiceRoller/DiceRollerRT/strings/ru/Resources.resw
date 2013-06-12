@@ -235,7 +235,7 @@
     <value>Игра по сети</value>
   </data>
   <data name="NewOnlineGameDescription" xml:space="preserve">
-    <value>Многопользовательская игра по интернет</value>
+    <value>Приглашайте друзей и играйте с ними через интернет</value>
   </data>
   <data name="SettingsAction" xml:space="preserve">
     <value>Настройки</value>

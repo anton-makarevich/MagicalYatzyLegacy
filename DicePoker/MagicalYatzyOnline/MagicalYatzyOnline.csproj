@@ -1240,6 +1240,9 @@
     <Content Include="..\DicePokerRT\Audio\wrong.mp3">
       <Link>Audio\wrong.mp3</Link>
     </Content>
+    <Content Include="..\DicePokerWP\Assets\Lock.png">
+      <Link>Assets\Lock.png</Link>
+    </Content>
     <Content Include="Assets\Facebook_like.png" />
     <Content Include="Assets\Facebook_tile.png" />
     <None Include="MagicalYatzyOnline_StoreKey.pfx" />
@@ -1251,6 +1254,7 @@
     <None Include="Service References\KniffelLeaderBoardService\configuration.svcinfo" />
     <None Include="Service References\KniffelLeaderBoardService\configuration91.svcinfo" />
     <None Include="Service References\KniffelLeaderBoardService\KniffelService.disco" />
+    <PRIResource Include="Strings\es\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\..\AllWrite\Sanet.ABCs\Sanet.ABCs.Xaml\Model\ResourceModel.cs">

@@ -274,7 +274,7 @@
                  AutomationProperties.Name="{Binding RollLabel}"
             Tapped="Button_Tapped_1"/>
                 <Button
-                 Style="{StaticResource DiceRollAppBarButtonStyle}"
+                 Style="{StaticResource CheckAppBarButtonStyle}"
             VerticalAlignment="Bottom"
             HorizontalAlignment="center"
                     Visibility="{Binding CanStart, Converter={StaticResource VisibilityKey}}"

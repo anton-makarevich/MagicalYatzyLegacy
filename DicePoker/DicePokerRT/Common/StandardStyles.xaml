@@ -1332,6 +1332,29 @@
 
         </Setter>
     </Style>
+    <Style x:Key="CheckAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="ClearSelectionAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Clear Selection"/>
+        <Setter Property="Content" Value="M-150.204,626.126C-152.317,626.126 -154.429,626.126 -156.541,626.126 -167.642,633.42 -180.629,646.047 -189.668,657.238 -190.916,658.782 -192.945,662.362 -193.701,662.422 -194.041,662.448 -198.024,659.719 -198.614,659.297 -202.818,656.279 -205.779,653.709 -209.257,650.899 -211.248,652.172 -212.879,653.805 -214.153,655.797 -206.627,665.074 -200.283,675.534 -193.124,685.18 -181.491,665.11 -168.473,644.683 -152.796,629.006 -151.735,627.946 -149.817,626.933 -150.204,626.126z" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Path 
+                         Data="{Binding Path=Content, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                         Stretch="Uniform" 
+                         Fill="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                         Width="26" 
+                         Height="26" 
+                         RenderTransformOrigin="0.5,0.5">
+
+                    </Path>
+                </DataTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+    </Style>
+    
     <!--<Style x:Key="FontDecreaseAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="FontDecreaseAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Decrease Font"/>
@@ -2301,6 +2324,7 @@
                 <ColumnDefinition Width="80"/>
             </Grid.ColumnDefinitions>
             <Controls:RotatingPanel
+                Grid.Column="1"
                 x:Name="NamePanel" Width="100" Height="100" Background="Blue"
                                     Margin="5,0">
                 <Grid Background="{StaticResource SanetBlue}" 
@@ -2328,7 +2352,7 @@
             <Controls:RotatingPanel
                 Visibility="{Binding IsBotPossible, Converter={StaticResource VisibilityKey}}" 
                x:Name="TypePanel" Width="100" Height="100" Background="Blue" Tag="Type"
-                                    Grid.Column="1" IsFace="{Binding IsHuman, Mode=TwoWay}" Margin="5,0" ><!---->
+                                    Grid.Column="0" IsFace="{Binding IsHuman, Mode=TwoWay}" Margin="5,0" ><!---->
                  <Grid Background="{StaticResource SanetBlue}" 
                       Visibility="{Binding IsFace,ElementName=TypePanel,Converter={StaticResource VisibilityKey}}" >
                             <Image Source="ms-appx:///Assets/User.png"

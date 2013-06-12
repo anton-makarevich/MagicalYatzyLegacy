@@ -235,7 +235,7 @@
     <value>Online game</value>
   </data>
   <data name="NewOnlineGameDescription" xml:space="preserve">
-    <value>Multiplayer game over Internet</value>
+    <value>Invite friends and play with them over Internet</value>
   </data>
   <data name="SettingsAction" xml:space="preserve">
     <value>Settings</value>
@@ -554,7 +554,7 @@
     <value>How to get?</value>
   </data>
   <data name="HowToGetDescription" xml:space="preserve">
-    <value>Magical artifacts - are valueable resources and they are limited. There are several ways to get more magic:</value>
+    <value>Magical artifacts - are valuable resources and they are limited. There are several ways to get more magic:</value>
     <comment>Magical artifacts - are valueable resources and they are limited. There are several ways to get more magic:</comment>
   </data>
   <data name="MagicArtifactsDescription" xml:space="preserve">
