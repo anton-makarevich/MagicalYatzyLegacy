@@ -28,25 +28,25 @@ namespace Sanet.Models
         /// </summary>
             public static void Init()
             {
-                //dataFolder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Audio");
-                audioStreams = new Dictionary<string, Stream>();
-                string[] files = new string[]
-                {
-                    "click",
-                    "dice1",
-                    "dice2",
-                    "dice3",
-                    "fanfare",
-                    "magic",
-                    "win",
-                    "wrong"
+                ////dataFolder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Audio");
+                //audioStreams = new Dictionary<string, Stream>();
+                //string[] files = new string[]
+                //{
+                //    "click",
+                //    "dice1",
+                //    "dice2",
+                //    "dice3",
+                //    "fanfare",
+                //    "magic",
+                //    "win",
+                //    "wrong"
 
-                };
-                foreach (string file in files)
-                {
-                    var resrouceStream = Application.GetResourceStream(new Uri("Audio/" + file + ".wav", UriKind.Relative));
-                    audioStreams.Add(file,resrouceStream.Stream);
-                }
+                //};
+                //foreach (string file in files)
+                //{
+                //    var resrouceStream = Application.GetResourceStream(new Uri("Audio/" + file + ".wav", UriKind.Relative));
+                //    audioStreams.Add(file,resrouceStream.Stream);
+                //}
 
         }
             
@@ -57,18 +57,15 @@ namespace Sanet.Models
         {
             try
             {
-                if (audioStreams == null )
-                    return;
                 if (!RoamingSettings.IsSoundEnabled)
                     return;
                 filename = filename.ToLower();
-                if (audioStreams.ContainsKey(filename))
-                {
-                    var astream = audioStreams[filename];
-                    SoundEffect effect = SoundEffect.FromStream(astream);
-                    FrameworkDispatcher.Update();
-                    effect.Play();
-                }
+                 var soundfile = "Audio/" + filename + ".wav"; //Note no slash before the Assets folder, and it's a WAV file!
+                Stream astream = TitleContainer.OpenStream(soundfile);
+                SoundEffect effect = SoundEffect.FromStream(astream);
+                FrameworkDispatcher.Update();
+                effect.Play();
+                
             }
             catch (Exception ex)
             {

@@ -1,10 +1,12 @@
-﻿
+﻿using Mangopollo.Tiles;
+using Microsoft.Phone.Shell;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Sanet.Models;
+using Sanet;
 
 namespace Sanet.Kniffel.Models
 {
@@ -18,57 +20,20 @@ namespace Sanet.Kniffel.Models
         /// </summary>
         /// <param name="tileID"></param>
         /// <param name="tileText"></param>
-        public static void UpdateTileContent(string tileID, string tileText, string tileText2, string tileText3, string tileText4, string tileText5)
+        public static void UpdateTileContent(string tileID, string tileText)
         {
-            
+            throw new NotImplementedException();
         }
-        /*
+
         /// <summary>
-        /// Method to update the secondary tile (or "main") content with given (template with block)
+        /// Method to update the secondary tile content with given (template with block)
         /// </summary>
         public static void UpdateTileContent(string tileID, string tileText1, string tileText2,
-            string tileText3, string tileText4, string tileText5)
+            string tileText3, string tileText4, string block, string blockText)
         {
-            
-                // Get a XML DOM version of a specific template by using the getTemplateContent
-            XmlDocument tileXml = TileUpdateManager.GetTemplateContent(TileTemplateType.TileWidePeekImageAndText02);
 
-                XmlNodeList tileTextElements = tileXml.GetElementsByTagName("text");
-                tileTextElements.Item(0).AppendChild(tileXml.CreateTextNode(tileText1));
-                tileTextElements.Item(1).AppendChild(tileXml.CreateTextNode(tileText2));
-                tileTextElements.Item(2).AppendChild(tileXml.CreateTextNode(tileText3));
-                tileTextElements.Item(3).AppendChild(tileXml.CreateTextNode(tileText4));
-                tileTextElements.Item(4).AppendChild(tileXml.CreateTextNode(tileText5));
+            throw new NotImplementedException();
 
-                XmlNodeList tileImageAttributes = tileXml.GetElementsByTagName("image");
-                ((XmlElement)tileImageAttributes[0]).SetAttribute("src", "ms-appx:///Assets/WideLogo.scale-100.png");
-                ((XmlElement)tileImageAttributes[0]).SetAttribute("alt", "Dice Poker");
-
-                XmlDocument squareTileXml = TileUpdateManager.GetTemplateContent(TileTemplateType.TileSquarePeekImageAndText03);
-                XmlNodeList squareTileTextElements = squareTileXml.GetElementsByTagName("text");
-                squareTileTextElements.Item(0).AppendChild(squareTileXml.CreateTextNode(tileText2));
-                squareTileTextElements.Item(1).AppendChild(squareTileXml.CreateTextNode(tileText3));
-                squareTileTextElements.Item(2).AppendChild(squareTileXml.CreateTextNode(tileText4));
-                squareTileTextElements.Item(3).AppendChild(squareTileXml.CreateTextNode(tileText5));
-
-                XmlNodeList squareTileImageAttributes = squareTileXml.GetElementsByTagName("image");
-                ((XmlElement)squareTileImageAttributes[0]).SetAttribute("src", "ms-appx:///Assets/Logo.scale-100.png");
-                ((XmlElement)squareTileImageAttributes[0]).SetAttribute("alt", "Dice Poker");
-
-
-                // Include the square template in the notification
-                IXmlNode subNode = tileXml.ImportNode(squareTileXml.GetElementsByTagName("binding").Item(0), true);
-                tileXml.GetElementsByTagName("visual").Item(0).AppendChild(subNode);
-
-
-                TileNotification tileNotification = new TileNotification(tileXml);
-                TileUpdater updater;
-                if (tileID.ToLower() == "main")
-                    updater = TileUpdateManager.CreateTileUpdaterForApplication();
-                else
-                    updater = TileUpdateManager.CreateTileUpdaterForSecondaryTile(tileID);
-                updater.Update(tileNotification);
-            
         }
 
         /// <summary>
@@ -78,86 +43,89 @@ namespace Sanet.Kniffel.Models
             string tileText3, string tileText4)
         {
 
-            // Get a XML DOM version of a specific template by using the getTemplateContent
-            XmlDocument tileXml = TileUpdateManager.GetTemplateContent(TileTemplateType.TileWidePeekImageAndText02);
+            if (tileID == "main")
+            {
+                string res = tileText2;
+                if (string.IsNullOrEmpty(res))
+                    res = tileText3;
+                if (string.IsNullOrEmpty(res))
+                    res = tileText4;
 
-            XmlNodeList tileImageElements = tileXml.GetElementsByTagName("image");
-            var imageSourceNode=tileImageElements.Item(0).Attributes.Where(f => f.NodeName == "src").FirstOrDefault();
-            imageSourceNode.NodeValue = "ms-appx:///Assets/LogoSquare.png";
-            XmlNodeList tileTextElements = tileXml.GetElementsByTagName("text");
-            tileTextElements.Item(0).AppendChild(tileXml.CreateTextNode(tileText1));
-            tileTextElements.Item(1).AppendChild(tileXml.CreateTextNode(tileText2));
-            tileTextElements.Item(2).AppendChild(tileXml.CreateTextNode(tileText3));
-            tileTextElements.Item(3).AppendChild(tileXml.CreateTextNode(tileText4));
-            
-            XmlDocument squareTileXml = TileUpdateManager.GetTemplateContent(TileTemplateType.TileSquarePeekImageAndText03);
-            XmlNodeList tileWideImageElements = tileXml.GetElementsByTagName("image");
-            var imageSourceNodeWide = tileWideImageElements.Item(0).Attributes.Where(f => f.NodeName == "src").FirstOrDefault();
-            imageSourceNodeWide.NodeValue = "ms-appx:///Assets/LogoWide.png";
-                        
-            XmlNodeList squareTileTextElements = squareTileXml.GetElementsByTagName("text");
-            squareTileTextElements.Item(0).AppendChild(squareTileXml.CreateTextNode(tileText1));
-
-            squareTileTextElements.Item(1).AppendChild(squareTileXml.CreateTextNode(tileText2));
-            squareTileTextElements.Item(2).AppendChild(squareTileXml.CreateTextNode(tileText3));
-            squareTileTextElements.Item(3).AppendChild(squareTileXml.CreateTextNode(tileText4));
-
-            // Include the square template in the notification
-            IXmlNode subNode = tileXml.ImportNode(squareTileXml.GetElementsByTagName("binding").Item(0), true);
-            tileXml.GetElementsByTagName("visual").Item(0).AppendChild(subNode);
-
-            TileNotification tileNotification = new TileNotification(tileXml);
-            TileUpdater updater = TileUpdateManager.CreateTileUpdaterForSecondaryTile(tileID);
-            updater.Update(tileNotification);
+                if (!string.IsNullOrEmpty(res))
+                    UpdateMainTile(tileText1, res);
+            }
 
         }
 
-        ///// <summary>
-        ///// Trying to update tile if it exists
-        ///// </summary>
-        ///// <param name="selectedPlan"></param>
-        ///// <returns></returns>
-        //public static void UpdatePlanTile(BiblePlan selectedPlan )
-        //{ 
-        //    string tileId ="SecondaryPlanTile" + selectedPlan.PlanDBName;
-        //    if (selectedPlan.IsPinned)
-        //    {
                 
-        //        UpdateTileContent(selectedPlan.TileId, selectedPlan.PlanName, "Last read: " + selectedPlan.LastReadLabel, selectedPlan.LastPassageLabel, selectedPlan.ProgressLabel);
-        //    }
-        //}
-
+        /// <summary>
+        /// Uodate of main tile back side with current verse
+        /// </summary>
         public static void UpdateMainTile(string title, string text)
         {
-            text = title + " " + text;
-
-            XmlDocument tileXml = TileUpdateManager.GetTemplateContent(TileTemplateType.TileWidePeekImage04);
-
-            XmlNodeList tileTextAttributes = tileXml.GetElementsByTagName("text");
-
-            XmlNodeList tileImageAttributes = tileXml.GetElementsByTagName("image");
-            ((XmlElement)tileImageAttributes[0]).SetAttribute("src", "ms-appx:///Assets/LogoWide.png");
-            ((XmlElement)tileImageAttributes[0]).SetAttribute("alt", "Bible Pronto");
-
-
-            int index = 1;
-
-            foreach (IXmlNode tileTextAttr in tileTextAttributes)
+            if (Mangopollo.Utils.CanUseLiveTiles)
             {
-                tileTextAttr.InnerText = text;
-                index++;
+
+                FlipTileData appTileData = GetTileFlipData(title, text, "AppNameLabel".Localize());
+                ShellTile.ActiveTiles.First().Update(appTileData);
             }
+            else
+            {
+                StandardTileData appTileData = GetTileData(title, text);
+                ShellTile.ActiveTiles.First().Update(appTileData);
+            }
+        }
 
-            TileNotification tileNotification = new TileNotification(tileXml);
-            tileNotification.ExpirationTime = DateTimeOffset.UtcNow.AddHours(1);
-            TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
+        public static Task PinVerseOfTheDay()
+        {
+            throw new NotImplementedException();
+        }
 
+        public static Task PinRandomVerse()
+        {
+            throw new NotImplementedException();
         }
 
         public static bool IsSecondaryTileExists(string tileid)
         {
-            return Windows.UI.StartScreen.SecondaryTile.Exists(tileid);
-        }*/
+            throw new NotImplementedException();
+        }
         
+        
+        /// <summary>
+        /// Tile data for wp7.8/wp8
+        /// </summary>
+        private static FlipTileData GetTileFlipData(string title, string text, string facetitle )
+        {
+            return new FlipTileData
+            {
+                Title = facetitle,
+                BackTitle = title,
+                BackContent = Utilities.TrimText(text, 39),
+                WideBackContent = Utilities.TrimText(text, 81),
+                SmallBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative),
+                BackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative),
+                BackBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileMediumBack.png", UriKind.Relative),
+                WideBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative),
+                WideBackBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileLargeBack.png", UriKind.Relative),
+
+            };
+        }
+        /// <summary>
+        /// tiledata for wp7
+        /// </summary>
+        private static StandardTileData GetTileData(string title, string text, string facetitle = "Bible Pronto")
+        {
+            return new StandardTileData
+            {
+                Title = facetitle,
+                BackTitle = title,
+                BackContent = Utilities.TrimText(text, 39),
+                BackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative),
+                BackBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileMediumBack.png", UriKind.Relative),
+
+            };
+        }
+
     }
 }

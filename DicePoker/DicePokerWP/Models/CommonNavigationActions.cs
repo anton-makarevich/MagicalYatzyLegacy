@@ -38,6 +38,7 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(() =>
                 {
+                    SoundsProvider.PlaySound("click");
                     if (OnNavigationToNewGame != null)
                         OnNavigationToNewGame();
                 });
@@ -50,6 +51,7 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(() =>
                 {
+                    SoundsProvider.PlaySound("click");
                     if (OnNavigationToOnlineGame != null)
                         OnNavigationToOnlineGame();
                 });
@@ -62,6 +64,7 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(() =>
                 {
+                    SoundsProvider.PlaySound("click");
                     if (OnNavigationToAbout != null)
                         OnNavigationToAbout();
                 });
@@ -89,6 +92,7 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(() =>
                 {
+                    SoundsProvider.PlaySound("click");
                     if (OnNavigationToLeaderboard != null)
                         OnNavigationToLeaderboard();
                 });
@@ -101,6 +105,7 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(() =>
                 {
+                    SoundsProvider.PlaySound("click");
                     if (OnNavigationToGame != null)
                         OnNavigationToGame();
                 });
@@ -113,6 +118,7 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(() =>
                 {
+                    SoundsProvider.PlaySound("click");
                     if (OnNavigationToSettings != null)
                         OnNavigationToSettings();
                 });

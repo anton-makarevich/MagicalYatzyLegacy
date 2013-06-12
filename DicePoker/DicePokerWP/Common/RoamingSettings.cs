@@ -231,7 +231,6 @@ namespace Sanet.Kniffel.Models
         {
             get
             {
-                LocalSettings.SetValue("IsSoundEnabled", true);
                 if (LocalSettings.GetValue("IsSoundEnabled") == null)
                     LocalSettings.SetValue("IsSoundEnabled", false);
                 return bool.Parse(LocalSettings.GetValue("IsSoundEnabled"));

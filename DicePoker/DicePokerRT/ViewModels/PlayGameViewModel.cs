@@ -1129,7 +1129,11 @@ namespace Sanet.Kniffel.ViewModels
                     await 
 #endif
                     ks.CloseAsync();
-                TileHelper.UpdateTileContent("main", "BestLocalLabel".Localize(), tileLines[0], tileLines[1], tileLines[2], tileLines[3]);
+                TileHelper.UpdateTileContent("main", "BestLocalLabel".Localize(), tileLines[0], tileLines[1], tileLines[2]
+#if WinRT
+                    , tileLines[3]
+#endif
+                    );
             }
             catch (Exception ex)
             {
