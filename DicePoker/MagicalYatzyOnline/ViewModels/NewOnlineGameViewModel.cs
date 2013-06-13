@@ -263,7 +263,7 @@ namespace Sanet.Kniffel.ViewModels
             get { return _SelectedTable; }
             set
             {
-                if (_SelectedTable != value)
+                if (_SelectedTable != value && value!=null)
                 {
                     if (_SelectedTable != null)
                         _SelectedTable.IsSelected = false;

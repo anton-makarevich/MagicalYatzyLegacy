@@ -600,6 +600,11 @@
     <Content Include="Assets\redo.png" />
     <Content Include="Assets\reset_icon.png" />
     <Content Include="Assets\Send.png" />
+    <Content Include="Assets\Tiles\FlipCycleTileLarge.png" />
+    <Content Include="Assets\Tiles\FlipCycleTileLargeBack.png" />
+    <Content Include="Assets\Tiles\FlipCycleTileMedium.png" />
+    <Content Include="Assets\Tiles\FlipCycleTileMediumBack.png" />
+    <Content Include="Assets\Tiles\FlipCycleTileSmall.png" />
     <Content Include="Assets\User-Add.png" />
     <Content Include="Audio\click.wav" />
     <Content Include="Audio\dice1.wav">
