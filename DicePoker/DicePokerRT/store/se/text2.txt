@@ -1,0 +1,35 @@
+﻿Testversionen har alla funktioner, men visar annonser. 
+
+Magisk Yatzy online - spännande multiplayer-tärningsspel baserat på det världsberömda och mycket populära spelet Yatzy. Målet är att få så många poäng som möjligt genom att samla in olika tärningskombinationer med fem tärningar. Möjligheten att använda "magiska artefakter" för att öka sina poäng gör spelet roligare. 
+Magisk Yatzy - detta är ett utmärkt tillfälle att prova lyckan och ha roligt. 
+Fem olika regelalternativ används i Magisk Yatzy, vilket gör den tillgängligt för spelare på olika nivåer, inklusive barn.
+
+•fem regeluppsättningar
+•unika "magiska" regler
+•spela med vänner på samma PC över internet
+•spela med botar lokalt
+•flera visuella stilar och tärningsinställningar
+•lagrar resultat i webbaserade rekordsamlingar
+•bra grafik i pseudo-3D rullningsanimation
+•tydlig UI i Windows 8-stil och optimerad för plattor
+•Inloggning via Facebook-konto
+
+
+tärning; yatzee; yahtzy; poker; yatzee; yahtzee; kniffel 
+
+ta bort annonser, lås upp alla tärningsstilar 
+90 magiska artefakter 
+150 magiska artefakter
+300 magiska artefakter
+
+
+
+starta nytt onlinespel
+huvudmeny
+Starta ny spelskärm
+spel - tärningsutfall
+spel - tärningarna kastas
+spelresultat
+Skärm med ledartavla
+skärm med inställningar
+Magiskt rum

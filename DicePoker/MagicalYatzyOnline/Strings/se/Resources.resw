@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml">
+  <xsd:schema id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutAction" xml:space="preserve">
+    <!--About-->
+    <value>Om</value>
+  </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <!--About game and authors-->
+    <value>Om spelet och dess skapare</value>
+  </data>
+  <data name="AddBotLabel" xml:space="preserve">
+    <!--Add Bot-->
+    <value>Lägg till bot</value>
+  </data>
+  <data name="AddPlayerLabel" xml:space="preserve">
+    <!--Add Player-->
+    <value>Lägg till spelare</value>
+  </data>
+  <data name="AgainLabel" xml:space="preserve">
+    <!--play again-->
+    <value>Spela igen</value>
+  </data>
+  <data name="AllRecordsLabel" xml:space="preserve">
+    <!--See whole leaderboard on the web-->
+    <value>Se hela ledartavlan på webben</value>
+  </data>
+  <data name="AngHighText" xml:space="preserve">
+    <!--high-->
+    <value>hög</value>
+  </data>
+  <data name="AngLowText" xml:space="preserve">
+    <!--low-->
+    <value>låg</value>
+  </data>
+  <data name="AngVeryHighText" xml:space="preserve">
+    <!--very high-->
+    <value>väldigt hög</value>
+  </data>
+  <data name="AppNameLabel" xml:space="preserve">
+    <!--Magical Yatzy-->
+    <value>Magisk Yatzy</value>
+  </data>
+  <data name="ArtifactsBonusMessage" xml:space="preserve">
+    <!--{0}, Congratulations! You got {1} Magical Artifacts as a bonus!-->
+    <value>{0}, Grattis! Du fick {1} Magiska artefakter som bonus!</value>
+  </data>
+  <data name="ArtifactsForLabel" xml:space="preserve">
+    <!--artifacts for-->
+    <value>artefakter för</value>
+  </data>
+  <data name="ArtifactsLabel" xml:space="preserve">
+    <!--Artifacts-->
+    <value>Artefakter</value>
+  </data>
+  <data name="ArtifactsWinBuyMessage" xml:space="preserve">
+    <!--win or buy-->
+    <value>vinn eller köp</value>
+  </data>
+  <data name="AWDescription" xml:space="preserve">
+    <!--Educational app to learn writing. This interactive software develops fine motor skills, memory, teaches how to write Russian (Cyrillic) letters, English ABC's characters, Chinese chars, numbers and various symbols.-->
+    <value>Pedagogisk app för att lära sig att skriva. Denna interaktiva programvara utvecklar finmotoriken, minnet och lär ut hur man skriver med ryska (kyrilliska) bokstäver, engelska ABC-alfabetet, kinesiska tecken, siffror och olika symboler.</value>
+  </data>
+  <data name="BestDayLabel" xml:space="preserve">
+    <!--Best of the day-->
+    <value>Dagens bästa</value>
+  </data>
+  <data name="BestLocalLabel" xml:space="preserve">
+    <!--Best local results-->
+    <value>De bästa lokala resultaten</value>
+  </data>
+  <data name="BestLocalShort" xml:space="preserve">
+    <!--Best local -->
+    <value>Bästa lokala </value>
+  </data>
+  <data name="BestWeekLabel" xml:space="preserve">
+    <!--Best of the week-->
+    <value>Veckans bästa</value>
+  </data>
+  <data name="Bonus" xml:space="preserve">
+    <!--Bonus-->
+    <value>Bonus</value>
+  </data>
+  <data name="BotNameDefault" xml:space="preserve">
+    <!--Bot-->
+    <value>Bot</value>
+  </data>
+  <data name="BuyLabel" xml:space="preserve">
+    <!--buy-->
+    <value>köp</value>
+  </data>
+  <data name="Chance" xml:space="preserve">
+    <!--Chance-->
+    <value>Chans</value>
+  </data>
+  <data name="ChangeNameLabel" xml:space="preserve">
+    <!--change name-->
+    <value>ändra namn</value>
+  </data>
+  <data name="ChangePasswordLabel" xml:space="preserve">
+    <!--password needed-->
+    <value>lösenord krävs</value>
+  </data>
+  <data name="CheckingLabel" xml:space="preserve">
+    <!--checking...-->
+    <value>kontrollerar...</value>
+  </data>
+  <data name="clear" xml:space="preserve">
+    <!--clear selection-->
+    <value>Rensa val</value>
+  </data>
+  <data name="ClientLabel" xml:space="preserve">
+    <!--Client:-->
+    <value>Kund:</value>
+  </data>
+  <data name="ClientOutdatedLabel" xml:space="preserve">
+    <!--Outdated-->
+    <value>Utdaterad</value>
+  </data>
+  <data name="ClientOutdatedMessage" xml:space="preserve">
+    <!--Your game version is outdated, please update to play online.-->
+    <value>Din spelversion har gått ut, vänligen förnya för att spela online.</value>
+  </data>
+  <data name="ClientUpdatedLabel" xml:space="preserve">
+    <!--Updated-->
+    <value>Förnyad</value>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <!--Close-->
+    <value>Stäng</value>
+  </data>
+  <data name="ContinueLabel" xml:space="preserve">
+    <!--Continue-->
+    <value>Fortsätt</value>
+  </data>
+  <data name="Cost1Label" xml:space="preserve">
+    <!--$1.49-->
+    <value>$1.49</value>
+  </data>
+  <data name="Cost2Label" xml:space="preserve">
+    <!--$1.99-->
+    <value>$1.99</value>
+  </data>
+  <data name="Cost3Label" xml:space="preserve">
+    <!--$2.49-->
+    <value>$2.49</value>
+  </data>
+  <data name="DeletePlayerLabel" xml:space="preserve">
+    <!--Delete-->
+    <value>Radera</value>
+  </data>
+  <data name="DevelopedByText" xml:space="preserve">
+    <!--Developed by:-->
+    <value>Skapad av:</value>
+  </data>
+  <data name="DiceDescription" xml:space="preserve">
+    <!--Virtual dice you always have with you! You can use them in your favorite games, or just when you need to take a random decision-->
+    <value>En virtuell tärning har du alltid med dig! Du kan använda den i dina favoritspel, eller bara när du ska fatta ett slumpmässigt beslut.</value>
+  </data>
+  <data name="ErrorLabel" xml:space="preserve">
+    <!--Error!-->
+    <value>Error!</value>
+  </data>
+  <data name="FacebookLabel" xml:space="preserve">
+    <!--Facebook-->
+    <value>Facebook</value>
+  </data>
+  <data name="FirstTimeBonusDescription" xml:space="preserve">
+    <!-- Each new player with unique name and password gets artifacts as a bonus.-->
+    <value> Varje ny spelare med ett unikt namn och lösenord får artefakter i bonus.</value>
+  </data>
+  <data name="FirstTimeBonusLabel" xml:space="preserve">
+    <!--First Game Bonus-->
+    <value>Första spelbonusen</value>
+  </data>
+  <data name="Fives" xml:space="preserve">
+    <!--Fives-->
+    <value>Femmor</value>
+  </data>
+  <data name="ForthRollLabel" xml:space="preserve">
+    <!--Reset round-->
+    <value>Återställ omgång</value>
+  </data>
+  <data name="ForWin8Label" xml:space="preserve">
+    <!--Magical Yatzy for Windows 8-->
+    <value>Magisk Yatzy för Windows 8</value>
+  </data>
+  <data name="ForWPLabel" xml:space="preserve">
+    <!--Magical Yatzy for Windows Phone-->
+    <value>Magisk Yatzy för Windows Phone</value>
+  </data>
+  <data name="FourOfAKind" xml:space="preserve">
+    <!--Four Of A Kind-->
+    <value>Fyrtal</value>
+  </data>
+  <data name="Fours" xml:space="preserve">
+    <!--Fours-->
+    <value>Fyror</value>
+  </data>
+  <data name="FullHouse" xml:space="preserve">
+    <!--Full House-->
+    <value>Kåk</value>
+  </data>
+  <data name="GameFinishedLabel" xml:space="preserve">
+    <!--Game is finished!-->
+    <value>Spelet är avslutat!</value>
+  </data>
+  <data name="HowGetLabel" xml:space="preserve">
+    <!--How to get?-->
+    <value>Hur får man?</value>
+  </data>
+  <data name="HowToGetDescription" xml:space="preserve">
+    <!--Magical artifacts - are valuable resources and they are limited. There are several ways to get more magic:-->
+    <value>Magiska artefakter – är värdefulla resurser som är begränsade. Det finns flera sätt att få ökad magi:</value>
+  </data>
+  <data name="Kniffel" xml:space="preserve">
+    <!--Yatzy!-->
+    <value>Yatzy!</value>
+  </data>
+  <data name="krBaby" xml:space="preserve">
+    <!--For Kids-->
+    <value>För barn</value>
+  </data>
+  <data name="krBabyShort" xml:space="preserve">
+    <!--numeric hands only and Yatzy, 7 rounds-->
+    <value>Endast sifferknappar och Yatzy, 7 rundor</value>
+  </data>
+  <data name="krExtended" xml:space="preserve">
+    <!--Advanced-->
+    <value>Avancerad</value>
+  </data>
+  <data name="krExtendedShort" xml:space="preserve">
+    <!--standard + 100 points bonus for every additional Yatzy, Yatzy-Joker, 13 rounds-->
+    <value>standard + 100 poäng i bonus för varje ytterligare Yatzy, Yatzy-Joker, 13 rundor</value>
+  </data>
+  <data name="krMagic" xml:space="preserve">
+    <!--Magical-->
+    <value>Magiska</value>
+  </data>
+  <data name="krMagicShort" xml:space="preserve">
+    <!--advanced + "magical artifacts", 13 rounds-->
+    <value>avancerad + "magiska artefakter", 13 rundor</value>
+  </data>
+  <data name="krSimple" xml:space="preserve">
+    <!--Simple-->
+    <value>Enkel</value>
+  </data>
+  <data name="krSimpleShort" xml:space="preserve">
+    <!--all hands, no bonuses, 13 rounds-->
+    <value>allesammans, inga bonusar, 13 rundor</value>
+  </data>
+  <data name="krStandard" xml:space="preserve">
+    <!--Standard-->
+    <value>Standard</value>
+  </data>
+  <data name="krStandardShort" xml:space="preserve">
+    <!--simple + 35 points bonus for 63 and higher result in numerics, 13 rounds-->
+    <value>enkel + 35 poäng i bonus för siffervärde på 63 eller högre, 13 rundor</value>
+  </data>
+  <data name="LargeStraight" xml:space="preserve">
+    <!--Large Straight-->
+    <value>Stor stege</value>
+  </data>
+  <data name="LargeStraightShort" xml:space="preserve">
+    <!--LS-->
+    <value>Ss</value>
+  </data>
+  <data name="LaterLabel" xml:space="preserve">
+    <!--Later.-->
+    <value>Senare.</value>
+  </data>
+  <data name="LeaderboardAction" xml:space="preserve">
+    <!--Hall of Fame-->
+    <value>Hall of Fame</value>
+  </data>
+  <data name="LeaderboardDescription" xml:space="preserve">
+    <!--See best results in every rules See best results in every set of rules-->
+    <value>Se de bästa resultaten inom varje regelalternativ</value>
+  </data>
+  <data name="LocalLabel" xml:space="preserve">
+    <!--Local-->
+    <value>Lokal</value>
+  </data>
+  <data name="LoginLabel" xml:space="preserve">
+    <!--Tap to log in-->
+    <value>Peka för att logga in</value>
+  </data>
+  <data name="LoginToFBLabel" xml:space="preserve">
+    <!--Login to Facebook-->
+    <value>Logga in på Facebook</value>
+  </data>
+  <data name="LogoutLabel" xml:space="preserve">
+    <!--Tap to log out-->
+    <value>Peka för att logga ut</value>
+  </data>
+  <data name="MagicArtifactsDescription" xml:space="preserve">
+    <!--Magical artifacts raise your chances to get better hand in Magical rules. Each type of artifacts can be used only once per game. There are 3 types of artifacts:-->
+    <value>Magiska artefakter ökar dina chanser att få bättre slag i Magiska regler. Vare typ av artefakt kan endast användas en gång per spel. Det finns tre typer av artefakter: </value>
+  </data>
+  <data name="MagicRollDescription" xml:space="preserve">
+    <!-- Allows you to get one of the unfilled poker hands (from '3 of a kind' to 'Yatzy') in random order.-->
+    <value> Ger dig ett av de kvarstående slagen (från ”triss” till ”Yatzy”) i slumpvis ordning. </value>
+  </data>
+  <data name="MagicRollLabel" xml:space="preserve">
+    <!--Magical Roll-->
+    <value>Magiskt slag</value>
+  </data>
+  <data name="MagicRoomLabel" xml:space="preserve">
+    <!--Wizard's room-->
+    <value>Trollkarlens rum</value>
+  </data>
+  <data name="ManualSetDescription" xml:space="preserve">
+    <!-- Allows you to change the value of one dice by your choice.-->
+    <value> Låter dig ändra värdet på valfri tärning. </value>
+  </data>
+  <data name="ManualSetLabel" xml:space="preserve">
+    <!--Manual Set-->
+    <value>Manuella inställningar</value>
+  </data>
+  <data name="MetroStudioText" xml:space="preserve">
+    <!--Some icons are created in Syncfusion Metro Studio-->
+    <value>Vissa ikoner skapas i Syncfusion Metro Studio</value>
+  </data>
+  <data name="MoreLabel" xml:space="preserve">
+    <!--More...-->
+    <value>Mer...</value>
+  </data>
+  <data name="MoveLabel" xml:space="preserve">
+    <!--round-->
+    <value>runda</value>
+  </data>
+  <data name="NeverLabel" xml:space="preserve">
+    <!--No, thanks.-->
+    <value>Nej tack.</value>
+  </data>
+  <data name="NewLocalGameAction" xml:space="preserve">
+    <!--Local Game-->
+    <value>Lokalt spel</value>
+  </data>
+  <data name="NewLocalGameDescription" xml:space="preserve">
+    <!--Start a new local game - alone, with friends or with bots-->
+    <value>Starta ett lokalt spel – ensam, med vänner eller med botar </value>
+  </data>
+  <data name="NewOnlineGameAction" xml:space="preserve">
+    <!--Online game-->
+    <value>Onlinespel</value>
+  </data>
+  <data name="NewOnlineGameDescription" xml:space="preserve">
+    <!--Invite friends and play with them over Internet-->
+    <value>Bjud in vänner och spela med dem över internet</value>
+  </data>
+  <data name="NewsDescription" xml:space="preserve">
+    <!--RSS reader for news from Belarus. All your news in one place. We already have news from main Belarus sites, and will add more.-->
+    <value>RSS reader för nyheter från Belarus. Alla dina nyheter på en plats. Vi har redan nyheter från stora vitryska sajter, och mer är på gång.  </value>
+  </data>
+  <data name="NoArtifactsLabel" xml:space="preserve">
+    <!--No Magical Artifacts-->
+    <value>Inga magiska artefakter</value>
+  </data>
+  <data name="NoArtifactsMessage" xml:space="preserve">
+    <!--Player {0} hasn't any magical artifacts. You have to get some artifacts to use advantages of the Magical rules.-->
+    <value>Spelare {0} har inga magiska artefakter. Du måste skaffa några artefakter för att använda fördelarna i Magiska reglerna.</value>
+  </data>
+  <data name="NoInetMessage" xml:space="preserve">
+    <!--No Internet access. Please check your connection and try again.-->
+    <value>Tillgång till internet saknas. Vänligen, kontollera din anslutning och försök igen.</value>
+  </data>
+  <data name="NoInternetLabel" xml:space="preserve">
+    <!--no connection-->
+    <value>Ingen anslutning</value>
+  </data>
+  <data name="OfAKind" xml:space="preserve">
+    <!--of a kind-->
+    <value>av samma sort</value>
+  </data>
+  <data name="OffContent" xml:space="preserve">
+    <!--Off-->
+    <value>Av</value>
+  </data>
+  <data name="Offer1Description" xml:space="preserve">
+    <!--Basic offer with price $0.016 for one artifact-->
+    <value>Grunderbjudande till priset $0.016 för en artefakt</value>
+  </data>
+  <data name="Offer2Description" xml:space="preserve">
+    <!--Better offer with price reduced to $0.013 for one artifact. Your discount is 20%!-->
+    <value>Bättre erbjudande med reducerat pris till $0.013 för en artefakt. Din rabatt är på 20%!</value>
+  </data>
+  <data name="Offer3Description" xml:space="preserve">
+    <!--Excellent offer with only $0.008 for one artifact. It's 2 times cheaper!-->
+    <value>Utmärkt erbjudande, endast $0.008 för en artefakt. Det är halva priset!</value>
+  </data>
+  <data name="OnContent" xml:space="preserve">
+    <!--On-->
+    <value>På</value>
+  </data>
+  <data name="Ones" xml:space="preserve">
+    <!--Ones-->
+    <value>Ettor</value>
+  </data>
+  <data name="OnlineLink.Content" xml:space="preserve">
+    <!--About Kniffel Online-->
+    <value>Om Kniffel online</value>
+  </data>
+  <data name="OnlineVersionText" xml:space="preserve">
+    <!--Dice Panel idea and "red dice" style belong to Matthew Tagliaferri.-->
+    <value>Idén om tärningspanel och "röda tärningen" tillhör Matthew Tagliaferri.</value>
+  </data>
+  <data name="OnlyUniqueCanBuyMessage" xml:space="preserve">
+    <!--Sorry, only players with unique Username and Password can buy artifacts. We need this info to secure your purchase. Please check your data on new game page. Thanks!-->
+    <value>Vi beklagar, endast spelare med unikt Användarnamn och Lösenord kan köpa artefakter. Vi behöver denna information för att säkra ditt köp. Var god kontrollera din data på en ny spelsida. Tack!</value>
+  </data>
+  <data name="OtherAppsLabel" xml:space="preserve">
+    <!--Other Apps-->
+    <value>Andra appar</value>
+  </data>
+  <data name="OtherSoft.Text" xml:space="preserve">
+    <!--Try other apps:-->
+    <value>Prova andra appar:</value>
+  </data>
+  <data name="PlayerBestScoreLabel" xml:space="preserve">
+    <!--Best-->
+    <value>Bästa</value>
+  </data>
+  <data name="PlayerBotLabelLocalized" xml:space="preserve">
+    <!--Computer-->
+    <value>Dator</value>
+  </data>
+  <data name="PlayerGamesLabel" xml:space="preserve">
+    <!--Games-->
+    <value>Spel</value>
+  </data>
+  <data name="PlayerHumanLabelLocalized" xml:space="preserve">
+    <!--Human-->
+    <value>Person</value>
+  </data>
+  <data name="PlayerNameDefault" xml:space="preserve">
+    <!--Player-->
+    <value>Spelare</value>
+  </data>
+  <data name="PlayerNameLabel" xml:space="preserve">
+    <!--name-->
+    <value>namn</value>
+  </data>
+  <data name="PlayerNoPasswordLabel" xml:space="preserve">
+    <!--no password-->
+    <value>inget lösenord</value>
+  </data>
+  <data name="PlayerPasswordLabel" xml:space="preserve">
+    <!--password-->
+    <value>lösenord</value>
+  </data>
+  <data name="PlayersLabel" xml:space="preserve">
+    <!--Players-->
+    <value>Spelare</value>
+  </data>
+  <data name="PlayerTotalScoreLabel" xml:space="preserve">
+    <!--Total-->
+    <value>Totalt</value>
+  </data>
+  <data name="PlayerTypeLabel" xml:space="preserve">
+    <!--type-->
+    <value>typ</value>
+  </data>
+  <data name="Privacy1.Text" xml:space="preserve">
+    <!--This Privacy Policy covers your use of this application. Magical Yatzy does not collect, store, or share any personal information, or anything related to statistics, trends, neither do we track user movements.-->
+    <value>Denna personuppgiftspolicy omfattar din använding av denna applikation. Magisk Yatzy samlar inte in, lagrar inte och delar inte heller någon personlig information, eller information relaterad till statistik och trender. Vi spårar inte heller användarens rörelser. </value>
+  </data>
+  <data name="Privacy2.Text" xml:space="preserve">
+    <!--This application allows you to store game results on its web server, it also will show them to other users via leaderboard functionality. Magical Yatzy allows you to open web URLs from the application. The URLs might be saved by internet browsers on your device. For information regarding the information stored by these applications, please read the privacy policy of the internet browsers of your choice.-->
+    <value>Denna applikation  låter dig lagra spelresultat på dess webbserver, den visas också för andra användare via ledartavlans funktioner. Magisk Yatzy låter dig öppna URL:er via applikationen. URL:erna kan sparas genom webbläsaren på din enhet. För information kring information som lagras av dessa applikationer, vänligen läs personuppgiftspolicyn som gäller för ditt val av webbläsare. </value>
+  </data>
+  <data name="PrivacyLabel.Text" xml:space="preserve">
+    <!--Privacy Policy-->
+    <value>Personuppgiftspolicy</value>
+  </data>
+  <data name="ProfileLabel" xml:space="preserve">
+    <!--Profile-->
+    <value>Profil</value>
+  </data>
+  <data name="PurchaseDescription" xml:space="preserve">
+    <!--Buy more artifacts using one of the following offers. Each offer can be used only once a day.-->
+    <value>Köp fler artefakter genom att använda följande erbjudanden. Varje erbjudande kan bara användas en gång om dagen. </value>
+  </data>
+  <data name="PurchaseErrorMessage" xml:space="preserve">
+    <!--Sorry! Something bad happened. Please contact support service.-->
+    <value>Vi beklagar! Någonting gick fel. Vänligen kontakta vår supportservice.  </value>
+  </data>
+  <data name="PurchaseLabel" xml:space="preserve">
+    <!--Magical offers-->
+    <value>Magiska erbjudanden</value>
+  </data>
+  <data name="PurchaseMiniDescription" xml:space="preserve">
+    <!--You can buy magical artifacts in the store. There are several offers with very good prices!-->
+    <value>Du kan köpa magiska erbjudanden i butiken. Det finns flera erbjudanden med väldigt bra priser! </value>
+  </data>
+  <data name="PurchaseMiniLabel" xml:space="preserve">
+    <!--Purchase-->
+    <value>Köp</value>
+  </data>
+  <data name="RandomLabel" xml:space="preserve">
+    <!--Random-->
+    <value>Slumpmässig</value>
+  </data>
+  <data name="RateLabel" xml:space="preserve">
+    <!--rate-->
+    <value>hastighet</value>
+  </data>
+  <data name="ReadyLabel" xml:space="preserve">
+    <!--Ready to Play!-->
+    <value>Redo för spel!</value>
+  </data>
+  <data name="RemoveAdAction" xml:space="preserve">
+    <!--Unlock all dice styles, remove ads-->
+    <value>Lås upp alla tärningsstilar, ta bort annonser</value>
+  </data>
+  <data name="RemoveAdLabel" xml:space="preserve">
+    <!--Remove Ad-->
+    <value>Ta bort annons</value>
+  </data>
+  <data name="RerollDescription" xml:space="preserve">
+    <!-- Allows you to replay current round (all 3 rolls). The order of  dice values will be the same.-->
+    <value> Låter dig spela om aktuell rond (alla tre slag). Tärningsvärdena kommer att vara demsamma.  </value>
+  </data>
+  <data name="ResultBonusDescription" xml:space="preserve">
+    <!-- Get more artifacts for good results playing in 'Advanced' rules. The better you play - the more artifacts you get!-->
+    <value> Få fler artefakter för bra resultat när du spelar efter reglerna för “Avancerad”. Ju bättre du spelar – desto fler artefakter får du! </value>
+  </data>
+  <data name="ResultBonusLabel" xml:space="preserve">
+    <!--Bonus for good results-->
+    <value>Bonus för bra resultat</value>
+  </data>
+  <data name="ReviewAppAction" xml:space="preserve">
+    <!--Rate this app in the store-->
+    <value>Betygsätt denna app i butiken</value>
+  </data>
+  <data name="ReviewReminder" xml:space="preserve">
+    <!--Your ratings and reviews encourage us to release frequent updates for this app. Would you like to rate it now?-->
+    <value>Dina betyg och recensioner uppmuntrar oss att genomföra regelbundna uppdateringar för denna app. Vill du betygssätta den nu? </value>
+  </data>
+  <data name="ReviewReminderHeader" xml:space="preserve">
+    <!--Do you like this app?-->
+    <value>Gillar du denna app?</value>
+  </data>
+  <data name="roll" xml:space="preserve">
+    <!--roll-->
+    <value>slå</value>
+  </data>
+  <data name="RulesLabel" xml:space="preserve">
+    <!--Rules-->
+    <value>Regler</value>
+  </data>
+  <data name="SaveScoreLabel" xml:space="preserve">
+    <!--save result to the leaderboard-->
+    <value>Spara resultat på ledartavlan</value>
+  </data>
+  <data name="SelectDiceToChangeMessage" xml:space="preserve">
+    <!--Select dice you want to change-->
+    <value>Välj den tärning du vill ändra</value>
+  </data>
+  <data name="SelectNewDiceValueMessage" xml:space="preserve">
+    <!--Select the new dice value-->
+    <value>Välj nytt tärningsvärde</value>
+  </data>
+  <data name="SendFeedbackAction" xml:space="preserve">
+    <!--Report a bug-->
+    <value>Rapportera bugg</value>
+  </data>
+  <data name="SendLabel" xml:space="preserve">
+    <!--Send-->
+    <value>Sänd</value>
+  </data>
+  <data name="ServerLabel" xml:space="preserve">
+    <!--Server:-->
+    <value>Server:</value>
+  </data>
+  <data name="ServerOfflineLabel" xml:space="preserve">
+    <!--Offline-->
+    <value>Offline</value>
+  </data>
+  <data name="ServerOfflineMessage" xml:space="preserve">
+    <!--Game server is not available. Please try again later.-->
+    <value>Spelserver ej tillgänglig. Var god försök senare.</value>
+  </data>
+  <data name="ServerOnlineLabel" xml:space="preserve">
+    <!--Online-->
+    <value>Online</value>
+  </data>
+  <data name="SettingsAction" xml:space="preserve">
+    <!--Settings-->
+    <value>Inställningar</value>
+  </data>
+  <data name="SettingsAngleCaptionText" xml:space="preserve">
+    <!--View Angle-->
+    <value>Se vinkel</value>
+  </data>
+  <data name="SettingsCaptionText" xml:space="preserve">
+    <!--Settings-->
+    <value>Inställningar</value>
+  </data>
+  <data name="SettingsDescription" xml:space="preserve">
+    <!--Change game settings-->
+    <value>Ändra spelinställningar</value>
+  </data>
+  <data name="SettingsNumbersCaptionText" xml:space="preserve">
+    <!--Dice number-->
+    <value>Tärningssiffra</value>
+  </data>
+  <data name="SettingsSpeedCaptionText" xml:space="preserve">
+    <!--Rotation speed-->
+    <value>Rotationshastighet</value>
+  </data>
+  <data name="SettingsStyleCaptionText" xml:space="preserve">
+    <!--Dice style-->
+    <value>Tärningsstil</value>
+  </data>
+  <data name="ShareLabel" xml:space="preserve">
+    <!--share-->
+    <value>dela</value>
+  </data>
+  <data name="ShareMessage" xml:space="preserve">
+    <!--Join me in this exciting multiplayer game!-->
+    <value>Kom med och spela detta spännande multiplayerspel!</value>
+  </data>
+  <data name="ShareTitle" xml:space="preserve">
+    <!--"Magical Yatzy" for Windows 8 -->
+    <value>"Magisk Yatzy" för Windows 8 </value>
+  </data>
+  <data name="Sixes" xml:space="preserve">
+    <!--Sixes-->
+    <value>Sexor</value>
+  </data>
+  <data name="SmallStraight" xml:space="preserve">
+    <!--Small Straight-->
+    <value>Liten stege</value>
+  </data>
+  <data name="SoundLabel" xml:space="preserve">
+    <!--Sound-->
+    <value>Ljud</value>
+  </data>
+  <data name="SpeedFastText" xml:space="preserve">
+    <!--fast-->
+    <value>snabb</value>
+  </data>
+  <data name="SpeedSlowText" xml:space="preserve">
+    <!--slow-->
+    <value>långsam</value>
+  </data>
+  <data name="SpeedVeryFastText" xml:space="preserve">
+    <!--very fast-->
+    <value>väldigt snabb</value>
+  </data>
+  <data name="SpeedVerySlowText" xml:space="preserve">
+    <!--very slow-->
+    <value>väldigt långsam</value>
+  </data>
+  <data name="StartGameButton" xml:space="preserve">
+    <!--Start Game!-->
+    <value>Starta spelet!</value>
+  </data>
+  <data name="StartNewGameMessage" xml:space="preserve">
+    <!--Start New Game-->
+    <value>Starta nytt spel</value>
+  </data>
+  <data name="StatusLabel" xml:space="preserve">
+    <!--Status-->
+    <value>Status</value>
+  </data>
+  <data name="Support.Text" xml:space="preserve">
+    <!--Technical support service:-->
+    <value>Teknisk supportservice:</value>
+  </data>
+  <data name="TablesLabel" xml:space="preserve">
+    <!--Tables-->
+    <value>Tabeller</value>
+  </data>
+  <data name="TapToApplyLabel" xml:space="preserve">
+    <!--Tap to Apply-->
+    <value>Peka för att ansöka</value>
+  </data>
+  <data name="TapToChangeLabel" xml:space="preserve">
+    <!--Tap to change-->
+    <value>Peka för att ändra</value>
+  </data>
+  <data name="ThreeOfAKind" xml:space="preserve">
+    <!--Three Of A Kind-->
+    <value>Triss</value>
+  </data>
+  <data name="Threes" xml:space="preserve">
+    <!--Threes-->
+    <value>Treor</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <!--Total-->
+    <value>Totalt</value>
+  </data>
+  <data name="Twos" xml:space="preserve">
+    <!--Twos-->
+    <value>Tvåor</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <!--Version-->
+    <value>Version</value>
+  </data>
+  <data name="WaitForGameLabel" xml:space="preserve">
+    <!--Waiting for new game-->
+    <value>Väntar på nytt spel</value>
+  </data>
+  <data name="WaitForPlayersLabel" xml:space="preserve">
+    <!--Waiting for players-->
+    <value>Väntar på spelare</value>
+  </data>
+  <data name="WinLabel" xml:space="preserve">
+    <!--won-->
+    <value>vann</value>
+  </data>
+  <data name="WrongNamePassLabel" xml:space="preserve">
+    <!--wrong name or password-->
+    <value>fel namn eller lösenord</value>
+  </data>
+  <data name="YesLabel" xml:space="preserve">
+    <!--Yes, sure!-->
+    <value>Javisst!</value>
+  </data>
+  <data name="ResultsTableLabel" xml:space="preserve">
+    <!--Results table-->
+    <value>Resultattabell </value>
+  </data>
+  <data name="DiceBoardLabel" xml:space="preserve">
+    <!--Dice Board-->
+    <value>Tärningsboard</value>
+  </data>
+  <data name="NoPurchasesMessage" xml:space="preserve">
+    <!--Sorry, you can’t purchase artifacts using this phone version. Please try version for Windows 8.-->
+    <value>Beklagar, du kan inte köpa artefakter genom att använda denna telefonversion. Vänligen, prova version för Windows 8.</value>
+  </data>
+</root>
