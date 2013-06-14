@@ -1254,6 +1254,7 @@
     <None Include="Service References\KniffelLeaderBoardService\configuration.svcinfo" />
     <None Include="Service References\KniffelLeaderBoardService\configuration91.svcinfo" />
     <None Include="Service References\KniffelLeaderBoardService\KniffelService.disco" />
+    <PRIResource Include="Strings\sv\Resources.resw" />
     <PRIResource Include="Strings\es\Resources.resw" />
   </ItemGroup>
   <ItemGroup>

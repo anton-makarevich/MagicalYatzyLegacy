@@ -220,7 +220,7 @@
     <value>Hall of Fame</value>
   </data>
   <data name="LeaderboardDescription" xml:space="preserve">
-    <value>See best results in every rules</value>
+    <value>See best results in every set of rules</value>
   </data>
   <data name="NetworkGameNotReadyMessage" xml:space="preserve">
     <value>Sorry, network game is not ready yet</value>
