@@ -15,7 +15,8 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
              Height="768" Width="480"
     toolkit:TiltEffect.IsTiltEnabled="True"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True"
+    >
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" 

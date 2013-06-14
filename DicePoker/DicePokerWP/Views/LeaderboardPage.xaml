@@ -8,6 +8,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:my="clr-namespace:Microsoft.Phone.Controls.Unofficial"
+                            xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
                             xmlns:adRotator="clr-namespace:AdRotator;assembly=AdRotator"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -15,7 +16,8 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     toolkit:TiltEffect.IsTiltEnabled="True"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True"
+    Style="{StaticResource TransitionPageStyle}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="True" 
                                  IsVisible="{Binding ScoresLoading}" />
@@ -140,7 +142,12 @@
                             </ListBox.ItemContainerStyle>
 
                         </ListBox>
-                        
+                        <telerikPrimitives:RadBusyIndicator HorizontalAlignment="Center"
+                              Margin="50"
+                              Foreground="{StaticResource SanetBlue}"
+                              Content=""
+                              AnimationStyle="AnimationStyle5"
+                              IsRunning="{Binding ScoresBLoading}"/>
                     </StackPanel>
                 </Controls:PivotItem>
                 <Controls:PivotItem >
@@ -227,7 +234,12 @@
                             </ListBox.ItemContainerStyle>
 
                         </ListBox>
-
+                        <telerikPrimitives:RadBusyIndicator HorizontalAlignment="Center"
+                              Margin="50"
+                              Foreground="{StaticResource SanetBlue}"
+                              Content=""
+                              AnimationStyle="AnimationStyle5"
+                              IsRunning="{Binding ScoresLoading}"/>
                     </StackPanel>
                 </Controls:PivotItem>
                 <Controls:PivotItem >
@@ -312,7 +324,12 @@
                                     <Setter Property="Margin" Value="0,0,0,-8"/>
                                 </Style>
                             </ListBox.ItemContainerStyle>
-
+                            <telerikPrimitives:RadBusyIndicator HorizontalAlignment="Center"
+                              Margin="50"
+                              Foreground="{StaticResource SanetBlue}"
+                              Content=""
+                              AnimationStyle="AnimationStyle5"
+                              IsRunning="{Binding ScoresSLoading}"/>
                         </ListBox>
 
                     </StackPanel>
@@ -399,7 +416,12 @@
                                     <Setter Property="Margin" Value="0,0,0,-8"/>
                                 </Style>
                             </ListBox.ItemContainerStyle>
-
+                            <telerikPrimitives:RadBusyIndicator HorizontalAlignment="Center"
+                              Margin="50"
+                              Foreground="{StaticResource SanetBlue}"
+                              Content=""
+                              AnimationStyle="AnimationStyle5"
+                              IsRunning="{Binding ScoresELoading}"/>
                         </ListBox>
 
                     </StackPanel>
@@ -486,7 +508,12 @@
                                     <Setter Property="Margin" Value="0,0,0,-8"/>
                                 </Style>
                             </ListBox.ItemContainerStyle>
-
+                            <telerikPrimitives:RadBusyIndicator HorizontalAlignment="Center"
+                              Margin="50"
+                              Foreground="{StaticResource SanetBlue}"
+                              Content=""
+                              AnimationStyle="AnimationStyle5"
+                              IsRunning="{Binding ScoresMLoading}"/>
                         </ListBox>
 
                     </StackPanel>

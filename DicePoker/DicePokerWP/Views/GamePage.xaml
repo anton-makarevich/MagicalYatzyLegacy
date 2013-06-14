@@ -10,14 +10,15 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:my="clr-namespace:Microsoft.Phone.Controls.Unofficial"
-                            xmlns:adRotator="clr-namespace:AdRotator;assembly=AdRotator"
+    xmlns:adRotator="clr-namespace:AdRotator;assembly=AdRotator"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     toolkit:TiltEffect.IsTiltEnabled="True"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True"
+    Style="{StaticResource TransitionPageStyle}">
 
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="True" 
@@ -54,7 +55,8 @@
             </Grid.ColumnDefinitions>
             
             <sanet:PivotWithHiding 
-                x:Name="rollPivot">
+                x:Name="rollPivot"
+                SelectedIndex="1">
                 <sanet:PivotWithHiding.Title>
                     <TextBlock x:Name="ApplicationTitle" Text="{Binding Title}"
                        Style="{StaticResource PivotTitleStyle}"/>
@@ -167,12 +169,47 @@
                        VerticalAlignment="Center"/>
 
                     </Controls:PivotItem.Header>
-                    <DicePanel:DicePanel 
+                    <Grid
+                        MinHeight="600"
+                        MinWidth="350"
+                        VerticalAlignment="Bottom"
+                        >
+                        <DicePanel:DicePanel 
                         Margin="0,0,0,60"
                         HorizontalAlignment="Right"
                         MinHeight="500"
-                        MinWidth="300"
+                        MinWidth="360"
                                x:Name="dpBackground"/>
+                        <!--Panel to show results-->
+                        <Grid Grid.Column="0"
+                            Visibility="Collapsed"
+                            x:Name="gridResults"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            
+                            <ListBox
+                                Grid.Row="1"
+                                 Margin="0" HorizontalAlignment="Stretch"
+                                    ItemsSource="{Binding Players}"
+                                    ItemTemplate="{StaticResource GameResultsTemplate}"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                    >
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+
+                            </ListBox>
+
+                        </Grid>
+                    </Grid>
+                    
                 </Controls:PivotItem>
                 <Controls:PivotItem
                 x:Name="chatPivotItem"
@@ -243,39 +280,7 @@
                 VerticalAlignment="Center"
                />
 
-            <!--Panel to show results-->
-            <Grid Grid.Column="0"
-                  Visibility="Collapsed"
-                  Grid.ColumnSpan="2"
-                      x:Name="gridResults"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Grid 
-                    Margin="12">
-                    <TextBlock Text="{Binding Title}"
-                       Style="{StaticResource PivotTitleStyle}"/>
-                </Grid>
-                <ListBox
-                    Grid.Row="1"
-                                 Margin="0" HorizontalAlignment="Stretch"
-                                    ItemsSource="{Binding Players}"
-                                    ItemTemplate="{StaticResource GameResultsTemplate}"
-                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                    >
-                    <ListBox.ItemContainerStyle>
-                        <Style TargetType="ListBoxItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        </Style>
-                    </ListBox.ItemContainerStyle>
-
-                </ListBox>
-                
-            </Grid>
+            
             
         </Grid>
     </Grid>

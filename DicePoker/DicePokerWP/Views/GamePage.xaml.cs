@@ -31,6 +31,8 @@ namespace DicePokerWP
         ApplicationBarIconButton readyButton;
 
         ApplicationBarIconButton sendButton;
+
+        ApplicationBarIconButton buyButton;
         // Constructor
         public GamePage()
         {
@@ -81,6 +83,16 @@ namespace DicePokerWP
             sendButton.IconUri = new Uri("/Assets/Send.png", UriKind.Relative);
             sendButton.Text = "SendLabel".Localize();
             sendButton.Click += sendButton_Click;
+
+            buyButton = new ApplicationBarIconButton();
+            buyButton.IconUri = new Uri("/Assets/appUnlock.png", UriKind.Relative);
+            buyButton.Text = "BuyLabel".Localize();
+            buyButton.Click += buyButton_Click;
+        }
+
+        void buyButton_Click(object sender, EventArgs e)
+        {
+            StoreManager.RemoveAd();
         }
 
         void sendButton_Click(object sender, EventArgs e)
@@ -117,7 +129,7 @@ namespace DicePokerWP
         {
             GetViewModel<PlayGameViewModel>().PlayAgain();
             gridResults.Visibility = Visibility.Collapsed;
-            rollPivot.Visibility = Visibility.Visible;
+            dpBackground.Visibility = Visibility.Visible;
             RebuildAppBarForRoll();
         }
 
@@ -133,6 +145,7 @@ namespace DicePokerWP
         
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            //rollPivot.SelectedItem = 1;
 
             dpBackground.PanelStyle = GetViewModel<PlayGameViewModel>().SettingsPanelStyle;
             dpBackground.TreeDScaleCoef = 0.38;
@@ -161,13 +174,13 @@ namespace DicePokerWP
             //check chat pivot
             try
             {
-                
+
                 if (!GetViewModel<PlayGameViewModel>().IsOnlineGame)
                 {
                     if (!rollPivot.IsPivotItemHidden(chatPivotItem))
                     {
-                       rollPivot.HidePivotItem(chatPivotItem);
-                       
+                        rollPivot.HidePivotItem(chatPivotItem);
+
                     }
                 }
                 if (rollPivot.SelectedIndex != 2)
@@ -177,7 +190,10 @@ namespace DicePokerWP
             {
                 var t = ex.Message;
             }
-            
+            finally
+            {
+                rollPivot.SelectedIndex = 0;
+            }
         }
 
 
@@ -227,11 +243,13 @@ namespace DicePokerWP
                     RebuildAppBarForChat();
                 else
                 {
-                    if (currentAppBarState == appBarState.chat)
+                    if (gridResults.Visibility==Visibility.Visible)
+                        RebuildAppBarForEnd();
+                    else if (currentAppBarState == appBarState.chat)
                     {
-                        if (prevAppBarState== appBarState.ready)
+                         if (prevAppBarState== appBarState.ready)
                             RebuildAppBarForReady();
-                        else
+                         else
                             RebuildAppBarForRoll();
                     }
                 }
@@ -268,10 +286,10 @@ namespace DicePokerWP
             else if ((e.PropertyName == "IsForthRollVisible" || 
                 e.PropertyName == "IsMagicRollVisible" || 
                 e.PropertyName == "IsManualSetVisible") &&
-                rollPivot.Visibility==Visibility.Visible)
+                dpBackground.Visibility==Visibility.Visible)
                 RebuildAppBarForRoll();
             else if ((e.PropertyName == "CanStart") &&
-                rollPivot.Visibility == Visibility.Visible)
+                dpBackground.Visibility == Visibility.Visible)
             {
                 if (GetViewModel<PlayGameViewModel>().CanStart)
                     RebuildAppBarForReady();
@@ -296,7 +314,21 @@ namespace DicePokerWP
                 await GetViewModel<PlayGameViewModel>().SaveResults();
             }
 
-            JoinManager.Disconnect();
+            
+        }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (rollPivot.SelectedIndex > 0)
+            {
+                e.Cancel = true;
+                rollPivot.SelectedIndex--;
+            }
+            else
+            {
+                JoinManager.Disconnect();
+                base.OnBackKeyPress(e);
+            }
         }
 
         void RemoveGameHandlers()
@@ -353,7 +385,8 @@ namespace DicePokerWP
         void Game_GameFinished(object sender, EventArgs e)
         {
             gridResults.Visibility = Visibility.Visible;
-            rollPivot.Visibility = Visibility.Collapsed;
+            dpBackground.Visibility = Visibility.Collapsed;
+            rollPivot.SelectedIndex = 1;
             RebuildAppBarForEnd();
         }
 
@@ -454,8 +487,15 @@ namespace DicePokerWP
                 if (GetViewModel<PlayGameViewModel>().IsForthRollVisible)
                     this.ApplicationBar.Buttons.Add(resetRollButton);
             }
+            else
+            {
+                if (StoreManager.IsTrial)
+                    this.ApplicationBar.Buttons.Add(buyButton);
+            }
             rollButton.IsEnabled = GetViewModel<PlayGameViewModel>().CanRoll;
             this.ApplicationBar.Buttons.Add(rollButton);
+
+            
 
             this.ApplicationBar.IsMenuEnabled = false;
             this.ApplicationBar.Mode = ApplicationBarMode.Default;
@@ -471,10 +511,12 @@ namespace DicePokerWP
             this.ApplicationBar.Buttons.Clear();
 
             this.ApplicationBar.Buttons.Add(againButton);
+            if (StoreManager.IsTrial)
+                this.ApplicationBar.Buttons.Add(buyButton);
 
             this.ApplicationBar.IsMenuEnabled = false;
             this.ApplicationBar.Mode = ApplicationBarMode.Default;
-
+            
 
         }
         
@@ -485,6 +527,9 @@ namespace DicePokerWP
             this.ApplicationBar.Buttons.Clear();
 
             this.ApplicationBar.Buttons.Add(readyButton);
+
+            if (StoreManager.IsTrial)
+                this.ApplicationBar.Buttons.Add(buyButton);
 
             this.ApplicationBar.IsMenuEnabled = false;
             this.ApplicationBar.Mode = ApplicationBarMode.Default;
@@ -498,6 +543,8 @@ namespace DicePokerWP
             this.ApplicationBar.Buttons.Clear();
 
             this.ApplicationBar.Buttons.Add(sendButton);
+            if (StoreManager.IsTrial)
+                this.ApplicationBar.Buttons.Add(buyButton);
 
             this.ApplicationBar.IsMenuEnabled = false;
             this.ApplicationBar.Mode = ApplicationBarMode.Default;

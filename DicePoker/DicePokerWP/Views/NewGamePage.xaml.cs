@@ -23,6 +23,7 @@ namespace DicePokerWP
         ApplicationBarIconButton addBotButton;
         ApplicationBarIconButton deleteButton;
         ApplicationBarIconButton startButton;
+        ApplicationBarIconButton nextButton;
 
         // Constructor
         public NewGamePage()
@@ -61,7 +62,15 @@ namespace DicePokerWP
             startButton.Text = Messages.NEW_GAME_START_GAME.Localize();
             startButton.Click += startButton_Click;
 
-            
+            nextButton = new ApplicationBarIconButton();
+            nextButton.IconUri = new Uri("/Assets/Next.png", UriKind.Relative);
+            nextButton.Text = Messages.NEW_GAME_RULES.Localize();
+            nextButton.Click += nextButton_Click;
+        }
+
+        void nextButton_Click(object sender, EventArgs e)
+        {
+            startPivot.SelectedIndex = 1;
         }
 
         void startButton_Click(object sender, EventArgs e)
@@ -213,6 +222,15 @@ namespace DicePokerWP
                     GetViewModel<NewGameViewModel>().CloseMagicPage();
                     ApplicationBar.IsVisible = true;
                 }
+                else if (startPivot.SelectedIndex > 0)
+                {
+                    e.Cancel = true;
+                    startPivot.SelectedIndex--;
+                }
+                else
+                {
+                    base.OnBackKeyPress(e);
+                }
             }
             catch (Exception ex)
             {
@@ -229,6 +247,7 @@ namespace DicePokerWP
                 this.ApplicationBar.Buttons.Add(addPlayerButton);
                 this.ApplicationBar.Buttons.Add(addBotButton);
                 this.ApplicationBar.Buttons.Add(deleteButton);
+                this.ApplicationBar.Buttons.Add(nextButton);
 
                 this.ApplicationBar.IsMenuEnabled = false;
                 this.ApplicationBar.Mode = ApplicationBarMode.Default;

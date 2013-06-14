@@ -41,6 +41,11 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         public event EventHandler GameFinished;
 
+        /// <summary>
+        /// the name of rolling player
+        /// need for network game when one player apply score while animation is going 
+        /// </summary>
+        string _rollingPlayer;
 
         #region Constructor
         public PlayGameViewModel()
@@ -857,6 +862,7 @@ namespace Sanet.Kniffel.ViewModels
                         if (DiceRolled != null)
                             DiceRolled(this, e);
                         SelectedPlayer.Player.CheckRollResults();
+                        _rollingPlayer = e.Player.Name;
                         RollResults = null;
                         SetCanRoll(false);
                         NotifyPlayerChanged();
@@ -905,7 +911,9 @@ namespace Sanet.Kniffel.ViewModels
         /// </summary>
         public void OnRollEnd()
         {
-            
+            if (_rollingPlayer != SelectedPlayer.Name)
+                return;
+
             lastRoll =SelectedPlayer.Roll == 3;
 
             SetCanRoll(SelectedPlayer.Roll < 3);

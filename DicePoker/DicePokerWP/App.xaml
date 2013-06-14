@@ -9,6 +9,7 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     xmlns:common="clr-namespace:Sanet.Common">
 
     <!--Application Resources-->
@@ -45,6 +46,33 @@
             
         </Style>
 
+        <!--Page with standard transition animations-->
+        <Style x:Key="TransitionPageStyle" TargetType="phone:PhoneApplicationPage">
+            <Setter Property="toolkit:TransitionService.NavigationInTransition">
+                <Setter.Value>
+                    <toolkit:NavigationInTransition>
+                        <toolkit:NavigationInTransition.Backward>
+                            <toolkit:TurnstileTransition Mode="BackwardIn"/>
+                        </toolkit:NavigationInTransition.Backward>
+                        <toolkit:NavigationInTransition.Forward>
+                            <toolkit:TurnstileTransition Mode="ForwardIn"/>
+                        </toolkit:NavigationInTransition.Forward>
+                    </toolkit:NavigationInTransition>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="toolkit:TransitionService.NavigationOutTransition">
+                <Setter.Value>
+                    <toolkit:NavigationOutTransition>
+                        <toolkit:NavigationOutTransition.Backward>
+                            <toolkit:TurnstileTransition Mode="BackwardOut"/>
+                        </toolkit:NavigationOutTransition.Backward>
+                        <toolkit:NavigationOutTransition.Forward>
+                            <toolkit:TurnstileTransition Mode="ForwardOut"/>
+                        </toolkit:NavigationOutTransition.Forward>
+                    </toolkit:NavigationOutTransition>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <Style x:Key="ContentButton" TargetType="Button">
 
@@ -186,7 +214,7 @@
 
         <!--Game result table template-->
         <DataTemplate x:Key="GameResultsTemplate">
-            <Grid Width="480" HorizontalAlignment="Stretch"
+            <Grid Width="360" HorizontalAlignment="Stretch"
                   Margin="0,10"
                 >
                 <Grid.ColumnDefinitions>
@@ -203,12 +231,12 @@
                 <TextBlock Text="{Binding Name}" TextAlignment="Left"
                            TextTrimming="WordEllipsis"
                            HorizontalAlignment="Right" VerticalAlignment="Center"
-                     FontSize="26"
+                     FontSize="24"
                            />
                 <TextBlock Text="{Binding Total}" TextAlignment="Center"
                        Grid.Column="1"
                            HorizontalAlignment="Center" VerticalAlignment="Center"
-                     FontSize="26"/>
+                     FontSize="24"/>
                 <CheckBox 
                 Grid.Column="0"
                     Grid.Row="1"
@@ -216,6 +244,7 @@
                     HorizontalAlignment="Center"
                 Content="{Binding PlayerSaveScoreLabelLocalized}"
                 IsChecked="{Binding ShouldSaveResult, Mode=TwoWay}"
+                    FontSize="20"
                 IsEnabled="{Binding CanSaveResult}"/>
             </Grid>
 
@@ -519,7 +548,12 @@
                                MaxHeight="40" TextTrimming="WordEllipsis"
                            Foreground="White" TextWrapping="Wrap"
                            />
-                        
+                        <telerikPrimitives:RadBusyIndicator HorizontalAlignment="Center"
+                              VerticalAlignment="Center" 
+                              Foreground="White"
+                              Content=""
+                              AnimationStyle="AnimationStyle5"
+                              IsRunning="{Binding IsWeekScoreLoading}"/>
                     </Grid>
 
                     <Grid Height="100"
@@ -541,7 +575,12 @@
                                 MaxHeight="40" TextTrimming="WordEllipsis"
                            Foreground="White" TextWrapping="Wrap"
                            />
-                        
+                        <telerikPrimitives:RadBusyIndicator HorizontalAlignment="Center"
+                              VerticalAlignment="Center" 
+                              Foreground="White"
+                              Content=""
+                              AnimationStyle="AnimationStyle5"
+                              IsRunning="{Binding IsDayScoreLoading}"/>
                     </Grid>
                 </Controls:RotatingPanel>
                 <Image 

@@ -153,11 +153,27 @@ namespace DicePokerWP
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
-            if (!ApplicationBar.IsVisible)
+            try
             {
-                e.Cancel = true;
-                GetViewModel<NewOnlineGameViewModel>().CloseMagicPage();
-                ApplicationBar.IsVisible = true;
+                if (!ApplicationBar.IsVisible)
+                {
+                    e.Cancel = true;
+                    GetViewModel<NewGameViewModel>().CloseMagicPage();
+                    ApplicationBar.IsVisible = true;
+                }
+                else if (startPivot.SelectedIndex > 0)
+                {
+                    e.Cancel = true;
+                    startPivot.SelectedIndex--;
+                }
+                else
+                {
+                    base.OnBackKeyPress(e);
+                }
+            }
+            catch (Exception ex)
+            {
+                var t = ex.Message;
             }
         }
                

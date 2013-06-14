@@ -265,7 +265,7 @@ namespace Sanet.Network.Protocol
                 //looping trying to recconect
                 while (!IsConnected)
                 {
-                    
+                    Thread.Sleep(waitTime);
                     await ConnectAsync(_lastId, true);
                     reconnectionCounter++;
                     if (reconnectionCounter > 3)
