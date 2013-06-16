@@ -587,6 +587,12 @@
     <Content Include="AppResLib.dll.0423.mui">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="AppResLib.dll.040a.mui">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AppResLib.dll.041d.mui">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="ReadMe-AdRotator-XAML.txt" />
     <Content Include="AppResLib.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
