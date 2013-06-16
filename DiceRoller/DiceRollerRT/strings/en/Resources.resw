@@ -576,7 +576,7 @@
     <value>Better offer with price reduced to $0.013 for one artifact. Your discount is 20%!</value>
   </data>
   <data name="Offer3Description" xml:space="preserve">
-    <value>Excelent offer with only $0.008 for one artifact. It's 2 times cheaper!</value>
+    <value>Excellent offer with only $0.008 for one artifact. It's 2 times cheaper!</value>
   </data>
   <data name="PurchaseDescription" xml:space="preserve">
     <value>Buy more artifacts using one of the following offers. Each offer can be used only once a day.</value>

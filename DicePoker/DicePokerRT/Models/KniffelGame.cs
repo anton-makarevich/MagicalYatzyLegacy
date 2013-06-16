@@ -576,6 +576,10 @@ namespace Sanet.Kniffel.Models
                     CurrentPlayer = null;
                     Move = 1;
                     IsPlaying = true;
+
+                    if (GameUpdated != null)
+                        GameUpdated(null, null);
+
                     DoMove();
                 }
             }
@@ -632,9 +636,7 @@ namespace Sanet.Kniffel.Models
                 }
                 Players = Players.OrderBy(f => f.SeatNo).ToList();
                 CurrentPlayer = null;
-                if (GameUpdated != null)
-                    GameUpdated(null,null);
-
+                
                 StartGame();
             }
         }

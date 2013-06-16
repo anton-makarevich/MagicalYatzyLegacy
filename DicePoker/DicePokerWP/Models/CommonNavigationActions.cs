@@ -149,6 +149,7 @@ namespace Sanet.Kniffel.Models
                 {
                     MarketplaceReviewTask _marketPlaceReviewTask = new MarketplaceReviewTask();
                     _marketPlaceReviewTask.Show();
+                    ReviewBugger.DidReview();
                 });
             }
 

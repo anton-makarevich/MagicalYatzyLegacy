@@ -51,6 +51,9 @@ namespace Sanet.Models
                     case "es":
                         culture = new CultureInfo("es-ES");
                         break;
+                    case "sv":
+                        culture = new CultureInfo("sv-SE");
+                        break;
                     default:
                         culture = new CultureInfo("en-US");
                         break;
@@ -92,7 +95,7 @@ namespace Sanet.Models
     {
         public ResourceModel()
         {
-            ApplicationResources.UiCulture = CultureInfo.CurrentUICulture;//new CultureInfo("de");
+            ApplicationResources.UiCulture =CultureInfo.CurrentUICulture;// new CultureInfo("sv");
         }
 
         public string GetString(string resource)

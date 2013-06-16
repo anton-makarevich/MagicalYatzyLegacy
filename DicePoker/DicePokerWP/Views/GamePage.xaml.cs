@@ -142,7 +142,6 @@ namespace DicePokerWP
         }
 
                 
-        
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             //rollPivot.SelectedItem = 1;
@@ -300,13 +299,7 @@ namespace DicePokerWP
 
         protected async override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
-            GetViewModel<PlayGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
-
-            RemoveGameHandlers();
-
-            dpBackground.DieFrozen -= dpBackground_DieFrozen;
-            dpBackground.EndRoll -= dpBackground_EndRoll;
-            dpBackground.DieChangedManual -= dpBackground_DieChangedManual;
+            
 
             if (gridResults.Visibility == Visibility.Visible)
             {
@@ -326,6 +319,14 @@ namespace DicePokerWP
             }
             else
             {
+                GetViewModel<PlayGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
+
+                RemoveGameHandlers();
+
+                dpBackground.DieFrozen -= dpBackground_DieFrozen;
+                dpBackground.EndRoll -= dpBackground_EndRoll;
+                dpBackground.DieChangedManual -= dpBackground_DieChangedManual;
+
                 JoinManager.Disconnect();
                 base.OnBackKeyPress(e);
             }
@@ -347,14 +348,19 @@ namespace DicePokerWP
 
         void AddGameHandlers()
         {
-            GetViewModel<PlayGameViewModel>().DiceRolled += Game_DiceRolled;
-            GetViewModel<PlayGameViewModel>().MoveChanged += Game_MoveChanged;
-            GetViewModel<PlayGameViewModel>().GameFinished += Game_GameFinished;
-            GetViewModel<PlayGameViewModel>().DiceFixed += Game_DiceFixed;
-            GetViewModel<PlayGameViewModel>().Game.DiceChanged += Game_DiceChanged;
-            GetViewModel<PlayGameViewModel>().Game.PlayerRerolled += Game_PlayerRerolled;
-            GetViewModel<PlayGameViewModel>().Game.ResultApplied += Game_ResultApplied;
-            GetViewModel<PlayGameViewModel>().Game.OnChatMessage += Game_OnChatMessage;
+            try
+            {
+                GetViewModel<PlayGameViewModel>().DiceRolled += Game_DiceRolled;
+                GetViewModel<PlayGameViewModel>().MoveChanged += Game_MoveChanged;
+                GetViewModel<PlayGameViewModel>().GameFinished += Game_GameFinished;
+                GetViewModel<PlayGameViewModel>().DiceFixed += Game_DiceFixed;
+                GetViewModel<PlayGameViewModel>().Game.DiceChanged += Game_DiceChanged;
+                GetViewModel<PlayGameViewModel>().Game.PlayerRerolled += Game_PlayerRerolled;
+                GetViewModel<PlayGameViewModel>().Game.ResultApplied += Game_ResultApplied;
+                GetViewModel<PlayGameViewModel>().Game.OnChatMessage += Game_OnChatMessage;
+            }
+            catch
+            { }
         }
 
         void Game_OnChatMessage(object sender, Sanet.Kniffel.Models.Events.ChatMessageEventArgs e)
@@ -474,34 +480,37 @@ namespace DicePokerWP
         {
             if (rollPivot.SelectedIndex == 2)
                 return;
-            this.ApplicationBar.Buttons.Clear();
 
-            
-
-            if (GetViewModel<PlayGameViewModel>().Game.Rules.Rule == Rules.krMagic)
+            try
             {
-                if (GetViewModel<PlayGameViewModel>().IsMagicRollVisible)
-                    this.ApplicationBar.Buttons.Add(magicRollButton);
-                if (GetViewModel<PlayGameViewModel>().IsManualSetVisible)
-                    this.ApplicationBar.Buttons.Add(manualSetButton);
-                if (GetViewModel<PlayGameViewModel>().IsForthRollVisible)
-                    this.ApplicationBar.Buttons.Add(resetRollButton);
+                this.ApplicationBar.Buttons.Clear();
+
+
+
+                if (GetViewModel<PlayGameViewModel>().Game.Rules.Rule == Rules.krMagic)
+                {
+                    if (GetViewModel<PlayGameViewModel>().IsMagicRollVisible)
+                        this.ApplicationBar.Buttons.Add(magicRollButton);
+                    if (GetViewModel<PlayGameViewModel>().IsManualSetVisible)
+                        this.ApplicationBar.Buttons.Add(manualSetButton);
+                    if (GetViewModel<PlayGameViewModel>().IsForthRollVisible)
+                        this.ApplicationBar.Buttons.Add(resetRollButton);
+                }
+                else
+                {
+                    if (StoreManager.IsTrial)
+                        this.ApplicationBar.Buttons.Add(buyButton);
+                }
+                rollButton.IsEnabled = GetViewModel<PlayGameViewModel>().CanRoll;
+                this.ApplicationBar.Buttons.Add(rollButton);
+                                
+                this.ApplicationBar.IsMenuEnabled = false;
+                this.ApplicationBar.Mode = ApplicationBarMode.Default;
+
+                prevAppBarState = currentAppBarState;
+                currentAppBarState = appBarState.roll;
             }
-            else
-            {
-                if (StoreManager.IsTrial)
-                    this.ApplicationBar.Buttons.Add(buyButton);
-            }
-            rollButton.IsEnabled = GetViewModel<PlayGameViewModel>().CanRoll;
-            this.ApplicationBar.Buttons.Add(rollButton);
-
-            
-
-            this.ApplicationBar.IsMenuEnabled = false;
-            this.ApplicationBar.Mode = ApplicationBarMode.Default;
-
-            prevAppBarState=currentAppBarState  ;
-            currentAppBarState = appBarState.roll;
+            catch { }
         }
 
 

@@ -10,6 +10,8 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:my="clr-namespace:Microsoft.Phone.Controls.Unofficial"
+    xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
+    xmlns:primitives="clr-namespace:Telerik.Windows.Controls.Primitives;assembly=Telerik.Windows.Controls.Primitives"
     xmlns:adRotator="clr-namespace:AdRotator;assembly=AdRotator"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -242,11 +244,98 @@
 
 
                         <!--Messages List-->
-                        <ListBox
+                        <!--<ListBox
                             x:Name="messagesList"
                             Grid.Row="1"
                             ItemsSource="{Binding Messages}"
-                            ItemTemplate="{StaticResource ChatMessageTemplate}"/>
+                            ItemTemplate="{StaticResource ChatMessageTemplate}"/>-->
+                        <telerikData:RadConversationView x:Name="messagesList"
+                            Grid.Row="1"
+                            ItemsSource="{Binding Messages}"
+                             TextBoxVisibility="Collapsed"  >
+                            <telerikData:RadConversationView.IncomingMessageTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding SenderName}"
+                                       Margin="0, 0, 0, 4"
+                                       HorizontalAlignment="Right"
+                                       Foreground="{StaticResource PhoneSubtleBrush}"/>
+
+                                            <primitives:RadPointerContentControl Background="#A200FF"
+                                                                 TargetPoint="-120,-300"
+                                                                 Foreground="White">
+                                                <primitives:RadPointerContentControl.PointerTemplate>
+                                                    <DataTemplate>
+                                                        <Polygon Width="12"
+                                                 Height="24"
+                                                 Points="0,0 12,0 12,12 0,24"
+                                                 StrokeThickness="0"
+                                                 Fill="#A200FF"
+                                                 RenderTransformOrigin="0.5, 0.5">
+                                                            <Polygon.RenderTransform>
+                                                                <ScaleTransform ScaleX="-1"/>
+                                                            </Polygon.RenderTransform>
+                                                        </Polygon>
+                                                    </DataTemplate>
+                                                </primitives:RadPointerContentControl.PointerTemplate>
+
+                                                <TextBlock Text="{Binding Path=Text}"
+                                           TextWrapping="Wrap"
+                                           Margin="8, 2, 8, 6"/>
+
+                                            </primitives:RadPointerContentControl>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </telerikData:RadConversationView.IncomingMessageTemplate>
+
+                            <telerikData:RadConversationView.OutgoingMessageTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="3*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="{Binding SenderName}"
+                                       Margin="0, 0, 0, 4"
+                                       HorizontalAlignment="Right"
+                                       Foreground="{StaticResource PhoneSubtleBrush}"/>
+
+                                            <primitives:RadPointerContentControl Background="#849A01"
+                                                                 TargetPoint="130, -300"
+                                                                 Foreground="White">
+                                                <primitives:RadPointerContentControl.PointerTemplate>
+                                                    <DataTemplate>
+                                                        <Polygon Width="12"
+                                                 Height="24"
+                                                 Points="0,0 12,0 12,12 0,24"
+                                                 StrokeThickness="0"
+                                                 Fill="#849A01"
+                                                 RenderTransformOrigin="0.5, 0.5">
+                                                        </Polygon>
+                                                    </DataTemplate>
+                                                </primitives:RadPointerContentControl.PointerTemplate>
+
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding Path=Text}"
+                                               TextWrapping="Wrap"
+                                               Margin="8, 2, 8, 6"/>
+
+                                                </StackPanel>
+                                            </primitives:RadPointerContentControl>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </telerikData:RadConversationView.OutgoingMessageTemplate>
+                            
+                        </telerikData:RadConversationView>
                         <!--Chat Input Panel-->
                         <Grid 
                             Grid.Row="2"

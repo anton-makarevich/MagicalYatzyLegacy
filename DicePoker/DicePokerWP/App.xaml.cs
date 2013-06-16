@@ -15,6 +15,7 @@ using Microsoft.Phone.Shell;
 using Sanet.Models;
 using Sanet.Kniffel.Models;
 using Sanet.Common;
+using Telerik.Windows.Controls;
 
 namespace DicePokerWP
 {
@@ -27,6 +28,8 @@ namespace DicePokerWP
         /// <returns>The root frame of the Phone Application.</returns>
         public TransitionFrame RootFrame { get; private set; }
 
+        public RadDiagnostics diagnostics;
+        
         //facebook info
         static FacebookInfo _fbInfo = new FacebookInfo();
         public static FacebookInfo FBInfo
@@ -71,31 +74,56 @@ namespace DicePokerWP
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
 
+            diagnostics = new RadDiagnostics()
+            {
+                EmailTo = "wp7tasksapp@telerik.com",
+                HandleUnhandledException = true,
+                IncludeScreenshot = true,
+            };
+            diagnostics.Init();
+
         }
+        
 
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             SoundsProvider.Init();
+            JoinManager.Init();
             //check if trial version
             StoreManager.CheckTrial();
             //init localizer
             LocalizerExtensions.RModel = new ResourceModel();
             //local settings init
             LocalSettings.InitLocalSettings();
+
+            //increase number of runs
+            ReviewBugger.CheckNumOfRuns();
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            ApplicationUsageHelper.OnApplicationActivated();
+            if (RootFrame.Content is GamePage && wasDeactivated)
+            {
+                JoinManager.Reconnect();
+                wasDeactivated = false;
+            }
         }
 
+        bool wasDeactivated = false;
         // Code to execute when the application is deactivated (sent to background)
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
+            if (RootFrame.Content is GamePage)
+            {
+                JoinManager.Deactivate();
+                wasDeactivated = true;
+            }
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
@@ -137,7 +165,11 @@ namespace DicePokerWP
 
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
-            RootFrame = new TransitionFrame();
+            RootFrame = new TransitionFrame()
+            {
+                Foreground = (Brush)this.Resources["PhoneForegroundBrush"],
+                FontSize = (double)this.Resources["PhoneFontSizeNormal"],
+            };
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
             // Handle navigation failures

@@ -114,11 +114,11 @@ namespace Sanet.Kniffel.Server
             game = gamesByRule.FirstOrDefault(f => f.Players.FirstOrDefault(p => p.Name==player.Name) != null);
             if (game != null)
             {
-                var p = game.Players.FirstOrDefault(f =>f.ID == player.ID);
-                if (p == null)
+                //var p = game.Players.FirstOrDefault(f =>f.ID == player.ID);
+                //if (p == null)
                     return game.GameId;
-                else
-                    gamesByRule.Remove(game);
+                //else
+                //    gamesByRule.Remove(game);
             }
             
             //so - all tables
@@ -139,7 +139,20 @@ namespace Sanet.Kniffel.Server
 
             foreach (var game in games)
             {
-                rv.Add(new TupleTableInfo(game.GameId, game.Players.Select(p=>p.Name).ToList(), game.Rules.Rule));
+                //check for 'dead' players not sure if it correct place
+                //foreach (Player p in game.Players)
+                //{ 
+                //    ServerClientLobby clientLobby;
+                //    ServerClientLobby.playerToServerClientLobbyMapping.TryGetValue(p.ID, out clientLobby);
+                //    if (clientLobby == null)
+                //    {
+                //        game.LeaveGame(p);
+                //        m_Games.Remove(game.GameId);
+                        
+                //    }
+                //}
+                if (game.PlayersNumber>0)
+                    rv.Add(new TupleTableInfo(game.GameId, game.Players.Select(p=>p.Name).ToList(), game.Rules.Rule));
             }
             return rv;
         }

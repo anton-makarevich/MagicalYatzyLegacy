@@ -36,6 +36,7 @@ namespace Sanet.Kniffel.Server
             }
         }
             
+
                 
         public ServerClientLobby(ServerLobby lobby, string playerId)
             : base()
@@ -152,7 +153,7 @@ namespace Sanet.Kniffel.Server
                     {
                         player = exPlayer;
                         
-                        client = m_Table;
+                        //client = m_Table;
                     }
 
                 }
@@ -229,29 +230,25 @@ namespace Sanet.Kniffel.Server
         {
             base.OnSendCrashed(e);
 
-            if (!removeClientAfterDelayTimer.Enabled)
-            {
-                //time is always running
-               removeClientAfterDelayTimer.Start();
-            }
+            StartRemoveTimer();
 
             
         }
 
-        public override void OnReceiveCrashed(Exception e)
+        void StartRemoveTimer()
         {
-            //I don't think we need to differentiate based on exception type
-            //if (e is IOException)
-            //{
-                LogManager.Log(LogLevel.Error, "ServerClientLobby.OnReceiveCrashed", "Server lost connection with {0}", m_PlayerName);
-            //}
-            //else
-            base.OnReceiveCrashed(e);
             if (!removeClientAfterDelayTimer.Enabled)
             {
-                //timer is always running
+                removeClientAfterDelayTimer.Interval = m_Table.RemoveTimerDelay * 1000;
                 removeClientAfterDelayTimer.Start();
             }
+        }
+
+        public override void OnReceiveCrashed(Exception e)
+        {
+            
+            base.OnReceiveCrashed(e);
+            StartRemoveTimer();
 
         }
 

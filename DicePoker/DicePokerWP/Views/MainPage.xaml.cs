@@ -14,6 +14,7 @@ using Sanet.Models;
 using Sanet.Kniffel.ViewModels;
 using Microsoft.Phone.Shell;
 using Sanet.Kniffel.Models;
+using Telerik.Windows.Controls;
 
 namespace DicePokerWP
 {
@@ -141,7 +142,7 @@ namespace DicePokerWP
             dpBackground.DieAngle = GetViewModel<MainPageViewModel>().SettingsPanelAngle;
             dpBackground.MaxRollLoop = 40;
 
-                        
+                                    
             StartRoll();
         }
 
@@ -169,8 +170,11 @@ namespace DicePokerWP
             SetViewModel<MainPageViewModel>();
             GetViewModel<MainPageViewModel>().PropertyChanged += GamePage_PropertyChanged;
 
-            if (e.IsNavigationInitiator && ReviewBugger.IsTimeForReview())
+            if (ReviewBugger.IsTimeForReview())
                 ReviewBugger.PromptUser();
+            
+
+
             RebuildAppBarForPage();
             AttachNavigationEvents();
         }

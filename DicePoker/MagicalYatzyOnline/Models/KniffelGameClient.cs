@@ -622,8 +622,6 @@ namespace Sanet.Kniffel.Models
                 JoinGame(player);
             }
             
-            
-            
         }
 
         void m_CommandObserver_PlayerJoinedCommandReceived(object sender, CommandEventArgs<Protocol.Commands.Game.PlayerJoinedCommandV2> e)

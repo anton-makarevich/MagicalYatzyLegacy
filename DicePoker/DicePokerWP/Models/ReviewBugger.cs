@@ -28,10 +28,10 @@ namespace System
 {
     public static class ReviewBugger
     {
-        private const int numOfRunsBeforeFeedback = 5;
-        private static readonly Button yesButton = new Button() { Content = "Yes", Width = 120 };
-        private static readonly Button laterButton = new Button() { Content = "Later", Width = 120 };
-        private static readonly Button neverButton = new Button() { Content = "Never", Width = 120 };
+        private const int numOfRunsBeforeFeedback = 13;
+        private static readonly Button yesButton = new Button() { Content = "YesLabel".Localize(), Width = 220, FontSize = 17 };
+        private static readonly Button laterButton = new Button() { Content = "LaterLabel".Localize(), Width = 220, FontSize=16 };
+        private static readonly Button neverButton = new Button() { Content = "NeverLabel".Localize(), Width = 120 };
         private static readonly MessagePrompt messagePrompt = new MessagePrompt();
 
         public static void CheckNumOfRuns()
@@ -77,7 +77,7 @@ static void promptTimer_Tick(object sender, EventArgs e)
             messagePrompt.ActionPopUpButtons.RemoveAt(0);
             messagePrompt.ActionPopUpButtons.Add(yesButton);
             messagePrompt.ActionPopUpButtons.Add(laterButton);
-            messagePrompt.ActionPopUpButtons.Add(neverButton);
+            //messagePrompt.ActionPopUpButtons.Add(neverButton);
             messagePrompt.Show();
     }
     catch{}
@@ -85,10 +85,9 @@ static void promptTimer_Tick(object sender, EventArgs e)
 
         static void yesButton_Click(object sender, RoutedEventArgs e)
         {
-            var review = new MarketplaceReviewTask();
-            review.Show();
+            CommonNavigationActions.RateApp();
             messagePrompt.Hide();
-            DidReview();
+            
         }
 
         static void laterButton_Click(object sender, RoutedEventArgs e)
