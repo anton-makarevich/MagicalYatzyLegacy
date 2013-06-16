@@ -84,7 +84,7 @@ namespace Sanet.Kniffel.Server
                     if (!string.IsNullOrEmpty(playerId))
                     {//check whether we have current instance of players
                         
-                        if (reconnect != "1" || !ServerClientLobby.playerToServerClientLobbyMapping.TryGetValue(playerId, out clientLobby))
+                        if ( !ServerClientLobby.playerToServerClientLobbyMapping.TryGetValue(playerId, out clientLobby))
                         {
                             clientLobby = new ServerClientLobby(ServerLobby, playerId);
                             ServerClientLobby.playerToServerClientLobbyMapping[playerId] =  clientLobby;
@@ -104,12 +104,7 @@ namespace Sanet.Kniffel.Server
                         LogManager.Log("ClientRequestHandler.MyWebSocket", "websocket connect request with empty playerId");
                     }
 
-                    //this is not adding bots or winform clients to the list
-                    if (clientLobby == null)
-                    {
-                        clientLobby = new ServerClientLobby(ServerLobby, String.Empty);
-                    }
-
+                    
                     //this will reset websocket
                     clientLobby.WebSocket = socket;
                     await clientLobby.StartInAspMode();

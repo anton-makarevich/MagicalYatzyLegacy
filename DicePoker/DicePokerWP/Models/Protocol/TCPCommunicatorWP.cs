@@ -58,7 +58,9 @@ namespace Sanet.Network.Protocol
         {
             get
             {
-                return ClientWebSocket!= null;//not sure about this
+                if (ClientWebSocket == null)
+                    return false;
+                return ClientWebSocket.State== WebSocketState.Open;
             }
         }
 

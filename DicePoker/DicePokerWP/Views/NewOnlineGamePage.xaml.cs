@@ -213,6 +213,11 @@ namespace DicePokerWP
             CommonNavigationActions.NavigateYatzyFBPage();
         }
 
+        /// <summary>
+        /// Facebook login press
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         async private void Button_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             bool isLoaded = false;

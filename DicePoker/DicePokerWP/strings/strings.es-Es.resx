@@ -136,13 +136,13 @@
     <value>Ver clasificación completa en la web</value>
   </data>
   <data name="AngHighText" xml:space="preserve">
-    <value>alto</value>
+    <value>Alto</value>
   </data>
   <data name="AngLowText" xml:space="preserve">
-    <value>bajo</value>
+    <value>Bajo</value>
   </data>
   <data name="AngVeryHighText" xml:space="preserve">
-    <value>muy alto </value>
+    <value>Muy alto </value>
   </data>
   <data name="AppNameLabel" xml:space="preserve">
     <value>Yatzy Mágico</value>
@@ -163,7 +163,7 @@
     <value>Aplicación educativa para aprender escritura. Este software interactivo desarrolla tus habilidades motoras, memoria, te enseña cómo escribir letras (cirílicas) Rusas, caracteres Ingleses, caracteres chinos, números y varios símbolos.</value>
   </data>
   <data name="BestDayLabel" xml:space="preserve">
-    <value>Lo mejor del día</value>
+    <value>Mejor del día</value>
   </data>
   <data name="BestLocalLabel" xml:space="preserve">
     <value>Mejores resultados locales</value>
@@ -172,7 +172,7 @@
     <value>Mejor local </value>
   </data>
   <data name="BestWeekLabel" xml:space="preserve">
-    <value>Lo mejor de la semana</value>
+    <value>Mejor de la semana</value>
   </data>
   <data name="Bonus" xml:space="preserve">
     <value>Bono</value>
@@ -280,7 +280,7 @@
     <value>¿Cómo conseguir?</value>
   </data>
   <data name="HowToGetDescription" xml:space="preserve">
-    <value>Atefactos Mágicos – son recursos valiosos y  limitados. Hay varias formas de conseguir más mágia:</value>
+    <value>Artefactos Mágicos  – son recursos valiosos y  limitados. Hay varias formas de conseguir más mágia:</value>
   </data>
   <data name="Kniffel" xml:space="preserve">
     <value>¡Yatzy!</value>
@@ -307,13 +307,13 @@
     <value>Simple</value>
   </data>
   <data name="krSimpleShort" xml:space="preserve">
-    <value>todas las manos, sin bonos, 13 rondas</value>
+    <value>Todas las manos, sin bonos, 13 rondas</value>
   </data>
   <data name="krStandard" xml:space="preserve">
     <value>Estándar</value>
   </data>
   <data name="krStandardShort" xml:space="preserve">
-    <value>simple + 35 puntos de bono por 63 y resultados más altos en numéricos, 13 rondas</value>
+    <value>Simple + 35 puntos de bono por 63 y resultados más altos en numéricos, 13 rondas</value>
   </data>
   <data name="LargeStraight" xml:space="preserve">
     <value>Escalera Grande</value>
@@ -403,7 +403,7 @@
     <value>Lo sentimos, no puedes comprar artefactos usando esta versión de teléfono. Por favor prueba una versión para Windows 8.</value>
   </data>
   <data name="OfAKind" xml:space="preserve">
-    <value>De un tipo</value>
+    <value>del mismo tipo</value>
   </data>
   <data name="OffContent" xml:space="preserve">
     <value>Apagado</value>
@@ -454,13 +454,13 @@
     <value>Juegador</value>
   </data>
   <data name="PlayerNameLabel" xml:space="preserve">
-    <value>nombre</value>
+    <value>Nombre</value>
   </data>
   <data name="PlayerNoPasswordLabel" xml:space="preserve">
     <value>Sin contraseña</value>
   </data>
   <data name="PlayerPasswordLabel" xml:space="preserve">
-    <value>contraseña</value>
+    <value>Contraseña</value>
   </data>
   <data name="PlayersLabel" xml:space="preserve">
     <value>Jugadores</value>
@@ -496,7 +496,7 @@
     <value>Puedes comprar artefactos mágicos en la tienda. ¡Hay varias ofertas con muy buenos precios!</value>
   </data>
   <data name="PurchaseMiniLabel" xml:space="preserve">
-    <value>Comprar</value>
+    <value>Comprar.</value>
   </data>
   <data name="RandomLabel" xml:space="preserve">
     <value>Aleatorio</value>
@@ -586,7 +586,7 @@
     <value>Velocidad de rotación</value>
   </data>
   <data name="SettingsStyleCaptionText" xml:space="preserve">
-    <value>Estilo de dados</value>
+    <value>Estilos de dados</value>
   </data>
   <data name="ShareLabel" xml:space="preserve">
     <value>compartir</value>
@@ -607,10 +607,10 @@
     <value>Sonido</value>
   </data>
   <data name="SpeedFastText" xml:space="preserve">
-    <value>rápido</value>
+    <value>Rápido</value>
   </data>
   <data name="SpeedSlowText" xml:space="preserve">
-    <value>lento</value>
+    <value>Lento</value>
   </data>
   <data name="SpeedVeryFastText" xml:space="preserve">
     <value>Muy rápido</value>
@@ -640,7 +640,7 @@
     <value>Pulse para cambiar</value>
   </data>
   <data name="ThreeOfAKind" xml:space="preserve">
-    <value>Tres de un Tipo</value>
+    <value>Tres del mismo tipo</value>
   </data>
   <data name="Threes" xml:space="preserve">
     <value>Treses</value>

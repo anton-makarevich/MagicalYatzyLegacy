@@ -16,7 +16,7 @@
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>ru-RU; de-DE; be-BY; es-ES
+    <SupportedCultures>ru-RU; de-DE; be-BY; es-ES; sv-SE
     </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
@@ -143,7 +143,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2013.2.612.2040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.Primitives, Version=2013.2.612.2040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Core, Version=2013.2.612.2040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="WebSocket4Net, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.WP71\Bin\Debug\WebSocket4Net.dll</HintPath>
@@ -218,6 +220,9 @@
     </Compile>
     <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerCommand.cs">
       <Link>Models\Protocol\Commands\Game\PlayerCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerDeactivatedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerDeactivatedCommand.cs</Link>
     </Compile>
     <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerJoinedCommand.cs">
       <Link>Models\Protocol\Commands\Game\PlayerJoinedCommand.cs</Link>
@@ -399,9 +404,6 @@
     <Compile Include="..\MagicalYatzyOnline\Common\Facebook\FacebookFriendship.cs">
       <Link>Common\Facebook\FacebookFriendship.cs</Link>
     </Compile>
-    <Compile Include="..\MagicalYatzyOnline\Common\Facebook\FacebookInfo.cs">
-      <Link>Common\Facebook\FacebookInfo.cs</Link>
-    </Compile>
     <Compile Include="..\MagicalYatzyOnline\Common\Facebook\FacebookUserInfo.cs">
       <Link>Common\Facebook\FacebookUserInfo.cs</Link>
     </Compile>
@@ -429,9 +431,6 @@
     <Compile Include="..\MagicalYatzyOnline\Models\Protocol\Observer\GameClientCommandObserver.cs">
       <Link>Models\Protocol\Observer\GameClientCommandObserver.cs</Link>
     </Compile>
-    <Compile Include="..\MagicalYatzyOnline\ViewModels\ChatViewModel.cs">
-      <Link>ViewModels\ChatViewModel.cs</Link>
-    </Compile>
     <Compile Include="..\MagicalYatzyOnline\ViewModels\NewOnlineGameViewModel.cs">
       <Link>ViewModels\NewOnlineGameViewModel.cs</Link>
     </Compile>
@@ -446,6 +445,7 @@
     </Compile>
     <Compile Include="Common\DispatcherHelper.cs" />
     <Compile Include="Common\EnumCompactExtension.cs" />
+    <Compile Include="Common\Facebook\FacebookInfo.cs" />
     <Compile Include="Common\InternetCheker.cs" />
     <Compile Include="Common\LocalSettings.cs" />
     <Compile Include="Common\WPIdentifyHelpercs.cs" />
@@ -473,6 +473,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ChatViewModel.cs" />
     <Compile Include="ViewModels\TableWrapper.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
@@ -633,6 +634,7 @@
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
+    <EmbeddedResource Include="strings\strings.sv-SE.resx" />
     <EmbeddedResource Include="strings\strings.be-BY.resx" />
     <EmbeddedResource Include="strings\strings.es-ES.resx" />
     <EmbeddedResource Include="strings\strings.resx" />

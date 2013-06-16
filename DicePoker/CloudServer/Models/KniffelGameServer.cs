@@ -20,8 +20,8 @@ namespace Sanet.Kniffel.Models
         public KniffelGameServer(KniffelGame game)
         {
             _Game = game;
-            
 
+            RemoveTimerDelay = 15;
             
             
         }
@@ -42,7 +42,9 @@ namespace Sanet.Kniffel.Models
         {
             get { return _Game; }
         }
-        
+
+
+        public int RemoveTimerDelay { get; set; }
 #endregion
 
 #region Methods
@@ -58,6 +60,8 @@ namespace Sanet.Kniffel.Models
         public void SendTableInfo()
         {
             Send(new TableInfoCommand(_Game));
+            if (_Game.CurrentPlayer != null && _Game.Move>0)
+                Send(new RoundChangedCommand(_Game.CurrentPlayer.Name, _Game.Move));
         }
 
         public void LeaveGame()
@@ -187,6 +191,13 @@ namespace Sanet.Kniffel.Models
             m_CommandObserver.ManualChangeCommandReceived += m_CommandObserver_ManualChangeCommandReceived;
             m_CommandObserver.PlayerRerolledCommandReceived += m_CommandObserver_PlayerRerolledCommandReceived;
             m_CommandObserver.ChangeStyleCommandReceived += m_CommandObserver_ChangeStyleCommandReceived;
+            m_CommandObserver.PlayerDeactivatedCommandReceived += m_CommandObserver_PlayerDeactivatedCommandReceived;
+        }
+
+        void m_CommandObserver_PlayerDeactivatedCommandReceived(object sender, CommandEventArgs<PlayerDeactivatedCommand> e)
+        {
+            LogManager.Log(LogLevel.Message, "GameServer", "{0} deactivated", e.Command.Name);
+            RemoveTimerDelay = 180;
         }
 
         void m_CommandObserver_ChangeStyleCommandReceived(object sender, CommandEventArgs<ChangeStyleCommand> e)
@@ -269,12 +280,13 @@ namespace Sanet.Kniffel.Models
 
         void m_CommandObserver_TableInfoNeededCommandReceived(object sender, CommandEventArgs<TableInfoNeededCommand> e)
         {
+            RemoveTimerDelay = 15;
             SendTableInfo();
         }
 
         void m_CommandObserver_PlayerPingCommandReceived(object sender, CommandEventArgs<Protocol.Commands.Game.PlayerPingCommand> e)
         {
-            //throw new NotImplementedException();
+            RemoveTimerDelay = 15;
         }
 
         void m_CommandObserver_ChatMessageCommandReceived(object sender, CommandEventArgs<Protocol.Commands.Game.PlayerChatMessageCommand> e)
@@ -317,6 +329,7 @@ namespace Sanet.Kniffel.Models
             m_CommandObserver.ManualChangeCommandReceived -= m_CommandObserver_ManualChangeCommandReceived;
             m_CommandObserver.PlayerRerolledCommandReceived -= m_CommandObserver_PlayerRerolledCommandReceived;
             m_CommandObserver.ChangeStyleCommandReceived -= m_CommandObserver_ChangeStyleCommandReceived;
+            m_CommandObserver.PlayerDeactivatedCommandReceived -= m_CommandObserver_PlayerDeactivatedCommandReceived;
 
             _Game.DiceChanged -= _Game_DiceChanged;
             _Game.DiceFixed -= _Game_DiceFixed;

@@ -319,7 +319,7 @@
     <value>Senare.</value>
   </data>
   <data name="LeaderboardAction" xml:space="preserve">
-    <value>Ledartavlan</value>
+    <value>Berömmelsehall</value>
   </data>
   <data name="LeaderboardDescription" xml:space="preserve">
     <value>Se de bästa resultaten inom varje regelalternativ</value>
@@ -373,7 +373,7 @@
     <value>Starta ett lokalt spel – ensam, med vänner eller med botar </value>
   </data>
   <data name="NewOnlineGameAction" xml:space="preserve">
-    <value>Online spel</value>
+    <value>Onlinespel</value>
   </data>
   <data name="NewOnlineGameDescription" xml:space="preserve">
     <value>Bjud in vänner och spela med dem över internet</value>

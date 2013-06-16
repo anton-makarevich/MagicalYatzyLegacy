@@ -798,6 +798,7 @@ namespace Sanet.Kniffel.ViewModels
                         var p = Players.FirstOrDefault(f => f.Name == e.Player.Name);
                         var r = p.Results.FirstOrDefault(f => f.ScoreType == e.Result.ScoreType);
                         r.Value = e.Result.PossibleValue;
+                        r.HasBonus = e.Result.HasBonus;
                         p.UpdateTotal();
                         p.IsMoving = false;
                         NotifyPlayerChanged();
@@ -812,13 +813,21 @@ namespace Sanet.Kniffel.ViewModels
                         if (_Players != null)
                         {
                             var p = Players.FirstOrDefault(f => f.Name == e.Player.Name);
-                            if (p==null)
+                            if (p != null)
+                            {
+                                _Players.Remove(p);
+
+                            }
+                                
                             _Players.Add(new PlayerWrapper(e.Player));
-                            //_Players = new ObservableCollection<PlayerWrapper>(_Players.OrderBy(f => f.SeatNo));
+                                
+                            _Players = new ObservableCollection<PlayerWrapper>(_Players.OrderBy(f => f.SeatNo));
                         }
+                        
                         NotifyPropertyChanged("Players");
                         NotifyPropertyChanged("DicePanelRTWidth");
                         NotifyPropertyChanged("CanStart");
+                        
                     });
         }
 

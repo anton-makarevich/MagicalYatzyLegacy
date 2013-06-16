@@ -4,6 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 #endif
 using Sanet.Kniffel.Protocol;
+using Sanet.Kniffel.Protocol.Commands.Game;
 using Sanet.Kniffel.ViewModels;
 using Sanet.Models;
 using System;
@@ -21,6 +22,50 @@ namespace Sanet.Kniffel.Models
         //websocket 
         public static LobbyTCPClient WSServer= new LobbyTCPClient();
 
+        public static void Init()
+        {
+            WSServer.Disconnected += WSServer_Disconnected;
+        }
+
+        static void WSServer_Disconnected()
+        {
+#if WINDOWS_PHONE
+            //await JoinTable();
+#endif
+        }
+
+        public async static void Reconnect()
+        {
+            if (!ViewModelProvider.HasViewModel<NewOnlineGameViewModel>() || !ViewModelProvider.GetViewModel<PlayGameViewModel>().IsOnlineGame)
+                return;
+            var p = ViewModelProvider.GetViewModel<NewOnlineGameViewModel>().SelectedPlayer;
+            if (p==null)
+                return;
+            WSServer.Close();
+            await WSServer.ConnectAsync(p.Player.ID, true);
+            //Disconnect();
+            //await JoinTable();
+            
+                //Utilities.ShowMessage("Disconnected");
+                CurrentTable.Send(new PlayerPingCommand(CurrentTable.MyName));
+                CurrentTable.Send(new TableInfoNeededCommand(CurrentTable.MyName));
+                //CommonNavigationActions.NavigateToNewOnlineGamePage();
+            
+        }
+
+        public static void Deactivate()
+        {
+            if (!ViewModelProvider.HasViewModel<NewOnlineGameViewModel>() || !ViewModelProvider.GetViewModel<PlayGameViewModel>().IsOnlineGame)
+                return;
+            var p = ViewModelProvider.GetViewModel<NewOnlineGameViewModel>().SelectedPlayer;
+            if (p == null)
+                return;
+            
+            CurrentTable.Send(new PlayerDeactivatedCommand(CurrentTable.MyName));
+            
+            //CommonNavigationActions.NavigateToNewOnlineGamePage();
+
+        }
 
         public static KniffelGameClient CurrentTable;
 

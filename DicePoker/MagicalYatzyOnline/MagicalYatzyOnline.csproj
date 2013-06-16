@@ -1330,6 +1330,9 @@
     <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerCommand.cs">
       <Link>Models\Protocol\Commands\Game\PlayerCommand.cs</Link>
     </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerDeactivatedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerDeactivatedCommand.cs</Link>
+    </Compile>
     <Compile Include="..\cloudserver\models\kniffelprotocol\commands\game\PlayerJoinedCommand.cs">
       <Link>Models\Protocol\Commands\Game\PlayerJoinedCommand.cs</Link>
     </Compile>

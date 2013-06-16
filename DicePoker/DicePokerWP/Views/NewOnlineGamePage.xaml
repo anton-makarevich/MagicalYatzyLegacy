@@ -10,6 +10,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:my="clr-namespace:Microsoft.Phone.Controls.Unofficial"
+                            xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
                             xmlns:adRotator="clr-namespace:AdRotator;assembly=AdRotator"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -392,7 +393,13 @@
                                 </ItemsPanelTemplate>
                             </ListBox.ItemsPanel>
                         </ListBox>
-
+                        <telerikPrimitives:RadBusyIndicator HorizontalAlignment="Center"
+                              Margin="50"
+                              Foreground="{StaticResource SanetBlue}"
+                              Content=""
+                                                            Grid.Row="3"
+                              AnimationStyle="AnimationStyle5"
+                              IsRunning="{Binding BusyWithServer}"/>
 
 
                     </Grid>
