@@ -765,4 +765,7 @@
   <data name="ResultsTableLabel" xml:space="preserve">
     <value>Таблица</value>
   </data>
+  <data name="ExitConfirmMessage" xml:space="preserve">
+    <value>Хотите выйти? Текущая игра будет потеряна.</value>
+  </data>
 </root>

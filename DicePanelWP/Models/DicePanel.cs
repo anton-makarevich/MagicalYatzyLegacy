@@ -295,7 +295,7 @@ namespace Sanet.Kniffel.DicePanel
             caption.SetValue(Canvas.LeftProperty, Convert.ToDouble(15));
             caption.SetValue(Canvas.TopProperty, Convert.ToDouble(15));
 #endif
-#if WINDOWS_PHONE
+#if SILVERLIGHT
             caption.FontSize = 20;
             caption.SetValue(Canvas.LeftProperty, Convert.ToDouble(5));
             caption.SetValue(Canvas.TopProperty, Convert.ToDouble(0));

@@ -68,7 +68,7 @@ namespace Sanet.Kniffel.DicePanel
              panel.Height = 90;
             caption.FontSize = 28;
 #endif
-#if WINDOWS_PHONE
+#if SILVERLIGHT
             panel.Width = 80;
             panel.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
             caption.FontSize = 20;

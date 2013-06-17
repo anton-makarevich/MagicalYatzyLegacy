@@ -13,7 +13,12 @@ using System.Windows.Data;
 using System.Reflection;
 using System.Globalization;
 using System.Threading;
+
+#if WINDOWS_PHONE
 using DicePokerWP;
+#else
+using MagicalYatzyVK;
+#endif
 
 namespace Sanet.Models
 {
@@ -22,7 +27,11 @@ namespace Sanet.Models
         /// <summary>
         /// The Resource Manager loads the resources out of the executing assembly (and the XAP File where there are embedded)
         /// </summary>
+#if WINDOWS_PHONE
         private static readonly ResourceManager resourceManager = new ResourceManager("DicePokerWP.strings.strings", Assembly.GetExecutingAssembly());
+#else
+        private static readonly ResourceManager resourceManager = new ResourceManager("MagicalYatzyVK.strings.strings", Assembly.GetExecutingAssembly());
+#endif
         /// <summary>
         /// Use this property to specify the culture
         /// </summary>

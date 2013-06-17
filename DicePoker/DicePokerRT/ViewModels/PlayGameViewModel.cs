@@ -813,13 +813,17 @@ namespace Sanet.Kniffel.ViewModels
                         if (_Players != null)
                         {
                             var p = Players.FirstOrDefault(f => f.Name == e.Player.Name);
+                            PlayerWrapper newP = new PlayerWrapper(e.Player);
                             if (p != null)
                             {
+                                newP.IsMagicRollAvailable = p.IsMagicRollAvailable;
+                                newP.IsManualSetlAvailable = p.IsManualSetlAvailable;
+                                newP.IsForthRollAvailable = p.IsForthRollAvailable;
                                 _Players.Remove(p);
-
+                                
                             }
                                 
-                            _Players.Add(new PlayerWrapper(e.Player));
+                            _Players.Add(newP);
                                 
                             _Players = new ObservableCollection<PlayerWrapper>(_Players.OrderBy(f => f.SeatNo));
                         }

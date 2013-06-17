@@ -892,4 +892,7 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
   <data name="ResultsTableLabel" xml:space="preserve">
     <value>Таблица</value>
   </data>
+  <data name="ExitConfirmMessage" xml:space="preserve">
+    <value>Выйсцi? Стан бягучай гульнi будзе згублены.</value>
+  </data>
 </root>

@@ -1,0 +1,33 @@
+﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             x:Class="MagicalYatzyVK.App"
+             >
+    <Application.Resources>
+        <SolidColorBrush x:Key="SanetBlue" Color="#009cd6"/>
+
+        <DataTemplate
+            x:Key="MainMenuTemplate">
+            <Grid Height="95" Margin="10" HorizontalAlignment="Stretch"
+                          >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="95"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image
+                    Height="90"
+                    Width="90"
+                    Source="{Binding Image}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                    />
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{Binding LocalizedLabel}" Foreground="{StaticResource SanetBlue}" 
+                                 FontSize="35" Height="40" Margin="10,0,10,0" />
+                    <TextBlock Text="{Binding LocalizedDescription}" Foreground="{StaticResource SanetBlue}" 
+                                 FontSize="20" Height="60" Margin="10,5,10,0" TextWrapping="Wrap" />
+                </StackPanel>
+
+            </Grid>
+        </DataTemplate>
+    </Application.Resources>
+</Application>

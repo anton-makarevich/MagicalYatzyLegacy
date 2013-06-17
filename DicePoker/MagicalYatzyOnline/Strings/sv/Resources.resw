@@ -669,4 +669,7 @@
   <data name="ChatPanelLabel" xml:space="preserve">
     <value>Chatt</value>
   </data>
+  <data name="ExitConfirmMessage" xml:space="preserve">
+    <value>Are you sure you want to leave game? The current state of the game will be lost.</value>
+  </data>
 </root>

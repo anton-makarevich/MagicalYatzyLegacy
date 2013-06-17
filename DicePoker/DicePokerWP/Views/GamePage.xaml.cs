@@ -230,7 +230,7 @@ namespace DicePokerWP
             SetViewModel<PlayGameViewModel>();
             GetViewModel<PlayGameViewModel>().PropertyChanged += GamePage_PropertyChanged;
             rollPivot.SelectionChanged += rollPivot_SelectionChanged;
-
+            PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             AddGameHandlers();
             RebuildAppBarForRoll();
         }
@@ -306,7 +306,7 @@ namespace DicePokerWP
                 gridResults.Visibility = Visibility.Collapsed;
                 await GetViewModel<PlayGameViewModel>().SaveResults();
             }
-
+            PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Enabled;
             
         }
 
@@ -317,6 +317,12 @@ namespace DicePokerWP
                 e.Cancel = true;
                 rollPivot.SelectedIndex--;
             }
+            //else if (MessageBox.Show("ExitConfirmMessage".Localize(), "AppNameLabel".Localize(),
+            //            MessageBoxButton.OKCancel) != MessageBoxResult.OK)
+            //{
+            //    e.Cancel = true;
+
+            //}
             else
             {
                 GetViewModel<PlayGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
