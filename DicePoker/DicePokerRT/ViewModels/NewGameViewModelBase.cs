@@ -6,10 +6,13 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls.Primitives;
 #endif
 #if WINDOWS_PHONE
-using System.Windows.Controls.Primitives;
+
 using DicePokerWP.KniffelLeaderBoardService;
 using DicePokerWP;
 using Coding4Fun.Phone.Controls;
+#endif
+#if SILVERLIGHT
+using System.Windows.Controls.Primitives;
 #endif
 using Sanet.Common;
 using Sanet.Kniffel.Models;
@@ -158,7 +161,7 @@ namespace Sanet.Kniffel.ViewModels
         #region Methods
         protected void ChangeUserPass(PlayerWrapper p)
         {
-#if SILVERLIGHT
+#if WINDOWS_PHONE
             PasswordInputPrompt input = new PasswordInputPrompt
             {
                 Background = Brushes.SolidSanetBlue,
@@ -177,7 +180,7 @@ namespace Sanet.Kniffel.ViewModels
 
         protected void ChangeUserName(PlayerWrapper p)
         {
-#if SILVERLIGHT
+#if WINDOWS_PHONE
             InputPrompt input = new InputPrompt
             {
                 Title = "ChangeNameLabel".Localize(),
@@ -222,7 +225,7 @@ namespace Sanet.Kniffel.ViewModels
 #if WinRT
             var rulesList = Enum.GetValues(typeof(Rules));
 #endif
-#if WINDOWS_PHONE
+#if SILVERLIGHT
             var rulesList = EnumCompactExtension.GetValues<Rules>().ToList();
 #endif
             foreach (Rules rule in rulesList)

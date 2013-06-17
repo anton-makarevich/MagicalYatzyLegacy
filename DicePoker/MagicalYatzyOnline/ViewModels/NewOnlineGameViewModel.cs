@@ -20,10 +20,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Sanet.Common;
-
-#if WINDOWS_PHONE
+#if SILVERLIGHT
 using System.Windows.Controls.Primitives;
 using System.Windows.Threading;
+#endif
+#if WINDOWS_PHONE
+
 using DicePokerWP;
 #endif
 

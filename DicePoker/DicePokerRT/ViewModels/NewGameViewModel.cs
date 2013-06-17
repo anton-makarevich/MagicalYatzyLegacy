@@ -203,6 +203,9 @@ namespace Sanet.Kniffel.ViewModels
 #if WINDOWS_PHONE
                 WPIdentifyHelpers.GetWindowsLiveAnonymousID();
 #endif
+#if VK
+                    "";
+#endif
                 //if no luck - add default name
                 if (string.IsNullOrEmpty(userName))
                     userName = GetNewPlayerName(PlayerType.Local);

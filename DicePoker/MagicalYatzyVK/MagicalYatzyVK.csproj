@@ -43,7 +43,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT; VK</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -70,9 +70,23 @@
       <HintPath>packages\Microsoft.Bcl.Async.1.0.16\lib\sl4\Microsoft.Threading.Tasks.Extensions.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.5.0.6\lib\portable-net40+sl4+wp7+win8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine.Common">
+      <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.Silverlight\Bin\Release\SuperSocket.ClientEngine.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine.Core">
+      <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.Silverlight\Bin\Release\SuperSocket.ClientEngine.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine.Protocol">
+      <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.Silverlight\Bin\Release\SuperSocket.ClientEngine.Protocol.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime">
       <HintPath>packages\Microsoft.Bcl.1.0.19\lib\sl4\System.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Threading.Tasks">
       <HintPath>packages\Microsoft.Bcl.1.0.19\lib\sl4\System.Threading.Tasks.dll</HintPath>
     </Reference>
@@ -106,6 +120,10 @@
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Xml.Linq, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="WebSocket4Net">
+      <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.Silverlight\Bin\Release\WebSocket4Net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\..\AllWrite\Sanet.AllWrite.WP\Sanet.AllWrite.WP\Models\Brushes.cs">
@@ -120,29 +138,278 @@
     <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\BaseViewModel.cs">
       <Link>ViewModels\BaseViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\KniffelRulesExtensions.cs">
+      <Link>Models\KniffelRulesExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\Result.cs">
+      <Link>Models\Result.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DiceRoller\DiceRollerRT\ViewModels\SettingsViewModel.cs">
+      <Link>ViewModels\SettingsViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\ChatMessage.cs">
+      <Link>Models\ChatMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Common\BlockingQueue.cs">
+      <Link>Common\BlockingQueue.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Common\ServerHttpMessage.cs">
+      <Link>Common\ServerHttpMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Common\StringTokenizer.cs">
+      <Link>Common\StringTokenizer.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Interfaces\IKniffelGame.cs">
+      <Link>Models\Interfaces\IKniffelGame.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\ApplyScoreCommand.cs">
+      <Link>Models\Protocol\Commands\Game\ApplyScoreCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\ChangeStyleCommand.cs">
+      <Link>Models\Protocol\Commands\Game\ChangeStyleCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\DiceChangedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\DiceChangedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\FixDiceCommand.cs">
+      <Link>Models\Protocol\Commands\Game\FixDiceCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\GameEndedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\GameEndedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\MagicRollRequestCommand.cs">
+      <Link>Models\Protocol\Commands\Game\MagicRollRequestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\ManualChangeCommand.cs">
+      <Link>Models\Protocol\Commands\Game\ManualChangeCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerChatMessageCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerChatMessageCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerDeactivatedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerDeactivatedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerJoinedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerJoinedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerJoinedCommandV2.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerJoinedCommandV2.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerLeftCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerLeftCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerPingCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerPingCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerReadyCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerReadyCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerRerolledCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerRerolledCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\RollReportCommand.cs">
+      <Link>Models\Protocol\Commands\Game\RollReportCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\RoundChangedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\RoundChangedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\TableInfoCommand.cs">
+      <Link>Models\Protocol\Commands\Game\TableInfoCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\TableInfoNeededCommand.cs">
+      <Link>Models\Protocol\Commands\Game\TableInfoNeededCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\AbstractLobbyCommand.cs">
+      <Link>Models\Protocol\Commands\Lobby\AbstractLobbyCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\AbstractLobbyResponse.cs">
+      <Link>Models\Protocol\Commands\Lobby\AbstractLobbyResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\GameCommand.cs">
+      <Link>Models\Protocol\Commands\Lobby\GameCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\JoinCommand.cs">
+      <Link>Models\Protocol\Commands\Lobby\JoinCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\JoinCommandV2.cs">
+      <Link>Models\Protocol\Commands\Lobby\JoinCommandV2.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\JoinResponse.cs">
+      <Link>Models\Protocol\Commands\Lobby\JoinResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\TuplePlayerInfo.cs">
+      <Link>Models\Protocol\TuplePlayerInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\TupleTableInfo.cs">
+      <Link>Models\Protocol\TupleTableInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\AbstractCommand.cs">
+      <Link>Models\Protocol\Commands\AbstractCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\AbstractCommandResponse.cs">
+      <Link>Models\Protocol\Commands\AbstractCommandResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\CommandEventArgs.cs">
+      <Link>Models\Protocol\Commands\CommandEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\CommandObserver.cs">
+      <Link>Models\Protocol\Commands\CommandObserver.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\CommandQueueCommunicator.cs">
+      <Link>Models\Protocol\Commands\CommandQueueCommunicator.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\DisconnectCommand.cs">
+      <Link>Models\Protocol\Commands\DisconnectCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\QueueCommunicator.cs">
+      <Link>Models\Protocol\QueueCommunicator.cs</Link>
+    </Compile>
     <Compile Include="..\DicePokerRT\DicePanel\DiceSelector.cs">
       <Link>DicePanel\DiceSelector.cs</Link>
     </Compile>
     <Compile Include="..\DicePokerRT\DicePanel\DieResult.cs">
       <Link>DicePanel\DieResult.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerRT\Models\AboutAppAction.cs">
+      <Link>Models\AboutAppAction.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\AdminModule.cs">
+      <Link>Models\AdminModule.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Enums\ClientType.cs">
+      <Link>Models\Enums\ClientType.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Enums\GameRule.cs">
+      <Link>Models\Enums\GameRule.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Enums\KniffelScore.cs">
+      <Link>Models\Enums\KniffelScore.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Enums\PlayerType.cs">
+      <Link>Models\Enums\PlayerType.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Events\EventArgs.cs">
+      <Link>Models\Events\EventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Interfaces\IPlayGameViewModel.cs">
+      <Link>Models\Interfaces\IPlayGameViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\KniffelPlayer.cs">
+      <Link>Models\KniffelPlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\KniffelRule.cs">
+      <Link>Models\KniffelRule.cs</Link>
+    </Compile>
     <Compile Include="..\DicePokerRT\Models\LocalizerExtensions.cs">
       <Link>Common\LocalizerExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\MenuAction.cs">
+      <Link>Models\MenuAction.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Messages.cs">
+      <Link>Models\Messages.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\OfferAction.cs">
+      <Link>Models\OfferAction.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\RelayCommand.cs">
+      <Link>Common\RelayCommand.cs</Link>
     </Compile>
     <Compile Include="..\DicePokerRT\Models\ViewModelProvider.cs">
       <Link>Models\ViewModelProvider.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\AboutPageViewModel.cs">
+      <Link>ViewModels\AboutPageViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\AdBasedViewModel.cs">
+      <Link>ViewModels\AdBasedViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\LeaderboardViewModel.cs">
+      <Link>ViewModels\LeaderboardViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\MagicRoomViewModel.cs">
+      <Link>ViewModels\MagicRoomViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\MainPageViewModel.cs">
+      <Link>ViewModels\MainPageViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\NewGameViewModel.cs">
+      <Link>ViewModels\NewGameViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\NewGameViewModelBase.cs">
+      <Link>ViewModels\NewGameViewModelBase.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\PlayGameViewModel.cs">
+      <Link>ViewModels\PlayGameViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\RuleWrapper.cs">
+      <Link>ViewModels\RuleWrapper.cs</Link>
+    </Compile>
     <Compile Include="..\DicePokerWP\Common\DispatcherHelper.cs">
       <Link>Common\DispatcherHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Common\EnumCompactExtension.cs">
+      <Link>Common\EnumCompactExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Common\LocalSettings.cs">
+      <Link>Models\LocalSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Common\RoamingSettings.cs">
+      <Link>Models\RoamingSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Common\SanetImageProvider.cs">
+      <Link>Common\SanetImageProvider.cs</Link>
     </Compile>
     <Compile Include="..\DicePokerWP\Models\CommonNavigationActions.cs">
       <Link>Models\CommonNavigationActions.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerWP\Models\Protocol\WebAPI\AbstractHttpService.cs">
+      <Link>Models\Protocol\WebAPI\AbstractHttpService.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Models\Protocol\WebAPI\InitService.cs">
+      <Link>Models\Protocol\WebAPI\InitService.cs</Link>
+    </Compile>
     <Compile Include="..\DicePokerWP\Models\ResourceModel.cs">
       <Link>Models\ResourceModel.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerWP\ViewModels\TableWrapper.cs">
+      <Link>ViewModels\TableWrapper.cs</Link>
+    </Compile>
     <Compile Include="..\MagicalYatzyOnline\DicePanel\DiceStyle.cs">
       <Link>DicePanel\DiceStyle.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Enums\ProfileType.cs">
+      <Link>Models\Enums\ProfileType.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IPlayer.cs">
+      <Link>Models\Interfaces\IPlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IRollResult.cs">
+      <Link>Models\Interfaces\IRollResult.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\KniffelGameClient.cs">
+      <Link>Models\KniffelGameClient.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Protocol\LobbyTCPClient.cs">
+      <Link>Models\Protocol\LobbyTCPClient.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Protocol\Observer\GameClientCommandObserver.cs">
+      <Link>Models\Protocol\Observer\GameClientCommandObserver.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\ViewModels\ChatViewModel.cs">
+      <Link>ViewModels\ChatViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\ViewModels\NewOnlineGameViewModel.cs">
+      <Link>ViewModels\NewOnlineGameViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\ViewModels\PlayerWrapper.cs">
+      <Link>ViewModels\PlayerWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\ViewModels\RollResultWrapper.cs">
+      <Link>ViewModels\RollResultWrapper.cs</Link>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -150,6 +417,13 @@
     <Compile Include="Common\SoundsProvider.cs" />
     <Compile Include="Common\TitltEffect.cs" />
     <Compile Include="Models\BasePage.cs" />
+    <Compile Include="Models\Protocol\TCPCommunicatorSL.cs" />
+    <Compile Include="Models\StoreManager.cs" />
+    <Compile Include="Service References\KniffelScoreService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -175,8 +449,30 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
+    <None Include="Service References\KniffelScoreService\KniffelService.wsdl" />
+    <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\KniffelScoreService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\KniffelScoreService\KniffelService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\KniffelScoreService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\KniffelScoreService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\KniffelScoreService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

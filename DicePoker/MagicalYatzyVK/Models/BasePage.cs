@@ -10,16 +10,14 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace MagicalYatzyVK.Models
+namespace MagicalYatzyVK.Views
 {
     public abstract class BasePage:Page
     {
 
-        public abstract void NavigateTo()
-        { }
+        public abstract void NavigateTo();
 
-        public abstract void NavigateFrom()
-        { }
+        public abstract void NavigateFrom();
 
         #region ViewModel
         public void SetViewModel<T>() where T : BaseViewModel

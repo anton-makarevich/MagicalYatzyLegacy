@@ -10,7 +10,9 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
-using MagicalYatzyVK.Models;
+using Sanet.Kniffel.ViewModels;
+using Sanet.Models;
+using Sanet.Kniffel.Models;
 
 namespace MagicalYatzyVK.Views
 {
@@ -50,11 +52,9 @@ namespace MagicalYatzyVK.Views
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.  The Parameter
         /// property is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        public override void NavigateTo()
         {
-#if DEBUG
-            StoreManager.CheckTrialDebug();
-#endif
+
             //dpBackground = new Sanet.Kniffel.DicePanel.DicePanel();
             if (ViewModelProvider.HasViewModel<MainPageViewModel>())
             {
@@ -64,8 +64,8 @@ namespace MagicalYatzyVK.Views
             SetViewModel<MainPageViewModel>();
             GetViewModel<MainPageViewModel>().PropertyChanged += GamePage_PropertyChanged;
 
-            if (ReviewBugger.IsTimeForReview())
-                ReviewBugger.PromptUser();
+            //if (ReviewBugger.IsTimeForReview())
+            //    ReviewBugger.PromptUser();
             
 
         }
@@ -79,7 +79,7 @@ namespace MagicalYatzyVK.Views
                 dpBackground.PanelStyle = GetViewModel<MainPageViewModel>().SettingsPanelStyle;
 
         }
-        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        public override void NavigateFrom()
         {
             dpBackground.EndRoll -= StartRoll;
             GetViewModel<MainPageViewModel>().PropertyChanged -= GamePage_PropertyChanged;

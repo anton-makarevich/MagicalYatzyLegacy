@@ -239,10 +239,6 @@ namespace DicePokerWP
                 ((ListBox)sender).SelectedItem = null;
             }
         }
-
-        private void defME_MediaFailed(object sender, ExceptionRoutedEventArgs e)
-        {
-            var t = e.ErrorException.Message;
-        }
+                
     }
 }
