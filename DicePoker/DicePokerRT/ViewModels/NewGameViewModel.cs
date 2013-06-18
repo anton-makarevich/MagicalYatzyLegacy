@@ -339,7 +339,11 @@ namespace Sanet.Kniffel.ViewModels
                 RoamingSettings.LastRule = SelectedRule.Rule.Rule;
         }
 
-        public override async void StartGame()
+        public override 
+#if WinRT
+            async
+#endif
+            void StartGame()
         {
             if (HasPlayers && SelectedRule != null)
             {

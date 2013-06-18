@@ -5,6 +5,9 @@ using Windows.UI.Xaml.Media.Imaging;
 #endif
 #if WINDOWS_PHONE
 using DicePokerWP.KniffelLeaderBoardService;
+
+#endif
+#if SILVERLIGHT
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 #endif
@@ -13,7 +16,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+#if VK
+using MagicalYatzyVK.KniffelLeaderBoardService;
+#endif
 
 
 

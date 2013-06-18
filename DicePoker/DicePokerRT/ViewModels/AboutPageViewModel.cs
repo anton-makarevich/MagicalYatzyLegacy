@@ -77,7 +77,13 @@ namespace Sanet.Kniffel.ViewModels
                 return "ForWin8Label".Localize();
             }
         }
-
+        public string ForWPLabel
+        {
+            get
+            {
+                return "ForWPLabel".Localize();
+            }
+        }
         /// <summary>
         /// Display current package version
         /// </summary>  
@@ -152,6 +158,7 @@ namespace Sanet.Kniffel.ViewModels
                     }),
                     Image = new BitmapImage(SanetImageProvider.GetAssetsImage("Mail.png"))
                 });
+#if !VK
             _AboutAppActions.Add(
                 new AboutAppAction
                 {
@@ -162,6 +169,7 @@ namespace Sanet.Kniffel.ViewModels
                     }),
                     Image = new BitmapImage(SanetImageProvider.GetAssetsImage("Rate.png"))
                 });
+#endif
             if (StoreManager.IsAdVisible())
             _AboutAppActions.Add(
                 new AboutAppAction

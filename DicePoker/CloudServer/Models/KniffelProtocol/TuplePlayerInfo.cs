@@ -49,12 +49,12 @@ namespace Sanet.Kniffel.Protocol
             Language=argsToken.NextToken();
             PhotoUri=argsToken.NextToken();
             ClientType=(ClientType)Enum.Parse(typeof(ClientType),argsToken.NextToken()
-#if WINDOWS_PHONE
+#if SILVERLIGHT
 , false
 #endif
                 );
             SelectedStyle = (DiceStyle)Enum.Parse(typeof(DiceStyle), argsToken.NextToken()
-#if WINDOWS_PHONE
+#if SILVERLIGHT
 , false
 #endif
                 );

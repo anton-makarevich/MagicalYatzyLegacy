@@ -20,6 +20,7 @@ namespace Sanet.Kniffel.Models
         public static event Action OnNavigationToNewGame;
         public static event Action OnNavigationToGame;
         public static event Action OnNavigationToOnlineGame;
+        public static event Action OnNavigationToMainPage;
         #endregion
 
 
@@ -29,7 +30,9 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(()=>
                     {
-                        //((Frame)Window.Current.Content).Navigate(typeof(MainPage));
+                        SoundsProvider.PlaySound("click");
+                        if (OnNavigationToMainPage != null)
+                            OnNavigationToMainPage();
                 });
             }
             
@@ -142,6 +145,9 @@ namespace Sanet.Kniffel.Models
                     emailComposeTask.To = "support@sanet.by";
                     
                     emailComposeTask.Show();
+#endif
+#if VK
+                    System.Windows.Browser.HtmlPage.Window.Navigate(new Uri("mailto:support@sanet.by"), "_blank");
 #endif
                 });
             }

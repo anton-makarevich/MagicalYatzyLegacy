@@ -37,13 +37,13 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
         {
             SeatNo = int.Parse(argsToken.NextToken());
             m_PlayerClient = (ClientType)Enum.Parse(typeof(ClientType), argsToken.NextToken()
-#if WINDOWS_PHONE
+#if SILVERLIGHT
 , false
 #endif
                 );
             m_PlayerLanguage = argsToken.NextToken();
             SelectedStyle = (DiceStyle)Enum.Parse(typeof(DiceStyle), argsToken.NextToken()
-#if WINDOWS_PHONE
+#if SILVERLIGHT
 , false
 #endif
                 );

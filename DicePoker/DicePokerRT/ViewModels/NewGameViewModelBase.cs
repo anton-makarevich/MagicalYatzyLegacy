@@ -24,7 +24,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sanet.AllWrite;
-
+#if VK
+using MagicalYatzyVK.KniffelLeaderBoardService;
+#endif
 
 namespace Sanet.Kniffel.ViewModels
 {
@@ -32,18 +34,19 @@ namespace Sanet.Kniffel.ViewModels
     {
 
         protected Popup _magicPopup = new Popup();
+#if !VK
         protected MagicRoomPage _magic = new MagicRoomPage();
-
+#endif
         public event EventHandler MagicPageOpened;
 
         
         #region Constructor
         public NewGameViewModelBase()
         {
-
+#if !VK
             _magicPopup.Child = _magic;
             _magic.Tag = _magicPopup;
-
+#endif
         }
         #endregion
 
@@ -200,11 +203,12 @@ namespace Sanet.Kniffel.ViewModels
 
         protected void p_MagicPressed(object sender, EventArgs e)
         {
-
+#if !VK
             _magic.GetViewModel<MagicRoomViewModel>().CurrentPlayer = (PlayerWrapper)sender;
             _magicPopup.IsOpen = true;
             if (MagicPageOpened != null)
                 MagicPageOpened(null, null);
+#endif
         }
 
         public void CloseMagicPage()
@@ -258,9 +262,10 @@ namespace Sanet.Kniffel.ViewModels
 #if WinRT
                     GetPlayersMagicsResponse result = await client.GetPlayersMagicsAsync(player.Name, player.Password.Encrypt(33), rolls, manuals, resets);
 #endif
-#if WINDOWS_PHONE
+#if SILVERLIGHT
                     GetPlayersMagicsResponse result = await client.GetPlayersMagicsTaskAsync(player.Name, player.Password.Encrypt(33), rolls, manuals, resets);
 #endif
+
                     player.HadStartupMagic = result.Body.GetPlayersMagicsResult;
                     if (RoamingSettings.GetMagicRollsCount(player.Player) == 0 && result.Body.rolls == 10)
                         Utilities.ShowToastNotification(string.Format(Messages.PLAYER_ARTIFACTS_BONUS.Localize(), player.Name, 10));

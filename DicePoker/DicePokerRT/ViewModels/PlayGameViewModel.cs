@@ -1,4 +1,7 @@
-﻿using Sanet.Kniffel.DicePanel;
+﻿#if VK
+using MagicalYatzyVK.KniffelLeaderBoardService;
+#endif
+using Sanet.Kniffel.DicePanel;
 using Sanet.Kniffel.Models;
 using Sanet.Kniffel.Models.Enums;
 using Sanet.Kniffel.Models.Events;
@@ -1062,7 +1065,7 @@ namespace Sanet.Kniffel.ViewModels
 #if WinRT
                             var res = await ks.AddPlayersMagicsAsync(p.Name, p.Password.Encrypt(33), addartifacts.ToString().Encrypt(33), addartifacts.ToString().Encrypt(33), addartifacts.ToString().Encrypt(33));
 #endif
-#if WINDOWS_PHONE
+#if SILVERLIGHT
                             var res = await ks.AddPlayersMagicsTaskAsync(p.Name, p.Password.Encrypt(33), addartifacts.ToString().Encrypt(33), addartifacts.ToString().Encrypt(33), addartifacts.ToString().Encrypt(33));
 #endif
                             if (res.Body.AddPlayersMagicsResult)
@@ -1083,7 +1086,7 @@ namespace Sanet.Kniffel.ViewModels
 #if WinRT
                             var rs = await ks.PutScoreIntoTableWithPicPureNameAsync(p.Name, p.Password.Encrypt(33), p.Total.ToString().Encrypt(33), Game.Rules.ToString().Encrypt(33), p.Player.PicUrl);
 #endif
-#if WINDOWS_PHONE
+#if SILVERLIGHT
                             var rs = await ks.PutScoreIntoTableWithPicPureNameTaskAsync(p.Name, p.Password.Encrypt(33), p.Total.ToString().Encrypt(33), Game.Rules.ToString().Encrypt(33), p.Player.PicUrl);
 #endif
                             done = rs.Body.PutScoreIntoTableWithPicPureNameResult;

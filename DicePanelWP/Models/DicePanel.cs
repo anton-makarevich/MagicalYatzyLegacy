@@ -865,8 +865,18 @@ namespace Sanet.Kniffel.DicePanel
         {
             try
             {
-                xPos = FPanel.FRand.Next(0, Convert.ToInt32(FPanel.ActualWidth) - w);
-                yPos = FPanel.FRand.Next(0, Convert.ToInt32(FPanel.ActualHeight) - h);
+                var w1 = (FPanel.ActualWidth == 0) ? FPanel.Width : FPanel.ActualWidth;
+                var h1 = (FPanel.Height == 0) ? FPanel.Height : FPanel.Height;
+                if (w1 > 0 && h1 > 0)
+                {
+                    xPos = FPanel.FRand.Next(0, Convert.ToInt32(w1) - w);
+                    yPos = FPanel.FRand.Next(0, Convert.ToInt32(h1) - h);
+                }
+                else
+                {
+                    xPos = 0;
+                    yPos = 0;
+                }
             }
             catch 
             {

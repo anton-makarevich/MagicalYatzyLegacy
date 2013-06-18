@@ -1,4 +1,5 @@
-﻿using Sanet.Models;
+﻿using Sanet.Kniffel.Models;
+using Sanet.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,14 @@ namespace MagicalYatzyVK
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            JoinManager.Init();
+            //check if trial version
+            StoreManager.CheckTrial();
+            //init localizer
+            LocalizerExtensions.RModel = new ResourceModel();
+            //local settings init
+            LocalSettings.InitLocalSettings();
+
             this.RootVisual = new MainPage();
         }
 

@@ -1,5 +1,6 @@
 ﻿using MagicalYatzyVK.Views;
 using Sanet.Kniffel.Models;
+using Sanet.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace MagicalYatzyVK
     public partial class MainPage : UserControl
     {
         MenuPage _menuPage = new MenuPage();
+        AboutPage _aboutPage = new AboutPage();
 
         // Constructor
         public MainPage()
@@ -31,13 +33,20 @@ namespace MagicalYatzyVK
         {
             CommonNavigationActions.OnNavigationToAbout += CommonNavigationActions_OnNavigationToAbout;
             CommonNavigationActions.OnNavigationToLeaderboard += CommonNavigationActions_OnNavigationToLeaderboard;
-            CommonNavigationActions.OnNavigationToSettings += CommonNavigationActions_OnNavigationToSettings;
+            CommonNavigationActions.OnNavigationToMainPage += CommonNavigationActions_OnNavigationToMainPage;
             CommonNavigationActions.OnNavigationToOnlineGame += CommonNavigationActions_OnNavigationToOnlineGame;
+        }
+
+        void CommonNavigationActions_OnNavigationToMainPage()
+        {
+            ((BasePage)NavigationBorder.Child).NavigateFrom();
+            NavigationBorder.Child = _menuPage;
+            _menuPage.NavigateTo();
         }
 
         void CommonNavigationActions_OnNavigationToOnlineGame()
         {
-            //NavigationService.Navigate(new Uri("/Views/NewOnlineGamePage.xaml", UriKind.RelativeOrAbsolute));
+            
         }
 
         
@@ -48,21 +57,19 @@ namespace MagicalYatzyVK
 
         void CommonNavigationActions_OnNavigationToAbout()
         {
-            //NavigationService.Navigate(new Uri("/Views/AboutPage.xaml", UriKind.RelativeOrAbsolute));
+            ((BasePage)NavigationBorder.Child).NavigateFrom();
+            NavigationBorder.Child = _aboutPage;
+            _aboutPage.NavigateTo();
         }
 
-        void CommonNavigationActions_OnNavigationToSettings()
-        {
-           // NavigationService.Navigate(new Uri("/Views/SettingsPage.xaml", UriKind.RelativeOrAbsolute));
-        }
-               
-
+        
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             //Init smartdispatcher
             SmartDispatcher.Initialize(this.Dispatcher);
             NavigationBorder.Child = _menuPage;
+            _menuPage.NavigateTo();
         }
 
                 

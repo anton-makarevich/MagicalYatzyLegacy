@@ -39,7 +39,7 @@ namespace Sanet.Kniffel.ViewModels
 #if WinRT
         string[] _language = Windows.System.UserProfile.GlobalizationPreferences.Languages[0].Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
 #endif
-#if WINDOWS_PHONE
+#if SILVERLIGHT
         string[] _language = new string[] { System.Threading.Thread.CurrentThread.CurrentCulture.Name.Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries)[0] };
 #endif
         DispatcherTimer _updateTimer = new DispatcherTimer() 
@@ -338,7 +338,9 @@ namespace Sanet.Kniffel.ViewModels
             p.NameClicked += p_NameClicked;
             p.PassClicked += p_PassClicked;
             p.PropertyChanged += p_PropertyChanged;
+#if !VK
             p.FacebookClicked += p_FacebookClicked;
+#endif
             p.IsBotPossible = false;
             p.IsHuman = true;
             p.Player.Client = Config.GetClientType();
@@ -347,9 +349,10 @@ namespace Sanet.Kniffel.ViewModels
             SelectedPlayer = p;
             
         }
-
+#if !VK
         async void p_FacebookClicked(object sender, EventArgs e)
         {
+
             bool isLoaded = false;
             if (SelectedPlayer.IsDefaultName)
             {
@@ -370,10 +373,12 @@ namespace Sanet.Kniffel.ViewModels
                 
             }
             LoadFacebookData(isLoaded);
-        }
 
+        }
+#endif
         public void LoadFacebookData(bool hasValue)
         {
+#if !VK
             if (hasValue)
             {
                 SelectedPlayer.Name = App.FBInfo.UserName;
@@ -386,6 +391,7 @@ namespace Sanet.Kniffel.ViewModels
             }
             SelectedPlayer.RefreshArtifactsInfo(false,true);
             SavePlayers();
+#endif
         }
 
        
