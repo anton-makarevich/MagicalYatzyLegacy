@@ -42,7 +42,7 @@ namespace Sanet.Kniffel.Models
             {
                 try
                 {
-                    if (_score.PicUrl.Length > 2)
+                    if (_score.PicUrl.Trim().Length > 2)
                         return new BitmapImage(new Uri(_score.PicUrl));
                 }
                 catch { }

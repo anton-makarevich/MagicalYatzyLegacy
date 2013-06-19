@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "KniffelOnlineMM", "KniffelOnlineMM.vbproj", "{58408AB5-0E12-4359-BCD4-7CDFE6CFE71F}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ssmmtest.Web", "..\ssmmtest.Web\ssmmtest.Web.vbproj", "{DAC4303D-EA00-494C-A1A3-9499DEF06DC1}"

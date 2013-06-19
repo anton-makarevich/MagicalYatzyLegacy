@@ -31,11 +31,11 @@ namespace MagicalYatzyVK.Views
         {
             
             //dpBackground = new Sanet.Kniffel.DicePanel.DicePanel();
-            dpBackground.PanelStyle = GetViewModel<AboutPageViewModel>().SettingsPanelStyle;
+            dpBackground.PanelStyle = GetViewModel<LeaderboardViewModel>().SettingsPanelStyle;
             dpBackground.TreeDScaleCoef = 0.38;
             dpBackground.NumDice = 5;
-            dpBackground.RollDelay = GetViewModel<AboutPageViewModel>().SettingsPanelSpeed;
-            dpBackground.DieAngle = GetViewModel<AboutPageViewModel>().SettingsPanelAngle;
+            dpBackground.RollDelay = GetViewModel<LeaderboardViewModel>().SettingsPanelSpeed;
+            dpBackground.DieAngle = GetViewModel<LeaderboardViewModel>().SettingsPanelAngle;
             dpBackground.MaxRollLoop = 40;
 
                                     
@@ -55,54 +55,39 @@ namespace MagicalYatzyVK.Views
         public override void NavigateTo()
         {
 
-            //dpBackground = new Sanet.Kniffel.DicePanel.DicePanel();
-            if (ViewModelProvider.HasViewModel<AboutPageViewModel>())
-            {
-                //StartRoll();
-            }
             dpBackground.EndRoll += StartRoll;
-            SetViewModel<AboutPageViewModel>();
-            GetViewModel<AboutPageViewModel>().PropertyChanged += GamePage_PropertyChanged;
-
-            //if (ReviewBugger.IsTimeForReview())
-            //    ReviewBugger.PromptUser();
-            
-
+            SetViewModel<LeaderboardViewModel>();
+            GetViewModel<LeaderboardViewModel>().PropertyChanged += GamePage_PropertyChanged;
+            GetViewModel<LeaderboardViewModel>().RefreshScores();
         }
         void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "SettingsPanelAngle")
-                dpBackground.DieAngle = GetViewModel<AboutPageViewModel>().SettingsPanelAngle;
+                dpBackground.DieAngle = GetViewModel<LeaderboardViewModel>().SettingsPanelAngle;
             else if (e.PropertyName == "SettingsPanelSpeed")
-                dpBackground.RollDelay = GetViewModel<AboutPageViewModel>().SettingsPanelSpeed;
+                dpBackground.RollDelay = GetViewModel<LeaderboardViewModel>().SettingsPanelSpeed;
             else if (e.PropertyName == "SettingsPanelStyle")
-                dpBackground.PanelStyle = GetViewModel<AboutPageViewModel>().SettingsPanelStyle;
+                dpBackground.PanelStyle = GetViewModel<LeaderboardViewModel>().SettingsPanelStyle;
 
         }
         public override void NavigateFrom()
         {
             dpBackground.EndRoll -= StartRoll;
-            GetViewModel<AboutPageViewModel>().PropertyChanged -= GamePage_PropertyChanged;
+            GetViewModel<LeaderboardViewModel>().PropertyChanged -= GamePage_PropertyChanged;
             
         }
         
-               
+              
 
-        private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (e.AddedItems.Count > 0)
-            {
-                AboutAppAction item = (AboutAppAction)(e.AddedItems[0]);
-                item.MenuAction();
-                ((ListBox)sender).SelectedItem = null;
-            }
-        }
 
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
             HyperlinkButton button = (HyperlinkButton)sender;
             System.Windows.Browser.HtmlPage.Window.Navigate(new Uri(button.Tag.ToString()), "_blank");
         }
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CommonNavigationActions.NavigateToMainPage();
+        }
     }
 }

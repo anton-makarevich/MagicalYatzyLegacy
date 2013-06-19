@@ -19,6 +19,7 @@ namespace MagicalYatzyVK
     {
         MenuPage _menuPage = new MenuPage();
         AboutPage _aboutPage = new AboutPage();
+        LeaderboardPage _leaderboardPage = new LeaderboardPage();
 
         // Constructor
         public MainPage()
@@ -52,7 +53,9 @@ namespace MagicalYatzyVK
         
         void CommonNavigationActions_OnNavigationToLeaderboard()
         {
-            //NavigationService.Navigate(new Uri("/Views/LeaderboardPage.xaml", UriKind.RelativeOrAbsolute));
+            ((BasePage)NavigationBorder.Child).NavigateFrom();
+            NavigationBorder.Child = _leaderboardPage;
+            _leaderboardPage.NavigateTo();
         }
 
         void CommonNavigationActions_OnNavigationToAbout()

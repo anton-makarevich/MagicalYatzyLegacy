@@ -15,7 +15,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>
+    <SupportedCultures>ru-RU; de-DE; be-BY; es-ES; sv-SE
     </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
@@ -53,7 +53,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>Bin\Release</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <DefineConstants>TRACE;SILVERLIGHT; VK</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -96,6 +96,7 @@
       <HintPath>$(TargetFrameworkDirectory)System.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Controls, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Data.DataForm.Toolkit">
       <HintPath>packages\SilverlightToolkit-Data.4.2010.4\lib\sl4\System.Windows.Controls.Data.DataForm.Toolkit.dll</HintPath>
     </Reference>
@@ -128,6 +129,9 @@
   <ItemGroup>
     <Compile Include="..\..\..\AllWrite\Sanet.AllWrite.WP\Sanet.AllWrite.WP\Models\Brushes.cs">
       <Link>Common\Brushes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Controls\Sanet.Animations\Animations.cs">
+      <Link>Common\Animations.cs</Link>
     </Compile>
     <Compile Include="..\..\..\SanetWeb\Models\LogManager.cs">
       <Link>Common\LogManager.cs</Link>
@@ -266,6 +270,9 @@
     </Compile>
     <Compile Include="..\CloudServer\Models\Protocol\QueueCommunicator.cs">
       <Link>Models\Protocol\QueueCommunicator.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Controls\RotatingPanel.cs">
+      <Link>Controls\RotatingPanel.cs</Link>
     </Compile>
     <Compile Include="..\DicePokerRT\DicePanel\DiceSelector.cs">
       <Link>DicePanel\DiceSelector.cs</Link>
@@ -429,6 +436,9 @@
     <Compile Include="Common\InternetCheker.cs" />
     <Compile Include="Common\SoundsProvider.cs" />
     <Compile Include="Common\TitltEffect.cs" />
+    <Compile Include="Controls\WaitIndicator.xaml.cs">
+      <DependentUpon>WaitIndicator.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\BasePage.cs" />
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\Protocol\TCPCommunicatorSL.cs" />
@@ -459,6 +469,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Controls\WaitIndicator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -994,7 +1008,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controls\" />
     <Folder Include="Images\1\" />
     <Folder Include="Images\2\" />
   </ItemGroup>
