@@ -2,11 +2,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
              xmlns:sanet="clr-namespace:Sanet.Models"
              xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:controls="clr-namespace:Sanet.Controls"
+             xmlns:common="clr-namespace:Sanet.Common"
              x:Class="MagicalYatzyVK.App"
              >
     <Application.Resources>
         <SolidColorBrush x:Key="SanetBlue" Color="#009cd6"/>
         <SolidColorBrush x:Key="PhoneForegroundBrush" Color="White"/>
+
+        <!--Converters-->
+        <common:BooleanToVisibilityConverter x:Key="VisibilityKey"/>
+        <common:ReverseBooleanToVisibilityConverter x:Key="ReversedVisibilityKey"/>
+        <common:BooleanToColorConverter x:Key="ColorKey"/>
+        <common:BooleanToSolidBrushConverter x:Key="BrushKey"/>
+        <common:ScoreTypeToColorConverter x:Key="ScoreKey"/>
 
         <Style x:Key="HeaderTextStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="56"/>
@@ -17,6 +26,14 @@
                     <TranslateTransform X="-2" Y="8"/>
                 </Setter.Value>
             </Setter>
+        </Style>
+
+        <Style x:Key="PlayerTileTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="Foreground" Value="White"/>
         </Style>
 
         <Style x:Key="ContentButton" TargetType="Button">
@@ -218,6 +235,144 @@
 
             </Grid>
         </DataTemplate>
+
+
+        <!--Datatemplate for main menu item-->
+        <DataTemplate x:Key="RuleTemplate">
+            <Grid Height="100" Margin="-5,5" HorizontalAlignment="Stretch"
+                          >
+                <!--Opacity="0.85" Background="{StaticResource SanetBlue}"-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="125"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <controls:RotatingPanel
+                x:Name="RulePanel" Width="100" Height="100" Background="Blue"
+                                    Margin="0">
+                    <Grid Height="100"
+                    Width="100"
+                      Visibility="{Binding IsFace,ElementName=RulePanel,Converter={StaticResource VisibilityKey}}"
+                  Background="{StaticResource SanetBlue}"
+                  >
+                        <TextBlock Text="{Binding BestWeekScoreLabel}"
+                           VerticalAlignment="Top" Style="{StaticResource PlayerTileTextStyle}"
+                           Foreground="White"/>
+                        <TextBlock Text="{Binding BestWeekScore}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           Foreground="White"
+                           Margin="2,5,2,2"
+                           FontSize="25"/>
+                        <TextBlock Text="{Binding BestWeekScorePlayer}"
+                           VerticalAlignment="Bottom" Style="{StaticResource PlayerTileTextStyle}"
+                                Foreground="White" TextWrapping="NoWrap"
+                           />
+                        
+                        <controls:WaitIndicator IsActive="{Binding IsWeekScoreLoading}"
+                                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          />
+                    </Grid>
+
+                    <Grid Height="100"
+                    Width="100"
+                      Visibility="{Binding IsFace,ElementName=RulePanel,Converter={StaticResource ReversedVisibilityKey}}"
+                  Background="{StaticResource SanetBlue}"
+                  >
+                        <TextBlock Text="{Binding BestDayScoreLabel}"
+                           VerticalAlignment="Top" Style="{StaticResource PlayerTileTextStyle}"
+                           Foreground="White"/>
+                        <TextBlock Text="{Binding BestDayScore}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           Foreground="White"
+                           Margin="2,5,2,2"
+                           FontSize="25"/>
+                        <TextBlock Text="{Binding BestDayScorePlayer}"
+                           VerticalAlignment="Bottom" Style="{StaticResource PlayerTileTextStyle}"
+                                Foreground="White" TextWrapping="NoWrap"
+                           />
+                        <controls:WaitIndicator IsActive="{Binding IsDayScoreLoading}"
+                                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          />
+                    </Grid>
+                </controls:RotatingPanel>
+                <Image 
+                    Grid.Column="1"
+                    Height="36"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Source="/Assets/check.png"
+                    Visibility="{Binding IsSelected,Converter={StaticResource VisibilityKey}}"/>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{Binding NameLocalized}" Foreground="{StaticResource SanetBlue}" 
+                                 FontSize="25" Height="30" Margin="5,5,0,0" />
+                    <TextBlock Text="{Binding ShortDescriptionLocalized}" Foreground="{StaticResource SanetBlue}" 
+                                 FontSize="18" Height="70" Margin="5,5,0,5" MaxWidth="510"
+                           TextWrapping="Wrap" TextTrimming="WordEllipsis"
+                           />
+                </StackPanel>
+
+            </Grid>
+        </DataTemplate>
+
+
+        <!--Datatemplate for main menu item-->
+        <DataTemplate x:Key="TableTemplate">
+            <Grid Height="115" Width="115"
+              Background="{StaticResource SanetBlue}"
+              Margin="5" HorizontalAlignment="Stretch"
+                          >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding Name}"
+                      Style="{StaticResource PlayerTileTextStyle}"
+                           Margin="1" TextWrapping="NoWrap"
+                      HorizontalAlignment="Left"/>
+                <ListBox
+                    Background="Transparent"
+                    BorderThickness="0"
+                    IsHitTestVisible="False"
+                Grid.Row="1"
+                Margin="5,0,0,0"
+                ItemsSource="{Binding Players}"
+                HorizontalAlignment="Left"
+                    ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                    ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"
+                                       FontSize="14"
+                                   Height="29" Style="{StaticResource PlayerTileTextStyle}"
+                                   TextAlignment="Left"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="Width" Value="110"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="Margin"  Value="0"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+
+                <Image 
+                    Grid.RowSpan="2"
+                    Height="24"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Source="/Assets/check.png"
+                    Visibility="{Binding IsSelected,Converter={StaticResource VisibilityKey}}"/>
+
+            </Grid>
+        </DataTemplate>
+
 
         <Style x:Key="TabItemStyle1" TargetType="sdk:TabItem">
             <Setter Property="IsTabStop" Value="False"/>

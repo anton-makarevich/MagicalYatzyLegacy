@@ -1,0 +1,215 @@
+﻿<views:BasePage xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" 
+                x:Class="MagicalYatzyVK.Views.NewOnlineGamePage" 
+                     xmlns:views="clr-namespace:MagicalYatzyVK.Views"
+                xmlns:sanet="clr-namespace:Sanet.Models"
+                xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:DicePanel="clr-namespace:Sanet.Kniffel.DicePanel"  
+                xmlns:controls="clr-namespace:Sanet.Controls"
+                 mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+                Width="1000" Height="700"
+           Title="MenuPage Page">
+    <Grid x:Name="ContentPanel" Background="Black" Margin="12,0,12,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+            </Grid.RowDefinitions>
+        <DicePanel:DicePanel 
+            Grid.RowSpan="2"
+            Width="1000" Height="700"
+                x:Name="dpBackground"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button
+                Style="{StaticResource ContentButton}"
+                Click="Button_Click">
+                <Image Source="/Assets/back.png" Height="48" />
+            </Button>
+            <TextBlock Style="{StaticResource HeaderTextStyle}"
+                   Foreground="{StaticResource SanetBlue}"
+                   x:Name="titleText"
+                   Text="{Binding Title}"
+                   Grid.Column="1"
+                   Margin="100,0"
+                   VerticalAlignment="Center"/>
+        </Grid><!--sanet:TiltEffect.IsTiltEnabled="True"-->
+
+        <Grid
+            Grid.Row="1"
+                        Margin="12,0,12,0">
+            <Grid.RowDefinitions>
+                 <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel DataContext="{Binding SelectedPlayer}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Image Width="100" Height="100" Source="{Binding ProfilePhoto}"/>
+                        <Button
+                            HorizontalAlignment="Center"
+                            Style="{StaticResource ContentButton}"
+                            Margin="2,0"
+                            Height="100"
+                            Width="100"
+                            Grid.Column="1"
+                            Visibility="{Binding IsHuman,Converter={StaticResource VisibilityKey}}"
+                            HorizontalContentAlignment="Center"
+                            VerticalAlignment="Center"
+                            Command="{Binding MagicCommand}">
+                            <Grid
+                                Height="100"
+                                Width="100"
+                                Background="{StaticResource SanetBlue}">
+                                <TextBlock Text="{Binding ArtifactsInfoMessage}"
+                                   VerticalAlignment="Top" 
+                                   Foreground="White" 
+                                   Style="{StaticResource PlayerTileTextStyle}"
+                                    Visibility="{Binding HasArtifacts,Converter={StaticResource ReversedVisibilityKey}}"
+                                    />
+                                    <Grid
+                                        VerticalAlignment="Top" Margin="2"
+                                        Visibility="{Binding HasArtifacts,Converter={StaticResource VisibilityKey}}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                    <Image Source="/Assets/MagicWand.png"
+                                        Width="32"
+                                        VerticalAlignment="Bottom"/>
+                                    <Image Source="/Assets/Manual.png"
+                                    Grid.Column="1"
+                                    Width="32"
+                                    VerticalAlignment="Bottom"/>
+                                    <Image Source="/Assets/ResetRoll.png"
+                                        Width="32"
+                                        Grid.Column="2"
+                                        VerticalAlignment="Bottom"/>
+                                        <TextBlock Text="{Binding MagicRollsCount}"
+                                            VerticalAlignment="Bottom" Margin="2"
+                                             HorizontalAlignment="Center"
+                                             TextAlignment="Center"
+                                             Grid.Row="1"
+                                             Grid.Column="0"
+                                            FontSize="18"
+                                           Foreground="White" 
+                                           />
+                                    <TextBlock Text="{Binding ManualSetsCount}"
+                                        VerticalAlignment="Bottom" Margin="2"
+                                         HorizontalAlignment="Center"
+                                         TextAlignment="Center"
+                                         Grid.Row="1"
+                                         Grid.Column="1"
+                                        FontSize="18"
+                                       Foreground="White" 
+                                       />
+                                    <TextBlock Text="{Binding RollResetsCount}"
+                                        VerticalAlignment="Bottom" Margin="2"
+                                         HorizontalAlignment="Center"
+                                         TextAlignment="Center"
+                                         Grid.Row="1"
+                                         Grid.Column="2"
+                                        FontSize="18"
+                                       Foreground="White" 
+                                       />
+
+                                </Grid>
+
+                                <TextBlock Text="{Binding ArtifactsLabelLocalized}"
+                           VerticalAlignment="Bottom" 
+                           Foreground="White" Style="{StaticResource PlayerTileTextStyle}"
+                           />
+                            </Grid>
+
+                        </Button>
+                    </Grid>
+                    
+                    <TextBlock Text="{Binding Name}"
+                                       VerticalAlignment="Top" Style="{StaticResource PlayerTileTextStyle}"
+                                       Foreground="White" 
+                                       />
+                </StackPanel>
+                
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                            Margin="0,5,0,0"
+                            FontSize="20"
+                            HorizontalAlignment="Left"
+                            Foreground="{StaticResource SanetBlue}"
+                            Text="{Binding TablesLabel}"/>
+                    
+
+                    <ListBox
+                        Background="Transparent"
+                    BorderThickness="0"
+                            Grid.Row="1"
+                            Margin="5"
+                            SelectionMode="Single"
+                            ItemsSource="{Binding Tables}"
+                            HorizontalAlignment="Left"
+                            SelectedItem="{Binding SelectedTable,Mode=TwoWay}"
+                            ItemTemplate="{StaticResource TableTemplate}"
+                            >
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <toolkit:WrapPanel MaxWidth="280"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                    <controls:WaitIndicator HorizontalAlignment="Center"
+                              Foreground="{StaticResource SanetBlue}"
+                              Grid.RowSpan="2"
+                              IsActive="{Binding BusyWithServer}"/>
+
+
+                </Grid>
+            </Grid>
+            
+            <ListBox
+                Width="650"
+                Grid.Column="1"
+                Background="Transparent"
+                BorderThickness="0"
+                        Margin="0"
+                        SelectionMode="Single"
+                        ItemsSource="{Binding Rules}"
+                        HorizontalAlignment="Center"
+                        SelectedItem="{Binding SelectedRule, Mode=TwoWay}"
+                        ItemTemplate="{StaticResource RuleTemplate}"
+                  />
+            
+            
+        </Grid>
+    </Grid>
+</views:BasePage>

@@ -23,6 +23,7 @@ using Sanet.Common;
 #if SILVERLIGHT
 using System.Windows.Controls.Primitives;
 using System.Windows.Threading;
+using MagicalYatzyVK;
 #endif
 #if WINDOWS_PHONE
 
@@ -319,6 +320,18 @@ namespace Sanet.Kniffel.ViewModels
         protected override void FillPlayers()
         {
             Players = new ObservableCollection<PlayerWrapper>();
+#if VK
+            var p = new PlayerWrapper(new Player())
+                {
+
+                    Type = PlayerType.Local,
+                    Profile = ProfileType.VKontakte,
+                    Name = App.VKName,
+                    Password = App.VKPass
+                };
+                    
+#else
+
             var p = RoamingSettings.GetLastPlayer(5);
             if (p==null||p.Player == null)
             {
@@ -326,13 +339,16 @@ namespace Sanet.Kniffel.ViewModels
                 var    userName = GetNewPlayerName(PlayerType.Local);
                 p = new PlayerWrapper(new Player())
                 {
+
                     Type = PlayerType.Local,
                     Profile = ProfileType.Facebook,
                     Name=userName
+
                 };
                
             }
-            p.RefreshArtifactsInfo();
+#endif
+           
             p.MagicPressed += p_MagicPressed;
             p.ArtifactsSyncRequest += ArtifactsSyncRequest;
             p.NameClicked += p_NameClicked;
@@ -340,7 +356,10 @@ namespace Sanet.Kniffel.ViewModels
             p.PropertyChanged += p_PropertyChanged;
 #if !VK
             p.FacebookClicked += p_FacebookClicked;
+#else
+            p.Player.PicUrl = App.VKPic;
 #endif
+            p.RefreshArtifactsInfo();
             p.IsBotPossible = false;
             p.IsHuman = true;
             p.Player.Client = Config.GetClientType();

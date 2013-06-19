@@ -135,8 +135,8 @@
 
                         </ListBox>
                         
-                        <controls:WaitIndicator x:Name="WI"
-                                                IsActive="{Binding ScoresBLoading}"
+                        <controls:WaitIndicator 
+                            IsActive="{Binding ScoresBLoading}"
                                           HorizontalAlignment="Center"
                           VerticalAlignment="Center"
                           Grid.ColumnSpan="2"/>
@@ -515,7 +515,7 @@
                 Click="HyperlinkButton_Click"
                 FontSize="18"
                 Tag="http://sanet.by/kniffel" 
-                Content="{Binding DevelopedByLabel}" 
+                Content="{Binding NavigateToLeaderboardLabel}" 
                 HorizontalAlignment="Center" />
         </Grid>
     </Grid>

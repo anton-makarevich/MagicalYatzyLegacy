@@ -97,31 +97,16 @@
     </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Controls, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Windows.Controls.Data.DataForm.Toolkit">
-      <HintPath>packages\SilverlightToolkit-Data.4.2010.4\lib\sl4\System.Windows.Controls.Data.DataForm.Toolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Controls.Data.Toolkit">
-      <HintPath>packages\SilverlightToolkit-Data.4.2010.4\lib\sl4\System.Windows.Controls.Data.Toolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit">
-      <HintPath>packages\SilverlightToolkit-DataViz.4.2010.4\lib\sl4\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Controls.Input.Toolkit">
-      <HintPath>packages\SilverlightToolkit-Input.4.2010.4\lib\sl4\System.Windows.Controls.Input.Toolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Controls.Layout.Toolkit">
-      <HintPath>packages\SilverlightToolkit-Layout.4.2010.4\lib\sl4\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Controls.Navigation, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Windows.Controls.Theming.Toolkit">
-      <HintPath>packages\SilverlightToolkit-Theming.4.2010.4\lib\sl4\System.Windows.Controls.Theming.Toolkit.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Controls.Toolkit">
       <HintPath>packages\SilverlightToolkit-Core.4.2010.4\lib\sl4\System.Windows.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
     <Reference Include="System.Xml.Linq, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="VKontakte">
+      <HintPath>..\..\..\..\Downloads\VKAPI+testApp\VKAPI+testApp\Bin\Debug\VKontakte.dll</HintPath>
+    </Reference>
     <Reference Include="WebSocket4Net">
       <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.Silverlight\Bin\Release\WebSocket4Net.dll</HintPath>
     </Reference>
@@ -376,6 +361,18 @@
     <Compile Include="..\DicePokerWP\Common\SanetImageProvider.cs">
       <Link>Common\SanetImageProvider.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerWP\Converters\BooleanToColorConverter.cs">
+      <Link>Converters\BooleanToColorConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Converters\BooleanToVisibilityConverter.cs">
+      <Link>Converters\BooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Converters\ReverseBooleanToVisibilityConverter.cs">
+      <Link>Converters\ReverseBooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Converters\ScoreTypeToColorConverter.cs">
+      <Link>Converters\ScoreTypeToColorConverter.cs</Link>
+    </Compile>
     <Compile Include="..\DicePokerWP\Models\CommonNavigationActions.cs">
       <Link>Models\CommonNavigationActions.cs</Link>
     </Compile>
@@ -453,6 +450,9 @@
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NewOnlineGamePage.xaml.cs">
+      <DependentUpon>NewOnlineGamePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LeaderboardPage.xaml.cs">
       <DependentUpon>LeaderboardPage.xaml</DependentUpon>
     </Compile>
@@ -474,6 +474,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\AboutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewOnlineGamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -968,11 +972,23 @@
     <Content Include="..\DicePokerRT\Assets\About.png">
       <Link>Assets\About.png</Link>
     </Content>
+    <Content Include="..\DicePokerRT\Assets\check.png">
+      <Link>Assets\check.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\MagicWand.png">
+      <Link>Assets\MagicWand.png</Link>
+    </Content>
     <Content Include="..\DicePokerRT\Assets\Mail.png">
       <Link>Assets\Mail.png</Link>
     </Content>
+    <Content Include="..\DicePokerRT\Assets\Manual.png">
+      <Link>Assets\Manual.png</Link>
+    </Content>
     <Content Include="..\DicePokerRT\Assets\OnlineGame.png">
       <Link>Assets\OnlineGame.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\ResetRoll.png">
+      <Link>Assets\ResetRoll.png</Link>
     </Content>
     <Content Include="..\DicePokerRT\Assets\Victory.png">
       <Link>Assets\Victory.png</Link>

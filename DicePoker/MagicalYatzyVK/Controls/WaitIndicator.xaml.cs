@@ -9,6 +9,7 @@ namespace Sanet.Controls
 {
     public partial class WaitIndicator : UserControl
     {
+        
         #region Member Variables
         private Ellipse[] m_ellipseArray = null;
         private Storyboard m_indicatorStoryboard = null;
@@ -30,7 +31,7 @@ namespace Sanet.Controls
 
         #region DependencyProperties
 
-        bool outsidechange = false;
+        
         /// <summary>
         /// Returns if visible side is face
         /// </summary>

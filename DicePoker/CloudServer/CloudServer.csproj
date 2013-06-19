@@ -261,6 +261,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\kniffel\KniffelOnline.Web\clientaccesspolicy.xml">
+      <Link>clientaccesspolicy.xml</Link>
+    </Content>
+    <Content Include="crossdomain.xml" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\yatzy - FTP.pubxml" />

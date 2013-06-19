@@ -17,6 +17,10 @@ namespace MagicalYatzyVK
     public partial class App : Application
     {
         public static ApplicationResources ResourceProvider = new ApplicationResources();
+
+        public static string VKName;
+        public static string VKPass;
+        public static string VKPic;
         public App()
         {
             this.Startup += this.Application_Startup;

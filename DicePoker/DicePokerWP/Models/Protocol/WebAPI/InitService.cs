@@ -34,12 +34,20 @@ namespace Sanet.Kniffel.WebApi
 
             string versionString = string.Format("{0}.{1}{2}{3}", nameHelper.Version.Major, nameHelper.Version.Minor, nameHelper.Version.Build, nameHelper.Version.Revision);
 
-            //var response = await _client.GetAsync(string.Format("{0}/{1}?version={2}&lang={3}",
-            //    serviceUrl, userid.ToString(),versionString,language));
-            var jsonString = await _client.DownloadStringTaskAsync(string.Format("{0}/{1}?version={2}&lang={3}",
-                serviceUrl, userid.ToString(),versionString,language)); // response.Content.ReadAsStringAsync();
-            ServerHttpMessage message=JsonConvert.DeserializeObject<ServerHttpMessage>(jsonString);
-            return message;
+            try
+            {
+                //var response = await _client.GetAsync(string.Format("{0}/{1}?version={2}&lang={3}",
+                //    serviceUrl, userid.ToString(),versionString,language));
+                var jsonString = await _client.DownloadStringTaskAsync(string.Format("{0}/{1}?version={2}&lang={3}",
+                    serviceUrl, userid.ToString(), versionString, language)); // response.Content.ReadAsStringAsync();
+                ServerHttpMessage message = JsonConvert.DeserializeObject<ServerHttpMessage>(jsonString);
+                return message;
+            }
+            catch (Exception ex)
+            {
+                var t = ex.Message;
+                return null;
+            }
         }
         
     }
