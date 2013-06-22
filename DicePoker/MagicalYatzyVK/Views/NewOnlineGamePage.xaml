@@ -194,6 +194,17 @@
 
 
                 </Grid>
+                <Button
+                    Grid.Row="2"
+                Style="{StaticResource ContentButton}"
+                Click="Button_Click_1"
+                    Margin="5">
+                    <StackPanel>
+                        <Image Source="/Assets/play.png" Height="48" />
+                        <TextBlock Text="{Binding StartLabel}" Style="{StaticResource ButtonTextStyle}"/>
+                    </StackPanel>
+                    
+                </Button>
             </Grid>
             
             <ListBox

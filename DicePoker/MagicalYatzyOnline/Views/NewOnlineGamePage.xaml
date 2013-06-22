@@ -497,7 +497,7 @@
                         HorizontalAlignment="Left" 
                              Margin="0,0,-100,0"
                     IsEnabled="{Binding IsReadyToPlay}"  
-                    Style="{StaticResource DiceRollAppBarButtonStyle}"
+                    Style="{StaticResource PlayAppBarButtonStyle}"
                              AutomationProperties.Name="{Binding StartLabel}"
                              Command="{Binding StartCommand}" >
 

@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using WebSocket4Net;
 
+
 namespace Sanet.Network.Protocol
 {
     public class TCPCommunicator
@@ -30,8 +31,8 @@ namespace Sanet.Network.Protocol
 
         Uri ServerUri(string id,bool isreconnect)
         {
-           
-            string serveruri=@"ws://" + Config.GetHostName();
+           var baseUri=Config.GetHostName();
+            string serveruri=@"ws://" + baseUri.Remove(baseUri.Length-1)+":4502/";
             //@"ws://pksvc45.cloudapp.net/
             string fulluri = serveruri + "app.ashx";
             //var p = RoamingSettings.GetLastPlayer(0).Player;
@@ -60,7 +61,7 @@ namespace Sanet.Network.Protocol
             {
                 if (ClientWebSocket == null)
                     return false;
-                return ClientWebSocket.State== WebSocketState.Open;
+                return ClientWebSocket.State == WebSocketState.Open;
             }
         }
 
@@ -73,8 +74,7 @@ namespace Sanet.Network.Protocol
         string _lastId= string.Empty;
         public async Task<bool> ConnectAsync(string id, bool isreconnect = false)
         {
-            //await Window.Current.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
-            //{
+            
                 try
                 {
                     LogManager.Log(LogLevel.Message, "TCPCommunicatorRT.ConnectAsync", "Trying to connect, reconnect:{0}", isreconnect);
@@ -87,9 +87,10 @@ namespace Sanet.Network.Protocol
                         _lastId = id;
                         var uri = ServerUri(id,isreconnect);
                         webSocket = new WebSocket(uri.ToString());
+                        webSocket.ClientAccessPolicyProtocol = System.Net.Sockets.SocketClientAccessPolicyProtocol.Http;
                         //webSocket.Control.MessageType = SocketMessageType.Utf8;
                         // Set up callbacks
-                        webSocket.Error += webSocket_Error;
+                        webSocket.Error+=webSocket_Error;
                         webSocket.MessageReceived += Receive;
                         webSocket.Closed += webSocket_Closed;
 
@@ -203,7 +204,7 @@ namespace Sanet.Network.Protocol
             {
                 if (ClientWebSocket != null)
                 {
-                    ClientWebSocket.Close(1000, "Closed due to user request.");
+                    ClientWebSocket.Close();
                     ClientWebSocket = null;
                     //notify we disconnected
                     if (Disconnected != null)
@@ -219,10 +220,10 @@ namespace Sanet.Network.Protocol
         
         protected virtual void Send(string line)
         {
-            Task t = SendData(line);
+            SendData(line);
         }
                
-        private async Task SendData(string line)
+        private void SendData(string line)
         {
             if (ClientWebSocket != null)
             {

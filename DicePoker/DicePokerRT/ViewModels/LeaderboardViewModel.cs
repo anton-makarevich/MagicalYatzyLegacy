@@ -371,7 +371,10 @@ namespace Sanet.Kniffel.ViewModels
                     ScoresB.Add(new KniffelScoreWrapper(score));
                 NotifyPropertyChanged("ScoresB");
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var t = ex.Message;
+            }
             finally
             {
                 ScoresBLoading = false;

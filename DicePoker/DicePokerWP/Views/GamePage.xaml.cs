@@ -328,7 +328,8 @@ namespace DicePokerWP
                 GetViewModel<PlayGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
 
                 RemoveGameHandlers();
-
+                if (dpBackground.ManualSetMode)
+                    dpBackground.ManualSetMode = false;
                 dpBackground.DieFrozen -= dpBackground_DieFrozen;
                 dpBackground.EndRoll -= dpBackground_EndRoll;
                 dpBackground.DieChangedManual -= dpBackground_DieChangedManual;

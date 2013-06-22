@@ -1,0 +1,314 @@
+﻿<views:BasePage xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  x:Class="MagicalYatzyVK.Views.GamePage" 
+                     xmlns:views="clr-namespace:MagicalYatzyVK.Views"
+                xmlns:sanet="clr-namespace:Sanet.Models"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+                 xmlns:DicePanel="clr-namespace:Sanet.Kniffel.DicePanel"  
+                xmlns:controls="clr-namespace:Sanet.Controls"
+                 mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+                Width="1000" Height="700"
+           Title="MenuPage Page">
+    <Grid x:Name="ContentPanel" Background="Black" Margin="12,0,12,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="360"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <DicePanel:DicePanel 
+            VerticalAlignment="top"
+            HorizontalAlignment="Left"
+            Height="360"
+            Width="500"
+            Grid.Row="1"
+            Grid.Column="1"
+            x:Name="dpBackground"/>
+        
+        <!--Panel to show results-->
+        <Grid Grid.Column="1"
+              Grid.Row="1"
+              Grid.ColumnSpan="2"
+                            Visibility="Collapsed"
+                            x:Name="gridResults"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <ListBox
+                                 Margin="0" HorizontalAlignment="Stretch"
+                                    ItemsSource="{Binding Players}"
+                                    ItemTemplate="{StaticResource GameResultsTemplate}"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                    >
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
+            </ListBox>
+            <Button
+                        Grid.Row="1"
+                         x:Name="ClearButton"
+                        Style="{StaticResource ContentButton}"
+                        VerticalAlignment="Bottom"
+                        Margin="0,50"
+                        HorizontalAlignment="center"
+                        Click="AgainButton_Tapped_1">
+                <StackPanel>
+                    <Image Source="/Assets/redo.png" Height="48" />
+                    <TextBlock Text="{Binding PlayAgainLabel}" Style="{StaticResource ButtonTextStyle}"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+        
+        <!--Back button and title-->
+        <Grid
+            Grid.ColumnSpan="3"
+            >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button
+                Style="{StaticResource ContentButton}"
+                Click="Button_Click">
+                <Image Source="/Assets/back.png" Height="48" />
+            </Button>
+            <TextBlock Style="{StaticResource HeaderTextStyle}"
+                   Foreground="{StaticResource SanetBlue}"
+                   x:Name="titleText"
+                   Text="{Binding Title}"
+                   Grid.Column="1"
+                   Margin="0"
+                   VerticalAlignment="Center"/>
+        </Grid><!--sanet:TiltEffect.IsTiltEnabled="True"-->
+        <!--Scoring table and hat-->
+        <Grid
+            Grid.Row="1"
+                        Margin="5,0,5,0">
+            
+
+            <sdk:TabControl 
+                Background="Transparent" Margin="0" >
+                <sdk:TabItem Style="{StaticResource TabItemStyle1}"  >
+                    <sdk:TabItem.Header>
+                        <TextBlock
+                            Margin="0,5,0,0"
+                            FontSize="20"
+                            HorizontalAlignment="Left"
+                            Foreground="{StaticResource SanetBlue}"
+                            Text="{Binding TableLabel}"/>
+                    </sdk:TabItem.Header>
+                    <Grid
+                        VerticalAlignment="Top">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderThickness="0,0,1,0" BorderBrush="{StaticResource SanetBlue}">
+                            <StackPanel Margin="0,6,0,6">
+                                <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource SanetBlue}">
+                                    <Grid Height="59" 
+                                  Width="100"
+                                   HorizontalAlignment="Stretch"
+                                   >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="{Binding RulesLabel}"
+                                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       TextAlignment="Center"
+                                       FontSize="12"/>
+                                        <TextBlock Text="{Binding RulesNameLabel}"
+                                               Grid.Row="1"
+                                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       TextAlignment="Center"
+                                       FontSize="12"/>
+                                    </Grid>
+
+                                </Border>
+                                <ListBox
+                                    IsHitTestVisible="False"
+                                 Width="100"
+                                Margin="-5,0" HorizontalAlignment="Stretch"
+                                    ItemsSource="{Binding SampleResults}"
+                                    ItemTemplate="{StaticResource PlayerTableCaptionTemplate}"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                    >
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                            <Setter Property="Width" Value="100"/>
+                                            <Setter Property="Height" Value="34"/>
+                                            <Setter Property="Margin" Value="0,0,0,-2"/>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+
+                                </ListBox>
+                                <Grid Height="40" 
+                              Margin="0,5,0,0" HorizontalAlignment="Stretch"
+                              >
+                                    <TextBlock Text="{Binding TotalLabel}"
+                                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       TextTrimming="WordEllipsis"
+                                       TextWrapping="Wrap"
+                                                           Margin="5,0"
+                                       TextAlignment="Center"
+                                       FontSize="20"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                        <ListBox
+                            Grid.Column="1"
+                        ItemsSource="{Binding Players}"
+                        ItemTemplate="{StaticResource PlayerTableTemplate}"
+                        >
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="Width" Value="60"/>
+                                    <Setter Property="Margin" Value="0,0,0,-8"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+
+                        </ListBox>
+
+                    </Grid>
+                </sdk:TabItem>
+                <sdk:TabItem Style="{StaticResource TabItemStyle1}"  >
+                    <sdk:TabItem.Header>
+                        <TextBlock
+                            Margin="0,5,0,0"
+                            FontSize="20"
+                            HorizontalAlignment="Left"
+                            Foreground="{StaticResource SanetBlue}"
+                            Text="{Binding ChatPanelLabel}"/>
+                    </sdk:TabItem.Header>
+                    
+                </sdk:TabItem>
+                
+            </sdk:TabControl>
+            
+        </Grid>
+        <!--Buttons-->
+        <StackPanel
+                Grid.Column="2"
+            Grid.Row="1"
+            VerticalAlignment="Top"
+                Visibility="{Binding IsControlsVisible,Converter={StaticResource VisibilityKey}}"
+                    >
+            <Button
+                         Style="{StaticResource ContentButton}"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="center"
+                    Visibility="{Binding IsMagicRollVisible,Converter={StaticResource VisibilityKey}}"
+                            IsEnabled="{Binding IsMagicRollEnabled}"
+                         Click="MagicRoll_Tapped_1">
+                <StackPanel>
+                    <Image Source="/Assets/magic.png" Height="48" />
+                    <TextBlock Text="{Binding MagicRollLabel}" Style="{StaticResource ButtonTextStyle}"/>
+                </StackPanel>
+            </Button>
+            <Button
+                         Style="{StaticResource ContentButton}"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="center"
+                    Visibility="{Binding IsManualSetVisible,Converter={StaticResource VisibilityKey}}"
+                            IsEnabled="{Binding IsManualSetEnabled}"
+                        Click="ManualSet_Tapped_1">
+                <StackPanel>
+                    <Image Source="/Assets/manual2.png" Height="48" />
+                    <TextBlock Text="{Binding ManualSetLabel}" Style="{StaticResource ButtonTextStyle}"/>
+                </StackPanel>
+            </Button>
+            <Button
+                         Style="{StaticResource ContentButton}"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="center"
+                    Visibility="{Binding IsForthRollVisible,Converter={StaticResource VisibilityKey}}"
+                            IsEnabled="{Binding IsForthRollEnabled}"
+                     Click="ForthRoll_Tapped_1">
+                <StackPanel>
+                    <Image Source="/Assets/reset.png" Height="48" />
+                    <TextBlock Text="{Binding ForthRollLabel}" Style="{StaticResource ButtonTextStyle}"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <!--roll button-->
+        <StackPanel
+            Grid.Column="2"
+            Grid.Row="1"
+            Grid.RowSpan="3"
+            VerticalAlignment="Center"
+                Visibility="{Binding IsControlsVisible,Converter={StaticResource VisibilityKey}}"
+            >
+
+
+            <Grid Height="150"/>
+            <Button
+                 x:Name="RollButton"
+            Style="{StaticResource ContentButton}"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="center"
+                    Visibility="{Binding CanRoll, Converter={StaticResource VisibilityKey}}"
+                Click="Button_Tapped_1">
+                <StackPanel>
+                    <Image Source="/Assets/roll.png" Height="48" />
+                    <TextBlock Text="{Binding RollLabel}" Style="{StaticResource ButtonTextStyle}"/>
+                </StackPanel>
+            </Button>
+            <Button
+                 Style="{StaticResource ContentButton}"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="center"
+                    Visibility="{Binding CanStart, Converter={StaticResource VisibilityKey}}"
+                Click="Button_Tapped_2">
+                <StackPanel>
+                    <Image Source="/Assets/done.png" Height="48" />
+                    <TextBlock Text="{Binding ReadyToPlayLabel}" Style="{StaticResource ButtonTextStyle}"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <ListBox
+                Margin="0"
+                x:Name="RollResults"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Grid.Row="2"
+            ItemTemplate="{StaticResource ResultItemTemplate}"
+            ItemsSource="{Binding RollResults}"
+                SelectionChanged="ListBox_SelectionChanged"
+                VerticalAlignment="Bottom"
+            HorizontalAlignment="Center"
+               >
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <toolkit:WrapPanel MaxWidth="650"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+    </Grid>
+</views:BasePage>

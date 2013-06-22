@@ -54,6 +54,9 @@
     <Reference Include="AdRotator">
       <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\AdRotator.dll</HintPath>
     </Reference>
+    <Reference Include="AnalyticsMonitorWP7">
+      <HintPath>AnalyticsMonitorWP7_3_2_1\AnalyticsMonitorWP7.dll</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.WP71\Bin\Debug\BouncyCastle.Crypto.dll</HintPath>

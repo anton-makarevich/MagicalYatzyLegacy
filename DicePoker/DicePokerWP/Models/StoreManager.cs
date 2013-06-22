@@ -14,6 +14,9 @@ namespace Sanet.Kniffel.Models
         
         public static bool IsProductAvailable(string product)
         {
+#if !DEBUG
+            CheckTrial();
+#endif
             return _isTrial;
         }
         public static bool BuyLicense(string product)

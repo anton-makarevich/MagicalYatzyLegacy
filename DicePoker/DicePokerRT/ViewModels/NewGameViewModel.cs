@@ -200,10 +200,7 @@ namespace Sanet.Kniffel.ViewModels
                 if (string.IsNullOrEmpty(userName))
                     userName = await UserInformation.GetFirstNameAsync() + await UserInformation.GetFirstNameAsync();
 #endif
-#if WINDOWS_PHONE
-                WPIdentifyHelpers.GetWindowsLiveAnonymousID();
-#endif
-#if VK
+#if SILVERLIGHT
                     "";
 #endif
                 //if no luck - add default name

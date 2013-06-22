@@ -32,7 +32,28 @@ namespace Sanet.Kniffel.Server
         {
             lock (gamesDictLockObj)
             {
-                return m_Games[id];
+                var game = m_Games[id];
+
+                /*if (game.Players != null)
+                {
+                    //check for 'dead' players not sure if it correct place
+                    List<Player> deadPlayers = new List<Player>();
+                    foreach (Player p in game.Players)
+                    {
+                        ServerClientLobby clientLobby = null;
+                        if (!ServerClientLobby.playerToServerClientLobbyMapping.TryGetValue(p.ID, out clientLobby))
+                        {
+                            deadPlayers.Add(p);
+                        }
+                    }
+                    foreach (Player p in deadPlayers)
+                    {
+                        if (game.Players.Contains(p))
+                            game.Players.Remove(p);
+                    }
+                }*/
+                
+                return game;
             }
         }
 
@@ -139,18 +160,7 @@ namespace Sanet.Kniffel.Server
 
             foreach (var game in games)
             {
-                //check for 'dead' players not sure if it correct place
-                //foreach (Player p in game.Players)
-                //{ 
-                //    ServerClientLobby clientLobby;
-                //    ServerClientLobby.playerToServerClientLobbyMapping.TryGetValue(p.ID, out clientLobby);
-                //    if (clientLobby == null)
-                //    {
-                //        game.LeaveGame(p);
-                //        m_Games.Remove(game.GameId);
-                        
-                //    }
-                //}
+                
                 if (game.PlayersNumber>0)
                     rv.Add(new TupleTableInfo(game.GameId, game.Players.Select(p=>p.Name).ToList(), game.Rules.Rule));
             }

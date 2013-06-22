@@ -27,7 +27,7 @@ namespace MagicalYatzyVK
         // Your application ID
         private int appID = 2121738;
         // Your application secret
-        private string secret = "GyrW1jQHamrqhXG8hV7T";//"JuaJ8mf5V7";
+        private string secret = "GyrW1jQHamrqhXG8hV7T";
         // User ID
         private string iuid = "0";
         //private long[] uids;
@@ -37,6 +37,7 @@ namespace MagicalYatzyVK
         AboutPage _aboutPage = new AboutPage();
         LeaderboardPage _leaderboardPage = new LeaderboardPage();
         NewOnlineGamePage _newPage = new NewOnlineGamePage();
+        GamePage _gamePage = new GamePage();
 
         // Constructor
         public MainPage()
@@ -53,6 +54,14 @@ namespace MagicalYatzyVK
             CommonNavigationActions.OnNavigationToLeaderboard += CommonNavigationActions_OnNavigationToLeaderboard;
             CommonNavigationActions.OnNavigationToMainPage += CommonNavigationActions_OnNavigationToMainPage;
             CommonNavigationActions.OnNavigationToOnlineGame += CommonNavigationActions_OnNavigationToOnlineGame;
+            CommonNavigationActions.OnNavigationToGame += CommonNavigationActions_OnNavigationToGame;
+        }
+
+        void CommonNavigationActions_OnNavigationToGame()
+        {
+            ((BasePage)NavigationBorder.Child).NavigateFrom();
+            NavigationBorder.Child = _gamePage;
+            _gamePage.NavigateTo();
         }
 
         void CommonNavigationActions_OnNavigationToMainPage()
@@ -88,9 +97,17 @@ namespace MagicalYatzyVK
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            iuid = HtmlPage.Document.QueryString["viewer_id"];
-            
-            LoadVK();
+            try
+            {
+                iuid = HtmlPage.Document.QueryString["viewer_id"];
+
+                LoadVK();
+            }
+            catch 
+            {
+                App.VKName = "VK TestUser";
+                App.VKPass = "vk_0123456789";
+            }
             //Init smartdispatcher
             SmartDispatcher.Initialize(this.Dispatcher);
             NavigationBorder.Child = _menuPage;
@@ -130,7 +147,8 @@ namespace MagicalYatzyVK
             {
                 App.VKName=response.FirstName + " " + response.LastName;
                 App.VKPass = "vk_" + iuid;
-                App.VKPic = response.PhotoMedium;
+                App.VKPic = response.Photo;
+                //MessageBox.Show(response.Photo);
             }
         }
         #endregion

@@ -89,5 +89,10 @@ namespace MagicalYatzyVK.Views
         {
             CommonNavigationActions.NavigateToMainPage();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            GetViewModel<NewOnlineGameViewModel>().StartGame();
+        }
     }
 }

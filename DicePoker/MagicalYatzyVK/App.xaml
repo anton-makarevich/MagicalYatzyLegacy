@@ -3,6 +3,10 @@
              xmlns:sanet="clr-namespace:Sanet.Models"
              xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
              xmlns:controls="clr-namespace:Sanet.Controls"
+             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
+             xmlns:eim="clr-namespace:Microsoft.Expression.Interactivity.Media;assembly=Microsoft.Expression.Interactions" 
              xmlns:common="clr-namespace:Sanet.Common"
              x:Class="MagicalYatzyVK.App"
              >
@@ -17,6 +21,10 @@
         <common:BooleanToSolidBrushConverter x:Key="BrushKey"/>
         <common:ScoreTypeToColorConverter x:Key="ScoreKey"/>
 
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            
+        </Style>
         <Style x:Key="HeaderTextStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="56"/>
             <Setter Property="FontWeight" Value="Light"/>
@@ -27,7 +35,14 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
+        <Style x:Key="ButtonTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="MaxWidth" Value="80"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
         <Style x:Key="PlayerTileTextStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="Margin" Value="2"/>
@@ -72,7 +87,20 @@
 
                                     <VisualState x:Name="MouseOver"/>
 
-                                    <VisualState x:Name="Pressed"/>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer" Storyboard.TargetProperty="Width">
+
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="48" />
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="36" />
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="48" />
+
+                                            </ObjectAnimationUsingKeyFrames>
+
+                                        </Storyboard>
+                                    </VisualState>
+                                    
 
                                     <VisualState x:Name="Disabled">
 
@@ -107,6 +135,15 @@
             </Setter>
 
         </Style>
+
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <ItemsPanelTemplate x:Key="WrapPanelItemsPanelTemplate" >
+            <toolkit:WrapPanel />
+        </ItemsPanelTemplate>
 
         <DataTemplate
             sanet:TiltEffect.SuppressTilt="True"
@@ -318,6 +355,24 @@
             </Grid>
         </DataTemplate>
 
+        <DataTemplate x:Key="ResultItemTemplate">
+            <Grid Height="80" Width="80" Background="{Binding ScoreType,Converter={StaticResource ScoreKey}}"
+              Margin="0,0,0,5">
+                <TextBlock
+                    Foreground="White"
+                VerticalAlignment="Top"
+                FontSize="36"
+                HorizontalAlignment="Center"
+                TextAlignment="Center"
+                    Text="{Binding PossibleValue}" TextWrapping="NoWrap"/>
+                <Grid VerticalAlignment="Bottom" Background="#7f3c3c3c" Height="30">
+
+                    <TextBlock Text="{Binding AltText}" TextWrapping="NoWrap"
+                               Foreground="White"
+                               TextTrimming="WordEllipsis" VerticalAlignment="Center" FontWeight="Light" FontSize="12" />
+                </Grid>
+            </Grid>
+        </DataTemplate>
 
         <!--Datatemplate for main menu item-->
         <DataTemplate x:Key="TableTemplate">
@@ -371,6 +426,268 @@
                     Visibility="{Binding IsSelected,Converter={StaticResource VisibilityKey}}"/>
 
             </Grid>
+        </DataTemplate>
+
+        <!--Datatemplate for table results-->
+        <DataTemplate x:Key="PlayerTableTemplate">
+            <Border BorderThickness="2" BorderBrush="{Binding IsMoving, Converter={StaticResource BrushKey}}">
+
+                <StackPanel>
+                    <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource SanetBlue}">
+                        <Grid Height="59" 
+                              Width="60"
+                              Margin="0" HorizontalAlignment="Stretch"
+                              Background="{Binding IsMoving, Converter={StaticResource BrushKey}}"            >
+                            <Grid.Resources>
+                                <Storyboard x:Name="FlashNameChanged">
+                                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
+                                        <EasingColorKeyFrame KeyTime="0" Value="Yellow"/>
+                                        <EasingColorKeyFrame KeyTime="0:0:2" Value="White"/>
+                                    </ColorAnimationUsingKeyFrames>
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="textBlock">
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1">
+                                            <EasingDoubleKeyFrame.EasingFunction>
+                                                <BackEase EasingMode="EaseIn"/>
+                                            </EasingDoubleKeyFrame.EasingFunction>
+                                        </EasingDoubleKeyFrame>
+                                        <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0">
+                                            <EasingDoubleKeyFrame.EasingFunction>
+                                                <ElasticEase/>
+                                            </EasingDoubleKeyFrame.EasingFunction>
+                                        </EasingDoubleKeyFrame>
+                                    </DoubleAnimationUsingKeyFrames>
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="textBlock">
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.45">
+                                            <EasingDoubleKeyFrame.EasingFunction>
+                                                <BackEase EasingMode="EaseIn"/>
+                                            </EasingDoubleKeyFrame.EasingFunction>
+                                        </EasingDoubleKeyFrame>
+                                        <EasingDoubleKeyFrame KeyTime="0:0:2" Value="1">
+                                            <EasingDoubleKeyFrame.EasingFunction>
+                                                <ElasticEase/>
+                                            </EasingDoubleKeyFrame.EasingFunction>
+                                        </EasingDoubleKeyFrame>
+                                    </DoubleAnimationUsingKeyFrames>
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="textBlock">
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.65">
+                                            <EasingDoubleKeyFrame.EasingFunction>
+                                                <BackEase EasingMode="EaseIn"/>
+                                            </EasingDoubleKeyFrame.EasingFunction>
+                                        </EasingDoubleKeyFrame>
+                                        <EasingDoubleKeyFrame KeyTime="0:0:2" Value="1">
+                                            <EasingDoubleKeyFrame.EasingFunction>
+                                                <ElasticEase/>
+                                            </EasingDoubleKeyFrame.EasingFunction>
+                                        </EasingDoubleKeyFrame>
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                                <Storyboard x:Name="TurnTimerAnimation">
+
+                                    <ColorAnimation Duration="{Binding Duration}" To="Yellow" Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="timerShape" />
+                                    <DoubleAnimation Duration="{Binding Duration}" From="1" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="timerShape" />
+                                </Storyboard>
+                            </Grid.Resources>
+                            <i:Interaction.Triggers>
+                                <ei:DataTrigger Binding="{Binding IsMyTurn}" Value="true">
+                                    <eim:ControlStoryboardAction ControlStoryboardOption="Play" Storyboard="{StaticResource FlashNameChanged}"/>
+                                </ei:DataTrigger>
+                                <ei:DataTrigger Binding="{Binding IsMyTurn}" Value="true">
+                                    <eim:ControlStoryboardAction ControlStoryboardOption="Play" Storyboard="{StaticResource TurnTimerAnimation}"/>
+                                </ei:DataTrigger>
+                            </i:Interaction.Triggers>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Image
+                            Margin="-5,0,0,0"
+                            VerticalAlignment="top"
+                            HorizontalAlignment="Left"
+                            MaxHeight="35"
+                            Source="{Binding ProfilePhoto}"/>
+
+                            <TextBlock
+                            Grid.Row="1"
+                                Margin="-5,10,0,0"
+                                  x:Name="textBlock"
+                                  Text="{Binding Name}"
+                                     HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                       Foreground ="White"
+                                       TextWrapping="Wrap"
+                                       TextAlignment="Center"
+                                       Width="60"
+                                     FontSize="12">
+                                <TextBlock.RenderTransform>
+                                    <CompositeTransform/>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                            <Path x:Name="timerShape" Data="M 0,0 L50,0 L50,5 L0,5z" 
+                              Visibility="{Binding IsMyTurn, Converter={StaticResource VisibilityKey}}"
+                              VerticalAlignment="Bottom"
+                              Fill="YellowGreen"
+                              Margin="-10,5,0,-5"
+                              Height="5" Stretch="Fill" Stroke="White" StrokeThickness="0" 
+                              UseLayoutRounding="False" Width="50" RenderTransformOrigin="0,1">
+                                <Path.RenderTransform>
+                                    <CompositeTransform/>
+                                </Path.RenderTransform>
+                            </Path>
+                            <Image Source="/Assets/check.png"
+                               Height="16" 
+                               Margin="10,0"
+                               Grid.RowSpan="2"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Top"
+                               Visibility="{Binding IsReady,Converter={StaticResource VisibilityKey}}"/>
+
+                        </Grid>
+                    </Border>
+                    <ListBox
+                    IsHitTestVisible="false"
+                    ItemsSource="{Binding Results}"
+                    ItemTemplate="{StaticResource PlayerTableItemTemplate}"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                    >
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="Width" Value="60"/>
+                                <Setter Property="Height" Value="34"/>
+                                <Setter Property="Margin" Value="0,0,0,-2"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+
+                    </ListBox>
+                    <Grid Height="40" 
+              Width="60"
+              Margin="0,2" HorizontalAlignment="Stretch"
+              >
+                        <Border Margin="0,-2,0,-2"
+                                BorderThickness="0,1,0,0" BorderBrush="{StaticResource SanetBlue}">
+                            <TextBlock Text="{Binding Total}"
+                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                                   Foreground="White"
+                       TextTrimming="WordEllipsis"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       Width="50"
+                     FontSize="20"/>
+
+                        </Border>
+                        
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+
+        </DataTemplate>
+
+        <!--Datatemplate for table results cell-->
+        <DataTemplate x:Key="PlayerTableItemTemplate">
+            <Border Margin="-5,0,0,-2"
+                BorderThickness="0,0,0,1" BorderBrush="{StaticResource SanetBlue}">
+                <Border.Resources>
+                    <!--Storyboards-->
+                    <Storyboard x:Name="ValueChanged">
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)" Storyboard.TargetName="backGrid">
+                            <EasingColorKeyFrame KeyTime="0" Value="Yellow"/>
+                            <EasingColorKeyFrame KeyTime="0:0:2" Value="#009cd6"/>
+                        </ColorAnimationUsingKeyFrames>
+
+                    </Storyboard>
+
+                </Border.Resources>
+                <i:Interaction.Triggers>
+                    <ei:DataTrigger Binding="{Binding HasValue}" Value="true">
+                        <eim:ControlStoryboardAction Storyboard="{StaticResource ValueChanged}"/>
+                    </ei:DataTrigger>
+
+                </i:Interaction.Triggers>
+
+                <Grid Height="34"
+                  x:Name="backGrid"
+                    Width="60"
+                    Margin="0,-2,0,-2" HorizontalAlignment="Stretch"
+                    >
+                    <Grid.Background>
+                        <SolidColorBrush
+                            Color="{Binding HasValue, Converter={StaticResource ColorKey}}"/>
+                    </Grid.Background>
+                    <Grid
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch">
+                        <TextBlock Text="{Binding Value}" TextAlignment="Center"
+                           Width="45" 
+                                   Foreground ="White"
+                               VerticalAlignment="Center"
+                     HorizontalAlignment="Left" 
+                     FontSize="16"
+                           Visibility="{Binding HasValue,Converter={StaticResource VisibilityKey}}"/>
+                        <TextBlock Text="+100" TextAlignment="Center"
+                           Width="45" 
+                     HorizontalAlignment="Right" 
+                                   Foreground ="White"
+                               VerticalAlignment="Bottom"
+                               Margin="0,0,0,-3"
+                     FontSize="10"
+                           Visibility="{Binding HasBonus,Converter={StaticResource VisibilityKey}}"/>
+                    </Grid>
+
+                </Grid>
+            </Border>
+
+        </DataTemplate>
+
+        <!--Datatablet for cells in table captions (left side scores names)-->
+        <DataTemplate x:Key="PlayerTableCaptionTemplate">
+            <Border Margin="0,-2,0,-2"
+                BorderThickness="0,0,0,1" BorderBrush="{StaticResource SanetBlue}">
+                <Grid Height="30" 
+                     Margin="0,-2,0,4" HorizontalAlignment="Stretch"
+                >
+                    <TextBlock Text="{Binding AltText}" TextAlignment="Left"
+                               Foreground ="White"
+                           Margin="2,0,0,0" TextTrimming="WordEllipsis"
+                           HorizontalAlignment="Left" VerticalAlignment="Center"
+                     FontSize="12"
+                           />
+
+                </Grid>
+            </Border>
+
+        </DataTemplate>
+
+        <!--Game result table template-->
+        <DataTemplate x:Key="GameResultsTemplate">
+            <Grid Width="600" HorizontalAlignment="Stretch"
+                >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding Name}" TextAlignment="Left"
+                           TextTrimming="WordEllipsis"
+                           Foreground="White"
+                           HorizontalAlignment="Left" VerticalAlignment="Center"
+                     FontSize="24"
+                           />
+                <TextBlock Text="{Binding Total}" TextAlignment="Center"
+                       Grid.Column="1"
+                           Foreground="White"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                     FontSize="25"/>
+                <CheckBox 
+                    VerticalAlignment="Center"
+                Grid.Column="2"
+                    Foreground="White"
+                Content="{Binding PlayerSaveScoreLabelLocalized}"
+                IsChecked="{Binding ShouldSaveResult, Mode=TwoWay}"
+                IsEnabled="{Binding CanSaveResult}"/>
+            </Grid>
+
         </DataTemplate>
 
 

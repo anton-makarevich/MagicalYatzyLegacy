@@ -16,6 +16,7 @@ using Sanet.Models;
 using Sanet.Kniffel.Models;
 using Sanet.Common;
 using Telerik.Windows.Controls;
+using EQATEC.Analytics.Monitor;
 
 namespace DicePokerWP
 {
@@ -29,7 +30,9 @@ namespace DicePokerWP
         public TransitionFrame RootFrame { get; private set; }
 
         public RadDiagnostics diagnostics;
-        
+
+        IAnalyticsMonitor monitor;
+
         //facebook info
         static FacebookInfo _fbInfo = new FacebookInfo();
         public static FacebookInfo FBInfo
@@ -98,6 +101,11 @@ namespace DicePokerWP
             //local settings init
             LocalSettings.InitLocalSettings();
 
+            //WP7 analitics
+            monitor = AnalyticsMonitorFactory.CreateMonitor("CE2870A7AF0346B2A4B4A504AA5C041B");
+            monitor.Start();
+
+
             //increase number of runs
             ReviewBugger.CheckNumOfRuns();
         }
@@ -130,6 +138,7 @@ namespace DicePokerWP
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
+            monitor.Stop();
         }
 
         // Code to execute if a navigation fails

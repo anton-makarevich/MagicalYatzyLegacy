@@ -23,11 +23,14 @@ using Sanet.Common;
 #if SILVERLIGHT
 using System.Windows.Controls.Primitives;
 using System.Windows.Threading;
-using MagicalYatzyVK;
+
 #endif
 #if WINDOWS_PHONE
 
 using DicePokerWP;
+#endif
+#if VK
+using MagicalYatzyVK;
 #endif
 
 namespace Sanet.Kniffel.ViewModels
