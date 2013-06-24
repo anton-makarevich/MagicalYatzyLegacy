@@ -1,0 +1,1066 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{420600F9-1B67-4820-A354-7EFD4A0B6576}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MagicalYatzyVK</RootNamespace>
+    <AssemblyName>MagicalYatzyVK</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>ru-RU; de-DE; be-BY; es-ES; sv-SE
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>MagicalYatzyVK.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>MagicalYatzyVK.App</SilverlightAppEntry>
+    <TestPageFileName>MagicalYatzyVKTestPage.html</TestPageFileName>
+    <CreateTestPage>true</CreateTestPage>
+    <ValidateXaml>true</ValidateXaml>
+    <EnableOutOfBrowser>false</EnableOutOfBrowser>
+    <OutOfBrowserSettingsFile>Properties\OutOfBrowserSettings.xml</OutOfBrowserSettingsFile>
+    <UsePlatformExtensions>false</UsePlatformExtensions>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <LinkedServerProject>
+    </LinkedServerProject>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT; VK</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT; VK</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.0.0.0, Culture=neutral, PublicKeyToken=414dbeade6b65799, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.Silverlight\Bin\Release\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>packages\Microsoft.Bcl.Async.1.0.16\lib\sl4\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>packages\Microsoft.Bcl.Async.1.0.16\lib\sl4\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Silverlight">
+      <HintPath>packages\Microsoft.Bcl.Async.1.0.16\lib\sl4\Microsoft.Threading.Tasks.Extensions.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.5.0.6\lib\portable-net40+sl4+wp7+win8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine.Common, Version=0.3.0.0, Culture=neutral, PublicKeyToken=ee9af13f57f00acc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.Silverlight\Bin\Release\SuperSocket.ClientEngine.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine.Core, Version=0.3.0.0, Culture=neutral, PublicKeyToken=ee9af13f57f00acc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.Silverlight\Bin\Release\SuperSocket.ClientEngine.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine.Protocol, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.Silverlight\Bin\Release\SuperSocket.ClientEngine.Protocol.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>packages\Microsoft.Bcl.1.0.19\lib\sl4\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>packages\Microsoft.Bcl.1.0.19\lib\sl4\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core">
+      <HintPath>$(TargetFrameworkDirectory)System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Controls, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Navigation, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Toolkit">
+      <HintPath>packages\SilverlightToolkit-Core.4.2010.4\lib\sl4\System.Windows.Controls.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Xml.Linq, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="VKontakte">
+      <HintPath>..\..\..\..\Downloads\VKAPI+testApp\VKAPI+testApp\Bin\Debug\VKontakte.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSocket4Net">
+      <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.Silverlight\Bin\Release\WebSocket4Net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\AllWrite\Sanet.AllWrite.WP\Sanet.AllWrite.WP\Models\Brushes.cs">
+      <Link>Common\Brushes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Controls\Sanet.Animations\Animations.cs">
+      <Link>Common\Animations.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\SanetWeb\Models\LogManager.cs">
+      <Link>Common\LogManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DicePanelWP\Models\DicePanel.cs">
+      <Link>DicePanel\DicePanel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\BaseViewModel.cs">
+      <Link>ViewModels\BaseViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\KniffelRulesExtensions.cs">
+      <Link>Models\KniffelRulesExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\Result.cs">
+      <Link>Models\Result.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DiceRoller\DiceRollerRT\ViewModels\SettingsViewModel.cs">
+      <Link>ViewModels\SettingsViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\ChatMessage.cs">
+      <Link>Models\ChatMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Common\BlockingQueue.cs">
+      <Link>Common\BlockingQueue.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Common\ServerHttpMessage.cs">
+      <Link>Common\ServerHttpMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Common\StringTokenizer.cs">
+      <Link>Common\StringTokenizer.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Interfaces\IKniffelGame.cs">
+      <Link>Models\Interfaces\IKniffelGame.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\ApplyScoreCommand.cs">
+      <Link>Models\Protocol\Commands\Game\ApplyScoreCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\ChangeStyleCommand.cs">
+      <Link>Models\Protocol\Commands\Game\ChangeStyleCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\DiceChangedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\DiceChangedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\FixDiceCommand.cs">
+      <Link>Models\Protocol\Commands\Game\FixDiceCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\GameEndedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\GameEndedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\MagicRollRequestCommand.cs">
+      <Link>Models\Protocol\Commands\Game\MagicRollRequestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\ManualChangeCommand.cs">
+      <Link>Models\Protocol\Commands\Game\ManualChangeCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerChatMessageCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerChatMessageCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerDeactivatedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerDeactivatedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerJoinedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerJoinedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerJoinedCommandV2.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerJoinedCommandV2.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerLeftCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerLeftCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerPingCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerPingCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerReadyCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerReadyCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\PlayerRerolledCommand.cs">
+      <Link>Models\Protocol\Commands\Game\PlayerRerolledCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\RollReportCommand.cs">
+      <Link>Models\Protocol\Commands\Game\RollReportCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\RoundChangedCommand.cs">
+      <Link>Models\Protocol\Commands\Game\RoundChangedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\TableInfoCommand.cs">
+      <Link>Models\Protocol\Commands\Game\TableInfoCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Game\TableInfoNeededCommand.cs">
+      <Link>Models\Protocol\Commands\Game\TableInfoNeededCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\AbstractLobbyCommand.cs">
+      <Link>Models\Protocol\Commands\Lobby\AbstractLobbyCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\AbstractLobbyResponse.cs">
+      <Link>Models\Protocol\Commands\Lobby\AbstractLobbyResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\GameCommand.cs">
+      <Link>Models\Protocol\Commands\Lobby\GameCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\JoinCommand.cs">
+      <Link>Models\Protocol\Commands\Lobby\JoinCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\JoinResponse.cs">
+      <Link>Models\Protocol\Commands\Lobby\JoinResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\TuplePlayerInfo.cs">
+      <Link>Models\Protocol\TuplePlayerInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\TupleTableInfo.cs">
+      <Link>Models\Protocol\TupleTableInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\AbstractCommand.cs">
+      <Link>Models\Protocol\Commands\AbstractCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\AbstractCommandResponse.cs">
+      <Link>Models\Protocol\Commands\AbstractCommandResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\CommandEventArgs.cs">
+      <Link>Models\Protocol\Commands\CommandEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\CommandObserver.cs">
+      <Link>Models\Protocol\Commands\CommandObserver.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\CommandQueueCommunicator.cs">
+      <Link>Models\Protocol\Commands\CommandQueueCommunicator.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\Commands\DisconnectCommand.cs">
+      <Link>Models\Protocol\Commands\DisconnectCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CloudServer\Models\Protocol\QueueCommunicator.cs">
+      <Link>Models\Protocol\QueueCommunicator.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Controls\RotatingPanel.cs">
+      <Link>Controls\RotatingPanel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\DicePanel\DiceSelector.cs">
+      <Link>DicePanel\DiceSelector.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\DicePanel\DieResult.cs">
+      <Link>DicePanel\DieResult.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\AboutAppAction.cs">
+      <Link>Models\AboutAppAction.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\AdminModule.cs">
+      <Link>Models\AdminModule.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\EncriptionExtensions.cs">
+      <Link>Common\EncriptionExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Enums\ClientType.cs">
+      <Link>Models\Enums\ClientType.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Enums\GameRule.cs">
+      <Link>Models\Enums\GameRule.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Enums\KniffelScore.cs">
+      <Link>Models\Enums\KniffelScore.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Enums\PlayerType.cs">
+      <Link>Models\Enums\PlayerType.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Events\EventArgs.cs">
+      <Link>Models\Events\EventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Interfaces\IPlayGameViewModel.cs">
+      <Link>Models\Interfaces\IPlayGameViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\KniffelPlayer.cs">
+      <Link>Models\KniffelPlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\KniffelRule.cs">
+      <Link>Models\KniffelRule.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\KniffelScoreWrapper.cs">
+      <Link>Models\KniffelScoreWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\LocalizerExtensions.cs">
+      <Link>Common\LocalizerExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\MenuAction.cs">
+      <Link>Models\MenuAction.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\Messages.cs">
+      <Link>Models\Messages.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\OfferAction.cs">
+      <Link>Models\OfferAction.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\PlayerAIExtensions.cs">
+      <Link>Models\PlayerAIExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\RelayCommand.cs">
+      <Link>Common\RelayCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\Models\ViewModelProvider.cs">
+      <Link>Models\ViewModelProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\AboutPageViewModel.cs">
+      <Link>ViewModels\AboutPageViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\AdBasedViewModel.cs">
+      <Link>ViewModels\AdBasedViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\LeaderboardViewModel.cs">
+      <Link>ViewModels\LeaderboardViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\MagicRoomViewModel.cs">
+      <Link>ViewModels\MagicRoomViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\MainPageViewModel.cs">
+      <Link>ViewModels\MainPageViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\NewGameViewModelBase.cs">
+      <Link>ViewModels\NewGameViewModelBase.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\PlayGameViewModel.cs">
+      <Link>ViewModels\PlayGameViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerRT\ViewModels\RuleWrapper.cs">
+      <Link>ViewModels\RuleWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Common\DispatcherHelper.cs">
+      <Link>Common\DispatcherHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Common\EnumCompactExtension.cs">
+      <Link>Common\EnumCompactExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Common\LocalSettings.cs">
+      <Link>Models\LocalSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Common\RoamingSettings.cs">
+      <Link>Models\RoamingSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Common\SanetImageProvider.cs">
+      <Link>Common\SanetImageProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Converters\BooleanToColorConverter.cs">
+      <Link>Converters\BooleanToColorConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Converters\BooleanToVisibilityConverter.cs">
+      <Link>Converters\BooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Converters\ReverseBooleanToVisibilityConverter.cs">
+      <Link>Converters\ReverseBooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Converters\ScoreTypeToColorConverter.cs">
+      <Link>Converters\ScoreTypeToColorConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Models\CommonNavigationActions.cs">
+      <Link>Models\CommonNavigationActions.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Models\Protocol\WebAPI\AbstractHttpService.cs">
+      <Link>Models\Protocol\WebAPI\AbstractHttpService.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Models\Protocol\WebAPI\InitService.cs">
+      <Link>Models\Protocol\WebAPI\InitService.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Models\ResourceModel.cs">
+      <Link>Models\ResourceModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Models\Utilities.cs">
+      <Link>Models\Utilities.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\ViewModels\TableWrapper.cs">
+      <Link>ViewModels\TableWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\DicePanel\DiceStyle.cs">
+      <Link>DicePanel\DiceStyle.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Enums\ProfileType.cs">
+      <Link>Models\Enums\ProfileType.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IPlayer.cs">
+      <Link>Models\Interfaces\IPlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Interfaces\IRollResult.cs">
+      <Link>Models\Interfaces\IRollResult.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\JoinManager.cs">
+      <Link>Models\JoinManager.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\KniffelGameClient.cs">
+      <Link>Models\KniffelGameClient.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Protocol\LobbyTCPClient.cs">
+      <Link>Models\Protocol\LobbyTCPClient.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\Models\Protocol\Observer\GameClientCommandObserver.cs">
+      <Link>Models\Protocol\Observer\GameClientCommandObserver.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\ViewModels\ChatViewModel.cs">
+      <Link>ViewModels\ChatViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\ViewModels\NewOnlineGameViewModel.cs">
+      <Link>ViewModels\NewOnlineGameViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\ViewModels\PlayerWrapper.cs">
+      <Link>ViewModels\PlayerWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\MagicalYatzyOnline\ViewModels\RollResultWrapper.cs">
+      <Link>ViewModels\RollResultWrapper.cs</Link>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\InternetCheker.cs" />
+    <Compile Include="Common\SoundsProvider.cs" />
+    <Compile Include="Common\TitltEffect.cs" />
+    <Compile Include="Controls\WaitIndicator.xaml.cs">
+      <DependentUpon>WaitIndicator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BasePage.cs" />
+    <Compile Include="Models\Config.cs" />
+    <Compile Include="Models\Protocol\TCPCommunicatorSL.cs" />
+    <Compile Include="Models\ServiceAsyncExtensions.cs" />
+    <Compile Include="Models\StoreManager.cs" />
+    <Compile Include="Models\TileHelper.cs" />
+    <Compile Include="Service References\KniffelLeaderBoardService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewOnlineGamePage.xaml.cs">
+      <DependentUpon>NewOnlineGamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LeaderboardPage.xaml.cs">
+      <DependentUpon>LeaderboardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\MenuPage.xaml.cs">
+      <DependentUpon>MenuPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="Controls\WaitIndicator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AboutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\GamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewOnlineGamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LeaderboardPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Service References\KniffelLeaderBoardService\KniffelService.disco" />
+    <None Include="Service References\KniffelLeaderBoardService\configuration91.svcinfo" />
+    <None Include="Service References\KniffelLeaderBoardService\configuration.svcinfo" />
+    <None Include="Service References\KniffelLeaderBoardService\MagicalYatzyVK.KniffelLeaderBoardService.AddPlayersMagicsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\MagicalYatzyVK.KniffelLeaderBoardService.GetChempionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\MagicalYatzyVK.KniffelLeaderBoardService.GetLastDayChempionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\MagicalYatzyVK.KniffelLeaderBoardService.GetLastWeekChempionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\MagicalYatzyVK.KniffelLeaderBoardService.GetPlayersMagicsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\MagicalYatzyVK.KniffelLeaderBoardService.GetTopPlayersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\MagicalYatzyVK.KniffelLeaderBoardService.PutOnlineServerLogResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\MagicalYatzyVK.KniffelLeaderBoardService.PutScoreIntoTableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\MagicalYatzyVK.KniffelLeaderBoardService.PutScoreIntoTableWithPicPureNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\MagicalYatzyVK.KniffelLeaderBoardService.PutScoreIntoTableWithPicResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\MagicalYatzyVK.KniffelLeaderBoardService.PutScoreResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\KniffelLeaderBoardService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="..\..\slasm\pngs\0\stop.0.png">
+      <Link>Images\0\stop.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.1.png">
+      <Link>Images\0\stop.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.10.png">
+      <Link>Images\0\stop.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.11.png">
+      <Link>Images\0\stop.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.12.png">
+      <Link>Images\0\stop.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.13.png">
+      <Link>Images\0\stop.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.14.png">
+      <Link>Images\0\stop.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.15.png">
+      <Link>Images\0\stop.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.16.png">
+      <Link>Images\0\stop.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.17.png">
+      <Link>Images\0\stop.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.18.png">
+      <Link>Images\0\stop.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.19.png">
+      <Link>Images\0\stop.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.2.png">
+      <Link>Images\0\stop.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.20.png">
+      <Link>Images\0\stop.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.21.png">
+      <Link>Images\0\stop.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.22.png">
+      <Link>Images\0\stop.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.23.png">
+      <Link>Images\0\stop.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.24.png">
+      <Link>Images\0\stop.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.25.png">
+      <Link>Images\0\stop.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.26.png">
+      <Link>Images\0\stop.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.27.png">
+      <Link>Images\0\stop.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.28.png">
+      <Link>Images\0\stop.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.29.png">
+      <Link>Images\0\stop.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.3.png">
+      <Link>Images\0\stop.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.30.png">
+      <Link>Images\0\stop.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.31.png">
+      <Link>Images\0\stop.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.32.png">
+      <Link>Images\0\stop.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.33.png">
+      <Link>Images\0\stop.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.34.png">
+      <Link>Images\0\stop.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.35.png">
+      <Link>Images\0\stop.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.4.png">
+      <Link>Images\0\stop.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.5.png">
+      <Link>Images\0\stop.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.6.png">
+      <Link>Images\0\stop.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.7.png">
+      <Link>Images\0\stop.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.8.png">
+      <Link>Images\0\stop.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\stop.9.png">
+      <Link>Images\0\stop.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.0.png">
+      <Link>Images\0\xrot.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.1.png">
+      <Link>Images\0\xrot.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.10.png">
+      <Link>Images\0\xrot.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.11.png">
+      <Link>Images\0\xrot.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.12.png">
+      <Link>Images\0\xrot.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.13.png">
+      <Link>Images\0\xrot.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.14.png">
+      <Link>Images\0\xrot.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.15.png">
+      <Link>Images\0\xrot.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.16.png">
+      <Link>Images\0\xrot.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.17.png">
+      <Link>Images\0\xrot.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.18.png">
+      <Link>Images\0\xrot.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.19.png">
+      <Link>Images\0\xrot.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.2.png">
+      <Link>Images\0\xrot.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.20.png">
+      <Link>Images\0\xrot.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.21.png">
+      <Link>Images\0\xrot.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.22.png">
+      <Link>Images\0\xrot.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.23.png">
+      <Link>Images\0\xrot.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.24.png">
+      <Link>Images\0\xrot.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.25.png">
+      <Link>Images\0\xrot.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.26.png">
+      <Link>Images\0\xrot.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.27.png">
+      <Link>Images\0\xrot.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.28.png">
+      <Link>Images\0\xrot.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.29.png">
+      <Link>Images\0\xrot.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.3.png">
+      <Link>Images\0\xrot.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.30.png">
+      <Link>Images\0\xrot.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.31.png">
+      <Link>Images\0\xrot.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.32.png">
+      <Link>Images\0\xrot.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.33.png">
+      <Link>Images\0\xrot.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.34.png">
+      <Link>Images\0\xrot.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.35.png">
+      <Link>Images\0\xrot.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.4.png">
+      <Link>Images\0\xrot.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.5.png">
+      <Link>Images\0\xrot.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.6.png">
+      <Link>Images\0\xrot.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.7.png">
+      <Link>Images\0\xrot.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.8.png">
+      <Link>Images\0\xrot.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\xrot.9.png">
+      <Link>Images\0\xrot.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.0.png">
+      <Link>Images\0\yrot.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.1.png">
+      <Link>Images\0\yrot.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.10.png">
+      <Link>Images\0\yrot.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.11.png">
+      <Link>Images\0\yrot.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.12.png">
+      <Link>Images\0\yrot.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.13.png">
+      <Link>Images\0\yrot.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.14.png">
+      <Link>Images\0\yrot.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.15.png">
+      <Link>Images\0\yrot.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.16.png">
+      <Link>Images\0\yrot.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.17.png">
+      <Link>Images\0\yrot.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.18.png">
+      <Link>Images\0\yrot.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.19.png">
+      <Link>Images\0\yrot.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.2.png">
+      <Link>Images\0\yrot.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.20.png">
+      <Link>Images\0\yrot.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.21.png">
+      <Link>Images\0\yrot.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.22.png">
+      <Link>Images\0\yrot.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.23.png">
+      <Link>Images\0\yrot.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.24.png">
+      <Link>Images\0\yrot.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.25.png">
+      <Link>Images\0\yrot.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.26.png">
+      <Link>Images\0\yrot.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.27.png">
+      <Link>Images\0\yrot.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.28.png">
+      <Link>Images\0\yrot.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.29.png">
+      <Link>Images\0\yrot.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.3.png">
+      <Link>Images\0\yrot.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.30.png">
+      <Link>Images\0\yrot.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.31.png">
+      <Link>Images\0\yrot.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.32.png">
+      <Link>Images\0\yrot.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.33.png">
+      <Link>Images\0\yrot.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.34.png">
+      <Link>Images\0\yrot.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.35.png">
+      <Link>Images\0\yrot.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.4.png">
+      <Link>Images\0\yrot.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.5.png">
+      <Link>Images\0\yrot.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.6.png">
+      <Link>Images\0\yrot.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.7.png">
+      <Link>Images\0\yrot.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.8.png">
+      <Link>Images\0\yrot.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\slasm\pngs\0\yrot.9.png">
+      <Link>Images\0\yrot.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\About.png">
+      <Link>Assets\About.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\check.png">
+      <Link>Assets\check.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\MagicWand.png">
+      <Link>Assets\MagicWand.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Mail.png">
+      <Link>Assets\Mail.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Manual.png">
+      <Link>Assets\Manual.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\OnlineGame.png">
+      <Link>Assets\OnlineGame.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\ResetRoll.png">
+      <Link>Assets\ResetRoll.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Victory.png">
+      <Link>Assets\Victory.png</Link>
+    </Content>
+    <Content Include="Assets\back.png" />
+    <Content Include="Assets\done.png" />
+    <Content Include="Assets\Magic.png" />
+    <Content Include="Assets\manual2.png" />
+    <Content Include="Assets\play.png" />
+    <Content Include="Assets\Redo.png" />
+    <Content Include="Assets\reset.png" />
+    <Content Include="Assets\roll.png" />
+    <Content Include="ServiceReferences.ClientConfig" />
+    <None Include="Service References\KniffelLeaderBoardService\KniffelService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\KniffelLeaderBoardService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\DicePokerWP\strings\strings.be-BY.resx">
+      <Link>strings\strings.be-BY.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\DicePokerWP\strings\strings.de-DE.resx">
+      <Link>strings\strings.de-DE.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\DicePokerWP\strings\strings.es-ES.resx">
+      <Link>strings\strings.es-ES.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\DicePokerWP\strings\strings.resx">
+      <Link>strings\strings.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\DicePokerWP\strings\strings.ru-RU.resx">
+      <Link>strings\strings.ru-RU.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\DicePokerWP\strings\strings.sv-SE.resx">
+      <Link>strings\strings.sv-SE.resx</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\1\" />
+    <Folder Include="Images\2\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets" />
+</Project>

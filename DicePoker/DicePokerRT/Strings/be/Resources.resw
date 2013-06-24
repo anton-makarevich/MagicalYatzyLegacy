@@ -768,4 +768,10 @@
   <data name="ResultsTableLabel" xml:space="preserve">
     <value>Таблiца</value>
   </data>
+  <data name="ExitConfirmMessage" xml:space="preserve">
+    <value>Выйсцi? Стан бягучай гульнi будзе згублены.</value>
+  </data>
+  <data name="PlayerNoNameLabel" xml:space="preserve">
+    <value>няма iмя</value>
+  </data>
 </root>

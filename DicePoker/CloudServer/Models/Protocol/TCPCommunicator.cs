@@ -271,9 +271,9 @@ namespace Sanet.Network.Protocol
                 // potential race condition when socket state changes from open to something else & it calls
                 if (messagesToSend.Count >= 1 || !IsConnected)
                 {
-                 //   messagesToSend.Enqueue(line);
-                  //  t = SendAllQueuedMessages();
-                    //return;
+                    //messagesToSend.Enqueue(line);
+                    //t = SendAllQueuedMessages();
+                    return;
                 }
 
                 if (IsConnected)

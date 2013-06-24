@@ -282,6 +282,9 @@
   <data name="ErrorLabel" xml:space="preserve">
     <value>Ошибка</value>
   </data>
+  <data name="ExitConfirmMessage" xml:space="preserve">
+    <value>Хотите выйти? Текущая игра будет потеряна.</value>
+  </data>
   <data name="FacebookLabel" xml:space="preserve">
     <value>Facebook</value>
   </data>
@@ -433,7 +436,7 @@
     <value>Локальная игра</value>
   </data>
   <data name="NewLocalGameDescription" xml:space="preserve">
-    <value>Новая локальная игра - в одиночку, с друзьями или с компьютером</value>
+    <value>Локальная игра - в одиночку, с друзьями или с компьютером</value>
   </data>
   <data name="NewOnlineGameAction" xml:space="preserve">
     <value>Игра по сети</value>

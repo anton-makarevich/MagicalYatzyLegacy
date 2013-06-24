@@ -281,7 +281,7 @@ namespace Sanet.Kniffel.Models
                 }
                 else
                 {
-                    
+                    ReorderSeats();
                     Move++;
                     DoMove();
                 }
@@ -573,6 +573,7 @@ namespace Sanet.Kniffel.Models
                 //if yes - starting game
                 if (bAllReady)
                 {
+                    ReorderSeats();
                     CurrentPlayer = null;
                     Move = 1;
                     IsPlaying = true;
@@ -683,7 +684,7 @@ namespace Sanet.Kniffel.Models
 
             Players.Remove(player);
 
-            ReorderSeats();
+            //ReorderSeats();
             
             if (PlayerLeft != null)
                 PlayerLeft(null, new PlayerEventArgs(player));
@@ -692,6 +693,7 @@ namespace Sanet.Kniffel.Models
                 LogManager.Log(LogLevel.Message, "Game.LeaveGame",
                 "trying to restart, total players: {0}", Players.Count);
                 RestartGame();//TODO: incapsulate 2 above lines into this method?
+                return;
             }
             else if (CurrentPlayer != null && CurrentPlayer.Name == player.Name && IsPlaying)
             {

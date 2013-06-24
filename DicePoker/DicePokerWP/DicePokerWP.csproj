@@ -54,6 +54,9 @@
     <Reference Include="AdRotator">
       <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\AdRotator.dll</HintPath>
     </Reference>
+    <Reference Include="AnalyticsMonitorWP7">
+      <HintPath>AnalyticsMonitorWP7_3_2_1\AnalyticsMonitorWP7.dll</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.WP71\Bin\Debug\BouncyCastle.Crypto.dll</HintPath>
@@ -265,9 +268,6 @@
     </Compile>
     <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\JoinCommand.cs">
       <Link>Models\Protocol\Commands\Lobby\JoinCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\JoinCommandV2.cs">
-      <Link>Models\Protocol\Commands\Lobby\JoinCommandV2.cs</Link>
     </Compile>
     <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\JoinResponse.cs">
       <Link>Models\Protocol\Commands\Lobby\JoinResponse.cs</Link>
@@ -585,6 +585,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="AppResLib.dll.0423.mui">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AppResLib.dll.040a.mui">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AppResLib.dll.041d.mui">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="ReadMe-AdRotator-XAML.txt" />

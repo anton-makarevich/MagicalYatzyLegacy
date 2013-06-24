@@ -20,11 +20,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Sanet.Common;
-
-#if WINDOWS_PHONE
+#if SILVERLIGHT
 using System.Windows.Controls.Primitives;
 using System.Windows.Threading;
+
+#endif
+#if WINDOWS_PHONE
+
 using DicePokerWP;
+#endif
+#if VK
+using MagicalYatzyVK;
 #endif
 
 namespace Sanet.Kniffel.ViewModels
@@ -37,7 +43,7 @@ namespace Sanet.Kniffel.ViewModels
 #if WinRT
         string[] _language = Windows.System.UserProfile.GlobalizationPreferences.Languages[0].Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
 #endif
-#if WINDOWS_PHONE
+#if SILVERLIGHT
         string[] _language = new string[] { System.Threading.Thread.CurrentThread.CurrentCulture.Name.Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries)[0] };
 #endif
         DispatcherTimer _updateTimer = new DispatcherTimer() 
@@ -317,26 +323,49 @@ namespace Sanet.Kniffel.ViewModels
         protected override void FillPlayers()
         {
             Players = new ObservableCollection<PlayerWrapper>();
+#if VK
+            var p = new PlayerWrapper(new Player())
+                {
+
+                    Type = PlayerType.Local,
+                    Profile = ProfileType.VKontakte,
+                    Name = App.VKName,
+                    Password = App.VKPass
+                };
+                    
+#else
+
             var p = RoamingSettings.GetLastPlayer(5);
+            if (p == null || p.Player == null)
+                p = RoamingSettings.GetLastPlayer(1);
+            
             if (p==null||p.Player == null)
             {
-                
-                var    userName = GetNewPlayerName(PlayerType.Local);
+
+                var userName = "PlayerNoNameLabel".Localize();//GetNewPlayerName(PlayerType.Local);
                 p = new PlayerWrapper(new Player())
                 {
+
                     Type = PlayerType.Local,
                     Profile = ProfileType.Facebook,
                     Name=userName
+
                 };
                
             }
-            p.RefreshArtifactsInfo();
+#endif
+           
             p.MagicPressed += p_MagicPressed;
             p.ArtifactsSyncRequest += ArtifactsSyncRequest;
             p.NameClicked += p_NameClicked;
             p.PassClicked += p_PassClicked;
             p.PropertyChanged += p_PropertyChanged;
+#if !VK
             p.FacebookClicked += p_FacebookClicked;
+#else
+            p.Player.PicUrl = App.VKPic;
+#endif
+            p.RefreshArtifactsInfo();
             p.IsBotPossible = false;
             p.IsHuman = true;
             p.Player.Client = Config.GetClientType();
@@ -345,9 +374,10 @@ namespace Sanet.Kniffel.ViewModels
             SelectedPlayer = p;
             
         }
-
+#if !VK
         async void p_FacebookClicked(object sender, EventArgs e)
         {
+
             bool isLoaded = false;
             if (SelectedPlayer.IsDefaultName)
             {
@@ -368,10 +398,12 @@ namespace Sanet.Kniffel.ViewModels
                 
             }
             LoadFacebookData(isLoaded);
-        }
 
+        }
+#endif
         public void LoadFacebookData(bool hasValue)
         {
+#if !VK
             if (hasValue)
             {
                 SelectedPlayer.Name = App.FBInfo.UserName;
@@ -384,6 +416,7 @@ namespace Sanet.Kniffel.ViewModels
             }
             SelectedPlayer.RefreshArtifactsInfo(false,true);
             SavePlayers();
+#endif
         }
 
        
@@ -469,9 +502,9 @@ namespace Sanet.Kniffel.ViewModels
                     tableId = -1;
                 }
             }
-
+            BusyWithServer=true;
             await JoinManager.JoinTable(tableId, SelectedRule.Rule.Rule);
-
+            BusyWithServer = false;
         }
 
         /// <summary>

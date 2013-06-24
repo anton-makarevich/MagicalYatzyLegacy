@@ -5,6 +5,9 @@ using Windows.UI.Xaml.Media.Imaging;
 #endif
 #if WINDOWS_PHONE
 using DicePokerWP.KniffelLeaderBoardService;
+
+#endif
+#if SILVERLIGHT
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 #endif
@@ -13,7 +16,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+#if VK
+using MagicalYatzyVK.KniffelLeaderBoardService;
+#endif
 
 
 
@@ -37,7 +42,7 @@ namespace Sanet.Kniffel.Models
             {
                 try
                 {
-                    if (_score.PicUrl.Length > 2)
+                    if (_score.PicUrl.Trim().Length > 2)
                         return new BitmapImage(new Uri(_score.PicUrl));
                 }
                 catch { }

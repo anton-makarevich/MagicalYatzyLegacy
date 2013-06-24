@@ -88,8 +88,16 @@ namespace Sanet.Kniffel.Models
 
             if (!WSServer.IsConnected)
             {
-                await WSServer.ConnectAsync(p.Player.ID);
-                //WSServer.RefreshUserInfo(dataProvider.CurrentUserInfo.DisplayName);
+                var isOk =await WSServer.ConnectAsync(p.Player.ID);
+                if (!isOk)
+                {
+                    SmartDispatcher.BeginInvoke(() =>
+                    {
+                        Utilities.ShowMessage("Sorry, we can't join right now. Please try again later.");
+
+                    });
+                    return false;
+                }
             }
 
             

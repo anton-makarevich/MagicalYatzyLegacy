@@ -666,4 +666,13 @@
   <data name="NoPurchasesMessage" xml:space="preserve">
     <value>Beklagar, du kan inte köpa artefakter genom att använda denna telefonversion. Vänligen, prova version för Windows 8.</value>
   </data>
+  <data name="ChatPanelLabel" xml:space="preserve">
+    <value>Chatt</value>
+  </data>
+  <data name="ExitConfirmMessage" xml:space="preserve">
+    <value>Are you sure you want to leave game? The current state of the game will be lost.</value>
+  </data>
+  <data name="PlayerNoNameLabel" xml:space="preserve">
+    <value>inget namn</value>
+  </data>
 </root>

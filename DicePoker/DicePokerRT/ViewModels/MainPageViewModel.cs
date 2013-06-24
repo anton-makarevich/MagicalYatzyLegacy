@@ -89,6 +89,7 @@ namespace Sanet.Kniffel.ViewModels
                     Description = "NewOnlineGameDescription",
                     Image = new BitmapImage(SanetImageProvider.GetAssetsImage("OnlineGame.png")),
                 });
+#if !VK
             MenuActions.Add(
                 new MainMenuAction
                 {
@@ -111,6 +112,7 @@ namespace Sanet.Kniffel.ViewModels
                     Description = "SettingsDescription",
                     Image = new BitmapImage(SanetImageProvider.GetAssetsImage("Settings.png")),
                 });
+#endif
             MenuActions.Add(
                 new MainMenuAction
                 {

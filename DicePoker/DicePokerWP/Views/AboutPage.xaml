@@ -117,7 +117,7 @@
                             Grid.Row="2"
                             Margin="0,5"
                             Tag="http://apps.microsoft.com/windows/app/sanet-dice-poker/5b0f9106-65a8-49ca-b1f0-641c54a7e3ef" 
-                            Content="{Binding ForW8Label}" 
+                            Content="{Binding ForWin8Label}" 
                             HorizontalAlignment="Left"/>
                     </Grid>
                 </Controls:PivotItem>

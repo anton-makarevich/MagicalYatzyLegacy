@@ -6,10 +6,13 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls.Primitives;
 #endif
 #if WINDOWS_PHONE
-using System.Windows.Controls.Primitives;
+
 using DicePokerWP.KniffelLeaderBoardService;
 using DicePokerWP;
 using Coding4Fun.Phone.Controls;
+#endif
+#if SILVERLIGHT
+using System.Windows.Controls.Primitives;
 #endif
 using Sanet.Common;
 using Sanet.Kniffel.Models;
@@ -21,7 +24,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sanet.AllWrite;
-
+#if VK
+using MagicalYatzyVK.KniffelLeaderBoardService;
+#endif
 
 namespace Sanet.Kniffel.ViewModels
 {
@@ -29,18 +34,19 @@ namespace Sanet.Kniffel.ViewModels
     {
 
         protected Popup _magicPopup = new Popup();
+#if !VK
         protected MagicRoomPage _magic = new MagicRoomPage();
-
+#endif
         public event EventHandler MagicPageOpened;
 
         
         #region Constructor
         public NewGameViewModelBase()
         {
-
+#if !VK
             _magicPopup.Child = _magic;
             _magic.Tag = _magicPopup;
-
+#endif
         }
         #endregion
 
@@ -158,7 +164,7 @@ namespace Sanet.Kniffel.ViewModels
         #region Methods
         protected void ChangeUserPass(PlayerWrapper p)
         {
-#if SILVERLIGHT
+#if WINDOWS_PHONE
             PasswordInputPrompt input = new PasswordInputPrompt
             {
                 Background = Brushes.SolidSanetBlue,
@@ -177,7 +183,7 @@ namespace Sanet.Kniffel.ViewModels
 
         protected void ChangeUserName(PlayerWrapper p)
         {
-#if SILVERLIGHT
+#if WINDOWS_PHONE
             InputPrompt input = new InputPrompt
             {
                 Title = "ChangeNameLabel".Localize(),
@@ -197,11 +203,12 @@ namespace Sanet.Kniffel.ViewModels
 
         protected void p_MagicPressed(object sender, EventArgs e)
         {
-
+#if !VK
             _magic.GetViewModel<MagicRoomViewModel>().CurrentPlayer = (PlayerWrapper)sender;
             _magicPopup.IsOpen = true;
             if (MagicPageOpened != null)
                 MagicPageOpened(null, null);
+#endif
         }
 
         public void CloseMagicPage()
@@ -222,7 +229,7 @@ namespace Sanet.Kniffel.ViewModels
 #if WinRT
             var rulesList = Enum.GetValues(typeof(Rules));
 #endif
-#if WINDOWS_PHONE
+#if SILVERLIGHT
             var rulesList = EnumCompactExtension.GetValues<Rules>().ToList();
 #endif
             foreach (Rules rule in rulesList)
@@ -255,9 +262,10 @@ namespace Sanet.Kniffel.ViewModels
 #if WinRT
                     GetPlayersMagicsResponse result = await client.GetPlayersMagicsAsync(player.Name, player.Password.Encrypt(33), rolls, manuals, resets);
 #endif
-#if WINDOWS_PHONE
+#if SILVERLIGHT
                     GetPlayersMagicsResponse result = await client.GetPlayersMagicsTaskAsync(player.Name, player.Password.Encrypt(33), rolls, manuals, resets);
 #endif
+
                     player.HadStartupMagic = result.Body.GetPlayersMagicsResult;
                     if (RoamingSettings.GetMagicRollsCount(player.Player) == 0 && result.Body.rolls == 10)
                         Utilities.ShowToastNotification(string.Format(Messages.PLAYER_ARTIFACTS_BONUS.Localize(), player.Name, 10));

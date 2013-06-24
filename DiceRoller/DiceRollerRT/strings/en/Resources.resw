@@ -774,4 +774,10 @@
   <data name="ResultsTableLabel" xml:space="preserve">
     <value>Results</value>
   </data>
+  <data name="ExitConfirmMessage" xml:space="preserve">
+    <value>Are you sure you want to leave game? The current state of the game will be lost.</value>
+  </data>
+  <data name="PlayerNoNameLabel" xml:space="preserve">
+    <value>no name</value>
+  </data>
 </root>

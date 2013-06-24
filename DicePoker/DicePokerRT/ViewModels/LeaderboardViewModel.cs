@@ -5,6 +5,9 @@ using Windows.System.UserProfile;
 #if WINDOWS_PHONE
 using DicePokerWP.KniffelLeaderBoardService;
 #endif
+#if VK
+using MagicalYatzyVK.KniffelLeaderBoardService;
+#endif
 using Sanet.Kniffel.Models;
 using Sanet.Models;
 using System;
@@ -368,7 +371,10 @@ namespace Sanet.Kniffel.ViewModels
                     ScoresB.Add(new KniffelScoreWrapper(score));
                 NotifyPropertyChanged("ScoresB");
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var t = ex.Message;
+            }
             finally
             {
                 ScoresBLoading = false;

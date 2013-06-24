@@ -13,6 +13,7 @@ using System.Reflection;
 using System.Windows.Controls.Primitives;
 using Microsoft.Phone.Tasks;
 using Sanet.DiceRoller.Models;
+using Sanet.Models;
 
 
 namespace Sanet.DiceRoller.Views

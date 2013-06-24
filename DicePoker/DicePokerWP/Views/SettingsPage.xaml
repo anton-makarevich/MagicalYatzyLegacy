@@ -101,6 +101,7 @@
                             </StackPanel>
                         </RadioButton>
                         <ListBox
+                            SelectionChanged="ListBox_SelectionChanged"
                                 ItemsSource="{Binding AboutAppActions}"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"

@@ -1,4 +1,7 @@
-﻿using Sanet.Kniffel.DicePanel;
+﻿#if VK
+using MagicalYatzyVK.KniffelLeaderBoardService;
+#endif
+using Sanet.Kniffel.DicePanel;
 using Sanet.Kniffel.Models;
 using Sanet.Kniffel.Models.Enums;
 using Sanet.Kniffel.Models.Events;
@@ -101,6 +104,24 @@ namespace Sanet.Kniffel.ViewModels
                 return "ChatPanelLabel".Localize();
             }
         }
+            
+        
+        private bool _BusyWithServer;
+        public bool BusyWithServer
+        {
+            get { return _BusyWithServer; }
+            set
+            {
+                if (_BusyWithServer != value)
+                {
+                    _BusyWithServer = value;
+                    IsBusy = value;
+                    NotifyPropertyChanged("BusyWithServer");
+                    NotifyPropertyChanged("CanRoll");
+                }
+            }
+        }
+
         
         /// <summary>
         /// Players group label
@@ -232,7 +253,12 @@ namespace Sanet.Kniffel.ViewModels
         private bool _CanRoll=false;
         public bool CanRoll
         {
-            get { return _CanRoll; }
+            get 
+            {
+                if (BusyWithServer)
+                    return false;
+                return _CanRoll;
+            }
             
         }
 
@@ -640,6 +666,11 @@ namespace Sanet.Kniffel.ViewModels
                     Game.OnChatMessage -= Game_OnChatMessage;
                     Game.PlayerRerolled -= Game_PlayerRerolled;
                     Game.StyleChanged -= Game_StyleChanged;
+                    if (IsOnlineGame)
+                    {
+                        ((KniffelGameClient)Game).SendedSomething -= PlayGameViewModel_SendedSomething;
+                        ((KniffelGameClient)Game).ReceivedSomething -= PlayGameViewModel_ReceivedSomething;
+                    }
                 }
                 if (Players!=null)
                     foreach (PlayerWrapper player in Players)
@@ -673,7 +704,28 @@ namespace Sanet.Kniffel.ViewModels
                 Game.OnChatMessage += Game_OnChatMessage;
                 Game.PlayerRerolled += Game_PlayerRerolled;
                 Game.StyleChanged += Game_StyleChanged;
+                if (IsOnlineGame)
+                {
+                    ((KniffelGameClient)Game).SendedSomething += PlayGameViewModel_SendedSomething;
+                    ((KniffelGameClient)Game).ReceivedSomething += PlayGameViewModel_ReceivedSomething;
+                }
             }
+        }
+
+        void PlayGameViewModel_ReceivedSomething(object sender, KeyEventArgs<string> e)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        BusyWithServer = false;
+                    });
+        }
+
+        void PlayGameViewModel_SendedSomething(object sender, KeyEventArgs<string> e)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        BusyWithServer = true;
+                    });
         }
 
         void Game_StyleChanged(object sender, PlayerEventArgs e)
@@ -813,13 +865,17 @@ namespace Sanet.Kniffel.ViewModels
                         if (_Players != null)
                         {
                             var p = Players.FirstOrDefault(f => f.Name == e.Player.Name);
+                            PlayerWrapper newP = new PlayerWrapper(e.Player);
                             if (p != null)
                             {
+                                newP.IsMagicRollAvailable = p.IsMagicRollAvailable;
+                                newP.IsManualSetlAvailable = p.IsManualSetlAvailable;
+                                newP.IsForthRollAvailable = p.IsForthRollAvailable;
                                 _Players.Remove(p);
-
+                                
                             }
                                 
-                            _Players.Add(new PlayerWrapper(e.Player));
+                            _Players.Add(newP);
                                 
                             _Players = new ObservableCollection<PlayerWrapper>(_Players.OrderBy(f => f.SeatNo));
                         }
@@ -1058,7 +1114,7 @@ namespace Sanet.Kniffel.ViewModels
 #if WinRT
                             var res = await ks.AddPlayersMagicsAsync(p.Name, p.Password.Encrypt(33), addartifacts.ToString().Encrypt(33), addartifacts.ToString().Encrypt(33), addartifacts.ToString().Encrypt(33));
 #endif
-#if WINDOWS_PHONE
+#if SILVERLIGHT
                             var res = await ks.AddPlayersMagicsTaskAsync(p.Name, p.Password.Encrypt(33), addartifacts.ToString().Encrypt(33), addartifacts.ToString().Encrypt(33), addartifacts.ToString().Encrypt(33));
 #endif
                             if (res.Body.AddPlayersMagicsResult)
@@ -1079,7 +1135,7 @@ namespace Sanet.Kniffel.ViewModels
 #if WinRT
                             var rs = await ks.PutScoreIntoTableWithPicPureNameAsync(p.Name, p.Password.Encrypt(33), p.Total.ToString().Encrypt(33), Game.Rules.ToString().Encrypt(33), p.Player.PicUrl);
 #endif
-#if WINDOWS_PHONE
+#if SILVERLIGHT
                             var rs = await ks.PutScoreIntoTableWithPicPureNameTaskAsync(p.Name, p.Password.Encrypt(33), p.Total.ToString().Encrypt(33), Game.Rules.ToString().Encrypt(33), p.Player.PicUrl);
 #endif
                             done = rs.Body.PutScoreIntoTableWithPicPureNameResult;

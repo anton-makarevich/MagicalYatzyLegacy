@@ -126,7 +126,7 @@
     <comment>Virtuelle  Würfel in deinem Handy!</comment>
   </data>
   <data name="AboutOnlineLabel" xml:space="preserve">
-    <value>About Kniffel online</value>
+    <value>About Magischer Yatzy</value>
     <comment>About Kniffel online</comment>
   </data>
   <data name="clear" xml:space="preserve">
@@ -166,7 +166,7 @@
     <comment>-ling</comment>
   </data>
   <data name="OnlineLabel" xml:space="preserve">
-    <value>Das Programm basiert sich auf dem Controll DicePanel aus dem Onlinespiel Kniffel.  Die Idee des Controlls und die Darstellung der  ''Roten"  Würfeln gehört Matthew Tagliaferri.</value>
+    <value>Das Programm basiert sich auf dem Controll DicePanel aus dem Onlinespiel Magischer Yatzy.  Die Idee des Controlls und die Darstellung der  ''Roten"  Würfeln gehört Matthew Tagliaferri.</value>
     <comment>Das Programm basiert sich auf dem Controll DicePanel aus dem Onlinespiel Kniffel.  Die Idee des Controlls und die Darstellung der  ''Roten"  Würfeln gehört Matthew Tagliaferri.</comment>
   </data>
   <data name="PairsLabel" xml:space="preserve">
@@ -207,5 +207,32 @@
   </data>
   <data name="RateLabel" xml:space="preserve">
     <value>Bewerten</value>
+  </data>
+  <data name="DicePokerAdLine1" xml:space="preserve">
+    <value>Попробуйте новую игру</value>
+  </data>
+  <data name="DicePokerAdLine2" xml:space="preserve">
+    <value>Магический Yatzy Online:</value>
+  </data>
+  <data name="DicePokerAdLine3" xml:space="preserve">
+    <value>5 наборов правил</value>
+  </data>
+  <data name="DicePokerAdLine4" xml:space="preserve">
+    <value>уникальные магические правила</value>
+  </data>
+  <data name="DicePokerAdLine5" xml:space="preserve">
+    <value>игра с друзьями или компьютером</value>
+  </data>
+  <data name="DicePokerAdLine6" xml:space="preserve">
+    <value>онлайн через интернет</value>
+  </data>
+  <data name="DicePokerAdLine7" xml:space="preserve">
+    <value>или локально на одном телефоне</value>
+  </data>
+  <data name="DicePokerAdLine8" xml:space="preserve">
+    <value>Книга рекордов в интернет</value>
+  </data>
+  <data name="DicePokerAdLine9" xml:space="preserve">
+    <value>Стань лучшим каждый день!</value>
   </data>
 </root>

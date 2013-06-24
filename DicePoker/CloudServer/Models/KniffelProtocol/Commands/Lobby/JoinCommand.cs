@@ -56,31 +56,35 @@ namespace Sanet.Kniffel.Protocol.Commands.Lobby
 
         public DiceStyle SelectedStyle { get;private set; }
 
+        public string PicUrl { get; private set; }
+
         public JoinCommand(StringTokenizer argsToken)
         {
             m_TableID = int.Parse(argsToken.NextToken());
             m_PlayerName = argsToken.NextToken();
             m_GameRule = (Rules)Enum.Parse(typeof(Rules), argsToken.NextToken()
-#if WINDOWS_PHONE
+#if SILVERLIGHT
 , false
 #endif
                 );
             m_PlayerClient = (ClientType)Enum.Parse(typeof(ClientType), argsToken.NextToken()
-#if WINDOWS_PHONE
+#if SILVERLIGHT
 , false
 #endif
                 );
             m_PlayerLanguage = argsToken.NextToken();
             m_PlayerPass = argsToken.NextToken();
             SelectedStyle = (DiceStyle)Enum.Parse(typeof(DiceStyle), argsToken.NextToken()
-#if WINDOWS_PHONE
+#if SILVERLIGHT
 , false
 #endif
                 );
+            if (argsToken.HasMoreTokens())
+                PicUrl = argsToken.NextToken();
         }
 
         public JoinCommand(int tableid, string name, Rules rule, ClientType client,
-            string language,string pass,DiceStyle style)
+            string language,string pass,DiceStyle style,string picurl)
         {
             m_TableID = tableid;
             m_PlayerName = name;
@@ -89,6 +93,7 @@ namespace Sanet.Kniffel.Protocol.Commands.Lobby
             m_PlayerLanguage = language;
             m_PlayerPass = pass;
             SelectedStyle = style;
+            PicUrl = picurl;
         }
 
         public override void Encode(StringBuilder sb)
@@ -100,16 +105,17 @@ namespace Sanet.Kniffel.Protocol.Commands.Lobby
             Append(sb, m_PlayerLanguage);
             Append(sb, m_PlayerPass);
             Append(sb, SelectedStyle);
+            Append(sb, PicUrl);
         }
 
         public string EncodeResponse(int seat, int gameid)
         {
-            return new JoinResponse(this, seat,gameid).Encode();
+            return new JoinResponse((JoinCommand)this, seat,gameid).Encode();
         }
 
         public string EncodeErrorResponse()
         {
-            return new JoinResponse(this, -1,-1).Encode();
+            return new JoinResponse((JoinCommand)this, -1, -1).Encode();
         }
     }
 }

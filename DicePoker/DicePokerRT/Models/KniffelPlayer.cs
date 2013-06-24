@@ -268,6 +268,8 @@ namespace Sanet.Kniffel.Models
             {
                 if (string.IsNullOrEmpty(Name))
                     return true;
+                if (Name == "PlayerNoNameLabel".Localize()) 
+                    return true;
                 var nameparts = Name.Split(' ');
                 if (nameparts.Length == 2 && nameparts[0].ToLower() == Messages.PLAYER_NAME_DEFAULT.Localize().ToLower())
                 {

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Formatting;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -26,6 +27,9 @@ namespace CloudServer
            // BundleConfig.RegisterBundles(BundleTable.Bundles);
             LogManager.MessageLogged += LogManager_MessageLogged;
             ks=new KniffelService.KniffelServiceSoapClient();
+
+            GlobalConfiguration.Configuration.Formatters.Clear();
+            GlobalConfiguration.Configuration.Formatters.Add(new JsonMediaTypeFormatter());
         }
 
         void LogManager_MessageLogged(string from, string message, int level)

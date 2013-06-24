@@ -192,6 +192,9 @@
   <data name="ChangePasswordLabel" xml:space="preserve">
     <value>lösenord krävs</value>
   </data>
+  <data name="ChatPanelLabel" xml:space="preserve">
+    <value>Chatt</value>
+  </data>
   <data name="CheckingLabel" xml:space="preserve">
     <value>kontrollerar...</value>
   </data>

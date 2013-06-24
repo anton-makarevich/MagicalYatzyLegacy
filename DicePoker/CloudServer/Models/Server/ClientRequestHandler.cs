@@ -87,7 +87,7 @@ namespace Sanet.Kniffel.Server
                         if ( !ServerClientLobby.playerToServerClientLobbyMapping.TryGetValue(playerId, out clientLobby))
                         {
                             clientLobby = new ServerClientLobby(ServerLobby, playerId);
-                            ServerClientLobby.playerToServerClientLobbyMapping[playerId] =  clientLobby;
+                            ServerClientLobby.playerToServerClientLobbyMapping.TryAdd(playerId,  clientLobby);
                             LogManager.Log("ClientRequestHandler.MyWebSocket", "websocket connect request from {0} ), created new clientLobby", playerId);
                         }
                         else

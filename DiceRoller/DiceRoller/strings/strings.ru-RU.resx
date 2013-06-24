@@ -124,7 +124,7 @@
     <value>виртуальные кости в твоем телефоне!</value>
   </data>
   <data name="AboutOnlineLabel" xml:space="preserve">
-    <value>О Kniffel Online</value>
+    <value>О Магическом Yatzy</value>
   </data>
   <data name="clear" xml:space="preserve">
     <value>очистить</value>
@@ -145,7 +145,7 @@
     <value>низко</value>
   </data>
   <data name="OnlineLabel" xml:space="preserve">
-    <value>Программа основана на контролле DicePanel из игры Kniffel Online. Идея контрола и 'красные' кости принадлежат  Matthew Tagliaferri</value>
+    <value>Программа основана на контролле DicePanel из игры Магический Yatzy Online. Идея контрола и 'красные' кости принадлежат  Matthew Tagliaferri</value>
   </data>
   <data name="roll" xml:space="preserve">
     <value>бросить</value>
@@ -185,5 +185,32 @@
   </data>
   <data name="RateLabel" xml:space="preserve">
     <value>Оценить</value>
+  </data>
+  <data name="DicePokerAdLine1" xml:space="preserve">
+    <value>Попробуйте новую игру</value>
+  </data>
+  <data name="DicePokerAdLine2" xml:space="preserve">
+    <value>Магический Yatzy Online:</value>
+  </data>
+  <data name="DicePokerAdLine3" xml:space="preserve">
+    <value>5 наборов правил</value>
+  </data>
+  <data name="DicePokerAdLine4" xml:space="preserve">
+    <value>уникальные магические правила</value>
+  </data>
+  <data name="DicePokerAdLine5" xml:space="preserve">
+    <value>игра с друзьями или компьютером</value>
+  </data>
+  <data name="DicePokerAdLine6" xml:space="preserve">
+    <value>онлайн через интернет</value>
+  </data>
+  <data name="DicePokerAdLine7" xml:space="preserve">
+    <value>или локально на одном телефоне</value>
+  </data>
+  <data name="DicePokerAdLine8" xml:space="preserve">
+    <value>Книга рекордов в интернет</value>
+  </data>
+  <data name="DicePokerAdLine9" xml:space="preserve">
+    <value>Будь лучшим каждый день!</value>
   </data>
 </root>

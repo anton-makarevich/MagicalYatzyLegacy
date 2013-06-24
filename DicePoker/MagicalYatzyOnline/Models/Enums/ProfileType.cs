@@ -9,6 +9,7 @@ namespace Sanet.Kniffel.Models
     public enum ProfileType
     {
         Local=0,
-        Facebook=1
+        Facebook=1,
+        VKontakte=2
     }
 }

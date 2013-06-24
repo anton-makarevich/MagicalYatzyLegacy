@@ -295,7 +295,7 @@ namespace Sanet.Kniffel.DicePanel
             caption.SetValue(Canvas.LeftProperty, Convert.ToDouble(15));
             caption.SetValue(Canvas.TopProperty, Convert.ToDouble(15));
 #endif
-#if WINDOWS_PHONE
+#if SILVERLIGHT
             caption.FontSize = 20;
             caption.SetValue(Canvas.LeftProperty, Convert.ToDouble(5));
             caption.SetValue(Canvas.TopProperty, Convert.ToDouble(0));
@@ -824,9 +824,14 @@ namespace Sanet.Kniffel.DicePanel
                     FxPos = 0 + ks;
                     BounceX();
                 }
-                if (FxPos > Convert.ToInt32(FPanel.ActualWidth) - w - ks)
+                double MW=0;
+                try
                 {
-                    FxPos = Convert.ToInt32(FPanel.ActualWidth) - w - ks;
+                    MW = (FPanel.ActualWidth == 0) ? FPanel.Width : FPanel.ActualWidth;
+                }catch{}
+                if (FxPos > (MW) - w - ks)
+                {
+                    FxPos = (int)(MW) - w - ks;
                     BounceX();
                 }
             }
@@ -844,9 +849,15 @@ namespace Sanet.Kniffel.DicePanel
                     FyPos = 0;
                     BounceY();
                 }
-                if (FyPos > FPanel.ActualHeight - h)
+                double  MH=0;
+                try
                 {
-                    FyPos = Convert.ToInt32(FPanel.ActualHeight) - h;
+                    MH = (FPanel.ActualHeight == 0) ? FPanel.Height : FPanel.ActualHeight;
+                }
+                catch { }
+                if (FyPos > MH - h)
+                {
+                    FyPos = (int)(MH) - h;
                     BounceY();
                 }
             }
@@ -865,8 +876,22 @@ namespace Sanet.Kniffel.DicePanel
         {
             try
             {
-                xPos = FPanel.FRand.Next(0, Convert.ToInt32(FPanel.ActualWidth) - w);
-                yPos = FPanel.FRand.Next(0, Convert.ToInt32(FPanel.ActualHeight) - h);
+                var w1 = Convert.ToInt32((FPanel.ActualWidth == 0) ? FPanel.Width : FPanel.ActualWidth);
+                var h1 = Convert.ToInt32((FPanel.ActualHeight == 0) ? FPanel.Height : FPanel.ActualHeight);
+                if (w1 > 0 && h1 > 0)
+                {
+                    int mw=w1 - w;
+                    xPos = FPanel.FRand.Next(1, mw);
+                    mw = h1 - h;
+                    yPos = FPanel.FRand.Next(1, mw);
+                }
+                else
+                {
+                    xPos = 0;
+                    yPos = 0;
+                }
+                if (xPos < 0) xPos = 0;
+                if (yPos < 0) yPos = 0;
             }
             catch 
             {

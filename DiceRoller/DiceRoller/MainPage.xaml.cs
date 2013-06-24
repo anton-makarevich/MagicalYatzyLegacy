@@ -13,9 +13,12 @@ using Microsoft.Phone.Controls;
 using Microsoft.Devices.Sensors;
 using Sanet.DiceRoller.Models;
 using Microsoft.Phone.Shell;
-using Sanet.Kniffel.WP.DicePanel;
 using System.Windows.Controls.Primitives;
 using Sanet.DiceRoller.Views;
+using Sanet.Models;
+using Sanet.Kniffel.DicePanel;
+using Sanet.Kniffel;
+using Sanet.DiceRoller.Controls;
 
 namespace Sanet.DiceRoller
 {
@@ -85,7 +88,8 @@ namespace Sanet.DiceRoller
         AccelerometerSensorWithShakeDetection _shakeSensor;
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            DicePanel1.Style = Sanet.Kniffel.WP.DicePanel.dpStyle.dpsBlue;
+            
+            DicePanel1.PanelStyle = Kniffel.DicePanel.DiceStyle.dpsBlue;
             DicePanel1.TreeDScaleCoef = 0.38;
         //DicePanel1.NumDice = 5;
         DicePanel1.RollDelay = 5;
@@ -97,8 +101,8 @@ namespace Sanet.DiceRoller
         _shakeSensor.ShakeDetectedHandler +=ShakeDetected;
             _shakeSensor.Start();
 
-            DicePanel1.DieFrozen += new Sanet.Kniffel.WP.DicePanel.DicePanel.DieFrozenEventHandler(DicePanel1_DieFrozen);
-            DicePanel1.EndRoll += new Sanet.Kniffel.WP.DicePanel.DicePanel.EndRollEventHandler(DicePanel1_EndRoll);
+            DicePanel1.DieFrozen += new Sanet.Kniffel.DicePanel.DicePanel.DieFrozenEventHandler(DicePanel1_DieFrozen);
+            DicePanel1.EndRoll += new Sanet.Kniffel.DicePanel.DicePanel.EndRollEventHandler(DicePanel1_EndRoll);
             //ABClear.IsEnabled = false;
         }
 
@@ -108,25 +112,27 @@ namespace Sanet.DiceRoller
             //MessageBox.Show(DicePanel1.Result.ToString());
             foreach(Die d in DicePanel1.aDice)
                 TipsProvider1.ShowText(d.Result.ToString(),Colors.Blue);
-            if (DicePanel1.NumDice > 1) TipsProvider1.ShowText(DicePanel1.Result.ToString(), Colors.Red);//(string.Format("{0}D6: {1}", DicePanel1.NumDice,DicePanel1.Result), Colors.Red);
+            if (DicePanel1.NumDice > 1) TipsProvider1.ShowText(DicePanel1.Result.Total.ToString(), Colors.Red);//(string.Format("{0}D6: {1}", DicePanel1.NumDice,DicePanel1.Result), Colors.Red);
             //if (DicePanel1.YhatzeeeFiveOfAKindScore() > 0) TipsProvider1.ShowText("FiveOfAKind",Colors.Orange);
-            if (DicePanel1.NumDice > 3 && DicePanel1.NumPairs()>1)
+            if (DicePanel1.NumDice > 3 && DicePanel1.Result.NumPairs()>1)
             {
-                TipsProvider1.ShowText(string.Format("{0} {1}", DicePanel1.NumPairs(), RModel.GetString("PairsLabel")), Colors.Orange);
+                TipsProvider1.ShowText(string.Format("{0} {1}", DicePanel1.Result.NumPairs(), RModel.GetString("PairsLabel")), Colors.Orange);
             }
             if (DicePanel1.NumDice == 5)
             {
-                if (DicePanel1.YhatzeeeFullHouseScore() > 0) TipsProvider1.ShowText(RModel.GetString("FullHouseLabel"), Colors.Orange);
-                if (DicePanel1.YhatzeeeLargeStraightScore() > 0) TipsProvider1.ShowText(RModel.GetString("LargeStraightLabel"), Colors.Orange);
+                if (DicePanel1.Result.KniffelFullHouseScore() > 0) 
+                    TipsProvider1.ShowText(RModel.GetString("FullHouseLabel"), Colors.Orange);
+                if (DicePanel1.Result.KniffelLargeStraightScore() > 0)
+                    TipsProvider1.ShowText(RModel.GetString("LargeStraightLabel"), Colors.Orange);
                 else
                 {
-                    bool rb = false;
-                    if (DicePanel1.YhatzeeeSmallStraightScore(false, ref rb) > 0) TipsProvider1.ShowText(RModel.GetString("SmallStraightLabel"), Colors.Orange);
+                    if (DicePanel1.Result.KniffelSmallStraightScore() > 0) 
+                        TipsProvider1.ShowText(RModel.GetString("SmallStraightLabel"), Colors.Orange);
                 }
             }
 
             for (int i=6;i>2;i--)
-                if (DicePanel1.YhatzeeeOfAKindScore(i) > 1)
+                if (DicePanel1.Result.KniffelOfAKindScore(i) > 1)
                 {
                     TipsProvider1.ShowText(string.Format("{0} {1}", i, RModel.GetString("OfAKindLabel")), Colors.Orange);
                     break;
@@ -161,11 +167,11 @@ namespace Sanet.DiceRoller
         {
             var b = sender as Button;
             var cb = new Image { Source = (b.Content as Image).Source };
-            if (b.Tag.ToString()=="Red")
-            DicePanel1.Style = Sanet.Kniffel.WP.DicePanel.dpStyle.dpsBrutalRed;
-            else if (b.Tag.ToString()=="Blue")
-            DicePanel1.Style = Sanet.Kniffel.WP.DicePanel.dpStyle.dpsBlue;
-            else DicePanel1.Style = Sanet.Kniffel.WP.DicePanel.dpStyle.dpsClassic;
+            if (b.Tag.ToString() == "Red")
+                DicePanel1.PanelStyle = Kniffel.DicePanel.DiceStyle.dpsBrutalRed;
+            else if (b.Tag.ToString() == "Blue")
+                DicePanel1.PanelStyle = Kniffel.DicePanel.DiceStyle.dpsBlue;
+            else DicePanel1.PanelStyle = Kniffel.DicePanel.DiceStyle.dpsClassic;
             StyleButton.Content = cb;
             hideSettings();
         }
@@ -253,7 +259,12 @@ namespace Sanet.DiceRoller
                 hideSettings();
                 return;
             }
-            else
+            else if (aboutPopup.IsOpen)
+            {
+                e.Cancel = true;
+                aboutPopup.IsOpen = false;
+                return;
+            }
             {
                 {
                     base.OnBackKeyPress(e);
@@ -262,5 +273,17 @@ namespace Sanet.DiceRoller
 
 
         }
+
+        private void DefaultAd_Tap(object sender, GestureEventArgs e)
+        {
+            var task = new Microsoft.Phone.Tasks.WebBrowserTask
+            {
+                Uri = new Uri("http://windowsphone.com/s?appid=f2993622-c41f-4cd5-8188-403a3efe6383")
+            };
+
+            task.Show();
+            
+        }
+        
     }
 }

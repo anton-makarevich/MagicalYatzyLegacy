@@ -100,6 +100,16 @@ namespace DicePokerWP
         }
 
         #endregion
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                AboutAppAction item = (AboutAppAction)(e.AddedItems[0]);
+                item.MenuAction();
+                ((ListBox)sender).SelectedItem = null;
+            }
+        }
                 
     }
 }

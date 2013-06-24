@@ -73,6 +73,12 @@ namespace Sanet.Kniffel.DicePanel
             panel.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
             caption.FontSize = 20;
 #endif
+#if VK
+            panel.ItemsPanel = Application.Current.Resources["WrapPanelItemsPanelTemplate"] as ItemsPanelTemplate;
+            panel.Height = 100;
+            panel.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            caption.FontSize = 20;
+#endif
             this.Children.Add(caption);
             this.Children.Add(panel);
         }
@@ -112,8 +118,14 @@ namespace Sanet.Kniffel.DicePanel
             Windows.Foundation.Point point = buttonTransform.TransformPoint(new Windows.Foundation.Point());
 
             return new Windows.Foundation.Rect(point, new Windows.Foundation.Size(element.ActualWidth, element.ActualHeight));
-#else
+#endif
+#if WINDOWS_PHONE
             return new Rect(0, 100, 480, 700);
+#endif
+#if VK
+            GeneralTransform gt = element.TransformToVisual(Application.Current.RootVisual as UIElement);
+            Point offset = gt.Transform(new Point(0, 0));
+            return new Rect(offset,new Size( element.ActualWidth, element.ActualHeight));
 #endif
         }
 

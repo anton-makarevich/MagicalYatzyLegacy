@@ -1372,11 +1372,8 @@
     <Compile Include="..\cloudserver\models\kniffelprotocol\commands\lobby\GameCommand.cs">
       <Link>Models\Protocol\Commands\Lobby\GameCommand.cs</Link>
     </Compile>
-    <Compile Include="..\cloudserver\models\kniffelprotocol\commands\lobby\JoinCommand.cs">
+    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\JoinCommand.cs">
       <Link>Models\Protocol\Commands\Lobby\JoinCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\CloudServer\Models\KniffelProtocol\Commands\Lobby\JoinCommandV2.cs">
-      <Link>Models\Protocol\Commands\Lobby\JoinCommandV2.cs</Link>
     </Compile>
     <Compile Include="..\cloudserver\models\kniffelprotocol\commands\lobby\JoinResponse.cs">
       <Link>Models\Protocol\Commands\Lobby\JoinResponse.cs</Link>

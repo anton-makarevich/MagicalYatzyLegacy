@@ -11,7 +11,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 #endif
-#if WINDOWS_PHONE
+#if SILVERLIGHT
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;

@@ -200,8 +200,8 @@ namespace Sanet.Kniffel.ViewModels
                 if (string.IsNullOrEmpty(userName))
                     userName = await UserInformation.GetFirstNameAsync() + await UserInformation.GetFirstNameAsync();
 #endif
-#if WINDOWS_PHONE
-                WPIdentifyHelpers.GetWindowsLiveAnonymousID();
+#if SILVERLIGHT
+                    "";
 #endif
                 //if no luck - add default name
                 if (string.IsNullOrEmpty(userName))
@@ -336,7 +336,11 @@ namespace Sanet.Kniffel.ViewModels
                 RoamingSettings.LastRule = SelectedRule.Rule.Rule;
         }
 
-        public override async void StartGame()
+        public override 
+#if WinRT
+            async
+#endif
+            void StartGame()
         {
             if (HasPlayers && SelectedRule != null)
             {

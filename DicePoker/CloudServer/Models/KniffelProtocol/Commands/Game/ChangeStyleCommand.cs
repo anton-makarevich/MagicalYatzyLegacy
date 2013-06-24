@@ -22,7 +22,7 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
             :base(argsToken)
         {
             SelectedStyle=(DiceStyle)Enum.Parse(typeof(DiceStyle),argsToken.NextToken()
-#if WINDOWS_PHONE
+#if SILVERLIGHT
                 ,false
 #endif
                 );

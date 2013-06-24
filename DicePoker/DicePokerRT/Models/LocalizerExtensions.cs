@@ -11,7 +11,9 @@ namespace Sanet.Models
         public static ResourceModel RModel;
         public static string Localize(this string value)
         {
-            return RModel.GetString(value);
+            if (!string.IsNullOrEmpty(value))
+                return RModel.GetString(value);
+            return "";
 
         }
     }

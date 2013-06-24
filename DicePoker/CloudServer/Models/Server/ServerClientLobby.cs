@@ -60,7 +60,8 @@ namespace Sanet.Kniffel.Server
 
             
         }
-                
+
+                        
         /// <summary>
         /// Game command recieved
         /// </summary>
@@ -115,11 +116,12 @@ namespace Sanet.Kniffel.Server
             player.Password = e.Command.PlayerPass;
             if (player.Password.StartsWith(Player.FB_PREFIX))
                 player.PicUrl = string.Format("https://graph.facebook.com/{0}/picture", player.Password.Replace(Player.FB_PREFIX, ""));
+            else if (!string.IsNullOrEmpty(e.Command.PicUrl))
+                player.PicUrl = e.Command.PicUrl;
             player.Language = e.Command.PlayerLanguage;
             player.Client = e.Command.PlayerClient;
             player.SelectedStyle = e.Command.SelectedStyle;
-            // Verify the player does not already playing on that table.
-
+            
             //check no table# in params(-1)- then Autojoin
             if (tableID == -1)
             {
@@ -141,6 +143,8 @@ namespace Sanet.Kniffel.Server
 
             if (game.Players!=null)
             {
+                //check players and remove 'dead'
+                
                 var exPlayer = game.Players.FirstOrDefault(f=>f.Name==e.Command.PlayerName);
                 if (exPlayer!=null)
                 {
@@ -201,6 +205,11 @@ namespace Sanet.Kniffel.Server
         /// <param name="e"></param>
         void client_SendedSomething(object sender, KeyEventArgs<string> e)
         {
+            if (m_Table == null)
+            {
+
+                return;
+            }
             Send1(new GameCommand(m_Table.Game.GameId, e.Key));
         }
 
@@ -211,7 +220,7 @@ namespace Sanet.Kniffel.Server
         {
             removeClientAfterDelayTimer.Stop();
             LogManager.Log(LogLevel.Message, "ServerClientLoby.removeClientAfterDelayTimer_Elapsed", "remove serverclientLobby timer for player:{0}, firedTime:{1}", PlayerName, numberOfTimesFoundClientNotConnectedInaRow); 
-            if (!IsConnected)
+            if (!IsConnected && m_Table!=null)
             {//it client didnt reconnect in given time...remove player
                 //this should fire up the process
                 m_Table.LeaveGame();

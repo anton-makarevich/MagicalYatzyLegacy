@@ -7,6 +7,8 @@
 </allow-from>
 <grant-to>
 <resource path="/" include-subpaths="true"/>
+<socket-resource port="4502" protocol="tcp" />
+  
 </grant-to>
 </policy>
 </cross-domain-access>

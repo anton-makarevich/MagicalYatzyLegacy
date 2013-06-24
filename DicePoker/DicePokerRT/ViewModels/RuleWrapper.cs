@@ -1,4 +1,13 @@
-﻿using Sanet.Kniffel.Models.Enums;
+﻿#if VK
+using MagicalYatzyVK.KniffelLeaderBoardService;
+#endif
+#if WINDOWS_PHONE
+using DicePokerWP.KniffelLeaderBoardService;
+#endif
+#if WinRT
+using DicePokerRT.KniffelLeaderBoardService;
+#endif
+using Sanet.Kniffel.Models.Enums;
 using Sanet.Models;
 using System;
 using System.Collections.Generic;
@@ -242,13 +251,8 @@ namespace Sanet.Kniffel.Models
             {
                 try
                 {
-                    var ks = new 
-#if WinRT
-                        DicePokerRT
-#else
-                    DicePokerWP
-#endif
-                        .KniffelLeaderBoardService.KniffelServiceSoapClient();
+                    var ks = new KniffelServiceSoapClient();
+
 
                     IsWeekScoreLoading = true;
 #if WinRT
@@ -301,13 +305,7 @@ namespace Sanet.Kniffel.Models
             {
                 try
                 {
-                    var ks = new
-#if WinRT
- DicePokerRT
-#else
-                    DicePokerWP
-#endif
-.KniffelLeaderBoardService.KniffelServiceSoapClient();
+                    var ks = new KniffelServiceSoapClient();
 
                     IsDayScoreLoading = true;
 #if WinRT
