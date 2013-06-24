@@ -104,6 +104,24 @@ namespace Sanet.Kniffel.ViewModels
                 return "ChatPanelLabel".Localize();
             }
         }
+            
+        
+        private bool _BusyWithServer;
+        public bool BusyWithServer
+        {
+            get { return _BusyWithServer; }
+            set
+            {
+                if (_BusyWithServer != value)
+                {
+                    _BusyWithServer = value;
+                    IsBusy = value;
+                    NotifyPropertyChanged("BusyWithServer");
+                    NotifyPropertyChanged("CanRoll");
+                }
+            }
+        }
+
         
         /// <summary>
         /// Players group label
@@ -235,7 +253,12 @@ namespace Sanet.Kniffel.ViewModels
         private bool _CanRoll=false;
         public bool CanRoll
         {
-            get { return _CanRoll; }
+            get 
+            {
+                if (BusyWithServer)
+                    return false;
+                return _CanRoll;
+            }
             
         }
 
@@ -643,6 +666,11 @@ namespace Sanet.Kniffel.ViewModels
                     Game.OnChatMessage -= Game_OnChatMessage;
                     Game.PlayerRerolled -= Game_PlayerRerolled;
                     Game.StyleChanged -= Game_StyleChanged;
+                    if (IsOnlineGame)
+                    {
+                        ((KniffelGameClient)Game).SendedSomething -= PlayGameViewModel_SendedSomething;
+                        ((KniffelGameClient)Game).ReceivedSomething -= PlayGameViewModel_ReceivedSomething;
+                    }
                 }
                 if (Players!=null)
                     foreach (PlayerWrapper player in Players)
@@ -676,7 +704,28 @@ namespace Sanet.Kniffel.ViewModels
                 Game.OnChatMessage += Game_OnChatMessage;
                 Game.PlayerRerolled += Game_PlayerRerolled;
                 Game.StyleChanged += Game_StyleChanged;
+                if (IsOnlineGame)
+                {
+                    ((KniffelGameClient)Game).SendedSomething += PlayGameViewModel_SendedSomething;
+                    ((KniffelGameClient)Game).ReceivedSomething += PlayGameViewModel_ReceivedSomething;
+                }
             }
+        }
+
+        void PlayGameViewModel_ReceivedSomething(object sender, KeyEventArgs<string> e)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        BusyWithServer = false;
+                    });
+        }
+
+        void PlayGameViewModel_SendedSomething(object sender, KeyEventArgs<string> e)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        BusyWithServer = true;
+                    });
         }
 
         void Game_StyleChanged(object sender, PlayerEventArgs e)

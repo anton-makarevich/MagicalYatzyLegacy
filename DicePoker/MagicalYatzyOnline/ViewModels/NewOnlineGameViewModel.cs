@@ -336,10 +336,13 @@ namespace Sanet.Kniffel.ViewModels
 #else
 
             var p = RoamingSettings.GetLastPlayer(5);
+            if (p == null || p.Player == null)
+                p = RoamingSettings.GetLastPlayer(1);
+            
             if (p==null||p.Player == null)
             {
-                
-                var    userName = GetNewPlayerName(PlayerType.Local);
+
+                var userName = "PlayerNoNameLabel".Localize();//GetNewPlayerName(PlayerType.Local);
                 p = new PlayerWrapper(new Player())
                 {
 
@@ -499,9 +502,9 @@ namespace Sanet.Kniffel.ViewModels
                     tableId = -1;
                 }
             }
-
+            BusyWithServer=true;
             await JoinManager.JoinTable(tableId, SelectedRule.Rule.Rule);
-
+            BusyWithServer = false;
         }
 
         /// <summary>

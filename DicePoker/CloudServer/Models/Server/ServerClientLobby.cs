@@ -60,7 +60,8 @@ namespace Sanet.Kniffel.Server
 
             
         }
-                
+
+                        
         /// <summary>
         /// Game command recieved
         /// </summary>
@@ -115,6 +116,8 @@ namespace Sanet.Kniffel.Server
             player.Password = e.Command.PlayerPass;
             if (player.Password.StartsWith(Player.FB_PREFIX))
                 player.PicUrl = string.Format("https://graph.facebook.com/{0}/picture", player.Password.Replace(Player.FB_PREFIX, ""));
+            else if (!string.IsNullOrEmpty(e.Command.PicUrl))
+                player.PicUrl = e.Command.PicUrl;
             player.Language = e.Command.PlayerLanguage;
             player.Client = e.Command.PlayerClient;
             player.SelectedStyle = e.Command.SelectedStyle;

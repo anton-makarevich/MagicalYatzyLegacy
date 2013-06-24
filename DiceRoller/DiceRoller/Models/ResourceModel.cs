@@ -13,8 +13,9 @@ using System.Windows.Data;
 using System.Reflection;
 using System.Globalization;
 using System.Threading;
+using Sanet.DiceRoller;
 
-namespace Sanet.DiceRoller.Models
+namespace Sanet.Models
 {
     public class ApplicationResources : IValueConverter
     {

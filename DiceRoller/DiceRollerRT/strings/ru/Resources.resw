@@ -768,4 +768,7 @@
   <data name="ExitConfirmMessage" xml:space="preserve">
     <value>Хотите выйти? Текущая игра будет потеряна.</value>
   </data>
+  <data name="PlayerNoNameLabel" xml:space="preserve">
+    <value>нет имя</value>
+  </data>
 </root>

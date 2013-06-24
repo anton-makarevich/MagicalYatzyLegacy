@@ -124,7 +124,7 @@
     <value>virtual dice in your phone</value>
   </data>
   <data name="AboutOnlineLabel" xml:space="preserve">
-    <value>About Kniffel Online</value>
+    <value>About Magical Yatzy</value>
   </data>
   <data name="clear" xml:space="preserve">
     <value>clear</value>
@@ -145,7 +145,7 @@
     <value>low</value>
   </data>
   <data name="OnlineLabel" xml:space="preserve">
-    <value>App uses DicePanel control of Kniffel Online game. DicePanel idea and "red dice" style belongs to Matthew Tagliaferri.</value>
+    <value>App uses DicePanel control of Magical Yatzy Online game. DicePanel idea and "red dice" style belongs to Matthew Tagliaferri.</value>
   </data>
   <data name="roll" xml:space="preserve">
     <value>roll</value>
@@ -185,5 +185,32 @@
   </data>
   <data name="RateLabel" xml:space="preserve">
     <value>Rate this app if you like it</value>
+  </data>
+  <data name="DicePokerAdLine1" xml:space="preserve">
+    <value>Try our new game - </value>
+  </data>
+  <data name="DicePokerAdLine2" xml:space="preserve">
+    <value>Magical Yatzy Online:</value>
+  </data>
+  <data name="DicePokerAdLine3" xml:space="preserve">
+    <value>5 sets of rules</value>
+  </data>
+  <data name="DicePokerAdLine4" xml:space="preserve">
+    <value>unique 'Magical Rules'</value>
+  </data>
+  <data name="DicePokerAdLine5" xml:space="preserve">
+    <value>play with friends or bots</value>
+  </data>
+  <data name="DicePokerAdLine6" xml:space="preserve">
+    <value>online over Internet or</value>
+  </data>
+  <data name="DicePokerAdLine7" xml:space="preserve">
+    <value>ofline on the same phone</value>
+  </data>
+  <data name="DicePokerAdLine8" xml:space="preserve">
+    <value>web based Leaderboard</value>
+  </data>
+  <data name="DicePokerAdLine9" xml:space="preserve">
+    <value>try to be on the Top every day!</value>
   </data>
 </root>

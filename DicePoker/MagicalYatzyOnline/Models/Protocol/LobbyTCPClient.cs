@@ -129,9 +129,10 @@ namespace Sanet.Kniffel.Protocol
         protected virtual int GetJoinedSeat(ref int p_noPort,Rules rule, Player player)
         {
             var pass = (player.HasPassword) ? player.Password : "na";
+            var picurl = (!string.IsNullOrEmpty(player.PicUrl)) ? player.Password : "";
             JoinCommand command = new JoinCommand(p_noPort, player.Name,rule,
                 player.Client,player.Language,
-                pass,player.SelectedStyle);
+                pass,player.SelectedStyle, picurl);
             Send(command);
 
             StringTokenizer token2 = ReceiveCommand(JoinResponse.COMMAND_NAME);

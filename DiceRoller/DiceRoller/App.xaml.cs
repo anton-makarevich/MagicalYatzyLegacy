@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Sanet.DiceRoller.Models;
+using Sanet.Models;
 
 namespace Sanet.DiceRoller
 {
@@ -65,6 +66,7 @@ namespace Sanet.DiceRoller
         // Этот код не будет выполняться при повторной активации приложения
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            LocalizerExtensions.RModel = new ResourceModel();
         }
 
         // Код для выполнения при активации приложения (переводится в основной режим)

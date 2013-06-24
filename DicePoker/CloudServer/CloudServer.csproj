@@ -229,7 +229,6 @@
     <Compile Include="Models\KniffelProtocol\Commands\Game\TableInfoNeededCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\AbstractLobbyCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\AbstractLobbyResponse.cs" />
-    <Compile Include="Models\KniffelProtocol\Commands\Lobby\JoinCommandV2.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\GameCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\JoinCommand.cs" />
     <Compile Include="Models\KniffelProtocol\Commands\Lobby\JoinResponse.cs" />

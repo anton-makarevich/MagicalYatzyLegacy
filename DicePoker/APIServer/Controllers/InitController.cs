@@ -95,6 +95,8 @@ namespace PokerServerService.Controllers
                 //    return "Вітаем у гульні \"Магічны Yatzy Online!\". Анлайн гульня пакуль у бэце. Калі ласка паведамляйце аб любых праблемах. Длякуй!";
                 //default:
                 //    return "Welcome to \"Magical Yatzy Online\" Game! Chat is disabled till next update as it has a critical bug. Sorry :(";
+                //default:
+                //    return "Sorry, we are performing some server maintanance, Online game may not work for some time :(";
             }
         }
         
