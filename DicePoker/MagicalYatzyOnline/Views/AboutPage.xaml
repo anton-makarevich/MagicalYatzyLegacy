@@ -96,6 +96,7 @@
                             <RowDefinition/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         
                         <TextBlock
@@ -110,6 +111,7 @@
                             IsItemClickEnabled="True"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
+                            ScrollViewer.VerticalScrollBarVisibility="Hidden"
                                 ItemTemplate="{StaticResource AboutAppActionTemplate}">
                                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
@@ -120,7 +122,7 @@
                         </ListView>
                         <TextBlock
                             FontSize="16"
-                            Grid.Row="2"
+                            Grid.Row="3"
                             HorizontalAlignment="Left"
                             TextWrapping="Wrap"
                             MaxWidth="450"
@@ -129,12 +131,20 @@
                         <TextBlock
                             Margin="0,5,0,0"
                             FontSize="16"
-                            Grid.Row="3"
+                            Grid.Row="4"
                             HorizontalAlignment="Left"
                             TextWrapping="Wrap"
                             MaxWidth="450"
                             Foreground="{StaticResource SanetBlue}"
                             Text="{Binding MetroStudioText}"/>
+                        <HyperlinkButton
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="20"
+                            Foreground="{StaticResource SanetBlue}"
+                            Grid.Row="2"
+                            Content="{Binding ForWPLabel}"
+                            NavigateUri="http://windowsphone.com/s?appid=f2993622-c41f-4cd5-8188-403a3efe6383"/>
                     </Grid>
 
                     <TextBlock Style="{StaticResource SubheaderTextStyle}"

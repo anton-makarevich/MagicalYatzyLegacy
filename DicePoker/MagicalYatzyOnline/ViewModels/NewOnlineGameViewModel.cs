@@ -337,9 +337,9 @@ namespace Sanet.Kniffel.ViewModels
 
             var p = RoamingSettings.GetLastPlayer(5);
             if (p == null || p.Player == null)
-                p = RoamingSettings.GetLastPlayer(1);
-            
-            if (p==null||p.Player == null)
+                p = RoamingSettings.GetLastPlayer(0);
+
+            if (p == null || p.Player == null ||(p.IsDefaultName|| !p.HasPassword))
             {
 
                 var userName = "PlayerNoNameLabel".Localize();//GetNewPlayerName(PlayerType.Local);
@@ -347,12 +347,13 @@ namespace Sanet.Kniffel.ViewModels
                 {
 
                     Type = PlayerType.Local,
-                    Profile = ProfileType.Facebook,
-                    Name=userName
+                    Profile = ProfileType.Local,
+                    Name = userName
 
                 };
-               
+                p.Profile = ProfileType.Facebook;
             }
+            
 #endif
            
             p.MagicPressed += p_MagicPressed;

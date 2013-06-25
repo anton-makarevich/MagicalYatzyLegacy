@@ -212,6 +212,65 @@
             </Setter>
         </Style>
 
+        <!--Datatemplate for magical offers-->
+        <DataTemplate x:Key="OfferTemplate">
+            <Grid
+            Visibility="{Binding IsAvailable,Converter={StaticResource VisibilityKey}}"
+            Height="110" Margin="10,5" HorizontalAlignment="Stretch"
+                          >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid
+                            Width="80"
+                            Height="80"
+                                
+                                Background="{StaticResource SanetBlue}">
+                    <TextBlock Text="{Binding Amount}"
+                                       FontSize="35"
+                           Margin="10"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"/>
+                    <!--<TextBlock Text="{Binding Cost}"
+                                       
+                           Margin="2"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Bottom"
+                                       Foreground="White"/>-->
+
+                    <Grid
+                    Visibility="{Binding HasDiscount,Converter={StaticResource VisibilityKey}}"
+                    Height="42" Width="42"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    >
+
+                        <Image Source="/Assets/Discount.png"/>
+                        <TextBlock Text="{Binding Discount}"
+                               FontSize="16" Foreground="Red">
+                            <TextBlock.RenderTransform>
+                                <RotateTransform Angle="-45" CenterX="20" CenterY="20" />
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                    </Grid>
+
+
+
+                </Grid>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{Binding Label}" Foreground="{StaticResource SanetBlue}" 
+                                 FontSize="35" Height="50" Margin="10,5,10,0" />
+                    <TextBlock Text="{Binding LocalizedDescription}"
+                                 FontSize="18"  Margin="10,5" />
+                </StackPanel>
+
+            </Grid>
+        </DataTemplate>
+
+
+
         <!--Game result table template-->
         <DataTemplate x:Key="GameResultsTemplate">
             <Grid Width="360" HorizontalAlignment="Stretch"

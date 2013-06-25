@@ -144,7 +144,24 @@ namespace Sanet.Kniffel.Server
             if (game.Players!=null)
             {
                 //check players and remove 'dead'
-                
+                //removing inactive players
+                try
+                {
+                    List<Player> deadPlayers = new List<Player>();
+                    foreach (Player p in game.Players)
+                    {
+                        if ((p.LastTimeActive - DateTime.Now).TotalMinutes > 10)
+                            deadPlayers.Add(p);
+                    }
+                    foreach (Player p in deadPlayers)
+                    {
+                        game.LeaveGame(p);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    LogManager.Log("SCL.ReoveDead", ex);
+                }
                 var exPlayer = game.Players.FirstOrDefault(f=>f.Name==e.Command.PlayerName);
                 if (exPlayer!=null)
                 {

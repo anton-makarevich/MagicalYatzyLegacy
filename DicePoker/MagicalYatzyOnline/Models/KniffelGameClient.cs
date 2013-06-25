@@ -517,7 +517,11 @@ namespace Sanet.Kniffel.Models
                 LogManager.Log(LogLevel.Message, "GameClient", "Change round received, new player {0}, new round #{1}", e.Command.Name, e.Command.Round);
                 fixedRollResults = new List<int>();
                 if (CurrentPlayer != null)
+                {
+                    if (CurrentPlayer.Name == e.Command.Name && Move == e.Command.Round && Move!=1 && CurrentPlayer.Roll!=1)
+                        return;
                     CurrentPlayer.IsMoving = false;
+                }
                 foreach (Player p in Players)
                     p.IsMoving = false;
 

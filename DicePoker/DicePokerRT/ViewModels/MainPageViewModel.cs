@@ -198,12 +198,12 @@ namespace Sanet.Kniffel.ViewModels
                     {
                         Label = "RemoveAdAction",
                         MenuAction = new Action(
-#if WinRT
+#if Win8
                             async
 #endif
                                 () =>
                         {
-#if WinRT
+#if Win8
                             await
 #endif
                             StoreManager.RemoveAd();

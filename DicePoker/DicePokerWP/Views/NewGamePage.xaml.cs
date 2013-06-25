@@ -14,6 +14,7 @@ using Sanet.Models;
 using Sanet.Kniffel.ViewModels;
 using Microsoft.Phone.Shell;
 using Sanet.Kniffel.Models;
+using Sanet;
 
 namespace DicePokerWP
 {
@@ -123,7 +124,7 @@ namespace DicePokerWP
             StartRoll();
             try
             {
-                if (StoreManager.IsTrial)
+                if (StoreManager.IsAdVisible())
                     AdRotatorControl.Invalidate();
             }
             catch (Exception ex)
@@ -202,7 +203,7 @@ namespace DicePokerWP
                 GetViewModel<NewGameViewModel>().SavePlayers();
             }
             catch (Exception ex)
-            { }
+            { LogManager.Log("NewPage.From", ex); }
             DettachNavigationEvents();
         }
 

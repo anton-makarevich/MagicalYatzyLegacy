@@ -318,6 +318,9 @@
     <value>Fehler</value>
     <comment>Fehler</comment>
   </data>
+  <data name="ExitConfirmMessage" xml:space="preserve">
+    <value>Выйсцi? Стан бягучай гульнi будзе згублены.</value>
+  </data>
   <data name="FacebookLabel" xml:space="preserve">
     <value>Facebook</value>
   </data>
@@ -605,6 +608,9 @@
   <data name="PlayerNameLabel" xml:space="preserve">
     <value>Name</value>
     <comment>Name</comment>
+  </data>
+  <data name="PlayerNoNameLabel" xml:space="preserve">
+    <value>kein Name</value>
   </data>
   <data name="PlayerNoPasswordLabel" xml:space="preserve">
     <value>kein Passwort</value>

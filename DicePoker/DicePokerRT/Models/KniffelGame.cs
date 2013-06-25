@@ -174,6 +174,15 @@ namespace Sanet.Kniffel.Models
             }
         }
 
+        public List<int> FixedDice
+        {
+            get
+            {
+                return
+                    fixedRollResults;
+            }
+        }
+
         /// <summary>
         /// Players Count
         /// </summary>

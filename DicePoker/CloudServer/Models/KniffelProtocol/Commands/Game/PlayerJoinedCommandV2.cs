@@ -13,7 +13,7 @@ namespace Sanet.Kniffel.Protocol.Commands.Game
         {
             get { return COMMAND_NAME; }
         }
-        public static string COMMAND_NAME = "gamePLAYER_JOINED_V2";
+        public new static string COMMAND_NAME = "gamePLAYER_JOINED_V2";
 
         public string PicUrl{get;private set;}
 

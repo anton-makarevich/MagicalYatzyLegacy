@@ -525,6 +525,9 @@
   <data name="PlayerNameLabel" xml:space="preserve">
     <value>имя</value>
   </data>
+  <data name="PlayerNoNameLabel" xml:space="preserve">
+    <value>нет имени</value>
+  </data>
   <data name="PlayerNoPasswordLabel" xml:space="preserve">
     <value>нет пароля</value>
   </data>

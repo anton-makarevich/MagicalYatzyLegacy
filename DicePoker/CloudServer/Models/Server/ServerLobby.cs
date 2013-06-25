@@ -160,17 +160,7 @@ namespace Sanet.Kniffel.Server
 
             foreach (var game in games)
             {
-                //removing inactive players
-                List<Player> deadPlayers = new List<Player>();
-                foreach (Player p in game.Players)
-                {
-                    if ((p.LastTimeActive - DateTime.Now).TotalMinutes > 10)
-                        deadPlayers.Add(p);
-                }
-                foreach (Player p in deadPlayers)
-                {
-                    game.LeaveGame(p);
-                }
+                
                 if (game.PlayersNumber>0)
                     rv.Add(new TupleTableInfo(game.GameId, game.Players.Select(p=>p.Name).ToList(), game.Rules.Rule));
             }

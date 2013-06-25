@@ -1,0 +1,377 @@
+﻿<phone:PhoneApplicationPage 
+    xmlns:DicePanel="clr-namespace:Sanet.Kniffel.DicePanel"  
+    x:Class="DicePokerWP.GamePage"
+    xmlns:sanet="clr-namespace:Sanet.Controls"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="clr-namespace:Microsoft.Phone.Controls.Unofficial"
+    xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
+    xmlns:primitives="clr-namespace:Telerik.Windows.Controls.Primitives;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:adRotator="clr-namespace:AdRotator;assembly=AdRotator"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    toolkit:TiltEffect.IsTiltEnabled="True"
+    shell:SystemTray.IsVisible="True"
+    Style="{StaticResource TransitionPageStyle}">
+
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="True" 
+                                 IsVisible="{Binding IsBusy}" />
+    </shell:SystemTray.ProgressIndicator>
+    
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Width="480" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <adRotator:AdRotatorControl
+            Grid.Row="0"
+            x:Name="AdRotatorControl"
+            Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"
+            xmlns:adRotator="clr-namespace:AdRotator;assembly=AdRotator"
+            Width="480" Height="80"
+                SettingsUrl="http://sanet.by/AdSettings.xml"
+                DefaultAdType="AdDuplex"
+                DefaultSettingsFileUri="/AppAssemblyName;component/AdSettings.xml"
+                AdDuplexAppId="41735"
+                InneractiveAppId="AntonMakarevich_MagicalYatzyOnline_WP"/>
+        
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="90"/>
+            </Grid.ColumnDefinitions>
+            
+            <sanet:PivotWithHiding 
+                x:Name="rollPivot"
+                SelectedIndex="1">
+                <sanet:PivotWithHiding.Title>
+                    <TextBlock x:Name="ApplicationTitle" Text="{Binding Title}"
+                       Margin ="0,10,0,8"
+                        FontSize="26"
+                        Foreground="{StaticResource SanetBlue}"/>
+                </sanet:PivotWithHiding.Title>
+                <phone:PivotItem
+                    x:Name="tablePivotItem">
+                    <phone:PivotItem.Header>
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
+                       Foreground="{StaticResource SanetBlue}"
+                       Text="{Binding TableLabel}"
+                       Grid.Row="0"
+                       VerticalAlignment="Center"/>
+                        
+                    </phone:PivotItem.Header>
+                    <!--Results table-->
+                    <Grid
+                        VerticalAlignment="Top">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderThickness="0,0,1,0" BorderBrush="{StaticResource SanetBlue}">
+                            <StackPanel Margin="-5,6,0,6">
+                                <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource SanetBlue}">
+                                    <Grid Height="55" 
+                                  Width="100"
+                                  Margin="0,0" HorizontalAlignment="Stretch"
+                                   >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="{Binding RulesLabel}"
+                                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       TextAlignment="Center"
+                                       FontSize="12"/>
+                                        <TextBlock Text="{Binding RulesNameLabel}"
+                                               Grid.Row="1"
+                                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       TextAlignment="Center"
+                                       FontSize="12"/>
+                                    </Grid>
+
+                                </Border>
+                                <ListBox
+                                 Width="100"
+                                Margin="-5,0" HorizontalAlignment="Stretch"
+                                    ItemsSource="{Binding SampleResults}"
+                                    ItemTemplate="{StaticResource PlayerTableCaptionTemplate}"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                    >
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                            <Setter Property="Width" Value="100"/>
+                                            <Setter Property="Height" Value="34"/>
+                                            <Setter Property="Margin" Value="0,0,0,-2"/>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+
+                                </ListBox>
+                                <Grid Height="40" 
+                              Margin="0" HorizontalAlignment="Stretch"
+                              >
+                                    <TextBlock Text="{Binding TotalLabel}"
+                                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       TextTrimming="WordEllipsis"
+                                       TextWrapping="Wrap"
+                                                           Margin="5,0"
+                                       TextAlignment="Center"
+                                       FontSize="20"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                        <ListBox
+                            Grid.Column="1"
+                        ItemsSource="{Binding Players}"
+                        ItemTemplate="{StaticResource PlayerTableTemplate}"
+                        >
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="Width" Value="60"/>
+                                    <Setter Property="Margin" Value="0,0,0,-8"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+
+                        </ListBox>
+
+                    </Grid>
+                </phone:PivotItem>
+                <phone:PivotItem 
+                    x:Name="boardPivotItem">
+                    <phone:PivotItem.Header>
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
+                       Foreground="{StaticResource SanetBlue}"
+                       Text="{Binding BoardLabel}"
+                       Grid.Row="0"
+                       VerticalAlignment="Center"/>
+
+                    </phone:PivotItem.Header>
+                    <Grid
+                        MinHeight="550"
+                        MinWidth="350"
+                        VerticalAlignment="Bottom"
+                        >
+                        <DicePanel:DicePanel 
+                        Margin="0,0,0,60"
+                        HorizontalAlignment="Right"
+                        MinHeight="450"
+                        MinWidth="360"
+                               x:Name="dpBackground"/>
+                        <!--Panel to show results-->
+                        <Grid Grid.Column="0"
+                            Visibility="Collapsed"
+                            x:Name="gridResults"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            
+                            <ListBox
+                                Grid.Row="1"
+                                 Margin="0" HorizontalAlignment="Stretch"
+                                    ItemsSource="{Binding Players}"
+                                    ItemTemplate="{StaticResource GameResultsTemplate}"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                    >
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+
+                            </ListBox>
+
+                        </Grid>
+                    </Grid>
+                    
+                </phone:PivotItem>
+                <phone:PivotItem
+                x:Name="chatPivotItem"
+                    >
+                    <phone:PivotItem.Header>
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                               x:Name="chatHeader"
+                           HorizontalAlignment="Left"
+                       Foreground="{StaticResource SanetBlue}"
+                       Text="{Binding ChatLabel}"
+                       VerticalAlignment="Center"/>
+
+                    </phone:PivotItem.Header>
+                    <Grid DataContext="{Binding ChatModel}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="60"/>
+                        </Grid.RowDefinitions>
+                        <!--Players List-->
+                        <Border
+                        BorderBrush="{StaticResource SanetBlue}"
+                        BorderThickness="0,0,0,2">
+                            <ListBox
+                            IsHitTestVisible="False"
+                            ItemsSource="{Binding Players}"
+                            ItemTemplate="{StaticResource ChatPlayerTemplate}"/>
+                        </Border>
+
+
+                        <!--Messages List-->
+                        <!--<ListBox
+                            x:Name="messagesList"
+                            Grid.Row="1"
+                            ItemsSource="{Binding Messages}"
+                            ItemTemplate="{StaticResource ChatMessageTemplate}"/>-->
+                        <telerikData:RadConversationView x:Name="messagesList"
+                            Grid.Row="1"
+                            ItemsSource="{Binding Messages}"
+                             TextBoxVisibility="Collapsed"  >
+                            <telerikData:RadConversationView.IncomingMessageTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding SenderName}"
+                                       Margin="0, 0, 0, 4"
+                                       HorizontalAlignment="Right"
+                                       Foreground="{StaticResource PhoneSubtleBrush}"/>
+
+                                            <primitives:RadPointerContentControl Background="#A200FF"
+                                                                 TargetPoint="-120,-300"
+                                                                 Foreground="White">
+                                                <primitives:RadPointerContentControl.PointerTemplate>
+                                                    <DataTemplate>
+                                                        <Polygon Width="12"
+                                                 Height="24"
+                                                 Points="0,0 12,0 12,12 0,24"
+                                                 StrokeThickness="0"
+                                                 Fill="#A200FF"
+                                                 RenderTransformOrigin="0.5, 0.5">
+                                                            <Polygon.RenderTransform>
+                                                                <ScaleTransform ScaleX="-1"/>
+                                                            </Polygon.RenderTransform>
+                                                        </Polygon>
+                                                    </DataTemplate>
+                                                </primitives:RadPointerContentControl.PointerTemplate>
+
+                                                <TextBlock Text="{Binding Path=Text}"
+                                           TextWrapping="Wrap"
+                                           Margin="8, 2, 8, 6"/>
+
+                                            </primitives:RadPointerContentControl>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </telerikData:RadConversationView.IncomingMessageTemplate>
+
+                            <telerikData:RadConversationView.OutgoingMessageTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="3*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="{Binding SenderName}"
+                                       Margin="0, 0, 0, 4"
+                                       HorizontalAlignment="Right"
+                                       Foreground="{StaticResource PhoneSubtleBrush}"/>
+
+                                            <primitives:RadPointerContentControl Background="#849A01"
+                                                                 TargetPoint="130, -300"
+                                                                 Foreground="White">
+                                                <primitives:RadPointerContentControl.PointerTemplate>
+                                                    <DataTemplate>
+                                                        <Polygon Width="12"
+                                                 Height="24"
+                                                 Points="0,0 12,0 12,12 0,24"
+                                                 StrokeThickness="0"
+                                                 Fill="#849A01"
+                                                 RenderTransformOrigin="0.5, 0.5">
+                                                        </Polygon>
+                                                    </DataTemplate>
+                                                </primitives:RadPointerContentControl.PointerTemplate>
+
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding Path=Text}"
+                                               TextWrapping="Wrap"
+                                               Margin="8, 2, 8, 6"/>
+
+                                                </StackPanel>
+                                            </primitives:RadPointerContentControl>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </telerikData:RadConversationView.OutgoingMessageTemplate>
+                            
+                        </telerikData:RadConversationView>
+                        <!--Chat Input Panel-->
+                        <Grid 
+                            Grid.Row="2"
+                            >
+                        <Button
+                            x:Name="unFocusButton"
+                                Visibility="Visible"
+                                Opacity="0"
+                                />
+                            <TextBox
+                                BorderBrush="{StaticResource SanetBlue}"
+                                x:Name="chatTextField"
+                                AcceptsReturn="False"
+                                Height="80" Margin="-12,0"
+                                Text="{Binding CurrentMessage, Mode=TwoWay}"/>
+                            
+                        </Grid>
+
+                    </Grid>
+
+                </phone:PivotItem>
+            </sanet:PivotWithHiding>
+
+            <ListBox
+                Margin="0,0,0,60"
+                x:Name="RollResults"
+            Grid.Column="1"
+            ItemTemplate="{StaticResource ResultItemTemplate}"
+            ItemsSource="{Binding RollResults}"
+                SelectionChanged="ListBox_SelectionChanged"
+                VerticalAlignment="Center"
+               />
+
+            
+            
+        </Grid>
+    </Grid>
+ 
+</phone:PhoneApplicationPage>

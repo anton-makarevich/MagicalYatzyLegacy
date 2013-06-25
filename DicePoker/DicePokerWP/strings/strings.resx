@@ -279,6 +279,9 @@
   <data name="ErrorLabel" xml:space="preserve">
     <value>Error!</value>
   </data>
+  <data name="ExitConfirmMessage" xml:space="preserve">
+    <value>Are you sure you want to leave game? The current state of the game will be lost.</value>
+  </data>
   <data name="FacebookLabel" xml:space="preserve">
     <value>Facebook</value>
   </data>
@@ -523,6 +526,9 @@
   </data>
   <data name="PlayerNameLabel" xml:space="preserve">
     <value>name</value>
+  </data>
+  <data name="PlayerNoNameLabel" xml:space="preserve">
+    <value>no name</value>
   </data>
   <data name="PlayerNoPasswordLabel" xml:space="preserve">
     <value>no password</value>

@@ -41,7 +41,7 @@ namespace DicePokerWP
             StartRoll();
             try
             {
-                if (StoreManager.IsTrial)
+                if (StoreManager.IsAdVisible())
                     AdRotatorControl.Invalidate();
             }
             catch (Exception ex)

@@ -59,7 +59,7 @@ namespace MagicalYatzyOnline
             ReviewBugger.CheckNumOfRuns();
 
             //init viewmodels
-            var ngvm = ViewModelProvider.GetViewModel<NewGameViewModel>();
+            //var ngvm = ViewModelProvider.GetViewModel<NewGameViewModel>();
             var pgvm = ViewModelProvider.GetViewModel<PlayGameViewModel>();
 
             //init logger

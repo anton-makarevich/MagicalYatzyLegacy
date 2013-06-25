@@ -83,7 +83,7 @@ namespace DicePokerWP
             StartRoll();
             try
             {
-                if (StoreManager.IsTrial)
+                if (StoreManager.IsAdVisible())
                     AdRotatorControl.Invalidate();
             }
             catch (Exception ex)
@@ -141,7 +141,9 @@ namespace DicePokerWP
                 GetViewModel<NewOnlineGameViewModel>().SavePlayers();
             }
             catch (Exception ex)
-            { }
+            {
+                LogManager.Log("NewOnlinePage.From", ex);
+            }
             DettachNavigationEvents();
         }
 
@@ -158,7 +160,7 @@ namespace DicePokerWP
                 if (!ApplicationBar.IsVisible)
                 {
                     e.Cancel = true;
-                    GetViewModel<NewGameViewModel>().CloseMagicPage();
+                    GetViewModel<NewOnlineGameViewModel>().CloseMagicPage();
                     ApplicationBar.IsVisible = true;
                 }
                 else if (startPivot.SelectedIndex > 0)

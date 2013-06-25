@@ -871,6 +871,7 @@ namespace Sanet.Kniffel.ViewModels
                                 newP.IsMagicRollAvailable = p.IsMagicRollAvailable;
                                 newP.IsManualSetlAvailable = p.IsManualSetlAvailable;
                                 newP.IsForthRollAvailable = p.IsForthRollAvailable;
+                                newP.Roll = p.Roll;
                                 _Players.Remove(p);
                                 
                             }

@@ -7,6 +7,7 @@ using Sanet.Network.Protocol.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace Sanet.Kniffel.Models
 {
@@ -66,8 +67,23 @@ namespace Sanet.Kniffel.Models
         public void SendTableInfo()
         {
             Send(new TableInfoCommand(_Game));
-            if (_Game.CurrentPlayer != null && _Game.Move>0)
+            if (_Game.CurrentPlayer != null && _Game.Move > 0)
+            {
                 Send(new RoundChangedCommand(_Game.CurrentPlayer.Name, _Game.Move));
+                //if (Game.FixedDicesCount > 0)
+                //{
+
+                //    foreach (int i in Game.FixedDice)
+                //    {
+                //        Send(new FixDiceCommand(Game.CurrentPlayer.Name, i, false));
+                //    }
+                //    Thread.Sleep(100);
+                //    foreach (int i in Game.FixedDice)
+                //    {
+                //        Send(new FixDiceCommand(Game.CurrentPlayer.Name, i, true));
+                //    }
+                //}
+            }
         }
 
         public void LeaveGame()

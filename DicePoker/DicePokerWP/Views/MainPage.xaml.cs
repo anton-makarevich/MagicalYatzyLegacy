@@ -108,9 +108,14 @@ namespace DicePokerWP
         {
             NavigationService.Navigate(new Uri("/Views/SettingsPage.xaml", UriKind.RelativeOrAbsolute));
         }
-
+#if Win8
+        async
+#endif
         void buyButton_Click(object sender, EventArgs e)
         {
+#if Win8
+            await
+#endif
             StoreManager.RemoveAd();
         }
 

@@ -89,9 +89,14 @@ namespace DicePokerWP
             buyButton.Text = "BuyLabel".Localize();
             buyButton.Click += buyButton_Click;
         }
-
+#if Win8
+        async
+#endif
         void buyButton_Click(object sender, EventArgs e)
         {
+#if Win8
+            await
+#endif
             StoreManager.RemoveAd();
         }
 
@@ -156,7 +161,7 @@ namespace DicePokerWP
             dpBackground.ClickToFreeze = false;
             try
             {
-                if (StoreManager.IsTrial)
+                if (StoreManager.IsAdVisible())
                     AdRotatorControl.Invalidate();
             }
             catch (Exception ex)
@@ -503,11 +508,11 @@ namespace DicePokerWP
                     if (GetViewModel<PlayGameViewModel>().IsForthRollVisible)
                         this.ApplicationBar.Buttons.Add(resetRollButton);
                 }
-                else
-                {
-                    if (StoreManager.IsTrial)
-                        this.ApplicationBar.Buttons.Add(buyButton);
-                }
+                //else
+                //{
+                //    if (StoreManager.IsAdVisible())
+                //        this.ApplicationBar.Buttons.Add(buyButton);
+                //}
                 rollButton.IsEnabled = GetViewModel<PlayGameViewModel>().CanRoll;
                 this.ApplicationBar.Buttons.Add(rollButton);
                                 
@@ -527,7 +532,7 @@ namespace DicePokerWP
             this.ApplicationBar.Buttons.Clear();
 
             this.ApplicationBar.Buttons.Add(againButton);
-            if (StoreManager.IsTrial)
+            if (StoreManager.IsAdVisible())
                 this.ApplicationBar.Buttons.Add(buyButton);
 
             this.ApplicationBar.IsMenuEnabled = false;
@@ -544,7 +549,7 @@ namespace DicePokerWP
 
             this.ApplicationBar.Buttons.Add(readyButton);
 
-            if (StoreManager.IsTrial)
+            if (StoreManager.IsAdVisible())
                 this.ApplicationBar.Buttons.Add(buyButton);
 
             this.ApplicationBar.IsMenuEnabled = false;
@@ -559,7 +564,7 @@ namespace DicePokerWP
             this.ApplicationBar.Buttons.Clear();
 
             this.ApplicationBar.Buttons.Add(sendButton);
-            if (StoreManager.IsTrial)
+            if (StoreManager.IsAdVisible())
                 this.ApplicationBar.Buttons.Add(buyButton);
 
             this.ApplicationBar.IsMenuEnabled = false;

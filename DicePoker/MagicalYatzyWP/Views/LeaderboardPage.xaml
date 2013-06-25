@@ -1,0 +1,535 @@
+﻿<phone:PhoneApplicationPage 
+    xmlns:DicePanel="clr-namespace:Sanet.Kniffel.DicePanel"  
+    x:Class="DicePokerWP.LeaderboardPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="clr-namespace:Microsoft.Phone.Controls.Unofficial"
+                            xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+                            xmlns:adRotator="clr-namespace:AdRotator;assembly=AdRotator"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    toolkit:TiltEffect.IsTiltEnabled="True"
+    shell:SystemTray.IsVisible="True"
+    Style="{StaticResource TransitionPageStyle}">
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="True" 
+                                 IsVisible="{Binding ScoresLoading}" />
+    </shell:SystemTray.ProgressIndicator>
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <adRotator:AdRotatorControl
+            Grid.Row="1"
+            x:Name="AdRotatorControl"
+            Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"
+            xmlns:adRotator="clr-namespace:AdRotator;assembly=AdRotator"
+            Width="480" Height="80"
+                SettingsUrl="http://sanet.by/AdSettings.xml"
+                DefaultAdType="AdDuplex"
+                DefaultSettingsFileUri="/AppAssemblyName;component/AdSettings.xml"
+                AdDuplexAppId="41735"
+                InneractiveAppId="AntonMakarevich_MagicalYatzyOnline_WP"/>
+        
+        
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12,0,12,0">
+            <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+            <DicePanel:DicePanel 
+                Grid.RowSpan="2"
+                x:Name="dpBackground"/>
+            <phone:Pivot
+                >
+                <phone:Pivot.Title>
+                    <TextBlock x:Name="ApplicationTitle" Text="{Binding Title}"
+                      Margin ="0,10,0,8"
+                        FontSize="26"
+                        Foreground="{StaticResource SanetBlue}"/>
+                </phone:Pivot.Title>
+                <phone:PivotItem >
+                <phone:PivotItem.Header>
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
+                       Foreground="{StaticResource SanetBlue}"
+                       Text="{Binding RulesBLabel}"
+                       VerticalAlignment="Center"/>
+
+                    </phone:PivotItem.Header>
+                    <StackPanel
+                        Grid.Row="1" Margin="0,0,10,0">
+                        <Grid Height="30" Margin="5,5,0,0" HorizontalAlignment="Stretch"
+                          >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0"/>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="1"
+                                BorderBrush="{StaticResource SanetBlue}"
+                                BorderThickness="0,0,1,2">
+                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                               HorizontalAlignment="Left"
+                                               TextAlignment="Left"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="30" />
+                            </Border>
+                            <Border Grid.Column="2"
+                                        BorderBrush="{StaticResource SanetBlue}"
+                                    BorderThickness="0,0,1,2">
+
+                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                               HorizontalAlignment="Left"
+                                               TextAlignment="Left"
+                                               Margin="5,0,0,0"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="30" />
+                            </Border>
+                            <Border Grid.Column="3"
+                                    BorderBrush="{StaticResource SanetBlue}"
+                                BorderThickness="0,0,1,2">
+
+                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                           HorizontalAlignment="Left"
+                                           TextAlignment="Left"
+                                           Margin="5,0,0,0"
+                                           TextWrapping="NoWrap"
+                                           TextTrimming="WordEllipsis"
+                                           FontSize="20" Height="30" />
+                            </Border>
+                            <Border Grid.Column="4"
+                                        BorderBrush="{StaticResource SanetBlue}"
+                                    BorderThickness="0,0,0,2">
+
+                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                               HorizontalAlignment="Left"
+                                               Margin="5,0,0,0"
+                                               TextAlignment="Left"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="30" />
+                            </Border>
+                        </Grid>
+                        <ListBox
+                                        IsHitTestVisible="False"
+                                        Background="Transparent"
+                                 Margin="0" HorizontalAlignment="Stretch"
+                                    ItemsSource="{Binding ScoresB}"
+                                    ItemTemplate="{StaticResource TopPlayersTemplate}"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                    >
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="Margin" Value="0,0,0,-8"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+
+                        </ListBox>
+                        <telerikPrimitives:RadBusyIndicator HorizontalAlignment="Center"
+                              Margin="50"
+                              Foreground="{StaticResource SanetBlue}"
+                              Content=""
+                              AnimationStyle="AnimationStyle5"
+                              IsRunning="{Binding ScoresBLoading}"/>
+                    </StackPanel>
+                </phone:PivotItem>
+                <phone:PivotItem >
+                    <phone:PivotItem.Header>
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
+                       Foreground="{StaticResource SanetBlue}"
+                       Text="{Binding RulesLabel}"
+                       VerticalAlignment="Center"/>
+
+                    </phone:PivotItem.Header>
+                    <StackPanel
+                        Grid.Row="1" Margin="0,0,10,0">
+                        <Grid Height="30" Margin="5,5,0,0" HorizontalAlignment="Stretch"
+                          >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0"/>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="1"
+                                BorderBrush="{StaticResource SanetBlue}"
+                                BorderThickness="0,0,1,2">
+                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                               HorizontalAlignment="Left"
+                                               TextAlignment="Left"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="30" />
+                            </Border>
+                            <Border Grid.Column="2"
+                                        BorderBrush="{StaticResource SanetBlue}"
+                                    BorderThickness="0,0,1,2">
+
+                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                               HorizontalAlignment="Left"
+                                               TextAlignment="Left"
+                                               Margin="5,0,0,0"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="30" />
+                            </Border>
+                            <Border Grid.Column="3"
+                                    BorderBrush="{StaticResource SanetBlue}"
+                                BorderThickness="0,0,1,2">
+
+                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                           HorizontalAlignment="Left"
+                                           TextAlignment="Left"
+                                           Margin="5,0,0,0"
+                                           TextWrapping="NoWrap"
+                                           TextTrimming="WordEllipsis"
+                                           FontSize="20" Height="30" />
+                            </Border>
+                            <Border Grid.Column="4"
+                                        BorderBrush="{StaticResource SanetBlue}"
+                                    BorderThickness="0,0,0,2">
+
+                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                               HorizontalAlignment="Left"
+                                               Margin="5,0,0,0"
+                                               TextAlignment="Left"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="30" />
+                            </Border>
+                        </Grid>
+                        <ListBox
+                                        IsHitTestVisible="False"
+                                        Background="Transparent"
+                                 Margin="0" HorizontalAlignment="Stretch"
+                                    ItemsSource="{Binding Scores}"
+                                    ItemTemplate="{StaticResource TopPlayersTemplate}"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                    >
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="Margin" Value="0,0,0,-8"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+
+                        </ListBox>
+                        <telerikPrimitives:RadBusyIndicator HorizontalAlignment="Center"
+                              Margin="50"
+                              Foreground="{StaticResource SanetBlue}"
+                              Content=""
+                              AnimationStyle="AnimationStyle5"
+                              IsRunning="{Binding ScoresLoading}"/>
+                    </StackPanel>
+                </phone:PivotItem>
+                <phone:PivotItem >
+                    <phone:PivotItem.Header>
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
+                       Foreground="{StaticResource SanetBlue}"
+                       Text="{Binding RulesSLabel}"
+                       VerticalAlignment="Center"/>
+
+                    </phone:PivotItem.Header>
+                    <StackPanel
+                        Grid.Row="1" Margin="0,0,10,0">
+                        <Grid Height="30" Margin="5,5,0,0" HorizontalAlignment="Stretch"
+                          >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0"/>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="1"
+                                BorderBrush="{StaticResource SanetBlue}"
+                                BorderThickness="0,0,1,2">
+                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                               HorizontalAlignment="Left"
+                                               TextAlignment="Left"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="30" />
+                            </Border>
+                            <Border Grid.Column="2"
+                                        BorderBrush="{StaticResource SanetBlue}"
+                                    BorderThickness="0,0,1,2">
+
+                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                               HorizontalAlignment="Left"
+                                               TextAlignment="Left"
+                                               Margin="5,0,0,0"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="30" />
+                            </Border>
+                            <Border Grid.Column="3"
+                                    BorderBrush="{StaticResource SanetBlue}"
+                                BorderThickness="0,0,1,2">
+
+                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                           HorizontalAlignment="Left"
+                                           TextAlignment="Left"
+                                           Margin="5,0,0,0"
+                                           TextWrapping="NoWrap"
+                                           TextTrimming="WordEllipsis"
+                                           FontSize="20" Height="30" />
+                            </Border>
+                            <Border Grid.Column="4"
+                                        BorderBrush="{StaticResource SanetBlue}"
+                                    BorderThickness="0,0,0,2">
+
+                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                               HorizontalAlignment="Left"
+                                               Margin="5,0,0,0"
+                                               TextAlignment="Left"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="30" />
+                            </Border>
+                        </Grid>
+                        <ListBox
+                                        IsHitTestVisible="False"
+                                        Background="Transparent"
+                                 Margin="0" HorizontalAlignment="Stretch"
+                                    ItemsSource="{Binding ScoresS}"
+                                    ItemTemplate="{StaticResource TopPlayersTemplate}"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                    >
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="Margin" Value="0,0,0,-8"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <telerikPrimitives:RadBusyIndicator HorizontalAlignment="Center"
+                              Margin="50"
+                              Foreground="{StaticResource SanetBlue}"
+                              Content=""
+                              AnimationStyle="AnimationStyle5"
+                              IsRunning="{Binding ScoresSLoading}"/>
+                        </ListBox>
+
+                    </StackPanel>
+                </phone:PivotItem>
+                <phone:PivotItem >
+                    <phone:PivotItem.Header>
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
+                       Foreground="{StaticResource SanetBlue}"
+                       Text="{Binding RulesELabel}"
+                       VerticalAlignment="Center"/>
+
+                        </phone:PivotItem.Header>
+                    <StackPanel
+                        Grid.Row="1" Margin="0,0,10,0">
+                        <Grid Height="30" Margin="5,5,0,0" HorizontalAlignment="Stretch"
+                          >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0"/>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="1"
+                                BorderBrush="{StaticResource SanetBlue}"
+                                BorderThickness="0,0,1,2">
+                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                               HorizontalAlignment="Left"
+                                               TextAlignment="Left"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="30" />
+                            </Border>
+                            <Border Grid.Column="2"
+                                        BorderBrush="{StaticResource SanetBlue}"
+                                    BorderThickness="0,0,1,2">
+
+                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                               HorizontalAlignment="Left"
+                                               TextAlignment="Left"
+                                               Margin="5,0,0,0"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="30" />
+                            </Border>
+                            <Border Grid.Column="3"
+                                    BorderBrush="{StaticResource SanetBlue}"
+                                BorderThickness="0,0,1,2">
+
+                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                           HorizontalAlignment="Left"
+                                           TextAlignment="Left"
+                                           Margin="5,0,0,0"
+                                           TextWrapping="NoWrap"
+                                           TextTrimming="WordEllipsis"
+                                           FontSize="20" Height="30" />
+                            </Border>
+                            <Border Grid.Column="4"
+                                        BorderBrush="{StaticResource SanetBlue}"
+                                    BorderThickness="0,0,0,2">
+
+                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                               HorizontalAlignment="Left"
+                                               Margin="5,0,0,0"
+                                               TextAlignment="Left"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="30" />
+                            </Border>
+                        </Grid>
+                        <ListBox
+                                        IsHitTestVisible="False"
+                                        Background="Transparent"
+                                 Margin="0" HorizontalAlignment="Stretch"
+                                    ItemsSource="{Binding ScoresE}"
+                                    ItemTemplate="{StaticResource TopPlayersTemplate}"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                    >
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="Margin" Value="0,0,0,-8"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <telerikPrimitives:RadBusyIndicator HorizontalAlignment="Center"
+                              Margin="50"
+                              Foreground="{StaticResource SanetBlue}"
+                              Content=""
+                              AnimationStyle="AnimationStyle5"
+                              IsRunning="{Binding ScoresELoading}"/>
+                        </ListBox>
+
+                    </StackPanel>
+                </phone:PivotItem>
+                <phone:PivotItem >
+                    <phone:PivotItem.Header>
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
+                       Foreground="{StaticResource SanetBlue}"
+                       Text="{Binding RulesMLabel}"
+                       VerticalAlignment="Center"/>
+
+                    </phone:PivotItem.Header>
+                    <StackPanel
+                        Grid.Row="1" Margin="0,0,10,0">
+                        <Grid Height="30" Margin="5,5,0,0" HorizontalAlignment="Stretch"
+                          >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0"/>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="1"
+                                BorderBrush="{StaticResource SanetBlue}"
+                                BorderThickness="0,0,1,2">
+                                <TextBlock Text="{Binding PlayerNameLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                               HorizontalAlignment="Left"
+                                               TextAlignment="Left"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="33" />
+                            </Border>
+                            <Border Grid.Column="2"
+                                        BorderBrush="{StaticResource SanetBlue}"
+                                    BorderThickness="0,0,1,2">
+
+                                <TextBlock Text="{Binding PlayerGamesLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                               HorizontalAlignment="Left"
+                                               TextAlignment="Left"
+                                               Margin="5,0,0,0"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="30" />
+                            </Border>
+                            <Border Grid.Column="3"
+                                    BorderBrush="{StaticResource SanetBlue}"
+                                BorderThickness="0,0,1,2">
+
+                                <TextBlock Text="{Binding PlayerTotalLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                           HorizontalAlignment="Left"
+                                           TextAlignment="Left"
+                                           Margin="5,0,0,0"
+                                           TextWrapping="NoWrap"
+                                           TextTrimming="WordEllipsis"
+                                           FontSize="20" Height="30" />
+                            </Border>
+                            <Border Grid.Column="4"
+                                        BorderBrush="{StaticResource SanetBlue}"
+                                    BorderThickness="0,0,0,2">
+
+                                <TextBlock Text="{Binding PlayerScoreLabel}" Foreground="{StaticResource PhoneForegroundBrush}" 
+                                               HorizontalAlignment="Left"
+                                               Margin="5,0,0,0"
+                                               TextAlignment="Left"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="20" Height="30" />
+                            </Border>
+                        </Grid>
+                        <ListBox
+                                        IsHitTestVisible="False" 
+                                        Background="Transparent"
+                                 Margin="0" HorizontalAlignment="Stretch"
+                                    ItemsSource="{Binding ScoresM}"
+                                    ItemTemplate="{StaticResource TopPlayersTemplate}"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                    >
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="Margin" Value="0,0,0,-8"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <telerikPrimitives:RadBusyIndicator HorizontalAlignment="Center"
+                              Margin="50"
+                              Foreground="{StaticResource SanetBlue}"
+                              Content=""
+                              AnimationStyle="AnimationStyle5"
+                              IsRunning="{Binding ScoresMLoading}"/>
+                        </ListBox>
+
+                    </StackPanel>
+                </phone:PivotItem>
+            </phone:Pivot>
+            <my:PhoneHyperlinkButton 
+                Foreground="{StaticResource SanetBlue}"
+                Grid.Row="1"
+                Tag="http://sanet.by/kniffel" 
+                Content="{Binding NavigateToLeaderboardLabel}" 
+                HorizontalAlignment="Center" />
+            
+        </Grid>
+    </Grid>
+ 
+</phone:PhoneApplicationPage>

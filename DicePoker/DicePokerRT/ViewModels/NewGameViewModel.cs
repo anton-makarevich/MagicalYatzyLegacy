@@ -179,8 +179,18 @@ namespace Sanet.Kniffel.ViewModels
             for (int i = 0; i < 4; i++)
             {
                 var p=RoamingSettings.GetLastPlayer(i);
-                if (p==null||p.Player == null)
-                    break;
+                if (p == null || p.Player == null)
+                {
+                    if (i == 0)
+                    {
+                        p=RoamingSettings.GetLastPlayer(5);
+                        if (p == null || p.Player == null)
+                            break;
+                    }
+                    else
+                        break;
+                }
+                    
                 p.DeletePressed += p_DeletePressed;
                 p.MagicPressed += p_MagicPressed;
                 p.NameClicked += p_NameClicked;

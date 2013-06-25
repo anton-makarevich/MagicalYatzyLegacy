@@ -18,11 +18,10 @@
     </TargetFrameworkProfile>
     <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>ru-RU; de-DE; be-BY; es-ES; sv-SE
-    </SupportedCultures>
+    <SupportedCultures>ru-RU%3bbe-BY%3bde-DE%3bes-ES%3bsv-SE</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>DicePokerWP_$(Configuration)_$(Platform).xap</XapFilename>
+    <XapFilename>MagicalYatzy_Release_AnyCPU.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
     <SilverlightAppEntry>DicePokerWP.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>
@@ -473,9 +472,37 @@
     <Compile Include="..\DicePokerWP\ViewModels\TableWrapper.cs">
       <Link>ViewModels\TableWrapper.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerWP\Views\AboutPage.xaml.cs">
+      <Link>Views\AboutPage.xaml.cs</Link>
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Views\GamePage.xaml.cs">
+      <Link>Views\GamePage.xaml.cs</Link>
+      <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Views\LeaderboardPage.xaml.cs">
+      <Link>Views\LeaderboardPage.xaml.cs</Link>
+      <DependentUpon>LeaderboardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Views\MagicRoomPage.xaml.cs">
+      <Link>Views\MagicRoomPage.xaml.cs</Link>
+      <DependentUpon>MagicRoomPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="..\DicePokerWP\Views\MainPage.xaml.cs">
       <Link>Views\MainPage.xaml.cs</Link>
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Views\NewGamePage.xaml.cs">
+      <Link>Views\NewGamePage.xaml.cs</Link>
+      <DependentUpon>NewGamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Views\NewOnlineGamePage.xaml.cs">
+      <Link>Views\NewOnlineGamePage.xaml.cs</Link>
+      <DependentUpon>NewOnlineGamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Views\SettingsPage.xaml.cs">
+      <Link>Views\SettingsPage.xaml.cs</Link>
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\MagicalYatzyOnline\Common\Facebook\FacebookFriendship.cs">
       <Link>Common\Facebook\FacebookFriendship.cs</Link>
@@ -531,27 +558,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\AboutPage.xaml.cs">
-      <DependentUpon>AboutPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\GamePage.xaml.cs">
-      <DependentUpon>GamePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\LeaderboardPage.xaml.cs">
-      <DependentUpon>LeaderboardPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MagicRoomPage.xaml.cs">
-      <DependentUpon>MagicRoomPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NewGamePage.xaml.cs">
-      <DependentUpon>NewGamePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NewOnlineGamePage.xaml.cs">
-      <DependentUpon>NewOnlineGamePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -568,6 +574,9 @@
     </Content>
     <Content Include="..\DicePokerRT\Assets\Desktop.png">
       <Link>Assets\Desktop.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\Discount.png">
+      <Link>Assets\Discount.png</Link>
     </Content>
     <Content Include="..\DicePokerRT\Assets\MagicWand.png">
       <Link>Assets\MagicWand.png</Link>

@@ -769,6 +769,6 @@
     <value>Хотите выйти? Текущая игра будет потеряна.</value>
   </data>
   <data name="PlayerNoNameLabel" xml:space="preserve">
-    <value>нет имя</value>
+    <value>нет имени</value>
   </data>
 </root>

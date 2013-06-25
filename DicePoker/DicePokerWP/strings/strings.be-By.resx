@@ -282,6 +282,9 @@
   <data name="ErrorLabel" xml:space="preserve">
     <value>Памылка</value>
   </data>
+  <data name="ExitConfirmMessage" xml:space="preserve">
+    <value>Выйсцi? Стан бягучай гульнi будзе згублены.</value>
+  </data>
   <data name="FacebookLabel" xml:space="preserve">
     <value>Facebook</value>
   </data>
@@ -521,6 +524,9 @@
   </data>
   <data name="PlayerNameLabel" xml:space="preserve">
     <value>імя</value>
+  </data>
+  <data name="PlayerNoNameLabel" xml:space="preserve">
+    <value>няма iмя</value>
   </data>
   <data name="PlayerNoPasswordLabel" xml:space="preserve">
     <value>няма пароля</value>

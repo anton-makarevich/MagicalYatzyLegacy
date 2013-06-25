@@ -36,7 +36,7 @@ namespace DicePokerWP
             
             try
             {
-                if (StoreManager.IsTrial)
+                if (StoreManager.IsAdVisible())
                     AdRotatorControl.Invalidate();
             }
             catch (Exception ex)
@@ -47,10 +47,6 @@ namespace DicePokerWP
         }
 
         
-
-               
-        
-
         
         #region ViewModel
         public void SetViewModel<T>() where T : BaseViewModel
@@ -65,6 +61,15 @@ namespace DicePokerWP
         }
 
         #endregion
-                
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                OfferAction item = (OfferAction)(e.AddedItems[0]);
+                item.MenuAction();
+                ((ListBox)sender).SelectedItem = null;
+            }
+        }
     }
 }
