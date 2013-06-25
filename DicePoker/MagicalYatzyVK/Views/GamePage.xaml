@@ -204,9 +204,54 @@
                             FontSize="20"
                             HorizontalAlignment="Left"
                             Foreground="{StaticResource SanetBlue}"
-                            Text="{Binding ChatPanelLabel}"/>
+                            Text="{Binding ChatLabel}"/>
                     </sdk:TabItem.Header>
-                    
+                    <Grid 
+                        DataContext="{Binding ChatModel}"
+            >
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <!--Players List-->
+                        <ListBox
+                IsHitTestVisible="False"
+                    ItemsSource="{Binding Players}"
+                    ItemTemplate="{StaticResource ChatPlayerTemplate}"/>
+
+                        <!--Messages List-->
+                        <ListBox
+                x:Name="messagesList"
+                Grid.Row="1"
+                    ItemsSource="{Binding Messages}"
+                    ItemTemplate="{StaticResource ChatMessageTemplate}"/>
+                        <!--Chat Input Panel-->
+                        <Grid 
+                            Grid.Row="2"
+                                >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox
+                                x:Name="chatTextField"
+                                AcceptsReturn="False"
+                                Height="40"
+                        Text="{Binding CurrentMessage, Mode=TwoWay}"/>
+                            <Button
+                                                                IsEnabled="{Binding HasMoney}"
+                            Content="{Binding SendLabel}"
+                            Grid.Column="1"
+                            Margin="2"
+                                FontSize="10"
+                            HorizontalAlignment="Center"
+                            Height="40" Command="{Binding SendCommand}"/>
+                        </Grid>
+
+                    </Grid>
                 </sdk:TabItem>
                 
             </sdk:TabControl>

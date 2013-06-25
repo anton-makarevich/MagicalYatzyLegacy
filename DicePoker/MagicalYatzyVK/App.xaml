@@ -145,6 +145,40 @@
             <toolkit:WrapPanel />
         </ItemsPanelTemplate>
 
+        <!--Player in chat-->
+        <DataTemplate x:Key="ChatPlayerTemplate">
+            <Grid >
+
+                <TextBlock Margin="10"
+                           Foreground="White">
+                <Run Text="{Binding Name}" />
+                <Run Text=" - " />
+                <Run Text="{Binding Language}" />
+                </TextBlock>
+
+
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="ChatMessageTemplate">
+            <Grid >
+                <Border
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2"
+                Background="{StaticResource SanetBlue}"
+                Opacity="0.6"
+                BorderBrush="{StaticResource SanetBlue}"
+                BorderThickness="2"
+                Margin="2"/>
+                <TextBlock TextWrapping="Wrap"
+                       Margin="10,2"
+                       Foreground="#FFFee5ca">
+                    <Run Text="{Binding Path=SenderName}" FontWeight="Bold"/>
+                    <Run Text=": "/>
+                    <Run Text="{Binding Message}"/>
+                </TextBlock>
+            </Grid>
+        </DataTemplate>
+
         <DataTemplate
             sanet:TiltEffect.SuppressTilt="True"
             x:Key="MainMenuTemplate">

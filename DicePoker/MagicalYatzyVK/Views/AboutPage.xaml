@@ -111,7 +111,7 @@
                     FontSize="24"
                     VerticalAlignment="Center"
                     Click="HyperlinkButton_Click"
-                            Tag="http://apps.microsoft.com/windows/app/sanet-dice-poker/5b0f9106-65a8-49ca-b1f0-641c54a7e3ef" 
+                            Tag="http://windowsphone.com/s?appid=f2993622-c41f-4cd5-8188-403a3efe6383" 
                             Content="{Binding ForWPLabel}" 
                             HorizontalAlignment="Left"/>
             </Grid>
