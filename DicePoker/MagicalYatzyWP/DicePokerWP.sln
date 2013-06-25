@@ -7,13 +7,9 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
-		Debug|Mixed Platforms = Debug|Mixed Platforms
-		Debug|Win32 = Debug|Win32
 		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
 		Release|ARM = Release|ARM
-		Release|Mixed Platforms = Release|Mixed Platforms
-		Release|Win32 = Release|Win32
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
@@ -23,10 +19,6 @@ Global
 		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Debug|ARM.ActiveCfg = Debug|ARM
 		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Debug|ARM.Build.0 = Debug|ARM
 		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Debug|ARM.Deploy.0 = Debug|ARM
-		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
-		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Debug|Win32.ActiveCfg = Debug|Any CPU
 		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Debug|x86.ActiveCfg = Debug|x86
 		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Debug|x86.Build.0 = Debug|x86
 		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Debug|x86.Deploy.0 = Debug|x86
@@ -36,10 +28,6 @@ Global
 		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Release|ARM.ActiveCfg = Release|ARM
 		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Release|ARM.Build.0 = Release|ARM
 		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Release|ARM.Deploy.0 = Release|ARM
-		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
-		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Release|Win32.ActiveCfg = Release|Any CPU
 		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Release|x86.ActiveCfg = Release|x86
 		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Release|x86.Build.0 = Release|x86
 		{919682ED-E1F1-43C6-9D92-DCEF71B20F8E}.Release|x86.Deploy.0 = Release|x86

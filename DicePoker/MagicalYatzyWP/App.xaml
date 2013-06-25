@@ -39,12 +39,12 @@
             <Setter Property="Margin" Value="10,0"/>
         </Style>
 
-        <Style x:Key="PivotTitleStyle" TargetType="TextBlock">
-            <Setter Property="Margin" Value="-3,10,0,8"/>
+        <!--<Style x:Key="PivotTitleStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="3,10,0,8"/>
             <Setter Property="FontSize" Value="26"/>
             <Setter Property="Foreground" Value="{StaticResource SanetBlue}"/>
             
-        </Style>
+        </Style>-->
 
         <!--Page with standard transition animations-->
         <Style x:Key="TransitionPageStyle" TargetType="phone:PhoneApplicationPage">

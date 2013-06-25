@@ -92,8 +92,10 @@ namespace DicePokerWP
         {
             SoundsProvider.Init();
             JoinManager.Init();
-            //check if trial version
-            StoreManager.CheckTrial();
+            //init markedup analitics
+            MarkedUp.AnalyticClient.Initialize("4912b3ec-4546-40d7-b3f5-7cc78b100e3e");
+            //starting navigation tracking in MarkedUp
+            MarkedUp.AnalyticClient.RegisterRootNavigationFrame((PhoneApplicationFrame)Application.Current.RootVisual);
             //init localizer
             LocalizerExtensions.RModel = new ResourceModel();
             //local settings init

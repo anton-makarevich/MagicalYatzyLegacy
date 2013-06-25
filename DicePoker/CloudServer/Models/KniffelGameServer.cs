@@ -22,8 +22,14 @@ namespace Sanet.Kniffel.Models
             _Game = game;
 
             RemoveTimerDelay = 15;
-            
-            
+
+            this.ReceivedSomething += KniffelGameServer_ReceivedSomething;
+        }
+
+        void KniffelGameServer_ReceivedSomething(object sender, KeyEventArgs<string> e)
+        {
+            if (Player != null)
+                Player.LastTimeActive = DateTime.Now;
         }
 
        

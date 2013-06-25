@@ -3,7 +3,7 @@
 	<CultureDescriptors>
 		<AdCultureDescriptor CultureName="default">
       <Probabilities Probability="25" AdType="InnerActive" AppID="AntonMakarevich_MagicalYatzyOnline_WP" />
-      <Probabilities Probability="75" AdType="AdDuplex" AppID="41731"/>
+      <Probabilities Probability="75" AdType="AdDuplex" AppID="41735"/>
       <Probabilities AdType="DefaultHouseAd"/>
     </AdCultureDescriptor>
 	</CultureDescriptors>

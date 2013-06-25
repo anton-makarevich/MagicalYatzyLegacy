@@ -234,7 +234,7 @@ namespace Sanet.Kniffel.Models
             }
         }
 
-
+        public DateTime LastTimeActive { get; set; }
 
 
         /// <summary>

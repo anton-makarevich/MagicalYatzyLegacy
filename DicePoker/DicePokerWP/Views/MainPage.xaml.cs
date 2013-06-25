@@ -206,7 +206,7 @@ namespace DicePokerWP
             
             this.ApplicationBar.Buttons.Add(fbButton);
             this.ApplicationBar.Buttons.Add(rateButton);
-            if (StoreManager.IsTrial)
+            if (StoreManager.IsAdVisible())
                 this.ApplicationBar.Buttons.Add(buyButton);
             this.ApplicationBar.Buttons.Add(shareButton);
 

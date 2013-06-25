@@ -34,7 +34,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;WINDOWS_PHONE;Win8</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -45,7 +45,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>Bin\Release</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE;Win8</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -55,7 +55,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>Bin\x86\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;WINDOWS_PHONE;Win8</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <DebugType>full</DebugType>
     <PlatformTarget>
@@ -66,7 +66,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>Bin\x86\Release</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE;Win8</DefineConstants>
     <Optimize>true</Optimize>
     <NoStdLib>true</NoStdLib>
     <DebugType>pdbonly</DebugType>
@@ -78,7 +78,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>Bin\ARM\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;WINDOWS_PHONE;Win8</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <DebugType>full</DebugType>
     <PlatformTarget>
@@ -89,7 +89,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
     <OutputPath>Bin\ARM\Release</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE;Win8</DefineConstants>
     <Optimize>true</Optimize>
     <NoStdLib>true</NoStdLib>
     <DebugType>pdbonly</DebugType>
@@ -118,22 +118,16 @@
     <Reference Include="Facebook.Client">
       <HintPath>packages\Facebook.Client.0.7.0-alpha\lib\wp8\Facebook.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Google.AdMob.Ads.WindowsPhone7">
-      <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\Google.AdMob.Ads.WindowsPhone7.dll</HintPath>
-    </Reference>
     <Reference Include="Inneractive.Nokia.Ad">
       <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\Inneractive.Nokia.Ad.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Advertising.Mobile, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\Microsoft.Advertising.Mobile.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Advertising.Mobile.UI, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\Microsoft.Advertising.Mobile.UI.dll</HintPath>
+    <Reference Include="MarkedUp">
+      <HintPath>packages\MarkedUp.1.0.3\lib\WindowsPhone8\MarkedUp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Phone.Controls.Toolkit">
-      <HintPath>packages\WPtoolkit.4.2012.10.30\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\WPToolkit.4.2013.06.11\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks">
       <HintPath>packages\Microsoft.Bcl.Async.1.0.16\lib\wp8\Microsoft.Threading.Tasks.dll</HintPath>
@@ -144,14 +138,8 @@
     <Reference Include="Microsoft.Threading.Tasks.Extensions.Phone">
       <HintPath>packages\Microsoft.Bcl.Async.1.0.16\lib\wp8\Microsoft.Threading.Tasks.Extensions.Phone.dll</HintPath>
     </Reference>
-    <Reference Include="MobFox.Ads">
-      <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\MobFox.Ads.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>packages\Newtonsoft.Json.5.0.6\lib\portable-net40+sl4+wp7+win8\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="SOMAWP7">
-      <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\SOMAWP7.dll</HintPath>
     </Reference>
     <Reference Include="SuperSocket.ClientEngine.Common, Version=0.3.0.0, Culture=neutral, PublicKeyToken=ee9af13f57f00acc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -166,9 +154,10 @@
       <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.WP71\Bin\Debug\SuperSocket.ClientEngine.Protocol.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Interactivity, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Controls.Data, Version=2013.2.612.2040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Controls.Primitives, Version=2013.2.612.2040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Core, Version=2013.2.612.2040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2013.2.612.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Primitives, Version=2013.2.612.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Core, Version=2013.2.612.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Data, Version=2013.2.612.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="WebSocket4Net, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.WP71\Bin\Debug\WebSocket4Net.dll</HintPath>
@@ -451,6 +440,18 @@
     <Compile Include="..\DicePokerWP\Common\WPIdentifyHelpercs.cs">
       <Link>Common\WPIdentifyHelpercs.cs</Link>
     </Compile>
+    <Compile Include="..\DicePokerWP\Converters\BooleanToColorConverter.cs">
+      <Link>Converters\BooleanToColorConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Converters\BooleanToVisibilityConverter.cs">
+      <Link>Converters\BooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Converters\ReverseBooleanToVisibilityConverter.cs">
+      <Link>Converters\ReverseBooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\DicePokerWP\Converters\ScoreTypeToColorConverter.cs">
+      <Link>Converters\ScoreTypeToColorConverter.cs</Link>
+    </Compile>
     <Compile Include="..\DicePokerWP\Models\CommonNavigationActions.cs">
       <Link>Models\CommonNavigationActions.cs</Link>
     </Compile>
@@ -472,37 +473,9 @@
     <Compile Include="..\DicePokerWP\ViewModels\TableWrapper.cs">
       <Link>ViewModels\TableWrapper.cs</Link>
     </Compile>
-    <Compile Include="..\DicePokerWP\Views\AboutPage.xaml.cs">
-      <Link>Views\AboutPage.xaml.cs</Link>
-      <DependentUpon>AboutPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\DicePokerWP\Views\GamePage.xaml.cs">
-      <Link>Views\GamePage.xaml.cs</Link>
-      <DependentUpon>GamePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\DicePokerWP\Views\LeaderboardPage.xaml.cs">
-      <Link>Views\LeaderboardPage.xaml.cs</Link>
-      <DependentUpon>LeaderboardPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\DicePokerWP\Views\MagicRoomPage.xaml.cs">
-      <Link>Views\MagicRoomPage.xaml.cs</Link>
-      <DependentUpon>MagicRoomPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="..\DicePokerWP\Views\MainPage.xaml.cs">
       <Link>Views\MainPage.xaml.cs</Link>
       <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\DicePokerWP\Views\NewGamePage.xaml.cs">
-      <Link>Views\NewGamePage.xaml.cs</Link>
-      <DependentUpon>NewGamePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\DicePokerWP\Views\NewOnlineGamePage.xaml.cs">
-      <Link>Views\NewOnlineGamePage.xaml.cs</Link>
-      <DependentUpon>NewOnlineGamePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\DicePokerWP\Views\SettingsPage.xaml.cs">
-      <Link>Views\SettingsPage.xaml.cs</Link>
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\MagicalYatzyOnline\Common\Facebook\FacebookFriendship.cs">
       <Link>Common\Facebook\FacebookFriendship.cs</Link>
@@ -547,12 +520,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\PivotWithHiding.cs" />
-    <Compile Include="Converters\BooleanToColorConverter.cs" />
-    <Compile Include="Converters\ReverseBooleanToVisibilityConverter.cs" />
-    <Compile Include="Converters\ScoreTypeToColorConverter.cs" />
     <Compile Include="Models\Protocol\WebAPI\AbstractHttpService.cs" />
     <Compile Include="Models\Protocol\WebAPI\InitService.cs" />
-    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Models\ServiceAsyncExtensions.cs" />
     <Compile Include="Models\StoreManager.cs" />
     <Compile Include="Models\TileHelper.cs" />
@@ -562,6 +531,27 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LeaderboardPage.xaml.cs">
+      <DependentUpon>LeaderboardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MagicRoomPage.xaml.cs">
+      <DependentUpon>MagicRoomPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewGamePage.xaml.cs">
+      <DependentUpon>NewGamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewOnlineGamePage.xaml.cs">
+      <DependentUpon>NewOnlineGamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -602,6 +592,7 @@
     </Content>
     <Content Include="..\DicePokerWP\AppResLib.dll">
       <Link>AppResLib.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\DicePokerWP\Assets\appRate.png">
       <Link>Assets\appRate.png</Link>
@@ -706,29 +697,36 @@
       <Link>Assets\Facebook_tile.png</Link>
     </Content>
     <Content Include="AdSettings.xml" />
-    <Resource Include="defaultAdSettings.xml" />
-    <None Include="..\DicePokerWP\AppResLib.dll.0407.mui">
-      <Link>AppResLib.dll.0407.mui</Link>
-    </None>
-    <None Include="..\DicePokerWP\AppResLib.dll.040a.mui">
-      <Link>AppResLib.dll.040a.mui</Link>
-    </None>
-    <None Include="..\DicePokerWP\AppResLib.dll.0419.mui">
-      <Link>AppResLib.dll.0419.mui</Link>
-    </None>
-    <None Include="..\DicePokerWP\AppResLib.dll.041d.mui">
-      <Link>AppResLib.dll.041d.mui</Link>
-    </None>
-    <None Include="..\DicePokerWP\AppResLib.dll.0423.mui">
-      <Link>AppResLib.dll.0423.mui</Link>
-    </None>
-    <None Include="app.config" />
-    <None Include="ReadMe-AdRotator-XAML.txt" />
+    <Content Include="FlipCycleTileLarge.png" />
+    <Content Include="FlipCycleTileLargeBack.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
+    <Resource Include="defaultAdSettings.xml" />
+    <Content Include="..\DicePokerWP\AppResLib.dll.0407.mui">
+      <Link>AppResLib.dll.0407.mui</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\DicePokerWP\AppResLib.dll.040a.mui">
+      <Link>AppResLib.dll.040a.mui</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\DicePokerWP\AppResLib.dll.0419.mui">
+      <Link>AppResLib.dll.0419.mui</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\DicePokerWP\AppResLib.dll.041d.mui">
+      <Link>AppResLib.dll.041d.mui</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\DicePokerWP\AppResLib.dll.0423.mui">
+      <Link>AppResLib.dll.0423.mui</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="app.config" />
+    <None Include="ReadMe-AdRotator-XAML.txt" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
@@ -2104,43 +2102,36 @@
     <WCFMetadataStorage Include="Service References\KniffelLeaderBoardService\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="..\DicePokerWP\Views\AboutPage.xaml">
-      <Link>Views\AboutPage.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\DicePokerWP\Views\GamePage.xaml">
-      <Link>Views\GamePage.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\DicePokerWP\Views\LeaderboardPage.xaml">
-      <Link>Views\LeaderboardPage.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\DicePokerWP\Views\MagicRoomPage.xaml">
-      <Link>Views\MagicRoomPage.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="..\DicePokerWP\Views\MainPage.xaml">
       <Link>Views\MainPage.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="..\DicePokerWP\Views\NewGamePage.xaml">
-      <Link>Views\NewGamePage.xaml</Link>
+    <Page Include="Views\AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="..\DicePokerWP\Views\NewOnlineGamePage.xaml">
-      <Link>Views\NewOnlineGamePage.xaml</Link>
+    <Page Include="Views\GamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="..\DicePokerWP\Views\SettingsPage.xaml">
-      <Link>Views\SettingsPage.xaml</Link>
+    <Page Include="Views\LeaderboardPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MagicRoomPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewGamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewOnlineGamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

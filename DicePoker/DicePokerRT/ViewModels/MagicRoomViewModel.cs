@@ -260,7 +260,7 @@ namespace Sanet.Kniffel.ViewModels
                         if (CurrentPlayer.CanBuy)
                         {
                             if (
-#if WinRT
+#if Win8
                                 await 
 #endif
                                 StoreManager.BuyLicense("WizardTools30"))
@@ -306,10 +306,10 @@ namespace Sanet.Kniffel.ViewModels
                        if (CurrentPlayer.CanBuy)
                        {
                            if (
-#if WinRT
+#if Win8
                                 await 
 #endif
-StoreManager.BuyLicense("WizardTools50"))
+                           StoreManager.BuyLicense("WizardTools50"))
                            {
                                if (StoreManager.IsProductAvailable("WizardTools50"))
                                {
@@ -353,10 +353,10 @@ StoreManager.BuyLicense("WizardTools50"))
                        if (CurrentPlayer.CanBuy)
                        {
                        if (
-#if WinRT
+#if Win8
                                 await 
 #endif
-StoreManager.BuyLicense("WizardTools100"))
+                        StoreManager.BuyLicense("WizardTools100"))
                        {
                            if (StoreManager.IsProductAvailable("WizardTools100"))
                            {
