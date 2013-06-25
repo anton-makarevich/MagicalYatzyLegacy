@@ -65,14 +65,12 @@
     });
 </script>
 
-<p>Извините, приложение временно отключено из-за проблем с сервером. Мы работаем, чтобы исправить эти проблемы. 
-Пока можно поиграть <a target="_blank" href="http://apps.microsoft.com/windows/app/sanet-dice-poker/5b0f9106-65a8-49ca-b1f0-641c54a7e3ef">в порт для Windows 8</a>.
- Все результаты игр сохранены <a target="_blank" href="http://sanet.by/kniffel">и по-прежнему доступны в книге рекордов</a>.</p>
-   <%-- <form id="form1" runat="server" style="height:100%">
+
+    <form id="form1" runat="server" style="height:100%">
     <div id="silverlightControlHost">
         <object id="kniffelsl" data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="100%" height="100%">
 		  <%
-		      Dim orgSourceValue As String = "KniffelOnline.xap"
+		      Dim orgSourceValue As String = "MagicalYatzyVK.xap"
 Dim param As String
 If (System.Diagnostics.Debugger.IsAttached) Then
 param = "<param name=""source"" value=""" + orgSourceValue + """ />"
@@ -94,6 +92,6 @@ Response.Write(param)
  			  <img src="http://go.microsoft.com/fwlink/?LinkId=161376" alt="Get Microsoft Silverlight" style="border-style:none"/>
 		  </a>
 	    </object></div>
-    </form>--%>
+    </form>
 </body>
 </html>

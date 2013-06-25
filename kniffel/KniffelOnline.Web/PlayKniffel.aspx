@@ -50,7 +50,7 @@
 				</div>
 				<!-- start content -->
 				<div id="content">
-					 <object  id="kniffelsl" data="data:application/x-silverlight-2," type="application/x-silverlight-2" 
+					 <%--<object  id="kniffelsl" data="data:application/x-silverlight-2," type="application/x-silverlight-2" 
                 width="660px " height="720px">
 		  <%
 		      Dim orgSourceValue As String = "ClientBin/KniffelOnline.xap"
@@ -76,8 +76,13 @@ Response.Write(param)
 		  <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=4.0.50826.0" style="text-decoration:none">
  			  <img src="http://go.microsoft.com/fwlink/?LinkId=161376" alt="Скачать Microsoft Silverlight" style="border-style:none"/>
 		  </a>
-	    </object>
-					
+	    </object>--%>
+					<p>
+                    Игра Kniffel Online больше не доступна на этой страничке, но возможно поиграть в его "наследника" - Магический Yatzy.
+                    </p>
+                    <p>
+                    Магический Yatzy можно скачать для <a href="https://appdev.microsoft.com/StorePortals/ru-RU/Home/Index">Windows</a>, Windows Phone или поиграть ВКонтакте.
+                    </p>
 				</div>
 				<!-- end content -->
 				<!-- start sidebars -->
