@@ -1,15 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
 namespace Sanet.Kniffel.DicePanel
 {
-    public enum DiceStyle
+    public  enum DieStatus
     {
-        dpsClassic = 0,
-        dpsBrutalRed = 1,
-        dpsBlue = 2
+        dsStopped = 0,
+        dsRolling = 1,
+        dsLanding = 2
     }
 }

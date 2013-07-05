@@ -538,7 +538,7 @@ namespace Sanet.Kniffel.Models
                         bonusResult.Value = bonusResult.PossibleValue;
 #endif
                     }
-                    else if (CurrentPlayer.TotalNumeric + CurrentPlayer.MaxRemainingNumeric < 64)
+                    else if (CurrentPlayer.TotalNumeric + CurrentPlayer.MaxRemainingNumeric < 63)
                     {
                         bonusResult.PossibleValue = 0;
                         ResultApplied(this, new ResultEventArgs(CurrentPlayer, new RollResult()
