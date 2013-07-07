@@ -24,6 +24,14 @@ namespace Sanet.Controls
 
         #region GeneralPopup
 
+        public override void OnNavigatedTo()
+        {
+            //throw new NotImplementedException();
+        }
+        public override void OnNavigatedFrom()
+        {
+            //throw new NotImplementedException();
+        }
 
         private bool _IsOk = false;
         public bool IsOk

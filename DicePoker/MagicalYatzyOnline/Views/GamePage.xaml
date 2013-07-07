@@ -18,7 +18,7 @@
         <common:BooleanToVisibilityConverter x:Key="VisibilityKey"/>
         <common:ReverseBooleanToVisibilityConverter x:Key="ReversedVisibilityKey"/>
     </views:BasePage.Resources>
-    <views:BasePage.BottomAppBar>
+    <!--<Page.BottomAppBar>
         <AppBar Height="300" 
                 Visibility="{Binding IsOnlineGame,Converter={StaticResource VisibilityKey}}"
                 IsOpen="{Binding IsChatOpen,Mode=TwoWay}"
@@ -28,7 +28,7 @@
                 x:Name="chatPanel"
                 DataContext="{Binding ChatModel}"/>
         </AppBar>
-    </views:BasePage.BottomAppBar>
+    </Page.BottomAppBar>-->
     <Grid>
         <Grid
             x:Name="ControlGrid">

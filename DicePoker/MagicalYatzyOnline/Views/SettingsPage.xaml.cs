@@ -55,19 +55,19 @@ namespace DicePokerRT
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.  The Parameter
         /// property is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        public override void OnNavigatedTo()
         {
             
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        public override void OnNavigatedFrom()
         {
             //dpBackground.EndRoll -= StartRoll;
             //dpBackground.Dispose();
             //dpBackground = null;
             this.Loaded -= MainPage_Loaded;
         }
-        protected override void GoBack(object sender, RoutedEventArgs e)
+        protected void GoBack(object sender, RoutedEventArgs e)
         {
             ((Popup)this.Parent).IsOpen = false;
             

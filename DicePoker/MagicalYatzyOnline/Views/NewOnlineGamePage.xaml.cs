@@ -96,7 +96,7 @@ namespace DicePokerRT
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.  The Parameter
         /// property is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        public override void OnNavigatedTo()
         {
             SetViewModel<NewOnlineGameViewModel>();
             GetViewModel<NewOnlineGameViewModel>().PropertyChanged += GamePage_PropertyChanged;
@@ -118,7 +118,7 @@ namespace DicePokerRT
                 dpBackground.PanelStyle = GetViewModel<NewOnlineGameViewModel>().SettingsPanelStyle;
 
         }
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        public override void OnNavigatedFrom()
         {
             dpBackground.EndRoll -= StartRoll;
             GetViewModel<NewOnlineGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
@@ -135,6 +135,11 @@ namespace DicePokerRT
         private void Like_Tapped(object sender, TappedRoutedEventArgs e)
         {
             CommonNavigationActions.NavigateYatzyFBPage();
+        }
+
+        private void GoBack(object sender, RoutedEventArgs e)
+        {
+            CommonNavigationActions.NavigateToMainPage();
         }
     }
 }

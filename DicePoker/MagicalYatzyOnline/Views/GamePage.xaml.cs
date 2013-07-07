@@ -79,7 +79,7 @@ namespace DicePokerRT
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.  The Parameter
         /// property is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        public override void OnNavigatedTo()
         {
             SetViewModel<PlayGameViewModel>();
 
@@ -91,7 +91,7 @@ namespace DicePokerRT
             dpBackground.Visibility = Visibility.Visible;
         }
 
-        protected async override void OnNavigatedFrom(NavigationEventArgs e)
+        public async override void OnNavigatedFrom()
         {
             Window.Current.SizeChanged -= Current_SizeChanged;
             GetViewModel<PlayGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
@@ -253,10 +253,12 @@ namespace DicePokerRT
         {
             GetViewModel<PlayGameViewModel>().Game.ApplyScore(((RollResultWrapper)e.ClickedItem).Result);
         }
-        protected async override void GoBack(object sender, RoutedEventArgs e)
+        protected void GoBack(object sender, RoutedEventArgs e)
         {
-            
-            base.GoBack(sender, e);
+            if (GetViewModel<PlayGameViewModel>().IsOnlineGame)
+                CommonNavigationActions.NavigateToNewOnlineGamePage();
+            else
+                CommonNavigationActions.NavigateToNewGamePage();
         }
         private void AgainButton_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
@@ -313,6 +315,8 @@ namespace DicePokerRT
         {
             ViewModelProvider.GetViewModel<PlayGameViewModel>().IsChatOpen = true;
         }
+
+        
        
     }
 }

@@ -1273,9 +1273,6 @@
     <Compile Include="..\..\DicePanelWP\Models\DicePanel.cs">
       <Link>DicePanel\DicePanel.cs</Link>
     </Compile>
-    <Compile Include="..\..\DiceRoller\DiceRollerRT\Common\BasePage.cs">
-      <Link>Controls\BasePage.cs</Link>
-    </Compile>
     <Compile Include="..\..\DiceRoller\DiceRollerRT\Models\BaseViewModel.cs">
       <Link>ViewModels\BaseViewModel.cs</Link>
     </Compile>
@@ -1456,9 +1453,6 @@
     <Compile Include="..\DicePokerRT\Models\AdminModule.cs">
       <Link>Models\AdminModule.cs</Link>
     </Compile>
-    <Compile Include="..\DicePokerRT\Models\CommonNavigationActions.cs">
-      <Link>Models\CommonNavigationActions.cs</Link>
-    </Compile>
     <Compile Include="..\DicePokerRT\Models\Config.cs">
       <Link>Models\Config.cs</Link>
     </Compile>
@@ -1577,6 +1571,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\VisualTreeHelper.cs" />
+    <Compile Include="Controls\BasePage.cs" />
     <Compile Include="Controls\BlurbControl.xaml.cs">
       <DependentUpon>BlurbControl.xaml</DependentUpon>
     </Compile>
@@ -1587,6 +1582,7 @@
     <Compile Include="Common\Facebook\FacebookFriendship.cs" />
     <Compile Include="Common\Facebook\FacebookInfo.cs" />
     <Compile Include="Common\Facebook\FacebookUserInfo.cs" />
+    <Compile Include="Models\CommonNavigationActions.cs" />
     <Compile Include="Models\Enums\ProfileType.cs" />
     <Compile Include="Models\InstanceKeeper.cs" />
     <Compile Include="Models\Interfaces\IRollResult.cs" />

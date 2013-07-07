@@ -52,7 +52,7 @@ namespace DicePokerRT
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.  The Parameter
         /// property is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        public override void OnNavigatedTo()
         {
             SetViewModel<AboutPageViewModel>();
             GetViewModel<AboutPageViewModel>().PropertyChanged += GamePage_PropertyChanged;
@@ -68,7 +68,7 @@ namespace DicePokerRT
 
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        public override void OnNavigatedFrom()
         {
             dpBackground.EndRoll -= StartRoll;
             GetViewModel<AboutPageViewModel>().PropertyChanged -= GamePage_PropertyChanged;
@@ -85,6 +85,11 @@ namespace DicePokerRT
         private void ListView_ItemClick_1(object sender, ItemClickEventArgs e)
         {
             ((MainMenuAction)e.ClickedItem).MenuAction();
+        }
+
+        private void GoBack(object sender, RoutedEventArgs e)
+        {
+            CommonNavigationActions.NavigateToMainPage();
         }
     }
 }
