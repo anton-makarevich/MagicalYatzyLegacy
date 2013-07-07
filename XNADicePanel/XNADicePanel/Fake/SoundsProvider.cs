@@ -12,10 +12,8 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Sanet.Kniffel.Xna
 {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
-    public class SoundsProvider : Microsoft.Xna.Framework.GameComponent
+    
+    public class SoundsProvider 
     {
         public static void PlaySound(Object obj, string file){}
     }

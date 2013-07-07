@@ -64,9 +64,6 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\SanetWeb\Models\LogManager.cs">
-      <Link>Fake\LogManager.cs</Link>
-    </Compile>
     <Compile Include="..\..\DicePoker\DicePokerRT\DicePanel\DieResult.cs">
       <Link>DicePanel\DieResult.cs</Link>
     </Compile>

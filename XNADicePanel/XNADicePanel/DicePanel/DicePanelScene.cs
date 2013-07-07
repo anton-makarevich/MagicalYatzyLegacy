@@ -19,6 +19,13 @@ namespace Sanet.Kniffel.Xna
    {
        
        #region Dicepanel fields
+
+       //touch imput to support clicks on dice
+       TouchInput _touchInput;
+
+       //text  caption to ask user to select dice
+       TextPrinter _captionText;
+
        public Random FRand = new Random();
 
        public List<Die> aDice = new List<Die>();
@@ -39,7 +46,7 @@ namespace Sanet.Kniffel.Xna
        public delegate void BeginRollEventHandler();
        #endregion
 
-       //#region Properties
+       #region Properties
        public bool PlaySound { get; set; }
 
        
@@ -50,32 +57,33 @@ namespace Sanet.Kniffel.Xna
             {
                 FStyle = value;
 
-                switch (FStyle)
-                {
-                    case DiceStyle.dpsClassic:
-                        if (DieAngle<2)DieAngle = 0;
-                        
-                        break;
-                    case DiceStyle.dpsBrutalRed:
-                        if (DieAngle < 2) DieAngle = 1;
-                        
-                        break;
-                    case DiceStyle.dpsBlue:
-                        if (DieAngle < 2) DieAngle = 1;
-                        
-                        break;
-                }
                 
-
-                dpBackcolor = Color.Transparent;
-                
-                foreach (Die d in aDice)
-                {
-                    d.Style=value;
-                }
                
             }
         }
+
+        private bool _WithSound = false;
+        public bool WithSound
+        {
+            get { return _WithSound; }
+            set
+            {
+                if (_WithSound != value)
+                {
+                    _WithSound = value;
+
+                }
+            }
+        }
+
+        private int _RollDelay = 1;
+        public int RollDelay
+        {
+            get { return _RollDelay; }
+            set { _RollDelay = value; }
+        }
+
+
         private int FDieAngle = 0;
         public int DieAngle
         {
@@ -90,7 +98,7 @@ namespace Sanet.Kniffel.Xna
                 
             }
         }
-        private int FMaxRollLoop = 75;
+        private int FMaxRollLoop = 50;
         public int MaxRollLoop
         {
             get { return FMaxRollLoop; }
@@ -106,7 +114,7 @@ namespace Sanet.Kniffel.Xna
 
         int _totalFrameTime=0;
 
-        private int FNumDice = 2;
+        private int FNumDice = 5;
 
         /// <summary>
         /// Number of Dice in the Panel
@@ -118,7 +126,8 @@ namespace Sanet.Kniffel.Xna
             {
                 FNumDice = value;
 
-                GenerateDice();
+
+               
 
             }
         }
@@ -135,11 +144,6 @@ namespace Sanet.Kniffel.Xna
             set { FDebugDrawMode = value; }
         }
 
-        //new
-
-        
-        //new
-       
         /// <summary>
         /// Allows user to click dice to lock their movement
         /// </summary>
@@ -150,56 +154,6 @@ namespace Sanet.Kniffel.Xna
             set { FClickToFreeze = value; }
         }
 
-
-        private void GenerateDice()
-        {
-            Die d = null;
-            Die dOld = null;
-            bool bDone = false;
-            int iTry = 0;
-
-            //prepare caption
-            //TODO: make FontSprite for this
-            caption.Foreground = Brushes.SolidSanetBlue;
-
-            if (aDice!=null)
-            {
-                foreach (var dice in aDice)
-                if (SceneObjects2D.Contains(dice)
-                    SceneObjects2D.Remove(dice);
-                }
-
-            aDice = new List<Die>();
-            
-            while (aDice.Count < NumDice)
-            {
-                d = new Die(this);
-                iTry = 0;
-                
-                do
-                {
-                    iTry += 1;
-                    bDone = true;
-                    d.InitializeLocation();
-                    foreach (Die dOld_loopVariable in aDice)
-                    {
-                        dOld = dOld_loopVariable;
-                        if (d.HitTest(dOld))
-                        {
-                            bDone = false;
-                        }
-                    }
-                } while (!(bDone | iTry > 1000));
-
-                aDice.Add(d);
-
-                AddSceneObject(d);
-                
-
-            }
-            
-        }
-
         /// <summary>
         /// Summed Result of All the Dice
         /// </summary>
@@ -208,13 +162,13 @@ namespace Sanet.Kniffel.Xna
             get
             {
                 var dr = new List<int>();
-                
+
                 foreach (Die d in aDice)
                 {
                     dr.Add(d.Result);
-                    
+
                 }
-                return new DieResult{ DiceResults=dr};
+                return new DieResult { DiceResults = dr };
             }
         }
 
@@ -242,6 +196,46 @@ namespace Sanet.Kniffel.Xna
                 return false;
             }
         }
+       #endregion
+
+        public DicePanelScene(string sceneName) : base(sceneName) { }
+        
+
+        private void FindDicePosition()
+        {
+            
+            bool bDone = false;
+            int iTry = 0;
+
+                        
+            int i =0;
+
+            while (i < NumDice)
+            {
+                var d = aDice[i];
+                iTry = 0;
+                
+                do
+                {
+                    iTry += 1;
+                    bDone = true;
+                    d.InitializeLocation();
+                    foreach (Die dOld in aDice)
+                    {
+                        if (d.HitTest(dOld))
+                        {
+                            bDone = false;
+                        }
+                    }
+                } while (!(bDone | iTry > 1000));
+                
+                i++;
+
+            }
+            
+        }
+
+        
         
         public bool RollDice(List<int> aResults )
         {
@@ -255,8 +249,6 @@ namespace Sanet.Kniffel.Xna
             //don't roll if all frozen
             if (AllDiceFrozen())
             {
-                LogManager.Log(LogLevel.Message, "DicePanel.RollDice",
-                "Can't roll... allfixed");
                 return false;
             }
             if (BeginRoll != null)
@@ -289,27 +281,7 @@ namespace Sanet.Kniffel.Xna
             return true;
         }
 
-        private bool _WithSound=false;
-        public bool WithSound
-        {
-            get { return _WithSound; }
-            set
-            {
-                if (_WithSound != value)
-                {
-                    _WithSound = value;
-                   
-                }
-            }
-        }
-            
-        private int _RollDelay;
-        public int RollDelay
-        {
-            get { return _RollDelay; }
-            set { _RollDelay = value; }
-        }
-
+        
         private void HandleCollisions()
         {
             Die di = null;
@@ -339,10 +311,10 @@ namespace Sanet.Kniffel.Xna
         Die _lastClickedDie;
         //new
 
-        public void DieClicked(object sender, MouseButtonEventArgs e)
+        public void DieClicked()
 
         {
-            Point pointClicked = e.GetPosition(this);
+            Point pointClicked = new Point((int)_touchInput.ClickPosition.X, (int)_touchInput.ClickPosition.Y);
             //determine if die was clicked
             _lastClickedDie = null;
             foreach (Die d in aDice)
@@ -418,7 +390,6 @@ namespace Sanet.Kniffel.Xna
                 if (d.Result == index && d.Frozen==!isfixed)
                 {
                     d.Frozen = isfixed;
-                    d.DrawDie();
                     return;
                 }
             }
@@ -435,7 +406,7 @@ namespace Sanet.Kniffel.Xna
                 if (d.Frozen)
                 {
                     d.Frozen = false;
-                    d.DrawDie();
+                    
                 }
             }
             //End If
@@ -471,12 +442,71 @@ namespace Sanet.Kniffel.Xna
 
 
        #region XNA Things
+        public override void Initialize()
+        {
+            //prepare caption
+            //TODO: make FontSprite for this
+            _captionText = new TextPrinter("Fonts/DefFont");
+            _captionText.Position = new Vector2(320, 30);
+            AddSceneObject(_captionText);
+
+
+            _touchInput = new TouchInput();
+            _touchInput.OnClick += DieClicked;
+            AddSceneObject(_touchInput);
+
+            NumDice = 5;
+            aDice = new List<Die>();
+            for (int i = 0; i < NumDice; i++)
+            {
+                var d = new Die(this);
+                d.Initialize();
+                aDice.Add(d);
+            }
+
+            
+            
+
+            PanelStyle = DiceStyle.dpsBlue;
+
+            base.Initialize();
+
+        }
+
         public override void Update(RenderContext renderContext)
         {
-            Width=renderContext.GraphicsDevice.Viewport.Width;
-            Height=renderContext.GraphicsDevice.Viewport.Height;
-            if (isRolling)
+            if (Width != renderContext.GraphicsDevice.Viewport.Width ||
+                Height != renderContext.GraphicsDevice.Viewport.Height)
             {
+                Width = renderContext.GraphicsDevice.Viewport.Width;
+                Height = renderContext.GraphicsDevice.Viewport.Height;
+                if (aDice.Count == NumDice)
+                    FindDicePosition();
+                else
+                    return;
+            }
+            switch (FStyle)
+            {
+                case DiceStyle.dpsClassic:
+                    if (DieAngle < 2) DieAngle = 0;
+
+                    break;
+                case DiceStyle.dpsBrutalRed:
+                    if (DieAngle < 2) DieAngle = 1;
+
+                    break;
+                case DiceStyle.dpsBlue:
+                    if (DieAngle < 2) DieAngle = 1;
+
+                    break;
+            }
+
+
+            dpBackcolor = Color.Transparent;
+            
+
+            //if (isRolling)
+            //{
                 _totalFrameTime += renderContext.GameTime.ElapsedGameTime.Milliseconds;
 
                 if (_totalFrameTime >= RollDelay)
@@ -484,13 +514,29 @@ namespace Sanet.Kniffel.Xna
                     _totalFrameTime = 0;
                     foreach (var d in aDice)
                     {
+                        d.Style = FStyle;
                         d.Update(renderContext);
                     }
                 }
-            }
+            //}
 
 
             base.Update(renderContext);
+        }
+
+        public override void LoadContent(ContentManager contentManager)
+        {
+            foreach (var d in aDice)
+                d.LoadContent(contentManager);
+            base.LoadContent(contentManager);
+        }
+
+        public override void Draw2D(RenderContext renderContext, bool drawInFrontOf3D)
+        {
+            base.Draw2D(renderContext, drawInFrontOf3D);
+            
+            foreach (var f in aDice)
+                f.Draw(renderContext);
         }
        #endregion
    }

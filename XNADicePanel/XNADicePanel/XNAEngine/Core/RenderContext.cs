@@ -21,7 +21,7 @@ namespace Sanet.XNAEngine
             get
             {
                 //for landscape
-                return new Vector2((float)GraphicsDevice.Viewport.Height / 768.0f, (float)GraphicsDevice.Viewport.Width / 1280.0f);
+                return  Vector2.One;
             }
         }
     }

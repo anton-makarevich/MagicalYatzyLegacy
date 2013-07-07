@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input.Touch;
 using System;
@@ -16,6 +17,8 @@ namespace Sanet.XNAEngine
         private bool _isPressed;
         private int _touchId;
         public bool IsPressed { get { return _isPressed; } }
+
+        public Vector2 ClickPosition { get; set; }
 
         public void Update(RenderContext renderContext)
         {
@@ -56,6 +59,7 @@ namespace Sanet.XNAEngine
                         _touchId = -1;
                         _isPressed = false;
 
+                        ClickPosition = touchLoc.Position;
                         //Clicked
                         if (OnClick != null) OnClick();
                     }

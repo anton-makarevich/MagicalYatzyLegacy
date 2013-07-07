@@ -15,14 +15,21 @@ namespace Sanet.Kniffel.Xna
     {
 
         private const int MAXMOVE = 5;
-
-        
-
+       
+        //sprites for different dice styles
         GameSprite _blueSprite;
         GameSprite _whiteSprite;
         GameSprite _redSprite;
-
+        //active style sprite
         GameSprite _ActiveSprite { get; set; }
+
+        
+        /*
+         *0 for stop
+         *1 for xrot
+         *2 for yrot
+         */
+        int _spritePosMultiplier=0;
 
         private int FRollLoop;
         private int h = 72;
@@ -44,7 +51,7 @@ namespace Sanet.Kniffel.Xna
         private DieStatus FStatus = DieStatus.dsLanding;
 
         private bool FFrozen;
-        private int FFrame;
+        private int _Frame;
 
         #region Constructor
         public Die(DicePanelScene pn)
@@ -68,7 +75,6 @@ namespace Sanet.Kniffel.Xna
                 if (value == DieStatus.dsStopped)
                 {
                     dxDir = 0;
-                    //stop direction
                     dyDir = 0;
 
                 }
@@ -89,9 +95,10 @@ namespace Sanet.Kniffel.Xna
                 else if (value == DiceStyle.dpsBrutalRed)
                     _ActiveSprite = _redSprite;
                 else
-                    _redSprite = _whiteSprite;
+                    _ActiveSprite = _whiteSprite;
 
                 _Style = value;
+                Frame = _Frame;
             }
         }
 
@@ -108,15 +115,22 @@ namespace Sanet.Kniffel.Xna
 
         private int Frame
         {
-            get { return FFrame; }
+            get { return _Frame; }
             set
             {
-                FFrame = value;
+                _Frame = value;
 
-                if (FFrame < 0)
-                    FFrame += 36;
-                if (FFrame > 35)
-                    FFrame -= 36;
+                if (_Frame < 0)
+                    _Frame += 36;
+                if (_Frame > 35)
+                    _Frame -= 36;
+
+                var y = _spritePosMultiplier * 6 + Math.Ceiling((double)(_Frame+1) / 6);
+                var x = (_Frame + 1) % 6;
+                if (x == 0) 
+                    x = 6;
+                if (_ActiveSprite!=null)
+                    _ActiveSprite.DrawRect = new Rectangle((x-1)*w, (int)(y-1)*h, w, h);
             }
         }
 
@@ -203,12 +217,26 @@ namespace Sanet.Kniffel.Xna
 
         #region Methods
 
-        public void Initialize()
+        public override void Initialize()
+        {
+            _blueSprite = new GameSprite("d2");
+            //AddChild(_blueSprite);
+
+            _redSprite = new GameSprite("d1");
+            //AddChild(_redSprite);
+
+            _whiteSprite = new GameSprite("d0");
+            //AddChild(_whiteSprite);
+            Frame =  6;
+                    
+        }
+
+        public void InitializeLocation()
         {
             try
             {
-                var w1 = Convert.ToInt32((FPanel.ActualWidth == 0) ? FPanel.Width : FPanel.ActualWidth);
-                var h1 = Convert.ToInt32((FPanel.ActualHeight == 0) ? FPanel.Height : FPanel.ActualHeight);
+                var w1 = FPanel.Width;
+                var h1 = FPanel.Height;
                 if (w1 > 0 && h1 > 0)
                 {
                     int mw = w1 - w;
@@ -229,11 +257,49 @@ namespace Sanet.Kniffel.Xna
                 xPos = 0;
                 yPos = 0;
             }
-            UpdatePngPosition();
+            BoundingRect = new Rectangle(xPos, yPos, w, h);
+        }
+        
+        public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager contentManager)
+        {
+            _blueSprite.LoadContent(contentManager);
+            _blueSprite.CreateBoundingRect(w, h);
+
+            _redSprite.LoadContent(contentManager);
+            _redSprite.CreateBoundingRect(w, h);
+
+            _whiteSprite.LoadContent(contentManager);
+            _whiteSprite.CreateBoundingRect(w, h);
+                        
+            base.LoadContent(contentManager);
+            
+            
         }
 
-        public void Update(RenderContext renderContext)
+        public override void Update(RenderContext renderContext)
         {
+            if (_ActiveSprite != null)
+                _ActiveSprite.Update(renderContext);
+            else
+                return;
+
+            BoundingRect = new Rectangle(xPos, yPos, w, h);
+
+            xPos += dxDir;
+            yPos += dyDir;
+
+            //can't use foreach loops here, want to start j loop index AFTER first loop
+            foreach (var d in FPanel.aDice)
+            {
+                if (d != this)
+                    d.HandleCollision(this);
+            }
+        
+            _ActiveSprite.Translate(new Vector2(xPos, yPos));
+            Translate(new Vector2(xPos, yPos));
+
+
+
             switch (pStatus)
             {
                 case DieStatus.dsLanding:
@@ -254,9 +320,7 @@ namespace Sanet.Kniffel.Xna
             }
 
 
-            xPos += dxDir;
-            yPos += dyDir;
-
+            
             FRollLoop += 1;
 
             switch (pStatus)
@@ -280,50 +344,42 @@ namespace Sanet.Kniffel.Xna
                     }
                     break;
             }
-            UpdatePngPosition();
+            
 
 
             //select the correct bitmap based on what the die is doing, and what direction it's going
             if (pStatus == DieStatus.dsRolling)
             {
-                PNG.Opacity = 1;
+                _ActiveSprite.Color = Color.White;
                 if ((dxDir * dyDir) > 0)
                 {
-                    strrot = "yrot.";
-                    PNG.Source = GetFramePic();
-
+                    _spritePosMultiplier = 2;
+                    
                 }
                 else
                 {
-                    strrot = "xrot.";
-                    PNG.Source = GetFramePic();
+                    _spritePosMultiplier = 1;
                 }
 
             }
             else
             {
                 Frame = (Result - 1) * 6 + FPanel.DieAngle;
-                strrot = "stop.";
-                PNG.Source = GetFramePic();
+                _spritePosMultiplier = 0;
                 if (Frozen)
                 {
-                    //strrot = "stop." '"halo."
-                    PNG.Opacity = 0.5;
+                    _ActiveSprite.Color = Color.White*0.5f;
                 }
                 else
                 {
-                    PNG.Opacity = 1;
+                    _ActiveSprite.Color = Color.White;
                 }
             }
+            base.Update(renderContext);
         }
-        private void UpdatePngPosition()
-        {
-            _ActiveSprite.Translate(new Vector2(xPos, yPos));
-        }
+        
 
-
-
-        public void InitializeRoll(int iResult = 0)
+        public void InitializeRoll(int iResult)
         {
             if (iResult < 0 | iResult > 6)
                 iResult = 0;
@@ -360,9 +416,11 @@ namespace Sanet.Kniffel.Xna
 
 
 
-        public void Draw(RenderContext renderContext)
+        public override void Draw(RenderContext renderContext)
         {
-            _ActiveSprite.Draw(renderContext);
+            if (_ActiveSprite!=null)
+                _ActiveSprite.Draw(renderContext);
+            base.Draw(renderContext);
         }
 
         #endregion
@@ -488,9 +546,13 @@ namespace Sanet.Kniffel.Xna
         //new
         public bool ClickedOn(int x, int y)
         {
-            return this.BoundingRect.Value.Contains(new Point(x, y));
+            if (!BoundingRect.HasValue)
+                return false;
+            return BoundingRect.Value.Contains(new Point(x, y));
         }
 
+
+        
 
         public void Dispose()
         {

@@ -65,12 +65,14 @@ namespace Sanet.XNAEngine
         //standard xna methods implementation
         public static void Initialize()
         {
-            GameScenes.ForEach(scene => scene.Initialize());
+            foreach (var scene in GameScenes)
+                scene.Initialize();
         }
 
         public static void LoadContent(ContentManager contentManager)
         {
-            GameScenes.ForEach(scene => scene.LoadContent(contentManager));
+            foreach (var scene in GameScenes)
+                scene.LoadContent(contentManager);
         }
 
         public static void Update(GameTime gameTime)

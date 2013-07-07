@@ -174,12 +174,15 @@ namespace Sanet.XNAEngine
 
         public virtual void Initialize()
         {
-            Children.ForEach(child => child.Initialize());
+            foreach (var child in Children)
+                child.Initialize();
+
         }
 
         public virtual void LoadContent(ContentManager contentManager)
         {
-            Children.ForEach(child => child.LoadContent(contentManager));
+            foreach (var child in Children)
+                child.LoadContent(contentManager);
         }
 
         public virtual void Update(RenderContext renderContext)
@@ -209,7 +212,8 @@ namespace Sanet.XNAEngine
                 WorldRotation = LocalRotation;
             }
 
-            Children.ForEach(child => child.Update(renderContext));
+            foreach (var child in Children)
+                child.Update(renderContext);
 
             if (_relativeBoundingBox.HasValue)
             {
@@ -226,7 +230,12 @@ namespace Sanet.XNAEngine
         {
             if (CanDraw)
             {
-                Children.ForEach(child => { if (child.CanDraw) child.Draw(renderContext); });
+                foreach (var child in Children)
+                { 
+                    if (child.CanDraw) 
+                        child.Draw(renderContext);
+                }
+                    
 
                 if (SceneManager.IsDebug && BoundingRect.HasValue)
                 {

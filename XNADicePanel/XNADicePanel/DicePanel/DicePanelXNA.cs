@@ -32,6 +32,7 @@ namespace Sanet.Kniffel.Xna
                         
             graphics.PreferMultiSampling = true;
             graphics.IsFullScreen = false;
+            this.IsMouseVisible = true;
 
             // Frame rate is 30 fps by default for Windows Phone.
             TargetElapsedTime = TimeSpan.FromTicks(333333);
@@ -40,6 +41,26 @@ namespace Sanet.Kniffel.Xna
             InactiveSleepTime = TimeSpan.FromSeconds(1);
 
         }
+
+        #region DicePanel Properties
+
+        DicePanelScene DPanel
+        {
+            get
+            {
+                return (DicePanelScene)SceneManager.GameScenes.FirstOrDefault(f => f is DicePanelScene);
+            }
+        }
+
+        #endregion
+
+        #region DicePanel Methods
+        public bool RollDice(List<int> aResults)
+        {
+            return DPanel.RollDice(aResults);
+        }
+        #endregion
+
         #region XNAGame
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.

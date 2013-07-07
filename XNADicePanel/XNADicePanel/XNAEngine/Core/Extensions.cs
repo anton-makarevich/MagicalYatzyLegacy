@@ -10,6 +10,7 @@ namespace Sanet.XNAEngine
 {
     static class Extensions
     {
+
         public static Rectangle Update(this Rectangle rectangle, Matrix transform, Vector2 deviceScale)
         {
             var corners = new Vector2[] 

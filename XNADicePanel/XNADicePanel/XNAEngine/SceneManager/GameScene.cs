@@ -113,46 +113,51 @@ namespace Sanet.XNAEngine
         public virtual void Initialize()
         {
             //load background
-            var backgroundElement = SceneData.Descendants("Background").FirstOrDefault();
-            if (backgroundElement != null)
+            if (SceneData != null)
             {
-                _background = new GameSprite(backgroundElement.Attribute("Content").Value);
-                _background.DrawInFrontOf3D = false;
-                AddSceneObject(_background,true);
-            }
-
-            //Load any types of static sprites
-            var spritesList = SceneData.Descendants("Sprite").ToList();
-            if (spritesList != null)
-                foreach (var query in spritesList)
+                var backgroundElement = SceneData.Descendants("Background").FirstOrDefault();
+                if (backgroundElement != null)
                 {
-                    GameSprite sprite = new GameSprite(query.Attribute("Content").Value);
-                    sprite.Translate(float.Parse(query.Attribute("X").Value), float.Parse(query.Attribute("Y").Value));//
-                    sprite.Scale(new Vector2(float.Parse(query.Attribute("ScaleX").Value, CultureInfo.InvariantCulture), float.Parse(query.Attribute("ScaleY").Value, CultureInfo.InvariantCulture)));
-                    sprite.Z = int.Parse(query.Attribute("Z").Value);
-                    sprite.PivotPoint = new Vector2(0, 0);
-                    sprite.DrawInFrontOf3D = query.Attribute("IsInFront").Value.ToLower() == "true";
-                    //look for FrameAnimation
-                    var frameAnimation = query.Elements("FrameAnimation").FirstOrDefault();
-                    if (frameAnimation != null)
-                    {
-                        sprite.FrameAnimation = new FrameAnimation(frameAnimation);
-                        sprite.FrameAnimation.PlayAnimation();
-                    }
-
-                    var pathAnimation = query.Elements("PathAnimation").FirstOrDefault();
-                    if (pathAnimation != null)
-                    {
-                        sprite.PathAnimation = new PathAnimation(pathAnimation);
-                        sprite.PathAnimation.PlayAnimation();
-                    }
-
-                    AddSceneObject(sprite);
+                    _background = new GameSprite(backgroundElement.Attribute("Content").Value);
+                    _background.DrawInFrontOf3D = false;
+                    AddSceneObject(_background, true);
                 }
 
+                //Load any types of static sprites
+                var spritesList = SceneData.Descendants("Sprite").ToList();
+                if (spritesList != null)
+                    foreach (var query in spritesList)
+                    {
+                        GameSprite sprite = new GameSprite(query.Attribute("Content").Value);
+                        sprite.Translate(float.Parse(query.Attribute("X").Value), float.Parse(query.Attribute("Y").Value));//
+                        sprite.Scale(new Vector2(float.Parse(query.Attribute("ScaleX").Value, CultureInfo.InvariantCulture), float.Parse(query.Attribute("ScaleY").Value, CultureInfo.InvariantCulture)));
+                        sprite.Z = int.Parse(query.Attribute("Z").Value);
+                        sprite.PivotPoint = new Vector2(0, 0);
+                        sprite.DrawInFrontOf3D = query.Attribute("IsInFront").Value.ToLower() == "true";
+                        //look for FrameAnimation
+                        var frameAnimation = query.Elements("FrameAnimation").FirstOrDefault();
+                        if (frameAnimation != null)
+                        {
+                            sprite.FrameAnimation = new FrameAnimation(frameAnimation);
+                            sprite.FrameAnimation.PlayAnimation();
+                        }
+
+                        var pathAnimation = query.Elements("PathAnimation").FirstOrDefault();
+                        if (pathAnimation != null)
+                        {
+                            sprite.PathAnimation = new PathAnimation(pathAnimation);
+                            sprite.PathAnimation.PlayAnimation();
+                        }
+
+                        AddSceneObject(sprite);
+                    }
+            }
             
-            SceneObjects2D.ForEach(sceneObject => sceneObject.Initialize());
-            SceneObjects3D.ForEach(sceneObject => sceneObject.Initialize());
+            foreach (var sceneObject in SceneObjects2D)
+                sceneObject.Initialize();
+
+            foreach (var sceneObject in SceneObjects3D)
+                sceneObject.Initialize();
         }
 
         protected GameButton GetButton(XElement xmldata)
@@ -173,16 +178,26 @@ namespace Sanet.XNAEngine
 
         public virtual void LoadContent(ContentManager contentManager)
         {
-            SceneObjects2D.ForEach(sceneObject => sceneObject.LoadContent(contentManager));
-            SceneObjects3D.ForEach(sceneObject => sceneObject.LoadContent(contentManager));
-            OtherSceneObjects.ForEach(sceneObject => sceneObject.LoadContent(contentManager));
+            foreach (var sceneObject in SceneObjects2D)
+                sceneObject.LoadContent(contentManager);
+
+            foreach (var sceneObject in SceneObjects3D)
+                sceneObject.LoadContent(contentManager);
+
+            foreach (var sceneObject in OtherSceneObjects)
+                sceneObject.LoadContent(contentManager);
         }
 
         public virtual void Update(RenderContext renderContext)
         {
-            SceneObjects2D.ForEach(sceneObject => sceneObject.Update(renderContext));
-            SceneObjects3D.ForEach(sceneObject => sceneObject.Update(renderContext));
-            OtherSceneObjects.ForEach(sceneObject => sceneObject.Update(renderContext));
+            foreach (var sceneObject in SceneObjects2D)
+                sceneObject.Update(renderContext);
+            
+            foreach (var sceneObject in SceneObjects3D)
+                sceneObject.Update(renderContext);
+
+            foreach (var sceneObject in OtherSceneObjects)
+                sceneObject.Update(renderContext);
         }
         
         /// <summary>
@@ -191,16 +206,19 @@ namespace Sanet.XNAEngine
         /// </summary>
         public virtual void Draw2D(RenderContext renderContext, bool drawInFrontOf3D)
         {
-            SceneObjects2D.ForEach(obj =>
+            
+            foreach (var obj in SceneObjects2D)
             {
                 if (obj.DrawInFrontOf3D == drawInFrontOf3D)
                     obj.Draw(renderContext);
-            });
-            OtherSceneObjects.ForEach(obj =>
+            }
+
+            foreach (var obj in OtherSceneObjects)
             {
                 if (drawInFrontOf3D)
                     obj.Draw(renderContext);
-            });
+            }
+           
         }
 
         /// <summary>
@@ -209,7 +227,9 @@ namespace Sanet.XNAEngine
         /// <param name="renderContext"></param>
         public virtual void Draw3D(RenderContext renderContext)
         {
-            SceneObjects3D.ForEach(sceneObject => sceneObject.Draw(renderContext));
+            foreach (var sceneObject in SceneObjects3D)
+                sceneObject.Draw(renderContext);
+
         }
 
         public virtual void Activated() { }

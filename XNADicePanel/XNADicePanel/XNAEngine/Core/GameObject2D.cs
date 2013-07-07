@@ -191,12 +191,14 @@ namespace Sanet.XNAEngine
 
         public virtual void Initialize()
         {
-            Children.ForEach(child => child.Initialize());
+            foreach (var child in Children)
+                child.Initialize();
         }
 
         public virtual void LoadContent(ContentManager contentManager)
         {
-            Children.ForEach(child => child.LoadContent(contentManager));
+            foreach (var child in Children)
+                child.LoadContent(contentManager);
         }
 
         public virtual void Update(RenderContext renderContext)
@@ -225,7 +227,8 @@ namespace Sanet.XNAEngine
             WorldPosition = new Vector2(pos.X, pos.Y) * renderContext.DeviceScale;
             WorldScale = new Vector2(scale.X, scale.Y) * renderContext.DeviceScale;
 
-            Children.ForEach(child => child.Update(renderContext));
+            foreach (var child in Children)
+                child.Update(renderContext);
 
             //calculate bounding rect for correct positioning
             if (_relativeBoundingRect.HasValue)
@@ -239,7 +242,12 @@ namespace Sanet.XNAEngine
         {
             if (CanDraw)
             {
-                Children.ForEach(child => { if (child.CanDraw) child.Draw(renderContext); });
+                foreach (var child in Children)
+                {
+                    if (child.CanDraw) 
+                        child.Draw(renderContext);
+                    
+                }
 
                 if (SceneManager.IsDebug && BoundingRect.HasValue)
                     BoundingRect.Value.Draw(renderContext, Color.Blue);
