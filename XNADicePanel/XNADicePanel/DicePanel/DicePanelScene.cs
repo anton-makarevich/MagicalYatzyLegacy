@@ -26,6 +26,9 @@ namespace Sanet.Kniffel.Xna
        //text  caption to ask user to select dice
        TextPrinter _captionText;
 
+       //last frame state;
+       bool _isWasRolling = false;
+
        public Random FRand = new Random();
 
        public List<Die> aDice = new List<Die>();
@@ -515,7 +518,15 @@ namespace Sanet.Kniffel.Xna
                     foreach (var d in aDice)
                     {
                         d.Style = FStyle;
+                        _isWasRolling = isRolling;
                         d.Update(renderContext);
+                        if (_isWasRolling && !isRolling)
+                        {
+                            if (EndRoll != null)
+                            {
+                                EndRoll();
+                            }
+                        }
                     }
                 }
             //}

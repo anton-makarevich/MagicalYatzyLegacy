@@ -22,7 +22,9 @@ namespace Sanet.Kniffel.Xna
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-
+        #region Events
+        public event Action EndRoll;
+        #endregion
 
 
         public DicePanel()
@@ -52,6 +54,46 @@ namespace Sanet.Kniffel.Xna
             }
         }
 
+        public DiceStyle PanelStyle
+        {
+            get
+            { return DPanel.PanelStyle; }
+            set
+            {
+                DPanel.PanelStyle = value;
+            }
+        }
+
+        //just fake to keep APIs compartible
+        public double TreeDScaleCoef { get; set; }
+
+        //do not change for now
+        public int NumDice { get; set; }
+
+        public int RollDelay
+        {
+            get { return DPanel.RollDelay; }
+            set { DPanel.RollDelay = value; }
+        }
+
+        public int DieAngle
+        {
+            get { return DPanel.DieAngle; }
+            set
+            {
+                DPanel.DieAngle = value;
+            }
+        }
+
+        public int MaxRollLoop
+        {
+            get { return DPanel.MaxRollLoop; }
+            set
+            {
+                DPanel.MaxRollLoop = value;
+            }
+        }
+
         #endregion
 
         #region DicePanel Methods
@@ -73,6 +115,11 @@ namespace Sanet.Kniffel.Xna
             SceneManager.RenderContext.GraphicsDevice = graphics.GraphicsDevice;
 
             DicePanelScene dicePanelScene = new DicePanelScene("DicePanelScene");
+            dicePanelScene.EndRoll += () => 
+            {
+                if (EndRoll != null)
+                    EndRoll();
+            };
             SceneManager.AddGameScene(dicePanelScene);
 
             SceneManager.SetActiveScene("DicePanelScene");

@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Sanet.Views
 {
-    public abstract class BasePage:SwapChainBackgroundPanel
+    public abstract class BasePage:Page//SwapChainBackgroundPanel
     {
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.

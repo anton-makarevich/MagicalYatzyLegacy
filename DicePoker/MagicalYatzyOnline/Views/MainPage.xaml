@@ -10,7 +10,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates"
     mc:Ignorable="d">
-    <Viewbox
+    <SwapChainBackgroundPanel x:Name="Panel">
+        <Viewbox
         StretchDirection="Both"
         Stretch="Fill">
         <Grid
@@ -18,9 +19,9 @@
             Background="Transparent"
               MinHeight="768"
               MinWidth="1366">
-        <DicePanel:DicePanel
+        <!--<DicePanel:DicePanel
             x:Name="dpBackground"
-            />
+            />-->
         <Grid
             x:Name="ControlGrid">
             <Grid.ColumnDefinitions>
@@ -146,4 +147,5 @@
             </VisualStateManager.VisualStateGroups>
         
     </Viewbox>
+    </SwapChainBackgroundPanel>
 </views:BasePage>

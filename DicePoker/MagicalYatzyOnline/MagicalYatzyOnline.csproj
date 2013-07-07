@@ -1245,6 +1245,26 @@
     </Content>
     <Content Include="Assets\Facebook_like.png" />
     <Content Include="Assets\Facebook_tile.png" />
+    <Content Include="..\..\XNADicePanel\XNADicePanel\bin\Windows Phone\Debug\Content\d0.xnb">
+      <Link>Content\d0.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\XNADicePanel\XNADicePanel\bin\Windows Phone\Debug\Content\d1.xnb">
+      <Link>Content\d1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\XNADicePanel\XNADicePanel\bin\Windows Phone\Debug\Content\d2.xnb">
+      <Link>Content\d2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\XNADicePanel\XNADicePanel\bin\Windows Phone\Debug\Content\Fonts\DefFont.xnb">
+      <Link>Content\Fonts\DefFont.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\XNADicePanel\XNADicePanel\bin\Windows Phone\Debug\Content\WhitePixel.xnb">
+      <Link>Content\WhitePixel.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="MagicalYatzyOnline_StoreKey.pfx" />
     <None Include="Package.StoreAssociation.xml" />
     <None Include="Service References\KniffelLeaderBoardService\Reference.svcmap">
@@ -1284,6 +1304,72 @@
     </Compile>
     <Compile Include="..\..\DiceRoller\DiceRollerRT\ViewModels\SettingsViewModel.cs">
       <Link>ViewModels\SettingsViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\DicePanel\Dice.cs">
+      <Link>DicePanel\Dice.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\DicePanel\DicePanelScene.cs">
+      <Link>DicePanel\DicePanelScene.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\DicePanel\DicePanelXNA.cs">
+      <Link>DicePanel\DicePanelXNA.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\DicePanel\DiceStatus.cs">
+      <Link>DicePanel\DiceStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\XNAEngine\Animations\AnimationBase.cs">
+      <Link>XNAEngine\Animations\AnimationBase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\XNAEngine\Animations\FrameAnimation.cs">
+      <Link>XNAEngine\Animations\FrameAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\XNAEngine\Animations\PathAnimation.cs">
+      <Link>XNAEngine\Animations\PathAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\XNAEngine\Animations\PathAnimationPoint.cs">
+      <Link>XNAEngine\Animations\PathAnimationPoint.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\XNAEngine\Core\BaseCamera.cs">
+      <Link>XNAEngine\Core\BaseCamera.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\XNAEngine\Core\Extensions.cs">
+      <Link>XNAEngine\Core\Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\XNAEngine\Core\GameObject2D.cs">
+      <Link>XNAEngine\Core\GameObject2D.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\XNAEngine\Core\GameObject3D.cs">
+      <Link>XNAEngine\Core\GameObject3D.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\XNAEngine\Core\Helpers.cs">
+      <Link>XNAEngine\Core\Helpers.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\XNAEngine\Core\RenderContext.cs">
+      <Link>XNAEngine\Core\RenderContext.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\XNAEngine\Core\TextPrinter.cs">
+      <Link>XNAEngine\Core\TextPrinter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\XNAEngine\Interfaces\IGameObject.cs">
+      <Link>XNAEngine\Interfaces\IGameObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\XNAEngine\Objects\GameButton.cs">
+      <Link>XNAEngine\Objects\GameButton.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\XNAEngine\Objects\GameModel.cs">
+      <Link>XNAEngine\Objects\GameModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\XNAEngine\Objects\GameSprite.cs">
+      <Link>XNAEngine\Objects\GameSprite.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\XNAEngine\Objects\TouchInput.cs">
+      <Link>XNAEngine\Objects\TouchInput.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\XNAEngine\SceneManager\GameScene.cs">
+      <Link>XNAEngine\SceneManager\GameScene.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XNADicePanel\XNADicePanel\XNAEngine\SceneManager\SceneManager.cs">
+      <Link>XNAEngine\SceneManager\SceneManager.cs</Link>
     </Compile>
     <Compile Include="..\CloudServer\Models\ChatMessage.cs">
       <Link>Models\ChatMessage.cs</Link>
@@ -1755,6 +1841,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DicePokerRT\packages\MarkedUp.1.0.0\lib\NetCore45\MarkedUp.winmd</HintPath>
     </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\..\..\MonoGame\MonoGame.Framework\bin\Windows8\Release\MonoGame.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="MyToolkit">
       <HintPath>..\DicePokerRT\packages\MyToolkit.1.13.0\lib\netcore45\MyToolkit.dll</HintPath>
     </Reference>
@@ -1771,6 +1860,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\KniffelLeaderBoardService\" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>

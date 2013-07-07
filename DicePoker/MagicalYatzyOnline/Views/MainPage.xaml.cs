@@ -1,4 +1,5 @@
-﻿using Sanet.Kniffel.Models;
+﻿using MonoGame.Framework;
+using Sanet.Kniffel.Models;
 using Sanet.Kniffel.ViewModels;
 using Sanet.Models;
 using Sanet.Views;
@@ -25,10 +26,16 @@ namespace DicePokerRT
     /// </summary>
     public sealed partial class MainPage : BasePage
     {
+        Sanet.Kniffel.Xna.DicePanel dpBackground;
         public MainPage()
         {
             this.InitializeComponent();
+
+            // Create the game.
+            dpBackground = XamlGame<Sanet.Kniffel.Xna.DicePanel>.Create("", Window.Current.CoreWindow, Panel);
+
             this.Loaded += MainPage_Loaded;
+            this.OnNavigatedTo();
         }
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)
@@ -61,6 +68,7 @@ namespace DicePokerRT
         }
         void GamePage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            
             if (e.PropertyName == "SettingsPanelAngle")
                 dpBackground.DieAngle = GetViewModel<MainPageViewModel>().SettingsPanelAngle;
             else if (e.PropertyName == "SettingsPanelSpeed")
