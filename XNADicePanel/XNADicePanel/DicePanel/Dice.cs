@@ -1,11 +1,14 @@
 using Microsoft.Xna.Framework;
 using Sanet.Kniffel.DicePanel;
+using Sanet.Models;
 using Sanet.XNAEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+#if NETFX_CORE
+using Windows.UI.Xaml.Controls;
+#endif
 namespace Sanet.Kniffel.Xna
 {
     /// <summary>
@@ -14,7 +17,7 @@ namespace Sanet.Kniffel.Xna
     public class Die : GameObject2D
     {
 
-        private const int MAXMOVE = 5;
+        private const int MAXMOVE = 7;
        
         //sprites for different dice styles
         GameSprite _blueSprite;
@@ -46,8 +49,9 @@ namespace Sanet.Kniffel.Xna
         DicePanelScene FPanel;
 
         public int iSound;
-
-
+#if NETFX_CORE
+        public MediaElement mSound;
+#endif
         private DieStatus FStatus = DieStatus.dsLanding;
 
         private bool FFrozen;
@@ -59,6 +63,7 @@ namespace Sanet.Kniffel.Xna
         {
 
             FPanel = pn;
+            Style = pn.PanelStyle;
             pStatus = DieStatus.dsStopped;
         }
         #endregion
@@ -81,7 +86,28 @@ namespace Sanet.Kniffel.Xna
             }
         }
 
+        int wMin
+        {
+            get
+            {return  FPanel.Margin.X;}
+        }
+        int hMin
+        {
+            get
+            { return FPanel.Margin.Y; }
+        }
+        int w1
+        {
+            get
+            { return FPanel.Width - FPanel.Margin.Width; }
+        }
 
+        int h1
+        {
+            get
+            { return FPanel.Height - FPanel.Margin.Height; }
+        }
+            
         public DiceStyle Style
         {
             get
@@ -157,24 +183,18 @@ namespace Sanet.Kniffel.Xna
             get { return FxPos; }
             set
             {
-                int ks = 0;
-
+                
                 FxPos = value;
 
-                if (FxPos < 0 + ks)
+                if (FxPos < wMin )
                 {
-                    FxPos = 0 + ks;
+                    FxPos = wMin;
                     BounceX();
                 }
-                double MW = 0;
-                try
+                
+                if (FxPos > (w1) - w )
                 {
-                    MW = FPanel.Width;
-                }
-                catch { }
-                if (FxPos > (MW) - w - ks)
-                {
-                    FxPos = (int)(MW) - w - ks;
+                    FxPos = (w1) - w ;
                     BounceX();
                 }
             }
@@ -185,22 +205,18 @@ namespace Sanet.Kniffel.Xna
             get { return FyPos; }
             set
             {
+                
                 FyPos = value;
 
-                if (FyPos < 0)
+                if (FyPos <hMin)
                 {
-                    FyPos = 0;
+                    FyPos = hMin;
                     BounceY();
                 }
-                double MH = 0;
-                try
+                
+                if (FyPos > h1 - h)
                 {
-                    MH = FPanel.Height;
-                }
-                catch { }
-                if (FyPos > MH - h)
-                {
-                    FyPos = (int)(MH) - h;
+                    FyPos = h1 - h;
                     BounceY();
                 }
             }
@@ -216,6 +232,18 @@ namespace Sanet.Kniffel.Xna
         #endregion
 
         #region Methods
+        public void PlaySound()
+        {
+            if (pStatus != DieStatus.dsRolling)
+                return;
+#if NETFX_CORE
+            if (mSound == null)
+                mSound = new MediaElement();
+            
+            int index = FPanel.FRand.Next(1, 4);
+            SoundsProvider.PlaySound(mSound, "dice" + index.ToString());
+#endif
+        }
 
         public override void Initialize()
         {
@@ -233,11 +261,11 @@ namespace Sanet.Kniffel.Xna
 
         public void InitializeLocation()
         {
+            
             try
             {
-                var w1 = FPanel.Width;
-                var h1 = FPanel.Height;
-                if (w1 > 0 && h1 > 0)
+                
+                if (w1 > wMin && h1 > hMin)
                 {
                     int mw = w1 - w;
                     xPos = FPanel.FRand.Next(1, mw);
@@ -246,20 +274,35 @@ namespace Sanet.Kniffel.Xna
                 }
                 else
                 {
-                    xPos = 0;
-                    yPos = 0;
+                    xPos = wMin;
+                    yPos = hMin;
                 }
-                if (xPos < 0) xPos = 0;
-                if (yPos < 0) yPos = 0;
+                if (xPos < wMin) xPos = wMin;
+                if (yPos < hMin) yPos = hMin;
             }
             catch
             {
-                xPos = 0;
-                yPos = 0;
+                xPos = wMin;
+                yPos = hMin;
             }
             BoundingRect = new Rectangle(xPos, yPos, w, h);
         }
-        
+
+        public override void Translate(Vector2 position)
+        {
+            if (_ActiveSprite!=null)
+                _ActiveSprite.Translate(position);
+            
+            base.Translate(position);
+        }
+
+        public void SetPosition(int x, int y)
+        {
+            xPos = x;
+            yPos = y;
+            Translate(new Vector2(x, y));
+        }
+
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager contentManager)
         {
             _blueSprite.LoadContent(contentManager);
@@ -281,6 +324,11 @@ namespace Sanet.Kniffel.Xna
             if (_ActiveSprite != null)
                 _ActiveSprite.Update(renderContext);
             else
+            {
+                Style = FPanel.PanelStyle;
+            }
+
+            if (_ActiveSprite == null)
                 return;
 
             BoundingRect = new Rectangle(xPos, yPos, w, h);
@@ -295,9 +343,36 @@ namespace Sanet.Kniffel.Xna
                     d.HandleCollision(this);
             }
         
-            _ActiveSprite.Translate(new Vector2(xPos, yPos));
             Translate(new Vector2(xPos, yPos));
 
+            //select the correct bitmap based on what the die is doing, and what direction it's going
+            if (pStatus == DieStatus.dsRolling)
+            {
+                _ActiveSprite.Color = Color.White;
+                if ((dxDir * dyDir) > 0)
+                {
+                    _spritePosMultiplier = 2;
+
+                }
+                else
+                {
+                    _spritePosMultiplier = 1;
+                }
+
+            }
+            else
+            {
+                Frame = (Result - 1) * 6 + FPanel.DieAngle;
+                _spritePosMultiplier = 0;
+                if (Frozen)
+                {
+                    _ActiveSprite.Color = Color.FromNonPremultiplied(0, 255, 255, 100);
+                }
+                else
+                {
+                    _ActiveSprite.Color = Color.White;
+                }
+            }
 
 
             switch (pStatus)
@@ -345,36 +420,7 @@ namespace Sanet.Kniffel.Xna
                     break;
             }
             
-
-
-            //select the correct bitmap based on what the die is doing, and what direction it's going
-            if (pStatus == DieStatus.dsRolling)
-            {
-                _ActiveSprite.Color = Color.White;
-                if ((dxDir * dyDir) > 0)
-                {
-                    _spritePosMultiplier = 2;
-                    
-                }
-                else
-                {
-                    _spritePosMultiplier = 1;
-                }
-
-            }
-            else
-            {
-                Frame = (Result - 1) * 6 + FPanel.DieAngle;
-                _spritePosMultiplier = 0;
-                if (Frozen)
-                {
-                    _ActiveSprite.Color = Color.White*0.5f;
-                }
-                else
-                {
-                    _ActiveSprite.Color = Color.White;
-                }
-            }
+            
             base.Update(renderContext);
         }
         
@@ -390,11 +436,11 @@ namespace Sanet.Kniffel.Xna
                 do
                 {
                     dxDir = FPanel.FRand.Next(-MAXMOVE, MAXMOVE + 1);
-                } while (!(Math.Abs(dxDir) > 2));
+                } while (!(Math.Abs(dxDir) > 3));
                 do
                 {
                     dyDir = FPanel.FRand.Next(-MAXMOVE, MAXMOVE + 1);
-                } while (!(Math.Abs(dyDir) > 2));
+                } while (!(Math.Abs(dyDir) > 3));
                 if (iResult == 0)
                 {
                     Result = FPanel.FRand.Next(1, 7);

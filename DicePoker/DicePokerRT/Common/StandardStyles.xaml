@@ -1811,12 +1811,12 @@
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        Foreground="White"/>
-                <TextBlock Text="{Binding Cost}"
+                <!--<TextBlock Text="{Binding Cost}"
                                        
                            Margin="2"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Bottom"
-                                       Foreground="White"/>
+                                       Foreground="White"/>-->
                 
                 <Grid
                     Visibility="{Binding HasDiscount,Converter={StaticResource VisibilityKey}}"

@@ -1,5 +1,4 @@
 ﻿<views:BasePage
-    xmlns:DicePanel="using:Sanet.Kniffel.DicePanel" 
     xmlns:ad="using:AdDuplex.Controls"
     x:Class="DicePokerRT.LeaderboardPage"
     xmlns:views="using:Sanet.Views"
@@ -12,7 +11,7 @@
     Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates"
     mc:Ignorable="d">
 
-    
+    <SwapChainBackgroundPanel x:Name="Panel">
     <!--<Viewbox
         StretchDirection="Both"
         Stretch="Fill">-->
@@ -20,9 +19,9 @@
             x:Name="LayoutRoot"
             Background="Transparent"
               >
-            <DicePanel:DicePanel
+            <!--<DicePanel:DicePanel
             x:Name="dpBackground"
-            />
+            />-->
             <Grid
                 x:Name="ControlGrid">
                      <Grid.ColumnDefinitions>
@@ -605,4 +604,5 @@
         
 
     <!--</Viewbox>-->
+    </SwapChainBackgroundPanel>
 </views:BasePage>

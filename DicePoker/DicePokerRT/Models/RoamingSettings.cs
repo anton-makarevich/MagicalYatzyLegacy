@@ -102,7 +102,7 @@ namespace Sanet.Kniffel.Models
             get
             {
                 if (roamingSettings.Values["DiceSpeed"] == null)
-                    roamingSettings.Values["DiceSpeed"] = 5;
+                    roamingSettings.Values["DiceSpeed"] = 30;
                 return (int)roamingSettings.Values["DiceSpeed"];
             }
             set

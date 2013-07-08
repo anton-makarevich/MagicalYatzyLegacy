@@ -309,17 +309,45 @@ namespace Sanet.Kniffel.ViewModels
         {
             get
             {
-                return DiceSpeed== 25;
+                return DiceSpeed== 70;
             }
             set
             {
                 if (value)
                 {
-                    DiceSpeed = 25;
+                    DiceSpeed = 70;
                 }
             }
         }
         public bool IsSpeedSlow
+        {
+            get
+            {
+                return DiceSpeed == 50;
+            }
+            set
+            {
+                if (value)
+                {
+                    DiceSpeed = 50;
+                }
+            }
+        }
+        public bool IsSpeedFast
+        {
+            get
+            {
+                return DiceSpeed == 30;
+            }
+            set
+            {
+                if (value)
+                {
+                    DiceSpeed = 30;
+                }
+            }
+        }
+        public bool IsSpeedVeryFast
         {
             get
             {
@@ -330,34 +358,6 @@ namespace Sanet.Kniffel.ViewModels
                 if (value)
                 {
                     DiceSpeed = 15;
-                }
-            }
-        }
-        public bool IsSpeedFast
-        {
-            get
-            {
-                return DiceSpeed == 5;
-            }
-            set
-            {
-                if (value)
-                {
-                    DiceSpeed = 5;
-                }
-            }
-        }
-        public bool IsSpeedVeryFast
-        {
-            get
-            {
-                return DiceSpeed == 1;
-            }
-            set
-            {
-                if (value)
-                {
-                    DiceSpeed = 1;
                 }
             }
         }

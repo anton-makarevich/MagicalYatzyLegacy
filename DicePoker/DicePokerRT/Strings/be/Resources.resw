@@ -535,7 +535,7 @@
     <value>Пакоі мага</value>
   </data>
   <data name="ArtifactsForLabel" xml:space="preserve">
-    <value>артэфактаў за</value>
+    <value>артэфактаў</value>
   </data>
   <data name="Cost1Label" xml:space="preserve">
     <value>$1,49</value>
@@ -571,7 +571,7 @@
     <value>Дазваляе змяніць значэнне адной з выпаўшых костак па вашым жаданні.</value>
   </data>
   <data name="Offer1Description" xml:space="preserve">
-    <value>Базавая прапанова з коштам $0,016 за артэфакт.</value>
+    <value>Базавая прапанова.</value>
   </data>
   <data name="Offer2Description" xml:space="preserve">
     <value>Выгадная прапанова. Ваша зніжка складае 20%!</value>

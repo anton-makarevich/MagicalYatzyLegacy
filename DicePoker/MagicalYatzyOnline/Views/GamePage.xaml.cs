@@ -1,4 +1,5 @@
-﻿using Sanet.Kniffel.Models;
+﻿using MonoGame.Framework;
+using Sanet.Kniffel.Models;
 using Sanet.Kniffel.ViewModels;
 using Sanet.Models;
 using Sanet.Views;
@@ -26,9 +27,12 @@ namespace DicePokerRT
     /// </summary>
     public sealed partial class GamePage : BasePage
     {
+        Sanet.Kniffel.Xna.DicePanel dpBackground;
+
         public GamePage()
         {
             this.InitializeComponent();
+
             this.Loaded += MainPage_Loaded;
         }
 
@@ -81,6 +85,11 @@ namespace DicePokerRT
         /// property is typically used to configure the page.</param>
         public override void OnNavigatedTo()
         {
+            // Create the game.
+            dpBackground = XamlGame<Sanet.Kniffel.Xna.DicePanel>.Create("", Window.Current.CoreWindow, Panel);
+            dpBackground.AddHandlers();
+            dpBackground.Margin = new Microsoft.Xna.Framework.Rectangle(190,150, 100, 120);
+            
             SetViewModel<PlayGameViewModel>();
 
             AddGameHandlers();
@@ -88,7 +97,7 @@ namespace DicePokerRT
             
 
             gridResults.Visibility = Visibility.Collapsed;
-            dpBackground.Visibility = Visibility.Visible;
+            //dpBackground.Visibility = Visibility.Visible;
         }
 
         public async override void OnNavigatedFrom()
@@ -126,7 +135,10 @@ namespace DicePokerRT
                 dpBackground.PanelStyle = GetViewModel<PlayGameViewModel>().SettingsPanelStyle;
                 GetViewModel<PlayGameViewModel>().Game.ChangeStyle(null, dpBackground.PanelStyle);
             }
-
+            else if (e.PropertyName == "DicePanelRTWidth")
+            {
+                dpBackground.Margin = new Microsoft.Xna.Framework.Rectangle(1366-(int)GetViewModel<PlayGameViewModel>().DicePanelRTWidth-100, 150, 100, 120);
+            }
         }
 
         void RemoveGameHandlers()
@@ -162,7 +174,7 @@ namespace DicePokerRT
         void Game_GameFinished(object sender, EventArgs e)
         {
             gridResults.Visibility = Visibility.Visible;
-            dpBackground.Visibility = Visibility.Collapsed;
+            //dpBackground.Visibility = Visibility.Collapsed;
         }
 
         async void Game_MoveChanged(object sender, Sanet.Kniffel.Models.Events.MoveEventArgs e)
@@ -185,8 +197,6 @@ namespace DicePokerRT
             dpBackground.RollDice(e.Value.ToList());
         }
 
-        
-
         void Game_PlayerRerolled(object sender, Sanet.Kniffel.Models.Events.PlayerEventArgs e)
         {
             SmartDispatcher.BeginInvoke(() =>
@@ -194,10 +204,6 @@ namespace DicePokerRT
                         dpBackground.ClearFreeze();
                     });
         }
-
-        
-
-        
 
         void Game_DiceChanged(object sender, Sanet.Kniffel.Models.Events.RollEventArgs e)
         {
@@ -264,7 +270,7 @@ namespace DicePokerRT
         {
             GetViewModel<PlayGameViewModel>().PlayAgain();
             gridResults.Visibility = Visibility.Collapsed;
-            dpBackground.Visibility = Visibility.Visible;
+            //dpBackground.Visibility = Visibility.Visible;
         }
 
         private void MagicRoll_Tapped_1(object sender, TappedRoutedEventArgs e)

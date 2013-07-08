@@ -1,5 +1,4 @@
 ﻿<views:BasePage
-    xmlns:DicePanel="using:Sanet.Kniffel.DicePanel" 
     xmlns:ad="using:AdDuplex.Controls"
     x:Class="DicePokerRT.NewGamePage"
     xmlns:views="using:Sanet.Views"
@@ -16,24 +15,8 @@
         <common:BooleanToVisibilityConverter x:Key="VisibilityKey"/>
         <common:ReverseBooleanToVisibilityConverter x:Key="ReversedVisibilityKey"/>
     </views:BasePage.Resources>
-    <!--<Page.BottomAppBar>
-        <AppBar Padding="10,0,10,0" 
-                IsOpen="{Binding IsPlayerSelected, Mode=TwoWay}">
-            <Grid>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-
-                    <Button  HorizontalAlignment="Left" 
-                    IsEnabled="{Binding CanDeletePlayer}"  
-                    Style="{StaticResource DeleteAppBarButtonStyle}"
-                            Command="{Binding DeleteCommand}"/>
-                        
-                </StackPanel>
-
-            </Grid>
-        </AppBar>
-    </Page.BottomAppBar>-->
-
-    <Viewbox
+    <SwapChainBackgroundPanel x:Name="Panel">
+        <Viewbox
         StretchDirection="Both"
         Stretch="Fill">
         <Grid
@@ -41,9 +24,9 @@
             Background="Transparent"
               MinHeight="768"
               MinWidth="1366">
-            <DicePanel:DicePanel
+            <!--<DicePanel:DicePanel
             x:Name="dpBackground"
-            />
+            />-->
             <Grid
                 x:Name="ControlGrid">
                      <Grid.ColumnDefinitions>
@@ -309,4 +292,5 @@
         </VisualStateManager.VisualStateGroups>
 
     </Viewbox>
+    </SwapChainBackgroundPanel>
 </views:BasePage>

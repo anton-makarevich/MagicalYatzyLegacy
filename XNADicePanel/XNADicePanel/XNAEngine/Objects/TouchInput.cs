@@ -20,6 +20,8 @@ namespace Sanet.XNAEngine
 
         public Vector2 ClickPosition { get; set; }
 
+        public virtual bool CanDraw { get; set; }
+
         public void Update(RenderContext renderContext)
         {
             var touchStates = renderContext.TouchPanelState;

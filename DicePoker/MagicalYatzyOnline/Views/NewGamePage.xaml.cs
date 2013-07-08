@@ -1,4 +1,5 @@
-﻿using Sanet.Kniffel.Models;
+﻿using MonoGame.Framework;
+using Sanet.Kniffel.Models;
 using Sanet.Kniffel.ViewModels;
 using Sanet.Views;
 using System;
@@ -24,9 +25,12 @@ namespace DicePokerRT
     /// </summary>
     public sealed partial class NewGamePage : BasePage
     {
+        Sanet.Kniffel.Xna.DicePanel dpBackground;
+
         public NewGamePage()
         {
             this.InitializeComponent();
+
             this.Loaded += MainPage_Loaded;
         }
 
@@ -38,6 +42,7 @@ namespace DicePokerRT
             dpBackground.RollDelay = GetViewModel<NewGameViewModel>().SettingsPanelSpeed;
             dpBackground.DieAngle = GetViewModel<NewGameViewModel>().SettingsPanelAngle;
             dpBackground.MaxRollLoop = 40;
+            dpBackground.WithSound = false;
             dpBackground.EndRoll += StartRoll;
             StartRoll();
         }
@@ -54,6 +59,11 @@ namespace DicePokerRT
         /// property is typically used to configure the page.</param>
         public override void OnNavigatedTo()
         {
+            // Create the game.
+            dpBackground = XamlGame<Sanet.Kniffel.Xna.DicePanel>.Create("", Window.Current.CoreWindow, Panel);
+            dpBackground.AddHandlers();
+            dpBackground.Margin = new Microsoft.Xna.Framework.Rectangle(0, 0, 0, 0);
+            
             SetViewModel<NewGameViewModel>();
             GetViewModel<NewGameViewModel>().PropertyChanged += GamePage_PropertyChanged;
             GetViewModel<NewGameViewModel>().FillRules();

@@ -58,7 +58,7 @@ namespace Sanet.XNAEngine
         /// </summary>
         public static bool SetActiveScene(string name)
         {
-            _newActiveScene = GameScenes.FirstOrDefault(scene => scene.SceneName.Equals(name));
+            _newActiveScene = GameScenes.FirstOrDefault(scene => scene.SceneName==name);
             return _newActiveScene != null;
         }
 

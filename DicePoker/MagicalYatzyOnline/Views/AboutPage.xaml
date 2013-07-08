@@ -1,5 +1,4 @@
 ﻿<views:BasePage
-    xmlns:DicePanel="using:Sanet.Kniffel.DicePanel" 
     xmlns:ad="using:AdDuplex.Controls"
     x:Class="DicePokerRT.AboutPage"
     xmlns:views="using:Sanet.Views"
@@ -17,16 +16,18 @@
         <common:ReverseBooleanToVisibilityConverter x:Key="ReversedVisibilityKey"/>
     </views:BasePage.Resources>
    
+    <SwapChainBackgroundPanel x:Name="Panel">
     <!--<Viewbox
         StretchDirection="Both"
         Stretch="Fill">-->
+    
         <Grid
             x:Name="LayoutRoot"
             Background="Transparent"
               >
-            <DicePanel:DicePanel
+            <!--<DicePanel:DicePanel
             x:Name="dpBackground"
-            />
+            />-->
             <Grid
                 x:Name="ControlGrid">
                      <Grid.ColumnDefinitions>
@@ -263,4 +264,5 @@
         
 
     <!--</Viewbox>-->
+    </SwapChainBackgroundPanel>
 </views:BasePage>

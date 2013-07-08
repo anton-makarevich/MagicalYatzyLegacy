@@ -1,5 +1,4 @@
 ﻿<controls:PopupPaneBase
-    xmlns:DicePanel="using:Sanet.Kniffel.DicePanel" 
     xmlns:ad="using:AdDuplex.Controls"
     x:Class="DicePokerRT.MagicRoomPage"
     xmlns:views="using:Sanet.Views"
@@ -20,9 +19,9 @@
             x:Name="LayoutRoot"
             Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
               >
-            <DicePanel:DicePanel
+            <!--<DicePanel:DicePanel
             x:Name="dpBackground"
-            />
+            />-->
             <Grid
                 x:Name="ControlGrid">
                      <Grid.ColumnDefinitions>

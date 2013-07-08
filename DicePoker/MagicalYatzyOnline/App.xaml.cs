@@ -2,6 +2,7 @@
 using Sanet;
 using Sanet.Common;
 using Sanet.Kniffel.ViewModels;
+using Sanet.Kniffel.Xna;
 using Sanet.Models;
 using System;
 using System.Collections.Generic;
@@ -29,8 +30,7 @@ namespace MagicalYatzyOnline
     /// </summary>
     sealed partial class App : Application
     {
-
-
+              
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -67,6 +67,7 @@ namespace MagicalYatzyOnline
             LogManager.MessageLogged += LogManager_MessageLogged;
 
 
+
             var gamePage = Window.Current.Content as MainPage;
 
             // Do not repeat app initialization when the Window already has content,
@@ -74,7 +75,7 @@ namespace MagicalYatzyOnline
             if (gamePage == null)
             {
                 // Create a main GamePage
-                gamePage = new MainPage();
+                gamePage = ViewsProvider.GetPage<MainPage>();
 
                 if (args.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
@@ -83,6 +84,7 @@ namespace MagicalYatzyOnline
 
                 // Place the GamePage in the current Window
                 Window.Current.Content = gamePage;
+                gamePage.OnNavigatedTo();
             }
 
             //TODO: on navigation will be dispodef??

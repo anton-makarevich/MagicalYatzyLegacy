@@ -529,7 +529,7 @@
     <value>Wizard's room</value>
   </data>
   <data name="ArtifactsForLabel" xml:space="preserve">
-    <value>artifacts for</value>
+    <value>artifacts </value>
   </data>
   <data name="Cost1Label" xml:space="preserve">
     <value>$1.49</value>
@@ -570,13 +570,13 @@
     <comment>Alows you to change the value of one dice by your choice.</comment>
   </data>
   <data name="Offer1Description" xml:space="preserve">
-    <value>Basic offer with price $0.016 for one artifact</value>
+    <value>Basic offer.</value>
   </data>
   <data name="Offer2Description" xml:space="preserve">
-    <value>Better offer with price reduced to $0.013 for one artifact. Your discount is 20%!</value>
+    <value>Better offer. Your discount is 20%!</value>
   </data>
   <data name="Offer3Description" xml:space="preserve">
-    <value>Excellent offer with only $0.008 for one artifact. It's 2 times cheaper!</value>
+    <value>Excellent offer. It's 2 times cheaper!</value>
   </data>
   <data name="PurchaseDescription" xml:space="preserve">
     <value>Buy more artifacts using one of the following offers. Each offer can be used only once a day.</value>

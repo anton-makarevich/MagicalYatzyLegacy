@@ -535,7 +535,7 @@
     <value>Комната волшебника</value>
   </data>
   <data name="ArtifactsForLabel" xml:space="preserve">
-    <value>артефактов за</value>
+    <value>артефактов</value>
   </data>
   <data name="Cost1Label" xml:space="preserve">
     <value>45 p.</value>
@@ -571,13 +571,13 @@
     <value> Позволяет изменить значение одной из выпавших костей по вашему желанию.</value>
   </data>
   <data name="Offer1Description" xml:space="preserve">
-    <value>Базовое предложение с ценой 0,5 р. за артефакт.</value>
+    <value>Базовое предложение.</value>
   </data>
   <data name="Offer2Description" xml:space="preserve">
-    <value>Выгодное предложение с ценой 0,4 р. за артефакт. Ваша скидка составляет 20%!</value>
+    <value>Выгодное предложение. Ваша скидка составляет 20%!</value>
   </data>
   <data name="Offer3Description" xml:space="preserve">
-    <value>Удивительное предложение с ценой 0,25 р. за артефакт. Покупайте в 2 раза дешевле!</value>
+    <value>Удивительное предложение. Покупайте в 2 раза дешевле!</value>
   </data>
   <data name="PurchaseDescription" xml:space="preserve">
     <value>Вы можете пополнить запас магических артефактов, воспользовавшись одним из следующих предложений. Воспользоваться каждым предложением можно не чаще, чем один раз в сутки.</value>

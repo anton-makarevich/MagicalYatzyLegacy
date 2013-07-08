@@ -27,25 +27,25 @@ namespace DicePokerRT
     public sealed partial class MainPage : BasePage
     {
         Sanet.Kniffel.Xna.DicePanel dpBackground;
+
         public MainPage()
         {
             this.InitializeComponent();
-
-            // Create the game.
-            dpBackground = XamlGame<Sanet.Kniffel.Xna.DicePanel>.Create("", Window.Current.CoreWindow, Panel);
-
+            
             this.Loaded += MainPage_Loaded;
-            this.OnNavigatedTo();
+            
         }
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            
             dpBackground.PanelStyle = GetViewModel<MainPageViewModel>().SettingsPanelStyle;
             dpBackground.TreeDScaleCoef = 0.38;
             dpBackground.NumDice = 5;
             dpBackground.RollDelay = GetViewModel<MainPageViewModel>().SettingsPanelSpeed;
             dpBackground.DieAngle = GetViewModel<MainPageViewModel>().SettingsPanelAngle;
             dpBackground.MaxRollLoop = 40;
+            dpBackground.WithSound = false;
             dpBackground.EndRoll += StartRoll;
             StartRoll();
         }
@@ -62,6 +62,12 @@ namespace DicePokerRT
         /// property is typically used to configure the page.</param>
         public override void OnNavigatedTo()
         {
+
+            // Create the game.
+            dpBackground = XamlGame<Sanet.Kniffel.Xna.DicePanel>.Create("", Window.Current.CoreWindow, Panel);
+            dpBackground.AddHandlers();
+            dpBackground.Margin = new Microsoft.Xna.Framework.Rectangle(0, 0, 0, 0);
+
             SetViewModel<MainPageViewModel>();
             GetViewModel<MainPageViewModel>().PropertyChanged += GamePage_PropertyChanged;
             

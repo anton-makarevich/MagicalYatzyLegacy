@@ -1,5 +1,4 @@
 ﻿<views:BasePage
-    xmlns:DicePanel="using:Sanet.Kniffel.DicePanel" 
     x:Class="DicePokerRT.GamePage"
     xmlns:views="using:Sanet.Views"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -18,7 +17,7 @@
         <common:BooleanToVisibilityConverter x:Key="VisibilityKey"/>
         <common:ReverseBooleanToVisibilityConverter x:Key="ReversedVisibilityKey"/>
     </views:BasePage.Resources>
-    <!--<Page.BottomAppBar>
+    <Page.BottomAppBar>
         <AppBar Height="300" 
                 Visibility="{Binding IsOnlineGame,Converter={StaticResource VisibilityKey}}"
                 IsOpen="{Binding IsChatOpen,Mode=TwoWay}"
@@ -28,8 +27,9 @@
                 x:Name="chatPanel"
                 DataContext="{Binding ChatModel}"/>
         </AppBar>
-    </Page.BottomAppBar>-->
-    <Grid>
+    </Page.BottomAppBar>
+    <SwapChainBackgroundPanel x:Name="Panel">
+        <Grid>
         <Grid
             x:Name="ControlGrid">
                 <Grid.ColumnDefinitions>
@@ -181,9 +181,9 @@
             Background="Transparent"
               MinHeight="{Binding DicePanelRTHeight}"
               MinWidth="{Binding DicePanelRTWidth}">
-                <DicePanel:DicePanel
+                <!--<DicePanel:DicePanel
             x:Name="dpBackground"
-            />
+            />-->
             </Grid>
             
         </Viewbox>
@@ -388,7 +388,7 @@
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
     </Grid>
-   
+   </SwapChainBackgroundPanel>
         
   
 </views:BasePage>

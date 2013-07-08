@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using Sanet.XNAEngine;
 using Sanet.Kniffel.DicePanel;
 using Sanet.Kniffel.Models;
-
+using Sanet.Models;
 
 namespace Sanet.Kniffel.Xna
 {
@@ -41,7 +41,6 @@ namespace Sanet.Kniffel.Xna
        public event DieChangedEventHandler DieChangedManual;
        private DiceStyle FStyle = DiceStyle.dpsClassic;
 
-       private Color dpBackcolor = Color.LightGray;
 
        public event EndRollEventHandler EndRoll;
        public delegate void EndRollEventHandler();
@@ -50,8 +49,6 @@ namespace Sanet.Kniffel.Xna
        #endregion
 
        #region Properties
-       public bool PlaySound { get; set; }
-
        
         public DiceStyle PanelStyle
         {
@@ -83,7 +80,10 @@ namespace Sanet.Kniffel.Xna
         public int RollDelay
         {
             get { return _RollDelay; }
-            set { _RollDelay = value; }
+            set 
+            { 
+                _RollDelay = value;
+            }
         }
 
 
@@ -137,7 +137,20 @@ namespace Sanet.Kniffel.Xna
 
 
         private bool FDebugDrawMode = false;
-        
+
+        Rectangle _Margin;
+        public Rectangle Margin
+        {
+            get { return _Margin; }
+            set
+            {
+                _Margin = value;
+                FindDicePosition();
+            }
+
+        }
+
+
         /// <summary>
         /// Draws a Box Around the Die for Collision Debugging
         /// </summary>
@@ -204,9 +217,12 @@ namespace Sanet.Kniffel.Xna
         public DicePanelScene(string sceneName) : base(sceneName) { }
         
 
-        private void FindDicePosition()
+        public void FindDicePosition()
         {
-            
+
+            if (Height + Width == 0)
+                return;
+
             bool bDone = false;
             int iTry = 0;
 
@@ -225,6 +241,8 @@ namespace Sanet.Kniffel.Xna
                     d.InitializeLocation();
                     foreach (Die dOld in aDice)
                     {
+                        if (dOld == d)
+                            continue;
                         if (d.HitTest(dOld))
                         {
                             bDone = false;
@@ -238,8 +256,6 @@ namespace Sanet.Kniffel.Xna
             
         }
 
-        
-        
         public bool RollDice(List<int> aResults )
         {
             
@@ -283,8 +299,7 @@ namespace Sanet.Kniffel.Xna
             _totalFrameTime=0;
             return true;
         }
-
-        
+               
         private void HandleCollisions()
         {
             Die di = null;
@@ -313,12 +328,37 @@ namespace Sanet.Kniffel.Xna
 
         Die _lastClickedDie;
         //new
+        public Die LastClickedDice
+        {
+            get
+            {
+                return _lastClickedDie;
+            }
+            set
+            {
+                _lastClickedDie = null;
+            }
+        }
+
+        
+        DiceSelectorScene DScene
+        {
+            get
+            {
+                return (DiceSelectorScene)SceneManager.GameScenes.FirstOrDefault(f => f is DiceSelectorScene);
+            }
+        }
 
         public void DieClicked()
 
         {
             Point pointClicked = new Point((int)_touchInput.ClickPosition.X, (int)_touchInput.ClickPosition.Y);
             //determine if die was clicked
+            OnClick(pointClicked);
+        }
+
+        void OnClick(Point pointClicked)
+        { 
             _lastClickedDie = null;
             foreach (Die d in aDice)
             {
@@ -398,6 +438,15 @@ namespace Sanet.Kniffel.Xna
             }
         }
 
+        public void ChangeDice(int oldValue, int newValue)
+        {
+            var diceToChange = aDice.FirstOrDefault(f => f.Result == oldValue);
+            if (diceToChange == null)
+                return;
+            diceToChange.Result = newValue;
+            
+        }
+
         //new
         public void ClearFreeze()
         {
@@ -428,15 +477,13 @@ namespace Sanet.Kniffel.Xna
                     _ManualSetMode = value;
                     if (value)
                     {
-                        //caption.Text = "SelectDiceToChangeMessage".Localize();
-                        //caption.Visibility = Visibility.Visible;
+                        DScene.LastClickedDice = null;
+                        _captionText.CanDraw = true;
                     }
                     else
                     {
-                        //caption.Text = string.Empty;
-                        //caption.Visibility = Visibility.Collapsed;
-                        //if (_popup.IsOpen)
-                        //    _popup.IsOpen = false;
+                        DScene.LastClickedDice = null;
+                        _captionText.CanDraw = false;
                     }
                     
                 }
@@ -447,10 +494,12 @@ namespace Sanet.Kniffel.Xna
        #region XNA Things
         public override void Initialize()
         {
-            //prepare caption
+             //prepare caption
             //TODO: make FontSprite for this
             _captionText = new TextPrinter("Fonts/DefFont");
-            _captionText.Position = new Vector2(320, 30);
+            _captionText.Text = "SelectDiceToChangeMessage".Localize();
+            _captionText.CanDraw = false;
+
             AddSceneObject(_captionText);
 
 
@@ -476,10 +525,22 @@ namespace Sanet.Kniffel.Xna
 
         }
 
+        int _sinceLastClick = 0;
+
         public override void Update(RenderContext renderContext)
         {
-            if (Width != renderContext.GraphicsDevice.Viewport.Width ||
-                Height != renderContext.GraphicsDevice.Viewport.Height)
+            _sinceLastClick += renderContext.GameTime.ElapsedGameTime.Milliseconds;
+
+            
+
+            var vpw= renderContext.GraphicsDevice.Viewport.Width;
+            var vph = renderContext.GraphicsDevice.Viewport.Height;
+
+                if (vph+vpw==0)
+                    return;
+
+            if (Width != vpw ||
+                Height !=vph )
             {
                 Width = renderContext.GraphicsDevice.Viewport.Width;
                 Height = renderContext.GraphicsDevice.Viewport.Height;
@@ -488,25 +549,19 @@ namespace Sanet.Kniffel.Xna
                 else
                     return;
             }
-            switch (FStyle)
+
+            if (ManualSetMode)
             {
-                case DiceStyle.dpsClassic:
-                    if (DieAngle < 2) DieAngle = 0;
-
-                    break;
-                case DiceStyle.dpsBrutalRed:
-                    if (DieAngle < 2) DieAngle = 1;
-
-                    break;
-                case DiceStyle.dpsBlue:
-                    if (DieAngle < 2) DieAngle = 1;
-
-                    break;
+                _captionText.Position = new Vector2(Margin.Left + 10, Margin.Top + 10);
+                if (DScene.LastClickedDice != null && LastClickedDice != null)
+                {
+                    int ov = LastClickedDice.Result;
+                    LastClickedDice.Result = DScene.LastClickedDice.Result;
+                    ManualSetMode = false;
+                    DieChangedManual(LastClickedDice.Frozen, ov, LastClickedDice.Result);
+                }
             }
 
-
-            dpBackcolor = Color.Transparent;
-            
 
             //if (isRolling)
             //{
@@ -515,8 +570,53 @@ namespace Sanet.Kniffel.Xna
                 if (_totalFrameTime >= RollDelay)
                 {
                     _totalFrameTime = 0;
+
+                    switch (FStyle)
+                    {
+                        case DiceStyle.dpsClassic:
+                            if (DieAngle < 2) DieAngle = 0;
+
+                            break;
+                        case DiceStyle.dpsBrutalRed:
+                            if (DieAngle < 2) DieAngle = 1;
+
+                            break;
+                        case DiceStyle.dpsBlue:
+                            if (DieAngle < 2) DieAngle = 1;
+
+                            break;
+                    }
+                    switch (FStyle)
+                    {
+                        case DiceStyle.dpsClassic:
+                            if (DieAngle < 2) DieAngle = 0;
+
+                            break;
+                        case DiceStyle.dpsBrutalRed:
+                            if (DieAngle < 2) DieAngle = 1;
+
+                            break;
+                        case DiceStyle.dpsBlue:
+                            if (DieAngle < 2) DieAngle = 1;
+
+                            break;
+                    }
+
+
+
                     foreach (var d in aDice)
                     {
+                        if (WithSound)
+                        {
+                        if (d.iSound > 9)
+                        {
+                            d.PlaySound();
+                            d.iSound = 1;
+                        }
+                        else
+                        {
+                            d.iSound += 1;
+                        }}
                         d.Style = FStyle;
                         _isWasRolling = isRolling;
                         d.Update(renderContext);
@@ -530,8 +630,14 @@ namespace Sanet.Kniffel.Xna
                     }
                 }
             //}
-
-
+            var mouse = Mouse.GetState();
+            if (mouse.LeftButton == ButtonState.Pressed && _sinceLastClick>200)
+            {
+                Point pointClicked = new Point(mouse.X, mouse.Y);
+                //determine if die was clicked
+                OnClick(pointClicked);
+                _sinceLastClick = 0;
+            }
             base.Update(renderContext);
         }
 

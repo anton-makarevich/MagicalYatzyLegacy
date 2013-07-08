@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 
-namespace Sanet.Kniffel.Xna
+namespace Sanet.Models
 {
     
     public class SoundsProvider 

@@ -126,12 +126,12 @@ namespace Sanet.XNAEngine
             LocalRotation = rotation;
         }
 
-        public void Translate(float posX, float posY)
+        public virtual void Translate(float posX, float posY)
         {
             Translate(new Vector2(posX, posY));
         }
 
-        public void Translate(Vector2 position)
+        public virtual void Translate(Vector2 position)
         {
             LocalPosition = position;
         }

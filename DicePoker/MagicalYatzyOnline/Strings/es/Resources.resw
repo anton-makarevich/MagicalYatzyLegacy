@@ -151,7 +151,7 @@
     <value>{0}, ¡Felicitaciones, Tienes {1} Artefacto Mágico como un bono!</value>
   </data>
   <data name="ArtifactsForLabel" xml:space="preserve">
-    <value>Artefactos para</value>
+    <value>Artefactos </value>
   </data>
   <data name="ArtifactsLabel" xml:space="preserve">
     <value>Artefactos</value>
@@ -400,13 +400,13 @@
     <value>Apagado</value>
   </data>
   <data name="Offer1Description" xml:space="preserve">
-    <value>Oferta básica de €0.014 por un artefacto.</value>
+    <value>Oferta básica.</value>
   </data>
   <data name="Offer2Description" xml:space="preserve">
-    <value>Mejor oferta con precio reducido de €0.01 por un artefacto. ¡Tu descuento es del 20%!</value>
+    <value>Mejor oferta. ¡Tu descuento es del 20%!</value>
   </data>
   <data name="Offer3Description" xml:space="preserve">
-    <value>Una excelente oferta de tan solo €0.007 por un artefacto. ¡Es 2 veces más barato!</value>
+    <value>Una excelente oferta. ¡Es 2 veces más barato!</value>
   </data>
   <data name="OnContent" xml:space="preserve">
     <value>Encendido</value>

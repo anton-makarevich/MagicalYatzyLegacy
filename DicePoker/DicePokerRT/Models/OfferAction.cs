@@ -22,7 +22,7 @@ namespace Sanet.Kniffel.Models
         {
             get
             {
-                return string.Format("{0} {1} {2}", Amount, "ArtifactsForLabel".Localize(),Cost);
+                return string.Format("{0} {1}", Amount, "ArtifactsForLabel".Localize());
             }
             set { }
         }

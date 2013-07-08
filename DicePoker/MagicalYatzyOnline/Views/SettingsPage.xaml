@@ -5,7 +5,6 @@
     xmlns:local="using:Sanet.Kniffel.Views"
     xmlns:base="using:Sanet.Views"
     xmlns:common="using:Sanet.Common"
-    xmlns:DicePanel="using:Sanet.Kniffel.DicePanel" 
     xmlns:ad="using:AdDuplex.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -92,7 +91,7 @@
                     <ToggleButton
                             Style="{StaticResource SettingsToggleStyle}"
                             IsChecked="{Binding IsStyleWhite,Mode=TwoWay}">
-                        <Image Source="../Images/0/xrot.10.png" />
+                        <Image Source="ms-appx:///Images/0/xrot.10.png" />
                     </ToggleButton>
                     <ToggleButton
                         IsEnabled="{Binding IsStylesAvailable}"

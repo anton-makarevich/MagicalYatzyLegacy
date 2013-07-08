@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Media;
 using Sanet.Kniffel.DicePanel;
 using Sanet.XNAEngine;
+using Sanet.Kniffel.Models;
 
 namespace Sanet.Kniffel.Xna
 {
@@ -24,6 +25,8 @@ namespace Sanet.Kniffel.Xna
 
         #region Events
         public event Action EndRoll;
+        public event Sanet.Kniffel.Xna.DicePanelScene.DieFrozenEventHandler DieFrozen;
+        public event Sanet.Kniffel.Xna.DicePanelScene.DieChangedEventHandler DieChangedManual;
         #endregion
 
 
@@ -34,14 +37,24 @@ namespace Sanet.Kniffel.Xna
                         
             graphics.PreferMultiSampling = true;
             graphics.IsFullScreen = false;
+            Window.OrientationChanged += Window_OrientationChanged;
             this.IsMouseVisible = true;
 
             // Frame rate is 30 fps by default for Windows Phone.
-            TargetElapsedTime = TimeSpan.FromTicks(333333);
+            TargetElapsedTime = TimeSpan.FromTicks(20000);//333333
 
             // Extend battery life under lock.
             InactiveSleepTime = TimeSpan.FromSeconds(1);
 
+        }
+
+        void Window_OrientationChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DPanel.FindDicePosition();
+            }
+            catch { }
         }
 
         #region DicePanel Properties
@@ -51,6 +64,14 @@ namespace Sanet.Kniffel.Xna
             get
             {
                 return (DicePanelScene)SceneManager.GameScenes.FirstOrDefault(f => f is DicePanelScene);
+            }
+        }
+
+        DiceSelectorScene DScene
+        {
+            get
+            {
+                return (DiceSelectorScene)SceneManager.GameScenes.FirstOrDefault(f => f is DiceSelectorScene);
             }
         }
 
@@ -94,12 +115,102 @@ namespace Sanet.Kniffel.Xna
             }
         }
 
+        public DieResult Result
+        {
+            get
+            {
+                return DPanel.Result;
+            }
+        }
+
+        public bool ClickToFreeze
+        {
+            get { return DPanel.ClickToFreeze; }
+            set { DPanel.ClickToFreeze = value; }
+        }
+
+        public bool WithSound
+        {
+            get
+            { return DPanel.WithSound; }
+            set
+            {
+                DPanel.WithSound = value;
+            }
+        }
+
+        public bool ManualSetMode
+        {
+            get { return DPanel.ManualSetMode; }
+            set
+            { DPanel.ManualSetMode = value; }
+        }
+
+        public Rectangle Margin
+        {
+            get
+            {
+                return DPanel.Margin;
+            }
+            set
+            {
+                DPanel.Margin = value;
+                DScene.Margin = new Rectangle(value.Left, value.Top, value.Width, value.Height);
+            }
+        }
+
+        public bool AllDiceFrozen()
+        {
+            return DPanel.AllDiceFrozen();
+        }
+
         #endregion
 
         #region DicePanel Methods
         public bool RollDice(List<int> aResults)
         {
             return DPanel.RollDice(aResults);
+        }
+
+        public void ClearFreeze()
+        {
+            DPanel.ClearFreeze();
+        }
+
+        public void FixDice(int index, bool isfixed)
+        {
+            DPanel.FixDice(index, isfixed);
+        }
+
+        public void ChangeDice(int oldValue, int newValue)
+        {
+            DPanel.ChangeDice(oldValue, newValue);
+        }
+
+        
+
+        #endregion
+
+        #region Helpers
+        public void AddHandlers()
+        {
+            DPanel.EndRoll += () =>
+            {
+                if (EndRoll != null)
+                    EndRoll();
+            };
+
+            DPanel.DieFrozen += (frozen, value) =>
+            {
+                if (DieFrozen != null)
+                    DieFrozen(frozen, value);
+            };
+
+            DPanel.DieChangedManual += (frozen, oldvalue, newvalue) =>
+            {
+                if (DieChangedManual != null)
+                    DieChangedManual(frozen, oldvalue, newvalue);
+            };
         }
         #endregion
 
@@ -112,15 +223,14 @@ namespace Sanet.Kniffel.Xna
         /// </summary>
         protected override void Initialize()
         {
+            SceneManager.GameScenes.Clear();
             SceneManager.RenderContext.GraphicsDevice = graphics.GraphicsDevice;
 
             DicePanelScene dicePanelScene = new DicePanelScene("DicePanelScene");
-            dicePanelScene.EndRoll += () => 
-            {
-                if (EndRoll != null)
-                    EndRoll();
-            };
             SceneManager.AddGameScene(dicePanelScene);
+
+            DiceSelectorScene diceSelectorScene = new DiceSelectorScene("DiceSelectorScene");
+            SceneManager.AddGameScene(diceSelectorScene);
 
             SceneManager.SetActiveScene("DicePanelScene");
             SceneManager.Initialize();

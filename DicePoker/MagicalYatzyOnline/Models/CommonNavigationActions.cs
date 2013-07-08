@@ -26,7 +26,7 @@ namespace Sanet.Kniffel.Models
                         SoundsProvider.PlaySound("click");
 
                         ((BasePage)Window.Current.Content).OnNavigatedFrom();
-                        var page = new MainPage();
+                        var page = ViewsProvider.GetPage < MainPage>();
                         Window.Current.Content = page;
                         Window.Current.Activate();
                         page.OnNavigatedTo();
@@ -45,7 +45,7 @@ namespace Sanet.Kniffel.Models
                     SoundsProvider.PlaySound("click");
 
                     ((BasePage)Window.Current.Content).OnNavigatedFrom();
-                    var page = new NewGamePage();
+                    var page = ViewsProvider.GetPage<NewGamePage>();
                     Window.Current.Content = page;
                     Window.Current.Activate();
                     page.OnNavigatedTo();
@@ -64,7 +64,7 @@ namespace Sanet.Kniffel.Models
                     SoundsProvider.PlaySound("click");
 
                     ((BasePage)Window.Current.Content).OnNavigatedFrom();
-                    var page = new NewOnlineGamePage();
+                    var page =ViewsProvider.GetPage<NewOnlineGamePage>();
                     Window.Current.Content = page;
                     Window.Current.Activate();
                     page.OnNavigatedTo();
@@ -83,7 +83,7 @@ namespace Sanet.Kniffel.Models
                     SoundsProvider.PlaySound("click");
 
                     ((BasePage)Window.Current.Content).OnNavigatedFrom();
-                    var page = new AboutPage();
+                    var page = ViewsProvider.GetPage<AboutPage>();
                     Window.Current.Content = page;
                     Window.Current.Activate();
                     page.OnNavigatedTo();
@@ -101,7 +101,7 @@ namespace Sanet.Kniffel.Models
                     SoundsProvider.PlaySound("click");
 
                     ((BasePage)Window.Current.Content).OnNavigatedFrom();
-                    var page = new LeaderboardPage();
+                    var page = ViewsProvider.GetPage < LeaderboardPage>();
                     Window.Current.Content = page;
                     Window.Current.Activate();
                     page.OnNavigatedTo();
@@ -119,7 +119,7 @@ namespace Sanet.Kniffel.Models
                     SoundsProvider.PlaySound("click");
 
                     ((BasePage)Window.Current.Content).OnNavigatedFrom();
-                    var page = new GamePage();
+                    var page = ViewsProvider.GetPage < GamePage>();
                     Window.Current.Content = page;
                     Window.Current.Activate();
                     page.OnNavigatedTo();

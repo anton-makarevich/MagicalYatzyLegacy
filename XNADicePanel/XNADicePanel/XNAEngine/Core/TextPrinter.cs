@@ -17,6 +17,8 @@ namespace Sanet.XNAEngine
         /// Text to print
         /// </summary>
         public string Text { get; set; }
+
+        public virtual bool CanDraw { get; set; }
         
         /// <summary>
         /// Position where to print
@@ -98,7 +100,7 @@ namespace Sanet.XNAEngine
 
         public virtual void Draw(RenderContext renderContext)
         {
-            if (string.IsNullOrEmpty(Text))
+            if (string.IsNullOrEmpty(Text) || !CanDraw)
                 return;
             renderContext.SpriteBatch.DrawString(
                 _spriteFont,

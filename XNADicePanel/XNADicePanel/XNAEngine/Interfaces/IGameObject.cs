@@ -8,6 +8,6 @@ namespace Sanet.XNAEngine
         void Initialize();
         void LoadContent(global::Microsoft.Xna.Framework.Content.ContentManager contentManager);
         void Update(RenderContext renderContext);
-        
+        bool CanDraw { get; set; }
     }
 }
