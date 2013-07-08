@@ -1,6 +1,7 @@
 ﻿using MonoGame.Framework;
 using Sanet.Kniffel.Models;
 using Sanet.Kniffel.ViewModels;
+using Sanet.Models;
 using Sanet.Views;
 using System;
 using System.Collections.Generic;

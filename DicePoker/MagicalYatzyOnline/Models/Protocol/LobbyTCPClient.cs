@@ -181,9 +181,11 @@ namespace Sanet.Kniffel.Protocol
             var line = sender as string;
             StringTokenizer token = new StringTokenizer(line, AbstractLobbyCommand.Delimitter);
             String commandName = token.NextToken();
+
             if (commandName == GameCommand.COMMAND_NAME)
             {
                 GameCommand c = new GameCommand(token);
+                LogManager.Log(LogLevel.Message, "LobbyTCPClient.Receive", "data:{0}", c.Command);
                 m_Client.Incoming(c.Command);
             }
             //else if (commandName.StartsWith(PlayerLeftCommand.COMMAND_NAME) && m_Clients.Count > 0)

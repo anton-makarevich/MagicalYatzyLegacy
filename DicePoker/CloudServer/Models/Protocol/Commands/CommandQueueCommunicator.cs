@@ -4,6 +4,8 @@ using System.Threading;
 using System;
 using System.Threading.Tasks;
 using Sanet.Kniffel.Models.Events;
+using Sanet.Models;
+using Sanet.Kniffel.ViewModels;
 
 namespace Sanet.Network.Protocol.Commands
 {
@@ -26,6 +28,10 @@ namespace Sanet.Network.Protocol.Commands
 
         public virtual void Send(AbstractCommand command)
         {
+//#if WinRT
+//            if (ViewModelProvider.GetViewModel<PlayGameViewModel>().BusyWithServer)
+//                return;
+//#endif
             base.Send(command.Encode());
         }
 

@@ -706,8 +706,8 @@ namespace Sanet.Kniffel.ViewModels
                 Game.StyleChanged += Game_StyleChanged;
                 if (IsOnlineGame)
                 {
-                    ((KniffelGameClient)Game).SendedSomething += PlayGameViewModel_SendedSomething;
-                    ((KniffelGameClient)Game).ReceivedSomething += PlayGameViewModel_ReceivedSomething;
+                    //((KniffelGameClient)Game).SendedSomething += PlayGameViewModel_SendedSomething;
+                    //((KniffelGameClient)Game).ReceivedSomething += PlayGameViewModel_ReceivedSomething;
                 }
             }
         }

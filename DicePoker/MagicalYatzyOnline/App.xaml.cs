@@ -88,7 +88,8 @@ namespace MagicalYatzyOnline
             }
 
             //TODO: on navigation will be dispodef??
-            SmartDispatcher.Initialize(gamePage.Dispatcher);
+            SmartDispatcher.Initialize(Window.Current.Dispatcher);
+
             // Ensure the current window is active
             Window.Current.Activate();
             //register for settings charm event

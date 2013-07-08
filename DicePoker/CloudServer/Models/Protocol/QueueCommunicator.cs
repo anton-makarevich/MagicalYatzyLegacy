@@ -55,9 +55,9 @@ namespace Sanet.Network.Protocol
             m_IsConnected = true;
 //#if WinRT
 //            //TODO: think about this
-//            Task t =new Task(Run);
-//            t.Start();
-//            t.AsAsyncAction();
+                Task t =new Task(Run);
+                t.Start();
+                t.AsAsyncAction();
 //#else
 //            new Thread(new ThreadStart(Run)).Start();
 //#endif
@@ -66,19 +66,19 @@ namespace Sanet.Network.Protocol
        
         public void Incoming(string message)
         {
-            //m_Incoming.Enqueue(message);
-
-            try
-            {
-                if (/*IsConnected &&*/ ReceivedSomething != null)
-                {
-                    ReceivedSomething(this, new KeyEventArgs<string>(message));
-                }
-            }
-            catch (Exception ex)
-            {
-                var t = ex.Message;
-            }
+            m_Incoming.Enqueue(message);
+            LogManager.Log(LogLevel.Message, "Client.Incoming", "data:{0}", message);
+            //try
+            //{
+            //    if (/*IsConnected &&*/ ReceivedSomething != null)
+            //    {
+            //        ReceivedSomething(this, new KeyEventArgs<string>(message));
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    var t = ex.Message;
+            //}
         }
 
         public virtual void Dispose()

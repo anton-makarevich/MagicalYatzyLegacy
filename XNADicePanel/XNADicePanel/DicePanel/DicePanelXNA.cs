@@ -40,9 +40,9 @@ namespace Sanet.Kniffel.Xna
             Window.OrientationChanged += Window_OrientationChanged;
             this.IsMouseVisible = true;
 
-            IsFixedTimeStep = false;
+            IsFixedTimeStep = true;
             // Frame rate is 30 fps by default for Windows Phone.
-            TargetElapsedTime = TimeSpan.FromTicks(20000);//333333
+            TargetElapsedTime = TimeSpan.FromTicks(333333);//333333
 
             // Extend battery life under lock.
             InactiveSleepTime = TimeSpan.FromSeconds(1);

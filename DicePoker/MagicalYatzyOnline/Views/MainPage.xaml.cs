@@ -62,7 +62,7 @@ namespace DicePokerRT
         /// property is typically used to configure the page.</param>
         public override void OnNavigatedTo()
         {
-
+            
             // Create the game.
             dpBackground = XamlGame<Sanet.Kniffel.Xna.DicePanel>.Create("", Window.Current.CoreWindow, Panel);
             dpBackground.AddHandlers();

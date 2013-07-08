@@ -270,8 +270,8 @@ namespace Sanet.Network.Protocol
                 {
                     try
                     {
-                        //new System.Threading.ManualResetEvent(false).WaitOne(waitTime);//wait a little
-                        Task.Delay(waitTime).Wait();
+                        new System.Threading.ManualResetEvent(false).WaitOne(waitTime);//wait a little
+                        //Task.Delay(waitTime).Wait();
                     }
                     catch (Exception ex)
                     {
