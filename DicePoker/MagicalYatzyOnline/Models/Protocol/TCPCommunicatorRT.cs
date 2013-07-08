@@ -271,7 +271,7 @@ namespace Sanet.Network.Protocol
                     try
                     {
                         //new System.Threading.ManualResetEvent(false).WaitOne(waitTime);//wait a little
-                        await Task.Delay(waitTime);
+                        Task.Delay(waitTime).Wait();
                     }
                     catch (Exception ex)
                     {

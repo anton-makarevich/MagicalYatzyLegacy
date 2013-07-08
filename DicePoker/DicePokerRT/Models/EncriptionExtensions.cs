@@ -61,6 +61,9 @@ namespace Sanet.Models
         }
         public static string Encrypt(this string StringToEncrypt, int key)
         {
+            if (string.IsNullOrEmpty(StringToEncrypt))
+                return string.Empty;
+
             LogManager.Log(LogLevel.Message, "Encryptor.Encrypt", "Encrypting '{0}' with key {1}",StringToEncrypt,key);
             StringBuilder sbEncr = new StringBuilder();
             Random rand = new Random();
@@ -79,8 +82,7 @@ namespace Sanet.Models
             const int intUpperBounds = 28;
 
             int iPK = 126 - key;
-            if (string.IsNullOrEmpty(StringToEncrypt))
-                return string.Empty;
+            
             try
             {
                 for (dblCountLength = 1; dblCountLength <= StringToEncrypt.Length; dblCountLength++)

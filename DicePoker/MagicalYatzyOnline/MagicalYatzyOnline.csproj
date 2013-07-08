@@ -879,7 +879,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DicePokerRT\packages\MarkedUp.1.0.0\lib\NetCore45\MarkedUp.winmd</HintPath>
     </Reference>
-    <Reference Include="MonoGame.Framework">
+    <Reference Include="MonoGame.Framework, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\MonoGame\MonoGame.Framework\bin\Windows8\Release\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="MyToolkit">

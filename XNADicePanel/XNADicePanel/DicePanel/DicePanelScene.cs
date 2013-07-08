@@ -203,7 +203,7 @@ namespace Sanet.Kniffel.Xna
             }
         }
 
-        bool isRolling
+        public bool IsRolling
         {
             get
             {
@@ -365,7 +365,7 @@ namespace Sanet.Kniffel.Xna
                 if (d.ClickedOn(pointClicked.X, pointClicked.Y))
                 {
                     _lastClickedDie = d;
-                    break; // TODO: might not be correct. Was : Exit For
+                    break; 
                 }
             }
             //no die was clicked
@@ -530,14 +530,16 @@ namespace Sanet.Kniffel.Xna
         public override void Update(RenderContext renderContext)
         {
             _sinceLastClick += renderContext.GameTime.ElapsedGameTime.Milliseconds;
+            _totalFrameTime += renderContext.GameTime.ElapsedGameTime.Milliseconds;
 
-            
+            _captionText.CanDraw = true;
+
+            _captionText.Text = _sinceLastClick.ToString();
 
             var vpw= renderContext.GraphicsDevice.Viewport.Width;
             var vph = renderContext.GraphicsDevice.Viewport.Height;
 
-                if (vph+vpw==0)
-                    return;
+                
 
             if (Width != vpw ||
                 Height !=vph )
@@ -546,8 +548,8 @@ namespace Sanet.Kniffel.Xna
                 Height = renderContext.GraphicsDevice.Viewport.Height;
                 if (aDice.Count == NumDice)
                     FindDicePosition();
-                else
-                    return;
+                //else
+                //    return;
             }
 
             if (ManualSetMode)
@@ -565,27 +567,13 @@ namespace Sanet.Kniffel.Xna
 
             //if (isRolling)
             //{
-                _totalFrameTime += renderContext.GameTime.ElapsedGameTime.Milliseconds;
+                
 
                 if (_totalFrameTime >= RollDelay)
                 {
                     _totalFrameTime = 0;
 
-                    switch (FStyle)
-                    {
-                        case DiceStyle.dpsClassic:
-                            if (DieAngle < 2) DieAngle = 0;
-
-                            break;
-                        case DiceStyle.dpsBrutalRed:
-                            if (DieAngle < 2) DieAngle = 1;
-
-                            break;
-                        case DiceStyle.dpsBlue:
-                            if (DieAngle < 2) DieAngle = 1;
-
-                            break;
-                    }
+                    
                     switch (FStyle)
                     {
                         case DiceStyle.dpsClassic:
@@ -618,9 +606,10 @@ namespace Sanet.Kniffel.Xna
                             d.iSound += 1;
                         }}
                         d.Style = FStyle;
-                        _isWasRolling = isRolling;
+                        _isWasRolling = IsRolling;
                         d.Update(renderContext);
-                        if (_isWasRolling && !isRolling)
+                        
+                        if (_isWasRolling && !IsRolling)
                         {
                             if (EndRoll != null)
                             {

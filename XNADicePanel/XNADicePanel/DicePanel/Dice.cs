@@ -24,7 +24,18 @@ namespace Sanet.Kniffel.Xna
         GameSprite _whiteSprite;
         GameSprite _redSprite;
         //active style sprite
-        GameSprite _ActiveSprite { get; set; }
+        GameSprite _ActiveSprite 
+        {
+            get
+            {
+                if (Style == DiceStyle.dpsBlue)
+                    return _blueSprite;
+                else if (Style == DiceStyle.dpsBrutalRed)
+                    return _redSprite;
+                else
+                    return _whiteSprite;
+            }
+        }
 
         
         /*
@@ -45,7 +56,7 @@ namespace Sanet.Kniffel.Xna
         private int dyDir;
         //результат кости 1-6
         private int FResult = 1;
-        DiceStyle _Style;
+        DiceStyle _Style=  DiceStyle.dpsClassic;
         DicePanelScene FPanel;
 
         public int iSound;
@@ -116,12 +127,7 @@ namespace Sanet.Kniffel.Xna
             }
             set
             {
-                if (value == DiceStyle.dpsBlue)
-                    _ActiveSprite = _blueSprite;
-                else if (value == DiceStyle.dpsBrutalRed)
-                    _ActiveSprite = _redSprite;
-                else
-                    _ActiveSprite = _whiteSprite;
+                
 
                 _Style = value;
                 Frame = _Frame;

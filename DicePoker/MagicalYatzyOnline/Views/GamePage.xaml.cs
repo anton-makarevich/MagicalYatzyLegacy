@@ -88,9 +88,11 @@ namespace DicePokerRT
             // Create the game.
             dpBackground = XamlGame<Sanet.Kniffel.Xna.DicePanel>.Create("", Window.Current.CoreWindow, Panel);
             dpBackground.AddHandlers();
-            dpBackground.Margin = new Microsoft.Xna.Framework.Rectangle(190,150, 100, 120);
             
             SetViewModel<PlayGameViewModel>();
+            dpBackground.Margin = new Microsoft.Xna.Framework.Rectangle(130 + 60 * GetViewModel<PlayGameViewModel>().Players.Count, 150, 100, 120);
+            
+            
 
             AddGameHandlers();
             GetViewModel<PlayGameViewModel>().PropertyChanged += GamePage_PropertyChanged;
@@ -105,11 +107,7 @@ namespace DicePokerRT
             Window.Current.SizeChanged -= Current_SizeChanged;
             GetViewModel<PlayGameViewModel>().PropertyChanged -= GamePage_PropertyChanged;
 
-            if (gridResults.Visibility == Visibility.Visible)
-            {
-                gridResults.Visibility = Visibility.Collapsed;
-                await GetViewModel<PlayGameViewModel>().SaveResults();
-            }
+            
 
             RemoveGameHandlers();
 
@@ -177,13 +175,14 @@ namespace DicePokerRT
             //dpBackground.Visibility = Visibility.Collapsed;
         }
 
-        async void Game_MoveChanged(object sender, Sanet.Kniffel.Models.Events.MoveEventArgs e)
+        /*async*/ void Game_MoveChanged(object sender, Sanet.Kniffel.Models.Events.MoveEventArgs e)
         {
             dpBackground.ClearFreeze();
 
             if (GetViewModel<PlayGameViewModel>().SelectedPlayer.IsBot)
             {
-                await Task.Delay(3000);
+                /*await*/ Task.Delay(10).Wait();
+               
                 GetViewModel<PlayGameViewModel>().Game.ReportRoll();
             }
             if (dpBackground.PanelStyle != GetViewModel<PlayGameViewModel>().SelectedPlayer.SelectedStyle)
@@ -194,7 +193,13 @@ namespace DicePokerRT
 
         void Game_DiceRolled(object sender, Sanet.Kniffel.Models.Events.RollEventArgs e)
         {
-            dpBackground.RollDice(e.Value.ToList());
+            SmartDispatcher.BeginInvoke(() =>
+                    {
+                        do
+                        {
+                            dpBackground.RollDice(e.Value.ToList());
+                        } while (!dpBackground.IsRolling);
+                    });
         }
 
         void Game_PlayerRerolled(object sender, Sanet.Kniffel.Models.Events.PlayerEventArgs e)
@@ -259,8 +264,14 @@ namespace DicePokerRT
         {
             GetViewModel<PlayGameViewModel>().Game.ApplyScore(((RollResultWrapper)e.ClickedItem).Result);
         }
-        protected void GoBack(object sender, RoutedEventArgs e)
+        private async void GoBack(object sender, RoutedEventArgs e)
         {
+            if (gridResults.Visibility == Visibility.Visible)
+            {
+                gridResults.Visibility = Visibility.Collapsed;
+                await GetViewModel<PlayGameViewModel>().SaveResults();
+            }
+
             if (GetViewModel<PlayGameViewModel>().IsOnlineGame)
                 CommonNavigationActions.NavigateToNewOnlineGamePage();
             else
