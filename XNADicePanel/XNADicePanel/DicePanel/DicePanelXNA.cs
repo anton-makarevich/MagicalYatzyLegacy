@@ -27,6 +27,8 @@ namespace Sanet.Kniffel.Xna
         public event Action EndRoll;
         public event Sanet.Kniffel.Xna.DicePanelScene.DieFrozenEventHandler DieFrozen;
         public event Sanet.Kniffel.Xna.DicePanelScene.DieChangedEventHandler DieChangedManual;
+
+        //public event Action OnUpdate;
         #endregion
 
 
@@ -42,7 +44,7 @@ namespace Sanet.Kniffel.Xna
 
             IsFixedTimeStep = true;
             // Frame rate is 30 fps by default for Windows Phone.
-            TargetElapsedTime = TimeSpan.FromTicks(333333);//333333
+            TargetElapsedTime = TimeSpan.FromTicks(193333);//333333
 
             // Extend battery life under lock.
             InactiveSleepTime = TimeSpan.FromSeconds(1);
@@ -279,6 +281,9 @@ namespace Sanet.Kniffel.Xna
             SceneManager.Update(gameTime);
 
             base.Update(gameTime);
+
+            //if (OnUpdate != null)
+            //    OnUpdate();
         }
 
         /// <summary>

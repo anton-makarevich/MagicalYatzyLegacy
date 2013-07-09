@@ -655,5 +655,54 @@ namespace Sanet.Kniffel.Models
         
 
 #endregion
+/*
+        #region Test
+        public override void Incoming(string message)
+        {
+            base.Incoming(message);
+
+            StringTokenizer token = new StringTokenizer(message, AbstractCommand.Delimitter);
+            string commandName = token.NextToken();
+            if (commandName == PlayerChatMessageCommand.COMMAND_NAME)
+                m_CommandObserver_ChatMessageCommandReceived(null,new CommandEventArgs<PlayerChatMessageCommand>(new PlayerChatMessageCommand(token)));
+                
+            else if (commandName == PlayerJoinedCommandV2.COMMAND_NAME)
+                m_CommandObserver_PlayerJoinedCommandReceived(null, new CommandEventArgs<PlayerJoinedCommandV2>(new PlayerJoinedCommandV2(token)));
+            else if (commandName == TableInfoCommand.COMMAND_NAME)
+                m_CommandObserver_TableInfoCommandReceived(null, new CommandEventArgs<TableInfoCommand>(new TableInfoCommand(token)));
+            else if (commandName == RollReportCommand.COMMAND_NAME)
+                m_CommandObserver_RollReportCommandReceived(null, new CommandEventArgs<RollReportCommand>(new RollReportCommand(token)));
+
+            else if (commandName == FixDiceCommand.COMMAND_NAME)
+                m_CommandObserver_FixDiceCommandReceived(null, new CommandEventArgs<FixDiceCommand>(new FixDiceCommand(token)));
+
+            else if (commandName == ApplyScoreCommand.COMMAND_NAME)
+                m_CommandObserver_ApplyScoreCommandReceived(null, new CommandEventArgs<ApplyScoreCommand>(new ApplyScoreCommand(token)));
+
+            else if (commandName == RoundChangedCommand.COMMAND_NAME)
+                m_CommandObserver_RoundChangedCommandReceived(null, new CommandEventArgs<RoundChangedCommand>(new RoundChangedCommand(token)));
+
+            else if (commandName == PlayerLeftCommand.COMMAND_NAME)
+                m_CommandObserver_PlayerLeftCommandReceived(null, new CommandEventArgs<PlayerLeftCommand>(new PlayerLeftCommand(token)));
+
+            else if (commandName == PlayerReadyCommand.COMMAND_NAME)
+                m_CommandObserver_PlayerReadyCommandReceived(null, new CommandEventArgs<PlayerReadyCommand>(new PlayerReadyCommand(token)));
+
+            else if (commandName == GameEndedCommand.COMMAND_NAME)
+                m_CommandObserver_GameEndedCommandReceived(null, new CommandEventArgs<GameEndedCommand>(new GameEndedCommand()));
+
+            else if (commandName == MagicRollCommand.COMMAND_NAME)
+                m_CommandObserver_MagicRollCommandReceived(null, new CommandEventArgs<MagicRollCommand>(new MagicRollCommand(token)));
+            else if (commandName == DiceChangedCommand.COMMAND_NAME)
+                m_CommandObserver_DiceChangedCommandReceived(null, new CommandEventArgs<DiceChangedCommand>(new DiceChangedCommand(token)));
+
+            else if (commandName == PlayerRerolledCommand.COMMAND_NAME)
+                m_CommandObserver_PlayerRerolledCommandReceived(null, new CommandEventArgs<PlayerRerolledCommand>(new PlayerRerolledCommand(token)));
+            else if (commandName == ChangeStyleCommand.COMMAND_NAME)
+                m_CommandObserver_ChangeStyleCommandReceived(null, new CommandEventArgs<ChangeStyleCommand>(new ChangeStyleCommand(token)));
+
+        }
+        #endregion*/
+
     }
 }

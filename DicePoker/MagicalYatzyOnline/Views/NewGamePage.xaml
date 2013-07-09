@@ -245,6 +245,9 @@
 
 
         </Grid>
+        
+
+    </Viewbox>
         <VisualStateManager.VisualStateGroups>
 
             <!-- Visual states reflect the application's view state -->
@@ -290,7 +293,5 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-
-    </Viewbox>
     </SwapChainBackgroundPanel>
 </views:BasePage>

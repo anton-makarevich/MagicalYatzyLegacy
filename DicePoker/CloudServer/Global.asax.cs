@@ -34,7 +34,8 @@ namespace CloudServer
 
         void LogManager_MessageLogged(string from, string message, int level)
         {
-            ks.PutOnlineServerLog(from, message);
+            if (level>50)
+                ks.PutOnlineServerLog(from, message);
         }
     }
 }

@@ -348,11 +348,13 @@
                
                />
             </Grid>
-         <VisualStateManager.VisualStateGroups>
+         
+    </Grid>
+        <VisualStateManager.VisualStateGroups>
 
-                <!-- Visual states reflect the application's view state -->
-                <VisualStateGroup x:Name="ApplicationViewStates">
-                    <VisualState x:Name="FullScreenLandscape"/>
+            <!-- Visual states reflect the application's view state -->
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="FullScreenLandscape"/>
                 <VisualState x:Name="FullScreenPortrait">
                     <!--<Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="MinWidth">
@@ -371,24 +373,23 @@
                         </Storyboard>-->
                 </VisualState>
 
-                    <VisualState x:Name="Snapped">
-                        <Storyboard>
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="MinWidth">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="320"/>
-                            </ObjectAnimationUsingKeyFrames>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlGrid" Storyboard.TargetProperty="Visibility">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
-                            </ObjectAnimationUsingKeyFrames>
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="320"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlGrid" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SnapGrid" Storyboard.TargetProperty="Visibility">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
-                            </ObjectAnimationUsingKeyFrames>
-                            
-                        </Storyboard>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
-    </Grid>
-   </SwapChainBackgroundPanel>
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </SwapChainBackgroundPanel>
         
   
 </views:BasePage>

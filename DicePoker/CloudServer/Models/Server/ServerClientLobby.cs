@@ -150,7 +150,7 @@ namespace Sanet.Kniffel.Server
                     List<Player> deadPlayers = new List<Player>();
                     foreach (Player p in game.Players)
                     {
-                        if ((p.LastTimeActive - DateTime.Now).TotalMinutes > 10)
+                        if ((DateTime.Now-p.LastTimeActive).TotalMinutes > 10)
                             deadPlayers.Add(p);
                     }
                     foreach (Player p in deadPlayers)

@@ -47,13 +47,16 @@ namespace DicePokerRT
             dpBackground.DieAngle = GetViewModel<PlayGameViewModel>().SettingsPanelAngle;
             dpBackground.MaxRollLoop = 20;
             dpBackground.ClickToFreeze = false;
-
+                        
             dpBackground.DieFrozen += dpBackground_DieFrozen;
             dpBackground.EndRoll += dpBackground_EndRoll;
             dpBackground.DieChangedManual += dpBackground_DieChangedManual;
+                        
             
             GetViewModel<PlayGameViewModel>().StartGame();
         }
+
+        
 
         void dpBackground_DieChangedManual(bool isfixed, int oldvalue, int newvalue)
         {
@@ -114,6 +117,7 @@ namespace DicePokerRT
             dpBackground.DieFrozen -= dpBackground_DieFrozen;
             dpBackground.EndRoll -= dpBackground_EndRoll;
             dpBackground.DieChangedManual -= dpBackground_DieChangedManual;
+            //dpBackground.OnUpdate -= dpBackground_OnUpdate;
             dpBackground.Dispose();
 
             JoinManager.Disconnect();

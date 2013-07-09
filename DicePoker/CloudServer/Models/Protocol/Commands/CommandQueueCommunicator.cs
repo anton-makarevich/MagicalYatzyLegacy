@@ -5,7 +5,7 @@ using System;
 using System.Threading.Tasks;
 using Sanet.Kniffel.Models.Events;
 using Sanet.Models;
-using Sanet.Kniffel.ViewModels;
+
 
 namespace Sanet.Network.Protocol.Commands
 {

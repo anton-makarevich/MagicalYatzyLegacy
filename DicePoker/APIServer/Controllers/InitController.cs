@@ -31,18 +31,29 @@ namespace PokerServerService.Controllers
                 float version;
                 if (!string.IsNullOrEmpty(versionStr))
                 {
-                    if (float.TryParse(versionStr, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out version) && version >= 2.1f)
-                    {
-
-                        return new ServerHttpMessage()
+                    
+                    if (float.TryParse(versionStr, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out version) )
+                        if (version==2.305f)
                         {
-                            Code = -2,//we can defined different codes here
-                            IsClientUpdated = true,
-                            ServerRestartDate = new DateTime(2013, 5, 1, 17, 0, 0),
-                            Message = GetMessage(language)
-                            //"ServerMaintananceMessage" //"App version is outdated, some features may not work. Please upgrade from Windows Store"
-                        };
-                    }
+                            return new ServerHttpMessage()
+                            {
+                                Code = -2,//we can defined different codes here
+                                IsClientUpdated = false,
+                                IsServerOnline=false,
+                                ServerRestartDate = new DateTime(2013, 5, 1, 17, 0, 0),
+                                Message = "Sorry, there is a problem with this game version. Fix will be available soon."
+                                //"ServerMaintananceMessage" //"App version is outdated, some features may not work. Please upgrade from Windows Store"
+                            };                            
+                        }
+                        else if (version >= 2.1f )
+                            return new ServerHttpMessage()
+                            {
+                                Code = -2,//we can defined different codes here
+                                IsClientUpdated = true,
+                                ServerRestartDate = new DateTime(2013, 5, 1, 17, 0, 0),
+                                Message = GetMessage(language)
+                                //"ServerMaintananceMessage" //"App version is outdated, some features may not work. Please upgrade from Windows Store"
+                            };
                     else
                     {
                         return new ServerHttpMessage()

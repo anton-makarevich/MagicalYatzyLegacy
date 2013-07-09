@@ -194,6 +194,7 @@ namespace Sanet.Kniffel.ViewModels
                 {
                     _BusyWithServer = value;
                     NotifyPropertyChanged("BusyWithServer");
+                    NotifyPropertyChanged("IsReadyToPlay");
                 }
             }
         }
@@ -234,6 +235,8 @@ namespace Sanet.Kniffel.ViewModels
         {
             get 
             {
+                if (BusyWithServer)
+                    return false;
                 if (SelectedPlayer == null || !SelectedPlayer.HasPassword || SelectedPlayer.IsDefaultName)
                     return false;
                 if (string.IsNullOrEmpty(ServerStatusMessage))

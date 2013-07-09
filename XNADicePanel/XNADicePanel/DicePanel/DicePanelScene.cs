@@ -17,7 +17,18 @@ namespace Sanet.Kniffel.Xna
 {
    public class DicePanelScene :GameScene
    {
+
+       #region Events
+       public event DieChangedEventHandler DieChangedManual;
+       public event EndRollEventHandler EndRoll;
+       public event BeginRollEventHandler BeginRoll;
+       public event DieFrozenEventHandler DieFrozen;
+       public event DieBouncedEventHandler DieBounced;
+
        
+
+       #endregion
+
        #region Dicepanel fields
 
        //touch imput to support clicks on dice
@@ -33,18 +44,15 @@ namespace Sanet.Kniffel.Xna
 
        public List<Die> aDice = new List<Die>();
 
-       public event DieBouncedEventHandler DieBounced;
+       
+
        public delegate void DieBouncedEventHandler();
-       public event DieFrozenEventHandler DieFrozen;
        public delegate void DieFrozenEventHandler(bool @fixed, int Value);
        public delegate void DieChangedEventHandler(bool isfixed, int oldvalue, int newvalue);
-       public event DieChangedEventHandler DieChangedManual;
        private DiceStyle FStyle = DiceStyle.dpsClassic;
 
 
-       public event EndRollEventHandler EndRoll;
        public delegate void EndRollEventHandler();
-       public event BeginRollEventHandler BeginRoll;
        public delegate void BeginRollEventHandler();
        #endregion
 
@@ -532,9 +540,9 @@ namespace Sanet.Kniffel.Xna
             _sinceLastClick += renderContext.GameTime.ElapsedGameTime.Milliseconds;
             _totalFrameTime += renderContext.GameTime.ElapsedGameTime.Milliseconds;
 
-            _captionText.CanDraw = true;
+            //_captionText.CanDraw = true;
 
-            _captionText.Text = _sinceLastClick.ToString();
+            //_captionText.Text = _sinceLastClick.ToString();
 
             var vpw= renderContext.GraphicsDevice.Viewport.Width;
             var vph = renderContext.GraphicsDevice.Viewport.Height;
@@ -628,6 +636,8 @@ namespace Sanet.Kniffel.Xna
                 _sinceLastClick = 0;
             }
             base.Update(renderContext);
+
+            
         }
 
         public override void LoadContent(ContentManager contentManager)

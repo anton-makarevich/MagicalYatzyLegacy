@@ -53,18 +53,18 @@ namespace Sanet.Network.Protocol
         public void Start()
         {
             m_IsConnected = true;
-//#if WinRT
+#if WinRT
 //            //TODO: think about this
                 Task t =new Task(Run);
                 t.Start();
                 t.AsAsyncAction();
-//#else
-//            new Thread(new ThreadStart(Run)).Start();
-//#endif
+#else
+            new Thread(new ThreadStart(Run)).Start();
+#endif
         }
 
        
-        public void Incoming(string message)
+        public virtual void Incoming(string message)
         {
             m_Incoming.Enqueue(message);
             LogManager.Log(LogLevel.Message, "Client.Incoming", "data:{0}", message);

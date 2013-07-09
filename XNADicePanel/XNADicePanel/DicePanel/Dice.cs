@@ -28,7 +28,7 @@ namespace Sanet.Kniffel.Xna
         {
             get
             {
-                if (Style == DiceStyle.dpsBlue)
+                if (FPanel.PanelStyle == DiceStyle.dpsBlue)
                     return _blueSprite;
                 else if (Style == DiceStyle.dpsBrutalRed)
                     return _redSprite;

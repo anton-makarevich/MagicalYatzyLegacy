@@ -175,9 +175,12 @@ namespace Sanet.Kniffel.Xna
                 else
                     return;
             }
-            
+            var dp = (DicePanelScene)SceneManager.GameScenes.FirstOrDefault(f => f is DicePanelScene);
             foreach (var d in aDice)
+            {
+                d.Style = dp.PanelStyle;
                 d.Update(renderContext);
+            }
             //}
             var mouse = Mouse.GetState();
             if (mouse.LeftButton == ButtonState.Pressed && _sinceLastClick>200)
