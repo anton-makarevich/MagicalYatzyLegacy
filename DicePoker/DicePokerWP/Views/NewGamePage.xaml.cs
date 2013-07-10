@@ -122,15 +122,15 @@ namespace DicePokerWP
             dpBackground.MaxRollLoop = 40;
             
             StartRoll();
-            try
-            {
-                if (StoreManager.IsAdVisible())
-                    AdRotatorControl.Invalidate();
-            }
-            catch (Exception ex)
-            {
-                var t = ex.Message;
-            }
+            //try
+            //{
+            //    if (StoreManager.IsAdVisible())
+            //        AdRotatorControl.Invalidate();
+            //}
+            //catch (Exception ex)
+            //{
+            //    var t = ex.Message;
+            //}
             if (startPivot.SelectedIndex == 0)
                 RebuildAppBarForPlayers();
             else

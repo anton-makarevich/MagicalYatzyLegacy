@@ -159,19 +159,24 @@ namespace DicePokerWP
             dpBackground.MaxRollLoop = 40;
             dpBackground.WithSound = true;
             dpBackground.ClickToFreeze = false;
-            try
-            {
-                if (StoreManager.IsAdVisible())
-                    AdRotatorControl.Invalidate();
-            }
-            catch (Exception ex)
-            {
-                var t = ex.Message;
-            }
+            //try
+            //{
+            //    if (StoreManager.IsAdVisible())
+            //        AdRotatorControl.Invalidate();
+            //}
+            //catch (Exception ex)
+            //{
+            //    var t = ex.Message;
+            //}
 
             dpBackground.DieFrozen += dpBackground_DieFrozen;
             dpBackground.EndRoll += dpBackground_EndRoll;
             dpBackground.DieChangedManual += dpBackground_DieChangedManual;
+
+            if (GetViewModel<PlayGameViewModel>().IsOnlineGame)
+                chatPivotItem.Visibility = Visibility.Visible;
+            else
+                chatPivotItem.Visibility = Visibility.Collapsed;
 
             GetViewModel<PlayGameViewModel>().StartGame();
 
@@ -233,27 +238,32 @@ namespace DicePokerWP
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             SetViewModel<PlayGameViewModel>();
+            
             GetViewModel<PlayGameViewModel>().PropertyChanged += GamePage_PropertyChanged;
             rollPivot.SelectionChanged += rollPivot_SelectionChanged;
             PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             AddGameHandlers();
             RebuildAppBarForRoll();
+            GetViewModel<PlayGameViewModel>().IsBusy = false;
+            
         }
 
         void rollPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (ViewModelProvider.HasViewModel<PlayGameViewModel>())
                 if (rollPivot.SelectedIndex == 2)
+                {
                     RebuildAppBarForChat();
+                }
                 else
                 {
-                    if (gridResults.Visibility==Visibility.Visible)
+                    if (gridResults.Visibility == Visibility.Visible)
                         RebuildAppBarForEnd();
                     else if (currentAppBarState == appBarState.chat)
                     {
-                         if (prevAppBarState== appBarState.ready)
+                        if (prevAppBarState == appBarState.ready)
                             RebuildAppBarForReady();
-                         else
+                        else
                             RebuildAppBarForRoll();
                     }
                 }

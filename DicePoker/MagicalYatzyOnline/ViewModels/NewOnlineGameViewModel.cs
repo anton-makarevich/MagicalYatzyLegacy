@@ -237,7 +237,7 @@ namespace Sanet.Kniffel.ViewModels
             {
                 if (BusyWithServer)
                     return false;
-                if (SelectedPlayer == null || !SelectedPlayer.HasPassword || SelectedPlayer.IsDefaultName)
+                if (IsNoPlayerInfo)
                     return false;
                 if (string.IsNullOrEmpty(ServerStatusMessage))
                     return false;
@@ -248,6 +248,14 @@ namespace Sanet.Kniffel.ViewModels
                         return false;
 
                 
+            }
+        }
+
+        public bool IsNoPlayerInfo
+        {
+            get
+            {
+                return SelectedPlayer == null || !SelectedPlayer.HasPassword || SelectedPlayer.IsDefaultName;
             }
         }
 
@@ -310,7 +318,9 @@ namespace Sanet.Kniffel.ViewModels
                             SelectedTable = Tables[0];
                     }
                     NotifyPropertyChanged("SelectedRule");
+                    NotifyPropertyChanged("IsNoPlayerInfo");
                     NotifyPropertyChanged("IsReadyToPlay");
+                    
                 }
             }
         }
@@ -427,8 +437,11 @@ namespace Sanet.Kniffel.ViewModels
        
         void p_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName=="Password" ||e.PropertyName=="Name")
+            if (e.PropertyName == "Password" || e.PropertyName == "Name")
+            {
+                NotifyPropertyChanged("IsNoPlayerInfo");
                 NotifyPropertyChanged("IsReadyToPlay");
+            }
             if (e.PropertyName == "IsPasswordReady")
             {
                 if (PasswordTapped != null)

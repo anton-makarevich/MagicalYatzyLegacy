@@ -44,7 +44,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>Bin\Release</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE;Win8</DefineConstants>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE;Win8;WP8</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -101,9 +101,6 @@
     <Reference Include="AdDuplex.WindowsPhone">
       <HintPath>packages\AdDuplexWP7.2.7.0.3\lib\sl4-windowsphone71\AdDuplex.WindowsPhone.dll</HintPath>
     </Reference>
-    <Reference Include="AdRotator">
-      <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\AdRotator.dll</HintPath>
-    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Downloads\WebSocket4Net-master\WebSocket4Net-master\WebSocket4Net.WP71\Bin\Debug\BouncyCastle.Crypto.dll</HintPath>
@@ -116,9 +113,6 @@
     </Reference>
     <Reference Include="Facebook.Client">
       <HintPath>packages\Facebook.Client.0.7.0-alpha\lib\wp8\Facebook.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="Inneractive.Nokia.Ad">
-      <HintPath>packages\AdRotatorWP.1.0.3\lib\sl4-wp71\Inneractive.Nokia.Ad.dll</HintPath>
     </Reference>
     <Reference Include="MarkedUp">
       <HintPath>packages\MarkedUp.1.0.3\lib\WindowsPhone8\MarkedUp.dll</HintPath>

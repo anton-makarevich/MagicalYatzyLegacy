@@ -23,8 +23,28 @@ namespace Sanet.Kniffel
         { 
 #if WinRT
             return ClientType.WinRT;
-#else
-           return ClientType.WP;
+#endif
+#if WP7
+            return ClientType.WP7;
+#endif
+#if WP8
+           return ClientType.WP8;
+#endif
+        }
+
+        public static int GetAdduplexId()
+        {
+#if WP8
+            return 43963;//Wp8
+#endif
+#if WP7
+            return 41731;//wp7
+#endif
+#if WinRT
+            return 30603;//Win8
+#endif
+#if VK
+            return 0;
 #endif
         }
 

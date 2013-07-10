@@ -12,7 +12,7 @@
     xmlns:my="clr-namespace:Microsoft.Phone.Controls.Unofficial"
     xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
     xmlns:primitives="clr-namespace:Telerik.Windows.Controls.Primitives;assembly=Telerik.Windows.Controls.Primitives"
-    xmlns:adRotator="clr-namespace:AdRotator;assembly=AdRotator"
+    xmlns:adRotator="clr-namespace:AdDuplex;assembly=AdDuplex.WindowsPhone"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -35,17 +35,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <adRotator:AdRotatorControl
+        <adRotator:AdControl
             Grid.Row="0"
             x:Name="AdRotatorControl"
             Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"
-            xmlns:adRotator="clr-namespace:AdRotator;assembly=AdRotator"
-            Width="480" Height="80"
-                SettingsUrl="http://sanet.by/AdSettings.xml"
-                DefaultAdType="AdDuplex"
-                DefaultSettingsFileUri="/AppAssemblyName;component/AdSettings.xml"
-                AdDuplexAppId="41731"
-                InneractiveAppId="AntonMakarevich_MagicalYatzyOnline_WP"/>
+            AppId="{Binding AdduplexId}"/>
         
         
 

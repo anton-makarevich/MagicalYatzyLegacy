@@ -23,6 +23,7 @@ namespace Sanet.Kniffel.ViewModels
     {
         #region Properties
 
+        
         /// <summary>
         /// app name label
         /// </summary>
@@ -85,6 +86,15 @@ namespace Sanet.Kniffel.ViewModels
                 return RoamingSettings.DiceStyle;
             }
 
+        }
+
+        public int AdduplexId
+        {
+            get
+            {
+                return
+                    Config.GetAdduplexId();
+            }
         }
         #endregion
 

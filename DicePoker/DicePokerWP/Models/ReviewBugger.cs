@@ -28,7 +28,7 @@ namespace System
 {
     public static class ReviewBugger
     {
-        private const int numOfRunsBeforeFeedback = 13;
+        private const int numOfRunsBeforeFeedback = 8;
         private static readonly Button yesButton = new Button() { Content = "YesLabel".Localize(), Width = 220, FontSize = 17 };
         private static readonly Button laterButton = new Button() { Content = "LaterLabel".Localize(), Width = 220, FontSize=16 };
         private static readonly Button neverButton = new Button() { Content = "NeverLabel".Localize(), Width = 120 };

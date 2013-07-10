@@ -34,15 +34,15 @@ namespace DicePokerWP
         {
 
             
-            try
-            {
-                if (StoreManager.IsAdVisible())
-                    AdRotatorControl.Invalidate();
-            }
-            catch (Exception ex)
-            {
-                var t = ex.Message;
-            }
+            //try
+            //{
+            //    if (StoreManager.IsAdVisible())
+            //        AdRotatorControl.Invalidate();
+            //}
+            //catch (Exception ex)
+            //{
+            //    var t = ex.Message;
+            //}
             
         }
 

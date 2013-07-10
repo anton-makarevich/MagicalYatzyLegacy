@@ -10,6 +10,8 @@ namespace Sanet.Kniffel.Models.Enums
     {
         WinRT,
         WP,
+        WP7,
+        WP8,
         VK
     }
 }
