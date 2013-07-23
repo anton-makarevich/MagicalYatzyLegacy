@@ -44,7 +44,7 @@ namespace Sanet.Kniffel.Xna
 
             IsFixedTimeStep = true;
             // Frame rate is 30 fps by default for Windows Phone.
-            TargetElapsedTime = TimeSpan.FromTicks(193333);//333333
+            TargetElapsedTime = TimeSpan.FromTicks(163333);//333333
 
             // Extend battery life under lock.
             InactiveSleepTime = TimeSpan.FromSeconds(1);

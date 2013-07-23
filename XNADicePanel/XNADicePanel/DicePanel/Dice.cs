@@ -228,11 +228,19 @@ namespace Sanet.Kniffel.Xna
             }
         }
 
+        DateTime lastTimeFrozen = DateTime.MinValue;
+
         public bool Frozen
         {
             get { return FFrozen; }
 
-            set { FFrozen = value; }
+            set 
+            {
+                if ((DateTime.Now - lastTimeFrozen).TotalMilliseconds <1000)
+                    return;
+                FFrozen = value;
+                lastTimeFrozen = DateTime.Now;
+            }
         }
 
         #endregion

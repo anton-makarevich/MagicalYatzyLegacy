@@ -189,6 +189,7 @@
         </Viewbox>
                 <!--Panel to show results-->
                 <Grid Grid.Column="1" 
+                      Background="Black"
                       x:Name="gridResults"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center">

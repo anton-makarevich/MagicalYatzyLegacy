@@ -45,7 +45,7 @@ namespace PokerServerService.Controllers
                                 //"ServerMaintananceMessage" //"App version is outdated, some features may not work. Please upgrade from Windows Store"
                             };                            
                         }
-                        else if (version >= 2.1f )
+                        else if (version >= 2.2f )
                             return new ServerHttpMessage()
                             {
                                 Code = -2,//we can defined different codes here
