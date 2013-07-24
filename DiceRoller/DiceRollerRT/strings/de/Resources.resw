@@ -898,4 +898,8 @@ Identifizierung in der Highscore-Liste wird nur durch Ihre  Genehmigung erlaubt.
   <data name="PlayerNoNameLabel" xml:space="preserve">
     <value>kein Name</value>
   </data>
+  <data name="CantJoinMessage" xml:space="preserve">
+    <value>Entschuldigung! Keine Anschlussmöglichkeit. Bitte versuchen Sie es später noch einmal.</value>
+    <comment>Entschuldigung! Keine Anschlussmöglichkeit. Bitte versuchen Sie es später noch einmal.</comment>
+  </data>
 </root>

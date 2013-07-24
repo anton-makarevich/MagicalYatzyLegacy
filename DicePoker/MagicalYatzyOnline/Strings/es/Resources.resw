@@ -675,4 +675,7 @@
   <data name="PlayerNoNameLabel" xml:space="preserve">
     <value>sin nombre</value>
   </data>
+  <data name="CantJoinMessage" xml:space="preserve">
+    <value>Sorry, we can't join right now. Please try again later.</value>
+  </data>
 </root>

@@ -151,7 +151,7 @@
     <value>{0}, Grattis! Du fick {1} Magiska artefakter som bonus!</value>
   </data>
   <data name="ArtifactsForLabel" xml:space="preserve">
-    <value>artefakter för</value>
+    <value>artefakter </value>
   </data>
   <data name="ArtifactsLabel" xml:space="preserve">
     <value>Artefakter</value>
@@ -182,6 +182,9 @@
   </data>
   <data name="BuyLabel" xml:space="preserve">
     <value>köp</value>
+  </data>
+  <data name="CantJoinMessage" xml:space="preserve">
+    <value>Sorry, we can't join right now. Please try again later.</value>
   </data>
   <data name="Chance" xml:space="preserve">
     <value>Chans</value>
@@ -412,13 +415,13 @@
     <value>Av</value>
   </data>
   <data name="Offer1Description" xml:space="preserve">
-    <value>Grunderbjudande till priset €0.014 för en artefakt</value>
+    <value>Grunderbjudande.</value>
   </data>
   <data name="Offer2Description" xml:space="preserve">
-    <value>Bättre erbjudande med reducerat pris till €0.01 för en artefakt. Din rabatt är på 20%!</value>
+    <value>Bättre erbjudande. Din rabatt är på 20%!</value>
   </data>
   <data name="Offer3Description" xml:space="preserve">
-    <value>Utmärkt erbjudande, endast €0.007 för en artefakt. Det är halva priset!</value>
+    <value>Utmärkt erbjudande. Det är halva priset!</value>
   </data>
   <data name="OnContent" xml:space="preserve">
     <value>På</value>

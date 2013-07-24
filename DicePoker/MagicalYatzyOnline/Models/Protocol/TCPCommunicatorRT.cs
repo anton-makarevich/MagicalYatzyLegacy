@@ -74,9 +74,7 @@ namespace Sanet.Network.Protocol
         string _lastId= string.Empty;
         public async Task<bool> ConnectAsync(string id, bool isreconnect = false)
         {
-            //await Window.Current.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
-            //{
-                try
+            try
                 {
                     LogManager.Log(LogLevel.Message, "TCPCommunicatorRT.ConnectAsync", "Trying to connect, reconnect:{0}", isreconnect);
                     // Make a local copy to avoid races with Closed events.
@@ -107,9 +105,6 @@ namespace Sanet.Network.Protocol
                 catch (Exception ex) // For debugging
                 {
 
-                    //WebErrorStatus status = WebSocketError.GetStatus(ex.GetBaseException().HResult);
-                    //if (status == WebErrorStatus.PreconditionFailed)
-                    //    Utils.ShowMessage(ex.Message);
                     
                     LogManager.Log("TCPCommunicatorRT.ConnectAsync", ex);
                     return false;

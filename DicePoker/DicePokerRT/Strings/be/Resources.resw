@@ -699,9 +699,6 @@
   <data name="ServerMaintananceMessage" xml:space="preserve">
     <value>УВАГА! {0} (UTC) сервер будзе выключаны для прафілактычных работ. У гэты час гуляць па сеціве будзе нельга (звычайна ўсяго некалькі хвілін).</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
-  </data>
   <data name="SendLabel" xml:space="preserve">
     <value>Адправіць</value>
   </data>
@@ -773,5 +770,8 @@
   </data>
   <data name="PlayerNoNameLabel" xml:space="preserve">
     <value>няма iмя</value>
+  </data>
+  <data name="CantJoinMessage" xml:space="preserve">
+    <value>Прабачце, не атрымалася злучыцца з серверам. Паспрабуйце пазней.</value>
   </data>
 </root>

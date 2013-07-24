@@ -160,7 +160,7 @@
     <value>{0}, Віншуем! Вы атрымалі бонусныя магічныя артэфакты</value>
   </data>
   <data name="ArtifactsForLabel" xml:space="preserve">
-    <value>артэфактаў за</value>
+    <value>артэфактаў</value>
   </data>
   <data name="ArtifactsLabel" xml:space="preserve">
     <value>Артэфакты</value>
@@ -197,6 +197,9 @@
   </data>
   <data name="BuyLabel" xml:space="preserve">
     <value>купить</value>
+  </data>
+  <data name="CantJoinMessage" xml:space="preserve">
+    <value>Прабачце, не атрымалася злучыцца з серверам. Паспрабуйце пазней.</value>
   </data>
   <data name="Chance" xml:space="preserve">
     <value>Шанец</value>
@@ -469,7 +472,7 @@
     <value>Выкл.</value>
   </data>
   <data name="Offer1Description" xml:space="preserve">
-    <value>Базавая прапанова з коштам $0,016 за артэфакт.</value>
+    <value>Базавая прапанова.</value>
   </data>
   <data name="Offer2Description" xml:space="preserve">
     <value>Выгадная прапанова. Ваша зніжка складае 20%!</value>
@@ -716,9 +719,6 @@
   </data>
   <data name="StatusLabel" xml:space="preserve">
     <value>Статус</value>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
   <data name="Support.Text" xml:space="preserve">
     <value>Служба тэхнічнай падтрымкі:</value>

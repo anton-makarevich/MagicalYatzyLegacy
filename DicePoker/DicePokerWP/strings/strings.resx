@@ -160,7 +160,7 @@
     <value>{0}, Congratulations! You got {1} Magical Artifacts as a bonus!</value>
   </data>
   <data name="ArtifactsForLabel" xml:space="preserve">
-    <value>artifacts for</value>
+    <value>artifacts </value>
   </data>
   <data name="ArtifactsLabel" xml:space="preserve">
     <value>Artifacts</value>
@@ -194,6 +194,9 @@
   </data>
   <data name="BuyLabel" xml:space="preserve">
     <value>buy</value>
+  </data>
+  <data name="CantJoinMessage" xml:space="preserve">
+    <value>Sorry, we can't join right now. Please try again later.</value>
   </data>
   <data name="Chance" xml:space="preserve">
     <value>Chance</value>
@@ -471,13 +474,13 @@
     <value>Off</value>
   </data>
   <data name="Offer1Description" xml:space="preserve">
-    <value>Basic offer with price $0.016 for one artifact</value>
+    <value>Basic offer.</value>
   </data>
   <data name="Offer2Description" xml:space="preserve">
-    <value>Better offer with price reduced to $0.013 for one artifact. Your discount is 20%!</value>
+    <value>Better offer. Your discount is 20%!</value>
   </data>
   <data name="Offer3Description" xml:space="preserve">
-    <value>Excellent offer with only $0.008 for one artifact. It's 2 times cheaper!</value>
+    <value>Excellent offer. It's 2 times cheaper!</value>
   </data>
   <data name="OnContent" xml:space="preserve">
     <value>On</value>

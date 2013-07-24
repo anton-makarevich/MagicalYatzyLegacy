@@ -386,9 +386,10 @@ namespace Sanet.Kniffel.Xna
             }
             else if (ClickToFreeze)
             {
+                bool oldValue = _lastClickedDie.Frozen;
                 _lastClickedDie.Frozen = !_lastClickedDie.Frozen;
-                
-                if (DieFrozen != null)
+
+                if (DieFrozen != null && oldValue != _lastClickedDie.Frozen)
                 {
                     DieFrozen(_lastClickedDie.Frozen, _lastClickedDie.Result);
                 }

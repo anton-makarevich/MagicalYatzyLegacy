@@ -771,4 +771,7 @@
   <data name="PlayerNoNameLabel" xml:space="preserve">
     <value>нет имени</value>
   </data>
+  <data name="CantJoinMessage" xml:space="preserve">
+    <value>Извините, не получилось подключиться. Попробуйте позже.</value>
+  </data>
 </root>

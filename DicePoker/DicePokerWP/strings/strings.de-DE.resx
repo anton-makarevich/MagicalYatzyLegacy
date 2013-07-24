@@ -174,7 +174,7 @@
     <comment>{0}, Herzliche Gratulation!  Sie haben  {1} magische Artefakte als Bonus bekommen.</comment>
   </data>
   <data name="ArtifactsForLabel" xml:space="preserve">
-    <value>Artefakte für</value>
+    <value>Artefakte </value>
     <comment>Artefakte für</comment>
   </data>
   <data name="ArtifactsLabel" xml:space="preserve">
@@ -214,6 +214,10 @@
   </data>
   <data name="BuyLabel" xml:space="preserve">
     <value>kaufen</value>
+  </data>
+  <data name="CantJoinMessage" xml:space="preserve">
+    <value>Entschuldigung! Keine Anschlussmöglichkeit. Bitte versuchen Sie es später noch einmal.</value>
+    <comment>Entschuldigung! Keine Anschlussmöglichkeit. Bitte versuchen Sie es später noch einmal.</comment>
   </data>
   <data name="Chance" xml:space="preserve">
     <value>Glücksfall</value>
@@ -538,15 +542,15 @@
     <comment>aus.</comment>
   </data>
   <data name="Offer1Description" xml:space="preserve">
-    <value>Basisangebot zum Preis €0.014 für den Artefakt.</value>
+    <value>Basisangebot.</value>
     <comment>Basisangebot zum Preis €0.014 für den Artefakt.</comment>
   </data>
   <data name="Offer2Description" xml:space="preserve">
-    <value>Profitangebot zum Preis €0.01 für den Artefakt. Ihr Rabatt ist 20%!</value>
+    <value>Profitangebot. Ihr Rabatt ist 20%!</value>
     <comment>Profitangebot zum Preis €0.01 für den Artefakt. Ihr Rabatt ist 20%!</comment>
   </data>
   <data name="Offer3Description" xml:space="preserve">
-    <value>Magisches Angebot  zum Preis €0.007 für den Artefakt. Kaufen Sie es zweimal günstiger!</value>
+    <value>Magisches Angebot. Kaufen Sie es zweimal günstiger!</value>
     <comment>Magisches Angebot  zum Preis €0.007 für den Artefakt. Kaufen Sie es zweimal günstiger!</comment>
   </data>
   <data name="OnContent" xml:space="preserve">

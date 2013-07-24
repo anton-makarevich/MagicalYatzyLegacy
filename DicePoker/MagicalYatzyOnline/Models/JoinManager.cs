@@ -93,7 +93,7 @@ namespace Sanet.Kniffel.Models
                 {
                     SmartDispatcher.BeginInvoke(() =>
                     {
-                        Utilities.ShowMessage("Sorry, we can't join right now. Please try again later.");
+                        Utilities.ShowMessage("CantJoinMessage".Localize());
 
                     });
                     return false;
@@ -117,7 +117,7 @@ namespace Sanet.Kniffel.Models
             {
                 SmartDispatcher.BeginInvoke(() =>
                     {
-                        Utilities.ShowMessage("Sorry, we can't join right now. Please try again later.");
+                        Utilities.ShowMessage("CantJoinMessage".Localize());
                         
                     });
                 return false;
