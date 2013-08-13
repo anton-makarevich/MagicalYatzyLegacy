@@ -164,6 +164,7 @@ namespace Sanet.Kniffel.Models
                 {
                     SoundsProvider.PlaySound("click");
                     await Launcher.LaunchUriAsync(new Uri("ms-windows-store:REVIEW?PFN=43862AntonMakarevich.SanetDicePoker_2wtrjzrdj31kc"));
+                    ReviewBugger.DidReview();
                 });
             }
 

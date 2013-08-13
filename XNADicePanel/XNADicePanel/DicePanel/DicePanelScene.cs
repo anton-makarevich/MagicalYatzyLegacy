@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Sanet.XNAEngine;
 using Sanet.Kniffel.DicePanel;
@@ -534,11 +533,9 @@ namespace Sanet.Kniffel.Xna
 
         }
 
-        int _sinceLastClick = 0;
-
+        
         public override void Update(RenderContext renderContext)
         {
-            _sinceLastClick += renderContext.GameTime.ElapsedGameTime.Milliseconds;
             _totalFrameTime += renderContext.GameTime.ElapsedGameTime.Milliseconds;
 
             //_captionText.CanDraw = true;
@@ -547,9 +544,7 @@ namespace Sanet.Kniffel.Xna
 
             var vpw= renderContext.GraphicsDevice.Viewport.Width;
             var vph = renderContext.GraphicsDevice.Viewport.Height;
-
-                
-
+                           
             if (Width != vpw ||
                 Height !=vph )
             {
@@ -628,14 +623,7 @@ namespace Sanet.Kniffel.Xna
                     }
                 }
             //}
-            var mouse = Mouse.GetState();
-            if (mouse.LeftButton == ButtonState.Pressed && _sinceLastClick>200)
-            {
-                Point pointClicked = new Point(mouse.X, mouse.Y);
-                //determine if die was clicked
-                OnClick(pointClicked);
-                _sinceLastClick = 0;
-            }
+            
             base.Update(renderContext);
 
             

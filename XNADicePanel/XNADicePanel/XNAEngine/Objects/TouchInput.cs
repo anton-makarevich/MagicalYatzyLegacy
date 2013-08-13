@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using System;
 using System.Collections.Generic;
@@ -24,47 +25,85 @@ namespace Sanet.XNAEngine
 
         public void Update(RenderContext renderContext)
         {
+            
             var touchStates = renderContext.TouchPanelState;
-            if (!_isPressed)
+            //if were touch inputs
+            if (touchStates.Count > 0)
             {
-                
-                foreach (var touchLoc in touchStates)
+                if (!_isPressed)
                 {
-                    if (touchLoc.State == TouchLocationState.Pressed)
+
+                    foreach (var touchLoc in touchStates)
                     {
-                        _isPressed = true;
-                        _touchId = touchLoc.Id;
+                        if (touchLoc.State == TouchLocationState.Pressed )
+                        {
+                            _isPressed = true;
+                            _touchId = touchLoc.Id;
 
-                        //Entered
-                        if (OnEnter != null) OnEnter();
-                        
-                        break;
+                            //Entered
+                            if (OnEnter != null) OnEnter();
+
+                            break;
+                        }
+
                     }
-                }
-            }
-            else
-            {
-                var touchLoc = touchStates.FirstOrDefault(tLocation => tLocation.Id == _touchId);
 
-                if (touchLoc == null  ||touchLoc.State== TouchLocationState.Invalid)
-                {
-                    _touchId = -1;
-                    _isPressed = false;
 
-                    //Left
-                    if (OnLeave != null) OnLeave();
                 }
                 else
                 {
-                    if (touchLoc.State == TouchLocationState.Released)
+                    var touchLoc = touchStates.FirstOrDefault(tLocation => tLocation.Id == _touchId);
+
+                    if (touchLoc == null || touchLoc.State == TouchLocationState.Invalid )
                     {
                         _touchId = -1;
                         _isPressed = false;
 
-                        ClickPosition = touchLoc.Position;
-                        //Clicked
-                        if (OnClick != null) OnClick();
+                        //Left
+                        if (OnLeave != null) OnLeave();
                     }
+                    else
+                    {
+                        if (touchLoc.State == TouchLocationState.Released)
+                        {
+                            _touchId = -1;
+                            _isPressed = false;
+
+                            ClickPosition = touchLoc.Position;
+                            //Clicked
+                            if (OnClick != null) OnClick();
+                        }
+
+                    }
+                }
+            }
+            //no touches - let's check mouse
+            else
+            {
+                if (!_isPressed)
+                {
+                    //mouse support for Windows 8
+                    var mouse = Mouse.GetState();
+                    if (mouse.LeftButton == ButtonState.Pressed)
+                    {
+                        _isPressed = true;
+                            //Entered
+                            if (OnEnter != null) OnEnter();
+                        
+                    }
+                }
+                else
+                {
+                    //mouse support for Windows 8
+                    var mouse = Mouse.GetState();
+                    if (mouse.LeftButton == ButtonState.Released)
+                        {
+                            _isPressed = false;
+                            //Clicked
+                            ClickPosition = new Vector2(mouse.X, mouse.Y);
+                            if (OnClick != null) OnClick();
+                        }
+                    
                 }
             }
         }
