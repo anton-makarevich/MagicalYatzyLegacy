@@ -1,0 +1,17 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="KniffelServiceSoap" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://sanet.by/KniffelService.asmx" binding="basicHttpBinding"
+                bindingConfiguration="KniffelServiceSoap" contract="KniffelLeaderBoardService.KniffelServiceSoap"
+                name="KniffelServiceSoap" />
+        </client>
+    </system.serviceModel>
+</configuration>

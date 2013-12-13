@@ -157,7 +157,7 @@ namespace Sanet.Kniffel.Models
 
             XmlNodeList tileImageAttributes = tileXml.GetElementsByTagName("image");
             ((XmlElement)tileImageAttributes[0]).SetAttribute("src", "ms-appx:///Assets/LogoWide.png");
-            ((XmlElement)tileImageAttributes[0]).SetAttribute("alt", "Bible Pronto");
+            ((XmlElement)tileImageAttributes[0]).SetAttribute("alt", "Magical Yatzy");
 
 
             int index = 1;

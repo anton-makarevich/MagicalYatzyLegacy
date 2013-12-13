@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNADicePanel", "XNADicePanel.csproj", "{7FF71957-2CC6-41E4-95E2-C75F07907848}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Windows Phone = Debug|Windows Phone
+		Release|Windows Phone = Release|Windows Phone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7FF71957-2CC6-41E4-95E2-C75F07907848}.Debug|Windows Phone.ActiveCfg = Debug|Windows Phone
+		{7FF71957-2CC6-41E4-95E2-C75F07907848}.Debug|Windows Phone.Build.0 = Debug|Windows Phone
+		{7FF71957-2CC6-41E4-95E2-C75F07907848}.Debug|Windows Phone.Deploy.0 = Debug|Windows Phone
+		{7FF71957-2CC6-41E4-95E2-C75F07907848}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
+		{7FF71957-2CC6-41E4-95E2-C75F07907848}.Release|Windows Phone.Build.0 = Release|Windows Phone
+		{7FF71957-2CC6-41E4-95E2-C75F07907848}.Release|Windows Phone.Deploy.0 = Release|Windows Phone
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
