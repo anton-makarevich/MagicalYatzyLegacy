@@ -1,0 +1,18 @@
+syntax: glob
+*/bin/*
+*/obj/*
+*/_UpgradeReport_Files/*
+*/AppPackages/*
+*/Packages/*
+*/packages/*
+*.orig
+*.rar
+*.user
+*.userprefs
+*.apk
+*.cachefile
+*.suo
+*/UpgradeLog.*
+*_Backup_*
+*/Bin/*
+*_Report.htm
