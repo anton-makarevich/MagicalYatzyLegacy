@@ -119,6 +119,14 @@ namespace Sanet.Kniffel.Models
             }
 
         }
+
+        public static void SearchApps(string search)
+        {
+            var searchTask = new MarketplaceSearchTask();
+            searchTask.SearchTerms = search;
+            searchTask.Show();
+        }
+
         public static Action NavigateToSettingsPage
         {
             get
@@ -202,7 +210,7 @@ namespace Sanet.Kniffel.Models
             {
                 return new Action(() =>
                 {
-                    #if WINDOWS_PHONE
+#if WINDOWS_PHONE
                     var task = new Microsoft.Phone.Tasks.WebBrowserTask
                     {
                         Uri = new Uri("http://windowsphone.com/s?appid=bc105e9d-f31e-4c1d-89d2-6f5d8bd877e6")
@@ -213,6 +221,25 @@ namespace Sanet.Kniffel.Models
                 });
             }
         }
+
+        public static Action NavigateToFunnyAnimals
+        {
+            get
+            {
+                return new Action(() =>
+                {
+#if WINDOWS_PHONE
+                    var task = new Microsoft.Phone.Tasks.WebBrowserTask
+                    {
+                        Uri = new Uri("http://windowsphone.com/s?appid=e7c0d614-62ad-4f71-9c7c-d7b7da9a6ffa")
+                    };
+
+                    task.Show();
+#endif
+                });
+            }
+        }
+
         public static Action NavigateYatzyFBPage
         {
             get

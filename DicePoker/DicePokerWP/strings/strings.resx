@@ -783,4 +783,7 @@
   <data name="YesLabel" xml:space="preserve">
     <value>Yes, sure!</value>
   </data>
+  <data name="FADescription" xml:space="preserve">
+    <value>'Funny Animals' app let your kids explore an amazing world of animals. This app features several interactive pictures which become alive when kids touch them - there are funny animal animations, sounds and also animal names and descriptions in several languages.</value>
+  </data>
 </root>

@@ -161,7 +161,7 @@
             <my:PhoneHyperlinkButton 
                 Foreground="{StaticResource SanetBlue}"
                 Grid.Row="1"
-                Tag="http://sanet.by" 
+                Click="PhoneHyperlinkButton_Click"
                 Content="{Binding DevelopedByLabel}" 
                 HorizontalAlignment="Center" />
             

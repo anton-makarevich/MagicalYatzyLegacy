@@ -579,6 +579,9 @@
     <Content Include="..\DicePokerRT\Assets\Discount.png">
       <Link>Assets\Discount.png</Link>
     </Content>
+    <Content Include="..\DicePokerRT\Assets\FunnyAnimals.png">
+      <Link>Assets\FunnyAnimals.png</Link>
+    </Content>
     <Content Include="..\DicePokerRT\Assets\MagicWand.png">
       <Link>Assets\MagicWand.png</Link>
     </Content>
@@ -593,6 +596,9 @@
     </Content>
     <Content Include="..\DicePokerRT\Assets\ResetRoll.png">
       <Link>Assets\ResetRoll.png</Link>
+    </Content>
+    <Content Include="..\DicePokerRT\Assets\SanetDice.png">
+      <Link>Assets\SanetDice.png</Link>
     </Content>
     <Content Include="..\DicePokerRT\Assets\Unlock.png">
       <Link>Assets\Unlock.png</Link>
@@ -781,9 +787,6 @@
     </Content>
     <Content Include="..\DicePokerRT\Assets\OnlineGame.png">
       <Link>Assets\OnlineGame.png</Link>
-    </Content>
-    <Content Include="..\DicePokerRT\Assets\SanetDice.png">
-      <Link>Assets\SanetDice.png</Link>
     </Content>
     <Content Include="..\DicePokerRT\Assets\Settings.png">
       <Link>Assets\Settings.png</Link>

@@ -122,5 +122,10 @@ namespace DicePokerWP
                 ((ListBox)sender).SelectedItem = null;
             }
         }
+
+        private void PhoneHyperlinkButton_Click(object sender, RoutedEventArgs e)
+        {
+            CommonNavigationActions.SearchApps("Anton Makarevich");
+        }
     }
 }

@@ -35,6 +35,11 @@ namespace Sanet.Kniffel.Models
                     var cert = await CurrentApp.RequestProductPurchaseAsync(product, true);
                     if (!string.IsNullOrEmpty(cert))
                     {
+                        try
+                        {
+                            CurrentApp.ReportProductFulfillment(product);
+                        }
+                        catch { }
                         LogManager.Log(LogLevel.Message, "StoreManager.BuyLicense", "product '{0}' is purchased, your receipt is {1}", product, cert);
                         MarkedUp.AnalyticClient.InAppPurchaseComplete(product);
                         return true;

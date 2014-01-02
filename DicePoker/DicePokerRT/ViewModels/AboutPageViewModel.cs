@@ -238,13 +238,13 @@ namespace Sanet.Kniffel.ViewModels
             _OtherAppActions.Add(
                 new MainMenuAction
                 {
-                    Label = "SANET DICE",
+                    Label = "FUNNY ANIMALS",
                     MenuAction = new Action(() =>
                     {
-                        CommonNavigationActions.NavigateToSanetDice();
+                        CommonNavigationActions.NavigateToFunnyAnimals();
                     }),
-                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("SanetDice.png")),
-                    Description = "DiceDescription"
+                    Image = new BitmapImage(SanetImageProvider.GetAssetsImage("FunnyAnimals.png")),
+                    Description = "FADescription"
                 });
 #endif
             NotifyPropertyChanged("OtherAppActions");
