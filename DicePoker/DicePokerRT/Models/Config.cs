@@ -30,6 +30,7 @@ namespace Sanet.Kniffel
 #if WP8
            return ClientType.WP8;
 #endif
+            return ClientType.VK;
         }
 
         public static int GetAdduplexId()
@@ -43,9 +44,9 @@ namespace Sanet.Kniffel
 #if WinRT
             return 30603;//Win8
 #endif
-#if VK
+
             return 0;
-#endif
+
         }
 
     }

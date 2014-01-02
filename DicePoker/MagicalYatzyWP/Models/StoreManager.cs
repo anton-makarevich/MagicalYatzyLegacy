@@ -57,7 +57,7 @@ namespace Sanet.Kniffel.Models
 
         static public bool IsAdVisible()
         {
-            //return false;
+            //return true;
             return !IsProductAvailable("AdFree");
         }
 

@@ -18,7 +18,7 @@
 using System.IO.IsolatedStorage;
 using System.Windows;
 using System.Windows.Controls;
-using Coding4Fun.Phone.Controls;
+using Coding4Fun.Toolkit.Controls;
 using Microsoft.Phone.Tasks;
 using System.Windows.Threading;
 using Sanet.Kniffel.Models;

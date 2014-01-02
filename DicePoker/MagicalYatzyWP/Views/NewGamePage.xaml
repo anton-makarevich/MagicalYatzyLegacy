@@ -9,7 +9,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:my="clr-namespace:Microsoft.Phone.Controls.Unofficial"
-    xmlns:adRotator="clr-namespace:AdDuplex;assembly=AdDuplex.WindowsPhone"
+    xmlns:adRotator="clr-namespace:GoogleAds;assembly=GoogleAds"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -27,11 +27,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <adRotator:AdControl
+        <adRotator:AdView
             Grid.Row="1"
+            Format="Banner"
             x:Name="AdRotatorControl"
             Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"
-            AppId="{Binding AdduplexId}"/>
+            AdUnitID="ca-app-pub-8248192489956482/3672236653"/>
         
         
 

@@ -164,7 +164,7 @@ namespace DicePokerWP
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
 #if DEBUG
-            StoreManager.CheckTrialDebug();
+            //StoreManager.CheckTrialDebug();
 #endif
             //dpBackground = new Sanet.Kniffel.DicePanel.DicePanel();
             if (ViewModelProvider.HasViewModel<MainPageViewModel>())

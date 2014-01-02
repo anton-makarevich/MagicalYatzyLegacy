@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 
 using DicePokerWP.KniffelLeaderBoardService;
 using DicePokerWP;
-using Coding4Fun.Phone.Controls;
+using Coding4Fun.Toolkit.Controls;
 #endif
 #if SILVERLIGHT
 using System.Windows.Controls.Primitives;

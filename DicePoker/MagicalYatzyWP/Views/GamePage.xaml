@@ -12,7 +12,7 @@
     xmlns:my="clr-namespace:Microsoft.Phone.Controls.Unofficial"
     xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
     xmlns:primitives="clr-namespace:Telerik.Windows.Controls.Primitives;assembly=Telerik.Windows.Controls.Primitives"
-    xmlns:adRotator="clr-namespace:AdDuplex;assembly=AdDuplex.WindowsPhone"
+    xmlns:adRotator="clr-namespace:GoogleAds;assembly=GoogleAds"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -35,11 +35,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <adRotator:AdControl
+        <adRotator:AdView
             Grid.Row="0"
+            Format="Banner"
             x:Name="AdRotatorControl"
             Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"
-            AppId="{Binding AdduplexId}"/>
+            AdUnitID="ca-app-pub-8248192489956482/6765303850"/>
         
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
