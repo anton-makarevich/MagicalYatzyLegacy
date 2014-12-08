@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="43862AntonMakarevich.SanetDicePoker" Publisher="CN=DC1EF1A2-04E8-4269-B8EE-BF7A3DBF913C" Version="2.4.2.2" />
+  <Identity Name="43862AntonMakarevich.SanetDicePoker" Publisher="CN=DC1EF1A2-04E8-4269-B8EE-BF7A3DBF913C" Version="2.4.3.1" />
   <Properties>
     <DisplayName>ms-resource:AppNameLabel</DisplayName>
     <PublisherDisplayName>Anton Makarevich</PublisherDisplayName>
@@ -28,5 +28,7 @@
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
+    <Capability Name="internetClientServer" />
+    <Capability Name="privateNetworkClientServer" />
   </Capabilities>
 </Package>

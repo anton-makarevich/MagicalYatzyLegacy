@@ -33,7 +33,6 @@ namespace Sanet.Kniffel.Models
                     if (!string.IsNullOrEmpty(cert))
                     {
                         LogManager.Log(LogLevel.Message, "StoreManager.BuyLicense", "product '{0}' is purchased, your receipt is {1}", product, cert);
-                        MarkedUp.AnalyticClient.InAppPurchaseComplete(product);
                         return true;
                     }
                     return false;
