@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ServiceConfiguration serviceName="CloudServer.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="3" osVersion="*" schemaVersion="2014-06.2.4">
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="CloudServer.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="3" osVersion="*" schemaVersion="2012-10.1.8">
   <Role name="CloudServer">
     <Instances count="1" />
     <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=yatzy;AccountKey=LaPvcXOegQiSK8UGED3ZajEyuMeI1KynmKrsZzQDwO/baOyISgZT6umCCO/3//KhZJuYLXD1EupM4pbcEaJhoQ==" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="sanetby" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBpQYJKoZIhvcNAQcDoIIBljCCAZICAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEHtFS0wxZ7W/T+CrXwnypHYwDQYJKoZIhvcNAQEBBQAEggEAaMCVLst5LKtpFjoVUCU1QxjQQ4vqDxgomAHWIzsP3AcgzrEIFExeu6VkvYI1U5Jt/wlDrVp7F2Wr3Ko16GlZ2FZg3zEA3PaEByDScnxWcRn46Z9RcEwFJhGYj5ztSmX7Dc7yDHufzT2wch5oSsl5vWNAvJ07z/65hWqdQ7ySL8b6c6aXiREXHxUKOFaK7DAUVwQF2pmBNLYr4MD9Y4YFWAL2GHALeH0czj4ijWcF7YXpxOO5I3szeeoG00ydaS//hYH1Cc8iESh1CXYq0bUumRUbPo8whjSySkkDHANmwv/e5/OpvH19fwyV4XHRXWR1DCmm4SBzYJZrceWRQ3rW8zA7BgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECHND4cC4y+xIgBhl60avUt/Gy1WD+Y5ExRS5boRh0feuKdg=" />

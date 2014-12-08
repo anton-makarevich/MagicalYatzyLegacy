@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DicePokerRT", "DicePokerRT.csproj", "{266AFB18-2A2B-4873-B567-C3501FB1B6E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KniffelModelsPortable", "..\..\KniffelModelsPortable\KniffelModelsPortable.csproj", "{D8A1142D-030D-4513-8D05-3C5DF8F6641E}"
@@ -13,7 +11,7 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Sanet.Encryptor", "..\..\..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudServer", "..\CloudServer\CloudServer.csproj", "{0D34D525-77AF-46E5-BF12-62568E47AA44}"
 EndProject
-Project("{2B9991BB-E522-30BD-AEAA-44A7C0A198E8}") = "CloudServer.Azure", "..\CloudServer.Azure\CloudServer.Azure.ccproj", "{590C9BB5-F0EC-4F54-A271-24DEC1FC576D}"
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "CloudServer.Azure", "..\CloudServer.Azure\CloudServer.Azure.ccproj", "{590C9BB5-F0EC-4F54-A271-24DEC1FC576D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "..\ConsoleKlient\ConsoleClient.csproj", "{5E9EA1C9-FD26-4E9A-81BD-B09CB145277E}"
 EndProject

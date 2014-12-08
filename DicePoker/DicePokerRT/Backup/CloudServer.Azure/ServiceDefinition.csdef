@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ServiceDefinition name="CloudServer.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2014-06.2.4">
+<ServiceDefinition name="CloudServer.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2012-10.1.8">
   <WebRole name="CloudServer" vmsize="ExtraSmall">
     <Sites>
       <Site name="Web">
@@ -14,6 +14,7 @@
       <InputEndpoint name="Endpoint2" protocol="http" port="4502" />
     </Endpoints>
     <Imports>
+      <Import moduleName="Diagnostics" />
       <Import moduleName="RemoteAccess" />
       <Import moduleName="RemoteForwarder" />
     </Imports>

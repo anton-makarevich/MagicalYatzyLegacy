@@ -1,24 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="43862AntonMakarevich.SanetDicePoker" Publisher="CN=DC1EF1A2-04E8-4269-B8EE-BF7A3DBF913C" Version="2.3.2.2" />
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
+  <Identity Name="43862AntonMakarevich.SanetDicePoker" Publisher="CN=DC1EF1A2-04E8-4269-B8EE-BF7A3DBF913C" Version="2.4.2.2" />
   <Properties>
     <DisplayName>ms-resource:AppNameLabel</DisplayName>
     <PublisherDisplayName>Anton Makarevich</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
-    <OSMinVersion>6.2.1</OSMinVersion>
-    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+    <OSMinVersion>6.3.0</OSMinVersion>
+    <OSMaxVersionTested>6.3.0</OSMaxVersionTested>
   </Prerequisites>
   <Resources>
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="MagicalYatzyOnline.App">
-      <VisualElements DisplayName="ms-resource:AppNameLabel" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Magical Yatzy Online Multiplazer dice game" ForegroundText="light" BackgroundColor="#009cd6">
-        <DefaultTile ShowName="allLogos" ShortName="Magical Yatzy" WideLogo="Assets\WideLogo.png" />
-        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#009cd6" />
-      </VisualElements>
+      <m2:VisualElements DisplayName="ms-resource:AppNameLabel" Description="Magical Yatzy Online Multiplazer dice game" BackgroundColor="#009cd6" ForegroundText="light" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png">
+        <m2:DefaultTile ShortName="Magical Yatzy" Wide310x150Logo="Assets\WideLogo.png">
+          <m2:ShowNameOnTiles>
+            <m2:ShowOn Tile="square150x150Logo" />
+            <m2:ShowOn Tile="wide310x150Logo" />
+          </m2:ShowNameOnTiles>
+        </m2:DefaultTile>
+        <m2:SplashScreen BackgroundColor="#009cd6" Image="Assets\SplashScreen.png" />
+      </m2:VisualElements>
     </Application>
   </Applications>
   <Capabilities>

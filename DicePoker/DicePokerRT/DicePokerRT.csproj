@@ -1372,15 +1372,6 @@
     <Reference Include="AdDuplex.Windows">
       <HintPath>packages\AdDuplexWindows.8.0.2.0\lib\winrt45\AdDuplex.Windows.dll</HintPath>
     </Reference>
-    <Reference Include="MarkedUp">
-      <HintPath>packages\MarkedUp.0.6.7\lib\winrt45\MarkedUp.winmd</HintPath>
-    </Reference>
-    <Reference Include="MyToolkit">
-      <HintPath>packages\MyToolkit.1.9.0\lib\netcore45\MyToolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="WinRT.Triggers">
-      <HintPath>packages\WinRTTriggers.1.2.0\lib\winrt45\WinRT.Triggers.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
