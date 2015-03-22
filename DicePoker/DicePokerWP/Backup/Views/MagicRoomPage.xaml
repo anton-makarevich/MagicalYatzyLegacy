@@ -1,0 +1,292 @@
+﻿<UserControl xmlns:Controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"  xmlns:DicePanel="clr-namespace:Sanet.Kniffel.DicePanel"  
+    x:Class="DicePokerWP.MagicRoomPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="clr-namespace:Microsoft.Phone.Controls.Unofficial"
+                            xmlns:adRotator="clr-namespace:AdDuplex;assembly=AdDuplex.WindowsPhone"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+             Height="768" Width="480"
+    toolkit:TiltEffect.IsTiltEnabled="True"
+    shell:SystemTray.IsVisible="True"
+    >
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" 
+          Margin="0,30,0,0"
+          Background="{StaticResource PhoneBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <adRotator:AdControl
+            Grid.Row="1"
+            x:Name="AdRotatorControl"
+            Visibility="{Binding IsAdVisible,Converter={StaticResource VisibilityKey}}"
+            AppId="{Binding AdduplexId}"/>
+        
+        <!--TitlePanel contains the name of the application and page title-->
+        
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12,0,12,0">
+            <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+            
+            <Controls:Pivot 
+                >
+                <Controls:Pivot.Title>
+                    <TextBlock x:Name="ApplicationTitle" Text="{Binding Title}"
+                       Style="{StaticResource PivotTitleStyle}"/>
+                </Controls:Pivot.Title>
+                <Controls:PivotItem >
+                    <Controls:PivotItem.Header>
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
+                       Foreground="{StaticResource SanetBlue}"
+                       Text="{Binding ArtifactsLabel}"
+                       Grid.Row="0"
+                       VerticalAlignment="Center"/>
+                        
+                    </Controls:PivotItem.Header>
+                    <Grid Grid.Row="1" Margin="0" HorizontalAlignment="Stretch"
+                          >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70*"/>
+                            <ColumnDefinition Width="200*"/>
+
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                                TextWrapping="Wrap"
+                            FontSize="20" Grid.ColumnSpan="2"
+                            Foreground="{StaticResource SanetBlue}"
+                            Text="{Binding MagicArtifactsDescription}"/>
+                        <Image
+                                Grid.Row="1" Margin="10"
+                                Source="/Assets/MagicWand.png" />
+                        <TextBlock
+                                VerticalAlignment="Center"
+                                TextWrapping="Wrap"
+                            FontSize="18"
+                                Grid.Row="1" Grid.Column="2"
+                            Foreground="{StaticResource SanetBlue}"
+                            >
+                                <Run FontWeight="SemiBold"
+                                     Text="{Binding MagicRollLabel}"/>
+                                <Run 
+                                     Text="{Binding MagicRollDescription}"/>
+                        </TextBlock>
+
+                        <Image
+                                Grid.Row="2" Margin="10"
+                                Source="/Assets/Manual.png" />
+                        <TextBlock
+                                VerticalAlignment="Center"
+                                TextWrapping="Wrap"
+                            FontSize="18"
+                                Grid.Row="2" Grid.Column="2"
+                            Foreground="{StaticResource SanetBlue}"
+                            >
+                                <Run FontWeight="SemiBold"
+                                     Text="{Binding ManualSetLabel}"/>
+                                <Run 
+                                     Text="{Binding ManualSetDescription}"/>
+                        </TextBlock>
+
+                        <Image
+                                Grid.Row="3" Margin="10"
+                                Source="/Assets/ResetRoll.png" />
+                        <TextBlock
+                                VerticalAlignment="Center"
+                                TextWrapping="Wrap"
+                            FontSize="18"
+                                Grid.Row="3" Grid.Column="2"
+                            Foreground="{StaticResource SanetBlue}"
+                            >
+                                <Run FontWeight="SemiBold"
+                                     Text="{Binding ForthRollLabel}"/>
+                                <Run 
+                                     Text="{Binding RerollDescription}"/>
+                        </TextBlock>
+                    </Grid>
+                </Controls:PivotItem>
+                <Controls:PivotItem >
+                    <Controls:PivotItem.Header>
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
+                       Foreground="{StaticResource SanetBlue}"
+                       Text="{Binding HowGetLabel}"
+                       Grid.Row="0"
+                       VerticalAlignment="Center"/>
+
+                    </Controls:PivotItem.Header>
+                    <Grid Grid.Row="1" 
+                          Grid.Column="1"
+                          Margin="0" HorizontalAlignment="Stretch"
+                          >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60*"/>
+                            <ColumnDefinition Width="200*"/>
+
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                                TextWrapping="Wrap"
+                            FontSize="20" Grid.ColumnSpan="2"
+                            Foreground="{StaticResource SanetBlue}"
+                            Text="{Binding HowToGetDescription}"/>
+
+                        <Grid
+                            Width="80"
+                            Height="80"
+                                Grid.Row="1" Margin="10"
+                                Background="{StaticResource SanetBlue}">
+                            <TextBlock Text="1"
+                                       FontSize="40"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"/>
+                            <Ellipse Stroke="White" StrokeThickness="4"
+                                     Height="60"
+                                     Width="60"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"/>
+                        </Grid>
+                        <TextBlock
+                                VerticalAlignment="Center"
+                                TextWrapping="Wrap"
+                            FontSize="18"
+                                Grid.Row="1" Grid.Column="2"
+                            Foreground="{StaticResource SanetBlue}"
+                            >
+                                <Run FontWeight="SemiBold"
+                                     Text="{Binding FirstTimeBonusLabel}"/>
+                                <Run 
+                                     Text="{Binding FirstTimeBonusDescription}"/>
+                        </TextBlock>
+
+                        <Grid
+                            Width="80"
+                            Height="80"
+                                Grid.Row="2" Margin="10"
+                                Background="{StaticResource SanetBlue}">
+                            <TextBlock Text="2"
+                                       FontSize="40"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"/>
+                            <Ellipse Stroke="White" StrokeThickness="4"
+                                     Height="60"
+                                     Width="60"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"/>
+                        </Grid>
+                        <TextBlock
+                                VerticalAlignment="Center"
+                                TextWrapping="Wrap"
+                            FontSize="18"
+                                Grid.Row="2" Grid.Column="2"
+                            Foreground="{StaticResource SanetBlue}"
+                            >
+                                <Run FontWeight="SemiBold"
+                                     Text="{Binding ResultBonusLabel}"/>
+                                <Run 
+                                     Text="{Binding ResultBonusDescription}"/>
+                        </TextBlock>
+
+                        <Grid
+                            
+                            Width="80"
+                            Height="80"
+                                Grid.Row="3" Margin="10"
+                                Background="{StaticResource SanetBlue}">
+                            <TextBlock Text="3"
+                                       FontSize="40"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"/>
+                            <Ellipse Stroke="White" StrokeThickness="4"
+                                     Height="60"
+                                     Width="60"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"/>
+                        </Grid>
+                        <TextBlock
+                                VerticalAlignment="Center"
+                                TextWrapping="Wrap"
+                            FontSize="18"
+                                Grid.Row="3" Grid.Column="2"
+                            Foreground="{StaticResource SanetBlue}"
+                            >
+                                <Run FontWeight="SemiBold"
+                                     Text="{Binding PurchaseMiniLabel}"/>
+                                <Run 
+                                     Text="{Binding PurchaseMiniDescription}"/>
+                        </TextBlock>
+                    </Grid>
+                </Controls:PivotItem>
+                <Controls:PivotItem >
+                    <Controls:PivotItem.Header>
+                        <TextBlock Style="{StaticResource SubheaderTextStyle}"
+                           HorizontalAlignment="Left"
+                       Foreground="{StaticResource SanetBlue}"
+                       Text="{Binding PurchaseLabel}"
+                       Grid.Row="0"
+                       VerticalAlignment="Center"/>
+
+                    </Controls:PivotItem.Header>
+                    <Grid
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        >
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock
+                                Width="360"
+                                TextWrapping="Wrap"
+                            FontSize="20" 
+                            Foreground="{StaticResource SanetBlue}"
+                            Text="{Binding NoPurchaseDescription}"/>
+                        <my:PhoneHyperlinkButton 
+                            Foreground="{StaticResource SanetBlue}"
+                            Grid.Row="1"
+                            Margin="0,5"
+                            Tag="http://apps.microsoft.com/windows/app/sanet-dice-poker/5b0f9106-65a8-49ca-b1f0-641c54a7e3ef" 
+                            Content="{Binding ForW8Label}" 
+                            HorizontalAlignment="Left"/>
+                    </Grid>
+                </Controls:PivotItem>
+            </Controls:Pivot>
+                        
+        </Grid>
+    </Grid>
+ 
+</UserControl>

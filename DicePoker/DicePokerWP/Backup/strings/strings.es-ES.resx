@@ -1,0 +1,684 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutAction" xml:space="preserve">
+    <value>Acerca</value>
+  </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>Acerca del juego y sus autores</value>
+  </data>
+  <data name="AddBotLabel" xml:space="preserve">
+    <value>Agregar robot</value>
+  </data>
+  <data name="AddPlayerLabel" xml:space="preserve">
+    <value>Agregar jugador</value>
+  </data>
+  <data name="AgainLabel" xml:space="preserve">
+    <value>Jugar otra vez</value>
+  </data>
+  <data name="AllRecordsLabel" xml:space="preserve">
+    <value>Ver clasificación completa en la web</value>
+  </data>
+  <data name="AngHighText" xml:space="preserve">
+    <value>Alto</value>
+  </data>
+  <data name="AngLowText" xml:space="preserve">
+    <value>Bajo</value>
+  </data>
+  <data name="AngVeryHighText" xml:space="preserve">
+    <value>Muy alto </value>
+  </data>
+  <data name="AppNameLabel" xml:space="preserve">
+    <value>Yatzy Mágico</value>
+  </data>
+  <data name="ArtifactsBonusMessage" xml:space="preserve">
+    <value>{0}, ¡Felicitaciones, Tienes {1} Artefacto Mágico como un bono!</value>
+  </data>
+  <data name="ArtifactsForLabel" xml:space="preserve">
+    <value>Artefactos </value>
+  </data>
+  <data name="ArtifactsLabel" xml:space="preserve">
+    <value>Artefactos</value>
+  </data>
+  <data name="ArtifactsWinBuyMessage" xml:space="preserve">
+    <value>Gane o compre</value>
+  </data>
+  <data name="AWDescription" xml:space="preserve">
+    <value>Aplicación educativa para aprender escritura. Este software interactivo desarrolla tus habilidades motoras, memoria, te enseña cómo escribir letras (cirílicas) Rusas, caracteres Ingleses, caracteres chinos, números y varios símbolos.</value>
+  </data>
+  <data name="BestDayLabel" xml:space="preserve">
+    <value>Mejor del día</value>
+  </data>
+  <data name="BestLocalLabel" xml:space="preserve">
+    <value>Mejores resultados locales</value>
+  </data>
+  <data name="BestLocalShort" xml:space="preserve">
+    <value>Mejor local </value>
+  </data>
+  <data name="BestWeekLabel" xml:space="preserve">
+    <value>Mejor de la semana</value>
+  </data>
+  <data name="Bonus" xml:space="preserve">
+    <value>Bono</value>
+  </data>
+  <data name="BotNameDefault" xml:space="preserve">
+    <value>Robot</value>
+  </data>
+  <data name="BuyLabel" xml:space="preserve">
+    <value>comprar</value>
+  </data>
+  <data name="CantJoinMessage" xml:space="preserve">
+    <value>Sorry, we can't join right now. Please try again later.</value>
+  </data>
+  <data name="Chance" xml:space="preserve">
+    <value>Oportunidad</value>
+  </data>
+  <data name="ChangeNameLabel" xml:space="preserve">
+    <value>Cambiar nombre</value>
+  </data>
+  <data name="ChangePasswordLabel" xml:space="preserve">
+    <value>Contraseña necesaria</value>
+  </data>
+  <data name="ChatPanelLabel" xml:space="preserve">
+    <value>Charlar</value>
+  </data>
+  <data name="CheckingLabel" xml:space="preserve">
+    <value>Revisando...</value>
+  </data>
+  <data name="clear" xml:space="preserve">
+    <value>Limpiar selección </value>
+  </data>
+  <data name="ClientLabel" xml:space="preserve">
+    <value>Cliente:</value>
+  </data>
+  <data name="ClientOutdatedLabel" xml:space="preserve">
+    <value>Desactualizado</value>
+  </data>
+  <data name="ClientOutdatedMessage" xml:space="preserve">
+    <value>La versión de su juego está desactualizada, por favor actualice para jugar en línea.</value>
+  </data>
+  <data name="ClientUpdatedLabel" xml:space="preserve">
+    <value>Actualizado</value>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="ContinueLabel" xml:space="preserve">
+    <value>Continuar</value>
+  </data>
+  <data name="Cost1Label" xml:space="preserve">
+    <value>€1.19</value>
+  </data>
+  <data name="Cost2Label" xml:space="preserve">
+    <value>€1.59</value>
+  </data>
+  <data name="Cost3Label" xml:space="preserve">
+    <value>€1.99</value>
+  </data>
+  <data name="DeletePlayerLabel" xml:space="preserve">
+    <value>Borrar</value>
+  </data>
+  <data name="DevelopedByText" xml:space="preserve">
+    <value>Desarrollado por:</value>
+  </data>
+  <data name="DiceBoardLabel" xml:space="preserve">
+    <value>Tablero de dados</value>
+  </data>
+  <data name="DiceDescription" xml:space="preserve">
+    <value>¡Dados virtuales que siempre tienes contigo! Puedes usarlos en tus juegos favoritos, o solo cuando necesitas tomar una decisión al azar.</value>
+  </data>
+  <data name="ErrorLabel" xml:space="preserve">
+    <value>¡Error!</value>
+  </data>
+  <data name="ExitConfirmMessage" xml:space="preserve">
+    <value>Are you sure you want to leave game? The current state of the game will be lost.</value>
+  </data>
+  <data name="FacebookLabel" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="FirstTimeBonusDescription" xml:space="preserve">
+    <value> Cada nuevo jugador con nombre y contraseña única obtiene artefactos como bono.</value>
+  </data>
+  <data name="FirstTimeBonusLabel" xml:space="preserve">
+    <value>Primer bono de juego</value>
+  </data>
+  <data name="Fives" xml:space="preserve">
+    <value>Cincos</value>
+  </data>
+  <data name="ForthRollLabel" xml:space="preserve">
+    <value>Reiniciar ronda</value>
+  </data>
+  <data name="ForWin8Label" xml:space="preserve">
+    <value>Yatzy Mágico para Windows 8</value>
+  </data>
+  <data name="ForWPLabel" xml:space="preserve">
+    <value>Yatzy Mágico para Windows Phone </value>
+  </data>
+  <data name="FourOfAKind" xml:space="preserve">
+    <value>Cuatro del Mismo Tipo</value>
+  </data>
+  <data name="Fours" xml:space="preserve">
+    <value>Cuatros</value>
+  </data>
+  <data name="FullHouse" xml:space="preserve">
+    <value>Full House</value>
+  </data>
+  <data name="GameFinishedLabel" xml:space="preserve">
+    <value>¡El juego ha terminado!</value>
+  </data>
+  <data name="HowGetLabel" xml:space="preserve">
+    <value>¿Cómo conseguir?</value>
+  </data>
+  <data name="HowToGetDescription" xml:space="preserve">
+    <value>Artefactos Mágicos  – son recursos valiosos y  limitados. Hay varias formas de conseguir más mágia:</value>
+  </data>
+  <data name="Kniffel" xml:space="preserve">
+    <value>¡Yatzy!</value>
+  </data>
+  <data name="krBaby" xml:space="preserve">
+    <value>Para niños</value>
+  </data>
+  <data name="krBabyShort" xml:space="preserve">
+    <value>Sólo manos numéricas y Yatzy, 7 rondas</value>
+  </data>
+  <data name="krExtended" xml:space="preserve">
+    <value>Avanzado</value>
+  </data>
+  <data name="krExtendedShort" xml:space="preserve">
+    <value>Estándar + 100 puntos de bono por cada Yatzy adicional, Comodín-Yatzy, 13 rondas</value>
+  </data>
+  <data name="krMagic" xml:space="preserve">
+    <value>Mágico</value>
+  </data>
+  <data name="krMagicShort" xml:space="preserve">
+    <value>Avanzado + "artefactos mágicos", 13 rondas</value>
+  </data>
+  <data name="krSimple" xml:space="preserve">
+    <value>Simple</value>
+  </data>
+  <data name="krSimpleShort" xml:space="preserve">
+    <value>Todas las manos, sin bonos, 13 rondas</value>
+  </data>
+  <data name="krStandard" xml:space="preserve">
+    <value>Estándar</value>
+  </data>
+  <data name="krStandardShort" xml:space="preserve">
+    <value>Simple + 35 puntos de bono por 63 y resultados más altos en numéricos, 13 rondas</value>
+  </data>
+  <data name="LargeStraight" xml:space="preserve">
+    <value>Escalera Grande</value>
+  </data>
+  <data name="LargeStraightShort" xml:space="preserve">
+    <value>EG</value>
+  </data>
+  <data name="LaterLabel" xml:space="preserve">
+    <value>Luego.</value>
+  </data>
+  <data name="LeaderboardAction" xml:space="preserve">
+    <value>Salón de la fama</value>
+  </data>
+  <data name="LeaderboardDescription" xml:space="preserve">
+    <value>Ver mejores resultados en cada regla</value>
+  </data>
+  <data name="LocalLabel" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="LoginLabel" xml:space="preserve">
+    <value>Pulse para iniciar sesión</value>
+  </data>
+  <data name="LoginToFBLabel" xml:space="preserve">
+    <value>Iniciar sesión en Facebook</value>
+  </data>
+  <data name="LogoutLabel" xml:space="preserve">
+    <value>Pulse para cerrar la sesión</value>
+  </data>
+  <data name="MagicArtifactsDescription" xml:space="preserve">
+    <value>Los Artefactos Mágicos incrementan tus posibilidades de conseguir una mejor manos en las reglas Mágicas. Cada tipo de artefacto puede ser usado solo una vez por juego. Hay tre tipos de artefactos:</value>
+  </data>
+  <data name="MagicRollDescription" xml:space="preserve">
+    <value> Te permite poner una de las manos de póker sin cubrir (de '3 de un tipo' a 'Yatzy') en orden aleatorio.</value>
+  </data>
+  <data name="MagicRollLabel" xml:space="preserve">
+    <value>Tiro Mágico</value>
+  </data>
+  <data name="MagicRoomLabel" xml:space="preserve">
+    <value>Habitación del Hechicero</value>
+  </data>
+  <data name="ManualSetDescription" xml:space="preserve">
+    <value>Te permite cambiar el valor de un dado de tu elección. </value>
+  </data>
+  <data name="ManualSetLabel" xml:space="preserve">
+    <value>Configuración manual</value>
+  </data>
+  <data name="MetroStudioText" xml:space="preserve">
+    <value>Algunos íconos son creados en Syncfusion Metro Studio</value>
+  </data>
+  <data name="MoreLabel" xml:space="preserve">
+    <value>Más...</value>
+  </data>
+  <data name="MoveLabel" xml:space="preserve">
+    <value>Ronda</value>
+  </data>
+  <data name="NeverLabel" xml:space="preserve">
+    <value>No, gracias.</value>
+  </data>
+  <data name="NewLocalGameAction" xml:space="preserve">
+    <value>Juego local</value>
+  </data>
+  <data name="NewLocalGameDescription" xml:space="preserve">
+    <value>Empezar nuevo juego local – solo, con amigos o con robots.</value>
+  </data>
+  <data name="NewOnlineGameAction" xml:space="preserve">
+    <value>Juego en línea</value>
+  </data>
+  <data name="NewOnlineGameDescription" xml:space="preserve">
+    <value>Invita amigos y juego con ellos en la Internet</value>
+  </data>
+  <data name="NewsDescription" xml:space="preserve">
+    <value>Lector RSS para noticias de Belarus. Todas tus noticias en un mismo lugar. Ya tenemos noticias de sitios principales de Belarus, y añadiremos más.</value>
+  </data>
+  <data name="NoArtifactsLabel" xml:space="preserve">
+    <value>Sin Artefactos Mágicos</value>
+  </data>
+  <data name="NoArtifactsMessage" xml:space="preserve">
+    <value>El jugados {0} no tiene ningún atefacto mágico. Tienes que conseguir algunos artefactos mágicos para aprovechar las ventajas de las reglas Mágicas.</value>
+  </data>
+  <data name="NoInetMessage" xml:space="preserve">
+    <value>No hay acceso a internet. Por favor revisa tu conexión e inténtalo de nuevo.</value>
+  </data>
+  <data name="NoInternetLabel" xml:space="preserve">
+    <value>Sin conexión</value>
+  </data>
+  <data name="NoPurchasesMessage" xml:space="preserve">
+    <value>Lo sentimos, no puedes comprar artefactos usando esta versión de teléfono. Por favor prueba una versión para Windows 8.</value>
+  </data>
+  <data name="OfAKind" xml:space="preserve">
+    <value>del mismo tipo</value>
+  </data>
+  <data name="OffContent" xml:space="preserve">
+    <value>Apagado</value>
+  </data>
+  <data name="Offer1Description" xml:space="preserve">
+    <value>Oferta básica.</value>
+  </data>
+  <data name="Offer2Description" xml:space="preserve">
+    <value>Mejor oferta. ¡Tu descuento es del 20%!</value>
+  </data>
+  <data name="Offer3Description" xml:space="preserve">
+    <value>Una excelente oferta. ¡Es 2 veces más barato!</value>
+  </data>
+  <data name="OnContent" xml:space="preserve">
+    <value>Encendido</value>
+  </data>
+  <data name="Ones" xml:space="preserve">
+    <value>Unos</value>
+  </data>
+  <data name="OnlineLink.Content" xml:space="preserve">
+    <value>Acerca de Kniffel En línea</value>
+  </data>
+  <data name="OnlineVersionText" xml:space="preserve">
+    <value>La idea del panel de dados y el estilo de ‘‘dados rojos’’ pertenece a Matthew Tagliaferri.</value>
+  </data>
+  <data name="OnlyUniqueCanBuyMessage" xml:space="preserve">
+    <value>Lo sentimos, solo jugadores con Nombre de Usuario único y Contraseña pueden comprar artefactos. Necesitamos esta información para asegurar tu compra. Por favor compruebe sus datos en la página de nuevo juego. ¡Gracias! </value>
+  </data>
+  <data name="OtherAppsLabel" xml:space="preserve">
+    <value>Otras aplicaciones</value>
+  </data>
+  <data name="OtherSoft.Text" xml:space="preserve">
+    <value>Prueba otras aplicaciones</value>
+  </data>
+  <data name="PlayerBestScoreLabel" xml:space="preserve">
+    <value>Mejor</value>
+  </data>
+  <data name="PlayerBotLabelLocalized" xml:space="preserve">
+    <value>Computadora</value>
+  </data>
+  <data name="PlayerGamesLabel" xml:space="preserve">
+    <value>Juegos</value>
+  </data>
+  <data name="PlayerHumanLabelLocalized" xml:space="preserve">
+    <value>Humano</value>
+  </data>
+  <data name="PlayerNameDefault" xml:space="preserve">
+    <value>Juegador</value>
+  </data>
+  <data name="PlayerNameLabel" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="PlayerNoNameLabel" xml:space="preserve">
+    <value>sin nombre</value>
+  </data>
+  <data name="PlayerNoPasswordLabel" xml:space="preserve">
+    <value>Sin contraseña</value>
+  </data>
+  <data name="PlayerPasswordLabel" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="PlayersLabel" xml:space="preserve">
+    <value>Jugadores</value>
+  </data>
+  <data name="PlayerTotalScoreLabel" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="PlayerTypeLabel" xml:space="preserve">
+    <value>tipo</value>
+  </data>
+  <data name="Privacy1.Text" xml:space="preserve">
+    <value>Esta Política de Privacidad cubre el uso que le das a esta aplicación. Yatzy Mágico no recolecta, almacena o comparte ninguna información personal o cualquier cosa relacionada con estadísticas, tendencias, y tampoco rastreamos los movimientos del usuario.</value>
+  </data>
+  <data name="Privacy2.Text" xml:space="preserve">
+    <value> Esta aplicación te permite guardar los resultados de tus juegos en el servidor web, y también serán mostrados mediante la funcionalidad de clasificación. Yatzy Mágico te permite abrir URLs web de la aplicación. Los URLs pueden ser guardados por los navegadores de internet en tu dispositivo. Para más información respecto a los datos guardados por estas aplicaciones, por favor lea la política de privacidad del navegador que usa.</value>
+  </data>
+  <data name="PrivacyLabel.Text" xml:space="preserve">
+    <value>Política de Privacidad</value>
+  </data>
+  <data name="ProfileLabel" xml:space="preserve">
+    <value>Perfil</value>
+  </data>
+  <data name="PurchaseDescription" xml:space="preserve">
+    <value>Compra más artefactos usando una de las siguientes ofertas. Cada oferta puede ser usada solo una vez al día.</value>
+  </data>
+  <data name="PurchaseErrorMessage" xml:space="preserve">
+    <value>¡Lo sentimos! Algo malo sucedió. Por favor contacte el servicio de soporte.</value>
+  </data>
+  <data name="PurchaseLabel" xml:space="preserve">
+    <value>Ofertas mágicas</value>
+  </data>
+  <data name="PurchaseMiniDescription" xml:space="preserve">
+    <value>Puedes comprar artefactos mágicos en la tienda. ¡Hay varias ofertas con muy buenos precios!</value>
+  </data>
+  <data name="PurchaseMiniLabel" xml:space="preserve">
+    <value>Comprar.</value>
+  </data>
+  <data name="RandomLabel" xml:space="preserve">
+    <value>Aleatorio</value>
+  </data>
+  <data name="RateLabel" xml:space="preserve">
+    <value>Califica</value>
+  </data>
+  <data name="ReadyLabel" xml:space="preserve">
+    <value>¡Listo para jugar!</value>
+  </data>
+  <data name="RemoveAdAction" xml:space="preserve">
+    <value>Desbloquear todos los estilos de dados, remover publicidad</value>
+  </data>
+  <data name="RemoveAdLabel" xml:space="preserve">
+    <value>Remover publicidad</value>
+  </data>
+  <data name="RerollDescription" xml:space="preserve">
+    <value> Te permite repetir la ronda actual (los 3 tiros). El orden del valor de los dados será el mismo.</value>
+  </data>
+  <data name="ResultBonusDescription" xml:space="preserve">
+    <value> Consigue más artefactos para obtener buenos resultados en las reglas  'Avanzadas' . Mientras mejor juegues – más artefactos conseguirás!</value>
+  </data>
+  <data name="ResultBonusLabel" xml:space="preserve">
+    <value>Bono por buenos resultados</value>
+  </data>
+  <data name="ResultsTableLabel" xml:space="preserve">
+    <value>Tabla de resultados</value>
+  </data>
+  <data name="ReviewAppAction" xml:space="preserve">
+    <value>Califica esta aplicación en la tienda</value>
+  </data>
+  <data name="ReviewReminder" xml:space="preserve">
+    <value>Tus calificaciones y críticas nos alientan a publiar actualizaciones frecuentes para esta aplicación. ¿Te gustaría calificarla ahora?</value>
+  </data>
+  <data name="ReviewReminderHeader" xml:space="preserve">
+    <value>¿Te gusta esta aplicación?</value>
+  </data>
+  <data name="roll" xml:space="preserve">
+    <value>Tirar</value>
+  </data>
+  <data name="RulesLabel" xml:space="preserve">
+    <value>Reglas</value>
+  </data>
+  <data name="SaveScoreLabel" xml:space="preserve">
+    <value>Guardar resultado en la tabla de clasificaciones</value>
+  </data>
+  <data name="SelectDiceToChangeMessage" xml:space="preserve">
+    <value>Selecciona el dado que quieres cambiar</value>
+  </data>
+  <data name="SelectNewDiceValueMessage" xml:space="preserve">
+    <value>Selecciona el nuevo valor del dado</value>
+  </data>
+  <data name="SendFeedbackAction" xml:space="preserve">
+    <value>Reportar un problema</value>
+  </data>
+  <data name="SendLabel" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="ServerLabel" xml:space="preserve">
+    <value>Servidor:</value>
+  </data>
+  <data name="ServerOfflineLabel" xml:space="preserve">
+    <value>Desconectado</value>
+  </data>
+  <data name="ServerOfflineMessage" xml:space="preserve">
+    <value>El servidor del juego no está disponible. Por favor inténtelo más tarde.</value>
+  </data>
+  <data name="ServerOnlineLabel" xml:space="preserve">
+    <value>En línea</value>
+  </data>
+  <data name="SettingsAction" xml:space="preserve">
+    <value>Ajustes</value>
+  </data>
+  <data name="SettingsAngleCaptionText" xml:space="preserve">
+    <value>Ver ángulo</value>
+  </data>
+  <data name="SettingsCaptionText" xml:space="preserve">
+    <value>Ajustes</value>
+  </data>
+  <data name="SettingsDescription" xml:space="preserve">
+    <value>Cambiar ajustes del juego</value>
+  </data>
+  <data name="SettingsNumbersCaptionText" xml:space="preserve">
+    <value>Número del dado</value>
+  </data>
+  <data name="SettingsSpeedCaptionText" xml:space="preserve">
+    <value>Velocidad de rotación</value>
+  </data>
+  <data name="SettingsStyleCaptionText" xml:space="preserve">
+    <value>Estilos de dados</value>
+  </data>
+  <data name="ShareLabel" xml:space="preserve">
+    <value>compartir</value>
+  </data>
+  <data name="ShareMessage" xml:space="preserve">
+    <value>¡Acompáñame en este excitante juego multijugador!</value>
+  </data>
+  <data name="ShareTitle" xml:space="preserve">
+    <value>"Yatzy Mágico" para Windows 8 </value>
+  </data>
+  <data name="Sixes" xml:space="preserve">
+    <value>Seises</value>
+  </data>
+  <data name="SmallStraight" xml:space="preserve">
+    <value>Escalera pequeña</value>
+  </data>
+  <data name="SoundLabel" xml:space="preserve">
+    <value>Sonido</value>
+  </data>
+  <data name="SpeedFastText" xml:space="preserve">
+    <value>Rápido</value>
+  </data>
+  <data name="SpeedSlowText" xml:space="preserve">
+    <value>Lento</value>
+  </data>
+  <data name="SpeedVeryFastText" xml:space="preserve">
+    <value>Muy rápido</value>
+  </data>
+  <data name="SpeedVerySlowText" xml:space="preserve">
+    <value>Muy lento</value>
+  </data>
+  <data name="StartGameButton" xml:space="preserve">
+    <value>¡Empezar juego!</value>
+  </data>
+  <data name="StartNewGameMessage" xml:space="preserve">
+    <value>Empezar nuevo juego</value>
+  </data>
+  <data name="StatusLabel" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="Support.Text" xml:space="preserve">
+    <value>Servicio de soporte técnico:</value>
+  </data>
+  <data name="TablesLabel" xml:space="preserve">
+    <value>Tablas</value>
+  </data>
+  <data name="TapToApplyLabel" xml:space="preserve">
+    <value>Pulse para aplicar</value>
+  </data>
+  <data name="TapToChangeLabel" xml:space="preserve">
+    <value>Pulse para cambiar</value>
+  </data>
+  <data name="ThreeOfAKind" xml:space="preserve">
+    <value>Tres del mismo tipo</value>
+  </data>
+  <data name="Threes" xml:space="preserve">
+    <value>Treses</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Twos" xml:space="preserve">
+    <value>Doses</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Versión</value>
+  </data>
+  <data name="WaitForGameLabel" xml:space="preserve">
+    <value>Esperando nuevo juego</value>
+  </data>
+  <data name="WaitForPlayersLabel" xml:space="preserve">
+    <value>Esperando jugadores</value>
+  </data>
+  <data name="WinLabel" xml:space="preserve">
+    <value>Ganó</value>
+  </data>
+  <data name="WrongNamePassLabel" xml:space="preserve">
+    <value>Nombre o contraseña equivocados</value>
+  </data>
+  <data name="YesLabel" xml:space="preserve">
+    <value>¡Sí, claro!</value>
+  </data>
+  <data name="FADescription" xml:space="preserve">
+    <value>'Funny Animals' app let your kids explore an amazing world of animals. This app features several interactive pictures which become alive when kids touch them - there are funny animal animations, sounds and also animal names and descriptions in several languages.</value>
+  </data>
+</root>
