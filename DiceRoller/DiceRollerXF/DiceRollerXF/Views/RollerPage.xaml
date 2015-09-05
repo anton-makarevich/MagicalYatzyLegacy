@@ -2,17 +2,59 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:dicepanel="clr-namespace:Sanet.Kniffel.DicePanel"
+             xmlns:controls ="clr-namespace:DiceRollerXF.Controls"
              x:Class="Sanet.Kniffel.XF.Views.RollerPage"
              BackgroundColor="Black">
     <Grid x:Name="layoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <dicepanel:DicePanel x:Name="dicePanel"/>
-        
-        <Button 
+
+        <Grid 
             Grid.Row="1"
-            Text="Roll" Clicked="Button_Clicked"/>
+            x:Name="SettingsButtons" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <controls:WPButton x:Name="StyleButton" 
+                             Clicked="StyleButton_Click"  />
+            <controls:WPButton x:Name="CountButton" 
+                               Grid.Column="1"
+                             Clicked="CountButton_Click"  />
+            <controls:WPButton x:Name="SpeedButton" 
+                               Grid.Column="2"
+                             Clicked="SpeedButton_Click"  />
+            <controls:WPButton x:Name="ProjectionButton" 
+                               Grid.Column="3"
+                             Clicked="ProjectionButton_Click"  />
+            
+        </Grid>
+        <Grid 
+            Grid.Row="1"
+            IsVisible="False"
+            x:Name="StyleButtons" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <controls:WPButton x:Name="ClassicButton" Tag="Classic"
+                             Clicked="RedButton_Click"  />
+            <controls:WPButton x:Name="BlueButton" Tag="Blue"
+                               Grid.Column="1"
+                             Clicked="RedButton_Click"  />
+            <controls:WPButton x:Name="RedButton" Tag="Red"
+                               Grid.Column="2"
+                             Clicked="RedButton_Click"  />
+            
+
+        </Grid>
     </Grid>
 </ContentPage>

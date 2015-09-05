@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DiceRollerXF.Controls.WPButton"
+      Padding="5">
+    <Grid
+        x:Name="border"
+        Padding="2" BackgroundColor="White">
+        
+        <Grid BackgroundColor="Black">
+            <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+        </Grid.GestureRecognizers>
+            <Label TextColor="White" XAlign="Center" YAlign="Center" x:Name="Text" IsVisible="False" HorizontalOptions="Center" VerticalOptions="Center"
+                   FontSize="Large"/>
+
+            <Image x:Name="Image" 
+                   IsVisible="False"
+                   Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center"/>
+        </Grid>
+            
+    </Grid>
+    
+</Grid>

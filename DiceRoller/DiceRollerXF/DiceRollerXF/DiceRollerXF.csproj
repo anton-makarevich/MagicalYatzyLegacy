@@ -54,7 +54,17 @@
       <Link>Services\IImageService.cs</Link>
     </Compile>
     <Compile Include="App.cs" />
+    <Compile Include="Controls\BlueFrameControl.cs" />
+    <Compile Include="Controls\CircularButtonControl.cs" />
+    <Compile Include="Controls\FontAwesomeLabel.cs" />
+    <Compile Include="Controls\WPButton.xaml.cs">
+      <DependentUpon>WPButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RollerPage.xaml.cs">
       <DependentUpon>RollerPage.xaml</DependentUpon>
     </Compile>
@@ -90,6 +100,40 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\DiceRoller\Images\help.png">
+      <Link>Resources\help.png</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\DiceRoller\Images\clear.png">
+      <Link>Resources\clear.png</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\DiceRoller\Images\dice.png">
+      <Link>Resources\dice.png</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\WPButton.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\AboutPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\..\DiceRoller\packages\Xamarin.Forms.1.3.3.6323\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\..\DiceRoller\packages\Xamarin.Forms.1.3.3.6323\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

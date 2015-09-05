@@ -326,6 +326,7 @@ namespace Sanet.Kniffel.DicePanel
             {
                 d.DrawDie();
             }
+            Invalidate();
         }
         private async Task LoadFrameImagesAsync(string rot)
         {
@@ -626,7 +627,7 @@ namespace Sanet.Kniffel.DicePanel
                 }
             }
             //End If
-
+            Invalidate();
         }
 
         public override void Draw(ICanvas canvas, Rect rect)
