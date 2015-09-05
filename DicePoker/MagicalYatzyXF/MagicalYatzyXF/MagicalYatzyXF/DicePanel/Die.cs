@@ -1,5 +1,4 @@
-﻿using MagicalYatzyXF;
-using NGraphics;
+﻿using NGraphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +45,7 @@ namespace Sanet.Kniffel.DicePanel
         private DieStatus FStatus = DieStatus.dsLanding;
         public string StyleString
         {
-            get { return  FPanel.strStyle; }
+            get { return "Images/"+ FPanel.strStyle; }
         }
         private string strrot;
 
@@ -396,7 +395,7 @@ namespace Sanet.Kniffel.DicePanel
 
         public Xamarin.Forms.Rectangle RectScaled
         {
-            get { return new Xamarin.Forms.Rectangle(xPos * App.DeviceScale, yPos * App.DeviceScale, w * App.DeviceScale, h * App.DeviceScale); }
+            get { return new Xamarin.Forms.Rectangle(xPos * DicePanel.DeviceScale, yPos * DicePanel.DeviceScale, w * DicePanel.DeviceScale, h * DicePanel.DeviceScale); }
         }
 
         public bool Overlapping(Die d)

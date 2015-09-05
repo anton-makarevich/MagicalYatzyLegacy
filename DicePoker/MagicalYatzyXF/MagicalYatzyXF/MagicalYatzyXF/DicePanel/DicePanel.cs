@@ -1,5 +1,4 @@
-﻿using MagicalYatzyXF;
-using NGraphics;
+﻿using NGraphics;
 using Sanet.Kniffel.Models;
 using Sanet.Kniffel.XF.Models;
 using Sanet.Kniffel.XF.Services;
@@ -44,7 +43,7 @@ namespace Sanet.Kniffel.DicePanel
         //cashed images
         public Dictionary<string, IImage> DieFrameImages = new Dictionary<string, IImage>();
 
-        const string strImageRoot = "";
+        const string strImageRoot = "Images/";
 
         public string strStyle;
         private Storyboard sbLoop;
@@ -71,6 +70,7 @@ namespace Sanet.Kniffel.DicePanel
         #endregion
 
         #region Properties
+        public static double DeviceScale=1;
         public bool TreeDScale { get; set; }
         public double TreeDScaleCoef { get; set; }
         public bool PlaySound { get; set; }

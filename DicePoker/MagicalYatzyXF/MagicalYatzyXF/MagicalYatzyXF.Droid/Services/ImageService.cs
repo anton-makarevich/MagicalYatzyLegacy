@@ -3,7 +3,13 @@ using Sanet.Kniffel.XF.Services;
 using Xamarin.Forms;
 using Sanet.Kniffel.XF.Droid.Services;
 using System.IO;
+
+#if ROLLER
+using DiceRollerXF.Droid;
+#else
 using MagicalYatzyXF.Droid;
+#endif
+
 using System.Threading.Tasks;
 
 [assembly: Dependency(typeof(ImageService))]
