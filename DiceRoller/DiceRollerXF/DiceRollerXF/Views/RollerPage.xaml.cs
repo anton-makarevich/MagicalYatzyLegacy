@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Sanet.Kniffel.Localization;
 using Xamarin.Forms;
 using Sanet.Kniffel;
+using Sanet.Kniffel.Utils;
 
 namespace Sanet.Kniffel.XF.Views
 {
@@ -93,6 +94,16 @@ namespace Sanet.Kniffel.XF.Views
             };
 
             layoutRoot.Children.Add(_bottomBar, 0, 3);
+
+            dicePanel.PanelIsBusy += OnBusy;
+        }
+
+        private void OnBusy(bool isBusy)
+        {
+            if (isBusy)
+                DialogsHelper.ShowLoading();
+            else
+                DialogsHelper.HideLoading();
         }
 
         private void _helpButton_OnTouchesBegan(object sender, IEnumerable<NGraphics.Point> e)
@@ -116,9 +127,11 @@ namespace Sanet.Kniffel.XF.Views
         {
             base.OnAppearing();
             Xamarin.Forms.Device.StartTimer(TimeSpan.FromMilliseconds(500),CheckPanel);
+            DialogsHelper.ShowLoading();
         }
         async void PreparePanel()
         {
+            DialogsHelper.HideLoading();
             if (dicePanel.NumDice == 5)
                 return;
             await dicePanel.SetStyleAsync(DiceStyle.dpsBlue);

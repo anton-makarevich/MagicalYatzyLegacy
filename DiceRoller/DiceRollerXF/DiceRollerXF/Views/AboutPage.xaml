@@ -28,7 +28,7 @@
         <StackLayout
             Grid.Row="1">
             <Label x:Name="OnlineVersionText" LineBreakMode="WordWrap"/>
-            <controls:HyperlinkButton HorizontalOptions="Start" Content="About Magical Yatzy Online" x:Name="OnlineLink" Tag="http://sanet.by/dicepoker" />
+            <controls:HyperlinkButton HorizontalOptions="Start" Content="About Magical Yatzy Online" x:Name="OnlineLink" Tag="https://www.facebook.com/MagicalYatzy" />
         </StackLayout>
 
         <StackLayout

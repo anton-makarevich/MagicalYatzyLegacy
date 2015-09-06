@@ -67,6 +67,7 @@ namespace Sanet.Kniffel.DicePanel
         public event EndRollEventHandler EndRoll;
         public event BeginRollEventHandler BeginRoll;
 
+        public event Action<bool> PanelIsBusy;
         #endregion
 
         #region Properties
@@ -331,6 +332,8 @@ namespace Sanet.Kniffel.DicePanel
         }
         private async Task LoadFrameImagesAsync(string rot)
         {
+            if (PanelIsBusy != null)
+                PanelIsBusy(true);
             for (int i = 0; i <= 35; i++)
             {
                 string sPath = strImageRoot + strStyle + rot + i.ToString() + ".png";
@@ -341,6 +344,8 @@ namespace Sanet.Kniffel.DicePanel
                     DieFrameImages.Add(sPath, img);
                 }
             }
+            if (PanelIsBusy != null)
+                PanelIsBusy(false);
         }
         
         private void GenerateDice()

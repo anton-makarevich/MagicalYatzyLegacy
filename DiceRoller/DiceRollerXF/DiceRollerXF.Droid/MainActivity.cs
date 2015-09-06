@@ -9,6 +9,7 @@ using Android.OS;
 using Sanet.Kniffel.DicePanel;
 using Sanet.Kniffel.Localization;
 using Android.Content;
+using Sanet.Kniffel.Utils;
 
 namespace DiceRollerXF.Droid
 {
@@ -20,11 +21,17 @@ namespace DiceRollerXF.Droid
         {
             base.OnCreate(bundle);
             _instance = this;
+            
             LocalizerExtensions.Initialize(new ResourceModel(new string[] { "en", "ru", "de" }));
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            
+            DialogsHelper.Init(new Acr.UserDialogs.UserDialogsImpl(GetActivity));
             DicePanel.DeviceScale= Resources.DisplayMetrics.Density;
             LoadApplication(new App());
+        }
+
+        Activity GetActivity()
+        {
+            return this;
         }
 
         public static MainActivity Instance

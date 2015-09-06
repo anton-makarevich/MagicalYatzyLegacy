@@ -11,8 +11,11 @@
             <Grid.GestureRecognizers>
             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
         </Grid.GestureRecognizers>
-            <Label TextColor="White" XAlign="Center" YAlign="Center" x:Name="Text" IsVisible="False" HorizontalOptions="Center" VerticalOptions="Center"
-                   FontSize="Large"/>
+            <Label TextColor="White" 
+                   FontSize="Medium"
+                   XAlign="Center" YAlign="Center" 
+                   x:Name="Text" IsVisible="False" HorizontalOptions="Center" VerticalOptions="Center"
+                   />
 
             <Image x:Name="Image" 
                    IsVisible="False"
