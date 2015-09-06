@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{8EB585CF-D98A-4CAF-A36E-2F99934EF7F8}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
@@ -36,6 +34,10 @@
     <MtouchLink>None</MtouchLink>
     <MtouchArch>i386, x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -94,8 +96,15 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <ITunesArtwork Include="iTunesArtwork" />
-    <ITunesArtwork Include="iTunesArtwork@2x" />
     <None Include="packages.config" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+    <Compile Include="..\DiceRollerXF.Droid\Services\ResourceModel.cs">
+      <Link>Services\ResourceModel.cs</Link>
+    </Compile>
+    <Compile Include="..\DiceRollerXF.Droid\Services\XMLLoader.cs">
+      <Link>Services\XMLLoader.cs</Link>
+    </Compile>
+    <Compile Include="Services\ImageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -116,66 +125,54 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Acr.Support.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\DiceRoller\packages\Acr.Support.1.0.0\lib\Xamarin.iOS10\Acr.Support.iOS.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\DiceRoller\packages\Acr.UserDialogs.4.1.3\lib\Xamarin.iOS10\Acr.UserDialogs.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Acr.UserDialogs.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\DiceRoller\packages\Acr.UserDialogs.4.1.3\lib\Xamarin.iOS10\Acr.UserDialogs.Interface.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="BTProgressHUD, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\DiceRoller\packages\Acr.UserDialogs.4.1.3\lib\Xamarin.iOS10\BTProgressHUD.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NControl, Version=0.2.5716.19205, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\DiceRoller\packages\NControl.0.6.24\lib\Xamarin.iOS10\NControl.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NControl.iOS, Version=0.2.5716.19208, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\DiceRoller\packages\NControl.0.6.24\lib\Xamarin.iOS10\NControl.iOS.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NGraphics, Version=0.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\DiceRoller\packages\NGraphics.0.3.1\lib\Xamarin.iOS10\NGraphics.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NGraphics.iOS, Version=1.0.5700.19832, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\DiceRoller\packages\NGraphics.0.3.1\lib\Xamarin.iOS10\NGraphics.iOS.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\DiceRoller\packages\Splat.1.6.2\lib\Xamarin.iOS10\Splat.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="Xamarin.Forms.Core, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\DiceRoller\packages\Xamarin.Forms.1.4.4.6392\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\DiceRoller\packages\Xamarin.Forms.1.4.4.6392\lib\Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Platform.iOS, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\DiceRoller\packages\Xamarin.Forms.1.4.4.6392\lib\Xamarin.iOS10\Xamarin.Forms.Platform.iOS.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Xaml, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\DiceRoller\packages\Xamarin.Forms.1.4.4.6392\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="Acr.Support.iOS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\DiceRoller\packages\Acr.Support.1.0.0\lib\Xamarin.iOS10\Acr.Support.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\DiceRoller\packages\Acr.UserDialogs.4.1.3\lib\Xamarin.iOS10\Acr.UserDialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.UserDialogs.Interface, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\DiceRoller\packages\Acr.UserDialogs.4.1.3\lib\Xamarin.iOS10\Acr.UserDialogs.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="BTProgressHUD, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\DiceRoller\packages\Acr.UserDialogs.4.1.3\lib\Xamarin.iOS10\BTProgressHUD.dll</HintPath>
+    </Reference>
+    <Reference Include="NControl, Version=0.2.5716.19205, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\DiceRoller\packages\NControl.0.6.24\lib\Xamarin.iOS10\NControl.dll</HintPath>
+    </Reference>
+    <Reference Include="NControl.iOS, Version=0.2.5716.19208, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\DiceRoller\packages\NControl.0.6.24\lib\Xamarin.iOS10\NControl.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="NGraphics, Version=0.2.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\DiceRoller\packages\NGraphics.0.3.1\lib\Xamarin.iOS10\NGraphics.dll</HintPath>
+    </Reference>
+    <Reference Include="NGraphics.iOS, Version=1.0.5700.19832, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\DiceRoller\packages\NGraphics.0.3.1\lib\Xamarin.iOS10\NGraphics.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\DiceRoller\packages\Splat.1.6.2\lib\Xamarin.iOS10\Splat.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\DiceRoller\packages\Xamarin.Forms.1.4.4.6392\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\DiceRoller\packages\Xamarin.Forms.1.4.4.6392\lib\Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.iOS, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\DiceRoller\packages\Xamarin.Forms.1.4.4.6392\lib\Xamarin.iOS10\Xamarin.Forms.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\DiceRoller\packages\Xamarin.Forms.1.4.4.6392\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DiceRollerXF\DiceRollerXF.csproj">
-      <Project>{f038a222-1ba8-41a7-8c21-2bdd3afb26fb}</Project>
+      <Project>{F038A222-1BA8-41A7-8C21-2BDD3AFB26FB}</Project>
       <Name>DiceRollerXF</Name>
     </ProjectReference>
   </ItemGroup>
@@ -188,4 +185,1322 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\DiceRoller\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\DiceRoller\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets'))" />
   </Target>
+  <ItemGroup>
+    <Folder Include="Images\" />
+    <Folder Include="Images\0\" />
+    <Folder Include="Images\1\" />
+    <Folder Include="Images\2\" />
+    <Folder Include="Strings\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.0.png">
+      <Link>Images\2\stop.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.1.png">
+      <Link>Images\2\stop.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.10.png">
+      <Link>Images\2\stop.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.11.png">
+      <Link>Images\2\stop.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.12.png">
+      <Link>Images\2\stop.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.13.png">
+      <Link>Images\2\stop.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.14.png">
+      <Link>Images\2\stop.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.15.png">
+      <Link>Images\2\stop.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.16.png">
+      <Link>Images\2\stop.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.17.png">
+      <Link>Images\2\stop.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.18.png">
+      <Link>Images\2\stop.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.19.png">
+      <Link>Images\2\stop.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.2.png">
+      <Link>Images\2\stop.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.20.png">
+      <Link>Images\2\stop.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.21.png">
+      <Link>Images\2\stop.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.22.png">
+      <Link>Images\2\stop.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.23.png">
+      <Link>Images\2\stop.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.24.png">
+      <Link>Images\2\stop.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.25.png">
+      <Link>Images\2\stop.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.26.png">
+      <Link>Images\2\stop.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.27.png">
+      <Link>Images\2\stop.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.28.png">
+      <Link>Images\2\stop.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.29.png">
+      <Link>Images\2\stop.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.3.png">
+      <Link>Images\2\stop.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.30.png">
+      <Link>Images\2\stop.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.31.png">
+      <Link>Images\2\stop.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.32.png">
+      <Link>Images\2\stop.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.33.png">
+      <Link>Images\2\stop.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.34.png">
+      <Link>Images\2\stop.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.35.png">
+      <Link>Images\2\stop.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.4.png">
+      <Link>Images\2\stop.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.5.png">
+      <Link>Images\2\stop.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.6.png">
+      <Link>Images\2\stop.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.7.png">
+      <Link>Images\2\stop.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.8.png">
+      <Link>Images\2\stop.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\stop.9.png">
+      <Link>Images\2\stop.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.0.png">
+      <Link>Images\2\xrot.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.1.png">
+      <Link>Images\2\xrot.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.10.png">
+      <Link>Images\2\xrot.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.11.png">
+      <Link>Images\2\xrot.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.12.png">
+      <Link>Images\2\xrot.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.13.png">
+      <Link>Images\2\xrot.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.14.png">
+      <Link>Images\2\xrot.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.15.png">
+      <Link>Images\2\xrot.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.16.png">
+      <Link>Images\2\xrot.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.17.png">
+      <Link>Images\2\xrot.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.18.png">
+      <Link>Images\2\xrot.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.19.png">
+      <Link>Images\2\xrot.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.2.png">
+      <Link>Images\2\xrot.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.20.png">
+      <Link>Images\2\xrot.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.21.png">
+      <Link>Images\2\xrot.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.22.png">
+      <Link>Images\2\xrot.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.23.png">
+      <Link>Images\2\xrot.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.24.png">
+      <Link>Images\2\xrot.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.25.png">
+      <Link>Images\2\xrot.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.26.png">
+      <Link>Images\2\xrot.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.27.png">
+      <Link>Images\2\xrot.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.28.png">
+      <Link>Images\2\xrot.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.29.png">
+      <Link>Images\2\xrot.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.3.png">
+      <Link>Images\2\xrot.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.30.png">
+      <Link>Images\2\xrot.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.31.png">
+      <Link>Images\2\xrot.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.32.png">
+      <Link>Images\2\xrot.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.33.png">
+      <Link>Images\2\xrot.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.34.png">
+      <Link>Images\2\xrot.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.35.png">
+      <Link>Images\2\xrot.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.4.png">
+      <Link>Images\2\xrot.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.5.png">
+      <Link>Images\2\xrot.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.6.png">
+      <Link>Images\2\xrot.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.7.png">
+      <Link>Images\2\xrot.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.8.png">
+      <Link>Images\2\xrot.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\xrot.9.png">
+      <Link>Images\2\xrot.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.0.png">
+      <Link>Images\2\yrot.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.1.png">
+      <Link>Images\2\yrot.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.10.png">
+      <Link>Images\2\yrot.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.11.png">
+      <Link>Images\2\yrot.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.12.png">
+      <Link>Images\2\yrot.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.13.png">
+      <Link>Images\2\yrot.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.14.png">
+      <Link>Images\2\yrot.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.15.png">
+      <Link>Images\2\yrot.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.16.png">
+      <Link>Images\2\yrot.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.17.png">
+      <Link>Images\2\yrot.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.18.png">
+      <Link>Images\2\yrot.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.19.png">
+      <Link>Images\2\yrot.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.2.png">
+      <Link>Images\2\yrot.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.20.png">
+      <Link>Images\2\yrot.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.21.png">
+      <Link>Images\2\yrot.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.22.png">
+      <Link>Images\2\yrot.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.23.png">
+      <Link>Images\2\yrot.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.24.png">
+      <Link>Images\2\yrot.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.25.png">
+      <Link>Images\2\yrot.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.26.png">
+      <Link>Images\2\yrot.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.27.png">
+      <Link>Images\2\yrot.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.28.png">
+      <Link>Images\2\yrot.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.29.png">
+      <Link>Images\2\yrot.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.3.png">
+      <Link>Images\2\yrot.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.30.png">
+      <Link>Images\2\yrot.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.31.png">
+      <Link>Images\2\yrot.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.32.png">
+      <Link>Images\2\yrot.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.33.png">
+      <Link>Images\2\yrot.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.34.png">
+      <Link>Images\2\yrot.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.35.png">
+      <Link>Images\2\yrot.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.4.png">
+      <Link>Images\2\yrot.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.5.png">
+      <Link>Images\2\yrot.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.6.png">
+      <Link>Images\2\yrot.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.7.png">
+      <Link>Images\2\yrot.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.8.png">
+      <Link>Images\2\yrot.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\2\yrot.9.png">
+      <Link>Images\2\yrot.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.0.png">
+      <Link>Images\1\stop.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.1.png">
+      <Link>Images\1\stop.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.10.png">
+      <Link>Images\1\stop.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.11.png">
+      <Link>Images\1\stop.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.12.png">
+      <Link>Images\1\stop.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.13.png">
+      <Link>Images\1\stop.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.14.png">
+      <Link>Images\1\stop.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.15.png">
+      <Link>Images\1\stop.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.16.png">
+      <Link>Images\1\stop.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.17.png">
+      <Link>Images\1\stop.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.18.png">
+      <Link>Images\1\stop.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.19.png">
+      <Link>Images\1\stop.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.2.png">
+      <Link>Images\1\stop.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.20.png">
+      <Link>Images\1\stop.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.21.png">
+      <Link>Images\1\stop.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.22.png">
+      <Link>Images\1\stop.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.23.png">
+      <Link>Images\1\stop.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.24.png">
+      <Link>Images\1\stop.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.25.png">
+      <Link>Images\1\stop.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.26.png">
+      <Link>Images\1\stop.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.27.png">
+      <Link>Images\1\stop.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.28.png">
+      <Link>Images\1\stop.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.29.png">
+      <Link>Images\1\stop.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.3.png">
+      <Link>Images\1\stop.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.30.png">
+      <Link>Images\1\stop.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.31.png">
+      <Link>Images\1\stop.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.32.png">
+      <Link>Images\1\stop.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.33.png">
+      <Link>Images\1\stop.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.34.png">
+      <Link>Images\1\stop.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.35.png">
+      <Link>Images\1\stop.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.4.png">
+      <Link>Images\1\stop.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.5.png">
+      <Link>Images\1\stop.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.6.png">
+      <Link>Images\1\stop.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.7.png">
+      <Link>Images\1\stop.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.8.png">
+      <Link>Images\1\stop.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\stop.9.png">
+      <Link>Images\1\stop.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.0.png">
+      <Link>Images\1\xrot.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.1.png">
+      <Link>Images\1\xrot.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.10.png">
+      <Link>Images\1\xrot.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.11.png">
+      <Link>Images\1\xrot.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.12.png">
+      <Link>Images\1\xrot.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.13.png">
+      <Link>Images\1\xrot.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.14.png">
+      <Link>Images\1\xrot.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.15.png">
+      <Link>Images\1\xrot.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.16.png">
+      <Link>Images\1\xrot.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.17.png">
+      <Link>Images\1\xrot.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.18.png">
+      <Link>Images\1\xrot.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.19.png">
+      <Link>Images\1\xrot.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.2.png">
+      <Link>Images\1\xrot.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.20.png">
+      <Link>Images\1\xrot.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.21.png">
+      <Link>Images\1\xrot.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.22.png">
+      <Link>Images\1\xrot.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.23.png">
+      <Link>Images\1\xrot.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.24.png">
+      <Link>Images\1\xrot.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.25.png">
+      <Link>Images\1\xrot.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.26.png">
+      <Link>Images\1\xrot.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.27.png">
+      <Link>Images\1\xrot.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.28.png">
+      <Link>Images\1\xrot.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.29.png">
+      <Link>Images\1\xrot.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.3.png">
+      <Link>Images\1\xrot.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.30.png">
+      <Link>Images\1\xrot.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.31.png">
+      <Link>Images\1\xrot.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.32.png">
+      <Link>Images\1\xrot.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.33.png">
+      <Link>Images\1\xrot.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.34.png">
+      <Link>Images\1\xrot.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.35.png">
+      <Link>Images\1\xrot.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.4.png">
+      <Link>Images\1\xrot.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.5.png">
+      <Link>Images\1\xrot.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.6.png">
+      <Link>Images\1\xrot.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.7.png">
+      <Link>Images\1\xrot.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.8.png">
+      <Link>Images\1\xrot.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\xrot.9.png">
+      <Link>Images\1\xrot.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.0.png">
+      <Link>Images\1\yrot.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.1.png">
+      <Link>Images\1\yrot.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.10.png">
+      <Link>Images\1\yrot.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.11.png">
+      <Link>Images\1\yrot.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.12.png">
+      <Link>Images\1\yrot.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.13.png">
+      <Link>Images\1\yrot.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.14.png">
+      <Link>Images\1\yrot.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.15.png">
+      <Link>Images\1\yrot.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.16.png">
+      <Link>Images\1\yrot.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.17.png">
+      <Link>Images\1\yrot.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.18.png">
+      <Link>Images\1\yrot.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.19.png">
+      <Link>Images\1\yrot.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.2.png">
+      <Link>Images\1\yrot.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.20.png">
+      <Link>Images\1\yrot.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.21.png">
+      <Link>Images\1\yrot.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.22.png">
+      <Link>Images\1\yrot.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.23.png">
+      <Link>Images\1\yrot.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.24.png">
+      <Link>Images\1\yrot.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.25.png">
+      <Link>Images\1\yrot.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.26.png">
+      <Link>Images\1\yrot.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.27.png">
+      <Link>Images\1\yrot.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.28.png">
+      <Link>Images\1\yrot.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.29.png">
+      <Link>Images\1\yrot.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.3.png">
+      <Link>Images\1\yrot.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.30.png">
+      <Link>Images\1\yrot.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.31.png">
+      <Link>Images\1\yrot.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.32.png">
+      <Link>Images\1\yrot.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.33.png">
+      <Link>Images\1\yrot.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.34.png">
+      <Link>Images\1\yrot.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.35.png">
+      <Link>Images\1\yrot.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.4.png">
+      <Link>Images\1\yrot.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.5.png">
+      <Link>Images\1\yrot.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.6.png">
+      <Link>Images\1\yrot.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.7.png">
+      <Link>Images\1\yrot.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.8.png">
+      <Link>Images\1\yrot.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\1\yrot.9.png">
+      <Link>Images\1\yrot.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.0.png">
+      <Link>Images\0\stop.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.1.png">
+      <Link>Images\0\stop.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.10.png">
+      <Link>Images\0\stop.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.11.png">
+      <Link>Images\0\stop.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.12.png">
+      <Link>Images\0\stop.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.13.png">
+      <Link>Images\0\stop.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.14.png">
+      <Link>Images\0\stop.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.15.png">
+      <Link>Images\0\stop.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.16.png">
+      <Link>Images\0\stop.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.17.png">
+      <Link>Images\0\stop.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.18.png">
+      <Link>Images\0\stop.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.19.png">
+      <Link>Images\0\stop.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.2.png">
+      <Link>Images\0\stop.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.20.png">
+      <Link>Images\0\stop.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.21.png">
+      <Link>Images\0\stop.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.22.png">
+      <Link>Images\0\stop.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.23.png">
+      <Link>Images\0\stop.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.24.png">
+      <Link>Images\0\stop.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.25.png">
+      <Link>Images\0\stop.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.26.png">
+      <Link>Images\0\stop.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.27.png">
+      <Link>Images\0\stop.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.28.png">
+      <Link>Images\0\stop.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.29.png">
+      <Link>Images\0\stop.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.3.png">
+      <Link>Images\0\stop.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.30.png">
+      <Link>Images\0\stop.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.31.png">
+      <Link>Images\0\stop.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.32.png">
+      <Link>Images\0\stop.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.33.png">
+      <Link>Images\0\stop.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.34.png">
+      <Link>Images\0\stop.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.35.png">
+      <Link>Images\0\stop.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.4.png">
+      <Link>Images\0\stop.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.5.png">
+      <Link>Images\0\stop.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.6.png">
+      <Link>Images\0\stop.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.7.png">
+      <Link>Images\0\stop.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.8.png">
+      <Link>Images\0\stop.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\stop.9.png">
+      <Link>Images\0\stop.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.0.png">
+      <Link>Images\0\xrot.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.1.png">
+      <Link>Images\0\xrot.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.10.png">
+      <Link>Images\0\xrot.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.11.png">
+      <Link>Images\0\xrot.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.12.png">
+      <Link>Images\0\xrot.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.13.png">
+      <Link>Images\0\xrot.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.14.png">
+      <Link>Images\0\xrot.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.15.png">
+      <Link>Images\0\xrot.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.16.png">
+      <Link>Images\0\xrot.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.17.png">
+      <Link>Images\0\xrot.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.18.png">
+      <Link>Images\0\xrot.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.19.png">
+      <Link>Images\0\xrot.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.2.png">
+      <Link>Images\0\xrot.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.20.png">
+      <Link>Images\0\xrot.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.21.png">
+      <Link>Images\0\xrot.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.22.png">
+      <Link>Images\0\xrot.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.23.png">
+      <Link>Images\0\xrot.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.24.png">
+      <Link>Images\0\xrot.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.25.png">
+      <Link>Images\0\xrot.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.26.png">
+      <Link>Images\0\xrot.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.27.png">
+      <Link>Images\0\xrot.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.28.png">
+      <Link>Images\0\xrot.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.29.png">
+      <Link>Images\0\xrot.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.3.png">
+      <Link>Images\0\xrot.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.30.png">
+      <Link>Images\0\xrot.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.31.png">
+      <Link>Images\0\xrot.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.32.png">
+      <Link>Images\0\xrot.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.33.png">
+      <Link>Images\0\xrot.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.34.png">
+      <Link>Images\0\xrot.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.35.png">
+      <Link>Images\0\xrot.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.4.png">
+      <Link>Images\0\xrot.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.5.png">
+      <Link>Images\0\xrot.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.6.png">
+      <Link>Images\0\xrot.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.7.png">
+      <Link>Images\0\xrot.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.8.png">
+      <Link>Images\0\xrot.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\xrot.9.png">
+      <Link>Images\0\xrot.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.0.png">
+      <Link>Images\0\yrot.0.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.1.png">
+      <Link>Images\0\yrot.1.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.10.png">
+      <Link>Images\0\yrot.10.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.11.png">
+      <Link>Images\0\yrot.11.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.12.png">
+      <Link>Images\0\yrot.12.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.13.png">
+      <Link>Images\0\yrot.13.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.14.png">
+      <Link>Images\0\yrot.14.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.15.png">
+      <Link>Images\0\yrot.15.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.16.png">
+      <Link>Images\0\yrot.16.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.17.png">
+      <Link>Images\0\yrot.17.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.18.png">
+      <Link>Images\0\yrot.18.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.19.png">
+      <Link>Images\0\yrot.19.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.2.png">
+      <Link>Images\0\yrot.2.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.20.png">
+      <Link>Images\0\yrot.20.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.21.png">
+      <Link>Images\0\yrot.21.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.22.png">
+      <Link>Images\0\yrot.22.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.23.png">
+      <Link>Images\0\yrot.23.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.24.png">
+      <Link>Images\0\yrot.24.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.25.png">
+      <Link>Images\0\yrot.25.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.26.png">
+      <Link>Images\0\yrot.26.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.27.png">
+      <Link>Images\0\yrot.27.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.28.png">
+      <Link>Images\0\yrot.28.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.29.png">
+      <Link>Images\0\yrot.29.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.3.png">
+      <Link>Images\0\yrot.3.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.30.png">
+      <Link>Images\0\yrot.30.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.31.png">
+      <Link>Images\0\yrot.31.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.32.png">
+      <Link>Images\0\yrot.32.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.33.png">
+      <Link>Images\0\yrot.33.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.34.png">
+      <Link>Images\0\yrot.34.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.35.png">
+      <Link>Images\0\yrot.35.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.4.png">
+      <Link>Images\0\yrot.4.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.5.png">
+      <Link>Images\0\yrot.5.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.6.png">
+      <Link>Images\0\yrot.6.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.7.png">
+      <Link>Images\0\yrot.7.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.8.png">
+      <Link>Images\0\yrot.8.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\DiceRoller\Backup\Images\0\yrot.9.png">
+      <Link>Images\0\yrot.9.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\DiceRollerXF.Droid\Assets\Strings\de\Resources.resw">
+      <Link>Strings\de\Resources.resw</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\DiceRollerXF.Droid\Assets\Strings\en\Resources.resw">
+      <Link>Strings\en\Resources.resw</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\DiceRollerXF.Droid\Assets\Strings\ru\Resources.resw">
+      <Link>Strings\ru\Resources.resw</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

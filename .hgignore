@@ -16,3 +16,4 @@ syntax: glob
 *_Backup_*
 */Bin/*
 *_Report.htm
+*.DS_Store

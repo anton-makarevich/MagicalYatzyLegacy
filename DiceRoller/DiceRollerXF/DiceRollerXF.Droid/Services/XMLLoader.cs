@@ -1,4 +1,6 @@
+#if ANDROID
 using DiceRollerXF.Droid;
+#endif
 using System;
 using System.Collections.Generic;
 using System.Linq;

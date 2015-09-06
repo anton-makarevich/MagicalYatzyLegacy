@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.20506</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F417DCAD-43D6-4CB8-B870-61B3F92D3659}</ProjectGuid>
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
@@ -82,18 +80,6 @@
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\AllWrite\Sanet.AllWrite.WP\Sanet.AllWrite.WP\Models\Brushes.cs">
-      <Link>Common\Brushes.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Controls\HyperlinkButton\HyperlinkButton\WPHyperLink.cs">
-      <Link>Controls\WPHyperLink.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Controls\Sanet.Controls.TipsProvider\Class1.cs">
-      <Link>Controls\Class1.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\SanetWeb\Models\LogManager.cs">
-      <Link>Common\LogManager.cs</Link>
-    </Compile>
     <Compile Include="..\..\DicePanelWP\Models\DicePanel.cs">
       <Link>DicePanel\DicePanel.cs</Link>
     </Compile>
