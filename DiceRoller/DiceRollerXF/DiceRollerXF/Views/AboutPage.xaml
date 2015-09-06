@@ -1,6 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:Sanet.Kniffel.Converters"
+             xmlns:controls ="clr-namespace:DiceRollerXF.Controls"
              x:Class="DiceRollerXF.Views.AboutPage">
-	<Label Text="Hi from about" VerticalOptions="Center" HorizontalOptions="Center" />
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:LocalizeConverter x:Key="LayoutConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid
+        Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackLayout>
+            <Label Text="SANET DICE"/>
+            <Label x:Name="AboutText" LineBreakMode="WordWrap"/>
+            <Label x:Name="VersionText"/>
+        </StackLayout>
+        <StackLayout
+            Grid.Row="1">
+            <Label x:Name="OnlineVersionText" LineBreakMode="WordWrap"/>
+            <controls:HyperlinkButton HorizontalOptions="Start" Content="About Magical Yatzy Online" x:Name="OnlineLink" Tag="http://sanet.by/dicepoker" />
+        </StackLayout>
+
+        <StackLayout
+            Grid.Row="2">
+            <Label x:Name="AuthorText" LineBreakMode="WordWrap"/>
+            <controls:HyperlinkButton HorizontalOptions="Start" Content="Sanet Soft" x:Name="SanetLink" Tag="http://sanet.by/" />
+        </StackLayout>
+
+        <StackLayout
+            Grid.Row="3">
+            <Label x:Name="SupportText" LineBreakMode="WordWrap"/>
+            <controls:HyperlinkButton HorizontalOptions="Start" x:Name="SupportEmailLink" Content="support@sanet.by" Tag="mailto:support@sanet.by" />
+        </StackLayout>
+
+
+
+        <Button x:Name="MoreButton"  Grid.Row="4" Clicked="MoreButton_Click"/>
+                <Button x:Name="RateButton"  Grid.Row="5" Clicked="RateButton_Click"/>
+                <Button x:Name="CloseButton" Grid.Row="6" Clicked="CloseButton_Click"/>
+
+    </Grid>
 </ContentPage>

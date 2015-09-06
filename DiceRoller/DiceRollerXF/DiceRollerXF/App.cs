@@ -30,5 +30,13 @@ namespace DiceRollerXF
         {
             // Handle when your app resumes
         }
+
+        public static string Version
+        {
+            get
+            {
+                return "1.0.0.0 (XF)";
+            }
+        }
     }
 }

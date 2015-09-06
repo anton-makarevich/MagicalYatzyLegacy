@@ -91,6 +91,7 @@ namespace Sanet.Kniffel.DicePanel
                 FDieAngle = value;
                 foreach (Die d in aDice)
                     d.DrawDie();
+                Invalidate();
             }
         }
         public int MaxRollLoop

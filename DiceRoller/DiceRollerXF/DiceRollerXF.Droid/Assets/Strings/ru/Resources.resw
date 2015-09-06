@@ -213,4 +213,7 @@
   <data name="VerySlowLabel" xml:space="preserve">
     <value>очень тихо</value>
   </data>
+  <data name="MoreAppsLabel" xml:space="preserve">
+    <value>Еще приложения...</value>
+  </data>
 </root>

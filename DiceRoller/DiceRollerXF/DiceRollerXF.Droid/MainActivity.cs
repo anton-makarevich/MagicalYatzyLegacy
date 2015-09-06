@@ -8,10 +8,11 @@ using Android.Widget;
 using Android.OS;
 using Sanet.Kniffel.DicePanel;
 using Sanet.Kniffel.Localization;
+using Android.Content;
 
 namespace DiceRollerXF.Droid
 {
-    [Activity(Label = "DiceRollerXF", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Sanet Dice", Icon = "@drawable/icon", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
     {
         static MainActivity _instance;
@@ -32,6 +33,44 @@ namespace DiceRollerXF.Droid
             {
                 return _instance;
             }
+        }
+
+        public void RateApp(string app)
+        {
+            var uri = Android.Net.Uri.Parse("market://details?id="+app);
+            var intent = new Intent(Intent.ActionView, uri);
+            StartActivity(intent);
+        }
+        public void NavigateToUrl(string url)
+        {
+            var uri = Android.Net.Uri.Parse(url);
+            var intent = new Intent(Intent.ActionView, uri);
+            StartActivity(intent);
+        }
+
+        public void SendEmail(string to, string subject, string body)
+        {
+            try
+            {
+                var email = new Intent(Intent.ActionSend);
+                email.PutExtra(Android.Content.Intent.ExtraEmail,
+                    new string[] { to });
+
+                email.PutExtra(Intent.ExtraSubject, "Sanet Dice (Android)");
+
+
+                email.SetType("message/rfc822");
+
+                StartActivity(email);
+            }
+            catch { }
+        }
+
+        public void ShowMyApps(string author)
+        {
+            var uri = Android.Net.Uri.Parse("market://search?q=pub:" + author);
+            var intent = new Intent(Intent.ActionView, uri);
+            StartActivity(intent);
         }
     }
 }

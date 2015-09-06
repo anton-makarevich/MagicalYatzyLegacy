@@ -235,4 +235,7 @@
     <value>sehr ruhig</value>
     <comment>sehr niedrig</comment>
   </data>
+  <data name="MoreAppsLabel" xml:space="preserve">
+    <value>More Apps...</value>
+  </data>
 </root>

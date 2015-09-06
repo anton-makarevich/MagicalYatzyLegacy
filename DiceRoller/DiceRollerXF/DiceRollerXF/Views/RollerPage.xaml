@@ -8,13 +8,19 @@
     <Grid x:Name="layoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="80"/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <dicepanel:DicePanel x:Name="dicePanel"/>
 
+        <ScrollView Orientation="Horizontal"
+                    Grid.Row="1">
+            <StackLayout Orientation="Horizontal"  x:Name="TipsProvider1"/>
+        </ScrollView>
+        
         <Grid 
-            Grid.Row="1"
+            Grid.Row="2"
             x:Name="SettingsButtons" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -36,7 +42,7 @@
             
         </Grid>
         <Grid 
-            Grid.Row="1"
+            Grid.Row="2"
             IsVisible="False"
             x:Name="StyleButtons" >
             <Grid.ColumnDefinitions>
@@ -57,7 +63,7 @@
 
         </Grid>
         <Grid 
-            Grid.Row="1"
+            Grid.Row="2"
             IsVisible="False"
             x:Name="CountButtons" >
             <Grid.ColumnDefinitions>
@@ -89,7 +95,7 @@
 
         </Grid>
         <Grid 
-            Grid.Row="1"
+            Grid.Row="2"
             IsVisible="False"
             x:Name="SpeedButtons" >
             <Grid.ColumnDefinitions>
@@ -98,20 +104,43 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <controls:WPButton x:Name="VerySlowButton" Tag="100"
+            <controls:WPButton x:Name="VerySlowButton" Tag="80"
                              Clicked="SlowButton_Click"  />
             
-            <controls:WPButton x:Name="SlowButton" Tag="75"
+            <controls:WPButton x:Name="SlowButton" Tag="60"
                                Grid.Column="1"
                              Clicked="SlowButton_Click"  />
             
-            <controls:WPButton x:Name="FastButton" Tag="50"
+            <controls:WPButton x:Name="FastButton" Tag="40"
                                Grid.Column="2"
                              Clicked="SlowButton_Click"  />
             
-            <controls:WPButton x:Name="VeryFastButton" Tag="25"
+            <controls:WPButton x:Name="VeryFastButton" Tag="20"
                                Grid.Column="3"
                              Clicked="SlowButton_Click"  />
+        </Grid>
+        <Grid 
+            Grid.Row="2"
+            IsVisible="False"
+            x:Name="ProjectionButtons" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <controls:WPButton x:Name="LowButton" Tag="0"
+                             Clicked="LowButton_Click"  />
+
+            <controls:WPButton x:Name="HighButton" Tag="2"
+                               Grid.Column="1"
+                             Clicked="LowButton_Click"  />
+
+            <controls:WPButton x:Name="VeryHighButton" Tag="4"
+                               Grid.Column="2"
+                             Clicked="LowButton_Click"  />
+
+            
         </Grid>
     </Grid>
 </ContentPage>

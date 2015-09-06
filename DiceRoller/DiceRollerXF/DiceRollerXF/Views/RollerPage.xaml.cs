@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sanet.Kniffel.Localization;
 using Xamarin.Forms;
+using Sanet.Kniffel;
 
 namespace Sanet.Kniffel.XF.Views
 {
@@ -25,8 +26,8 @@ namespace Sanet.Kniffel.XF.Views
 
             StyleButton.SetImageString("DiceRollerXF.Resources.2.png");
             CountButton.SetTextString("5", true);
-            SpeedButton.SetTextString("very fast");
-            ProjectionButton.SetTextString("low");
+            SpeedButton.SetTextString("VeryFastLabel".Localize());
+            ProjectionButton.SetTextString("LowLabel".Localize());
 
             ClassicButton.SetImageString("DiceRollerXF.Resources.0.png");
             BlueButton.SetImageString("DiceRollerXF.Resources.2.png");
@@ -43,6 +44,10 @@ namespace Sanet.Kniffel.XF.Views
             SlowButton.SetTextString("SlowLabel".Localize());
             FastButton.SetTextString("FastLabel".Localize());
             VeryFastButton.SetTextString("VeryFastLabel".Localize());
+
+            LowButton.SetTextString("LowLabel".Localize());
+            HighButton.SetTextString("HighLabel".Localize());
+            VeryHighButton.SetTextString("VeryHighLabel".Localize());
 
             var grid = new Grid();
 
@@ -87,7 +92,7 @@ namespace Sanet.Kniffel.XF.Views
                 Content = grid
             };
 
-            layoutRoot.Children.Add(_bottomBar, 0, 2);
+            layoutRoot.Children.Add(_bottomBar, 0, 3);
         }
 
         private void _helpButton_OnTouchesBegan(object sender, IEnumerable<NGraphics.Point> e)
@@ -117,10 +122,51 @@ namespace Sanet.Kniffel.XF.Views
             if (dicePanel.NumDice == 5)
                 return;
             await dicePanel.SetStyleAsync(DiceStyle.dpsBlue);
-            dicePanel.RollDelay = 30;
+            dicePanel.RollDelay = 20;
             dicePanel.ClickToFreeze = true;
             dicePanel.NumDice = 5;
-            
+            dicePanel.EndRoll += DicePanel_EndRoll;
+        }
+
+        private void DicePanel_EndRoll()
+        {
+            TipsProvider1.Children.Clear();
+            //MessageBox.Show(DicePanel1.Result.ToString());
+            foreach (Die d in dicePanel.aDice)
+                TipsProvider1.Children.Add(new Label()
+                {
+                    Text = d.Result.ToString(),
+                    TextColor = Xamarin.Forms.Color.Blue,
+                    XAlign= Xamarin.Forms.TextAlignment.Start,
+                    HorizontalOptions = LayoutOptions.Start
+                });
+
+            if (dicePanel.NumDice > 1)
+                TipsProvider1.Children.Insert(0, new Label() { Text = dicePanel.Result.Total.ToString(), TextColor = Xamarin.Forms.Color.Red });
+
+            if (dicePanel.NumDice > 3 && dicePanel.Result.NumPairs() > 1)
+            {
+                TipsProvider1.Children.Insert(0,new Label() { Text = string.Format("{0} {1}", dicePanel.Result.NumPairs(), "PairsLabel".Localize()), TextColor = Xamarin.Forms.Color.Lime });
+            }
+            if (dicePanel.NumDice == 5)
+            {
+                if (dicePanel.Result.KniffelFullHouseScore() > 0)
+                    TipsProvider1.Children.Insert(0, new Label() { Text = "FullHouseLabel".Localize(), TextColor = Xamarin.Forms.Color.Lime });
+                if (dicePanel.Result.KniffelLargeStraightScore() > 0)
+                    TipsProvider1.Children.Insert(0, new Label() { Text = "LargeStraightLabel".Localize(), TextColor = Xamarin.Forms.Color.Lime });
+                else
+                {
+                    if (dicePanel.Result.KniffelSmallStraightScore() > 0)
+                        TipsProvider1.Children.Insert(0, new Label() { Text = "SmallStraight".Localize(), TextColor = Xamarin.Forms.Color.Lime });
+                }
+            }
+
+            for (int i = 6; i > 2; i--)
+                if (dicePanel.Result.KniffelOfAKindScore(i) > 1)
+                {
+                    TipsProvider1.Children.Insert(0, new Label() { Text = string.Format("{0} {1}", i, "OfAKindLabel".Localize()), TextColor = Xamarin.Forms.Color.Lime });
+                    break;
+                }
         }
 
         bool CheckPanel()
@@ -153,7 +199,8 @@ namespace Sanet.Kniffel.XF.Views
 
         private void ProjectionButton_Click(object sender, EventArgs e)
         {
-
+            ProjectionButtons.IsVisible = true;
+            SettingsButtons.IsVisible = false;
         }
 
         private async void RedButton_Click(object sender, EventArgs e)
@@ -174,7 +221,7 @@ namespace Sanet.Kniffel.XF.Views
             StyleButtons.IsVisible = false;
             CountButtons.IsVisible = false;
             SpeedButtons.IsVisible = false;
-            //ProjectionButtons.IsVisible = false;
+            ProjectionButtons.IsVisible = false;
             SettingsButtons.IsVisible = true;
 
         }
@@ -186,7 +233,7 @@ namespace Sanet.Kniffel.XF.Views
             dicePanel.NumDice = int.Parse(b.Label);
             CountButton.SetTextString(b.Label, true);
             HideSettings();
-            //TipsProvider1.Children.Clear();
+            TipsProvider1.Children.Clear();
             _rollButton.IsEnabled = true;
             _clearButton.IsEnabled = false;
         }
@@ -197,6 +244,14 @@ namespace Sanet.Kniffel.XF.Views
             
             dicePanel.RollDelay = int.Parse(b.Tag);
             SpeedButton.SetTextString(b.Label);
+            HideSettings();
+        }
+
+        private void LowButton_Click(object sender, EventArgs e)
+        {
+            var b = sender as WPButton;
+            dicePanel.DieAngle = int.Parse(b.Tag);
+            ProjectionButton.SetTextString(b.Label);
             HideSettings();
         }
     }
