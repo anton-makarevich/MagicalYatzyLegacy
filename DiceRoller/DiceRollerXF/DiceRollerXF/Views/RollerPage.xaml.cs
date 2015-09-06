@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Sanet.Kniffel.Localization;
 using Xamarin.Forms;
 
 namespace Sanet.Kniffel.XF.Views
@@ -31,6 +31,18 @@ namespace Sanet.Kniffel.XF.Views
             ClassicButton.SetImageString("DiceRollerXF.Resources.0.png");
             BlueButton.SetImageString("DiceRollerXF.Resources.2.png");
             RedButton.SetImageString("DiceRollerXF.Resources.1.png");
+
+            OneButton.SetTextString("1", true);
+            TwoButton.SetTextString("2", true);
+            ThreeButton.SetTextString("3", true);
+            FourButton.SetTextString("4", true);
+            FiveButton.SetTextString("5", true);
+            SixButton.SetTextString("6", true);
+
+            VerySlowButton.SetTextString("VerySlowLabel".Localize());
+            SlowButton.SetTextString("SlowLabel".Localize());
+            FastButton.SetTextString("FastLabel".Localize());
+            VeryFastButton.SetTextString("VeryFastLabel".Localize());
 
             var grid = new Grid();
 
@@ -129,12 +141,14 @@ namespace Sanet.Kniffel.XF.Views
 
         private void CountButton_Click(object sender, EventArgs e)
         {
-
+            CountButtons.IsVisible = true;
+            SettingsButtons.IsVisible = false;
         }
 
         private void SpeedButton_Click(object sender, EventArgs e)
         {
-
+            SpeedButtons.IsVisible = true;
+            SettingsButtons.IsVisible = false;
         }
 
         private void ProjectionButton_Click(object sender, EventArgs e)
@@ -158,11 +172,32 @@ namespace Sanet.Kniffel.XF.Views
         private void HideSettings()
         {
             StyleButtons.IsVisible = false;
-            //CountButtons.IsVisible = false;
-            //SpeedButtons.IsVisible = false;
+            CountButtons.IsVisible = false;
+            SpeedButtons.IsVisible = false;
             //ProjectionButtons.IsVisible = false;
             SettingsButtons.IsVisible = true;
 
+        }
+
+        private void OneButton_Click(object sender, EventArgs e)
+        {
+            var b = sender as WPButton;
+            
+            dicePanel.NumDice = int.Parse(b.Label);
+            CountButton.SetTextString(b.Label, true);
+            HideSettings();
+            //TipsProvider1.Children.Clear();
+            _rollButton.IsEnabled = true;
+            _clearButton.IsEnabled = false;
+        }
+
+        private void SlowButton_Click(object sender, EventArgs e)
+        {
+            var b = sender as WPButton;
+            
+            dicePanel.RollDelay = int.Parse(b.Tag);
+            SpeedButton.SetTextString(b.Label);
+            HideSettings();
         }
     }
 }

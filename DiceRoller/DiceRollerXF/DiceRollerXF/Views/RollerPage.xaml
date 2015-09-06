@@ -56,5 +56,62 @@
             
 
         </Grid>
+        <Grid 
+            Grid.Row="1"
+            IsVisible="False"
+            x:Name="CountButtons" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <controls:WPButton x:Name="OneButton" 
+                             Clicked="OneButton_Click"  />
+            <controls:WPButton x:Name="TwoButton" 
+                               Grid.Column="1"
+                             Clicked="OneButton_Click"  />
+            <controls:WPButton x:Name="ThreeButton" 
+                               Grid.Column="2"
+                             Clicked="OneButton_Click"  />
+            <controls:WPButton x:Name="FourButton" 
+                               Grid.Column="3"
+                             Clicked="OneButton_Click"  />
+            <controls:WPButton x:Name="FiveButton" 
+                               Grid.Column="4"
+                             Clicked="OneButton_Click"  />
+            <controls:WPButton x:Name="SixButton" 
+                               Grid.Column="5"
+                             Clicked="OneButton_Click"  />
+
+
+        </Grid>
+        <Grid 
+            Grid.Row="1"
+            IsVisible="False"
+            x:Name="SpeedButtons" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <controls:WPButton x:Name="VerySlowButton" Tag="100"
+                             Clicked="SlowButton_Click"  />
+            
+            <controls:WPButton x:Name="SlowButton" Tag="75"
+                               Grid.Column="1"
+                             Clicked="SlowButton_Click"  />
+            
+            <controls:WPButton x:Name="FastButton" Tag="50"
+                               Grid.Column="2"
+                             Clicked="SlowButton_Click"  />
+            
+            <controls:WPButton x:Name="VeryFastButton" Tag="25"
+                               Grid.Column="3"
+                             Clicked="SlowButton_Click"  />
+        </Grid>
     </Grid>
 </ContentPage>
