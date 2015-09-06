@@ -20,7 +20,7 @@ namespace Sanet.Kniffel.XF.Droid.Services
         public async Task<Stream> GetFileStream(string name)
         {
 
-            using (var stream = MainActivity.Instance.Assets.Open(name))
+            using (var stream = File.OpenRead(name))
             {
                 MemoryStream ms = new MemoryStream();
                 stream.CopyTo(ms);

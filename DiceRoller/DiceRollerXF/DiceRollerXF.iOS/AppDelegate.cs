@@ -4,6 +4,8 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Sanet.Kniffel.Utils;
+using Sanet.Kniffel.Localization;
 
 namespace DiceRollerXF.iOS
 {
@@ -22,7 +24,10 @@ namespace DiceRollerXF.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            LocalizerExtensions.Initialize(new ResourceModel(new string[] { "en", "ru", "de" }));
             global::Xamarin.Forms.Forms.Init();
+            NControl.iOS.NControlViewRenderer.Init();
+            DialogsHelper.Init(new Acr.UserDialogs.UserDialogsImpl());
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

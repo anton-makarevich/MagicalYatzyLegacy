@@ -132,7 +132,7 @@ namespace Sanet.Kniffel.XF.Views
         async void PreparePanel()
         {
             DialogsHelper.HideLoading();
-            if (dicePanel.NumDice == 5)
+            if (dicePanel.NumDice != 0)
                 return;
             await dicePanel.SetStyleAsync(DiceStyle.dpsBlue);
             dicePanel.RollDelay = 20;
