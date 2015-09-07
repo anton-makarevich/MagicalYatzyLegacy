@@ -1,4 +1,4 @@
-Sanet Dice - virtual dices you always have with you! You can use them in your favorite games, or just when you need to take a random decision.
+Sanet Dice - virtual dice you always have with you! You can use them in your favorite games, or just when you need to take a random decision.
 
 - the ability to roll from one to six dices;
 - to roll by shaking the phone;
