@@ -17,3 +17,4 @@ syntax: glob
 */Bin/*
 *_Report.htm
 *.DS_Store
+*.ipa
