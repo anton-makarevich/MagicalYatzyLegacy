@@ -35,7 +35,7 @@ namespace DiceRollerXF
         {
             get
             {
-                return "1.0.0.0 (XF)";
+                return "1.1.0.0 (XF)";
             }
         }
     }
