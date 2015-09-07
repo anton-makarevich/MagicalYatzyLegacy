@@ -29,7 +29,7 @@ namespace DiceRollerXF.iOS
             NControl.iOS.NControlViewRenderer.Init();
             DialogsHelper.Init(new Acr.UserDialogs.UserDialogsImpl());
             LoadApplication(new App());
-
+            UIApplication.SharedApplication.ApplicationSupportsShakeToEdit = true;
             return base.FinishedLaunching(app, options);
         }
     }

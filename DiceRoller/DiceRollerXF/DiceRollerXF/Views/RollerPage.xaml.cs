@@ -13,10 +13,11 @@ using Sanet.Kniffel.Localization;
 using Xamarin.Forms;
 using Sanet.Kniffel;
 using Sanet.Kniffel.Utils;
+using DiceRollerXF.Models;
 
 namespace Sanet.Kniffel.XF.Views
 {
-    public partial class RollerPage : ContentPage
+    public partial class RollerPage : ContentPageEx
     {
         CircularButtonControl _clearButton;
         CircularButtonControl _helpButton;
@@ -96,6 +97,8 @@ namespace Sanet.Kniffel.XF.Views
             layoutRoot.Children.Add(_bottomBar, 0, 3);
 
             dicePanel.PanelIsBusy += OnBusy;
+
+            MotionHelper.DeviceShaked += () => dicePanel.RollDice(null);
         }
 
         private void OnBusy(bool isBusy)

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<controls:ContentPageEx xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:dicepanel="clr-namespace:Sanet.Kniffel.DicePanel"
              xmlns:controls ="clr-namespace:DiceRollerXF.Controls"
@@ -143,4 +143,4 @@
             
         </Grid>
     </Grid>
-</ContentPage>
+</controls:ContentPageEx>
