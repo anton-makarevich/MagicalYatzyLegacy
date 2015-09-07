@@ -44,11 +44,8 @@
 		<string>Icon-Small-40@2x.png</string>
 		<string>Icon-Small.png</string>
 	</array>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
-	<key>UIMainStoryboardFile~ipad</key>
-	<string>LaunchScreen</string>
+	
 </dict>
 </plist>

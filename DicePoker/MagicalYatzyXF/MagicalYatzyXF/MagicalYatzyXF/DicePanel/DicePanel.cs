@@ -339,8 +339,16 @@ namespace Sanet.Kniffel.DicePanel
                 string sPath = strImageRoot + strStyle + rot + i.ToString() + ".png";
                 if (!DieFrameImages.ContainsKey(sPath))
                 {
-                    Stream stream = await Xamarin.Forms.DependencyService.Get<IImageService>().GetFileStream(sPath);
-                    var img = _platform.LoadImage(stream);
+                    IImage img;
+                    if (Xamarin.Forms.Device.OS == Xamarin.Forms.TargetPlatform.Android)
+                    {
+                        Stream stream = await Xamarin.Forms.DependencyService.Get<IImageService>().GetFileStream(sPath);
+                        img = _platform.LoadImage(stream);
+                    }
+                    else
+                    {
+                        img = _platform.LoadImage(sPath);
+                    }
                     DieFrameImages.Add(sPath, img);
                 }
             }

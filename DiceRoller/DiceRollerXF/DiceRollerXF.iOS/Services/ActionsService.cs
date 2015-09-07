@@ -21,9 +21,9 @@ namespace Sanet.Kniffel.Services
         public void RateApp(string appName)
         {
             if (UIDevice.CurrentDevice.CheckSystemVersion(7, 0))
-                UIApplication.SharedApplication.OpenUrl(new NSUrl("itms-apps://itunes.apple.com/app/id826095442"));
+                UIApplication.SharedApplication.OpenUrl(new NSUrl("itms-apps://itunes.apple.com/app/id1037783698"));
             else
-                UIApplication.SharedApplication.OpenUrl(new NSUrl("itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=826095442"));
+                UIApplication.SharedApplication.OpenUrl(new NSUrl("itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1037783698"));
         }
         
         public void SendEmail(string to, string topic, string body)
