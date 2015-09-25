@@ -26,10 +26,13 @@ namespace Sanet.Kniffel.XF.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Acr.Support.Android.Resource.String.ApplicationName = global::Sanet.Kniffel.XF.Droid.Resource.String.ApplicationName;
+			global::Acr.Support.Android.Resource.String.Hello = global::Sanet.Kniffel.XF.Droid.Resource.String.Hello;
 			global::NControl.Droid.Resource.String.ApplicationName = global::Sanet.Kniffel.XF.Droid.Resource.String.ApplicationName;
 			global::NControl.Droid.Resource.String.Hello = global::Sanet.Kniffel.XF.Droid.Resource.String.Hello;
 			global::NControl.Droid.Resource.String.library_name = global::Sanet.Kniffel.XF.Droid.Resource.String.library_name;
 			global::NGraphics.Android.Resource.String.library_name = global::Sanet.Kniffel.XF.Droid.Resource.String.library_name;
+			global::Splat.Resource.String.library_name = global::Sanet.Kniffel.XF.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Resource.String.ApplicationName = global::Sanet.Kniffel.XF.Droid.Resource.String.ApplicationName;
 			global::Xamarin.Forms.Platform.Resource.String.Hello = global::Sanet.Kniffel.XF.Droid.Resource.String.Hello;
 		}
